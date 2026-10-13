@@ -46,7 +46,8 @@ verifier now explicitly checks exactly these two reviewed roots and still checks
 the original 291 source entries. See [ADR 0005](../adr/0005-preserve-destination-initializer.md)
 and [the history record](repository-history.json).
 
-The intended adoption is a normal PR into `main` with a merge commit, preserving
+The adoption is [PR #1](https://github.com/kekekewww/Echo-Canva-Web/pull/1) into
+`main` with a merge commit, preserving
 the extraction root and initializer as ancestors. No force push, upstream write,
 squash, rebase or deployment is involved. GitHub-hosted check results and the
 final merge state are visible on the PR; the initial NOT EXECUTED entries above

@@ -16,6 +16,11 @@ multi-platform registry digest, and pnpm **11.7.0**. CI uses the same Node patch
 from `.nvmrc`; `package.json` and the frozen lockfile define dependency versions.
 No Node.js or pnpm installation on the host is required for Docker development.
 
+The Docker CI job installs Compose **5.5.1** from its official Linux release and
+verifies a pinned SHA-256 before execution, matching the locally validated
+version. Hosted runners' preinstalled Compose may be too old for `initial_sync`;
+the contributor minimum remains 2.32.
+
 Check your engine before starting:
 
 ```sh

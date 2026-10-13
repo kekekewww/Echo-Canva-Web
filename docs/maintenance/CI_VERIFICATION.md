@@ -34,6 +34,12 @@ the full browser suite runs in the application job.
   is not a resolved copyright audit; see [SECURITY_LICENSE.md](SECURITY_LICENSE.md).
 - Action references are immutable upstream commit SHAs, verified using `git ls-remote` on 2026-10-13:
 
+The Docker job also installs official Compose 5.5.1 with Linux x86_64 SHA-256
+`db1889184726840f75c4f9c001048430d4f25b3be3cb084d3ddd762bc0aed576`
+and checks it before execution. The release asset digest and separately fetched
+official `.sha256` asset matched. See the
+[official release](https://github.com/docker/compose/releases/tag/v5.5.1).
+
 | Upstream action | Release | Verified commit |
 | --- | --- | --- |
 | [`actions/checkout`](https://github.com/actions/checkout/releases/tag/v7.0.1) | v7.0.1 | `3d3c42e5aac5ba805825da76410c181273ba90b1` |
@@ -103,3 +109,23 @@ inputs; source HMR and restart persistence were observed on the Windows host.
 
 These are local reviews and actual local runs. Neither Docker Engine results nor
 the verified upstream action pins prove that the GitHub-hosted workflow has run.
+
+## Subsequent hosted PR verification
+
+[PR #1](https://github.com/kekekewww/Echo-Canva-Web/pull/1) was created after the
+user explicitly authorized creation, push and automatic merge. Its first real
+[hosted run](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38349805880)
+tested head `e90ed3b24f07b0a6dea0ab4edec6eeb3b6679d21`.
+
+The Docker job **FAILED** during development Compose validation: the runner's
+preinstalled version rejected `initial_sync`. It did not build or start an image.
+The separate application job **PASSED** installation, source/initializer
+verification, ESLint, production advisory audit, TypeScript, 70 files / 524 units
+(7.95 s), production build and all **45 Chromium tests** (42.3 s), with no test
+threshold changes. This hosted result is independent of the earlier local
+44/45 failures and does not erase them.
+
+The correction pins and checksum-verifies Compose 5.5.1 in CI before validating
+either configuration; it retains the development initial sync behavior and all
+existing test thresholds. Subsequent run outcomes remain visible in the PR's
+checks. The first failed run is not erased or treated as a passing Docker run.
