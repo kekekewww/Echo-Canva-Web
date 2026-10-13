@@ -22,6 +22,12 @@ export const test = base.extend<{ browserEvidence: void }>({
     page.on("load", () => record("load", page.url()));
     page.on("crash", () => record("crash", page.url()));
 
+    // Exercise the original one-Worker branch even if a hosted runner gains cores.
+    // This overrides the reported count only; it does not emulate a slower CPU.
+    const pageCdp = process.env.E2E_SINGLE_ACOUSTIC_WORKER === "1"
+      ? await page.context().newCDPSession(page) : undefined;
+    if (pageCdp) await pageCdp.send("Emulation.setHardwareConcurrencyOverride", { hardwareConcurrency: 3 });
+
     const profile = process.env.BROWSER_DIAGNOSTICS === "1";
     const cdp = profile ? await browser.newBrowserCDPSession() : undefined;
     if (cdp) {
@@ -33,6 +39,7 @@ export const test = base.extend<{ browserEvidence: void }>({
     try {
       await runTest();
     } finally {
+      if (pageCdp) await pageCdp.detach();
       if (profile || testInfo.status !== testInfo.expectedStatus) {
         const path = testInfo.outputPath("browser-events.json");
         await writeFile(path, JSON.stringify({

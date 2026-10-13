@@ -1,4 +1,4 @@
-import { intersectSegmentBvh, type PatchBvh } from "@/acoustics/hybrid3d/bvh";
+import { hasSegmentBvhHit, type PatchBvh } from "@/acoustics/hybrid3d/bvh";
 import {
   dot3,
   length3,
@@ -67,8 +67,8 @@ export function reflectionLegIsVisible(
   allowedSurfaceIds: readonly string[],
 ): boolean {
   const allowed = new Set(allowedSurfaceIds);
-  return intersectSegmentBvh(start, end, bvh).every(
-    (hit) => allowed.has(hit.wallId ?? "") || allowed.has(hit.patchId),
+  return !hasSegmentBvhHit(start, end, bvh,
+    (hit) => !allowed.has(hit.wallId ?? "") && !allowed.has(hit.patchId),
   );
 }
 

@@ -1,0 +1,28 @@
+import { it } from "vitest";
+import { writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { STRESS_100_WALLS_PRESET } from "@/domain/presets/stress-100-walls";
+import { createSceneDocumentV2 } from "@/domain/scene-document/serialize";
+import { compileHybridGeometry } from "@/acoustics/hybrid3d/compile";
+import { computeHybridDirectFrame } from "@/acoustics/hybrid3d/direct";
+import type { SceneSpec } from "@/domain/scene/types";
+
+it("records identical full stress outputs and serial compute cost", () => {
+  const scene: SceneSpec = structuredClone(STRESS_100_WALLS_PRESET);
+  const baseSource = scene.sources[0]!;
+  scene.sources = Array.from({ length: 4 }, (_, i) => ({ ...baseSource, id: `stress_source_${i}`, position: { x: 8 + i * 0.7, y: 6 + i * 0.35 } }));
+  scene.portals = Array.from({ length: 8 }, (_, i) => ({ id: `stress_portal_${i}`, wallId: "stress_boundary_north", center: { x: 0.8 + i * 1.45, y: 0 }, widthM: 0.6, heightM: 2, open: i % 2 === 0, lossDb: 3 }));
+  const geometry = compileHybridGeometry(createSceneDocumentV2(scene, { spatial3d: { coordinateSystem: "x-right-y-up-z-forward", floorElevationM: 0, listenerHeightM: 1.5, sourceHeightsM: Object.fromEntries(scene.sources.map(({ id }, i) => [id, 1 + i * 0.4])) } }));
+  const poses = Array.from({ length: 8 }, (_, i) => ({ ...geometry, listenerPosition: { x: 1 + i, y: 1.5, z: 1 + i % 4 } }));
+  const frames = poses.map((pose) => computeHybridDirectFrame(pose, 0));
+  for (let i = 0; i < 80; i++) computeHybridDirectFrame(poses[i % 8]!, 0);
+  const batches = [];
+  for (let batch = 0; batch < 10; batch++) {
+    const start = performance.now();
+    for (let i = 0; i < 80; i++) computeHybridDirectFrame(poses[i % 8]!, 0);
+    batches.push((performance.now() - start) / 80);
+  }
+  const result = { node: process.version, framesSha256: createHash("sha256").update(JSON.stringify(frames)).digest("hex"), batchesMsPerFrame: batches, meanMs: batches.reduce((a, b) => a + b, 0) / batches.length };
+  writeFileSync(`../verification-logs/fix-visibility-${process.env.BENCH_LABEL}.json`, JSON.stringify(result, null, 2));
+  console.log(JSON.stringify(result));
+}, 30000);

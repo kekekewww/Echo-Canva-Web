@@ -1,0 +1,28 @@
+[WebServer] (node:58696) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `pnpm --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:33616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `pnpm --trace-warnings ...` to show where the warning was created)
+[WebServer] $ next start "--hostname" "127.0.0.1" "--port" "3000"
+[WebServer] (node:14212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+
+Running 5 tests using 1 worker
+
+(node:54188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets (8.3s)
+(node:72180) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [chromium] › tests\e2e\workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets (8.4s)
+(node:31356) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [chromium] › tests\e2e\workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets (8.4s)
+(node:52456) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 4 [chromium] › tests\e2e\workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets (8.2s)
+(node:69716) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 5 [chromium] › tests\e2e\workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets (8.5s)
+
+  5 passed (49.1s)

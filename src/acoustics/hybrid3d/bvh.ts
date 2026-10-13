@@ -80,6 +80,27 @@ export function intersectSegmentBvh(start: Vec3, end: Vec3, bvh: PatchBvh): read
   );
 }
 
+/** Boolean visibility query: stop at the first accepted hit, without collecting/sorting all hits. */
+export function hasSegmentBvhHit(
+  start: Vec3,
+  end: Vec3,
+  bvh: PatchBvh,
+  acceptHit: (hit: SegmentPatchHit) => boolean = () => true,
+): boolean {
+  const visit = (node: PatchBvhNode): boolean => {
+    if (!segmentIntersectsAabb3(start, end, node.bounds)) return false;
+    if (node.kind === "leaf") {
+      for (const index of node.patchIndexes) {
+        const hit = intersectSegmentPatch(start, end, bvh.patches[index]!);
+        if (hit && acceptHit(hit)) return true;
+      }
+      return false;
+    }
+    return visit(node.left) || visit(node.right);
+  };
+  return bvh.root !== null && visit(bvh.root);
+}
+
 function rayIntersectsAabb3(
   origin: Vec3,
   direction: Vec3,

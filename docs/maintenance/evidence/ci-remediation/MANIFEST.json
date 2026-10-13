@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-13",
+  "scope": "Local visibility remediation; hosted exact-head results tracked in PR 2",
+  "files": [
+    {
+      "file": "fix-visibility-after.json",
+      "bytes": 384,
+      "sha256": "4695342115841a987348788ec50449f1140961ad74592e87746792b4a20a42be"
+    },
+    {
+      "file": "fix-visibility-all-unit.log",
+      "bytes": 239,
+      "sha256": "2bca0d89656ed7f19a6ee3d6140569cace00a2755ac6234fc8f55da0bd6a55aa"
+    },
+    {
+      "file": "fix-visibility-before.json",
+      "bytes": 386,
+      "sha256": "4c4754205f0b0fe2d950d3f162e7eabd99ba8624ac0ff69a0616565923763a0e"
+    },
+    {
+      "file": "fix-visibility-build.log",
+      "bytes": 799,
+      "sha256": "904c4419f78353ca5781c791e0e5e1fb551c1520e5d52dab9f924fd473e4c8ae"
+    },
+    {
+      "file": "fix-visibility-green.log",
+      "bytes": 231,
+      "sha256": "e2d5daf5598968e0b470079ec6b35fc527f415fae2500ce2087e6d9b240c3f7c"
+    },
+    {
+      "file": "fix-visibility-native-e2e.log",
+      "bytes": 7479,
+      "sha256": "5a490bfbec5307385fbf2db42abbe375d07854578edb502aae06c5c143cb8511"
+    },
+    {
+      "file": "fix-visibility-red.log",
+      "bytes": 2901,
+      "sha256": "59f7aa79538bf9678fade7de3d0ae7fbd573ce1fa46b7e0ab57be6466756f6b9"
+    },
+    {
+      "file": "fix-visibility-single-worker.log",
+      "bytes": 2354,
+      "sha256": "c1797733a7670021fb443fc06d0bada8600441929ebed321edc18ca3619982f8"
+    },
+    {
+      "file": "native-full-stress.json",
+      "bytes": 6550,
+      "sha256": "dc355bcb9dd386e706dd840614fedddfb1f8c5887f555c5e19124ed2e9bb35d7"
+    },
+    {
+      "file": "single-worker-0.json",
+      "bytes": 6525,
+      "sha256": "debca31fb17a16f63f34d319cc891468647efa8a3593a1697720ec45b2a93e97"
+    },
+    {
+      "file": "single-worker-1.json",
+      "bytes": 6525,
+      "sha256": "3b39ef6ba5d219d2d805f05ef17740c339801f378f16ca53645d608423590ac7"
+    },
+    {
+      "file": "single-worker-2.json",
+      "bytes": 6525,
+      "sha256": "531a04dede2271ceafbb7cde62479a73704b1c831226fa2f6f1c7e4a3fbfe8db"
+    },
+    {
+      "file": "single-worker-3.json",
+      "bytes": 6529,
+      "sha256": "4083ce02191f6cee657aa3e3def4f2e2f2a434b1a4663b98d0bce4dd7d2e3177"
+    },
+    {
+      "file": "single-worker-4.json",
+      "bytes": 6525,
+      "sha256": "48411731c0f510ad7e659ff54e8d01faf44a0fe6d3d4c8efee78ab2a3ab5c69f"
+    },
+    {
+      "file": "visibility-benchmark.config.ts.txt",
+      "bytes": 227,
+      "sha256": "43ddd5cc0d27eea7cc4c04e90b915075d6aa325f461329d3f5d644b7f1ea03ee"
+    },
+    {
+      "file": "visibility-benchmark.test.ts.txt",
+      "bytes": 2170,
+      "sha256": "fd84e0b5cb2adc5bc77082623f108ca61b66e9553ff3b03b362576e17c316de4"
+    }
+  ]
+}

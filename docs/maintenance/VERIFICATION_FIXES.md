@@ -1,5 +1,8 @@
 # Verification follow-up: performance, dependency safety and runtime notices
 
+For the subsequent first-attempt CI investigation and visibility optimization,
+see [CI_REMEDIATION.md](CI_REMEDIATION.md). Results below remain historical evidence.
+
 Date: 2026-10-13. Branch: `fix/verification-debt`, based on the history-preserving
 merge of [PR #1](https://github.com/kekekewww/Echo-Canva-Web/pull/1), commit
 `3b2a6b5d6f7b9518e2a8ac9f488cabb0a568a648`.

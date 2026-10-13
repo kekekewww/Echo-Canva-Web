@@ -1,5 +1,9 @@
 # Remaining Technical Debt
 
+The latest CI diagnosis, bounded visibility fix and exact-head status references
+are in [CI_REMEDIATION.md](CI_REMEDIATION.md). Earlier performance failures below
+remain part of the evidence; the Windows first-load timeout is not declared fixed.
+
 | Status | Item and bounded follow-up |
 | --- | --- |
 | Upstream advisory metadata / patch maintenance | Development-only `braces` high advisory still appears by version; registry has no fixed release. A local hashed nesting guard now passes 26 regressions and prevents the reproduced stack exhaustion. Track an upstream fixed release, retain ordinary syntax coverage and review/remove the patch when upgrading. No suppression or fictitious version. See [follow-up](VERIFICATION_FIXES.md). |

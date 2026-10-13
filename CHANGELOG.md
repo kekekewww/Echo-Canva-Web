@@ -32,6 +32,7 @@ Changes use Conventional Commit subjects. Releases should record compatibility c
 - Removed duplicate coincident side polygons for walls without open Portals; this preserves the existing surface coverage and removes translucent fill/stroke overdraw. Added independent projected-geometry regressions and post-measurement stress diagnostics; CI preserves retry evidence and repeats the original macOS stress gate without retries.
 - Compute AI request projections and Frame All points when their buttons are used, avoiding unused scene work during listener/Worker status renders. Existing acoustic and camera calculations remain unchanged; mock Explain and idle-render regressions cover the UI boundaries.
 - Keep Inspector/Outliner inputs stable during acoustic status updates, avoiding unnecessary panel rerenders while preserving project, local-audio and panel-state updates.
+- Stop Hybrid reflection visibility searches at the first non-allowed blocker, preserving intersection formulas and full direct/transmission hit lists. Add first-attempt CI diagnostics, seeded equivalence tests and a separate single-Worker stress check; see [CI remediation](docs/maintenance/CI_REMEDIATION.md).
 
 ## Source release — v1.0.0-build-week
 
