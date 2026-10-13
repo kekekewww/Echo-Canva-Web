@@ -144,6 +144,15 @@ time minus rounded shard duration measured p95 0.9 ms, with approximately 1 ms
 rounding uncertainty. This faster Windows host did not reproduce the hosted
 scheduling gap and cannot establish its cause. No validation cache is added.
 
+The subsequent native unit run also exposed a test-fixture issue: the real Next
+compiler alias module was cold-loaded inside an assertion test, exceeding its
+default five-second timeout twice (6.245 s and 18.141 s). Both failed runs remain
+recorded. Its actual compiler load now belongs to module fixture initialization;
+the same alias/rejection assertions retain the same default timeout, without a
+mock. Marker regressions pass 7/7 and the full suite passes 75 files / 572 tests
+(6.047 s process). Compiler import time remains part of total execution/import
+reporting; this changes no application timing gate.
+
 ## Already verified remote adoption
 
 These runs tested the previous tree, not the new local fixes:

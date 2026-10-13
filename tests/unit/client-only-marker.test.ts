@@ -8,6 +8,7 @@ import { describe, expect, it } from "vitest";
 const require = createRequire(import.meta.url);
 const requireFromNext = createRequire(require.resolve("next/package.json"));
 const requireFromStyledJsx = createRequire(requireFromNext.resolve("styled-jsx/package.json"));
+const aliases = require("next/dist/build/create-compiler-aliases");
 const markers = [
   { label: "Next vendored marker", directory: path.dirname(require.resolve("next/dist/compiled/client-only")) },
   { label: "styled-jsx dependency marker", directory: path.dirname(requireFromStyledJsx.resolve("client-only")) },
@@ -47,7 +48,6 @@ describe.each(markers)("$label", ({ directory }) => {
 });
 
 it("preserves Next's actual server/client alias targets and rejection behavior", () => {
-  const aliases = require("next/dist/build/create-compiler-aliases");
   const serverTarget = aliases.createServerOnlyClientOnlyAliases(true)["client-only$"];
   const clientTarget = aliases.createServerOnlyClientOnlyAliases(false)["client-only$"];
   expect(require.resolve(serverTarget)).toBe(path.join(markers[0].directory, "error.js"));
