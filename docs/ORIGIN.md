@@ -29,6 +29,14 @@ The source was exported with `git -c core.autocrlf=false archive` using the peel
 
 The machine-readable [source manifest](maintenance/source-baseline-manifest.json) records original paths, Git blobs and SHA-256 hashes. Run `node scripts/verify-source-baseline.mjs` to verify the independent root tree against the recorded immutable tree. [Baseline results](maintenance/BASELINE_TEST_REPORT.md) distinguish actual reruns from the historical release's claims.
 
+The subsequent user-authorized PR adoption retains the existing destination's
+LICENSE-only initializer as a second, precisely verified root. Its LICENSE blob
+is identical to the source LICENSE, and the history bridge changes no tracked
+file. The independent source root, all 291 original entries and upstream SHA are
+unchanged. [ADR 0005](adr/0005-preserve-destination-initializer.md) and
+[repository-history.json](maintenance/repository-history.json) record this
+destination-history exception; it does not import another product-code source.
+
 ## Features verified in the tag
 
 The source contains Classic 2.5D and Hybrid 3D workspaces; independent versioned projects; scene editing, listeners and mono point sources; finite walls and portals; material presets and bounded box/cylinder/sphere geometry; direct paths, occlusion/transmission approximation, portal routing, first-order and bounded blocked-path second-order reflections; Eyring estimates and persistent Schroeder/Web Audio output; browser HRTF panning; deterministic source-sharded Web Workers with serial fallback; validated JSON transfer; browser IndexedDB local audio; and optional server-side AI scene compilation and grounded explanations.

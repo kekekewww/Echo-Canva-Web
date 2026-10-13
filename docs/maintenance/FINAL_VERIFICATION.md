@@ -24,8 +24,15 @@ the final verdict. All other checks below have their own scope and status.
 The original repository, its history/tags/release and deployment were not written
 to. The independent work branch is `chore/open-source-extraction`. Following the
 local verification, it was pushed to the existing user-supplied new repository;
-that repository's LICENSE-only `main` remains unchanged. See
+that repository's LICENSE-only `main` remained unchanged at initial publication. See
 [source extraction](SOURCE_EXTRACTION.md) and [remote handoff](REMOTE_HANDOFF.md).
+
+The user subsequently authorized PR creation and automatic merge. The destination
+initializer was bridged into the work branch without changing its tree; the
+source verifier now requires exactly that initializer and the unchanged
+extraction root. This changes the reviewed Git ancestry, not any acoustic model
+or the local check outcomes below. [ADR 0005](../adr/0005-preserve-destination-initializer.md)
+records the decision; GitHub records the later PR checks and merge outcome.
 
 ## Executed checks
 
@@ -91,12 +98,11 @@ only 0/143 and still rejects all other codes/OOM; debug evidence confirms comple
 
 ## Not executed or unresolved
 
-- GitHub-hosted Actions, public repository/labels/issues creation, image publishing,
-  releases, deployment and PR merge were not performed.
-- The later work-branch push is complete. Remote default-branch adoption remains
-  pending because the existing initial `main` and extraction have unrelated
-  histories; no force push, unrelated-history merge or branch-setting change was
-  made. The branch push did not trigger hosted CI.
+- At initial publication, hosted Actions and PR merge were not performed; the
+  branch push did not trigger CI. The later user-authorized PR adoption and
+  actual GitHub outcomes are separate from these completed local tests; see the
+  remote handoff and PR. No repository/labels/issues, images, releases or
+  deployment were created, and no published history was rewritten.
 - macOS Docker Desktop, a separate Linux host, ARM64 and optional polling fallback
   were not exercised. Default Compose Watch worked on Windows without polling.
 - No subjective headphone/HRTF evaluation, physical audio-device interruption,

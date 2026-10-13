@@ -9,7 +9,7 @@ runs two independent jobs:
 
 | Job | Checks |
 | --- | --- |
-| Application | Node from `.nvmrc`, pnpm 11.7.0, frozen dependency install, ESLint, production dependency advisory audit, TypeScript, Vitest, production build, Chromium installation and all existing Playwright tests. |
+| Application | Full-history checkout, immutable source/initializer verification, Node from `.nvmrc`, pnpm 11.7.0, frozen dependency install, ESLint, production dependency advisory audit, TypeScript, Vitest, production build, Chromium installation and all existing Playwright tests. |
 | Docker | Both Compose configurations, clean production image build/start/health, three application routes, packaged static/public assets, both no-key AI API contracts, non-root runtime, excluded source/secret paths, actual runtime notice files/provenance and graceful shutdown. |
 
 The application job builds once and invokes Playwright directly against its usual
@@ -42,6 +42,11 @@ the full browser suite runs in the application job.
 
 ## Actual verification status
 
+The following hosted-CI entry records the initial publication stage. The user
+subsequently authorized a history-preserving PR adoption; its actual hosted runs
+and merge state are recorded by GitHub on the PR. See
+[remote handoff](REMOTE_HANDOFF.md) and [ADR 0005](../adr/0005-preserve-destination-initializer.md).
+
 | Verification | Result |
 | --- | --- |
 | `docker compose config --quiet` | PASS, local Docker Compose 5.5.1 accepted production configuration. |
@@ -64,10 +69,10 @@ the full browser suite runs in the application job.
 | Docker runtime/integration evidence | See [DOCKER_VERIFICATION.md](DOCKER_VERIFICATION.md), which records actual local image/start/smoke/shutdown results. |
 | Final native/Chromium regression evidence | See [FINAL_VERIFICATION.md](FINAL_VERIFICATION.md) and [ACOUSTIC_REGRESSION.md](ACOUSTIC_REGRESSION.md). |
 
-Remote branch adoption is still required before establishing a real GitHub-hosted
-run: the existing LICENSE-only `main` and extraction branch have no common
-ancestor, so a normal PR between them cannot be created. No history rewrite,
-unrelated-history merge or default-branch change was performed. Linux
+Initial publication could not create a normal PR because the LICENSE-only
+`main` and extraction branch had no common ancestor. The subsequent authorized
+content-neutral bridge retains both roots and enables the normal PR, without
+rewriting published history or changing the default branch. Linux
 runner scheduling and browser timing can differ from the Windows host; preserve
 any failures rather than weakening the existing scientific/performance thresholds.
 The original baseline browser failure remains documented separately in

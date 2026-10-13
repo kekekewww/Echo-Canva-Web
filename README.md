@@ -6,7 +6,7 @@ Echo Canvas Web is a browser-based workbench for interactive acoustic simulation
 
 This independent repository is extracted from [Echo-Canva](https://github.com/kekekewww/Echo-Canva) tag `v1.0.0-build-week`. [docs/ORIGIN.md](docs/ORIGIN.md) records the exact immutable commit, release evidence, preserved capabilities, and maintenance differences. The repository is intended for long-term community contribution, including sciwork.
 
-**Public demo:** [the original Echo Canvas deployment](https://echo-canva.vercel.app). This is a legacy upstream demo, not a deployment of this extraction; its running version may differ. This cleanup publishes no repository, image, release, or deployment.
+**Public demo:** [the original Echo Canvas deployment](https://echo-canva.vercel.app). This is a legacy upstream demo, not a deployment of this extraction; its running version may differ. Repository publication and PR integration are recorded in [the remote handoff](docs/maintenance/REMOTE_HANDOFF.md). No production image, release or deployment was published by this maintenance work.
 
 ## Features in the source baseline
 
