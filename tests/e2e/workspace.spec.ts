@@ -475,7 +475,7 @@ test("survives the full entity-limit project within Worker and interaction budge
     return state.__echoLongTasks ?? [];
   });
   const sorted = timings.toSorted((a, b) => a - b);
-  // Record after the measured window closes, including on assertion failures.
+  // Record after the measured window closes, before the final budget assertions.
   // Keep the original input, pool policy, sample count and acceptance limits.
   const metricsPath = test.info().outputPath("worker-stress-metrics.json");
   await writeFile(metricsPath, JSON.stringify({

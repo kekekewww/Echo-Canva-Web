@@ -98,10 +98,51 @@ original case three times with zero retries; evidence directories stay separate.
 | Wall geometry regressions / full native gates / full Chromium | Geometry PASS: 16 focused tests including three new cases. Native lint/type/build/source/collector PASS. First full unit FAIL: 569 passed / one existing marker-test timeout; unchanged isolated 7/7 and full rerun 74 files / 570 tests PASS. Full Chromium FAIL: 43 passed / two timing failures (100-wall selection 81.2 ms >50, stress p95 20 ms >12). Subsequent no-retry diagnostics pending; neither failure is erased. |
 | Rebuilt final production image / zero-gap runtime / complete Chromium | Pending actual run |
 | Updated final development image / quality / Watch persistence | Pending actual run |
-| Final three-OS hosted matrix / macOS zero-retry repetitions / Docker | Pending new-head execution |
+| Wall-fix three-OS hosted matrix / macOS zero-retry repetitions / Docker | [Run 38358717111](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38358717111), head `9494d03a260dbdfe11c247a8260cdf1d62e9889a`: FAIL. All OS unit gates PASS (74 files / 570 tests). Ubuntu CLEAN 45/45; Windows 44 passed / stress failed all three attempts, p95 13 / 13 / 14 ms; macOS full suite CLEAN 45/45, extra no-retry repetitions 2 passed / one failed, p95 7 / 10 / 16 ms. Docker PASS, all notice/provenance gaps zero. |
 
 These pending rows are not passes. Phase-one logs and the macOS first failure
 remain unchanged; final wall-fix outputs use separate `fix-wall-*` names.
+
+Actual browser concurrency is captured in that run: Ubuntu/Windows report four
+logical cores and use two Workers; macOS reports three and uses one under the
+original pool policy. All eight captured stress attempts completed 24 unique
+frames and recorded no Long Tasks. The failed macOS repetition reports shard p95
+9 ms versus complete-pool p95 16 ms; the last Windows attempt includes a 16 ms
+pool sample with shard maximum 2 ms. The difference includes dispatch, transport,
+scheduling, main-thread handling and validation; these measurements do not isolate
+which phase accounts for every delay, and do not justify changing the pool policy.
+
+Further native profiling uses the same stress input with diagnostic-only CDP
+hardware concurrency three, asserted before execution. The CPU profiler perturbs
+timing and is not acceptance evidence. Across 24 frames it records 61.164 ms
+inclusive in scene projection and 21.934 ms in source-result validation; the
+first-reflection patch lookup contributes only 1.052 ms total. Those observations
+support removing unused render-time scene work; they do not support weakening
+validation or adding a lookup cache to fix the unexplained scheduling gap.
+
+## Request-only UI calculation correction
+
+`WorkspaceProjectTools` projected the entire Classic scene on every render even
+though only Generate/Explain consumed it. Worker status updates rerender those
+controls with the same project; Hybrid Generate also discarded that Classic
+projection. Projection now runs in the appropriate existing click handler.
+Similarly, the viewport collected every Frame All point when listener labels
+changed, despite using those points only when Frame All was clicked. Its unchanged
+point sequence and camera function now run in that handler. No Worker algorithm,
+pool policy, reflection/RT60 formula or expected numerical value is changed.
+
+Two real-component idle-render regressions failed before the correction and pass
+after it; scoped lint and full TypeScript pass. Existing Classic/Hybrid Generate
+and Frame All browser cases plus a new mock Explain selected-source case protect
+the handlers. The integrated 46-case browser suite and rebuilt images are pending
+actual execution; the preceding CI failures remain above.
+
+A separate native HC3 boundary diagnostic before this correction passed p95 7 ms
+with 24 complete frames and no Long Tasks. Native message handling (validation,
+assembly and synchronous result callback) measured p95 1.8 ms; dispatch-to-handler
+time minus rounded shard duration measured p95 0.9 ms, with approximately 1 ms
+rounding uncertainty. This faster Windows host did not reproduce the hosted
+scheduling gap and cannot establish its cause. No validation cache is added.
 
 ## Already verified remote adoption
 
