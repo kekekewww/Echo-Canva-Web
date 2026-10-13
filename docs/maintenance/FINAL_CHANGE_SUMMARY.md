@@ -30,7 +30,7 @@ Native frozen pnpm development remains. Docker adds optional pinned Node 22.23.3
 
 Actual Linux container lint/typecheck/full-unit execution passed (524 tests). Host Chromium observed a 1,173 ms final-config development source update and persisted browser data after restart, as recorded in the Docker verification ledger. That report records image build/start/HTTP/no-key API/stop evidence, build timing, image size, initial failures and successful reruns. Read that ledger for the complete container verdict rather than inferring it from this summary.
 
-Public-PR CI has separate application and production-Docker jobs, frozen dependencies, lint/types/Vitest/build/Chromium, production audit, smoke/non-root/secret/notice/shutdown checks, read-only permissions and pinned action revisions. **GitHub-hosted execution has not run** because no publication, push or dispatch was performed. See [CI verification](CI_VERIFICATION.md).
+Public-PR CI has separate application and production-Docker jobs, frozen dependencies, lint/types/Vitest/build/Chromium, production audit, smoke/non-root/secret/notice/shutdown checks, read-only permissions and pinned action revisions. **GitHub-hosted execution has not run**. The later work-branch push does not match the `main` push trigger; remote branch adoption remains pending. See [CI verification](CI_VERIFICATION.md) and [remote handoff](REMOTE_HANDOFF.md).
 
 ## Acoustic evidence and remaining verification
 
@@ -38,4 +38,4 @@ Three added numerical fixtures cover an analytic Classic second-order path, Eyri
 
 macOS Docker Desktop, a separate Linux host/ARM64 runtime, remote GitHub Actions, real paid-provider behavior, subjective headphone localization, actual audio hardware/device interruption, physical room calibration and a comprehensive base-image CVE scan remain unverified or separate follow-up. Passing offline rendering and unit tests do not establish these outcomes. [Remaining debt](REMAINING_TECHNICAL_DEBT.md) gives bounded follow-ups.
 
-No public repository, issue, label, Docker image, release or deployment is created by this local work; no PR is automatically merged. The [maintenance index](README.md) links every requested report and [onboarding](../community/ONBOARDING.md) supports native or Docker contributors.
+The completed work branch was subsequently pushed to the existing user-supplied repository. Its LICENSE-only `main` remains unchanged; no public repository, issue, label, Docker image, release or deployment was created, and no PR was merged. The [maintenance index](README.md) links every requested report and [onboarding](../community/ONBOARDING.md) supports native or Docker contributors.

@@ -10,8 +10,8 @@ Date: 2026-10-13. **Completed and verified:** the independent root commit has ex
 | Independent Git root tree | PASS: `ca4a2543f6f0e8848fe8d8eb57f3ed70faaba294`, identical to upstream |
 | Preserve original material and procedural asset attribution | PASS: original MIT and `public/audio/LICENSE.md` retained |
 | Preserve historical delivery evidence | PASS: 73 archived originals/snapshots verified against source hashes; [manifest](../archive/build-week/MANIFEST.json) |
-| Isolated work and intended new remote | PASS: independent directory/branch; new remote configured locally only |
-| Publish/push/merge/deploy | NOT PERFORMED, as requested |
+| Isolated work and new remote | PASS: independent directory/branch; completed branch subsequently pushed to the user-supplied remote; see [remote handoff](REMOTE_HANDOFF.md) |
+| Original source write / remote main change / merge / image publication / deploy | NOT PERFORMED; the later branch push does not alter the original source or either repository's main branch |
 
 Run `node scripts/verify-source-baseline.mjs` from a full-history clone to recheck the independent extraction root. A shallow clone must first retrieve that root commit. The [machine-readable manifest](source-baseline-manifest.json) also supplies SHA-256 for exported source bytes.
 

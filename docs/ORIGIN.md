@@ -1,6 +1,6 @@
 # Origin and immutable source baseline
 
-Echo Canvas Web is an independent extraction of [Echo-Canva](https://github.com/kekekewww/Echo-Canva), prepared for community maintenance. Its intended remote is `https://github.com/kekekewww/Echo-Canva-Web.git`; no remote repository was created, pushed, deployed or released during extraction.
+Echo Canvas Web is an independent extraction of [Echo-Canva](https://github.com/kekekewww/Echo-Canva), prepared for community maintenance. Its remote is `https://github.com/kekekewww/Echo-Canva-Web.git`. The initial extraction was local; after the user supplied the existing remote on 2026-10-13, the completed work branch was pushed there. No repository was created and no deployment or release was made. The [remote handoff record](maintenance/REMOTE_HANDOFF.md) distinguishes that branch publication from the unchanged original source and remote `main`.
 
 | Source fact | Verified value |
 | --- | --- |

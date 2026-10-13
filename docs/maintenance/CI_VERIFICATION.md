@@ -60,11 +60,14 @@ the full browser suite runs in the application job.
 | Git whitespace check | PASS at current review. |
 | Docker/Compose/workflow review | Initial shutdown exit assertion defect found through actual stopping: zero-only rejected Next's deliberate SIGTERM 143; corrected to allow only 0/143 and reject other exits/OOM. Fork-secret, runtime-guard and watch review found no further actionable defects. |
 | Actual final production stop | PASS handling: Compose stop 1.1359737 s, exit 143, OOM false; same immutable image debug rerun 1.0496091 s, exit 143, OOM false, both cleanup-start and cleanup-finished logs observed. Restart health/HTTP smoke passed. |
-| GitHub-hosted workflow execution | **NOT EXECUTED**: no repository publication/push or remote CI dispatch was authorized. Local checks do not prove GitHub runner results. |
+| GitHub-hosted workflow execution | **NOT EXECUTED**: the completed work branch was subsequently pushed to the user-supplied remote, but `push` only watches `main`. The default branch still contains only its initial LICENSE, and GitHub lists zero workflows/runs. See [remote handoff](REMOTE_HANDOFF.md). Local checks do not prove GitHub runner results. |
 | Docker runtime/integration evidence | See [DOCKER_VERIFICATION.md](DOCKER_VERIFICATION.md), which records actual local image/start/smoke/shutdown results. |
 | Final native/Chromium regression evidence | See [FINAL_VERIFICATION.md](FINAL_VERIFICATION.md) and [ACOUSTIC_REGRESSION.md](ACOUSTIC_REGRESSION.md). |
 
-The first public pull request must establish a real GitHub-hosted run. Linux
+Remote branch adoption is still required before establishing a real GitHub-hosted
+run: the existing LICENSE-only `main` and extraction branch have no common
+ancestor, so a normal PR between them cannot be created. No history rewrite,
+unrelated-history merge or default-branch change was performed. Linux
 runner scheduling and browser timing can differ from the Windows host; preserve
 any failures rather than weakening the existing scientific/performance thresholds.
 The original baseline browser failure remains documented separately in

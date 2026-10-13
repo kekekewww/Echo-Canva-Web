@@ -22,8 +22,10 @@ the final verdict. All other checks below have their own scope and status.
 | Schema/formula/oracle/timing thresholds | Unchanged; three independent numerical fixtures added, no expected-value regeneration to conceal a failure |
 
 The original repository, its history/tags/release and deployment were not written
-to. The independent work branch is `chore/open-source-extraction`, with the new
-repository URL configured as a local remote only. See [source extraction](SOURCE_EXTRACTION.md).
+to. The independent work branch is `chore/open-source-extraction`. Following the
+local verification, it was pushed to the existing user-supplied new repository;
+that repository's LICENSE-only `main` remains unchanged. See
+[source extraction](SOURCE_EXTRACTION.md) and [remote handoff](REMOTE_HANDOFF.md).
 
 ## Executed checks
 
@@ -91,6 +93,10 @@ only 0/143 and still rejects all other codes/OOM; debug evidence confirms comple
 
 - GitHub-hosted Actions, public repository/labels/issues creation, image publishing,
   releases, deployment and PR merge were not performed.
+- The later work-branch push is complete. Remote default-branch adoption remains
+  pending because the existing initial `main` and extraction have unrelated
+  histories; no force push, unrelated-history merge or branch-setting change was
+  made. The branch push did not trigger hosted CI.
 - macOS Docker Desktop, a separate Linux host, ARM64 and optional polling fallback
   were not exercised. Default Compose Watch worked on Windows without polling.
 - No subjective headphone/HRTF evaluation, physical audio-device interruption,
