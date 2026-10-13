@@ -2,7 +2,13 @@
 
 Date: 2026-10-13. Source: `v1.0.0-build-week`, commit `c8fe24700b67861e2f64fbb8950e9281c0e13a3c`.
 
-This maintenance work adds three independent numerical checks. It changes no acoustic runtime formulas, material coefficients, geometry tolerances, search budgets, scene schemas, browser audio behavior, or approved regression artifacts. The application remains an interactive geometric-acoustics approximation rather than a calibrated room-acoustics measurement system.
+The initial maintenance adds three independent numerical checks. The subsequent
+[performance correction](VERIFICATION_FIXES.md) reuses existing Direct/Portal
+routing and stabilizes static primitive identity. Neither changes acoustic
+formulas, material coefficients, geometry tolerances, search budgets, schemas,
+browser audio behavior or approved regression artifacts. The table below retains
+the initial outcomes; current reruns are in the follow-up report. The application
+remains a geometric-acoustics approximation rather than a calibrated measurement system.
 
 ## Executed verification
 

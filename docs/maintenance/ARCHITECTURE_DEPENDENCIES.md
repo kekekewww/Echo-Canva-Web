@@ -93,21 +93,30 @@ Primary evidence:
   and [Vitest 4.1.11 manifest](https://registry.npmjs.org/vitest/4.1.11)
   document the selected runtime, dependency and license compatibility.
 
-## Unresolved development advisory
+## Development advisory and reproducible local correction
 
 [`braces` GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)
 is a high-severity stack-exhaustion issue from deeply nested patterns.
 The fresh npm audit response suggests >=3.0.4, but the primary advisory states
 there is no patched release and the [npm registry](https://registry.npmjs.org/braces)
 publishes only through 3.0.3; `/braces/3.0.4` returned HTTP 404 during this audit.
-No fictitious version, advisory suppression, substitute package or unreviewed
-local patch was added.
+The initial extraction did not apply a local correction. The subsequent reviewed
+pnpm patch bounds parser and AST traversal nesting at 128; the real dependency's
+26 regressions passed after 16/26 failed before the patch. Its exact version
+remains 3.0.3, so registry-based audit still reports the high advisory. No fictitious
+version or suppression is used. See [ADR 0006](../adr/0006-local-dependency-patches.md)
+and [current verification](VERIFICATION_FIXES.md).
 
 The retained path is development-only `eslint-config-next` -> Next ESLint plugin
 -> `fast-glob` -> `micromatch` -> `braces`. The application does not accept user
 glob patterns. Keep lint inputs repository-controlled and keep development
 tooling out of the production runtime. Revisit an upstream fix. A clean
 production dependency audit and all-dependency audit must be reported separately.
+The same version-specific patch mechanism replaces both client-only marker copies
+with an independently authored MIT implementation; it does not assign another
+project's copyright to the unpatched npm release. Patches are copied before frozen
+Docker installs and cause Compose Watch rebuilds. Other package versions and
+integrities are unchanged by this follow-up.
 
 ## License and verification boundaries
 
@@ -118,7 +127,7 @@ notices and LGPL obligations. Windows installed-package inventory is not a
 complete Linux production-image audit; preserve bundled notices/source links
 in redistributed images. See [SECURITY_LICENSE.md](SECURITY_LICENSE.md).
 
-Actual local results after the security changes:
+Retained initial local results after the extraction's security updates:
 
 | Check | Result |
 | --- | --- |

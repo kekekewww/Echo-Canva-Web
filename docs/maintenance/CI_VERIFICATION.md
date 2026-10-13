@@ -2,14 +2,18 @@
 
 Date: 2026-10-13. Workflow: [`.github/workflows/ci.yaml`](../../.github/workflows/ci.yaml).
 
+Current follow-up changes/results are in [VERIFICATION_FIXES.md](VERIFICATION_FIXES.md).
+PR #1 and merged main CI have actually passed. Initial publication-stage failures
+and unexecuted checks below are retained as historical outcomes.
+
 ## Implemented checks
 
 Every pull request, push to the extracted repository's `main`, and manual dispatch
-runs two independent jobs:
+runs an application OS matrix and an independent Linux Docker job:
 
 | Job | Checks |
 | --- | --- |
-| Application | Full-history checkout, immutable source/initializer verification, Node from `.nvmrc`, pnpm 11.7.0, frozen dependency install, ESLint, production dependency advisory audit, TypeScript, Vitest, production build, Chromium installation and all existing Playwright tests. |
+| Application (Ubuntu, Windows, macOS) | Full-history checkout, immutable source/initializer verification, Node from `.nvmrc`, pnpm 11.7.0, frozen dependency install, real Next Client/Server compiler boundary fixtures, ESLint, production dependency advisory audit, TypeScript, Vitest, production build, Chromium installation and all existing Playwright tests. OS-specific failure artifacts are distinct. |
 | Docker | Both Compose configurations, clean production image build/start/health, three application routes, packaged static/public assets, both no-key AI API contracts, non-root runtime, excluded source/secret paths, actual runtime notice files/provenance and graceful shutdown. |
 
 The application job builds once and invokes Playwright directly against its usual
@@ -26,12 +30,12 @@ the full browser suite runs in the application job.
 - `AI_ENABLED=false`; unit tests inject/mock providers. CI needs no paid API or real key.
 - Node 22.23.3 and pnpm 11.7.0 match Docker. Lockfile installation is frozen.
 - `pnpm audit --prod --audit-level=low` rejects production advisories. The unresolved
-  development-only `braces` high advisory remains documented and unsuppressed;
+  development-only `braces` high advisory remains visible by package version despite the tested local nesting guard;
   the production audit does not imply all development dependencies are clear.
 - The runtime guard rejects missing license metadata, installed originals, notice
-  files and unreviewed provenance gaps. It retains the exact documented
-  `client-only@0.0.1` exception: upstream lacks an original notice. An exception
-  is not a resolved copyright audit; see [SECURITY_LICENSE.md](SECURITY_LICENSE.md).
+  files and all provenance gaps. Both original client-only copies are independently
+  replaced with project-MIT markers. No runtime exception is allowed; see
+  [ADR 0006](../adr/0006-local-dependency-patches.md).
 - Action references are immutable upstream commit SHAs, verified using `git ls-remote` on 2026-10-13:
 
 The Docker job also installs official Compose 5.5.1 with Linux x86_64 SHA-256
@@ -46,7 +50,7 @@ official `.sha256` asset matched. See the
 | [`actions/setup-node`](https://github.com/actions/setup-node/releases/tag/v7.0.0) | v7.0.0 | `820762786026740c76f36085b0efc47a31fe5020` |
 | [`actions/upload-artifact`](https://github.com/actions/upload-artifact/tree/cf430e030ddbb5b0abf93d22962f4752f3646cd9) | v7 | `cf430e030ddbb5b0abf93d22962f4752f3646cd9` |
 
-## Actual verification status
+## Retained initial verification status
 
 The following hosted-CI entry records the initial publication stage. The user
 subsequently authorized a history-preserving PR adoption; its actual hosted runs
@@ -84,7 +88,7 @@ any failures rather than weakening the existing scientific/performance threshold
 The original baseline browser failure remains documented separately in
 [BASELINE_TEST_REPORT.md](BASELINE_TEST_REPORT.md).
 
-The final Chromium failures are unresolved performance-gate failures, even though
+At initial extraction, the final Chromium failures were unresolved performance-gate failures, even though
 an earlier full run passed. No threshold was loosened, test skipped or failure
 converted to a pass. The application CI job will retain those assertions and may
 fail on a runner until the underlying timing behavior is understood and addressed.
@@ -102,13 +106,13 @@ Local review confirmed assertion failures and rejected fetches exit the Node
 smoke/runtime scripts nonzero; the workflow shell propagates failing commands.
 Health checks return failure on HTTP/body/network errors. Runtime guard code is
 sent on stdin to Node in the runner, so it does not require copying maintenance
-scripts into the final image. Its narrow reviewed provenance exception is
-reported as unresolved, with no general license-gap suppression. Watch ignores
+scripts into the final image. The initial provenance exception was unresolved;
+the follow-up independently replaces those markers and rejects all exceptions. Watch ignores
 dependency/build/secret trees, uses image-owned modules and rebuilds dependency
 inputs; source HMR and restart persistence were observed on the Windows host.
 
-These are local reviews and actual local runs. Neither Docker Engine results nor
-the verified upstream action pins prove that the GitHub-hosted workflow has run.
+Those initial local reviews and upstream pins alone did not prove hosted execution.
+The actual later GitHub runs are recorded below and in the follow-up report.
 
 ## Subsequent hosted PR verification
 
@@ -129,3 +133,12 @@ The correction pins and checksum-verifies Compose 5.5.1 in CI before validating
 either configuration; it retains the development initial sync behavior and all
 existing test thresholds. Subsequent run outcomes remain visible in the PR's
 checks. The first failed run is not erased or treated as a passing Docker run.
+
+The corrected [PR run 38350110304](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38350110304)
+completed both jobs successfully, including all 45 Chromium tests. PR #1 was
+merged with history preserved. The [merged-main run 38350389651](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38350389651)
+also completed both jobs successfully at exact SHA
+`3b2a6b5d6f7b9518e2a8ac9f488cabb0a568a648`: 524 units / Chromium 45/45,
+42.1 s; actual production Docker build/start/health/routes/API/runtime/shutdown
+assertions passed. See [the follow-up](VERIFICATION_FIXES.md) for the newly patched
+tree's distinct native, container and expanded hosted-matrix verification.

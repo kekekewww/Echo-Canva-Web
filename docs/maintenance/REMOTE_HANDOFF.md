@@ -53,3 +53,10 @@ squash, rebase or deployment is involved. GitHub-hosted check results and the
 final merge state are visible on the PR; the initial NOT EXECUTED entries above
 describe the earlier publication stage, not a verdict on a later run. Existing
 local 44/45 failures remain recorded in the [verification ledger](FINAL_VERIFICATION.md).
+
+PR #1 was merged at `3b2a6b5d6f7b9518e2a8ac9f488cabb0a568a648`.
+The corrected PR run and [merged-main run 38350389651](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38350389651)
+both completed successfully: 524 units, Chromium 45/45 and actual Docker
+build/start/health/API/runtime/shutdown checks. The initial hosted Docker run's
+old-Compose failure is retained. [Subsequent verification fixes](VERIFICATION_FIXES.md)
+record the newly authorized performance, dependency and notice corrections.

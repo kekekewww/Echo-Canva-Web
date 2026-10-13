@@ -21,11 +21,14 @@ Changes use Conventional Commit subjects. Releases should record compatibility c
 
 - Made production AI provider use an explicit opt-in and bounded route input, process request usage, concurrency, and provider retries.
 - Updated affected dependencies as a separate maintenance change; the lockfile and [security report](docs/maintenance/SECURITY_LICENSE.md) contain the resolved versions and audit results.
+- Added a reproducible local `braces@3.0.3` nesting guard; version-based audits still report the upstream advisory until a fixed release exists.
+- Replaced both client-only markers with independently authored project-MIT implementations and made runtime notice gaps fail collection/inspection. Real Next compiler checks protect Client/Server boundaries.
 
 ### Acoustic compatibility
 
 - Retained baseline schema versions, material presets, geometry/acoustic algorithms, browser audio, and local audio storage behavior.
 - Additional regression fixtures and actual results are recorded in [docs/maintenance/ACOUSTIC_REGRESSION.md](docs/maintenance/ACOUSTIC_REGRESSION.md).
+- Reduced Hybrid listener-update work by retaining static primitive identity and computing only the needed Classic Direct/Portal projection; numerical oracles, formulas and performance budgets are unchanged. See [follow-up verification](docs/maintenance/VERIFICATION_FIXES.md).
 
 ## Source release — v1.0.0-build-week
 

@@ -70,6 +70,8 @@ docker compose -f compose.dev.yaml exec web pnpm test
 
 The container workflow supports tests that need no sound hardware. Playwright runs in CI; actual listening and device-specific AudioContext behavior still require a host browser. A passing numerical or OfflineAudioContext test does not establish subjective localization accuracy.
 
+Use [the browser listening and Docker Desktop checklist](docs/testing/browser-listening.md) to record physical headphone output, HRTF comparisons, device lifecycle, local IndexedDB behavior, and host hot reload. It includes explicit NOT RUN status for automation-inaccessible listening and untested macOS Desktop behavior; report those separately from CI results.
+
 Documentation-only changes should verify paths, commands, and claims against the current code. Changes to application behavior should retain passing Classic and Hybrid regression coverage; the pull request CI checks installation, lint, types, Vitest, production build, Chromium E2E, and a Docker production smoke test.
 
 ## Acoustic and architectural changes
