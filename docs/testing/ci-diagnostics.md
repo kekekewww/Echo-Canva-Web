@@ -1,6 +1,6 @@
 # Browser CI diagnostics
 
-The unprofiled Chromium suite and macOS three-repeat stress gate remain the
+The unprofiled Chromium suite and Ubuntu three-repeat stress gates remain the
 acceptance checks. The stress fixture still requires 24 distinct completed frames,
 p95 below 12 ms, and no observed main-thread task above 50 ms. Do not interpret a
 retry or an instrumented run as a replacement for a failed acceptance attempt.
@@ -28,15 +28,21 @@ it off when profiling computation. Load `chromium-cpu-trace.json`
 in Chrome DevTools Performance. Correlate dispatch/message tasks, Worker CPU
 samples, GC and rendering with `worker-stress-metrics.json` before proposing a fix.
 
-CI runs this supplementary collection on Windows and macOS after a failed gate. Its
+CI runs this supplementary collection on Ubuntu and Windows after a failed gate. Its
 explicit `continue-on-error` applies only to profiling, not either acceptance
 step. Artifacts retain failures and successes for seven days, including after a
 failed gate. The test inputs use synthetic scenes and mocked/disabled AI, with no
 real keys or local user audio. Do not profile private scenes and publish the trace.
 
-The separate mandatory macOS single-Worker check sets
+The separate mandatory Ubuntu single-Worker check sets
 `E2E_SINGLE_ACOUSTIC_WORKER=1`. Chromium reports three cores, so the unchanged
 application capacity rule selects one acoustic Worker. This prevents a runner
 upgrade from silently dropping coverage of that branch. It does **not** emulate
 physical CPU speed, scheduling, or a three-core machine. Both this check and the
 native-capacity repeat use the original fixture and thresholds without profiling.
+
+At the maintainer's request on 2026-10-14 (Asia/Taipei), macOS was removed from the
+CI matrix after hosted ARM64 runner capacity prevented the first final-revision
+job from starting. The pending retry was cancelled. Both extra stress gates moved
+to Ubuntu; this change does not establish macOS acceptance or erase its historical
+performance failures.

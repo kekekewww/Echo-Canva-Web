@@ -93,8 +93,10 @@ pnpm e2e
 The Chromium suite builds and starts its own production server. On Linux, `pnpm exec playwright install --with-deps chromium` also installs system libraries. Tests cover geometry, Direct Path, occlusion/transmission, first/second-order reflections, Portal routing, material energy, RT60, Hybrid 3D, Workers, audio state, and serialization. AI tests use mocks.
 
 Public-PR CI runs frozen installation, real Next Client/Server boundary checks,
-ESLint, TypeScript, Vitest, production build and Chromium E2E on Ubuntu, Windows
-and macOS, plus a separate Linux production Docker build/start/HTTP smoke job.
+ESLint, TypeScript, Vitest, production build and Chromium E2E on Ubuntu and Windows,
+plus a separate Linux production Docker build/start/HTTP smoke job. Ubuntu also
+runs three zero-retry stress repetitions each at native and single-Worker capacity.
+macOS is excluded from the current CI matrix; its final revision is not verified.
 It uses minimal permissions and no paid keys. [Maintenance reports](docs/maintenance/README.md)
 distinguish configured checks from actual results. Listening, real output and
 subjective localization use the [host-browser checklist](docs/testing/browser-listening.md).

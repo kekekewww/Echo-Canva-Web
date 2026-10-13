@@ -5,6 +5,24 @@ This follow-up supersedes current-status claims, not historical measurements, in
 belong in [PR #2](https://github.com/kekekewww/Echo-Canva-Web/pull/2) to avoid a
 documentation-only commit repeatedly invalidating the tested head.
 
+## CI platform policy update — 2026-10-14 (Asia/Taipei)
+
+The maintainer requested removal of macOS CI, cancellation of the temporary
+ten-minute PR monitor, and merging PR #2. The monitor is paused and its pending
+macOS retry was cancelled. CI now requires Ubuntu and Windows application checks
+and the separate production Docker job. Both three-repeat, zero-retry stress
+gates (native capacity and single Worker) move to Ubuntu with unchanged assertions.
+
+At `f7ee10e79aca5d68fb647fd61f73c0bb28b7b354`, Ubuntu and Windows each passed
+575 unit tests and a clean 46/46 Chromium suite; production Docker integration also
+passed. In [run 38426347157](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38426347157),
+the first macOS job never executed: GitHub reported that no hosted runner acquired
+the job and cited macOS ARM64 capacity constraints. Its one authorized retry was
+cancelled at the maintainer's request. This final revision therefore has **no
+macOS acceptance result**. Earlier executed macOS results below remain historical
+evidence. The new workflow commit must pass its retained checks before merging;
+consult PR #2 for those exact-head results.
+
 ## Confirmed failures and limits
 
 At `e9e70424`, [run 38366312003](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38366312003)
@@ -46,12 +64,13 @@ runner label was unchanged. This is not proof that low-core behavior was fixed.
 Windows' supplementary DOM/CPU-profiled stress attempts failed 6/6, while its six
 pan attempts passed; these instrumented attempts did not replace acceptance.
 
-CI therefore retains the native macOS repeats and adds a mandatory unprofiled
+The visibility-change commit retained the native macOS repeats and added an unprofiled
 single-Worker check. It overrides only Chromium's reported core count to three;
 it does not emulate a physical three-core CPU. Expensive diagnostic collection
 runs only after a failed gate, with DOM tracing off to reduce observer overhead.
 All acceptance assertions and zero-retry repetition remain unchanged. See
 [diagnostic commands](../testing/ci-diagnostics.md).
+The subsequent platform policy update above moves both checks to Ubuntu.
 
 ## Fresh local verification of the visibility change
 

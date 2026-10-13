@@ -25,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest]
     defaults:
       run:
         shell: bash
@@ -60,16 +60,16 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
       - name: Chromium E2E against the built application
         run: pnpm exec playwright test
-      - name: Repeat the original stress gate on macOS without retries
-        if: runner.os == 'macOS'
-        run: pnpm exec playwright test tests/e2e/workspace.spec.ts --grep 'survives the full entity-limit project' --repeat-each=3 --retries=0 --output=test-results/macos-repeat
+      - name: Repeat the original stress gate on Ubuntu without retries
+        if: runner.os == 'Linux'
+        run: pnpm exec playwright test tests/e2e/workspace.spec.ts --grep 'survives the full entity-limit project' --repeat-each=3 --retries=0 --output=test-results/native-repeat
       - name: Exercise the single acoustic Worker policy without CPU emulation
-        if: runner.os == 'macOS'
+        if: runner.os == 'Linux'
         env:
           E2E_SINGLE_ACOUSTIC_WORKER: "1"
         run: pnpm exec playwright test tests/e2e/workspace.spec.ts --grep 'survives the full entity-limit project' --repeat-each=3 --retries=0 --output=test-results/single-worker
       - name: Diagnose first attempts with CPU traces (not performance acceptance)
-        if: ${{ failure() && !cancelled() && (runner.os == 'macOS' || runner.os == 'Windows') }}
+        if: ${{ failure() && !cancelled() }}
         # Instrumentation changes timing. This supplementary run cannot replace
         # or turn green either of the unprofiled acceptance steps above.
         continue-on-error: true
