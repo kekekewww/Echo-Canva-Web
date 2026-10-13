@@ -1,0 +1,16 @@
+docker :  Network echo-canvas-web-dev_default Creating
+位於 線路:2 字元:101
++ ... API_KEY=''; docker compose -f compose.dev.yaml up -d --wait --wait-ti ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Network echo-c...fault Creating :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+ Network echo-canvas-web-dev_default Creating
+ Network echo-canvas-web-dev_default Created
+ Network echo-canvas-web-dev_default Created
+ Container echo-canvas-web-dev-web-1 Creating
+ Container echo-canvas-web-dev-web-1 Created
+ Container echo-canvas-web-dev-web-1 Starting
+ Container echo-canvas-web-dev-web-1 Started
+ Container echo-canvas-web-dev-web-1 Waiting
+ Container echo-canvas-web-dev-web-1 Healthy

@@ -1,0 +1,6 @@
+* text=auto eol=lf
+
+# Immutable originals and upstream license copies retain their exact bytes.
+docs/archive/** -text
+docs/licenses/** -text
+*.wav binary

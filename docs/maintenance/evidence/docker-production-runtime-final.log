@@ -1,0 +1,18 @@
+{
+  "runtimeUser": 1000,
+  "summary": {
+    "runtimePackages": 21,
+    "standalonePackages": 19,
+    "skippedManifestsWithoutNameOrVersion": 49,
+    "missingLicenseMetadata": 0,
+    "missingNoticeFiles": 1,
+    "missingInstalledPackages": 0,
+    "ignoredExternalRuntimeLinks": 0,
+    "declaredDependenciesIncluded": 5,
+    "supplementalPackages": 4,
+    "provenanceExceptions": 1
+  },
+  "unresolvedProvenance": [
+    "client-only@0.0.1"
+  ]
+}

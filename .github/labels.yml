@@ -1,0 +1,28 @@
+# Proposed labels only; no automation applies these to GitHub.
+- name: good first issue
+  color: "7057ff"
+  description: A bounded task with a clear starting point and acceptance criteria
+- name: help wanted
+  color: "008672"
+  description: Community help is welcome
+- name: documentation
+  color: "0075ca"
+  description: Guides, references, onboarding, or documentation corrections
+- name: acoustics
+  color: "1d76db"
+  description: Geometry, propagation, material, or acoustic model work
+- name: audio
+  color: "5319e7"
+  description: Web Audio graph, rendering, lifecycle, or local audio assets
+- name: frontend
+  color: "bfd4f2"
+  description: Editor, visualization, accessibility, or browser UI
+- name: testing
+  color: "0e8a16"
+  description: Reproducible fixtures, unit checks, or browser regressions
+- name: performance
+  color: "fbca04"
+  description: Measured latency, Worker, memory, or rendering improvements
+- name: research
+  color: "d4c5f9"
+  description: Scientific evidence, experiments, and model limitations

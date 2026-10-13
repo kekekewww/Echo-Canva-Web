@@ -1,0 +1,19 @@
+pnpm.exe : [WebServer] (node:39500) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+位於 C:\Users\kevin\AppData\Local\pnpm\bin\pnpm.ps1:14 字元:3
++   & "$basedir/../global/v11/e9b8-19fbe146e2d-68c1886746feab5d/node_mo ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([WebServer] (no... env being set.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[WebServer] (Use `pnpm --trace-warnings ...` to show where the warning was created)
+[WebServer] $ next start "--hostname" "127.0.0.1" "--port" "3000"
+[WebServer] (node:56240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:68876) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests\e2e\workspace.spec.ts:281:5 › survives the full entity-limit project within Worker and interaction budgets (9.0s)
+
+  1 passed (12.9s)

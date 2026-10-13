@@ -1,0 +1,6 @@
+pnpm.exe : $ eslint . --max-warnings=0
+位於 C:\Users\kevin\AppData\Local\pnpm\bin\pnpm.ps1:14 字元:3
++   & "$basedir/../global/v11/e9b8-19fbe146e2d-68c1886746feab5d/node_mo ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ($ eslint . --max-warnings=0:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError

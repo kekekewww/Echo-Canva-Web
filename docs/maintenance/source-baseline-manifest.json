@@ -1,0 +1,1754 @@
+{
+  "sourceRepository": "https://github.com/kekekewww/Echo-Canva",
+  "sourceTag": "v1.0.0-build-week",
+  "sourceCommit": "c8fe24700b67861e2f64fbb8950e9281c0e13a3c",
+  "sourceTree": "ca4a2543f6f0e8848fe8d8eb57f3ed70faaba294",
+  "files": [
+    {
+      "path": ".env.example",
+      "mode": "100644",
+      "gitBlob": "fc250493b6f38389581b6ed2ad926771f6b487f8",
+      "sha256": "21e1a62ba8b50e72226dbe9214dd605b0eda46aa8336605a0e57225ab42f83ed"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "gitBlob": "b3dd53c7eab06e2664b7a7d1cac475cb6bb0137b",
+      "sha256": "e2de4e390bde9c9828e6ce3f2c3ab2c1533d77c46aac3e4eae275be48d393fcc"
+    },
+    {
+      "path": ".superpowers/sdd/final-fix-report.md",
+      "mode": "100644",
+      "gitBlob": "8f8ca3b24a24a40a4955734f273873e89b7bb8e0",
+      "sha256": "58cc174b4d3b9e9a7ac8be7b4abc10ee4fe9b2f6d074a90f386433cb32eacbe8"
+    },
+    {
+      "path": ".superpowers/sdd/gate-b-final-repair-report.md",
+      "mode": "100644",
+      "gitBlob": "5dad90ab19cb09fb77532e80416edd542fa854e1",
+      "sha256": "0680c9997e9b5b619e50389f9b4ed7b8d9f2ba1722b587069afa1223c6f23e45"
+    },
+    {
+      "path": ".superpowers/sdd/multicore-task-2-report.md",
+      "mode": "100644",
+      "gitBlob": "657ce2eb261b6a9f420bcfd2e33f661f5b0698f0",
+      "sha256": "f70676dbf03468d5930d91d7cbbb64852089f5b30142865ee2a13fbb47011f3b"
+    },
+    {
+      "path": ".superpowers/sdd/multicore-task-3-report.md",
+      "mode": "100644",
+      "gitBlob": "84c8bc9f13c02099b57990b21e49fef3abb10dd9",
+      "sha256": "a6ed8b4fe254492312128581d7e40d3faae62e76fdae428c75a18e16b45ea6d7"
+    },
+    {
+      "path": ".vercelignore",
+      "mode": "100644",
+      "gitBlob": "477b15db8ffb879e849f22086b7f01a886281a83",
+      "sha256": "c1ac58032020fdc3197ba72ed619fde73a0ec40aea39ca7f2b97e9cb8e6168ef"
+    },
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "gitBlob": "5a00a9457cb6fc78c3ec4293c2944487d9fd4ded",
+      "sha256": "dd449935b18d7257b6d870aada8a490e05bbc6d7f07d4d0e6c421d7b05924227"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "gitBlob": "c8016f0c6346720d3172abde5f7f834e21c0946e",
+      "sha256": "a28ef1b4d5cfd8bff05341217577b8e1bc85156aefcb692ee0f027b19612f6a3"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "gitBlob": "ce5198435e832cfc5e7f39693210c8dc911c6f51",
+      "sha256": "66d9674f5c9a66d3f321cecf219421d640e8fb94e080c4456c0a507dda38c135"
+    },
+    {
+      "path": "README_HANDOFF.md",
+      "mode": "100644",
+      "gitBlob": "7ae71afcdfb1e17431ea6ddc11caba7acb6e0327",
+      "sha256": "81815e835c78110b6984a034dd6b5aaaf79afaa93a2ff2bf91f0f771c8fb2908"
+    },
+    {
+      "path": "artifacts/evidence/CODEX_USAGE.md",
+      "mode": "100644",
+      "gitBlob": "bb4b654cd3b9fde8feccf087957eb42182de85a5",
+      "sha256": "614e72b6af75703566a9f22db1cf2afd794840c982c46fbf6d32fe4ab02f3e81"
+    },
+    {
+      "path": "artifacts/evidence/DECISION_LOG.md",
+      "mode": "100644",
+      "gitBlob": "def4e4247c7cf1b9ddc4b35e8ba4de880334dcfc",
+      "sha256": "929d8055295c99c7bfc2a1aa13851e3f63cad47e4c83d7dde0820a8079cc9b16"
+    },
+    {
+      "path": "artifacts/evidence/GPT_RUNTIME_USAGE.md",
+      "mode": "100644",
+      "gitBlob": "56df728e33e583c0e0fa40324275be092c3a0e15",
+      "sha256": "2e191a98937ebf1f5d70e7a559c76803d4cc2c2f0cef51a1f441efc13b5ee08d"
+    },
+    {
+      "path": "artifacts/evidence/commit-timeline.csv",
+      "mode": "100644",
+      "gitBlob": "7f9bd88b969e3c9a8926806f0ecf35c185d583b7",
+      "sha256": "8d25954700dcfaa35c15706c1d100816ac62111b36b07383e808edc6215a30fe"
+    },
+    {
+      "path": "artifacts/release/e2e-output.txt",
+      "mode": "100644",
+      "gitBlob": "32f9ef54b7cd126443b3c8e64ba6f4a489b00b09",
+      "sha256": "7fb2f82009973ff15643ab149737916ce1ae4254f13101cad0f832934f31f600"
+    },
+    {
+      "path": "artifacts/release/install-output.txt",
+      "mode": "100644",
+      "gitBlob": "3c22c89422e52367ee5ecc9703ba06d170b3a9c5",
+      "sha256": "2e00783fd6e331be0792c90e71e7dae91726f246a505b015e5bda87b6c7ed819"
+    },
+    {
+      "path": "artifacts/release/rc-metadata.json",
+      "mode": "100644",
+      "gitBlob": "b470a8d4b632a805ae5b945f63508e1b3156d5f3",
+      "sha256": "7abfcd3a6d68e4097818fa74fa069f7e108939ceffb33514903a8b772cb1a6de"
+    },
+    {
+      "path": "artifacts/release/release-acceptance-report.md",
+      "mode": "100644",
+      "gitBlob": "a7fd04c02023838fc85dae9ef3a463995ef376e3",
+      "sha256": "372a4724af76e944ac730dd947bc3134107f73ca1080a1cdab4615c93031415e"
+    },
+    {
+      "path": "artifacts/release/security-license-audit.md",
+      "mode": "100644",
+      "gitBlob": "c476537b8a7549df95ba089f42fbdd47cf2c435b",
+      "sha256": "ba23bcdd13c2d672be56f2225b540c1263f95dad5eaa939988d2f036d2cf5af0"
+    },
+    {
+      "path": "artifacts/release/static-verification-summary.md",
+      "mode": "100644",
+      "gitBlob": "e80abff8af7c2716846cf10bf8d34502e168e34c",
+      "sha256": "2456305994e2dabe084f2c049086a8ccacfa4cafa68fe024527b3c3109ae0134"
+    },
+    {
+      "path": "artifacts/release/submission-metadata.json",
+      "mode": "100644",
+      "gitBlob": "92288e8da02d5a616affa00c0935716f09fb6a9f",
+      "sha256": "c784122c0d4fefb398fd1d32cdb0d93343ec7b18761de89df609415947328ff2"
+    },
+    {
+      "path": "artifacts/release/verify-output.txt",
+      "mode": "100644",
+      "gitBlob": "e88527297742f0787b6b2e7918cba1baf05ce5a6",
+      "sha256": "514f15558563359b4c62d785b76be0e1fd5c086a8fbbd95b84b365189767bfdd"
+    },
+    {
+      "path": "benchmarks/results/mvp-baseline-audio.json",
+      "mode": "100644",
+      "gitBlob": "4cf1909cdd60e23600c0ed5eed5a20d43f80376d",
+      "sha256": "0f1967946d383016132fc0a7612a6234263b4fffdf50b4cea4f522a4e38bfb62"
+    },
+    {
+      "path": "benchmarks/results/mvp-baseline.json",
+      "mode": "100644",
+      "gitBlob": "944afb46190ef18fbef78e9b4e25b5b3a19b9f8f",
+      "sha256": "3e7eed65530744dcd9a078f4c4f52306731471774dcf65fac190e45ee51a9896"
+    },
+    {
+      "path": "docs/3d-extension/P0_BASELINE.md",
+      "mode": "100644",
+      "gitBlob": "a4c38ba3b798775a69f52df03acca081a769ab90",
+      "sha256": "81b34751e3e39ccca95a7cdb8cd30e7ef7b342a040bf86fc33f647a77bb29358"
+    },
+    {
+      "path": "docs/3d-extension/P1_COMPATIBILITY.md",
+      "mode": "100644",
+      "gitBlob": "318c482cde47c4ed4ddc9f05f15d401281b9ecc8",
+      "sha256": "b6d1284a567262ea200b453113b930a5ef60cd0ffebb967f3f686c3b79893f0e"
+    },
+    {
+      "path": "docs/3d-extension/P2_DIRECT.md",
+      "mode": "100644",
+      "gitBlob": "b0f9919fab7522678cc0bb6b4247da78232937eb",
+      "sha256": "d6a10dfa4804f657866aef9839b6aca3c3d8a314233f61a6ff225ec6e6b98a5b"
+    },
+    {
+      "path": "docs/3d-extension/P3_REFLECTIONS.md",
+      "mode": "100644",
+      "gitBlob": "f73a8b8b71aacd027f42ac870c9db9fb72712798",
+      "sha256": "fcfb24af4513e60271c19b0bf8bc67123855d9d00fa1b8728c75b99f0a72b279"
+    },
+    {
+      "path": "docs/3d-extension/P4_SECOND_ORDER.md",
+      "mode": "100644",
+      "gitBlob": "2e2b33f87ee071cb85116b06a7097e8f8d848b33",
+      "sha256": "7dd80ce677f9ef99a2175aaceee91b9f097838d56edd784321b4d06dd82a49e8"
+    },
+    {
+      "path": "docs/3d-extension/P5_RECEIVER_CONNECTION.md",
+      "mode": "100644",
+      "gitBlob": "8894ca277eab08142e7aeb29ccdf733b6125804c",
+      "sha256": "8e23e6b466a4075d58c37ceb2c85d7ea12ee4356d9257553c4215446cae64380"
+    },
+    {
+      "path": "docs/3d-extension/P6_MATERIALS_AND_MEDIA.md",
+      "mode": "100644",
+      "gitBlob": "3c9d281331bb888712cb881aae14351084992a9a",
+      "sha256": "8de785e15577cc5161fe27e082f9fb81ae361a6cbbe3d75f68dc12f934e58b05"
+    },
+    {
+      "path": "docs/3d-extension/P7_DIRECTIONAL_LATE_FIELD.md",
+      "mode": "100644",
+      "gitBlob": "21b24c30c865c23dc9e7cfd49661ca7832fb9ccd",
+      "sha256": "c0497a936ca4ade47a8793684fe555927faed6a04eddde44fd2779913367b397"
+    },
+    {
+      "path": "docs/ACCEPTANCE_TESTS.md",
+      "mode": "100644",
+      "gitBlob": "8a5596367c0f23159c4d5934c6942fc9608d0df1",
+      "sha256": "64d1e54a1be2b65e766af357c745781b3b68ff913849886278ad8f18185dccf2"
+    },
+    {
+      "path": "docs/ACOUSTICS.md",
+      "mode": "100644",
+      "gitBlob": "bd85a6fe9bfb253808c564e9c31b5ca10025f3bf",
+      "sha256": "d08031dcdff39ccd647e4e011a9153cb96b5e8b795d44a22bc5f6db11fac0e30"
+    },
+    {
+      "path": "docs/API_CONTRACTS.md",
+      "mode": "100644",
+      "gitBlob": "df6fbb033661c3779bb0b6c3ba03b009bca88310",
+      "sha256": "0a613f7b4019e5ba78611c3fc9eeba5b283038e4d5a59a501823c0b988415e75"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "mode": "100644",
+      "gitBlob": "f1d297c7ad0007c137d0290ae658db23c01bdb8f",
+      "sha256": "732a70ebd7ab427a3f614fda0f532f85ac5cd7a3d6b05836a3419097ef7914a6"
+    },
+    {
+      "path": "docs/BUILD_CHECKLIST.md",
+      "mode": "100644",
+      "gitBlob": "828ff3e48ea50bee6d4ab1e179097373bb0656e6",
+      "sha256": "ddae6b21bf97482d24a9ec19c823c556c2dd60e1d49958cd0c222413bded3ac2"
+    },
+    {
+      "path": "docs/DECISION_LOG.md",
+      "mode": "100644",
+      "gitBlob": "6a90271c27a3002fc436ef3bdd996a18fc5566a6",
+      "sha256": "9146ffe44e42042421e0af7ecf2aef8477105b8b6072db53318a2cc2fb481c0a"
+    },
+    {
+      "path": "docs/PRD.md",
+      "mode": "100644",
+      "gitBlob": "ec136dfbeabeeda99a7a1ef13bccf37fda0979a3",
+      "sha256": "fe5b4cf87d6e8cbf4ef4ee1e5683a7ec8649c305a0ff913e304b1ddff263f44a"
+    },
+    {
+      "path": "docs/RESEARCH.md",
+      "mode": "100644",
+      "gitBlob": "a223e1775a1a5ab5d10bd2835cba311fb07f2662",
+      "sha256": "218d342ce757b0aa27848bb8f49c4ad88603e5f3ac1d1bac8831139a639e7070"
+    },
+    {
+      "path": "docs/RISK_REGISTER.md",
+      "mode": "100644",
+      "gitBlob": "9c36aa6aec1e8889e044f5c304b1be36d0c1b54b",
+      "sha256": "a8e2c514304aac56fa5032ac84be882bf00ca78a0f93438de3fa28f548485423"
+    },
+    {
+      "path": "docs/STATUS.md",
+      "mode": "100644",
+      "gitBlob": "b9894c4eb66c4e1e1eccca0ed6900bd68e663dcc",
+      "sha256": "389ed18699d052de87139e43ece72a04fb4710b09f440a700fea3713ee3d6dcb"
+    },
+    {
+      "path": "docs/WORKSPACE_REQUIREMENTS.md",
+      "mode": "100644",
+      "gitBlob": "9a4b3cbe08a91522792f7d58c4615b782c68e84d",
+      "sha256": "0b9c8026c6262cf5b3e39c69421752f5f4c7fb92526742a4321791bfc2dc381b"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-16-gate-a.md",
+      "mode": "100644",
+      "gitBlob": "9814152918a8cb8e4a8e863c9b39041853ffc17b",
+      "sha256": "b74a680461209418bd8f01aec26ef452cdd9b6af6646dd3e1206c5048744fad2"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-17-gate-b-occlusion-portal.md",
+      "mode": "100644",
+      "gitBlob": "8a5d0e6b8b66c4013c31188e491978f020330fd2",
+      "sha256": "8e8206a99bfaa686610bf8c095a43d8cb218500ce19c86f5bb863f3f56251571"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-17-gate-c-reflections-reverb.md",
+      "mode": "100644",
+      "gitBlob": "01afd6911ab393d89a94e7347c6ce557e46679b9",
+      "sha256": "a15e71786ebe1148a7fde053a91a7090265c109c12e517c4162600371f58d48e"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-18-gate-d-ai-compiler.md",
+      "mode": "100644",
+      "gitBlob": "bfeb3523a576e8455a28f5fc137918043b1c1143",
+      "sha256": "4774ce6b828c8592be8c053c3f1e63b3cf4e11a17497738f99c40918b5e04071"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-19-unified-workspace-redesign.md",
+      "mode": "100644",
+      "gitBlob": "25300fdf82aebd984609a168a7b8b98c6a8050ea",
+      "sha256": "dfd6017265616a193bf618e897127d3a2570433a2a8fd2099af634f40c7486df"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-19-viewport-pan-and-frame.md",
+      "mode": "100644",
+      "gitBlob": "635cf103e638a00e25c848ae6fbc39f6820039d4",
+      "sha256": "4082930f5ee9d885598e058f37656acf8c48b8095fe1b92fdf78a6c09d2c3856"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-20-build-week-release.md",
+      "mode": "100644",
+      "gitBlob": "436e9524f481af67bde72c790e2eb30af6570257",
+      "sha256": "742d7c8e6a6f92aa185fb18eb4c53980a5b23a1ba3b0cfb6bd096d1f62f08526"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-21-basic-acoustic-primitives.md",
+      "mode": "100644",
+      "gitBlob": "6bc24931ebab458e3fd3a8baf023c68fe67cbcbf",
+      "sha256": "6c902d9fc2d1aeadc28fc60bce1fa0b8ab8c0af0dae59dffa4cb5c3fba108cd4"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-21-multicore-acoustic-workers.md",
+      "mode": "100644",
+      "gitBlob": "f6b851e2526a3f4fef11be3556ade318e1bf3489",
+      "sha256": "ee1294783370d9bedfdb64dd4560d0d47b2a16600072f0772edd4701d14cfc2c"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-07-16-echo-canvas-design.md",
+      "mode": "100644",
+      "gitBlob": "f32a3bebfcb7d70e42e103322461fe81807bb1ef",
+      "sha256": "0ebe753ce01e6ab584da31a48b20d4343b070e3468ebc2cb0f0ee20853b51ab1"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-07-18-gate-d-ai-design.md",
+      "mode": "100644",
+      "gitBlob": "c0a34d3616c617448f38fc67e233cbfe82d7b599",
+      "sha256": "a0616cf5fe6564b6c5a310c82cc976f0874e6b213acfa7309b572d73ee701df8"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-07-19-editor-workspace-redesign-design.md",
+      "mode": "100644",
+      "gitBlob": "3e18974425315cda21f1a9a00a7e417ccce1bd19",
+      "sha256": "2f549dcc7ae12963a391dfea12baff401e805b558789a5abb4c32693ce07685b"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-07-19-viewport-pan-and-frame-design.md",
+      "mode": "100644",
+      "gitBlob": "c33c85a4f8fa773d45e87488a02b9f256cf485b5",
+      "sha256": "c4a50f05cfec9c8ca6d2da01758581c2e632f28810b327a126ab9cc84e93525b"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/01_RELEASE_SCOPE.md",
+      "mode": "100644",
+      "gitBlob": "f7978cb40e587b1c3882adf2e8b2027dce53c158",
+      "sha256": "8443ad232ca4730bad25886ddc76b662964da6edef668f58f6aecead789ef992"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/02_RELEASE_RUNBOOK.md",
+      "mode": "100644",
+      "gitBlob": "850721fcf5f8772736a6faf0c2c12740d510f73d",
+      "sha256": "ce1d87784bd7fd9deec7d063f1a6ead774f7028b7771c891b65ae4cc052a5f00"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/03_FINAL_ACCEPTANCE_MATRIX.md",
+      "mode": "100644",
+      "gitBlob": "2c34dedff144a4db24f55cc671e405f1b54b2a93",
+      "sha256": "229bb2ec077139d4c05073ab3ae1bf9b8ec070cd62ec0f70c6575be0fada6669"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/04_DEMO_VIDEO_SCRIPT.md",
+      "mode": "100644",
+      "gitBlob": "47e5452125345a692310cbbc8571f9a8fc9a4366",
+      "sha256": "116db063f4d8b9fd432c9c161657af90adb4a11eeb110c996e4f0f9a325610ab"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/05_DEVPOST_SUBMISSION_COPY.md",
+      "mode": "100644",
+      "gitBlob": "a74f0323c5e5e172c86d5053b1726aa29286ddd1",
+      "sha256": "ef94b67d4bd6be631c503ae4dfc348315d8791e87a7b512bac3aa56ffe9e125a"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/06_REPOSITORY_README_TEMPLATE.md",
+      "mode": "100644",
+      "gitBlob": "25ec5243bd2e5ddbc0145dea97a3db11a96cc0cf",
+      "sha256": "9c7bd81a42bf093e37fcbee3f32e2ac11f5ae6259d6cf5ce30c9d4f613df66ff"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/07_CODEX_AND_GPT_EVIDENCE.md",
+      "mode": "100644",
+      "gitBlob": "8118820d12756b06256b3a789fdd1b099d839258",
+      "sha256": "88862e4e9d6ccbbc866f4d4cf7416e848a7dd659dfa1b232de2dd86994c89e28"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/08_LICENSE_ASSET_SECURITY_AUDIT.md",
+      "mode": "100644",
+      "gitBlob": "f3c722eb80a98368cc5f23f9e34c544af36f1cad",
+      "sha256": "9a87e99bcce2602274e9234917f07a5c27da34d115ede1510dac5fb939d41ed4"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/09_RELEASE_RISKS_AND_ROLLBACK.md",
+      "mode": "100644",
+      "gitBlob": "bdfa05f88ff4ce8efd24e982aca9461f53255518",
+      "sha256": "e03314276aa3b899cdf719cd7209a56455d61c8e2b039440cda7e64802592433"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/MANIFEST.json",
+      "mode": "100644",
+      "gitBlob": "a29cc996ae1223ed5357401ac270babcee79f0d4",
+      "sha256": "1d4155ca066264cc1453905f9023720755de9f69c29992c40b583412405fde42"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/README.md",
+      "mode": "100644",
+      "gitBlob": "4f0c01a343e288a9893948126a2f0996e37cca9b",
+      "sha256": "5a00fabf51286e0bbf4bf017e89b005452f116ffb37b76fbecddcacb24820035"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/prompts/CODEX_MVP_RELEASE_MANAGER.md",
+      "mode": "100644",
+      "gitBlob": "d0e0fbec8964ee08f8d2d64d5c1582ea8bd7a9da",
+      "sha256": "d647ce314240d821cb164f823356ebd0183a2defa6a259163b105c802c0400c4"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/references/OFFICIAL_REQUIREMENTS_SNAPSHOT.md",
+      "mode": "100644",
+      "gitBlob": "1c82ac515e752cc0ea4450ba9f774501e82ad25d",
+      "sha256": "a7c1dc029f49b61c1a22a8f8e26c77c2b1c64c95e0c4dca0848d08a9c9678d87"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/references/existing-mvp/ACCEPTANCE_TESTS.md",
+      "mode": "100644",
+      "gitBlob": "55148bb47273af9dddcec60e45a109259b60c97b",
+      "sha256": "bc394834e4cf65d1b00521ada017fb1379e706728f9836d4964c2052a68214b6"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/references/existing-mvp/AGENTS.md",
+      "mode": "100644",
+      "gitBlob": "bc1bea8a2543a5d1a647590a64a32df61760c3c9",
+      "sha256": "dcab8a06262778cdc1fce7d6db01d3de9b00a4f66677be87eae0078630884dbe"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/references/existing-mvp/ARCHITECTURE.md",
+      "mode": "100644",
+      "gitBlob": "9fc49d7c7d3f713eb99c2b3ff68e6a17ee47a321",
+      "sha256": "3fe51512230358ca77802d2752339f195be3045507ddaf753301a518a624fb39"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/references/existing-mvp/IMPLEMENTATION_PLAN.md",
+      "mode": "100644",
+      "gitBlob": "c3073ee3730bf5e9298adebe912a751e6e195231",
+      "sha256": "6e82863c0fcf3842aaa74bde11dfb3c7603c463e88c56811393b47938088d770"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/references/existing-mvp/SUBMISSION_CHECKLIST.md",
+      "mode": "100644",
+      "gitBlob": "8697326f22c24fe883f918120b05518d5a906b60",
+      "sha256": "737b9748e05b9ffc9eb68e83a899b6f16664720f8c2b03da7132e67268d78dc6"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/templates/RELEASE_ACCEPTANCE_REPORT.md",
+      "mode": "100644",
+      "gitBlob": "b08def4e4c80d6b1282cf8099fd6bfcd3557ede5",
+      "sha256": "0c6043c982669f3abdbca285c3476917d29c5a152fc88e8a5ecbd5078ef307bf"
+    },
+    {
+      "path": "echo-canvas-mvp-submission/templates/SUBMISSION_METADATA.json",
+      "mode": "100644",
+      "gitBlob": "bb82bbd7610a2cfb1653fb134e033978866d88ba",
+      "sha256": "affe973bb66b2d77a93cf23219ce274f9826aa29d477f14216b402db18924839"
+    },
+    {
+      "path": "eslint.config.mjs",
+      "mode": "100644",
+      "gitBlob": "a94bdda32b9b81117b1c6206d560c0bd6b0e4948",
+      "sha256": "e8b6f4e4a38470730e3ed15a64695a28d4f7bdaa6f058a3ff0ef1d15cf45c909"
+    },
+    {
+      "path": "next.config.ts",
+      "mode": "100644",
+      "gitBlob": "5c0235f6ff002ca4ac2630f0641d609e38e66dab",
+      "sha256": "623e97f72e817c73037c2e9e879bb90777987d25285fb2992bfe6977e1be15a0"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "gitBlob": "86549b255050ed2385822f7d8f300c14da37e243",
+      "sha256": "add78eccfe65a7daed8ebee6d84ee010044a3d5c954b03a9193e9d82614eb704"
+    },
+    {
+      "path": "playwright.config.ts",
+      "mode": "100644",
+      "gitBlob": "19bbd6cd7d88fdd7e6ed0def120ad986e330f926",
+      "sha256": "d6733bc24edae0220f93837481d8111768bbb10adfba32a4e52e0b0eb1c86c2a"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "mode": "100644",
+      "gitBlob": "dc4bbc778c188f87e570162a3d3c31483c796bf5",
+      "sha256": "0ea9781c76a944a1f29b857ea853c80f6055dcd7f3b51e1f33511ae10f3c52ae"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "mode": "100644",
+      "gitBlob": "576731c3b6e58a75894b661d70c1fd3a8f3424a0",
+      "sha256": "e70685a4b05ca48c4466d2d57f0bb9e57982dafb73b2b034bd8b31f9297b75b8"
+    },
+    {
+      "path": "prompts/CODEX_BOOTSTRAP.md",
+      "mode": "100644",
+      "gitBlob": "7ff0be6fc0b068986804e9cab6398dc1ebeaee30",
+      "sha256": "2f2275647c8dfc3e2583e9f881e269a9c0b5b91e357a0973e3c0d8917d0ab7c8"
+    },
+    {
+      "path": "prompts/CODEX_RECOVERY.md",
+      "mode": "100644",
+      "gitBlob": "3351e6fa593b0e0c48fb2f506acec19371038aa5",
+      "sha256": "fc369dcf705c7e9df1df3e13d623112c0eee197330c9bc9aca7ce3dd144b6b02"
+    },
+    {
+      "path": "public/audio/LICENSE.md",
+      "mode": "100644",
+      "gitBlob": "38a8fea8c03563d5806a37972524df8054a1e66c",
+      "sha256": "b6544cd7788cc7d5c0a94e56df8896e73fee62de2813a3ec6b83259a95e46360"
+    },
+    {
+      "path": "public/audio/radio-loop.wav",
+      "mode": "100644",
+      "gitBlob": "af7757e8c753d2f867ba483b733a8ad0d7a9b378",
+      "sha256": "67cf7127f2fdf027a6f6141f94b32f32c030ce81e996abbd9172edaba59b301f"
+    },
+    {
+      "path": "public/audio/rain-loop.wav",
+      "mode": "100644",
+      "gitBlob": "b5b40a0f840dbbba3785b4d0f135634747e88f07",
+      "sha256": "7a015f981a43de4b2006cb2aa3927967f7f40869ef4e0daeade71078f4b9831c"
+    },
+    {
+      "path": "public/audio/voice-loop.wav",
+      "mode": "100644",
+      "gitBlob": "2d4e166380e9b0d8c1f8329777ae1d4f6453ee5b",
+      "sha256": "6eb6c689dde03b1b5e0e57bce73262d44b1cbae1ac63f8f9378b2a2c1e531cc3"
+    },
+    {
+      "path": "public/audio/water-loop.wav",
+      "mode": "100644",
+      "gitBlob": "0a52c07843a6a26382ba60f92892abb74f8b304d",
+      "sha256": "3cec31b832b1f0dd7a5470263fa94ee5f645e90a08a1ee5d8470c213ec32b05e"
+    },
+    {
+      "path": "schemas/scene-spec.schema.json",
+      "mode": "100644",
+      "gitBlob": "5338cbd9eff45893d8f7e9d50446e5e70947b1a4",
+      "sha256": "c03ad29d428331f80bce8f8ca934a386303d93d7a8f189dd08d216ea465150ca"
+    },
+    {
+      "path": "scripts/generate-audio-assets.mjs",
+      "mode": "100644",
+      "gitBlob": "b0d370e87d7a24826c8192b035ff8312c0ec76a5",
+      "sha256": "165d7a15b56034390770a4f37fe81a2e5d648ed96c6c184f7aba2134bba7cde4"
+    },
+    {
+      "path": "src/acoustics/compute-frame.ts",
+      "mode": "100644",
+      "gitBlob": "ea51b168e801fda455f5515df49c7b0898d1d25b",
+      "sha256": "f49d54977621c6c25d4837ae1e0a7eac04ffc52b89fab1f348a763139db8abeb"
+    },
+    {
+      "path": "src/acoustics/geometry.ts",
+      "mode": "100644",
+      "gitBlob": "3dcaf279bff6ff8632037444d2a532454841c20e",
+      "sha256": "c7cce968b60f8711fc26bc3e526f179c37508b093204cc5a945ba9fbd51a297f"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/atmosphere.ts",
+      "mode": "100644",
+      "gitBlob": "f6a183cc8179324200acd449d3a07fccdbb522e3",
+      "sha256": "8c835682d13ce76d4d82b638163a9445454ea8f9bb201a18f5de7456c5f714bc"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/audible-direct.ts",
+      "mode": "100644",
+      "gitBlob": "c9567f2a1864fbd016ff00aba49c08290f754237",
+      "sha256": "b7ae74c79ad165638aeb2eab7cfff6d416f491a544bc49711aa7151af1963d45"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/bvh.ts",
+      "mode": "100644",
+      "gitBlob": "1f212cb883c63cce47c2784804ebaf7e8423402a",
+      "sha256": "2538dcf9243e3c716ff15f465f66624b8c303f4bcbdb1f6261018aa2c1e7deed"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/compile.ts",
+      "mode": "100644",
+      "gitBlob": "8afaaf94a3dc34a9a73e83ac454b82a4663aae4d",
+      "sha256": "f2402cc26fa95b94b64cfcb6be6b591f8b11558115427695611e2651972d7fa7"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/direct.ts",
+      "mode": "100644",
+      "gitBlob": "7a174f3f6347997895f0dddc313e2e26d6136319",
+      "sha256": "f131be5e49810b4ddf53ad7a0014db949e359fa6338253a5ea543f9dd6e6cdd0"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/directional-late-field.ts",
+      "mode": "100644",
+      "gitBlob": "366b210bffab479d9284aceb17a3e4537b4c8575",
+      "sha256": "507e443b831f7128e206e5fa21e21710a94e84bbb1d1b302ca8aee0f2f8ffc9c"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/geometry.ts",
+      "mode": "100644",
+      "gitBlob": "b342031a5b3f24926cdc85e099ceda036c16e0e6",
+      "sha256": "6ccb1b7a6bcf1df8dd28f6ebeaa41a8f5e233d3d1fc6232b981e31964ab919f7"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/material-energy.ts",
+      "mode": "100644",
+      "gitBlob": "9cd4ac80f282572b60f48ed51b1c54105daed70d",
+      "sha256": "64f39e4869e340ec02c03e202aa19356ed58e953ae58d6b213ce678d3b5176c6"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/primitives.ts",
+      "mode": "100644",
+      "gitBlob": "75c6ec6cfc51c971f04493492c319d118fe471d5",
+      "sha256": "98582673c13803ef3951893858994e324b38fd31b62aadf6da75365f930d852e"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/receiver-connection-benchmark.ts",
+      "mode": "100644",
+      "gitBlob": "9a30e07545d0de39e9ed52736f22b701d4a2b14d",
+      "sha256": "1baf51c968cf0219348b94cb287f4b87d5d948afa913c5e6f19e2b7c6c7e39d7"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/receiver-connection.ts",
+      "mode": "100644",
+      "gitBlob": "d9c4126254bfb5233f171ce9777a1434a420b40c",
+      "sha256": "c3528a510642210a49d1436156ccd971b1cf0a1faa47bb670216fa5f85340efa"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/reflection-rendering.ts",
+      "mode": "100644",
+      "gitBlob": "3e52a965c705818cdd4f33e1ac3303b53881d40b",
+      "sha256": "192441bcaff0ef8daf4782ea508755b10813884cad1b15302bcdc0ccd1621b27"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/reflections.ts",
+      "mode": "100644",
+      "gitBlob": "199c72b6c575423a65808f55f6de96b99fc6a7e7",
+      "sha256": "5e8764d0fd51ecd22ae53385113c8f050ee72afb90fb42eeeb81942b4df9ac4f"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/second-order-evaluation.ts",
+      "mode": "100644",
+      "gitBlob": "feb861d6533e4f200c904f17b6b69b0fa2d6bc17",
+      "sha256": "12f2d3bb8f9eaeb4086bfcd021f3193307f4664fe0592a505404fbb00341f744"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/second-order.ts",
+      "mode": "100644",
+      "gitBlob": "4ad88d08926f5bf53224b616ff6adc55957fd1d9",
+      "sha256": "aaeb879d6e04541e0f24cec2513864b4ced5eb97244d3815647d9ab759dff9f7"
+    },
+    {
+      "path": "src/acoustics/hybrid3d/six-band-materials.ts",
+      "mode": "100644",
+      "gitBlob": "f07c8bdcd2479bef50c1ba1fa596bd4ed5345478",
+      "sha256": "34b6cb45b793b16ec9e70f7e0b9005f60c6791960f19f731eb92f3247805c3bf"
+    },
+    {
+      "path": "src/acoustics/image-source.ts",
+      "mode": "100644",
+      "gitBlob": "85bf781cb44267669682e5f9a251220548054c1b",
+      "sha256": "dff74bcfa67fd30cc85ef0a97a2788ce7a57ef94a5a73ca08835c82a5eaf23cf"
+    },
+    {
+      "path": "src/acoustics/occlusion.ts",
+      "mode": "100644",
+      "gitBlob": "e796c19ac49c0b51e6552d9222fa0419b4de3781",
+      "sha256": "22f545b06bd1221ad6d7dd817a971168bddb1be025568af0508eed6ba3aa91af"
+    },
+    {
+      "path": "src/acoustics/portal.ts",
+      "mode": "100644",
+      "gitBlob": "0e8c1e688d41c6ab46e1168116b17678d82cdf40",
+      "sha256": "11340e42c7446f72674d60659fb642a2c7b2ca329534f6aa885dc41fec634100"
+    },
+    {
+      "path": "src/acoustics/room-acoustics.ts",
+      "mode": "100644",
+      "gitBlob": "f713c7a93936a2561c9884083d9d5a31a99f50b0",
+      "sha256": "414c2528ac2c8513b0426af31c5f8382c7fb9781a41e53c8f1a2ceb4d7ad8cd4"
+    },
+    {
+      "path": "src/acoustics/runtime/engine-router.ts",
+      "mode": "100644",
+      "gitBlob": "b615674e75da976bbd921453ef95b457304c17d4",
+      "sha256": "346dcdd5df4c695cbc52a2fa8c9ecc4054eee27e344ee156d3e2f5f3302fa1b7"
+    },
+    {
+      "path": "src/acoustics/runtime/feature-flags.ts",
+      "mode": "100644",
+      "gitBlob": "c6b864e7729aaa496c704cef838ef9cc9d35a2a9",
+      "sha256": "41e9d5f2df10652dc5a941a871888055756c5f957597360bf92339410481bef6"
+    },
+    {
+      "path": "src/acoustics/runtime/frame-envelope.ts",
+      "mode": "100644",
+      "gitBlob": "7a73a46fdfedbef3e257e1153e13f6eb169fcac2",
+      "sha256": "082ecf8564e8ab52791b660fe721cdced5fcd43f734251e1394daf9a14184434"
+    },
+    {
+      "path": "src/acoustics/types.ts",
+      "mode": "100644",
+      "gitBlob": "bdb9996f26d6c0450b67082ef755dcc882c3ffa6",
+      "sha256": "df7a3565d7dfb73bbf9b98a477c790e6e8085d1a7bdc89d1a04750d85ce352cb"
+    },
+    {
+      "path": "src/acoustics/update-rate.ts",
+      "mode": "100644",
+      "gitBlob": "eeaace9e70d23bf4d09343ca22c32164688e37d7",
+      "sha256": "9be6e7b7ad4e8dffbc1007690355352951dcb7959267c083a7fec6086783131e"
+    },
+    {
+      "path": "src/ai/acoustic-explainer.ts",
+      "mode": "100644",
+      "gitBlob": "316a2a84b60eeb2b21f650630ae2b30a13513f51",
+      "sha256": "79215e0d0429dbae9a716f3928600951c1a56fdda8e2d338858fec3494790113"
+    },
+    {
+      "path": "src/ai/client.ts",
+      "mode": "100644",
+      "gitBlob": "dcc9732e5480ffa10da99b0ca76c880a128f3501",
+      "sha256": "47dc3b77ab2d1a396e173e70e30fd0cb9a92bf24b4751e67c3c3c6d47d94d7bc"
+    },
+    {
+      "path": "src/ai/content-policy.ts",
+      "mode": "100644",
+      "gitBlob": "84bc66fd7bd598d6b2dc6e5467d1532a753b7cc1",
+      "sha256": "1ebf315794bb8ce0ed1f7da9148d60864b27df2df623c876688b08c474e12155"
+    },
+    {
+      "path": "src/ai/contracts.ts",
+      "mode": "100644",
+      "gitBlob": "d125f5c76b279e39d6cd8b89df3fa1fcd6450cdc",
+      "sha256": "d535bb5d3886e8ceb77d71d772ca6aacb5be7fcd0604db1ea772e0ec6e0b4a05"
+    },
+    {
+      "path": "src/ai/hybrid-scene.ts",
+      "mode": "100644",
+      "gitBlob": "13c1e17eae707be7ea7d46d1d3caa52c433b55c4",
+      "sha256": "1da26d80405b20612652cd791f809fa3ad12e2c3eae69452cb915324b3475545"
+    },
+    {
+      "path": "src/ai/provider.ts",
+      "mode": "100644",
+      "gitBlob": "42dcafe77350cc920709de53fd2b73989623a86f",
+      "sha256": "c7687f7ecba0dddc8cf7214168a9d3c6661256284573869fde95e25349838a94"
+    },
+    {
+      "path": "src/ai/rate-limit.ts",
+      "mode": "100644",
+      "gitBlob": "b416ad2b0eeb954fcde1537635826e525469ee50",
+      "sha256": "5aa9c82d8d6be6406e8b94c67b7932d8fdc676ffd6ad382269182993d68bdd77"
+    },
+    {
+      "path": "src/ai/scene-compiler.ts",
+      "mode": "100644",
+      "gitBlob": "74eb144d26370172c8e32ab0f4abcde3e234a97d",
+      "sha256": "b8e180fa4dc5cf5d813d82d3d5378204f0a1f58e1187719e31c549583254e6ea"
+    },
+    {
+      "path": "src/app/api/scene/compile/route.ts",
+      "mode": "100644",
+      "gitBlob": "a19526461d4b961569eff36502bd6123d5db527c",
+      "sha256": "9cbb2674cf6e4cb0ea9a1f94e89feafe2f73ac2f7127822e08b5821493d83ae1"
+    },
+    {
+      "path": "src/app/api/scene/explain/route.ts",
+      "mode": "100644",
+      "gitBlob": "cf1194b78f746107f26ad4dab8b9d1f1cbddcc0e",
+      "sha256": "3a0dbfc4bc5de4fd5bc779bfe74e72cdac7236c686a25d40885c2e901d866d54"
+    },
+    {
+      "path": "src/app/classic/page.tsx",
+      "mode": "100644",
+      "gitBlob": "281f48824bd27cf6df2c3de6090c008bcad4fac8",
+      "sha256": "5ced3f78c5dd98fb742526c58c19e6af971e81280ed858710a37d79a47b0d53b"
+    },
+    {
+      "path": "src/app/globals.css",
+      "mode": "100644",
+      "gitBlob": "b9a5c34055c3ee763df41df557e9101a09af369b",
+      "sha256": "7a018ce0d804ebf7d564646e81d71114784f059bdfa715b0d958ad6492120e0d"
+    },
+    {
+      "path": "src/app/icon.svg",
+      "mode": "100644",
+      "gitBlob": "45f50113faf8d394cf09aa622d7562fd63cf5335",
+      "sha256": "7d0d66d646fed774989a5e930dcf5d7e57d37ef73fa648101a520a9c117726fc"
+    },
+    {
+      "path": "src/app/lab/page.tsx",
+      "mode": "100644",
+      "gitBlob": "777446c95ebe79b8d8708b79aa6fb142ef883518",
+      "sha256": "a0e5a96b3257545f67974e32c2dbd910c95419526bc466b2afcfcafff6b2bca3"
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "mode": "100644",
+      "gitBlob": "6391fb800f30a025e071e8a913418cd8204d8df5",
+      "sha256": "637ac02020742720c6ac155bbb6d40d3dc100553225d3b2e1474d05b4910a1a0"
+    },
+    {
+      "path": "src/app/page.tsx",
+      "mode": "100644",
+      "gitBlob": "7f3f2ebcb5ab056b507df96a9ae0abaa8e4fed71",
+      "sha256": "ad51f8513b5a9249868fb4ccb24adcee5d88dee520194a4a2fae28b3ee2f40c2"
+    },
+    {
+      "path": "src/audio/AudioEngine.ts",
+      "mode": "100644",
+      "gitBlob": "88c10ccff28415d9fc63bd86f0639a8b3466b789",
+      "sha256": "f794646da771fd0e771b0b15b35e10733bd2041f1adea569765489ef3ebf9c55"
+    },
+    {
+      "path": "src/audio/EarlyReflectionBank.ts",
+      "mode": "100644",
+      "gitBlob": "cd0197b0363b584bc6d95822d436b2e81c30f77a",
+      "sha256": "d6c6fbd993c30e907ef0dd642bfce35d7c4e95228f99d8f27b328016b908b380"
+    },
+    {
+      "path": "src/audio/SchroederReverb.ts",
+      "mode": "100644",
+      "gitBlob": "96fc40af66356da455b8d16d1cdd47eb339d544b",
+      "sha256": "adb86a8aa3f1774bdfe5f797dae6e1d36ba06276a926d8a32fe39e9de57496fe"
+    },
+    {
+      "path": "src/audio/SourceGraph.ts",
+      "mode": "100644",
+      "gitBlob": "016c42fce8950cc09638e700221abdc72e90836e",
+      "sha256": "7b23f92e88976ae91809122b757fb7124e9f1d1665b6d16bfcb4b4260877ba8a"
+    },
+    {
+      "path": "src/audio/gate-c-render-validation.ts",
+      "mode": "100644",
+      "gitBlob": "273e3a2d3781f018f71be57af256e2f0edd0cf30",
+      "sha256": "57b5a39b5e511ee49182e69daa901195dfc5f85dbf0dd2e4b78e20482be31ae6"
+    },
+    {
+      "path": "src/audio/math.ts",
+      "mode": "100644",
+      "gitBlob": "be438631c39062631b1390320af02d8c35c3a3be",
+      "sha256": "f6c2876da3bc85cdbf85ced885f620948189e5b64372e5da2619be99ce82155e"
+    },
+    {
+      "path": "src/audio/parameter-smoothing.ts",
+      "mode": "100644",
+      "gitBlob": "1bc72ae2ec003d9a5febdada8eb027b69d3b8b43",
+      "sha256": "770ac80906be95a8f5b4bc0ea1c84fa7f41f9826720d95ce13cf57d5620f5788"
+    },
+    {
+      "path": "src/audio/types.ts",
+      "mode": "100644",
+      "gitBlob": "7ef0528b13d9db886ba8ac2e1e9e75f3d4981259",
+      "sha256": "6baabc07d5621f91285fbd7f3f376adbaa1bee5f721b2da732f1257c1b1bf2fa"
+    },
+    {
+      "path": "src/benchmarks/classic-baseline.ts",
+      "mode": "100644",
+      "gitBlob": "57f0bff4fdb63282d0d11b8cae0da13c6181e5ec",
+      "sha256": "d2072a2318952f6d20e8668a97ae6b214f1b1c6df25904d4265089d88c3a5b07"
+    },
+    {
+      "path": "src/components/lab/HybridPlanPositionEditor.tsx",
+      "mode": "100644",
+      "gitBlob": "2f570107a74cf2c55ba5b251ea42404f7e03f8ab",
+      "sha256": "6bb179c8ca55fb0f038026494c6c7445771671654972cab5ff550e3989d73d17"
+    },
+    {
+      "path": "src/components/lab/HybridSpatialViewport.tsx",
+      "mode": "100644",
+      "gitBlob": "9c5f2e0d31a0aeab4049cdd5ad1fed662c2ef442",
+      "sha256": "de47079da89e5211f95bc2d8ffcda391daac10efa5be41a2de63cfb3b1d378f8"
+    },
+    {
+      "path": "src/components/lab/partition-editing.ts",
+      "mode": "100644",
+      "gitBlob": "3967398153dac12a9c94c2331b6f3104acf2e555",
+      "sha256": "4c4ef7ebbac19e2d7d4e168668bbf079e943980f0a2858948ef3ffc105712550"
+    },
+    {
+      "path": "src/components/lab/viewport-math.ts",
+      "mode": "100644",
+      "gitBlob": "ea7dcb9e96aa5b4a66f3158bd8ca4552be0a31bd",
+      "sha256": "1a07f16a1663b8084fff50bf626f0cd47ff9b7ec9494098a90d4702dc6224c87"
+    },
+    {
+      "path": "src/components/workbench/AiScenePanel.tsx",
+      "mode": "100644",
+      "gitBlob": "14c7549dbad5392aa8b3a94a15fcab2bad94516b",
+      "sha256": "6c6572adac9a5c837d472336ed67a8518730f72845d39d3da67b719e37135d02"
+    },
+    {
+      "path": "src/components/workbench/EchoWorkbench.tsx",
+      "mode": "100644",
+      "gitBlob": "ca82598f61bf3a8b8fa4b8d55417392a29c9c12e",
+      "sha256": "5a9d9763eb09f8507d199d63843d279ba2eed4ff57771f15d00015c83785f338"
+    },
+    {
+      "path": "src/components/workbench/Inspector.tsx",
+      "mode": "100644",
+      "gitBlob": "8baabdfda765ee9486cac3fa86bab76ab43855fc",
+      "sha256": "465f6a0141a8f737cc30bdfb138dd14746db076a1752cd9b7c8451ec20a4aa00"
+    },
+    {
+      "path": "src/components/workbench/ReadoutStrip.tsx",
+      "mode": "100644",
+      "gitBlob": "50d940102985ea132786089a42960c6f50dfca1c",
+      "sha256": "618b9843a2407d1a80bd19b534e444758c03fa1a7f20c6f47b07daed5eb1c732"
+    },
+    {
+      "path": "src/components/workbench/SceneEditor.tsx",
+      "mode": "100644",
+      "gitBlob": "c896379ed300d55d2a12abaafa2d1c052bef7866",
+      "sha256": "b87bc3a98cdbafe7de4cb1e14e3d65d468880c1a42031f636aa4ca5cba791ade"
+    },
+    {
+      "path": "src/components/workbench/SceneTransfer.tsx",
+      "mode": "100644",
+      "gitBlob": "f0bb1eaa75b7c8f5a8b7a557277a75f0956dfc12",
+      "sha256": "4b41c8266f6d574ea0b8bdd1ef656577efb32c99d90944831292bfa3b0a5985c"
+    },
+    {
+      "path": "src/components/workbench/Transport.tsx",
+      "mode": "100644",
+      "gitBlob": "e6aa326c0d164ded60d87d1e3c8151c535e45b07",
+      "sha256": "2bbe168bb918831364b7476ae501d40a743a1b776b358bf5abff37fb88065b0b"
+    },
+    {
+      "path": "src/components/workspace/AddObjectMenu.tsx",
+      "mode": "100644",
+      "gitBlob": "8f3d9cdbe30c603d3d004741335323db1fac319d",
+      "sha256": "4a733aba9d778910b6ba7b51a1170e6b1fa8c6caedb87e45e82beed0d3a9e6f9"
+    },
+    {
+      "path": "src/components/workspace/AudioAssetPicker.tsx",
+      "mode": "100644",
+      "gitBlob": "2d4efbb93ff632d77d42ada6f868a49b4acaf588",
+      "sha256": "bdfaffaecc6754c1e6e106dd6180b1f02e93d4bdf218c1dfd0f9ea191deb1e6a"
+    },
+    {
+      "path": "src/components/workspace/ClassicViewportAdapter.tsx",
+      "mode": "100644",
+      "gitBlob": "c774df090e523a9caefcc3e8950c3f4ee39917f5",
+      "sha256": "8d346eec7f6844821ac973c50e6a5ec7f724ce8b8ea8a510d0eb853ddd5480ea"
+    },
+    {
+      "path": "src/components/workspace/ContextInspector.tsx",
+      "mode": "100644",
+      "gitBlob": "6141cfe81490000e3cb86961b37baf2c060f642d",
+      "sha256": "13f9231e64e2fcd3d7fa7277c60a05d16bd22b069502582f865e895f7a83901f"
+    },
+    {
+      "path": "src/components/workspace/HintCard.tsx",
+      "mode": "100644",
+      "gitBlob": "8418c724000decf26349cdfe373901777a83a97f",
+      "sha256": "6479434e7f69c0cbd8fb425b5aa8ed02865be4fc6d53f6b5ee40771a21289113"
+    },
+    {
+      "path": "src/components/workspace/HybridPathOverlay.tsx",
+      "mode": "100644",
+      "gitBlob": "3cd471a9560560d9092a46599dbd335f9ddede83",
+      "sha256": "c074135951fb826c67f50abfe8797fb7d30b8b60f11fd2696df24ab55710e31d"
+    },
+    {
+      "path": "src/components/workspace/HybridViewportAdapter.tsx",
+      "mode": "100644",
+      "gitBlob": "c45092c05205e2a908e1e98e3d47bd1793aa8466",
+      "sha256": "df2b03447e8756a36f115e79f249196b8bff820dda399203d3add2d22cc8b89c"
+    },
+    {
+      "path": "src/components/workspace/NumericScrubField.tsx",
+      "mode": "100644",
+      "gitBlob": "23a36d4c6470b885cc850518bff96d71603b0dba",
+      "sha256": "ff0fe7ed6d8b8ef514d2225a1aa706563be5f6ed4796ea333830de086ca510d0"
+    },
+    {
+      "path": "src/components/workspace/SceneOutliner.tsx",
+      "mode": "100644",
+      "gitBlob": "59a55f2fea54cfcbafcc6d71a7923e5c33920e24",
+      "sha256": "c15831a432fe1dbf469458bebd9091dfd6409b372651bc470ceacee54f2ee872"
+    },
+    {
+      "path": "src/components/workspace/UnifiedWorkspace.tsx",
+      "mode": "100644",
+      "gitBlob": "406757a357b4a281e1354d328c7244c0eea6e036",
+      "sha256": "eb2d81fbc6291657af61acd505d11dd5b52da21f441be629bf5daa1d72d9c2d4"
+    },
+    {
+      "path": "src/components/workspace/WorkspaceProjectTools.tsx",
+      "mode": "100644",
+      "gitBlob": "37b4627d538e59a92ca3ab95d9185f762aa8f435",
+      "sha256": "b5eb2e454e664bd284f8b29fe21613e75915ce63acf39962b912502b570feb52"
+    },
+    {
+      "path": "src/components/workspace/WorkspaceStatusBar.tsx",
+      "mode": "100644",
+      "gitBlob": "4e9f47f190cfc9c7fa0722bc11a5076ebe80f8c2",
+      "sha256": "b53347638e80214c12caff302a3ba4f8345667f718cf4d8f051c0e20fe1626f0"
+    },
+    {
+      "path": "src/components/workspace/WorkspaceToolbar.tsx",
+      "mode": "100644",
+      "gitBlob": "032a02ea447e2da6e184d87f60b9704980bd266c",
+      "sha256": "00b1ea75722e8753515bb1426c2d4c9d211ff9b19cce347fee5af9014855f201"
+    },
+    {
+      "path": "src/components/workspace/classic-viewport-math.ts",
+      "mode": "100644",
+      "gitBlob": "5cc4cf95fc873462f4b45b4049f12e8f0a31cede",
+      "sha256": "39c3d65785f5abdb03507aa47eeab74fcab82040a2119dd867837040a71684a6"
+    },
+    {
+      "path": "src/domain/app-meta.ts",
+      "mode": "100644",
+      "gitBlob": "df1c1737d6818575b246e7abcd85c14a9c3385ea",
+      "sha256": "ab144bc9a0f6ba7204851c1b3fd5ddad7447c74a155e02033155b47ce21f94d7"
+    },
+    {
+      "path": "src/domain/audio-assets/local-library.ts",
+      "mode": "100644",
+      "gitBlob": "1fc7c8cbcfb55b96a2a5bfdad417acbce303a75f",
+      "sha256": "3fe41e04e1fe047a31350e9016b601432ae1fba5970bb719f2fcf132077fe56e"
+    },
+    {
+      "path": "src/domain/audio-assets/registry.ts",
+      "mode": "100644",
+      "gitBlob": "501b9e6cf71527140c998ee887e36778a7b06e64",
+      "sha256": "22b6a3eda5e365f6eff2cbce8b330a84602bde7c7450d186b41a58932bc1ae41"
+    },
+    {
+      "path": "src/domain/deep-freeze.ts",
+      "mode": "100644",
+      "gitBlob": "0b5235b80ba895ce69b48229d04b9ef81ab0df70",
+      "sha256": "ce3e2f6d1f9a7cc59907e4198567d19f03e774c6c7a528e7452917d1efca7908"
+    },
+    {
+      "path": "src/domain/editor/coordinates.ts",
+      "mode": "100644",
+      "gitBlob": "eaa488d1d16d930d6534ceeab38368103136cf95",
+      "sha256": "805a3c6d1e62a4cffd17312e8235a65bb328026987906a155e5bf34e273564c4"
+    },
+    {
+      "path": "src/domain/editor/reducer.ts",
+      "mode": "100644",
+      "gitBlob": "ec5b2682b9570bf4c5cf889e6ece2951d08b8e77",
+      "sha256": "3c101cbc90fe224bf004b053dcbd531ede0497f105a005942198e3ef18b77780"
+    },
+    {
+      "path": "src/domain/editor/state.ts",
+      "mode": "100644",
+      "gitBlob": "ea7ba43bdc2b8b5cd29667d07f3d617494fd761e",
+      "sha256": "d27f13cc89a2a5b4fc8235b9654310f36ed01a0f30f3bd3fbb60ce5e8ae6cf50"
+    },
+    {
+      "path": "src/domain/materials/registry.ts",
+      "mode": "100644",
+      "gitBlob": "6bc235950e3ec28c8dfb75a98aa4c91fb9c0fc23",
+      "sha256": "fea694a6fcc703678d3ad371920df2267d06138bfe5188a3def01b64c59be78e"
+    },
+    {
+      "path": "src/domain/presets/concrete-partition.ts",
+      "mode": "100644",
+      "gitBlob": "aff3308451aac82f4ea3fe5db05e02cec0dc168c",
+      "sha256": "f7ed7b47ea331ed63b37d0a043323ca2ec5de67eed2e43c7fdea5fe3561ebd26"
+    },
+    {
+      "path": "src/domain/presets/hard-room.ts",
+      "mode": "100644",
+      "gitBlob": "53ba9db07fcc595bf57777ec49ab3b9000c8d0fe",
+      "sha256": "45155c1f48babd4c4aa0d2a543c47d2da78660904dc16ef6b1b51f60b711248d"
+    },
+    {
+      "path": "src/domain/presets/index.ts",
+      "mode": "100644",
+      "gitBlob": "14e1e8c168162d50463733907b9a7a6f6935f11b",
+      "sha256": "335d6748b44acc6825cba73d254db91f4626f9ef8fe5b5a01fcb5afa9c9ca585"
+    },
+    {
+      "path": "src/domain/presets/stress-100-walls.ts",
+      "mode": "100644",
+      "gitBlob": "7cc8780f6a7ba557b4531826a08dee709cc97d62",
+      "sha256": "466cdb95b4de2da734e58f8c3fcbe0ab4bd9bb59788201cac6ebe6791f9baf06"
+    },
+    {
+      "path": "src/domain/presets/treated-room.ts",
+      "mode": "100644",
+      "gitBlob": "7aa5b86fcbbebd911d7839439b37a27c06648f81",
+      "sha256": "f964db31650561efc654cdcdbb60bfe1701f82303519550599e59cc7de5990e4"
+    },
+    {
+      "path": "src/domain/scene-document/schema.ts",
+      "mode": "100644",
+      "gitBlob": "7a930de52b8af2e738506e7f233c32f1b2234303",
+      "sha256": "c0c698c4049d7588e099cc6baaede41f8fca1a699eaf11a29e6e37631a4b5cca"
+    },
+    {
+      "path": "src/domain/scene-document/serialize.ts",
+      "mode": "100644",
+      "gitBlob": "16605d9b9496bb15fa35cabc0e63d8744d91e3aa",
+      "sha256": "c72c88b5edec80d53b6f56deac5ade156b60d1b2f74e5aa3b1e782edb40b49ce"
+    },
+    {
+      "path": "src/domain/scene-document/types.ts",
+      "mode": "100644",
+      "gitBlob": "06b99865fca884945efc89db7c76b1a82b0db773",
+      "sha256": "147fc5c5dd15aaa28b97d296cbe4f58787acffd3d47293b1672e48ea07d15f4a"
+    },
+    {
+      "path": "src/domain/scene-document/validate.ts",
+      "mode": "100644",
+      "gitBlob": "320dedcda8395293a6bd9a8a478878a9f629adc7",
+      "sha256": "ca32e2fa1e9e301726dd532f8f00bd2eb74349cb1ccdf68ddfe06b88870ebce4"
+    },
+    {
+      "path": "src/domain/scene/geometry-validation.ts",
+      "mode": "100644",
+      "gitBlob": "d2958e9bcd5d70797259a0eb0b64b4df4f7e1b48",
+      "sha256": "fbfa50a2b55d661af419ea231d25fef99b5ac224b8be1398b08e4af3bfec4f3a"
+    },
+    {
+      "path": "src/domain/scene/schema.ts",
+      "mode": "100644",
+      "gitBlob": "69ac00fb76f1cf7c5ae70cc6c50a35bd1581dd07",
+      "sha256": "3e7db433b3abd430f4ca61cd677ba8ad95832c3a906de91abadd10fb01626c47"
+    },
+    {
+      "path": "src/domain/scene/serialize.ts",
+      "mode": "100644",
+      "gitBlob": "99de6d9a90fe2401570a5b70f111e34544d25acb",
+      "sha256": "a4e75171f4bd383224bf67c8ccb62cea152ca9dd8762bdcad9a64dabacd5ec97"
+    },
+    {
+      "path": "src/domain/scene/types.ts",
+      "mode": "100644",
+      "gitBlob": "b34760a328aaee0c10bcbb8f06a9523b3ea6cc0c",
+      "sha256": "e58680c0290be049584d3f3f3f882dba54e061f6e8eb390668699103d2802bca"
+    },
+    {
+      "path": "src/domain/scene/validate.ts",
+      "mode": "100644",
+      "gitBlob": "c225c468ceca82c514cdfde8fda2d1b8f59d1c30",
+      "sha256": "e4d256f454b3f49444e8655f9cde2c2576484e68bafca66ee55877ecf5e66f21"
+    },
+    {
+      "path": "src/domain/workspace/defaults.ts",
+      "mode": "100644",
+      "gitBlob": "3dbabbece9ef94bfabcad84febdb4fb779b9ff79",
+      "sha256": "bc768b5e97a0ca210589e79b0ed97b7d6afd78cb7bba4377727c29a1c3e4d39f"
+    },
+    {
+      "path": "src/domain/workspace/geometry-constraints.ts",
+      "mode": "100644",
+      "gitBlob": "37eb63226f4c48dd16fac3644fc046f5c6e5d35b",
+      "sha256": "2358e9be5988f7ce947af24ec1a2513f64fbd52cc5698d449e6246de71f712cb"
+    },
+    {
+      "path": "src/domain/workspace/history.ts",
+      "mode": "100644",
+      "gitBlob": "f3bf43575cac367f5efb84689c91ed532d917211",
+      "sha256": "243adff5236ae754f73cd6babf7ab15dffa8c2cf17b700ff90bc92851cea48f1"
+    },
+    {
+      "path": "src/domain/workspace/persistence.ts",
+      "mode": "100644",
+      "gitBlob": "963f5f03dcbfb310796eba2c58e58601148af3e2",
+      "sha256": "21cc04c92a0b7f1e1021e1110129a53dc326c82ef5bb7cf7ac1986944de73cf7"
+    },
+    {
+      "path": "src/domain/workspace/primitives.ts",
+      "mode": "100644",
+      "gitBlob": "e532432ab88e43de911540df00327178e57731ab",
+      "sha256": "cf2e0cba4a0726296a69fa249c11bc543b4e6ca39d75e273c28c34b91c6a4b9d"
+    },
+    {
+      "path": "src/domain/workspace/project-reducer.ts",
+      "mode": "100644",
+      "gitBlob": "1221117e2368f6ccc14dbcb97e60c93185b2ce47",
+      "sha256": "48bfe983bf684234413dc105833b3ee8d36795581ee39884d66b24cc609ea478"
+    },
+    {
+      "path": "src/domain/workspace/projections.ts",
+      "mode": "100644",
+      "gitBlob": "1971392e305197a91ca92415c7ef1cfb4fc2cc62",
+      "sha256": "bea579bd5f61d0d8d0a1d4a1f5ee84a86493473f86fffdd7aae29f7ee403e4f4"
+    },
+    {
+      "path": "src/domain/workspace/transfer.ts",
+      "mode": "100644",
+      "gitBlob": "90d4f33e3212eba339a5304777e1ba88d10168fa",
+      "sha256": "bccba0a0cabec09c26252b48e244856bcf4d57d4fd1b3a2912fcc644b2435d1e"
+    },
+    {
+      "path": "src/domain/workspace/types.ts",
+      "mode": "100644",
+      "gitBlob": "3f31624cea02aa7a5e3d6547166a0bdcf3453670",
+      "sha256": "65b8d3a59ab85a7054803d5702d97365cce8bf1efc334298cff07362f842976a"
+    },
+    {
+      "path": "src/hooks/useAcousticFrame.ts",
+      "mode": "100644",
+      "gitBlob": "437803a3ffc09a22154df133da7ff65f3bf616f1",
+      "sha256": "91e42f10507fa48308bd234812c4852fa795a1815398fbd66fbacdb3eb5f460b"
+    },
+    {
+      "path": "src/hooks/useAudioEngine.ts",
+      "mode": "100644",
+      "gitBlob": "2f179087b45de714fb36557e782efca1d3465722",
+      "sha256": "c7ec5848207815ca89819b7c12c26642f162c9c04a8a1a4888488aeac9aac3da"
+    },
+    {
+      "path": "src/hooks/useHybridDirectPaths.ts",
+      "mode": "100644",
+      "gitBlob": "270c295ce246e4f39dbab882d3e67cabed11c78f",
+      "sha256": "4b5a7cf4a491f61acb5f6a33a3e3d95a506e55ad8d71c41f0f3c3a18191056c6"
+    },
+    {
+      "path": "src/hooks/useLocalAudioLibrary.ts",
+      "mode": "100644",
+      "gitBlob": "61a47acc1566450dee00da7096c190e40e02d07a",
+      "sha256": "6574d9425f83b3a876c89f2ca07e4b5a441ce94576f304f9503093576a9295e4"
+    },
+    {
+      "path": "src/hooks/useWorkspaceProjects.ts",
+      "mode": "100644",
+      "gitBlob": "d9d7580ac020de21ea75cdb0a513c34b24fc1545",
+      "sha256": "3ae7812906c27615d7ee78ad1b892c473cc7dabe54b693e7d54f9259961f3a61"
+    },
+    {
+      "path": "src/workers/acoustics.worker.ts",
+      "mode": "100644",
+      "gitBlob": "43e8b36d84375866314dd5a3532a737bb6c12e7b",
+      "sha256": "9989512804f19b5340c8fe4dea04872afe30db6f903e2210673d085d8beada1a"
+    },
+    {
+      "path": "src/workers/classic-source-pool.ts",
+      "mode": "100644",
+      "gitBlob": "25208c3ca75220e9b81a4e32cbd0ee407a38311c",
+      "sha256": "2812cd5396b42581d8cd6cfc3403f606ca06aab01b8f1ad7022f93dfc736960d"
+    },
+    {
+      "path": "src/workers/classic-source.worker.ts",
+      "mode": "100644",
+      "gitBlob": "96f6ea58a98046578a9ccdfe4d201231a47b9674",
+      "sha256": "fadfe37273949775be450103963886033d4f06949185d6d830defbfdb899da7d"
+    },
+    {
+      "path": "src/workers/hybrid-direct-pool.ts",
+      "mode": "100644",
+      "gitBlob": "39b23d0877491779d9d31b7ba9a85a801a911710",
+      "sha256": "14a3c1c5179616f354b4716148487546a9006a9f6ca4a8cc38a4d5676c60e1c4"
+    },
+    {
+      "path": "src/workers/hybrid-direct.worker.ts",
+      "mode": "100644",
+      "gitBlob": "363a2444aa2ea30f102bbbe4f00f6110e01644b5",
+      "sha256": "9918a6874f9ad015ea3383cd9671b190eed9267260b9c38232a06c892d402d3e"
+    },
+    {
+      "path": "src/workers/worker-pool-policy.ts",
+      "mode": "100644",
+      "gitBlob": "6df0ee6c63916e52c50c71de95f73d784ec6e984",
+      "sha256": "7fcbe99ff87a38f9ed85fa6762e9e304f792ff593f97d29e5d7ed8fd3f91c986"
+    },
+    {
+      "path": "tests/e2e/audio-rendering.spec.ts",
+      "mode": "100644",
+      "gitBlob": "ed2f03a3720ef9a52d011c3e108bca51c6bcc7fb",
+      "sha256": "af30cbedd3dc7ac8f7d29551f38dfae5a9ad64ea6276fd1cdf7c12bfc9588388"
+    },
+    {
+      "path": "tests/e2e/legacy-regressions.spec.ts",
+      "mode": "100644",
+      "gitBlob": "b3f82760e29eca1076343c667352331e07049729",
+      "sha256": "b1d7149e1fd01b9e2ba38aa9499002b01ce9df6fae831cac3bf1509a72be10e0"
+    },
+    {
+      "path": "tests/e2e/workspace-authoring.spec.ts",
+      "mode": "100644",
+      "gitBlob": "1c24e2bc54d66ef735644c08657bca9c4ee3dece",
+      "sha256": "b9828f1413d0c3d07ce9acb7c7400cb59c38f4fdea778e3b9f4c0dd42cfff374"
+    },
+    {
+      "path": "tests/e2e/workspace-failures.spec.ts",
+      "mode": "100644",
+      "gitBlob": "ea4f8ae1a2c426575a6f699dbf1399d21d1b15a3",
+      "sha256": "0e9a1ae30552818cf30873a87a3a4cb6f86e98c3b7ff8f937b669bfdd7c2744d"
+    },
+    {
+      "path": "tests/e2e/workspace-geometry.spec.ts",
+      "mode": "100644",
+      "gitBlob": "1fcbf25c034b5fb8f96f8a7212907c10b62840d2",
+      "sha256": "bcdd093330366bc42b89694f1b26f8e7efdb9891cf2ebe0ca667930757c1f7e5"
+    },
+    {
+      "path": "tests/e2e/workspace-paths.spec.ts",
+      "mode": "100644",
+      "gitBlob": "fa637a4fe5c4c5d7f8cc3d338c9d786f068366ee",
+      "sha256": "bc1e58464029ce3fb4026d8b26ca01a01f755ff6494686336ea8892a366df17b"
+    },
+    {
+      "path": "tests/e2e/workspace-primitives.spec.ts",
+      "mode": "100644",
+      "gitBlob": "18cf468e6cffb726a44131117ef8295bac466bc6",
+      "sha256": "cd1550c613c2ffed1da6ba59ee4a5f059bd22ea3001d330073a6b38b6be231eb"
+    },
+    {
+      "path": "tests/e2e/workspace.spec.ts",
+      "mode": "100644",
+      "gitBlob": "6e60db9451dff245188040f51a33ac033ab547db",
+      "sha256": "daf3bea5642cc80bd19ac5a899a1f7681453b82c40303369c9ec960aafb24d52"
+    },
+    {
+      "path": "tests/fixtures/ai-scene-prompts.ts",
+      "mode": "100644",
+      "gitBlob": "36cd9eb5995ceae01f6ac692216ca69bc3b0473e",
+      "sha256": "14daba0c3a38ec12da9014fcf11085ffdadf7d06f0d0fd736e6898ea2d9f7522"
+    },
+    {
+      "path": "tests/unit/acoustic-explainer.test.ts",
+      "mode": "100644",
+      "gitBlob": "972dd2cc46923c88f50d76fd4bda587d194f711b",
+      "sha256": "feff6abd7a2ba49754afd5c7b0528f32a3fa36ae90a4ed2d94cedfd0b0bb343e"
+    },
+    {
+      "path": "tests/unit/acoustic-worker.test.ts",
+      "mode": "100644",
+      "gitBlob": "7a84d814378d1f49d67f6e0ec64a758528813814",
+      "sha256": "03b48a94cbb9ed964d0bfa792158e6e87ee8b9b71b1201b891b57a2f205970f5"
+    },
+    {
+      "path": "tests/unit/ai-client.test.ts",
+      "mode": "100644",
+      "gitBlob": "841a350a916da5442a5f82e690e71b9ae006040a",
+      "sha256": "051ca02c4929d9547c9d900f8419b03244fd436b331efdf251daff91ff1855c6"
+    },
+    {
+      "path": "tests/unit/ai-contracts.test.ts",
+      "mode": "100644",
+      "gitBlob": "46dae883bdb081267b53c33df600e3763f8e46bf",
+      "sha256": "9dc6e63333e15137fda60a9e4b5ab2af9bf920ee7c50c0c4df579c9bc0c339a6"
+    },
+    {
+      "path": "tests/unit/ai-provider.test.ts",
+      "mode": "100644",
+      "gitBlob": "46e5910b6c6c60ee359f9aaf211bb3dbb37b31e6",
+      "sha256": "3b41b3f52bd963302bd2e37ffc556345ddba3af119f00f65ff660796843fb1f6"
+    },
+    {
+      "path": "tests/unit/ai-scene-prompt-evals.test.ts",
+      "mode": "100644",
+      "gitBlob": "50ab9a0251c799960ccd5e7c1a5b96d02d8bb46d",
+      "sha256": "865fc0c73ac4ba9675bc38a03ab754561ab2bbb70fd78d81dd3e43221caa7df8"
+    },
+    {
+      "path": "tests/unit/audio-assets.test.ts",
+      "mode": "100644",
+      "gitBlob": "3959dc9a3bd61776fa0895051991863d2dc4c027",
+      "sha256": "94923b622a582661bd8baa3ec69f850bd76d5a33fc2735bf0424bf04228a3aec"
+    },
+    {
+      "path": "tests/unit/audio-engine.test.ts",
+      "mode": "100644",
+      "gitBlob": "a0d9dd854d53d61c86c2b63a52908d183bd34a35",
+      "sha256": "00cf9ff88102dc03ffe87b25baa8f23726300309bc4e3547017fb7138d133a73"
+    },
+    {
+      "path": "tests/unit/audio-math.test.ts",
+      "mode": "100644",
+      "gitBlob": "a6595f56424d3c3cd08952c3d4ec9da678f0a8e1",
+      "sha256": "14b03e48948190b14b4a7d5777dac6870a106ca08c7c52c21508901ee2cf229d"
+    },
+    {
+      "path": "tests/unit/classic-baseline-capture.test.ts",
+      "mode": "100644",
+      "gitBlob": "96b9fc084281087ba3069e6f6f2a84615ad84309",
+      "sha256": "783734e7c946caeb202e7d928a336a759b0821433e703a9507f3feced9ab07d0"
+    },
+    {
+      "path": "tests/unit/classic-source-pool.test.ts",
+      "mode": "100644",
+      "gitBlob": "3a01d363065bfeecf7cf52d070f68a3060beac2a",
+      "sha256": "87b1e41b8de6340f8d995820ad8da1334e5015033759029b0e29a7b6fffd9ae0"
+    },
+    {
+      "path": "tests/unit/classic-source-worker.test.ts",
+      "mode": "100644",
+      "gitBlob": "6409dcefc9d977fe9c6f68c84086547c88cb2d0c",
+      "sha256": "9412057fcc1fa300b1281427e79140986051e32398db5f316aa407592f98ae5b"
+    },
+    {
+      "path": "tests/unit/classic-viewport-adapter.test.ts",
+      "mode": "100644",
+      "gitBlob": "2aca774d0b8c234898423a07e4df0cdb89cafe13",
+      "sha256": "b0e8620b75cf30a547761d263b89a7830eb8ad210d0cecf9f52175c545e2db28"
+    },
+    {
+      "path": "tests/unit/classic-viewport-math.test.ts",
+      "mode": "100644",
+      "gitBlob": "004efadfbd3b90f4ad263f2892ac55166af50cdc",
+      "sha256": "f4be7864070f283d320d18da2b1c2079a5a43bc3ea2b8ecf6d5f950d4048e1a9"
+    },
+    {
+      "path": "tests/unit/compute-frame.test.ts",
+      "mode": "100644",
+      "gitBlob": "3193ff73bc46525c8f9028ba11e02ac369e6cb70",
+      "sha256": "f35da1e6ddcb0f910ba4057b07260a67f123589ce1a53132c42f0b02404eecd5"
+    },
+    {
+      "path": "tests/unit/content-policy.test.ts",
+      "mode": "100644",
+      "gitBlob": "1a72325d9fa3935837dae8fad5d7c1aae56ac367",
+      "sha256": "6b483ba90d2b9551076b4ffbc251d33219e99fea1a29f5466d74eab457d4d654"
+    },
+    {
+      "path": "tests/unit/coordinates.test.ts",
+      "mode": "100644",
+      "gitBlob": "296501aa23c599e8c8ce36763f99234c3d7895ab",
+      "sha256": "4df452bf78120b28634e0031be38872653f96ebb0a0f7359d41cc09f51620df5"
+    },
+    {
+      "path": "tests/unit/development-shell.test.ts",
+      "mode": "100644",
+      "gitBlob": "2e265eec478f2d0194eb861e3022c5e5ae8b80eb",
+      "sha256": "16c4ced27374e196f45569fdaeeb94906839163ab5bea724fec926aa0b01f5b1"
+    },
+    {
+      "path": "tests/unit/early-reflection-bank.test.ts",
+      "mode": "100644",
+      "gitBlob": "b698dbac356eb812a5cbf9aef442e6fcd9c0c2db",
+      "sha256": "c53782098550e9077710f3127d31c39ecd581984bd7f07c984fc14c2f4f40a65"
+    },
+    {
+      "path": "tests/unit/editor-reducer.test.ts",
+      "mode": "100644",
+      "gitBlob": "57924eb8f81108bed6f769ac73e69c0cdff35b9e",
+      "sha256": "47c8f6fea450bbbaf99fab7e347c4202f6969fe1e536dc5fb7ca198b26aa4bc3"
+    },
+    {
+      "path": "tests/unit/engine-router.test.ts",
+      "mode": "100644",
+      "gitBlob": "42a61fad33c5c3b181aa6fff968f72169983a0b1",
+      "sha256": "11ab41f2d9a7fe81b6972fceaa48af1bb31e8cc7fc099555b74630108e5a671d"
+    },
+    {
+      "path": "tests/unit/geometry.test.ts",
+      "mode": "100644",
+      "gitBlob": "7077ed4e0af5f1eeb7194a919aa6e2827d312b4e",
+      "sha256": "2301cc2057466fbd858eda2e087ad3f134388ae37a852de8fa13c47bd9af4456"
+    },
+    {
+      "path": "tests/unit/hybrid-direct-pool.test.ts",
+      "mode": "100644",
+      "gitBlob": "76e0090a808d080898aa4f47d990083cc6741416",
+      "sha256": "99e4e9caf90dd4afd26a9cb8ff8200632f1efa89a9d0cb1a49f8c6216ea456f3"
+    },
+    {
+      "path": "tests/unit/hybrid-direct-worker.test.ts",
+      "mode": "100644",
+      "gitBlob": "1a6093ec854e9db975e4cc762c1e3df4a6b8d1ec",
+      "sha256": "51ab50b4e803dd28e8dc2a7d570aaf2e4ae120c592145f105e3b6b9a4776afc8"
+    },
+    {
+      "path": "tests/unit/hybrid-path-overlay.test.ts",
+      "mode": "100644",
+      "gitBlob": "0a4789be01cb92407ad5f8ed94a8eb29ed3d80ca",
+      "sha256": "205870b1bf1494fed20f81234814471b73071f82b39481700a6b130b3a8f1a7a"
+    },
+    {
+      "path": "tests/unit/hybrid-scene-generation.test.ts",
+      "mode": "100644",
+      "gitBlob": "86e96ee5c537de3ef3a0f25e10cb8a301ed4e195",
+      "sha256": "1adb561480475febca29cfcbb92f6087f1e7167919347c60cd8c993ee1580cde"
+    },
+    {
+      "path": "tests/unit/hybrid-viewport-adapter.test.ts",
+      "mode": "100644",
+      "gitBlob": "d59ba7d82607d477f3670785afc33eadbddea31c",
+      "sha256": "7f5fd495cb008bb4a852cd18325debc9db3c43f565e7ada3a4bcf2569c5887c0"
+    },
+    {
+      "path": "tests/unit/hybrid3d-audible-direct.test.ts",
+      "mode": "100644",
+      "gitBlob": "f2cfee99ca27eb70eaf6341d36a840c0801073bf",
+      "sha256": "a18e30efe1de65b94a4524ddfb20223329202b8ac754bd89bf6ad1f059f6a008"
+    },
+    {
+      "path": "tests/unit/hybrid3d-compile.test.ts",
+      "mode": "100644",
+      "gitBlob": "8d3a02dfe897e89bde4a9a13acaee842f43ae4e4",
+      "sha256": "0d31b44cff50149840bff7e35c60397433186d54154ff6cde2c2fd5ea349e523"
+    },
+    {
+      "path": "tests/unit/hybrid3d-direct.test.ts",
+      "mode": "100644",
+      "gitBlob": "c4a9ad8191af95fa4f670365231820c34ae58472",
+      "sha256": "52d24fe55cf8b2d68fbeaa7df89848a55b4dbc7eb3c5234dbda017b7ff10c07e"
+    },
+    {
+      "path": "tests/unit/hybrid3d-directional-late-field.test.ts",
+      "mode": "100644",
+      "gitBlob": "a3e670d4cae0922eb07cbe9a25a0832caeaaada5",
+      "sha256": "2248ceef686a2d587891254ccb448c2020cb9395afad50f45f6eb439923182d4"
+    },
+    {
+      "path": "tests/unit/hybrid3d-primitives.test.ts",
+      "mode": "100644",
+      "gitBlob": "06d5a80a946e7a0f6a96e156b6a9dac259021dec",
+      "sha256": "9147f91d00ffa6a86e12d0a3614e873572ef3aff68bda09b26d3822796d977eb"
+    },
+    {
+      "path": "tests/unit/hybrid3d-receiver-connection-benchmark.test.ts",
+      "mode": "100644",
+      "gitBlob": "621166e96bb31d1a5643c2883500fd1395d2bc24",
+      "sha256": "9a91780ab765801d50a6a2bd6ea0a649cebea1a4dd39db40d101bf2274bc917c"
+    },
+    {
+      "path": "tests/unit/hybrid3d-receiver-connection.test.ts",
+      "mode": "100644",
+      "gitBlob": "295870a024a9a19f9d7645855563e5970fd37948",
+      "sha256": "69dd10eab86967365793289f9d180af09404f2e5892eed564e775e3cf49ffc8d"
+    },
+    {
+      "path": "tests/unit/hybrid3d-reflection-rendering.test.ts",
+      "mode": "100644",
+      "gitBlob": "21f3bf06fd503065296e45827d476c297f1a5b91",
+      "sha256": "a97480dc6703332a59f903452ea5e83944940e2d5bfd0964419a97be8f8c1216"
+    },
+    {
+      "path": "tests/unit/hybrid3d-reflection.test.ts",
+      "mode": "100644",
+      "gitBlob": "b767985127f91207b4dc90065e960b115bb9f2b9",
+      "sha256": "ad8acf101b7e56c26d7908bd61c14b598c25db3ba336812e9d4bca2830c019b7"
+    },
+    {
+      "path": "tests/unit/hybrid3d-second-order.test.ts",
+      "mode": "100644",
+      "gitBlob": "d73f48bde841459ce66d7dc181ebb8edcb928b83",
+      "sha256": "9e4966a8fd77b2c09577ed9a244f45356ab15fbec318eb727c34d2bef50a5003"
+    },
+    {
+      "path": "tests/unit/hybrid3d-six-band-materials.test.ts",
+      "mode": "100644",
+      "gitBlob": "01c6ded267ce98239188e01977baf3788156d3b5",
+      "sha256": "509a0a597175c39cb622d48b2be9aabe20142ea4794fe00d420954d3371dfaac"
+    },
+    {
+      "path": "tests/unit/image-source.test.ts",
+      "mode": "100644",
+      "gitBlob": "3f32b5fa870939b190f4c565b1c9e1a12016f31b",
+      "sha256": "a577017a7c87d19ea32aedbfe1dda5a1c1d9e1b15533421ea021f068cac7c01b"
+    },
+    {
+      "path": "tests/unit/local-audio-library.test.ts",
+      "mode": "100644",
+      "gitBlob": "219fc79c05276bd45d9703af5d11f9794e963918",
+      "sha256": "57a3085fb8e511aae88fe7aace24f28897a1fedf5b283f6edcd42d7d3c3a3867"
+    },
+    {
+      "path": "tests/unit/material-registry.test.ts",
+      "mode": "100644",
+      "gitBlob": "a79fbf5c6a11fbdadd1a851c0a46c1326869ec75",
+      "sha256": "a08ca6477699eb865ac0ba71d6fd4bc4b104f219a175e47115912a6017d754ff"
+    },
+    {
+      "path": "tests/unit/numeric-scrub-field.test.tsx",
+      "mode": "100644",
+      "gitBlob": "42064828fdb5ac81a09dafbe8813b75c263de1ff",
+      "sha256": "1ca5c6589309a2573394d8ceb2262d9f558e0384d170af3e00ef058821d4a730"
+    },
+    {
+      "path": "tests/unit/occlusion.test.ts",
+      "mode": "100644",
+      "gitBlob": "b0e45bc673599d479460a6c0fdd78916e0c6af9f",
+      "sha256": "f257d633eb59f1c459ee55ca35d190fa0fd53d16d2fdfcf4a3ba71c6bebd2f01"
+    },
+    {
+      "path": "tests/unit/partition-editing.test.ts",
+      "mode": "100644",
+      "gitBlob": "ca245b137dff3d11533ab75dd8b702fdc431950d",
+      "sha256": "41e14fe53901215708c88916eda725993e163987b6742501f0841b273bb070b4"
+    },
+    {
+      "path": "tests/unit/playwright-config.test.ts",
+      "mode": "100644",
+      "gitBlob": "c3d5ea00a4af195e07c1bcba52ed0f049efa720d",
+      "sha256": "08b410e174051ef2819a55cd50ff42380d2bcc9df26ea97f852f96560d551b34"
+    },
+    {
+      "path": "tests/unit/portal.test.ts",
+      "mode": "100644",
+      "gitBlob": "0d2af8a11632a4fde07a45713827a583085ce77c",
+      "sha256": "7966bd032dea35858b705a06f3ac15933a1d527ff49a5436c0e79294bcdacade"
+    },
+    {
+      "path": "tests/unit/room-acoustics.test.ts",
+      "mode": "100644",
+      "gitBlob": "844ea2d9c2402fb469cb6778f7e08b257b3d2a65",
+      "sha256": "cd06d361b1f654519c562a2b6a42c8a00abb5f714599a431e7860b2c1240b7c3"
+    },
+    {
+      "path": "tests/unit/scene-compile-route.test.ts",
+      "mode": "100644",
+      "gitBlob": "fbb7ef2a2d786329cd0bd19ef062fcc12427bc6b",
+      "sha256": "de3bdeb50dde7a2070b499215409fe6e2afcd90aace9df9fad746efdad7397f4"
+    },
+    {
+      "path": "tests/unit/scene-compiler.test.ts",
+      "mode": "100644",
+      "gitBlob": "1d1a4ebba51e667908aaf33b0876d6f49eaecee2",
+      "sha256": "2cc7d041338e1e3baeaf2373a5a1c8decb4583ce4ade62f1d85586cc70766ab5"
+    },
+    {
+      "path": "tests/unit/scene-document.test.ts",
+      "mode": "100644",
+      "gitBlob": "48d225a57cb62d35fd8424f04a01fb5735cfcf9d",
+      "sha256": "cf8282f8eec23ecc35c90c45a1f4c8e339fbd8dccf3c29e4d99941dc79c6ad7c"
+    },
+    {
+      "path": "tests/unit/scene-editor-route.test.ts",
+      "mode": "100644",
+      "gitBlob": "04acc060eaf4d044445379ef523eb79d0c4a32d8",
+      "sha256": "196771ceb5ebf6e0a053864555776acbfe4e8f89d555aec8ad6250602a2ff680"
+    },
+    {
+      "path": "tests/unit/scene-explain-route.test.ts",
+      "mode": "100644",
+      "gitBlob": "86c6440a8bf31ff02b3b9efaa05d7c1bfafcac20",
+      "sha256": "2d61acd9a05c4b794148fe7cd2d44fc312b90b1d3c6071a557d1292d6e1610cf"
+    },
+    {
+      "path": "tests/unit/scene-schema.test.ts",
+      "mode": "100644",
+      "gitBlob": "0b941b0f0bc6c055a4a29f32140d22e246b3152d",
+      "sha256": "19487b92b5713712e4fd03173819cd0526d37b827acc69c69a3c34b4db82feeb"
+    },
+    {
+      "path": "tests/unit/scene-serialization.test.ts",
+      "mode": "100644",
+      "gitBlob": "420af6860757032dfd3a7a4bae9285339ccb1b3f",
+      "sha256": "357c85c7d99de7eb5d0dee3074c6e33b4013a49805b4b335d5030cf130c04ad0"
+    },
+    {
+      "path": "tests/unit/scene-validation.test.ts",
+      "mode": "100644",
+      "gitBlob": "a08146b8050988c88b505664d3ce043a21cff10f",
+      "sha256": "7c73f21a0f3e8352158d243c2428711d344864b9d05a649c9854bce681e9a7d5"
+    },
+    {
+      "path": "tests/unit/schroeder-reverb.test.ts",
+      "mode": "100644",
+      "gitBlob": "7f600081689738d8d081c6e4a01f0075cef6e057",
+      "sha256": "ef021b79d309c370fe81ebe7447f629d89b868c3bf1061806e04f7002fb6cdf9"
+    },
+    {
+      "path": "tests/unit/smoke.test.ts",
+      "mode": "100644",
+      "gitBlob": "3cd5f269905b89f04b4d42d67ce27f3c2b21775a",
+      "sha256": "dab8178fc9a35c46d1258ee8b125fb8240d949526214bd7509db4e3175fff6c1"
+    },
+    {
+      "path": "tests/unit/transport.test.ts",
+      "mode": "100644",
+      "gitBlob": "dfb0814a789f58634c71c31607516830a990879a",
+      "sha256": "c06f00a58dd53b6b4ae96b4460ea81c56cf0f5462306a0457fe52826ced6a06e"
+    },
+    {
+      "path": "tests/unit/use-acoustic-frame.test.ts",
+      "mode": "100644",
+      "gitBlob": "72f7a6696fc882c9fb43cc3ca99add7a38da7b25",
+      "sha256": "dedd42c7ddef99b7fc6c470273fb4120e554b411af16e68b579bd6cdf5f43d22"
+    },
+    {
+      "path": "tests/unit/viewport-math.test.ts",
+      "mode": "100644",
+      "gitBlob": "f3f0ae1656e035242f660a621ec97b1c75768734",
+      "sha256": "3c2e5c8248774c2987595485e862eba82273c8ca4924cd2bf1ebc619e86cc63b"
+    },
+    {
+      "path": "tests/unit/workspace-geometry-constraints.test.ts",
+      "mode": "100644",
+      "gitBlob": "17120793ca37ede0dc5ec0680c0a0f13219139b7",
+      "sha256": "9c56717d49f3f3d4dc2ef031e009802a985f4fcc2d4516250d9ec483021bbf1b"
+    },
+    {
+      "path": "tests/unit/workspace-history.test.ts",
+      "mode": "100644",
+      "gitBlob": "4367dfc8a44f37f677a5961fbd829e5044e9e864",
+      "sha256": "b8187a522219c84d6b9645ff152b5494dbe1218fc4d0e8ea7352d294e7913341"
+    },
+    {
+      "path": "tests/unit/workspace-listeners.test.ts",
+      "mode": "100644",
+      "gitBlob": "a007ff2b2fdb2250e006431818ae4d8f644f7577",
+      "sha256": "535ac13d5b7ec31939ed94bb39d6370e2e456a6f6d1b490ee5929b4a5af78b04"
+    },
+    {
+      "path": "tests/unit/workspace-persistence.test.ts",
+      "mode": "100644",
+      "gitBlob": "9aad44ecd22551abd28482fed4f70c23c268ba60",
+      "sha256": "e0418ea312dc1f88edd39cc2cb9e202e5156a3ed438fe4ade36639a4ec28e90f"
+    },
+    {
+      "path": "tests/unit/workspace-primitives.test.ts",
+      "mode": "100644",
+      "gitBlob": "6c215f57ed9aebbc5d5bda854b643d804e5ce413",
+      "sha256": "5eabc57c355a6e13cfcb9b25ec8f14e460b0cf73e08b9ea28be51cb94b9e749e"
+    },
+    {
+      "path": "tests/unit/workspace-project.test.ts",
+      "mode": "100644",
+      "gitBlob": "3eca0f103c31b04246a25df8128eb41ffbf538f8",
+      "sha256": "eff8e901060b921337fba8486f5aa860c9bcd67676ed24729c3e562f6e23d337"
+    },
+    {
+      "path": "tests/unit/workspace-projections.test.ts",
+      "mode": "100644",
+      "gitBlob": "c44b926965aea0e99c10fe575dd57e7fd63527a2",
+      "sha256": "5512c28d2c4198199c52ca79edc2fae00aa3396a76a91f7c673df28f75ce1ce0"
+    },
+    {
+      "path": "tests/unit/workspace-status-bar.test.ts",
+      "mode": "100644",
+      "gitBlob": "e3ebbc079f757d6a3dda900dfd2fe0b0388fe8e3",
+      "sha256": "f10c2c4ce51221affff7cddef9e79273bfbf9ae076cce7153953a13dcfb8c1ee"
+    },
+    {
+      "path": "tests/unit/workspace-transfer.test.ts",
+      "mode": "100644",
+      "gitBlob": "c5b4c7563e48ae6bd764d49e619a82d5894b15fa",
+      "sha256": "4c1910ae0fc1be4841f1c0ddeccb0146517b244debe1eaa1b9adedf32bad0198"
+    },
+    {
+      "path": "tsconfig.json",
+      "mode": "100644",
+      "gitBlob": "a942a75064b065d8df9ccad27bfacb3e6dc14017",
+      "sha256": "a3c10d12a6543fe53375ce0b8d67cc21fb33afa33b5cd915f157f157fdddfcff"
+    },
+    {
+      "path": "vitest.config.ts",
+      "mode": "100644",
+      "gitBlob": "803a4a6cb73f0cfdbd22ca3cbcefbb3ebf5b622c",
+      "sha256": "27334bb158fe51737dae0a544e4db89ccbc01f7508d552cafd922cc1d4af3308"
+    }
+  ]
+}

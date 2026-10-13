@@ -1,0 +1,44 @@
+{
+  "@img/sharp-libvips-linux-x64@1.3.4": {
+    "files": [
+      "docs/licenses/sharp-libvips-1.3.4/THIRD-PARTY-NOTICES.md",
+      "docs/licenses/sharp-libvips-1.3.4/COPYING.LESSER",
+      "docs/licenses/sharp-libvips-1.3.4/COPYING",
+      "docs/licenses/sharp-libvips-1.3.4/LIBVIPS_LICENSE",
+      "docs/licenses/sharp-libvips-1.3.4/PACKAGING_LICENSE",
+      "docs/licenses/sharp-libvips-1.3.4/versions.properties",
+      "docs/licenses/sharp-libvips-1.3.4/SOURCE_NOTICE.md"
+    ],
+    "sources": ["https://github.com/lovell/sharp-libvips/tree/ebb95f8add54eee8bed840e3fb587e4cbec857d7", "https://github.com/libvips/libvips/tree/24ad4d042940e6bf99a68871ba886ca8847c9c82", "https://www.gnu.org/licenses/lgpl-3.0.txt", "https://www.gnu.org/licenses/gpl-3.0.txt"],
+    "note": "Pinned packaging release omits license files from native npm archive; retain upstream component notices, complete LGPL/GPL texts, exact version/build/source references. This is not a complete native copyright audit."
+  },
+  "@img/sharp-libvips-linux-arm64@1.3.4": {
+    "files": [
+      "docs/licenses/sharp-libvips-1.3.4/THIRD-PARTY-NOTICES.md",
+      "docs/licenses/sharp-libvips-1.3.4/COPYING.LESSER",
+      "docs/licenses/sharp-libvips-1.3.4/COPYING",
+      "docs/licenses/sharp-libvips-1.3.4/LIBVIPS_LICENSE",
+      "docs/licenses/sharp-libvips-1.3.4/PACKAGING_LICENSE",
+      "docs/licenses/sharp-libvips-1.3.4/versions.properties",
+      "docs/licenses/sharp-libvips-1.3.4/SOURCE_NOTICE.md"
+    ],
+    "sources": ["https://github.com/lovell/sharp-libvips/tree/ebb95f8add54eee8bed840e3fb587e4cbec857d7", "https://github.com/libvips/libvips/tree/24ad4d042940e6bf99a68871ba886ca8847c9c82", "https://www.gnu.org/licenses/lgpl-3.0.txt", "https://www.gnu.org/licenses/gpl-3.0.txt"],
+    "note": "Same pinned packaging release as x64; ARM64 runtime execution not verified in this workspace. Retain upstream component notices, complete LGPL/GPL texts and exact version/source references."
+  },
+  "@edge-runtime/cookies@6.0.0": {
+    "files": ["docs/licenses/edge-cookies-6.0.0/LICENSE.md", "docs/licenses/edge-cookies-6.0.0/UPSTREAM_PACKAGE.json", "docs/licenses/edge-cookies-6.0.0/PROVENANCE.md"],
+    "sources": ["https://registry.npmjs.org/@edge-runtime/cookies/-/cookies-6.0.0.tgz"],
+    "note": "Exact published npm license bytes verified against registry SHA-512 integrity; Next vendored copy omits its license."
+  },
+  "@edge-runtime/ponyfill@4.0.0": {
+    "files": ["docs/licenses/edge-ponyfill-4.0.0/LICENSE.md", "docs/licenses/edge-ponyfill-4.0.0/UPSTREAM_PACKAGE.json", "docs/licenses/edge-ponyfill-4.0.0/PROVENANCE.md"],
+    "sources": ["https://registry.npmjs.org/@edge-runtime/ponyfill/-/ponyfill-4.0.0.tgz"],
+    "note": "Exact published npm license bytes verified against registry SHA-512 integrity; Next vendored copy omits its license."
+  },
+  "client-only@0.0.1": {
+    "provenanceException": true,
+    "files": ["docs/licenses/client-only-0.0.1/UPSTREAM_PACKAGE.json", "docs/licenses/client-only-0.0.1/PROVENANCE.md"],
+    "sources": ["https://registry.npmjs.org/client-only/0.0.1", "https://registry.npmjs.org/client-only/-/client-only-0.0.1.tgz"],
+    "note": "PROVENANCE EXCEPTION: npm declares MIT but has no original license/copyright notice or source revision. Supplemental record retains actual metadata/integrity; it does not resolve copyright authorship or assign another project's notice."
+  }
+}

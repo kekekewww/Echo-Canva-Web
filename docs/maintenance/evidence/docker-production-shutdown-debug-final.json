@@ -1,0 +1,9 @@
+{
+    "image":  "sha256:aff89b6ca4e612cdaca8914ab328729d9022bd15727d05e723422e5ce909d313",
+    "seconds":  1.0496090999999999,
+    "exitCode":  143,
+    "oomKilled":  false,
+    "cleanupStarted":  true,
+    "cleanupFinished":  true,
+    "status":  "exited"
+}

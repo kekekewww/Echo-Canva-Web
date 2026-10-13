@@ -1,0 +1,28 @@
+name: echo-canvas-web
+services:
+  web:
+    build:
+      context: .
+      target: runner
+    image: echo-canvas-web:local
+    init: true
+    ports:
+      - "${HOST_BIND:-127.0.0.1}:${HOST_PORT:-3000}:3000"
+    environment:
+      # Runtime only; manual scenes and presets work with these defaults.
+      AI_ENABLED: "${AI_ENABLED:-false}"
+      AI_PROVIDER: "${AI_PROVIDER:-openai}"
+      OPENAI_API_KEY: "${OPENAI_API_KEY:-}"
+      OPENROUTER_API_KEY: "${OPENROUTER_API_KEY:-}"
+      OPENAI_REASONING_EFFORT: "${OPENAI_REASONING_EFFORT:-medium}"
+      AI_REQUEST_TIMEOUT_MS: "${AI_REQUEST_TIMEOUT_MS:-30000}"
+    read_only: true
+    tmpfs:
+      - /tmp:noexec,nosuid,size=64m
+      - /app/.next/cache:uid=1000,gid=1000,nosuid,size=128m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 30s
+    restart: unless-stopped

@@ -1,0 +1,23 @@
+{
+  "result": "PASS",
+  "excluded": [
+    ".env.docker-context-probe",
+    "public/docker-context-probe.key",
+    ".git",
+    "node_modules",
+    ".next",
+    "docs/archive",
+    "docs/maintenance",
+    ".github",
+    ".superpowers",
+    "playwright-report",
+    "test-results",
+    "third-party-licenses"
+  ],
+  "oracles": [
+    "mvp-baseline-audio.json",
+    "mvp-baseline.json"
+  ],
+  "applicationAndUnitFixturesPresent": true,
+  "gplAndLgplPresent": true
+}

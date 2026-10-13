@@ -1,0 +1,444 @@
+{
+  "sourceCommit": "c8fe24700b67861e2f64fbb8950e9281c0e13a3c",
+  "sourceTag": "v1.0.0-build-week",
+  "archiveFiles": [
+    {
+      "originalPath": ".superpowers/sdd/final-fix-report.md",
+      "archivePath": "docs/archive/build-week/.superpowers/sdd/final-fix-report.md",
+      "originalGitBlob": "8f8ca3b24a24a40a4955734f273873e89b7bb8e0",
+      "sha256": "58cc174b4d3b9e9a7ac8be7b4abc10ee4fe9b2f6d074a90f386433cb32eacbe8"
+    },
+    {
+      "originalPath": ".superpowers/sdd/gate-b-final-repair-report.md",
+      "archivePath": "docs/archive/build-week/.superpowers/sdd/gate-b-final-repair-report.md",
+      "originalGitBlob": "5dad90ab19cb09fb77532e80416edd542fa854e1",
+      "sha256": "0680c9997e9b5b619e50389f9b4ed7b8d9f2ba1722b587069afa1223c6f23e45"
+    },
+    {
+      "originalPath": ".superpowers/sdd/multicore-task-2-report.md",
+      "archivePath": "docs/archive/build-week/.superpowers/sdd/multicore-task-2-report.md",
+      "originalGitBlob": "657ce2eb261b6a9f420bcfd2e33f661f5b0698f0",
+      "sha256": "f70676dbf03468d5930d91d7cbbb64852089f5b30142865ee2a13fbb47011f3b"
+    },
+    {
+      "originalPath": ".superpowers/sdd/multicore-task-3-report.md",
+      "archivePath": "docs/archive/build-week/.superpowers/sdd/multicore-task-3-report.md",
+      "originalGitBlob": "84c8bc9f13c02099b57990b21e49fef3abb10dd9",
+      "sha256": "a6ed8b4fe254492312128581d7e40d3faae62e76fdae428c75a18e16b45ea6d7"
+    },
+    {
+      "originalPath": "AGENTS.md",
+      "archivePath": "docs/archive/build-week/AGENTS.md",
+      "originalGitBlob": "5a00a9457cb6fc78c3ec4293c2944487d9fd4ded",
+      "sha256": "dd449935b18d7257b6d870aada8a490e05bbc6d7f07d4d0e6c421d7b05924227"
+    },
+    {
+      "originalPath": "README.md",
+      "archivePath": "docs/archive/build-week/README.md",
+      "originalGitBlob": "ce5198435e832cfc5e7f39693210c8dc911c6f51",
+      "sha256": "66d9674f5c9a66d3f321cecf219421d640e8fb94e080c4456c0a507dda38c135"
+    },
+    {
+      "originalPath": "README_HANDOFF.md",
+      "archivePath": "docs/archive/build-week/README_HANDOFF.md",
+      "originalGitBlob": "7ae71afcdfb1e17431ea6ddc11caba7acb6e0327",
+      "sha256": "81815e835c78110b6984a034dd6b5aaaf79afaa93a2ff2bf91f0f771c8fb2908"
+    },
+    {
+      "originalPath": "artifacts/evidence/CODEX_USAGE.md",
+      "archivePath": "docs/archive/build-week/artifacts/evidence/CODEX_USAGE.md",
+      "originalGitBlob": "bb4b654cd3b9fde8feccf087957eb42182de85a5",
+      "sha256": "614e72b6af75703566a9f22db1cf2afd794840c982c46fbf6d32fe4ab02f3e81"
+    },
+    {
+      "originalPath": "artifacts/evidence/DECISION_LOG.md",
+      "archivePath": "docs/archive/build-week/artifacts/evidence/DECISION_LOG.md",
+      "originalGitBlob": "def4e4247c7cf1b9ddc4b35e8ba4de880334dcfc",
+      "sha256": "929d8055295c99c7bfc2a1aa13851e3f63cad47e4c83d7dde0820a8079cc9b16"
+    },
+    {
+      "originalPath": "artifacts/evidence/GPT_RUNTIME_USAGE.md",
+      "archivePath": "docs/archive/build-week/artifacts/evidence/GPT_RUNTIME_USAGE.md",
+      "originalGitBlob": "56df728e33e583c0e0fa40324275be092c3a0e15",
+      "sha256": "2e191a98937ebf1f5d70e7a559c76803d4cc2c2f0cef51a1f441efc13b5ee08d"
+    },
+    {
+      "originalPath": "artifacts/evidence/commit-timeline.csv",
+      "archivePath": "docs/archive/build-week/artifacts/evidence/commit-timeline.csv",
+      "originalGitBlob": "7f9bd88b969e3c9a8926806f0ecf35c185d583b7",
+      "sha256": "8d25954700dcfaa35c15706c1d100816ac62111b36b07383e808edc6215a30fe"
+    },
+    {
+      "originalPath": "artifacts/release/e2e-output.txt",
+      "archivePath": "docs/archive/build-week/artifacts/release/e2e-output.txt",
+      "originalGitBlob": "32f9ef54b7cd126443b3c8e64ba6f4a489b00b09",
+      "sha256": "7fb2f82009973ff15643ab149737916ce1ae4254f13101cad0f832934f31f600"
+    },
+    {
+      "originalPath": "artifacts/release/install-output.txt",
+      "archivePath": "docs/archive/build-week/artifacts/release/install-output.txt",
+      "originalGitBlob": "3c22c89422e52367ee5ecc9703ba06d170b3a9c5",
+      "sha256": "2e00783fd6e331be0792c90e71e7dae91726f246a505b015e5bda87b6c7ed819"
+    },
+    {
+      "originalPath": "artifacts/release/rc-metadata.json",
+      "archivePath": "docs/archive/build-week/artifacts/release/rc-metadata.json",
+      "originalGitBlob": "b470a8d4b632a805ae5b945f63508e1b3156d5f3",
+      "sha256": "7abfcd3a6d68e4097818fa74fa069f7e108939ceffb33514903a8b772cb1a6de"
+    },
+    {
+      "originalPath": "artifacts/release/release-acceptance-report.md",
+      "archivePath": "docs/archive/build-week/artifacts/release/release-acceptance-report.md",
+      "originalGitBlob": "a7fd04c02023838fc85dae9ef3a463995ef376e3",
+      "sha256": "372a4724af76e944ac730dd947bc3134107f73ca1080a1cdab4615c93031415e"
+    },
+    {
+      "originalPath": "artifacts/release/security-license-audit.md",
+      "archivePath": "docs/archive/build-week/artifacts/release/security-license-audit.md",
+      "originalGitBlob": "c476537b8a7549df95ba089f42fbdd47cf2c435b",
+      "sha256": "ba23bcdd13c2d672be56f2225b540c1263f95dad5eaa939988d2f036d2cf5af0"
+    },
+    {
+      "originalPath": "artifacts/release/static-verification-summary.md",
+      "archivePath": "docs/archive/build-week/artifacts/release/static-verification-summary.md",
+      "originalGitBlob": "e80abff8af7c2716846cf10bf8d34502e168e34c",
+      "sha256": "2456305994e2dabe084f2c049086a8ccacfa4cafa68fe024527b3c3109ae0134"
+    },
+    {
+      "originalPath": "artifacts/release/submission-metadata.json",
+      "archivePath": "docs/archive/build-week/artifacts/release/submission-metadata.json",
+      "originalGitBlob": "92288e8da02d5a616affa00c0935716f09fb6a9f",
+      "sha256": "c784122c0d4fefb398fd1d32cdb0d93343ec7b18761de89df609415947328ff2"
+    },
+    {
+      "originalPath": "artifacts/release/verify-output.txt",
+      "archivePath": "docs/archive/build-week/artifacts/release/verify-output.txt",
+      "originalGitBlob": "e88527297742f0787b6b2e7918cba1baf05ce5a6",
+      "sha256": "514f15558563359b4c62d785b76be0e1fd5c086a8fbbd95b84b365189767bfdd"
+    },
+    {
+      "originalPath": "docs/3d-extension/P0_BASELINE.md",
+      "archivePath": "docs/archive/build-week/docs/3d-extension/P0_BASELINE.md",
+      "originalGitBlob": "a4c38ba3b798775a69f52df03acca081a769ab90",
+      "sha256": "81b34751e3e39ccca95a7cdb8cd30e7ef7b342a040bf86fc33f647a77bb29358"
+    },
+    {
+      "originalPath": "docs/3d-extension/P1_COMPATIBILITY.md",
+      "archivePath": "docs/archive/build-week/docs/3d-extension/P1_COMPATIBILITY.md",
+      "originalGitBlob": "318c482cde47c4ed4ddc9f05f15d401281b9ecc8",
+      "sha256": "b6d1284a567262ea200b453113b930a5ef60cd0ffebb967f3f686c3b79893f0e"
+    },
+    {
+      "originalPath": "docs/3d-extension/P2_DIRECT.md",
+      "archivePath": "docs/archive/build-week/docs/3d-extension/P2_DIRECT.md",
+      "originalGitBlob": "b0f9919fab7522678cc0bb6b4247da78232937eb",
+      "sha256": "d6a10dfa4804f657866aef9839b6aca3c3d8a314233f61a6ff225ec6e6b98a5b"
+    },
+    {
+      "originalPath": "docs/3d-extension/P3_REFLECTIONS.md",
+      "archivePath": "docs/archive/build-week/docs/3d-extension/P3_REFLECTIONS.md",
+      "originalGitBlob": "f73a8b8b71aacd027f42ac870c9db9fb72712798",
+      "sha256": "fcfb24af4513e60271c19b0bf8bc67123855d9d00fa1b8728c75b99f0a72b279"
+    },
+    {
+      "originalPath": "docs/3d-extension/P4_SECOND_ORDER.md",
+      "archivePath": "docs/archive/build-week/docs/3d-extension/P4_SECOND_ORDER.md",
+      "originalGitBlob": "2e2b33f87ee071cb85116b06a7097e8f8d848b33",
+      "sha256": "7dd80ce677f9ef99a2175aaceee91b9f097838d56edd784321b4d06dd82a49e8"
+    },
+    {
+      "originalPath": "docs/3d-extension/P5_RECEIVER_CONNECTION.md",
+      "archivePath": "docs/archive/build-week/docs/3d-extension/P5_RECEIVER_CONNECTION.md",
+      "originalGitBlob": "8894ca277eab08142e7aeb29ccdf733b6125804c",
+      "sha256": "8e23e6b466a4075d58c37ceb2c85d7ea12ee4356d9257553c4215446cae64380"
+    },
+    {
+      "originalPath": "docs/3d-extension/P6_MATERIALS_AND_MEDIA.md",
+      "archivePath": "docs/archive/build-week/docs/3d-extension/P6_MATERIALS_AND_MEDIA.md",
+      "originalGitBlob": "3c9d281331bb888712cb881aae14351084992a9a",
+      "sha256": "8de785e15577cc5161fe27e082f9fb81ae361a6cbbe3d75f68dc12f934e58b05"
+    },
+    {
+      "originalPath": "docs/3d-extension/P7_DIRECTIONAL_LATE_FIELD.md",
+      "archivePath": "docs/archive/build-week/docs/3d-extension/P7_DIRECTIONAL_LATE_FIELD.md",
+      "originalGitBlob": "21b24c30c865c23dc9e7cfd49661ca7832fb9ccd",
+      "sha256": "c0497a936ca4ade47a8793684fe555927faed6a04eddde44fd2779913367b397"
+    },
+    {
+      "originalPath": "docs/ACCEPTANCE_TESTS.md",
+      "archivePath": "docs/archive/build-week/docs/ACCEPTANCE_TESTS.md",
+      "originalGitBlob": "8a5596367c0f23159c4d5934c6942fc9608d0df1",
+      "sha256": "64d1e54a1be2b65e766af357c745781b3b68ff913849886278ad8f18185dccf2"
+    },
+    {
+      "originalPath": "docs/ACOUSTICS.md",
+      "archivePath": "docs/archive/build-week/docs/ACOUSTICS.md",
+      "originalGitBlob": "bd85a6fe9bfb253808c564e9c31b5ca10025f3bf",
+      "sha256": "d08031dcdff39ccd647e4e011a9153cb96b5e8b795d44a22bc5f6db11fac0e30"
+    },
+    {
+      "originalPath": "docs/API_CONTRACTS.md",
+      "archivePath": "docs/archive/build-week/docs/API_CONTRACTS.md",
+      "originalGitBlob": "df6fbb033661c3779bb0b6c3ba03b009bca88310",
+      "sha256": "0a613f7b4019e5ba78611c3fc9eeba5b283038e4d5a59a501823c0b988415e75"
+    },
+    {
+      "originalPath": "docs/ARCHITECTURE.md",
+      "archivePath": "docs/archive/build-week/docs/ARCHITECTURE.md",
+      "originalGitBlob": "f1d297c7ad0007c137d0290ae658db23c01bdb8f",
+      "sha256": "732a70ebd7ab427a3f614fda0f532f85ac5cd7a3d6b05836a3419097ef7914a6"
+    },
+    {
+      "originalPath": "docs/BUILD_CHECKLIST.md",
+      "archivePath": "docs/archive/build-week/docs/BUILD_CHECKLIST.md",
+      "originalGitBlob": "828ff3e48ea50bee6d4ab1e179097373bb0656e6",
+      "sha256": "ddae6b21bf97482d24a9ec19c823c556c2dd60e1d49958cd0c222413bded3ac2"
+    },
+    {
+      "originalPath": "docs/DECISION_LOG.md",
+      "archivePath": "docs/archive/build-week/docs/DECISION_LOG.md",
+      "originalGitBlob": "6a90271c27a3002fc436ef3bdd996a18fc5566a6",
+      "sha256": "9146ffe44e42042421e0af7ecf2aef8477105b8b6072db53318a2cc2fb481c0a"
+    },
+    {
+      "originalPath": "docs/PRD.md",
+      "archivePath": "docs/archive/build-week/docs/PRD.md",
+      "originalGitBlob": "ec136dfbeabeeda99a7a1ef13bccf37fda0979a3",
+      "sha256": "fe5b4cf87d6e8cbf4ef4ee1e5683a7ec8649c305a0ff913e304b1ddff263f44a"
+    },
+    {
+      "originalPath": "docs/RESEARCH.md",
+      "archivePath": "docs/archive/build-week/docs/RESEARCH.md",
+      "originalGitBlob": "a223e1775a1a5ab5d10bd2835cba311fb07f2662",
+      "sha256": "218d342ce757b0aa27848bb8f49c4ad88603e5f3ac1d1bac8831139a639e7070"
+    },
+    {
+      "originalPath": "docs/RISK_REGISTER.md",
+      "archivePath": "docs/archive/build-week/docs/RISK_REGISTER.md",
+      "originalGitBlob": "9c36aa6aec1e8889e044f5c304b1be36d0c1b54b",
+      "sha256": "a8e2c514304aac56fa5032ac84be882bf00ca78a0f93438de3fa28f548485423"
+    },
+    {
+      "originalPath": "docs/STATUS.md",
+      "archivePath": "docs/archive/build-week/docs/STATUS.md",
+      "originalGitBlob": "b9894c4eb66c4e1e1eccca0ed6900bd68e663dcc",
+      "sha256": "389ed18699d052de87139e43ece72a04fb4710b09f440a700fea3713ee3d6dcb"
+    },
+    {
+      "originalPath": "docs/WORKSPACE_REQUIREMENTS.md",
+      "archivePath": "docs/archive/build-week/docs/WORKSPACE_REQUIREMENTS.md",
+      "originalGitBlob": "9a4b3cbe08a91522792f7d58c4615b782c68e84d",
+      "sha256": "0b9c8026c6262cf5b3e39c69421752f5f4c7fb92526742a4321791bfc2dc381b"
+    },
+    {
+      "originalPath": "docs/superpowers/plans/2026-07-16-gate-a.md",
+      "archivePath": "docs/archive/build-week/docs/superpowers/plans/2026-07-16-gate-a.md",
+      "originalGitBlob": "9814152918a8cb8e4a8e863c9b39041853ffc17b",
+      "sha256": "b74a680461209418bd8f01aec26ef452cdd9b6af6646dd3e1206c5048744fad2"
+    },
+    {
+      "originalPath": "docs/superpowers/plans/2026-07-17-gate-b-occlusion-portal.md",
+      "archivePath": "docs/archive/build-week/docs/superpowers/plans/2026-07-17-gate-b-occlusion-portal.md",
+      "originalGitBlob": "8a5d0e6b8b66c4013c31188e491978f020330fd2",
+      "sha256": "8e8206a99bfaa686610bf8c095a43d8cb218500ce19c86f5bb863f3f56251571"
+    },
+    {
+      "originalPath": "docs/superpowers/plans/2026-07-17-gate-c-reflections-reverb.md",
+      "archivePath": "docs/archive/build-week/docs/superpowers/plans/2026-07-17-gate-c-reflections-reverb.md",
+      "originalGitBlob": "01afd6911ab393d89a94e7347c6ce557e46679b9",
+      "sha256": "a15e71786ebe1148a7fde053a91a7090265c109c12e517c4162600371f58d48e"
+    },
+    {
+      "originalPath": "docs/superpowers/plans/2026-07-18-gate-d-ai-compiler.md",
+      "archivePath": "docs/archive/build-week/docs/superpowers/plans/2026-07-18-gate-d-ai-compiler.md",
+      "originalGitBlob": "bfeb3523a576e8455a28f5fc137918043b1c1143",
+      "sha256": "4774ce6b828c8592be8c053c3f1e63b3cf4e11a17497738f99c40918b5e04071"
+    },
+    {
+      "originalPath": "docs/superpowers/plans/2026-07-19-unified-workspace-redesign.md",
+      "archivePath": "docs/archive/build-week/docs/superpowers/plans/2026-07-19-unified-workspace-redesign.md",
+      "originalGitBlob": "25300fdf82aebd984609a168a7b8b98c6a8050ea",
+      "sha256": "dfd6017265616a193bf618e897127d3a2570433a2a8fd2099af634f40c7486df"
+    },
+    {
+      "originalPath": "docs/superpowers/plans/2026-07-19-viewport-pan-and-frame.md",
+      "archivePath": "docs/archive/build-week/docs/superpowers/plans/2026-07-19-viewport-pan-and-frame.md",
+      "originalGitBlob": "635cf103e638a00e25c848ae6fbc39f6820039d4",
+      "sha256": "4082930f5ee9d885598e058f37656acf8c48b8095fe1b92fdf78a6c09d2c3856"
+    },
+    {
+      "originalPath": "docs/superpowers/plans/2026-07-20-build-week-release.md",
+      "archivePath": "docs/archive/build-week/docs/superpowers/plans/2026-07-20-build-week-release.md",
+      "originalGitBlob": "436e9524f481af67bde72c790e2eb30af6570257",
+      "sha256": "742d7c8e6a6f92aa185fb18eb4c53980a5b23a1ba3b0cfb6bd096d1f62f08526"
+    },
+    {
+      "originalPath": "docs/superpowers/plans/2026-07-21-basic-acoustic-primitives.md",
+      "archivePath": "docs/archive/build-week/docs/superpowers/plans/2026-07-21-basic-acoustic-primitives.md",
+      "originalGitBlob": "6bc24931ebab458e3fd3a8baf023c68fe67cbcbf",
+      "sha256": "6c902d9fc2d1aeadc28fc60bce1fa0b8ab8c0af0dae59dffa4cb5c3fba108cd4"
+    },
+    {
+      "originalPath": "docs/superpowers/plans/2026-07-21-multicore-acoustic-workers.md",
+      "archivePath": "docs/archive/build-week/docs/superpowers/plans/2026-07-21-multicore-acoustic-workers.md",
+      "originalGitBlob": "f6b851e2526a3f4fef11be3556ade318e1bf3489",
+      "sha256": "ee1294783370d9bedfdb64dd4560d0d47b2a16600072f0772edd4701d14cfc2c"
+    },
+    {
+      "originalPath": "docs/superpowers/specs/2026-07-16-echo-canvas-design.md",
+      "archivePath": "docs/archive/build-week/docs/superpowers/specs/2026-07-16-echo-canvas-design.md",
+      "originalGitBlob": "f32a3bebfcb7d70e42e103322461fe81807bb1ef",
+      "sha256": "0ebe753ce01e6ab584da31a48b20d4343b070e3468ebc2cb0f0ee20853b51ab1"
+    },
+    {
+      "originalPath": "docs/superpowers/specs/2026-07-18-gate-d-ai-design.md",
+      "archivePath": "docs/archive/build-week/docs/superpowers/specs/2026-07-18-gate-d-ai-design.md",
+      "originalGitBlob": "c0a34d3616c617448f38fc67e233cbfe82d7b599",
+      "sha256": "a0616cf5fe6564b6c5a310c82cc976f0874e6b213acfa7309b572d73ee701df8"
+    },
+    {
+      "originalPath": "docs/superpowers/specs/2026-07-19-editor-workspace-redesign-design.md",
+      "archivePath": "docs/archive/build-week/docs/superpowers/specs/2026-07-19-editor-workspace-redesign-design.md",
+      "originalGitBlob": "3e18974425315cda21f1a9a00a7e417ccce1bd19",
+      "sha256": "2f549dcc7ae12963a391dfea12baff401e805b558789a5abb4c32693ce07685b"
+    },
+    {
+      "originalPath": "docs/superpowers/specs/2026-07-19-viewport-pan-and-frame-design.md",
+      "archivePath": "docs/archive/build-week/docs/superpowers/specs/2026-07-19-viewport-pan-and-frame-design.md",
+      "originalGitBlob": "c33c85a4f8fa773d45e87488a02b9f256cf485b5",
+      "sha256": "c4a50f05cfec9c8ca6d2da01758581c2e632f28810b327a126ab9cc84e93525b"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/01_RELEASE_SCOPE.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/01_RELEASE_SCOPE.md",
+      "originalGitBlob": "f7978cb40e587b1c3882adf2e8b2027dce53c158",
+      "sha256": "8443ad232ca4730bad25886ddc76b662964da6edef668f58f6aecead789ef992"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/02_RELEASE_RUNBOOK.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/02_RELEASE_RUNBOOK.md",
+      "originalGitBlob": "850721fcf5f8772736a6faf0c2c12740d510f73d",
+      "sha256": "ce1d87784bd7fd9deec7d063f1a6ead774f7028b7771c891b65ae4cc052a5f00"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/03_FINAL_ACCEPTANCE_MATRIX.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/03_FINAL_ACCEPTANCE_MATRIX.md",
+      "originalGitBlob": "2c34dedff144a4db24f55cc671e405f1b54b2a93",
+      "sha256": "229bb2ec077139d4c05073ab3ae1bf9b8ec070cd62ec0f70c6575be0fada6669"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/04_DEMO_VIDEO_SCRIPT.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/04_DEMO_VIDEO_SCRIPT.md",
+      "originalGitBlob": "47e5452125345a692310cbbc8571f9a8fc9a4366",
+      "sha256": "116db063f4d8b9fd432c9c161657af90adb4a11eeb110c996e4f0f9a325610ab"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/05_DEVPOST_SUBMISSION_COPY.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/05_DEVPOST_SUBMISSION_COPY.md",
+      "originalGitBlob": "a74f0323c5e5e172c86d5053b1726aa29286ddd1",
+      "sha256": "ef94b67d4bd6be631c503ae4dfc348315d8791e87a7b512bac3aa56ffe9e125a"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/06_REPOSITORY_README_TEMPLATE.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/06_REPOSITORY_README_TEMPLATE.md",
+      "originalGitBlob": "25ec5243bd2e5ddbc0145dea97a3db11a96cc0cf",
+      "sha256": "9c7bd81a42bf093e37fcbee3f32e2ac11f5ae6259d6cf5ce30c9d4f613df66ff"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/07_CODEX_AND_GPT_EVIDENCE.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/07_CODEX_AND_GPT_EVIDENCE.md",
+      "originalGitBlob": "8118820d12756b06256b3a789fdd1b099d839258",
+      "sha256": "88862e4e9d6ccbbc866f4d4cf7416e848a7dd659dfa1b232de2dd86994c89e28"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/08_LICENSE_ASSET_SECURITY_AUDIT.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/08_LICENSE_ASSET_SECURITY_AUDIT.md",
+      "originalGitBlob": "f3c722eb80a98368cc5f23f9e34c544af36f1cad",
+      "sha256": "9a87e99bcce2602274e9234917f07a5c27da34d115ede1510dac5fb939d41ed4"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/09_RELEASE_RISKS_AND_ROLLBACK.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/09_RELEASE_RISKS_AND_ROLLBACK.md",
+      "originalGitBlob": "bdfa05f88ff4ce8efd24e982aca9461f53255518",
+      "sha256": "e03314276aa3b899cdf719cd7209a56455d61c8e2b039440cda7e64802592433"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/MANIFEST.json",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/MANIFEST.json",
+      "originalGitBlob": "a29cc996ae1223ed5357401ac270babcee79f0d4",
+      "sha256": "1d4155ca066264cc1453905f9023720755de9f69c29992c40b583412405fde42"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/README.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/README.md",
+      "originalGitBlob": "4f0c01a343e288a9893948126a2f0996e37cca9b",
+      "sha256": "5a00fabf51286e0bbf4bf017e89b005452f116ffb37b76fbecddcacb24820035"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/prompts/CODEX_MVP_RELEASE_MANAGER.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/prompts/CODEX_MVP_RELEASE_MANAGER.md",
+      "originalGitBlob": "d0e0fbec8964ee08f8d2d64d5c1582ea8bd7a9da",
+      "sha256": "d647ce314240d821cb164f823356ebd0183a2defa6a259163b105c802c0400c4"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/references/OFFICIAL_REQUIREMENTS_SNAPSHOT.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/references/OFFICIAL_REQUIREMENTS_SNAPSHOT.md",
+      "originalGitBlob": "1c82ac515e752cc0ea4450ba9f774501e82ad25d",
+      "sha256": "a7c1dc029f49b61c1a22a8f8e26c77c2b1c64c95e0c4dca0848d08a9c9678d87"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/references/existing-mvp/ACCEPTANCE_TESTS.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/references/existing-mvp/ACCEPTANCE_TESTS.md",
+      "originalGitBlob": "55148bb47273af9dddcec60e45a109259b60c97b",
+      "sha256": "bc394834e4cf65d1b00521ada017fb1379e706728f9836d4964c2052a68214b6"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/references/existing-mvp/AGENTS.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/references/existing-mvp/AGENTS.md",
+      "originalGitBlob": "bc1bea8a2543a5d1a647590a64a32df61760c3c9",
+      "sha256": "dcab8a06262778cdc1fce7d6db01d3de9b00a4f66677be87eae0078630884dbe"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/references/existing-mvp/ARCHITECTURE.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/references/existing-mvp/ARCHITECTURE.md",
+      "originalGitBlob": "9fc49d7c7d3f713eb99c2b3ff68e6a17ee47a321",
+      "sha256": "3fe51512230358ca77802d2752339f195be3045507ddaf753301a518a624fb39"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/references/existing-mvp/IMPLEMENTATION_PLAN.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/references/existing-mvp/IMPLEMENTATION_PLAN.md",
+      "originalGitBlob": "c3073ee3730bf5e9298adebe912a751e6e195231",
+      "sha256": "6e82863c0fcf3842aaa74bde11dfb3c7603c463e88c56811393b47938088d770"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/references/existing-mvp/SUBMISSION_CHECKLIST.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/references/existing-mvp/SUBMISSION_CHECKLIST.md",
+      "originalGitBlob": "8697326f22c24fe883f918120b05518d5a906b60",
+      "sha256": "737b9748e05b9ffc9eb68e83a899b6f16664720f8c2b03da7132e67268d78dc6"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/templates/RELEASE_ACCEPTANCE_REPORT.md",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/templates/RELEASE_ACCEPTANCE_REPORT.md",
+      "originalGitBlob": "b08def4e4c80d6b1282cf8099fd6bfcd3557ede5",
+      "sha256": "0c6043c982669f3abdbca285c3476917d29c5a152fc88e8a5ecbd5078ef307bf"
+    },
+    {
+      "originalPath": "echo-canvas-mvp-submission/templates/SUBMISSION_METADATA.json",
+      "archivePath": "docs/archive/build-week/echo-canvas-mvp-submission/templates/SUBMISSION_METADATA.json",
+      "originalGitBlob": "bb82bbd7610a2cfb1653fb134e033978866d88ba",
+      "sha256": "affe973bb66b2d77a93cf23219ce274f9826aa29d477f14216b402db18924839"
+    },
+    {
+      "originalPath": "prompts/CODEX_BOOTSTRAP.md",
+      "archivePath": "docs/archive/build-week/prompts/CODEX_BOOTSTRAP.md",
+      "originalGitBlob": "7ff0be6fc0b068986804e9cab6398dc1ebeaee30",
+      "sha256": "2f2275647c8dfc3e2583e9f881e269a9c0b5b91e357a0973e3c0d8917d0ab7c8"
+    },
+    {
+      "originalPath": "prompts/CODEX_RECOVERY.md",
+      "archivePath": "docs/archive/build-week/prompts/CODEX_RECOVERY.md",
+      "originalGitBlob": "3351e6fa593b0e0c48fb2f506acec19371038aa5",
+      "sha256": "fc369dcf705c7e9df1df3e13d623112c0eee197330c9bc9aca7ce3dd144b6b02"
+    }
+  ]
+}

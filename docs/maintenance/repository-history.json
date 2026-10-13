@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Preserve the independent immutable Build Week extraction and the existing destination repository's LICENSE-only initializer when adopting the project through a pull request. The initializer is history integration, never an additional product-code extraction source.",
+  "source": {
+    "repository": "https://github.com/kekekewww/Echo-Canva",
+    "tag": "v1.0.0-build-week",
+    "sourceCommit": "c8fe24700b67861e2f64fbb8950e9281c0e13a3c",
+    "extractionRoot": "7c03345925369529a998316670e3fcece896b68c",
+    "sourceTree": "ca4a2543f6f0e8848fe8d8eb57f3ed70faaba294"
+  },
+  "destinationInitializer": {
+    "repository": "https://github.com/kekekewww/Echo-Canva-Web",
+    "commit": "923b79dd73b572100c6505694a50fa267dd3df72",
+    "tree": "39c9070bde6562a2239d40592340e39575fe78d4",
+    "purpose": "Existing remote initialization containing only the same MIT LICENSE blob already present in the source extraction. Preserve its reachable history without changing the original source tree or copying later upstream Main features.",
+    "files": [
+      {
+        "path": "LICENSE",
+        "mode": "100644",
+        "gitBlob": "c8016f0c6346720d3172abde5f7f834e21c0946e"
+      }
+    ]
+  },
+  "policy": "Require exactly the two recorded root commits. Verify the extraction's immutable tree and all 291 baseline path/mode/blob records, and verify the initializer's exact tree and sole LICENSE entry. Reject missing roots, additional roots and changed provenance records. Any future history exception requires a separately reviewed policy change."
+}

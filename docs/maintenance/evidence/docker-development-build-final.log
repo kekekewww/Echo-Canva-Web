@@ -1,0 +1,218 @@
+docker :  Image echo-canvas-web-dev-web Building
+位於 線路:2 字元:25
++ ... d=Get-Date; docker compose -f compose.dev.yaml build *> '..\verificat ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Image echo-canvas-web-dev-web Building :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+#1 [internal] load local bake definitions
+#1 reading from stdin 590B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 2.36kB 0.0s done
+#2 DONE 0.1s
+
+#3 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#3 DONE 1.6s
+
+#4 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#4 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.1s done
+#4 CACHED
+
+#5 [internal] load metadata for docker.io/library/node:22.23.3-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392
+#5 DONE 0.5s
+
+#6 [internal] load .dockerignore
+#6 transferring context:
+#6 transferring context: 1.11kB 0.3s done
+#6 DONE 3.2s
+
+#7 [base 1/3] FROM docker.io/library/node:22.23.3-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392
+#7 resolve docker.io/library/node:22.23.3-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392 0.0s done
+#7 DONE 0.0s
+
+#8 [base 2/3] WORKDIR /app
+#8 CACHED
+
+#9 [base 3/3] RUN npm install --global pnpm@11.7.0     && mkdir -p /pnpm/store     && chown node:node /pnpm/store
+#9 10.87
+#9 10.87 added 1 package in 10s
+#9 10.87
+#9 10.87 1 package is looking for funding
+#9 10.87   run `npm fund` for details
+#9 10.87 npm notice
+#9 10.87 npm notice New major version of npm available! 10.9.9 -> 12.2.0
+#9 10.87 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+#9 10.87 npm notice To update run: npm install -g npm@12.2.0
+#9 10.87 npm notice
+#9 DONE 11.4s
+
+#10 [internal] load build context
+#10 transferring context: 17.35kB 0.0s done
+#10 DONE 0.4s
+
+#11 [dependencies 1/2] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#11 DONE 0.3s
+
+#12 [dependencies 2/2] RUN pnpm install --frozen-lockfile
+#12 15.41 [WARN] Tarball download average speed 15 KiB/s (size 21 KiB) is below 50 KiB/s: https://registry.npmjs.org/@eslint/plugin-kit/-/plugin-kit-0.4.1.tgz (GET)
+#12 15.44 [WARN] Request took 10152ms: https://registry.npmjs.org/@img%2Fsharp-libvips-darwin-arm64
+#12 15.44 [WARN] Request took 10097ms: https://registry.npmjs.org/@img%2Fsharp-libvips-linuxmusl-arm64
+#12 15.44 [WARN] Request took 10083ms: https://registry.npmjs.org/@img%2Fsharp-wasm32
+#12 15.46 [WARN] Request took 10543ms: https://registry.npmjs.org/@babel%2Fhelper-string-parser
+#12 15.79 Progress: resolved 377, reused 0, downloaded 165, added 30
+#12 15.80 [WARN] Request took 10448ms: https://registry.npmjs.org/@img%2Fsharp-libvips-linuxmusl-x64
+#12 15.81 [WARN] Request took 10468ms: https://registry.npmjs.org/@img%2Fsharp-libvips-linux-s390x
+#12 15.81 [WARN] Request took 10493ms: https://registry.npmjs.org/@img%2Fsharp-libvips-linux-arm64
+#12 15.81 [WARN] Request took 10510ms: https://registry.npmjs.org/@img%2Fsharp-libvips-darwin-x64
+#12 15.81 [WARN] Request took 10464ms: https://registry.npmjs.org/@img%2Fsharp-libvips-linux-x64
+#12 15.81 [WARN] Request took 10570ms: https://registry.npmjs.org/@img%2Fsharp-darwin-arm64
+#12 15.88 [WARN] Request took 10551ms: https://registry.npmjs.org/@img%2Fsharp-libvips-linux-arm
+#12 15.89 [WARN] Request took 10530ms: https://registry.npmjs.org/@img%2Fsharp-win32-ia32
+#12 15.90 [WARN] Request took 10535ms: https://registry.npmjs.org/@img%2Fsharp-linuxmusl-x64
+#12 15.93 [WARN] Request took 10563ms: https://registry.npmjs.org/@img%2Fsharp-win32-x64
+#12 15.93 [WARN] Request took 11007ms: https://registry.npmjs.org/@babel%2Fhelper-validator-option
+#12 15.95 [WARN] Request took 10581ms: https://registry.npmjs.org/@img%2Fsharp-linux-arm64
+#12 16.32 [WARN] Request took 11384ms: https://registry.npmjs.org/@eslint-community%2Feslint-utils
+#12 16.33 [WARN] Request took 11069ms: https://registry.npmjs.org/@img%2Fsharp-darwin-x64
+#12 16.34 [WARN] Request took 10983ms: https://registry.npmjs.org/@img%2Fsharp-linux-arm
+#12 16.41 [WARN] Request took 11455ms: https://registry.npmjs.org/@eslint%2Fjs
+#12 16.41 [WARN] Request took 11482ms: https://registry.npmjs.org/@emnapi%2Fcore
+#12 16.44 [WARN] Request took 11504ms: https://registry.npmjs.org/@emnapi%2Fruntime
+#12 16.44 [WARN] Request took 11519ms: https://registry.npmjs.org/@babel%2Fhelper-validator-identifier
+#12 16.47 [WARN] Request took 11523ms: https://registry.npmjs.org/@eslint%2Feslintrc
+#12 16.97 Progress: resolved 377, reused 0, downloaded 207, added 73
+#12 17.03 [WARN] Request took 12147ms: https://registry.npmjs.org/@babel%2Fcode-frame
+#12 17.10 [WARN] Request took 12196ms: https://registry.npmjs.org/@babel%2Fhelper-module-imports
+#12 17.78 [WARN] Request took 12878ms: https://registry.npmjs.org/@babel%2Fhelper-compilation-targets
+#12 17.79 [WARN] Request took 12861ms: https://registry.npmjs.org/@babel%2Ftemplate
+#12 18.15 Progress: resolved 377, reused 0, downloaded 274, added 141
+#12 18.41 [WARN] Request took 13521ms: https://registry.npmjs.org/@babel%2Fcompat-data
+#12 19.04 [WARN] Request took 14132ms: https://registry.npmjs.org/@babel%2Fhelper-module-transforms
+#12 19.43 Progress: resolved 377, reused 0, downloaded 295, added 200
+#12 20.18 [WARN] Request took 15262ms: https://registry.npmjs.org/@babel%2Fhelpers
+#12 20.27 [WARN] Tarball download average speed 23 KiB/s (size 47 KiB) is below 50 KiB/s: https://registry.npmjs.org/get-tsconfig/-/get-tsconfig-4.14.0.tgz (GET)
+#12 20.71 Progress: resolved 377, reused 0, downloaded 311, added 218
+#12 22.32 Progress: resolved 377, reused 0, downloaded 342, added 232
+#12 22.47 [WARN] Request took 17537ms: https://registry.npmjs.org/@babel%2Ftypes
+#12 23.21 [WARN] Request took 18315ms: https://registry.npmjs.org/@babel%2Fgenerator
+#12 23.38 Progress: resolved 377, reused 0, downloaded 361, added 248
+#12 23.82 [WARN] Request took 18895ms: https://registry.npmjs.org/@babel%2Ftraverse
+#12 24.96 Progress: resolved 377, reused 0, downloaded 370, added 271
+#12 25.08 [WARN] Request took 20153ms: https://registry.npmjs.org/@babel%2Fparser
+#12 25.59 [WARN] Request took 20701ms: https://registry.npmjs.org/@babel%2Fcore
+#12 25.72 [WARN] Request took 10362ms: https://registry.npmjs.org/@rolldown%2Fbinding-freebsd-x64
+#12 26.18 Progress: resolved 377, reused 0, downloaded 370, added 310
+#12 27.04 [WARN] Request took 11618ms: https://registry.npmjs.org/@rolldown%2Fbinding-linux-arm-gnueabihf
+#12 27.06 [WARN] Request took 11184ms: https://registry.npmjs.org/@rolldown%2Fbinding-win32-x64-msvc
+#12 27.14 [WARN] Request took 11329ms: https://registry.npmjs.org/@rolldown%2Fbinding-linux-x64-gnu
+#12 27.49 Progress: resolved 377, reused 0, downloaded 371, added 338
+#12 27.64 [WARN] Request took 12180ms: https://registry.npmjs.org/@rolldown%2Fbinding-linux-arm64-gnu
+#12 27.66 [WARN] Request took 12309ms: https://registry.npmjs.org/@rolldown%2Fbinding-darwin-x64
+#12 27.85 [WARN] Request took 11459ms: https://registry.npmjs.org/@types%2Freact
+#12 28.48 [WARN] Request took 12031ms: https://registry.npmjs.org/@typescript-eslint%2Ftsconfig-utils
+#12 28.51 Progress: resolved 377, reused 0, downloaded 371, added 357
+#12 30.13 Progress: resolved 377, reused 0, downloaded 371, added 365
+#12 31.43 Progress: resolved 377, reused 0, downloaded 372, added 371
+#12 32.48 Progress: resolved 377, reused 0, downloaded 374, added 373
+#12 33.36 [WARN] Request took 16923ms: https://registry.npmjs.org/@typescript-eslint%2Fproject-service
+#12 33.74 Progress: resolved 377, reused 0, downloaded 375, added 375
+#12 35.04 [WARN] Request took 30368ms: https://registry.npmjs.org/pnpm
+#12 35.31
+#12 35.31    ╭──────────────────────────────────────────╮
+#12 35.31    │                                          │
+#12 35.31    │   Update available! 11.7.0 → 12.11.2.    │
+#12 35.31    │   Changelog: https://pnpm.io/v/12.11.2   │
+#12 35.31    │     To update, run: pnpm add -g pnpm     │
+#12 35.31    │                                          │
+#12 35.31    ╰──────────────────────────────────────────╯
+#12 35.31
+#12 35.44 [WARN] Request took 21389ms: https://registry.npmjs.org/@next%2Fswc-linux-x64-gnu
+#12 35.47 [WARN] Request took 21028ms: https://registry.npmjs.org/@next%2Fswc-linux-x64-musl
+#12 35.86 [WARN] Request took 21825ms: https://registry.npmjs.org/@next%2Fswc-darwin-x64
+#12 35.95 [WARN] Request took 21341ms: https://registry.npmjs.org/@next%2Fswc-win32-x64-msvc
+#12 36.00 [WARN] Request took 21950ms: https://registry.npmjs.org/@next%2Fswc-linux-arm64-gnu
+#12 36.48 [WARN] Request took 22443ms: https://registry.npmjs.org/@next%2Fswc-darwin-arm64
+#12 36.55 [WARN] Request took 20165ms: https://registry.npmjs.org/@types%2Fnode
+#12 37.12 [WARN] Request took 23069ms: https://registry.npmjs.org/@next%2Fswc-linux-arm64-musl
+#12 37.25 [WARN] Request took 23264ms: https://registry.npmjs.org/@next%2Fenv
+#12 37.75 [WARN] Request took 23291ms: https://registry.npmjs.org/@next%2Fswc-win32-arm64-msvc
+#12 38.92 [WARN] Request took 12734ms: https://registry.npmjs.org/electron-to-chromium
+#12 39.62 [WARN] Request took 25636ms: https://registry.npmjs.org/@next%2Feslint-plugin-next
+#12 42.49 [WARN] Request took 15413ms: https://registry.npmjs.org/eslint-config-next
+#12 43.02 [WARN] Request took 18084ms: https://registry.npmjs.org/axe-core
+#12 43.53 [WARN] Request took 16435ms: https://registry.npmjs.org/eslint-plugin-react-hooks
+#12 43.64 [WARN] Request took 27149ms: https://registry.npmjs.org/@typescript-eslint%2Ftype-utils
+#12 44.02 [WARN] Request took 26881ms: https://registry.npmjs.org/@typescript-eslint%2Futils
+#12 44.14 [WARN] Request took 28935ms: https://registry.npmjs.org/@playwright%2Ftest
+#12 44.68 [WARN] Request took 27702ms: https://registry.npmjs.org/@typescript-eslint%2Ftypes
+#12 44.79 [WARN] Request took 27649ms: https://registry.npmjs.org/@typescript-eslint%2Fvisitor-keys
+#12 44.91 [WARN] Request took 28472ms: https://registry.npmjs.org/@typescript-eslint%2Fscope-manager
+#12 45.86 [WARN] Request took 29412ms: https://registry.npmjs.org/@typescript-eslint%2Fparser
+#12 46.46 [WARN] Request took 29377ms: https://registry.npmjs.org/@typescript-eslint%2Ftypescript-estree
+#12 47.13 [WARN] Request took 14002ms: https://registry.npmjs.org/playwright
+#12 47.91 [WARN] Request took 14031ms: https://registry.npmjs.org/typescript
+#12 49.08 [WARN] Request took 32649ms: https://registry.npmjs.org/@typescript-eslint%2Feslint-plugin
+#12 50.42 Progress: resolved 377, reused 0, downloaded 376, added 375
+#12 50.53 [WARN] Request took 17400ms: https://registry.npmjs.org/playwright-core
+#12 51.69 [WARN] Request took 19078ms: https://registry.npmjs.org/next
+#12 52.81 Progress: resolved 377, reused 0, downloaded 376, added 376
+#12 54.66 ✓ Lockfile passes supply-chain policies (464 entries in 49.7s)
+#12 61.36 Progress: resolved 377, reused 0, downloaded 377, added 376
+#12 63.15 Progress: resolved 377, reused 0, downloaded 377, added 377
+#12 63.15 Progress: resolved 377, reused 0, downloaded 377, added 377, done
+#12 64.49 .../node_modules/unrs-resolver postinstall$ node postinstall.js
+#12 64.64 .../node_modules/unrs-resolver postinstall: Done
+#12 66.07
+#12 66.07 dependencies:
+#12 66.07 + next 16.3.8
+#12 66.07 + openai 6.48.0
+#12 66.07 + react 19.2.7
+#12 66.07 + react-dom 19.2.7
+#12 66.07 + zod 4.4.3
+#12 66.07
+#12 66.07 devDependencies:
+#12 66.07 + @playwright/test 1.61.1
+#12 66.07 + @types/node 26.1.1
+#12 66.07 + @types/react 19.2.17
+#12 66.07 + @types/react-dom 19.2.3
+#12 66.07 + eslint 9.39.3
+#12 66.07 + eslint-config-next 16.3.8
+#12 66.07 + typescript 5.9.3
+#12 66.07 + vitest 4.1.11
+#12 66.07
+#12 67.58 Done in 1m 6s using pnpm v11.7.0
+#12 DONE 81.5s
+
+#13 [dependencies 1/2] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#13 CACHED
+
+#14 [dependencies 2/2] RUN pnpm install --frozen-lockfile
+#14 CACHED
+
+#15 [development 1/3] COPY --from=dependencies --chown=node:node /app/node_modules ./node_modules
+#15 DONE 34.7s
+
+#16 [development 2/3] COPY --chown=node:node . .
+#16 DONE 1.3s
+
+#17 [development 3/3] RUN mkdir -p .next && chown node:node /app .next
+#17 DONE 0.8s
+
+#18 exporting to image
+#18 exporting layers
+#18 exporting layers 58.5s done
+#18 exporting manifest sha256:d4f60a33fc5b335262a6b178b328f3cf353f7d9827e25ad998edaa88092e4459 0.1s done
+#18 exporting config sha256:63eda0ae21628581a53d13fa13416fa50db3a83b283f13d49a8e5b14b3fb2afb 0.0s done
+#18 exporting attestation manifest sha256:713935f74687f6ba29318413be621a7f136a06ea113b9bb91975bec396c28de7 0.0s done
+#18 exporting manifest list sha256:4f426b9f6812f21cc17ebafe838d744828be1122c6e1c990fd5c8babeaa41a7c 0.0s done
+#18 naming to docker.io/library/echo-canvas-web-dev-web:latest
+#18 naming to docker.io/library/echo-canvas-web-dev-web:latest done
+#18 unpacking to docker.io/library/echo-canvas-web-dev-web:latest
+#18 unpacking to docker.io/library/echo-canvas-web-dev-web:latest 23.3s done
+#18 DONE 83.0s
+
+#19 resolving provenance for metadata file
+#19 DONE 0.0s
+ Image echo-canvas-web-dev-web Built
