@@ -37,6 +37,7 @@ services:
             - package.json
             - pnpm-lock.yaml
             - pnpm-workspace.yaml
+            - patches/
             - next.config.ts
             - Dockerfile
             - .dockerignore
@@ -46,6 +47,7 @@ services:
             - coverage/
             - playwright-report/
             - test-results/
+            - .tmp-client-marker-*/
             - "*.tsbuildinfo"
         - action: sync+restart
           path: next.config.ts
@@ -57,6 +59,8 @@ services:
           path: pnpm-lock.yaml
         - action: rebuild
           path: pnpm-workspace.yaml
+        - action: rebuild
+          path: patches
         - action: rebuild
           path: Dockerfile
         - action: rebuild

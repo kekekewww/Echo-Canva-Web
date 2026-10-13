@@ -16,25 +16,15 @@ const inventory = JSON.parse(readFileSync(path.join(noticeRoot, "inventory.json"
 assert.equal(inventory.generatedBy, "scripts/collect-runtime-licenses.mjs");
 assert.ok(inventory.packages.length > 0, "Runtime package inventory must not be empty");
 assert.equal(inventory.summary.runtimePackages, inventory.packages.length);
-for (const key of ["missingLicenseMetadata", "missingInstalledPackages", "ignoredExternalRuntimeLinks"]) {
+for (const key of ["missingLicenseMetadata", "missingNoticeFiles", "missingInstalledPackages", "ignoredExternalRuntimeLinks", "provenanceExceptions"]) {
   assert.equal(inventory.summary[key], 0, `Unreviewed runtime license inventory gap: ${key}`);
 }
 
-// Exact upstream artifact lacks an original notice. Preserve the documented
-// exception rather than manufacturing attribution or treating it as resolved.
-const reviewedExceptions = new Set(["client-only@0.0.1"]);
-const exceptions = [];
 for (const entry of inventory.packages) {
   const key = `${entry.name}@${entry.version}`;
-  if (entry.supplementalNotice?.provenanceException === true) {
-    assert.ok(reviewedExceptions.has(key), `Unreviewed upstream provenance exception: ${key}`);
-    assert.equal(entry.noticeStatus, "upstream notice unavailable; provenance exception");
-    assert.equal(entry.license, "MIT");
-    assert.ok(entry.supplementalNotice.sources.includes("https://registry.npmjs.org/client-only/0.0.1"));
-    exceptions.push(key);
-  } else {
-    assert.equal(entry.noticeStatus, "preserved", `Runtime package notice missing: ${key}`);
-  }
+  assert.notEqual(entry.supplementalNotice?.provenanceException, true, `Upstream provenance exception remains: ${key}`);
+  assert.notEqual(key, "client-only@0.0.1", "Original client-only artifact remains; the independently authored marker replacement is required");
+  assert.equal(entry.noticeStatus, "preserved", `Runtime package notice missing: ${key}`);
   assert.ok(entry.notices.length > 0, `No notice/provenance files packaged for ${key}`);
   for (const notice of entry.notices) {
     const target = path.resolve(noticeRoot, entry.directory, notice);
@@ -43,6 +33,4 @@ for (const entry of inventory.packages) {
     assert.ok(existsSync(target), `Listed runtime notice not packaged: ${key}/${notice}`);
   }
 }
-assert.equal(inventory.summary.provenanceExceptions, exceptions.length);
-assert.equal(inventory.summary.missingNoticeFiles, exceptions.length, "Unreviewed missing runtime notice");
-console.log(JSON.stringify({ runtimeUser: process.getuid(), summary: inventory.summary, unresolvedProvenance: exceptions }, null, 2));
+console.log(JSON.stringify({ runtimeUser: process.getuid(), summary: inventory.summary, unresolvedProvenance: [] }, null, 2));
