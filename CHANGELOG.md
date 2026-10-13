@@ -15,7 +15,7 @@ Changes use Conventional Commit subjects. Releases should record compatibility c
 
 - Added optional reproducible Docker development with Compose Watch and a separate non-root standalone production image.
 - Added public-PR quality checks and production container build/start/HTTP smoke checks; native pnpm and Vercel workflows remain available.
-- Limited hosted application CI to Ubuntu and Windows at the maintainer's request after macOS runner-capacity failures; retained native-capacity and single-Worker zero-retry stress repetitions on Ubuntu. Historical macOS failures remain documented, and the final macOS revision is unverified.
+- Limited hosted application CI to Ubuntu and Windows at the maintainer's request, removing the macOS job and its dedicated repeat steps. The original complete E2E suite, including its acoustic stress case, remains mandatory. macOS and extra Ubuntu repetition failures remain documented as unresolved performance variability.
 - Added a server health endpoint. Container execution evidence and unavailable checks are recorded in the [maintenance reports](docs/maintenance/README.md).
 
 ### Security maintenance
@@ -30,7 +30,7 @@ Changes use Conventional Commit subjects. Releases should record compatibility c
 - Retained baseline schema versions, material presets, geometry/acoustic algorithms, browser audio, and local audio storage behavior.
 - Additional regression fixtures and actual results are recorded in [docs/maintenance/ACOUSTIC_REGRESSION.md](docs/maintenance/ACOUSTIC_REGRESSION.md).
 - Reduced Hybrid listener-update work by retaining static primitive identity and computing only the needed Classic Direct/Portal projection; numerical oracles, formulas and performance budgets are unchanged. See [follow-up verification](docs/maintenance/VERIFICATION_FIXES.md).
-- Removed duplicate coincident side polygons for walls without open Portals; this preserves the existing surface coverage and removes translucent fill/stroke overdraw. Added independent projected-geometry regressions and post-measurement stress diagnostics; CI preserves retry evidence and repeats the original stress gate without retries.
+- Removed duplicate coincident side polygons for walls without open Portals; this preserves the existing surface coverage and removes translucent fill/stroke overdraw. Added independent projected-geometry regressions and post-measurement stress diagnostics; CI preserves retry evidence.
 - Compute AI request projections and Frame All points when their buttons are used, avoiding unused scene work during listener/Worker status renders. Existing acoustic and camera calculations remain unchanged; mock Explain and idle-render regressions cover the UI boundaries.
 - Keep Inspector/Outliner inputs stable during acoustic status updates, avoiding unnecessary panel rerenders while preserving project, local-audio and panel-state updates.
 - Stop Hybrid reflection visibility searches at the first non-allowed blocker, preserving intersection formulas and full direct/transmission hit lists. Add first-attempt CI diagnostics, seeded equivalence tests and a separate single-Worker stress check; see [CI remediation](docs/maintenance/CI_REMEDIATION.md).

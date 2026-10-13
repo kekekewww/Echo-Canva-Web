@@ -94,9 +94,10 @@ The Chromium suite builds and starts its own production server. On Linux, `pnpm 
 
 Public-PR CI runs frozen installation, real Next Client/Server boundary checks,
 ESLint, TypeScript, Vitest, production build and Chromium E2E on Ubuntu and Windows,
-plus a separate Linux production Docker build/start/HTTP smoke job. Ubuntu also
-runs three zero-retry stress repetitions each at native and single-Worker capacity.
-macOS is excluded from the current CI matrix; its final revision is not verified.
+plus a separate Linux production Docker build/start/HTTP smoke job. The complete
+E2E suite includes the original acoustic stress case and its unchanged budgets.
+macOS and its extra repeat steps are excluded from CI; final macOS acceptance has
+not passed. Remaining performance variability is recorded in the maintenance reports.
 It uses minimal permissions and no paid keys. [Maintenance reports](docs/maintenance/README.md)
 distinguish configured checks from actual results. Listening, real output and
 subjective localization use the [host-browser checklist](docs/testing/browser-listening.md).

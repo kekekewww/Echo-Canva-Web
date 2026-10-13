@@ -10,22 +10,34 @@ documentation-only commit repeatedly invalidating the tested head.
 The maintainer requested removal of macOS CI, cancellation of the temporary
 ten-minute PR monitor, and merging PR #2. The monitor is paused and its
 macOS retry was cancelled. CI now requires Ubuntu and Windows application checks
-and the separate production Docker job. Both three-repeat, zero-retry stress
-gates (native capacity and single Worker) move to Ubuntu with unchanged assertions.
+and the separate production Docker job. The macOS-only three-repeat steps are
+removed along with that platform. The original complete Chromium suite, including
+the stress fixture and its unchanged assertions, remains required on both hosts.
 
 At `f7ee10e79aca5d68fb647fd61f73c0bb28b7b354`, Ubuntu and Windows each passed
 575 unit tests and a clean 46/46 Chromium suite; production Docker integration also
 passed. In [run 38426347157](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38426347157),
 the first macOS job never executed: GitHub reported that no hosted runner acquired
 the job and cited macOS ARM64 capacity constraints. Its one authorized retry later
-acquired a runner: the full Chromium suite step passed, the native-capacity stress
-repeat failed, and the single-Worker step was skipped. Cancellation was requested
+acquired a runner: the full Chromium suite step reported 45 passed / 1 flaky (stress
+p95 13 ms on its first attempt), the native-capacity repeat reported 1 passed /
+2 failed (both p95 13 ms against `<12`), and the single-Worker step was skipped. Cancellation was requested
 and then forced while supplementary diagnostics were still executing. This final
 visibility revision therefore **did not pass macOS acceptance**. Removing the
 platform is an explicit maintainer policy decision, not a successful retry or a
 claim that its performance failure is fixed. Earlier executed macOS results below
 remain historical evidence. The new workflow commit must pass its retained checks before merging;
 consult PR #2 for those exact-head results.
+
+Initially the two macOS-specific repeat steps were moved to Ubuntu. In
+[run 38430844496](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38430844496)
+at `2d092cdd3127f53b007258650ee4752c79d317d3`, Ubuntu passed 575 unit tests and
+the full Chromium suite cleanly (46/46, 37.5 s), but the extra native-capacity
+repetitions reported 2 passed / 1 failed (p95 12 ms against `<12`). The single-Worker
+step was skipped. The final workflow removes those macOS-specific steps instead
+of transferring them to another platform, matching the requested scope. This
+reduces repeated performance sampling in CI; the observed variability remains
+unresolved and must not be described as fixed or as a successful repetition run.
 
 ## Confirmed failures and limits
 
@@ -74,7 +86,8 @@ it does not emulate a physical three-core CPU. Expensive diagnostic collection
 runs only after a failed gate, with DOM tracing off to reduce observer overhead.
 All acceptance assertions and zero-retry repetition remain unchanged. See
 [diagnostic commands](../testing/ci-diagnostics.md).
-The subsequent platform policy update above moves both checks to Ubuntu.
+The subsequent platform policy update above removes those macOS-specific CI steps;
+the single-Worker diagnostic fixture remains available for local investigation.
 
 ## Fresh local verification of the visibility change
 
