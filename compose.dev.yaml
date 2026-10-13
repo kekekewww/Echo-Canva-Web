@@ -1,0 +1,63 @@
+name: echo-canvas-web-dev
+services:
+  web:
+    build:
+      context: .
+      target: development
+    init: true
+    ports:
+      - "${HOST_BIND:-127.0.0.1}:${HOST_PORT:-3000}:3000"
+    environment:
+      AI_ENABLED: "${AI_ENABLED:-false}"
+      AI_PROVIDER: "${AI_PROVIDER:-openai}"
+      OPENAI_API_KEY: "${OPENAI_API_KEY:-}"
+      OPENROUTER_API_KEY: "${OPENROUTER_API_KEY:-}"
+      OPENAI_REASONING_EFFORT: "${OPENAI_REASONING_EFFORT:-medium}"
+      AI_REQUEST_TIMEOUT_MS: "${AI_REQUEST_TIMEOUT_MS:-30000}"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 30s
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health',{signal:AbortSignal.timeout(4000)}).then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      start_period: 120s
+      retries: 3
+    develop:
+      watch:
+        # Compose sync writes Linux files, avoiding Docker Desktop bind-mount
+        # event forwarding and host/container native dependency incompatibility.
+        - action: sync
+          path: .
+          target: /app
+          initial_sync: true
+          ignore:
+            - package.json
+            - pnpm-lock.yaml
+            - pnpm-workspace.yaml
+            - next.config.ts
+            - Dockerfile
+            - .dockerignore
+            - node_modules/
+            - .next/
+            - .env*
+            - coverage/
+            - playwright-report/
+            - test-results/
+            - "*.tsbuildinfo"
+        - action: sync+restart
+          path: next.config.ts
+          target: /app/next.config.ts
+          initial_sync: true
+        - action: rebuild
+          path: package.json
+        - action: rebuild
+          path: pnpm-lock.yaml
+        - action: rebuild
+          path: pnpm-workspace.yaml
+        - action: rebuild
+          path: Dockerfile
+        - action: rebuild
+          path: .dockerignore
