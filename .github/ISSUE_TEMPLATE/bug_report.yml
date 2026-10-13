@@ -1,0 +1,32 @@
+name: Bug report
+description: Report a reproducible editor, acoustic, audio, or deployment defect
+title: "bug: "
+body:
+  - type: markdown
+    attributes:
+      value: "For vulnerabilities or exposed credentials, use SECURITY.md instead of a public issue. Remove private audio, prompts, and keys."
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps and minimal scene
+      description: Include a preset or sanitized scene JSON, mode, and exact controls used.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Commit/version, OS, browser/version, native or Docker, and relevant logs without secrets.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and checks
+      description: Error text, screenshots, accepted revision, test results, or expected numerical value with units. Separate listening impressions from measured results.

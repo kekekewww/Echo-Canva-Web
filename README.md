@@ -1,132 +1,105 @@
-# Echo Canvas
+# Echo Canvas Web
 
-Echo Canvas is a browser-based spatial-audio prototyping and previsualization tool for OpenAI Build Week 2026. It provides one modelling-style workspace with independent cached 2.5D and 3D projects, deterministic acoustic previews, browser HRTF rendering, GPT-5.6 scene compilation, and grounded acoustic explanations.
+**Open-source Interactive Acoustic Simulation and Visualization Workbench**
 
-The product is an **interactive acoustic approximation**. It is not an architectural-acoustics measurement tool and does not claim physically accurate diffraction.
+Echo Canvas Web is a browser-based workbench for interactive acoustic simulation, geometric-acoustics research, spatial-audio preview, and education. Edit a scene, inspect deterministic propagation paths, and compare Raw/Simulated audio with browser HRTF rendering.
 
-**Public demo:** [echo-canva.vercel.app](https://echo-canva.vercel.app) — use a current desktop Chrome or Edge browser and headphones. No installation, account, or user-supplied API key is required.
+This independent repository is extracted from [Echo-Canva](https://github.com/kekekewww/Echo-Canva) tag `v1.0.0-build-week`. [docs/ORIGIN.md](docs/ORIGIN.md) records the exact immutable commit, release evidence, preserved capabilities, and maintenance differences. The repository is intended for long-term community contribution, including sciwork.
 
-## Unified modelling workspace
+**Public demo:** [the original Echo Canvas deployment](https://echo-canva.vercel.app). This is a legacy upstream demo, not a deployment of this extraction; its running version may differ. This cleanup publishes no repository, image, release, or deployment.
 
-- Switch **2.5D / 3D** without converting or overwriting either project. Each mode is restored from its own versioned local cache.
-- Navigate either viewport with middle-button drag or Shift + left drag on empty space. The wheel zooms around the cursor without scrolling the page; **Home** restores the default view and **Frame All** fits enabled scene content. Each mode persists its own presentation camera.
-- Select objects in the Outliner or viewport, then edit exact values in the Inspector. Numeric fields accept typed units, arrow keys, and horizontal scrubbing; `Shift` is fine adjustment and `Ctrl` snaps to the normal step.
-- Add up to eight listeners and four point sources. Exactly one enabled listener is active; selecting another listener switches the acoustic receiver.
-- Add built-in or device-local WAV/MP3/Ogg sources. Local files are decoded and stored in the browser only, with a 25 MB file limit and 100 MB library limit; they are never sent to an API route.
-- In 3D, edit room size plus finite wall and Portal thickness, bottom, and top. Walls and objects are directly selectable in the viewport; source/listener positions and wall endpoints are draggable.
-- Add up to eight Box, Cylinder, or Sphere acoustic obstacles in either mode, then edit XYZ position and dimensions, Y rotation, material, enabled state, and name from the contextual Inspector.
-- **Disable** is reversible and removes an entity from rendering and acoustic compilation while retaining it in the Outliner. **Delete** removes it. The floor and final enabled listener are protected.
-- Both path overlays use the same accepted Worker revision as audio and show direct, blocked, Portal-aware, first-order, and bounded second-order reflection paths.
-- Undo/Redo is persisted as at most 50 compact reversible commands per mode. Continuous scrubbing is coalesced into one command. Reset affects only the active mode and is undoable.
-- Authoring JSON preserves listeners, finite geometry, disabled state, camera pan/zoom/overlay preferences, and local-audio metadata without embedding blobs. Missing files remain silent and can be relinked in place.
+## Features in the source baseline
 
-## Run locally
+- Independent **Classic 2.5D** and **Hybrid 3D** projects, per-mode browser caches, and compact undo/redo history.
+- Scene editor, Outliner, Inspector, pan/zoom/Frame All, JSON import/export, four point sources, and eight listeners with one active receiver.
+- Walls, open/closed Portals, registered acoustic materials, and bounded Box/Cylinder/Sphere obstacles. Hybrid retains finite wall/portal geometry and source/listener elevation.
+- Direct sound, occlusion, transmission-loss approximations, Portal-aware routing, first-order image-source reflections, and bounded second-order search on blocked direct routes.
+- Three-band Eyring RT60, persistent six-tap early reflections, Schroeder late reverb, Raw/Simulated comparison, and Web Audio HRTF/equal-power panning.
+- One to four persistent browser source Workers, geometry caching, revision guards, diagnostics, and complete deterministic serial fallback.
+- Device-local mono WAV/MP3/Ogg assets in browser IndexedDB, with relinking metadata in scene JSON. Blobs stay local; limits are 25 MiB/file and 100 MiB/library.
+- Optional server-side AI scene compilation and grounded acoustic explanation with strict validation. Manual editing and presets require no API key.
 
-Requirements:
+P5 receiver sampling, P6 six-band/atmospheric helpers, and P7 directional energy histograms are tested **data-only research foundations**. They do not feed audible runtime. They do not imply implemented diffuse late-field audio, a six-band renderer, air-loss audio, diffraction, or a directional FDN.
 
-- Node.js 22.17 or newer;
-- pnpm 11.7.0;
-- a current desktop Chrome or Edge browser;
-- headphones for the human panning check.
+## Acoustic limits
 
-```bash
-pnpm install
+This is an interactive, perceptually tuned geometric-acoustics approximation. Material presets, wall transmission, Portal routing, faceted curved obstacles, and late reverb include numerical and perceptual simplifications. The workbench does not provide architectural-acoustics measurement/certification, true diffraction, low-frequency wave simulation, arbitrary room meshes, personalized HRTF selection, or third/higher-order reflection rendering. Hybrid authoring uses a rectangular room; only one listener is audible at a time.
+
+Read [formulas, classifications, and boundaries](docs/ACOUSTICS.md). Tests establish covered numerical/software contracts, not measured accuracy or subjective localization quality.
+
+## Native development
+
+Use Node.js **22.23.3** and pnpm **11.7.0**, matching Docker and CI. Current desktop Chrome or Edge is the primary browser target. Install the matching pnpm toolchain, then:
+
+```sh
+pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Open `http://127.0.0.1:3000`. No account, API key, or network audio asset is required for presets and manual editing. Audio begins only after **Play** is pressed.
+Open http://localhost:3000. Press **Play** to start audio; headphones are recommended for panning. No database, account, server audio-device mount, or AI credential is needed.
 
-### Optional AI configuration
+## Docker development
 
-The key is server-side only. Never paste it into the browser, chat, source files, or Git. The application remains fully usable in preset/manual mode without a key.
+Docker Engine/Desktop with Compose **2.32+** provides an optional toolchain without host Node.js:
 
-For the owner's OpenRouter Luna test configuration, create/edit `.env.local`:
-
-```env
-AI_PROVIDER=openrouter
-OPENROUTER_API_KEY=sk-or-v1-...
+```sh
+docker compose -f compose.dev.yaml up --build --watch
 ```
 
-This explicitly selects `openai/gpt-5.6-luna` for both scene compilation and acoustic explanation. Restart the local server after saving the file. To use the canonical OpenAI configuration instead, omit `AI_PROVIDER` (or set it to `openai`) and set `OPENAI_API_KEY`. OpenRouter is an opt-in compatibility-test path; the existing no-key fallback remains available if any provider request fails.
+Open http://localhost:3000. Compose Watch synchronizes source changes while container dependencies and `.next` remain isolated from the host. Logs remain visible. Read [the Docker guide](docs/deployment/docker.md) for synchronization/restart behavior, optional polling, environment variables, and platform verification limits.
 
-### Scene transfer
+```sh
+docker compose -f compose.dev.yaml exec web pnpm lint
+docker compose -f compose.dev.yaml exec web pnpm typecheck
+docker compose -f compose.dev.yaml exec web pnpm test
+```
 
-Use **Import / export** in the Inspector to download or restore the active mode's complete authoring project. Invalid, unsupported, or wrong-mode JSON is rejected atomically. Local-audio metadata is exported, but blobs remain private in IndexedDB; another browser reports those Sources as **Relink required**.
+Stop with Ctrl+C or `docker compose -f compose.dev.yaml down`. Browser projects/audio remain in browser storage; clearing browser data removes them.
 
-## Verify
+## Production deployment
 
-```bash
+Self-host one Next.js application container:
+
+```sh
+docker compose up -d --build
+docker compose logs -f web
+```
+
+Open http://localhost:3000 and inspect http://localhost:3000/api/health. The multi-stage standalone image includes public/static assets, runs as a non-root user, retains API routes, and requires no database. Configure a TLS reverse proxy for remote use. [The Docker guide](docs/deployment/docker.md) covers runtime configuration, health, and stopping.
+
+Vercel remains an alternative: import this repository as a Next.js project, use pinned pnpm/frozen installation, and configure optional provider secrets in the deployment environment. Docker does not replace Vercel support. No deployment is performed by this cleanup.
+
+Docker runs the Next.js server/API routes. Web Audio, HRTF, acoustic Workers, local decoding, and IndexedDB remain in the user's browser. Containerization does not accelerate browser acoustic calculations or require access to headphones/audio interfaces.
+
+## Optional AI configuration
+
+Copy `.env.example` to `.env.local` for native development and provide server-side `OPENAI_API_KEY`, or select the source-baseline OpenRouter compatibility path with `AI_PROVIDER=openrouter` and `OPENROUTER_API_KEY`. Provider model IDs remain as specified in the source provider implementation.
+
+Production provider calls require **`AI_ENABLED=true`**; supplied Compose setups default to `false`. An unset flag in native local development preserves configured-provider use; `AI_ENABLED=false` explicitly disables it. Restart after changing environment configuration.
+
+Operators enabling a public paid-key service must put AI routes behind an authenticated TLS gateway and apply provider spending/request quotas. There is no built-in authentication system. Defensive limits include a 256 KiB request body, 20 incoming requests/minute and two concurrent requests per process, disabled SDK retries, strict explanatory snapshot projection, and no-store route responses. Process limits are not authorization or a distributed quota. Supply secrets at runtime, never Docker build arguments or browser variables. Read [SECURITY.md](SECURITY.md).
+
+## Tests and reproducibility
+
+```sh
 pnpm lint
 pnpm typecheck
 pnpm test
 pnpm build
+pnpm exec playwright install chromium
 pnpm e2e
 ```
 
-The browser suite starts its own local application server. The detailed human scripts and current verification evidence are in [`docs/STATUS.md`](docs/STATUS.md) and [`docs/ACCEPTANCE_TESTS.md`](docs/ACCEPTANCE_TESTS.md).
+The Chromium suite builds and starts its own production server. On Linux, `pnpm exec playwright install --with-deps chromium` also installs system libraries. Tests cover geometry, Direct Path, occlusion/transmission, first/second-order reflections, Portal routing, material energy, RT60, Hybrid 3D, Workers, audio state, and serialization. AI tests use mocks.
 
-The maximum-entity browser case keeps its long-task observer active across all 24 measured Listener switches, requires every recorded task to remain at or below 50 ms, and preserves the Worker p95 wall-latency budget below 12 ms. It also derives the exact expected active Worker count from the browser's own `navigator.hardwareConcurrency` and checks the completed four-source Hybrid frame against it.
+Public-PR CI runs frozen installation, ESLint, TypeScript, Vitest, production build, Chromium E2E, and a separate production Docker build/start/HTTP smoke job with minimal permissions and no paid keys. [Maintenance reports](docs/maintenance/README.md) distinguish definitions from actual verification. Listening, real output, and subjective localization require a suitable host browser/listening environment.
 
-## Gate C demo
+## Contribute and learn
 
-### Reflection + room character
+Start with [CONTRIBUTING.md](CONTRIBUTING.md), [onboarding](docs/community/ONBOARDING.md), and [initial sciwork issue drafts](docs/community/INITIAL_ISSUES.md). Documentation, tests, accessibility, visualization, and reproducible research contributions are welcome. Docker and AI tools are optional.
 
-1. Start audio and choose **Simulated**.
-2. Load **Hard Room** and inspect the Low/Mid/High Eyring RT60 estimates, pre-delay, room surface/volume, and amber dashed first-order reflection paths.
-3. Load **Treated Room** and compare the lower Mid/High decay estimates and less sustained simulated character.
-4. Move a source, listener, or wall while audio runs; only the current scene revision's acoustic frame is displayed.
+See [documentation](docs/README.md), [architecture](docs/ARCHITECTURE.md), [research](docs/RESEARCH.md), [ADRs](docs/adr/README.md), [Code of Conduct](CODE_OF_CONDUCT.md), [security reporting](SECURITY.md), and [changelog](CHANGELOG.md).
 
-### Portal comparison
+## License and assets
 
-1. Start audio in the Concrete Partition preset.
-2. Switch Raw and Simulated without restarting the source loops.
-3. In Simulated mode, move the listener below the center doorway; inspect the portal route, effective distance, direct gain, low-pass, and cyan route overlay.
-4. Close the portal and inspect the blocked fallback, `partition_center` occluder, and red wall highlight; reopen it to compare the route.
-5. Load **Stress Test — 100 Walls** to exercise the editor budget and see the visible wall-limit feedback.
-
-The stress preset is deterministic. Playwright measures selection and keyboard movement from the initiating event to the rendered DOM mutation with an in-page `MutationObserver` and `performance.now()`; both must complete in under 50 ms. To inspect multicore use manually, load the four-source stress project, wait for **Ready**, open the status bar's **Debug** disclosure, and read the Worker count. The expected value is `min(4 sources, min(4, max(1, floor(navigator.hardwareConcurrency) - 2)))`; on a browser exposing at least four logical cores this is at least two. One-source scenes intentionally display one active Worker.
-
-## Architecture
-
-```text
-React / Next.js workbench
-        |
-        v
-validated, versioned SceneSpec
-        |                         GPT-5.6 control plane
-        |                         server-only compile / explanation
-        v
-main-thread coordinator
-        |
-        v
-1–4 persistent source Workers (deterministic acoustic pipeline)
-        |
-        v
-persistent Web Audio graph
-Raw bus <-> Simulated distance + browser HRTF bus
-        |
-        v
-headphones
-```
-
-The persistent audio graph updates gain, low-pass, panner, ranked early-reflection taps, and Schroeder reverb parameters through automation. Each active mode uses a main-thread coordinator plus one to four persistent source Workers, capped at four and reserving two logical cores when possible. Per-source direct-path occlusion, Portal routes, first-order image-source work, and blocked-route second-order work are deterministically sharded, semantically validated, and atomically merged; Classic room values remain frame-level. Second-order search considers at most 24 representative walls or physical surfaces (at most 552 ordered pairs), prunes by path length and specular energy, then shares the existing fixed six-tap bank with first-order paths. Each Hybrid Worker owns a cloned cached BVH, receives compact pose updates, and reinstalls geometry after a static edit. Static-install acknowledgements are tracked exactly once, and a configurable per-job watchdog prevents a silent Worker from leaving the preview stuck. The UI renders only the matching selected-source frame and exposes accepted revision/request sequence, pool wall latency, Worker count, and shard timing in **Debug**. If any pool member fails or times out, partial work is discarded and complete deterministic serial fallback continues while the status reads `Fallback`.
-
-This is bounded CPU source sharding for an interactive acoustic approximation. It is not GPU acceleration and does not establish physical or architectural-acoustics accuracy. The `SceneSpec.settings.hrtfEnabled` flag selects `HRTF` or `equalpower` panning without rebuilding source graphs.
-
-See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md), [`docs/ACOUSTICS.md`](docs/ACOUSTICS.md), and [`docs/API_CONTRACTS.md`](docs/API_CONTRACTS.md) for the contracts and model boundaries.
-
-## Codex and GPT-5.6
-
-Codex is the principal implementation and release workflow: it follows [`AGENTS.md`](AGENTS.md), adds regression tests before fixes, runs the quality gates, and records deviations in [`docs/DECISION_LOG.md`](docs/DECISION_LOG.md).
-
-GPT-5.6 is a server-only control-plane component. It compiles bounded natural-language intent into a strict Classic `SceneSpec` or a strict Hybrid `{scene, spatial3d}` authoring candidate and explains a finite deterministic acoustic projection through Structured Outputs. Hybrid generation maps world X/Z into the planar scene, preserves world Y through ID-bound Listener/source heights and Wall/Portal vertical bounds, and may include up to eight validated basic acoustic shapes. It never calculates acoustics, sets Web Audio parameters, executes generated code, invents registry IDs, or loads arbitrary URLs. Static developer policy is kept separate from untrusted scene names, source names, shape names, and snapshot data; model-produced URLs, markup, executable protocols, and instruction-like labels are rejected before acceptance. Explanation output is rejected if it introduces numeric evidence absent from the deterministic snapshot; the UI always states that portal routing is a geometric perceptual approximation. The preset editor remains usable when no configured provider is available.
-
-## Assets, license, and limitations
-
-- Demo audio is generated locally by [`scripts/generate-audio-assets.mjs`](scripts/generate-audio-assets.mjs) and stored as mono WAV files under `public/audio/`.
-- Application code is licensed under the [MIT License](LICENSE).
-- Primary browser targets are current desktop Chrome and Edge.
-- External device changes and browser-initiated `AudioContext` interruption observation remain a documented follow-up; explicit Play, Stop, resume, and Retry lifecycle are covered.
-- First-order and bounded second-order reflections plus late reverberation are perceptually tuned approximations, not architectural-acoustics measurement or certification. The live UI uses continuous-loop assets rather than a separate one-shot impulse audition; automated Chromium validation nevertheless renders the production Schroeder network through `OfflineAudioContext` to check finite/non-clipping output, decay, and Raw/Simulated transition continuity. Room width/depth are editable in both modes; 3D also exposes room height and floor/ceiling materials.
-- Local-audio blobs are intentionally not embedded in scene JSON; another browser must relink a missing local asset.
-- The 3D room is rectangular. Second-order search is bounded to blocked direct routes in either mode; third- and higher-order reflections, true diffraction, arbitrary room meshes, and simultaneous rendering for multiple listeners are outside this release.
+Application code remains under the [MIT License](LICENSE). Preserve license/attribution records and include redistribution evidence for new assets. Demo audio is generated by [scripts/generate-audio-assets.mjs](scripts/generate-audio-assets.mjs) and tracked under `public/audio`. No named external HRTF dataset is shipped. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [the security/license audit](docs/maintenance/SECURITY_LICENSE.md).

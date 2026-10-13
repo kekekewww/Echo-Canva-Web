@@ -1,5 +1,38 @@
 # Acoustic Model and Formula Reference
 
+## Runtime scope and evidence
+
+The formula sections below are retained from the source baseline. [The original document](archive/build-week/docs/ACOUSTICS.md) is preserved verbatim. Sketches explain the model; production behavior is defined by the implementation and regression fixtures. This extraction does not change coefficients or algorithms to satisfy tests.
+
+| Topic | Classification | Live behavior and limits |
+| --- | --- | --- |
+| Segment/patch intersections and image sources | Geometric/numerical approximation | Planar `src/acoustics/geometry.ts`; finite 3D patches/BVH/reflections in `src/acoustics/hybrid3d` |
+| Delay `L/c`, energy/amplitude conversion | Physical relation within model assumptions | Constant 343 m/s, three bands, no phase/coherent interference model |
+| Material energy balance | Energy bookkeeping with perceptual preset inputs | `src/domain/materials/registry.ts`; presets are not a measured calibration dataset |
+| Thickness/incidence transmission and low-pass | Perceptual/engineering heuristic | Classic loss cap 24 dB; Hybrid cap 36 dB; both already present in the tag |
+| Portal route cost/virtual source | Geometric/perceptual approximation | Loss weight 0.08, turn-squared weight 0.25; last listener-facing portal in source-to-listener order |
+| Candidate pruning, six taps, BVH, Worker sharding | Engineering optimization | Bounded second-order search only with blocked direct visibility; no higher-order/diffraction claim |
+| Eyring RT60 | Statistical room formula with assumptions/clamps | Three bands, 0.12–4 s, full absorption for open-portal area; shape volume is not subtracted |
+| Schroeder reverb/smoothing | Algorithmic/perceptual rendering | Persistent browser graph; estimated RT60 does not certify a measured response |
+| HRTF | Browser-specific rendering | `PannerNode`; no named external dataset or personalized ear model |
+
+Hybrid Portal sound uses a planar candidate lifted into 3D with each leg checked against the finite BVH. Curved obstacles use facets. One active listener is audible. Portal routing is not edge diffraction.
+
+P5 receiver sampling, P6 six-band/atmospheric helpers, and P7 directional histograms are deterministic data-only foundations. They do not affect audible delay, bands, HRTF, taps, or late reverb. The FDN section is an unimplemented research reference. See [research](RESEARCH.md) and [architecture](ARCHITECTURE.md).
+
+### Reproducible regressions
+
+| Contract | Unit fixtures/tests |
+| --- | --- |
+| Direct/occluded/transmitted paths, intersections | `geometry.test.ts`, `occlusion.test.ts`, `compute-frame.test.ts`, `hybrid3d-direct.test.ts`, `hybrid3d-audible-direct.test.ts` |
+| First/second-order reflections | `image-source.test.ts`, `hybrid3d-reflection.test.ts`, `hybrid3d-second-order.test.ts`, `hybrid3d-reflection-rendering.test.ts` |
+| Portals, energy, RT60 | `portal.test.ts`, `material-registry.test.ts`, `room-acoustics.test.ts` |
+| Worker/audio state | `acoustic-worker.test.ts`, pool/worker tests, `audio-engine.test.ts`, `early-reflection-bank.test.ts`, `schroeder-reverb.test.ts` |
+| Serialization/compatibility | `scene-serialization.test.ts`, `scene-document.test.ts`, workspace projection/persistence/transfer tests |
+| Research data only | Hybrid receiver-connection, six-band-material, and directional-late-field tests |
+
+These files live under `tests/unit`. `tests/e2e/audio-rendering.spec.ts` checks browser offline rendering; subjective output/localization needs host-browser listening. Run `pnpm test` or the documented container test command. Actual results, fixture coverage, and unchanged source-era failures are recorded in [the acoustic regression report](maintenance/ACOUSTIC_REGRESSION.md).
+
 ## Model status
 
 This project is an interactive, perceptually tuned geometric-acoustics approximation. It is not an architectural-acoustics measurement or certification system.
@@ -18,7 +51,7 @@ The implementation may label them Low/Mid/High rather than pretending to provide
 - time: seconds;
 - level/loss: decibels;
 - speed of sound: `c = 343 m/s` at approximately 20 °C;
-- numerical epsilon: centralize in one module, initially `1e-8`.
+- planar epsilon: `ACOUSTIC_EPSILON = 1e-8` in `src/acoustics/geometry.ts`; Hybrid helpers retain their declared tolerances.
 
 ## 1. 2D segment intersection
 
@@ -140,6 +173,8 @@ Validation:
 
 If a preset violates the energy constraint, reject it during development rather than silently normalizing it.
 
+The retained `r_b = sqrt(rho_b)` formula describes total reflected amplitude. The live specular path in both engines also weights the registered scattering coefficient `s`: `r_specular,b = sqrt(rho_b * (1-s))`. Scattered energy is not rendered by a live diffuse late-field estimator. This is existing baseline behavior, not a new material model.
+
 ## 5. Propagation delay
 
 For path length \(L\):
@@ -155,6 +190,8 @@ For an early reflection relative to the direct path:
 \]
 
 When the direct path is blocked, use the selected effective route length as the reference for user-facing delay, but retain absolute path delays internally. Because a valid first-order reflected path can arrive before a longer Portal-aware direct route, the relative early-tap delay sent to Web Audio is clamped to `max(0, Δt)`; a negative transport value is rejected.
+
+That relative-delay rule describes Classic's `compute-frame.ts`. Hybrid geometric/reflection records use absolute `L/343` milliseconds, and `reflection-rendering.ts` forwards that absolute value to the tap bank. The extraction preserves this baseline renderer distinction. The equations describe path timing; they do not imply every direct browser source is delayed by time of flight.
 
 ## 6. Distance attenuation
 
@@ -275,7 +312,7 @@ Select the minimum-cost valid path using Dijkstra. For small graph sizes, a simp
 
 Rendering:
 
-- virtual panner direction points from listener to the first portal on the route;
+- virtual panner direction points to the listener-facing portal (the last portal when the polyline is ordered source to listener);
 - manual distance gain uses the entire route length;
 - add portal loss and a mild low-pass;
 - closed portals are omitted from the graph.
@@ -315,7 +352,7 @@ g_{dist}(L_k)
 g_{visibility}
 \]
 
-Use the mid-band coefficient for the tap's base amplitude. Map low/high differences to a lightweight filter if time permits.
+The live tap uses the mid-band coefficient for base amplitude and a bounded low-pass mapping derived from the high/mid reflection relationship.
 
 Rank candidates by estimated energy and keep at most six taps per source. Reject taps with negligible gain or delay above the configured early-reflection window.
 
@@ -402,7 +439,7 @@ Use Eyring as the default because the small editable rooms may contain substanti
 
 - near \(\bar{\alpha}=0\): cap to maximum RT60;
 - near \(\bar{\alpha}=1\): approach minimum RT60;
-- initial UI clamp: 0.12–4.0 s.
+- implemented estimate clamp: 0.12–4.0 s.
 
 Treat an open portal's area as near-total absorption for the room energy estimate. Report that this is an approximation.
 
@@ -455,7 +492,7 @@ g=
 
 because 60 dB amplitude decay corresponds to a factor of \(10^{-3}\).
 
-MVP topology:
+Implemented topology:
 
 - four parallel feedback comb filters;
 - two serial all-pass diffusers;
@@ -482,11 +519,11 @@ Frequency-dependent decay approximation:
 
 - use `RT60_mid` to set feedback;
 - derive damping cutoff from `RT60_high / RT60_mid`;
-- use `RT60_low / RT60_mid` to adjust low-frequency damping or document it as display-only for MVP.
+- the live network uses mid-band feedback and high/mid-derived low-pass damping; low-band RT60 is displayed but does not control an independent low-frequency decay branch.
 
-## 13. Optional FDN extension
+## 13. FDN research reference — not implemented
 
-Only implement after all MVP gates pass.
+The live renderer remains Schroeder. This retained design reference does not imply an FDN runtime; implementation needs a separate decision and acoustic/browser validation.
 
 General transfer form:
 
@@ -569,13 +606,15 @@ L=s*h_L+a_L,\qquad R=s*h_R+a_R
 
 Unknown source \(s\), unknown transfer functions \(h_L,h_R\), and unknown ambient components make the inverse problem underdetermined without strong assumptions or learned priors.
 
-MVP policy:
+Current policy:
 
 - accept curated mono point-source assets;
-- stereo import, if added, may use a clearly labeled mono fold-down;
+- local and built-in point-source assets must decode as mono; current multichannel imports are rejected;
 - never call this process deconvolution, dereverberation, or dry-source recovery.
 
 ## 17. Worker algorithm sketch
+
+This source-era pseudocode illustrates control flow. Live calculation also mixes bounded second-order candidates on blocked direct paths, with complete validated pool assembly. `src/acoustics/compute-frame.ts` and `src/acoustics/hybrid3d/direct.ts` are authoritative.
 
 ```ts
 function computeFrame(scene: SceneSpec): AcousticFrame {

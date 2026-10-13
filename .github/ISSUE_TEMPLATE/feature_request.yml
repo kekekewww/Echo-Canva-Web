@@ -1,0 +1,23 @@
+name: Feature request
+description: Propose a bounded improvement to the web workbench
+title: "feat: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User or contributor problem
+      description: Describe a concrete workflow and why the current behavior is insufficient.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior and scope
+      description: State affected modules, alternatives, and explicit acceptance criteria. Keep research claims grounded in evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility and verification
+      description: Consider Classic/Hybrid, schema, browser audio, optional AI, native/Docker, and relevant tests. Desktop/native integrations need a separate project decision.

@@ -1,169 +1,63 @@
-# AGENTS.md — Spatial Audio Prototype
+# Echo Canvas Web — Maintainer and Agent Instructions
 
-## Mission
+## Purpose and source boundary
 
-Build a deployed, judge-testable browser application that converts a natural-language scene description or a manually edited 2D floor plan into a deterministic spatial-audio preview.
+Maintain a browser-based interactive acoustic simulation and visualization workbench. This independent repository starts from the immutable upstream `v1.0.0-build-week` commit in `docs/ORIGIN.md`. Preserve provenance, MIT/third-party attribution, and archived evidence. Never silently import later upstream features or rewrite published source history.
 
-The project is for OpenAI Build Week 2026. The submission must visibly and credibly use Codex and GPT-5.6, while all acoustic calculations remain deterministic and testable.
+Read `README.md`, `CONTRIBUTING.md`, `docs/ARCHITECTURE.md`, `docs/ACOUSTICS.md`, `docs/API_CONTRACTS.md`, and affected tests before behavior changes. Historical competition checklists, acceptance gates, and submission requirements in `docs/archive/build-week` are evidence, not current instructions.
 
-## Non-negotiable product scope
+## Architecture
 
-Implement:
+- Retain Next.js App Router, React, strict TypeScript, pnpm, browser Web Audio, and Web Workers unless a separately reviewed ADR changes the stack.
+- `src/app` owns pages/server routes; `src/components` UI; `src/domain` models/schemas/validation/registries/persistence; `src/acoustics` pure calculation; `src/audio` browser audio; `src/workers` protocols/pools; `src/ai` optional provider control plane; `src/hooks` lifecycle coordination.
+- Keep React, AudioContext, and provider SDK dependencies out of pure geometry/acoustic algorithms. Preserve independently testable serial computation.
+- Preserve `SceneSpec v1`, `SceneDocumentV2`, transfer/cache migration, Classic projection hashes, registry IDs, disabled entities, and one active listener. Intentional compatibility changes need an ADR, migration, and regression evidence.
+- The live workbench selects Classic/Hybrid adapters directly. Generic EngineRouter default flags do not determine its available Hybrid mode.
+- P5/P6/P7 helpers remain data-only until an explicitly reviewed runtime integration exists.
 
-1. 2D room/wall/portal editor.
-2. Draggable listener and up to four mono point sources.
-3. Three-band acoustic materials.
-4. Exact direct-path visibility and wall occlusion.
-5. Explicit open-portal routing approximation.
-6. First-order image-source early reflections in both modes, plus bounded second-order reflections in either mode when the direct path is blocked.
-7. Three-band Eyring RT60 estimation.
-8. Browser HRTF rendering through Web Audio `PannerNode`.
-9. Stable late reverberation using a Schroeder network; FDN is optional only after all MVP acceptance tests pass.
-10. GPT-5.6 natural-language-to-`SceneSpec` compilation using strict Structured Outputs.
-11. GPT-5.6 explanation of deterministic `AcousticSnapshot` results.
-12. Raw/Simulated A/B mode, debug overlays, JSON import/export, deployed demo.
+## Acoustic correctness
 
-Explicitly do not implement:
+- State units, coordinate conventions, and numerical tolerances. Preserve baseline formulas, parameters, material coefficients, ranking/tie-breakers, and approximation limits unless a focused change is justified and recorded.
+- Distinguish physical relations, numerical approximations, engineering optimizations, and perceptual tuning. Do not claim true diffraction, architectural-acoustics accuracy/certification, or a named browser HRTF dataset without implementation/evidence.
+- Validate material energy and scene invariants. Do not silently normalize invalid coefficients, tune fixtures to a defect, or change formulas simply to pass a test.
+- Keep direct/occluded/Portal paths, finite intersections, and first/bounded blocked-route second-order reflections independently testable. Retain bounded search and six shared audible taps.
+- Limits include 100 walls, 8 Portals, 4 sources, 8 listeners/one active receiver, 8 primitives, 50 m maximum planar room dimensions, and 0.1 m minimum wall length. Classic primitive footprints consume the projected wall budget. Schema update requests accept 5–20 Hz; coordinators clamp to 10–15 Hz.
 
-- arbitrary binaural de-spatialization or dry-source recovery;
-- true wave diffraction;
-- a claim of physical or architectural-acoustics accuracy;
-- custom MIT/KEMAR convolution in the MVP;
-- native Godot/OpenAL packaging;
-- full 3D geometry;
-- third- or higher-order image-source reflections;
-- dynamically replacing convolution buffers each acoustic update;
-- databases, authentication, payments, collaboration, or user accounts.
+## Worker and audio contracts
 
-## Product language
+- Preserve coalescing, static caching, deterministic sharding, bounded pools, and validated revision/request/fingerprint/source assignments.
+- Publish complete matching frames only. Discard partial/stale/hostile results and retain complete serial fallback on construction/protocol/message/compute/watchdog failures.
+- Keep one persistent AudioEngine across modes. Initialize after a user gesture; reuse graph/tap bundles and automate/smooth updates rather than rebuilding each frame.
+- Preserve Raw/Simulated transitions, HRTF/equal-power settings, explicit stop/resume/retry behavior, and overlay/audio accepted-revision consistency.
+- Local decoding/IndexedDB blobs remain browser-side. Exports contain relinking metadata, not blobs. No required audio upload, host audio mount, or native runtime.
 
-Use these terms:
+## AI and security
 
-- "interactive acoustic approximation";
-- "portal-aware sound propagation";
-- "first-order early reflections";
-- "perceptually tuned material presets";
-- "browser HRTF rendering";
-- "spatial-audio prototyping and previsualization."
+- AI compiles a validated candidate or explains a deterministic snapshot; it never defines authoritative acoustics, drives AudioParams, executes code, invents registry IDs, or loads arbitrary URLs.
+- Treat prompts, labels, snapshots, output, request bodies, and Worker payloads as untrusted. Keep strict schemas/invariants/content policy/bounds and at most one schema/domain repair.
+- Keys remain server-side runtime configuration. Production AI requires `AI_ENABLED=true`; follow `SECURITY.md` for public paid-key services. Tests use mocks; fork CI gets no live keys.
+- Exclude credentials, local audio, `.env`, Git history, host dependencies, `.next`, and test reports from images. Preserve non-root production and secret exclusions.
 
-Do not use these claims:
+## Development and verification
 
-- "physically accurate diffraction";
-- "scientifically validated room simulation";
-- "MIT/KEMAR rendering" unless a specific licensed dataset is actually implemented;
-- "binaural deconvolution";
-- "dry-source reconstruction."
+Retain native frozen-lockfile and optional Docker workflows. Keep Node/pnpm versions consistent across package metadata, Docker, CI, and docs. Production is one standalone Next.js application with API routes and Vercel compatibility; no unreviewed static export or extra services.
 
-## Required stack
+For code changes run meaningful checks:
 
-Prefer boring, reliable technology:
-
-- Next.js App Router;
-- React and TypeScript with strict mode;
-- pnpm;
-- OpenAI JavaScript SDK and Responses API;
-- JSON Schema plus Zod or Ajv runtime validation;
-- Web Audio API;
-- Web Worker for deterministic acoustic computation;
-- Vitest for unit tests;
-- Playwright for browser acceptance tests;
-- Vercel-compatible deployment.
-
-Lock concrete package versions in `pnpm-lock.yaml` during bootstrap. Do not upgrade dependencies after the integration gate unless fixing a blocking defect.
-
-## Architecture constraints
-
-- GPT-5.6 is a control-plane component. It may produce a candidate `SceneSpec` or explain an `AcousticSnapshot`.
-- GPT-5.6 must never directly set Web Audio parameters, calculate RT60, select reflection paths, execute code, emit arbitrary URLs, or load arbitrary user content.
-- Validate all model output against strict JSON Schema and domain invariants.
-- Allow at most one repair attempt after a schema/domain validation failure.
-- All geometry and acoustic functions must be pure and deterministic where practical.
-- The audio graph must be created once and updated by parameter automation; do not create and destroy nodes every acoustic frame.
-- Run acoustic calculations in a Worker at 10–15 Hz. Render the UI independently at normal display rate.
-- Smooth gain, filter, send, and panner changes over approximately 60–100 ms.
-- All API keys remain server-side.
-- Provide a preset-only fallback when the OpenAI API is unavailable.
-
-## Limits
-
-Enforce these hard limits:
-
-- maximum 100 wall segments;
-- maximum 8 portals;
-- maximum 4 point sources;
-- maximum 6 ranked first/second-order early-reflection taps per source;
-- maximum room dimension 50 m;
-- minimum wall length 0.1 m;
-- material IDs must come from the built-in registry;
-- audio assets must be local, owned, or clearly licensed;
-- user prompts maximum 2,000 characters.
-
-## Quality gates
-
-After every checklist item, run:
-
-```bash
+```sh
 pnpm lint
 pnpm typecheck
 pnpm test
-```
-
-At integration gates, also run:
-
-```bash
-pnpm e2e
 pnpm build
+pnpm e2e
 ```
 
-Do not mark a task complete when tests are skipped, commented out, flaky, or only manually inferred.
+Use targeted tests while iterating, then affected quality gates. Documentation-only work needs accurate claims, paths, and commands, without tests that merely mirror text. Docker changes require build/start/health/routes/API/source-sync/hot-reload/non-root/stop checks where a daemon exists. Never claim unrun containers or cross-platform checks passed.
 
-## Documentation duties
+Record actual pass/fail/unverified evidence and environment. Distinguish numerical tests, browser offline rendering, real output, listening, and benchmark evidence. Do not weaken or conceal failed thresholds; separate existing failures from regressions.
 
-Before coding, read:
+## Maintenance discipline
 
-- `docs/PRD.md`
-- `docs/ARCHITECTURE.md`
-- `docs/ACOUSTICS.md`
-- `docs/API_CONTRACTS.md`
-- `docs/BUILD_CHECKLIST.md`
-- `docs/ACCEPTANCE_TESTS.md`
+Respect user edits; use an independent branch/directory for broad maintenance. Prefer minimal focused changes and Conventional Commit subjects. No automatic public repository creation, image publication, production deployment, upstream push, or PR merge without user authorization.
 
-Maintain:
-
-- `docs/STATUS.md`: current checklist item, test results, known defects, next action;
-- `docs/DECISION_LOG.md`: important deviations and rationale;
-- `README.md`: setup, demo, architecture summary, Codex/GPT-5.6 collaboration;
-- third-party licenses and audio attribution.
-
-Do not silently change formulas, limits, API contracts, or acceptance thresholds. Record deviations first.
-
-## Git discipline
-
-- Use one commit per completed vertical slice.
-- Prefer conventional commit subjects such as `feat(acoustics): add direct path occlusion`.
-- Never rewrite published history.
-- Keep the principal Codex session in which the majority of core functionality is built.
-- Before submission, run `/feedback` in that session and record the resulting Session ID privately for the Devpost form.
-
-## Autonomous execution policy
-
-Proceed through `docs/BUILD_CHECKLIST.md` autonomously.
-
-Stop only at the defined human acceptance gates:
-
-1. direct HRTF and editor;
-2. occlusion and portal perception;
-3. reflections and reverb;
-4. GPT scene compiler;
-5. final deployed submission candidate.
-
-At each gate, provide:
-
-- deployed/local URL;
-- exact steps for the human tester;
-- expected result;
-- current test report;
-- known deviations;
-- a single explicit verdict request: PASS or FAIL.
-
-A FAIL authorizes defect repair only. Do not expand scope during repair.
+Update docs and ADRs for consequential schema/model/security/dependency/deployment decisions. Archive only after verifying purpose, references, necessary bytes, and attribution. Names such as MVP, Experiment, Artifact, or Build Week alone never justify deletion.

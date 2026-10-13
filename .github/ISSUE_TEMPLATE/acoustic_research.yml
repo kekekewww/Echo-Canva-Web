@@ -1,0 +1,32 @@
+name: Acoustic research
+description: Propose a reproducible acoustic experiment or model investigation
+title: "research: "
+labels: [research, acoustics]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question and current model limitation
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Primary references and assumptions
+      description: Link papers or official standards. Distinguish a physical formula, numerical approximation, optimization, and perceptual tuning.
+    validations:
+      required: true
+  - type: textarea
+    id: protocol
+    attributes:
+      label: Reproduction protocol
+      description: Give scene input, units, seed if needed, sample budget, reference value, tolerance, and a comparison metric. Include licensing for any dataset.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Proposed scope and acceptance
+      description: Explain whether this is a data-only experiment or an audible runtime change, its cost/compatibility, and what would count as success or failure.
+    validations:
+      required: true

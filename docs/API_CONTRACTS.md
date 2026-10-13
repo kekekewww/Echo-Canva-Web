@@ -1,5 +1,19 @@
 # API and Data Contracts
 
+## Maintenance supplement
+
+Scene/schema versions and authoring behavior below remain compatible with the immutable source baseline. [The original contract document](archive/build-week/docs/API_CONTRACTS.md) is preserved. Current source types/validators are authoritative; explanatory TypeScript sketches omit some optional second-order tap metadata (`order`, `wallIds`, and `reflectionPoints`).
+
+- `GET /api/health` is a key-free server liveness endpoint used by container smoke/health checks. It does not validate audio output, Worker performance, or acoustic accuracy.
+- Both scene routes keep their existing success/failure response unions. All route JSON responses use `Cache-Control: no-store`.
+- Streamed request bodies are limited to 256 KiB, including bodies without a declared content length. Oversized input returns HTTP 413 with `INVALID_REQUEST`; malformed JSON returns 400 with `INVALID_JSON`.
+- Valid requests without an enabled/configured provider return 503 `AI_UNAVAILABLE`, preserving manual/preset fallback. Production provider calls require runtime `AI_ENABLED=true`; Compose defaults false. Native development with an unset flag retains configured-key behavior. Explicit false disables either environment.
+- The original per-derived-client route limiter remains. A shared process budget additionally bounds 20 incoming provider-eligible requests/minute and two concurrent route jobs; saturation returns 429 `RATE_LIMITED` with finite `retryAfterMs`/`Retry-After`. These are process-local defensive bounds, not authentication or distributed quotas. Client headers cannot be trusted as an authorization identity.
+- SDK automatic retries are disabled; the existing compiler's one schema/domain repair attempt remains allowed. Provider failures/timeouts still use the existing finite error envelope.
+- Explanation forwards only documented scene/source labels and snapshot fields to the provider. Extra JSON fields are discarded by explicit projection rather than becoming hidden prompt data.
+
+Public paid-key deployments require an authenticated TLS gateway and provider quotas. Secrets are server runtime configuration, never browser fields, image files, or build arguments. Automated route tests use mocked providers. See [SECURITY.md](../SECURITY.md) and [the security report](maintenance/SECURITY_LICENSE.md).
+
 ## Workspace authoring contract
 
 The browser-only `WorkspaceProject` schema is versioned independently from API-facing `SceneSpec`. It stores mode, revision, listener collection and active listener, authoring selection, reversible disabled IDs, rectangular room dimensions and materials, source heights, finite wall/Portal settings, bounded acoustic primitives, missing/local-audio metadata, and per-mode view state.
@@ -11,7 +25,7 @@ name, XYZ centre, XYZ dimensions, Y rotation, and a registered material ID. All 
 inside the room. Classic projection emits the shape footprint as deterministic synthetic wall
 segments. Hybrid projection retains the complete record for finite faceted compilation.
 
-Local audio IDs use the `local_` prefix and resolve only from browser IndexedDB. WAV/MP3/Ogg files are limited to 25 MB each and 100 MB total, decoded as mono before source creation, and never accepted as arbitrary remote URLs. Authoring JSON records `{id,name,mimeType,size,createdAt}` but never embeds blobs. Missing imported assets remain silent and retain their Source transform until a same-ID relink succeeds.
+Local audio IDs use the `local_` prefix and resolve only from browser IndexedDB. WAV/MP3/Ogg files are limited to 25 MiB each and 100 MiB total, decoded as mono before source creation, and never accepted as arbitrary remote URLs. Authoring JSON records `{id,name,mimeType,size,createdAt}` but never embeds blobs. Missing imported assets remain silent and retain their Source transform until a same-ID relink succeeds.
 
 The local cache envelope is version `3.0` and contains `present`, `past`, and `future`. History arrays contain at most 50 reversible value/splice patches, not repeated full-scene snapshots. View-only selection, camera, overlay, and panel changes do not enter history; active-listener changes do. Cache migration failure does not overwrite the unread input.
 
@@ -306,7 +320,7 @@ Explanation:
 
 - OpenAI/OpenRouter keys server-side only;
 - reject oversized or malformed bodies;
-- basic per-IP/session rate limit;
+- bounded process and derived-client route limits; they are not authentication or a trusted per-IP identity;
 - do not log raw API keys;
 - avoid logging user audio;
 - no arbitrary remote audio URLs;
