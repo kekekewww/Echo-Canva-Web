@@ -188,6 +188,32 @@ describe("findFirstOrderReflections", () => {
 });
 
 describe("solveSecondOrderReflectionPair2D", () => {
+  it("solves an analytic bottom-to-right path with two finite reflection points", () => {
+    // Unfolding both walls mirrors (2, 5) to (18, -5). The image-to-listener
+    // segment has length sqrt(10^2 + 10^2), independent of the solver.
+    const reflection = solveSecondOrderReflectionPair2D(
+      { x: 2, y: 5 },
+      { x: 8, y: 5 },
+      RECTANGLE_WALLS[0]!,
+      RECTANGLE_WALLS[1]!,
+      reflectionScene(RECTANGLE_WALLS),
+    );
+    const pathLengthM = 10 * Math.sqrt(2);
+    const midSpecularEnergy = (1 - 0.04 - 10 ** (-34 / 10)) * (1 - 0.08);
+
+    expect(reflection).toMatchObject({
+      order: 2,
+      wallId: "right",
+      wallIds: ["bottom", "right"],
+      reflectionPoint: { x: 10, y: 3 },
+      reflectionPoints: [{ x: 7, y: 0 }, { x: 10, y: 3 }],
+    });
+    expect(reflection?.pathLengthM).toBeCloseTo(pathLengthM, 10);
+    expect(reflection?.delayMs).toBeCloseTo(1000 * (pathLengthM - 6) / 343, 10);
+    // Two identical surfaces each contribute sqrt(specular energy).
+    expect(reflection?.gainDb).toBeCloseTo(20 * Math.log10(midSpecularEnergy / pathLengthM), 10);
+  });
+
   it("rejects an ordered pair when an intervening obstacle crosses the middle leg", () => {
     const blocker = {
       id: "middle_leg_blocker",

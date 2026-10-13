@@ -46,6 +46,79 @@ describe("estimateRoomAcoustics", () => {
     expect(estimate.preDelayMs).toBeCloseTo((Math.sqrt(80) / 343) * 1000);
   });
 
+  it("preserves the Eyring similarity law when every room dimension scales equally", () => {
+    const base = roomScene();
+    const woodenRoom: SceneSpec = {
+      ...base,
+      room: { ...base.room, floorMaterialId: "wood_medium", ceilingMaterialId: "wood_medium" },
+      walls: base.walls.map((wall) => ({ ...wall, materialId: "wood_medium" })),
+    };
+    const scale = 0.5;
+    const scalePoint = (point: SceneSpec["listener"]["position"]) => ({
+      x: point.x * scale,
+      y: point.y * scale,
+    });
+    const scaledRoom: SceneSpec = {
+      ...woodenRoom,
+      room: {
+        ...woodenRoom.room,
+        outerPolygon: woodenRoom.room.outerPolygon.map(scalePoint),
+        heightM: woodenRoom.room.heightM * scale,
+      },
+      walls: woodenRoom.walls.map((wall) => ({
+        ...wall,
+        a: scalePoint(wall.a),
+        b: scalePoint(wall.b),
+        thicknessM: wall.thicknessM * scale,
+      })),
+      listener: { ...woodenRoom.listener, position: scalePoint(woodenRoom.listener.position) },
+    };
+    const original = estimateRoomAcoustics(woodenRoom);
+    const scaled = estimateRoomAcoustics(scaledRoom);
+
+    expect(scaled.volumeM3).toBeCloseTo(original.volumeM3 * scale ** 3, 10);
+    expect(scaled.totalSurfaceM2).toBeCloseTo(original.totalSurfaceM2 * scale ** 2, 10);
+    for (const band of ["low", "mid", "high"] as const) {
+      // Bounds confirm that this checks the formula rather than the UI clamps.
+      expect(original.rt60S[band]).toBeGreaterThan(0.12);
+      expect(original.rt60S[band]).toBeLessThan(4);
+      expect(scaled.rt60S[band]).toBeGreaterThan(0.12);
+      expect(scaled.rt60S[band]).toBeLessThan(4);
+      expect(scaled.rt60S[band]).toBeCloseTo(original.rt60S[band] * scale, 10);
+    }
+    expect(scaled.preDelayMs).toBeCloseTo(original.preDelayMs * scale, 10);
+  });
+
+  it("counts both exposed partition faces without subtracting room volume", () => {
+    const base = roomScene();
+    const woodenRoom: SceneSpec = {
+      ...base,
+      room: { ...base.room, floorMaterialId: "wood_medium", ceilingMaterialId: "wood_medium" },
+      walls: base.walls.map((wall) => ({ ...wall, materialId: "wood_medium" })),
+    };
+    const partitioned = estimateRoomAcoustics({
+      ...woodenRoom,
+      walls: [
+        ...woodenRoom.walls,
+        {
+          id: "partition",
+          a: { x: 5, y: 2 },
+          b: { x: 5, y: 6 },
+          thicknessM: 0.2,
+          materialId: "wood_medium",
+          kind: "partition",
+        },
+      ],
+    });
+    const sealed = estimateRoomAcoustics(woodenRoom);
+
+    expect(partitioned.volumeM3).toBe(240);
+    expect(partitioned.volumeM3).toBe(sealed.volumeM3);
+    expect(partitioned.totalSurfaceM2).toBe(268 + 2 * 4 * 3);
+    expect(partitioned.rt60S.mid).toBeCloseTo(0.161 * 240 / (-292 * Math.log(1 - 0.18)), 10);
+    expect(partitioned.rt60S.mid).toBeLessThan(sealed.rt60S.mid);
+  });
+
   it("models an open portal area as additional energy escape", () => {
     const sealed = estimateRoomAcoustics(roomScene());
     const open = estimateRoomAcoustics(roomScene({
