@@ -1,0 +1,20 @@
+{
+  "projects": [
+    {
+      "remainingContainers": 0,
+      "exitCode": 0,
+      "project": "echo-canvas-fix-lazy-prod"
+    },
+    {
+      "remainingContainers": 0,
+      "exitCode": 0,
+      "project": "echo-canvas-fix-lazy-dev"
+    }
+  ],
+  "watchPid": 54276,
+  "watchAction": "already exited",
+  "imagesRetained": true,
+  "browserProfileRetained": true,
+  "unrelatedContainersUntouched": true,
+  "utc": "2026-10-13T07:55:43.5829348Z"
+}

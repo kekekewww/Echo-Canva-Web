@@ -1,0 +1,567 @@
+2026-10-13T07:39:47.7150669Z Current runner version: '2.337.0'
+2026-10-13T07:39:47.7176115Z ##[group]Runner Image Provisioner
+2026-10-13T07:39:47.7177010Z Hosted Compute Agent
+2026-10-13T07:39:47.7177633Z Version: 20260901.588
+2026-10-13T07:39:47.7178288Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-13T07:39:47.7179028Z Build Date: 2026-09-01T19:56:44Z
+2026-10-13T07:39:47.7179806Z Worker ID: {e8848412-fef7-4093-9a41-54d3ae3d25b3}
+2026-10-13T07:39:47.7180568Z Azure Region: southcentralus
+2026-10-13T07:39:47.7181192Z ##[endgroup]
+2026-10-13T07:39:47.7182672Z ##[group]Operating System
+2026-10-13T07:39:47.7183379Z Microsoft Windows Server 2025
+2026-10-13T07:39:47.7184013Z 10.0.26100
+2026-10-13T07:39:47.7184552Z Datacenter
+2026-10-13T07:39:47.7185437Z ##[endgroup]
+2026-10-13T07:39:47.7186029Z ##[group]Runner Image
+2026-10-13T07:39:47.7186843Z Image: windows-2025-vs2026
+2026-10-13T07:39:47.7187529Z Version: 20260925.250.1
+2026-10-13T07:39:47.7188994Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20260925.250/images/windows/Windows2025-VS2026-Readme.md
+2026-10-13T07:39:47.7190653Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20260925.250
+2026-10-13T07:39:47.7191660Z ##[endgroup]
+2026-10-13T07:39:47.7192739Z ##[group]GITHUB_TOKEN Permissions
+2026-10-13T07:39:47.7194607Z Contents: read
+2026-10-13T07:39:47.7195237Z Metadata: read
+2026-10-13T07:39:47.7195784Z ##[endgroup]
+2026-10-13T07:39:47.7197812Z Secret source: Actions
+2026-10-13T07:39:47.7198851Z Cache mode: write
+2026-10-13T07:39:47.7199570Z Prepare workflow directory
+2026-10-13T07:39:47.7751845Z Prepare all required actions
+2026-10-13T07:39:47.7825801Z Getting action download info
+2026-10-13T07:39:48.0306188Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-13T07:39:48.1660486Z Download action repository 'actions/setup-node@820762786026740c76f36085b0efc47a31fe5020' (SHA:820762786026740c76f36085b0efc47a31fe5020)
+2026-10-13T07:39:48.3437670Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+2026-10-13T07:39:48.9456535Z Complete job name: Application checks and Chromium E2E (windows-latest)
+2026-10-13T07:39:49.0999473Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-10-13T07:39:49.1000767Z with:
+2026-10-13T07:39:49.1001296Z   persist-credentials: false
+2026-10-13T07:39:49.1001924Z   fetch-depth: 0
+2026-10-13T07:39:49.1002451Z   repository: kekekewww/Echo-Canva-Web
+2026-10-13T07:39:49.1006595Z   token: ***
+2026-10-13T07:39:49.1007116Z   ssh-strict: true
+2026-10-13T07:39:49.1007603Z   ssh-user: git
+2026-10-13T07:39:49.1008091Z   clean: true
+2026-10-13T07:39:49.1009021Z   sparse-checkout-cone-mode: true
+2026-10-13T07:39:49.1009663Z   fetch-tags: false
+2026-10-13T07:39:49.1010165Z   show-progress: true
+2026-10-13T07:39:49.1010661Z   lfs: false
+2026-10-13T07:39:49.1011171Z   submodules: false
+2026-10-13T07:39:49.1011672Z   set-safe-directory: true
+2026-10-13T07:39:49.1012242Z   allow-unsafe-pr-checkout: false
+2026-10-13T07:39:49.1013141Z env:
+2026-10-13T07:39:49.1013623Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:39:49.1014206Z   AI_ENABLED: false
+2026-10-13T07:39:49.1014750Z ##[endgroup]
+2026-10-13T07:39:49.3147634Z Syncing repository: kekekewww/Echo-Canva-Web
+2026-10-13T07:39:49.3149880Z ##[group]Getting Git version info
+2026-10-13T07:39:49.3150747Z Working directory is 'D:\a\Echo-Canva-Web\Echo-Canva-Web'
+2026-10-13T07:39:49.4110486Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-13T07:39:49.7605239Z git version 2.55.0.windows.5
+2026-10-13T07:39:49.7660803Z ##[endgroup]
+2026-10-13T07:39:49.7677434Z Temporarily overriding HOME='D:\a\_temp\e84d0e78-64ee-469f-8d29-90737d0a0983' before making global git config changes
+2026-10-13T07:39:49.7683009Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-13T07:39:49.7692548Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\Echo-Canva-Web\Echo-Canva-Web
+2026-10-13T07:39:49.8439863Z Deleting the contents of 'D:\a\Echo-Canva-Web\Echo-Canva-Web'
+2026-10-13T07:39:49.8445566Z ##[group]Determining repository object format
+2026-10-13T07:39:49.8449053Z ##[endgroup]
+2026-10-13T07:39:49.8450891Z ##[group]Initializing the repository
+2026-10-13T07:39:49.8456852Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\Echo-Canva-Web\Echo-Canva-Web
+2026-10-13T07:39:49.9307065Z Initialized empty Git repository in D:/a/Echo-Canva-Web/Echo-Canva-Web/.git/
+2026-10-13T07:39:49.9361712Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/kekekewww/Echo-Canva-Web
+2026-10-13T07:39:50.0034677Z ##[endgroup]
+2026-10-13T07:39:50.0036907Z ##[group]Disabling automatic garbage collection
+2026-10-13T07:39:50.0042971Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-13T07:39:50.0351296Z ##[endgroup]
+2026-10-13T07:39:50.0353796Z ##[group]Setting up auth
+2026-10-13T07:39:50.0355261Z Removing SSH command configuration
+2026-10-13T07:39:50.0361936Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T07:39:50.0687171Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-13T07:39:51.4903805Z Removing HTTP extra header
+2026-10-13T07:39:51.4913666Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T07:39:51.5230205Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-13T07:39:52.0778663Z Removing includeIf entries pointing to credentials config files
+2026-10-13T07:39:52.0789391Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T07:39:52.1106497Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-13T07:39:52.6580509Z [command]"C:\Program Files\Git\bin\git.exe" config --file D:\a\_temp\git-credentials-28013867-095d-4624-8133-011af4b9026e.config http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-13T07:39:52.6904354Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/Echo-Canva-Web/Echo-Canva-Web/.git.path D:\a\_temp\git-credentials-28013867-095d-4624-8133-011af4b9026e.config
+2026-10-13T07:39:52.7231043Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/Echo-Canva-Web/Echo-Canva-Web/.git/worktrees/*.path D:\a\_temp\git-credentials-28013867-095d-4624-8133-011af4b9026e.config
+2026-10-13T07:39:52.7612048Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-28013867-095d-4624-8133-011af4b9026e.config
+2026-10-13T07:39:52.7925215Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-28013867-095d-4624-8133-011af4b9026e.config
+2026-10-13T07:39:52.8272870Z ##[endgroup]
+2026-10-13T07:39:52.8273718Z ##[group]Fetching the repository
+2026-10-13T07:39:52.8275826Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +2832b1958aacf62ce8678c9af384d452f3661db8:refs/remotes/pull/2/merge
+2026-10-13T07:39:54.0904745Z From https://github.com/kekekewww/Echo-Canva-Web
+2026-10-13T07:39:54.0906133Z  * [new branch]      chore/open-source-extraction             -> origin/chore/open-source-extraction
+2026-10-13T07:39:54.0909439Z  * [new branch]      fix/verification-debt                    -> origin/fix/verification-debt
+2026-10-13T07:39:54.0910091Z  * [new branch]      main                                     -> origin/main
+2026-10-13T07:39:54.0910656Z  * [new ref]         2832b1958aacf62ce8678c9af384d452f3661db8 -> pull/2/merge
+2026-10-13T07:39:54.0950300Z ##[endgroup]
+2026-10-13T07:39:54.0950895Z ##[group]Determining the checkout info
+2026-10-13T07:39:54.0951504Z ##[endgroup]
+2026-10-13T07:39:54.0960463Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-10-13T07:39:54.1460887Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-10-13T07:39:54.1748015Z ##[group]Checking out the ref
+2026-10-13T07:39:54.1756728Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force refs/remotes/pull/2/merge
+2026-10-13T07:39:54.3582252Z Note: switching to 'refs/remotes/pull/2/merge'.
+2026-10-13T07:39:54.3583032Z
+2026-10-13T07:39:54.3583386Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-13T07:39:54.3584312Z changes and commit them, and you can discard any commits you make in this
+2026-10-13T07:39:54.3585180Z state without impacting any branches by switching back to a branch.
+2026-10-13T07:39:54.3585660Z
+2026-10-13T07:39:54.3585977Z If you want to create a new branch to retain commits you create, you may
+2026-10-13T07:39:54.3586746Z do so (now or later) by using -c with the switch command. Example:
+2026-10-13T07:39:54.3587194Z
+2026-10-13T07:39:54.3587431Z   git switch -c <new-branch-name>
+2026-10-13T07:39:54.3587738Z
+2026-10-13T07:39:54.3587892Z Or undo this operation with:
+2026-10-13T07:39:54.3588159Z
+2026-10-13T07:39:54.3588283Z   git switch -
+2026-10-13T07:39:54.3588480Z
+2026-10-13T07:39:54.3588838Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-13T07:39:54.3589408Z
+2026-10-13T07:39:54.3590043Z HEAD is now at 2832b19 Merge 96f3247069a01eac09cf707e90cdc9231f8a4bbe into 3b2a6b5d6f7b9518e2a8ac9f488cabb0a568a648
+2026-10-13T07:39:54.3779271Z ##[endgroup]
+2026-10-13T07:39:54.4258096Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-13T07:39:54.4575028Z 2832b1958aacf62ce8678c9af384d452f3661db8
+2026-10-13T07:39:54.4622648Z ##[group]Removing auth
+2026-10-13T07:39:54.4622934Z Removing SSH command configuration
+2026-10-13T07:39:54.4630954Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T07:39:54.4950108Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-13T07:39:55.0656868Z Removing HTTP extra header
+2026-10-13T07:39:55.0665782Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T07:39:55.0992385Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-13T07:39:55.6512301Z Removing includeIf entries pointing to credentials config files
+2026-10-13T07:39:55.6520223Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T07:39:55.6789919Z includeif.gitdir:D:/a/Echo-Canva-Web/Echo-Canva-Web/.git.path
+2026-10-13T07:39:55.6790790Z includeif.gitdir:D:/a/Echo-Canva-Web/Echo-Canva-Web/.git/worktrees/*.path
+2026-10-13T07:39:55.6791438Z includeif.gitdir:/github/workspace/.git.path
+2026-10-13T07:39:55.6792016Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-13T07:39:55.6841965Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/Echo-Canva-Web/Echo-Canva-Web/.git.path
+2026-10-13T07:39:55.7107986Z D:\a\_temp\git-credentials-28013867-095d-4624-8133-011af4b9026e.config
+2026-10-13T07:39:55.7156091Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/Echo-Canva-Web/Echo-Canva-Web/.git.path D\:\\a\\_temp\\git\-credentials\-28013867\-095d\-4624\-8133\-011af4b9026e\.config
+2026-10-13T07:39:55.7478870Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/Echo-Canva-Web/Echo-Canva-Web/.git/worktrees/*.path
+2026-10-13T07:39:55.7741383Z D:\a\_temp\git-credentials-28013867-095d-4624-8133-011af4b9026e.config
+2026-10-13T07:39:55.7784745Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/Echo-Canva-Web/Echo-Canva-Web/.git/worktrees/*.path D\:\\a\\_temp\\git\-credentials\-28013867\-095d\-4624\-8133\-011af4b9026e\.config
+2026-10-13T07:39:55.8107899Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-13T07:39:55.8377369Z /github/runner_temp/git-credentials-28013867-095d-4624-8133-011af4b9026e.config
+2026-10-13T07:39:55.8424733Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-28013867\-095d\-4624\-8133\-011af4b9026e\.config
+2026-10-13T07:39:55.8744783Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-13T07:39:55.9017078Z /github/runner_temp/git-credentials-28013867-095d-4624-8133-011af4b9026e.config
+2026-10-13T07:39:55.9068885Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-28013867\-095d\-4624\-8133\-011af4b9026e\.config
+2026-10-13T07:39:55.9387187Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-13T07:39:56.4940755Z Removing credentials config 'D:\a\_temp\git-credentials-28013867-095d-4624-8133-011af4b9026e.config'
+2026-10-13T07:39:56.4953285Z ##[endgroup]
+2026-10-13T07:39:56.5389005Z ##[group]Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+2026-10-13T07:39:56.5389443Z with:
+2026-10-13T07:39:56.5389633Z   node-version-file: .nvmrc
+2026-10-13T07:39:56.5389883Z   package-manager-cache: false
+2026-10-13T07:39:56.5390114Z   check-latest: false
+2026-10-13T07:39:56.5393196Z   token: ***
+2026-10-13T07:39:56.5393382Z env:
+2026-10-13T07:39:56.5393547Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:39:56.5393761Z   AI_ENABLED: false
+2026-10-13T07:39:56.5393936Z ##[endgroup]
+2026-10-13T07:39:56.7032880Z Node version file is not JSON file
+2026-10-13T07:39:56.7036060Z Resolved .nvmrc as 22.23.3
+2026-10-13T07:39:56.7101781Z Found in cache @ C:\hostedtoolcache\windows\node\22.23.3\x64
+2026-10-13T07:39:56.7108348Z ##[group]Environment details
+2026-10-13T07:40:02.1216442Z node: v22.23.3
+2026-10-13T07:40:02.1217163Z npm: 10.9.9
+2026-10-13T07:40:02.1217597Z yarn: 1.22.22
+2026-10-13T07:40:02.1218494Z ##[endgroup]
+2026-10-13T07:40:02.1564132Z ##[group]Run npm install --global pnpm@11.7.0
+2026-10-13T07:40:02.1564595Z npm install --global pnpm@11.7.0
+2026-10-13T07:40:02.1564926Z pnpm install --frozen-lockfile
+2026-10-13T07:40:02.1602391Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:40:02.1603071Z env:
+2026-10-13T07:40:02.1603261Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:40:02.1603483Z   AI_ENABLED: false
+2026-10-13T07:40:02.1603671Z ##[endgroup]
+2026-10-13T07:40:11.7267286Z
+2026-10-13T07:40:11.7273579Z added 1 package in 9s
+2026-10-13T07:40:11.7273808Z
+2026-10-13T07:40:11.7273993Z 1 package is looking for funding
+2026-10-13T07:40:11.7274295Z   run `npm fund` for details
+2026-10-13T07:40:14.2070485Z ? Verifying lockfile against supply-chain policies (464 entries)...
+2026-10-13T07:40:14.3041149Z Lockfile is up to date, resolution step is skipped
+2026-10-13T07:40:14.4685838Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-10-13T07:40:14.5392276Z Packages: +376
+2026-10-13T07:40:14.5394560Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-10-13T07:40:15.4803041Z Progress: resolved 376, reused 0, downloaded 0, added 0
+2026-10-13T07:40:16.4874649Z Progress: resolved 376, reused 0, downloaded 6, added 0
+2026-10-13T07:40:17.4900766Z Progress: resolved 376, reused 0, downloaded 58, added 0
+2026-10-13T07:40:18.5552456Z Progress: resolved 376, reused 0, downloaded 62, added 0
+2026-10-13T07:40:19.5769164Z Progress: resolved 376, reused 0, downloaded 124, added 4
+2026-10-13T07:40:20.6888022Z Progress: resolved 376, reused 0, downloaded 215, added 12
+2026-10-13T07:40:21.1565660Z ✓ Lockfile passes supply-chain policies (464 entries in 6.9s)
+2026-10-13T07:40:21.6918065Z Progress: resolved 376, reused 0, downloaded 294, added 17
+2026-10-13T07:40:22.6963129Z Progress: resolved 376, reused 0, downloaded 355, added 21
+2026-10-13T07:40:23.6991649Z Progress: resolved 376, reused 0, downloaded 376, added 245
+2026-10-13T07:40:24.7006208Z Progress: resolved 376, reused 0, downloaded 376, added 375
+2026-10-13T07:40:28.4136796Z Progress: resolved 376, reused 0, downloaded 376, added 376
+2026-10-13T07:40:28.4140370Z Progress: resolved 376, reused 0, downloaded 376, added 376, done
+2026-10-13T07:40:28.8178864Z .../node_modules/unrs-resolver postinstall$ node postinstall.js
+2026-10-13T07:40:29.0218840Z .../node_modules/unrs-resolver postinstall: Done
+2026-10-13T07:40:31.3343495Z
+2026-10-13T07:40:31.3344082Z dependencies:
+2026-10-13T07:40:31.3344483Z + next 16.3.8
+2026-10-13T07:40:31.3344812Z + openai 6.48.0
+2026-10-13T07:40:31.3345379Z + react 19.2.7
+2026-10-13T07:40:31.3345747Z + react-dom 19.2.7
+2026-10-13T07:40:31.3346098Z + zod 4.4.3
+2026-10-13T07:40:31.3346279Z
+2026-10-13T07:40:31.3346428Z devDependencies:
+2026-10-13T07:40:31.3346809Z + @playwright/test 1.61.1
+2026-10-13T07:40:31.3347260Z + @types/node 26.1.1
+2026-10-13T07:40:31.3347682Z + @types/react 19.2.17
+2026-10-13T07:40:31.3348082Z + @types/react-dom 19.2.3
+2026-10-13T07:40:31.3348449Z + eslint 9.39.3
+2026-10-13T07:40:31.3348822Z + eslint-config-next 16.3.8
+2026-10-13T07:40:31.3349229Z + typescript 5.9.3
+2026-10-13T07:40:31.3349564Z + vitest 4.1.11
+2026-10-13T07:40:31.3349747Z
+2026-10-13T07:40:31.3852164Z Done in 18.1s using pnpm v11.7.0
+2026-10-13T07:40:31.4781714Z ##[group]Run node scripts/verify-source-baseline.mjs
+2026-10-13T07:40:31.4782199Z node scripts/verify-source-baseline.mjs
+2026-10-13T07:40:31.4798404Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:40:31.4798789Z env:
+2026-10-13T07:40:31.4798967Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:40:31.4799191Z   AI_ENABLED: false
+2026-10-13T07:40:31.4799383Z ##[endgroup]
+2026-10-13T07:40:31.6907497Z PASS: 291 source files; immutable root tree ca4a2543f6f0e8848fe8d8eb57f3ed70faaba294; upstream c8fe24700b67861e2f64fbb8950e9281c0e13a3c; exact LICENSE initializer 923b79dd73b572100c6505694a50fa267dd3df72; no additional roots
+2026-10-13T07:40:31.7209045Z ##[group]Run node scripts/verify-client-marker-boundary.mjs
+2026-10-13T07:40:31.7209567Z node scripts/verify-client-marker-boundary.mjs
+2026-10-13T07:40:31.7226613Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:40:31.7226997Z env:
+2026-10-13T07:40:31.7227173Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:40:31.7227394Z   AI_ENABLED: false
+2026-10-13T07:40:31.7227577Z ##[endgroup]
+2026-10-13T07:40:38.6498306Z PASS Next turbopack client marker boundary: build accepted
+2026-10-13T07:40:44.6691130Z PASS Next turbopack server marker boundary: build rejected as required
+2026-10-13T07:41:13.6129210Z PASS Next webpack client marker boundary: build accepted
+2026-10-13T07:41:17.9670876Z PASS Next webpack server marker boundary: build rejected as required
+2026-10-13T07:41:18.0544182Z ##[group]Run pnpm lint
+2026-10-13T07:41:18.0544501Z pnpm lint
+2026-10-13T07:41:18.0561392Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:41:18.0561803Z env:
+2026-10-13T07:41:18.0561989Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:41:18.0562211Z   AI_ENABLED: false
+2026-10-13T07:41:18.0562396Z ##[endgroup]
+2026-10-13T07:41:18.9625179Z $ eslint . --max-warnings=0
+2026-10-13T07:41:39.2110616Z ##[group]Run pnpm audit --prod --audit-level=low
+2026-10-13T07:41:39.2111074Z pnpm audit --prod --audit-level=low
+2026-10-13T07:41:39.2127953Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:41:39.2128339Z env:
+2026-10-13T07:41:39.2128518Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:41:39.2128750Z   AI_ENABLED: false
+2026-10-13T07:41:39.2128937Z ##[endgroup]
+2026-10-13T07:41:40.3383627Z No known vulnerabilities found
+2026-10-13T07:41:40.3780336Z ##[group]Run pnpm typecheck
+2026-10-13T07:41:40.3780695Z pnpm typecheck
+2026-10-13T07:41:40.3798107Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:41:40.3798491Z env:
+2026-10-13T07:41:40.3798671Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:41:40.3798889Z   AI_ENABLED: false
+2026-10-13T07:41:40.3799072Z ##[endgroup]
+2026-10-13T07:41:41.2726092Z $ tsc --noEmit
+2026-10-13T07:41:48.7864664Z ##[group]Run pnpm test
+2026-10-13T07:41:48.7864980Z pnpm test
+2026-10-13T07:41:48.7881119Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:41:48.7881515Z env:
+2026-10-13T07:41:48.7881691Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:41:48.7882086Z   AI_ENABLED: false
+2026-10-13T07:41:48.7882272Z ##[endgroup]
+2026-10-13T07:41:49.6769230Z $ vitest run
+2026-10-13T07:41:50.1496919Z
+2026-10-13T07:41:50.1502394Z  RUN  v4.1.11 D:/a/Echo-Canva-Web/Echo-Canva-Web
+2026-10-13T07:41:50.1503099Z
+2026-10-13T07:41:50.9481036Z  ✓ tests/unit/audio-engine.test.ts (26 tests) 79ms
+2026-10-13T07:41:51.0943364Z  ✓ tests/unit/classic-source-pool.test.ts (50 tests) 195ms
+2026-10-13T07:41:51.6311378Z  ✓ tests/unit/hybrid-direct-pool.test.ts (51 tests) 574ms
+2026-10-13T07:41:51.7298586Z  ✓ tests/unit/editor-reducer.test.ts (13 tests) 54ms
+2026-10-13T07:41:52.0402758Z  ✓ tests/unit/compute-frame.test.ts (12 tests) 55ms
+2026-10-13T07:41:52.3818410Z  ✓ tests/unit/hybrid3d-direct.test.ts (10 tests) 148ms
+2026-10-13T07:41:52.5325865Z  ✓ tests/unit/runtime-license-collector.test.ts (9 tests) 1154ms
+2026-10-13T07:41:52.7655776Z  ✓ tests/unit/image-source.test.ts (10 tests) 42ms
+2026-10-13T07:41:52.9589680Z  ✓ tests/unit/ai-request-security.test.ts (11 tests) 162ms
+2026-10-13T07:41:53.0060284Z  ✓ tests/unit/use-acoustic-frame.test.ts (7 tests) 86ms
+2026-10-13T07:41:53.3528069Z  ✓ tests/unit/room-acoustics.test.ts (7 tests) 16ms
+2026-10-13T07:41:53.4328808Z  ✓ tests/unit/hybrid3d-audible-direct.test.ts (7 tests) 149ms
+2026-10-13T07:41:53.5313027Z  ✓ tests/unit/scene-validation.test.ts (26 tests) 52ms
+2026-10-13T07:41:53.7744875Z  ✓ tests/unit/schroeder-reverb.test.ts (6 tests) 22ms
+2026-10-13T07:41:53.8870025Z  ✓ tests/unit/early-reflection-bank.test.ts (4 tests) 14ms
+2026-10-13T07:41:53.9370932Z  ✓ tests/unit/workspace-persistence.test.ts (9 tests) 67ms
+2026-10-13T07:41:54.1321085Z  ✓ tests/unit/portal.test.ts (10 tests) 20ms
+2026-10-13T07:41:54.4378056Z  ✓ tests/unit/ai-client.test.ts (16 tests) 68ms
+2026-10-13T07:41:54.6001799Z  ✓ tests/unit/braces-security.test.ts (26 tests) 52ms
+2026-10-13T07:41:54.6457768Z  ✓ tests/unit/scene-compile-route.test.ts (8 tests) 96ms
+2026-10-13T07:41:55.0133539Z  ✓ tests/unit/hybrid-direct-worker.test.ts (4 tests) 72ms
+2026-10-13T07:41:55.0464436Z  ✓ tests/unit/hybrid3d-second-order.test.ts (5 tests) 51ms
+2026-10-13T07:41:55.1007296Z  ✓ tests/unit/workspace-project.test.ts (7 tests) 27ms
+2026-10-13T07:41:55.3986484Z  ✓ tests/unit/geometry.test.ts (8 tests) 15ms
+2026-10-13T07:41:55.4982135Z  ✓ tests/unit/acoustic-explainer.test.ts (26 tests) 38ms
+2026-10-13T07:41:55.6019494Z  ✓ tests/unit/workspace-geometry-constraints.test.ts (6 tests) 29ms
+2026-10-13T07:41:55.9038476Z  ✓ tests/unit/workspace-primitives.test.ts (7 tests) 37ms
+2026-10-13T07:41:55.9452715Z  ✓ tests/unit/hybrid3d-six-band-materials.test.ts (5 tests) 10ms
+2026-10-13T07:41:56.1403953Z  ✓ tests/unit/hybrid-path-overlay.test.ts (5 tests) 77ms
+2026-10-13T07:41:56.3689075Z  ✓ tests/unit/acoustic-worker.test.ts (6 tests) 46ms
+2026-10-13T07:41:56.4905582Z  ✓ tests/unit/hybrid-scene-generation.test.ts (4 tests) 41ms
+2026-10-13T07:41:56.6733632Z  ✓ tests/unit/scene-serialization.test.ts (8 tests) 30ms
+2026-10-13T07:41:56.7139374Z  ✓ tests/unit/viewport-math.test.ts (8 tests) 12ms
+2026-10-13T07:41:56.9365542Z  ✓ tests/unit/hybrid-viewport-wall.test.ts (3 tests) 19ms
+2026-10-13T07:41:57.1002207Z  ✓ tests/unit/local-audio-library.test.ts (7 tests) 29ms
+2026-10-13T07:41:57.2541736Z  ✓ tests/unit/hybrid3d-compile.test.ts (4 tests) 63ms
+2026-10-13T07:41:57.3031706Z  ✓ tests/unit/classic-source-worker.test.ts (3 tests) 19ms
+2026-10-13T07:41:57.6294142Z  ✓ tests/unit/ai-scene-prompt-evals.test.ts (15 tests) 50ms
+2026-10-13T07:41:57.6839659Z  ✓ tests/unit/hybrid3d-receiver-connection.test.ts (3 tests) 20ms
+2026-10-13T07:41:57.7431044Z  ✓ tests/unit/hybrid3d-receiver-connection-benchmark.test.ts (3 tests) 110ms
+2026-10-13T07:41:58.0067563Z  ✓ tests/unit/occlusion.test.ts (5 tests) 12ms
+2026-10-13T07:41:58.0212913Z  ✓ tests/unit/hybrid3d-reflection-rendering.test.ts (4 tests) 12ms
+2026-10-13T07:41:58.2341336Z  ✓ tests/unit/scene-compiler.test.ts (8 tests) 42ms
+2026-10-13T07:41:58.3790987Z  ✓ tests/unit/hybrid3d-reflection.test.ts (3 tests) 15ms
+2026-10-13T07:41:58.5132537Z  ✓ tests/unit/workspace-history.test.ts (5 tests) 13ms
+2026-10-13T07:41:58.6105451Z  ✓ tests/unit/hybrid3d-directional-late-field.test.ts (3 tests) 17ms
+2026-10-13T07:41:58.8869836Z  ✓ tests/unit/scene-document.test.ts (5 tests) 45ms
+2026-10-13T07:41:59.2407592Z  ✓ tests/unit/material-registry.test.ts (6 tests) 15ms
+2026-10-13T07:41:59.2575571Z  ✓ tests/unit/scene-explain-route.test.ts (3 tests) 72ms
+2026-10-13T07:41:59.7203133Z  ✓ tests/unit/engine-router.test.ts (3 tests) 108ms
+2026-10-13T07:41:59.9041515Z  ✓ tests/unit/hybrid-viewport-adapter.test.ts (2 tests) 70ms
+2026-10-13T07:42:00.0303160Z  ✓ tests/unit/client-only-marker.test.ts (7 tests) 378ms
+2026-10-13T07:42:00.0823159Z  ✓ tests/unit/coordinates.test.ts (7 tests) 10ms
+2026-10-13T07:42:00.3889827Z  ✓ tests/unit/classic-viewport-math.test.ts (4 tests) 8ms
+2026-10-13T07:42:00.4092784Z  ✓ tests/unit/workspace-transfer.test.ts (3 tests) 37ms
+2026-10-13T07:42:00.4255445Z  ✓ tests/unit/partition-editing.test.ts (4 tests) 10ms
+2026-10-13T07:42:00.8461893Z  ✓ tests/unit/ai-provider.test.ts (6 tests) 17ms
+2026-10-13T07:42:00.8651278Z  ✓ tests/unit/workspace-projections.test.ts (3 tests) 13ms
+2026-10-13T07:42:00.8806837Z  ✓ tests/unit/ai-contracts.test.ts (4 tests) 12ms
+2026-10-13T07:42:01.1775029Z  ✓ tests/unit/audio-math.test.ts (4 tests) 9ms
+2026-10-13T07:42:01.2405795Z  ✓ tests/unit/hybrid3d-primitives.test.ts (2 tests) 37ms
+2026-10-13T07:42:01.4754052Z  ✓ tests/unit/workspace-project-tools.test.ts (2 tests) 21ms
+2026-10-13T07:42:01.5900383Z  ✓ tests/unit/numeric-scrub-field.test.tsx (3 tests) 8ms
+2026-10-13T07:42:01.6846688Z  ✓ tests/unit/workspace-listeners.test.ts (2 tests) 25ms
+2026-10-13T07:42:01.8371054Z  ✓ tests/unit/content-policy.test.ts (6 tests) 11ms
+2026-10-13T07:42:02.0639656Z  ✓ tests/unit/workspace-status-bar.test.ts (2 tests) 8ms
+2026-10-13T07:42:02.1561096Z  ✓ tests/unit/classic-viewport-adapter.test.ts (1 test) 34ms
+2026-10-13T07:42:02.2091289Z  ✓ tests/unit/audio-assets.test.ts (1 test) 11ms
+2026-10-13T07:42:02.4828424Z  ✓ tests/unit/scene-schema.test.ts (2 tests) 20ms
+2026-10-13T07:42:02.5943217Z  ✓ tests/unit/classic-baseline-capture.test.ts (1 test) 50ms
+2026-10-13T07:42:02.6059972Z  ✓ tests/unit/scene-editor-route.test.ts (1 test) 6ms
+2026-10-13T07:42:02.9064872Z  ✓ tests/unit/development-shell.test.ts (2 tests) 6ms
+2026-10-13T07:42:03.0368069Z  ✓ tests/unit/transport.test.ts (1 test) 7ms
+2026-10-13T07:42:03.2211918Z  ✓ tests/unit/smoke.test.ts (1 test) 5ms
+2026-10-13T07:42:03.4809956Z  ✓ tests/unit/playwright-config.test.ts (1 test) 5ms
+2026-10-13T07:42:03.4867750Z
+2026-10-13T07:42:03.4874734Z  Test Files  75 passed (75)
+2026-10-13T07:42:03.4876866Z       Tests  572 passed (572)
+2026-10-13T07:42:03.4877554Z    Start at  07:41:50
+2026-10-13T07:42:03.4880830Z    Duration  13.32s (transform 2.50s, setup 0ms, import 11.23s, tests 5.07s, environment 16ms)
+2026-10-13T07:42:03.4883313Z
+2026-10-13T07:42:03.6460017Z ##[group]Run pnpm build
+2026-10-13T07:42:03.6460324Z pnpm build
+2026-10-13T07:42:03.6476474Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:42:03.6476897Z env:
+2026-10-13T07:42:03.6477069Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:42:03.6477281Z   AI_ENABLED: false
+2026-10-13T07:42:03.6477454Z ##[endgroup]
+2026-10-13T07:42:04.5611235Z $ next build
+2026-10-13T07:42:05.1809525Z ▲ Next.js 16.3.8 (Turbopack)
+2026-10-13T07:42:05.2179825Z ✓ Running next.config.ts took 36ms
+2026-10-13T07:42:05.2183897Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2026-10-13T07:42:05.2335327Z
+2026-10-13T07:42:05.2751353Z   Creating an optimized production build ...
+2026-10-13T07:42:13.8332230Z ✓ Compiled successfully in 8.2s
+2026-10-13T07:42:13.9358155Z   Running TypeScript ...
+2026-10-13T07:42:21.7034160Z   Finished TypeScript in 7.8s ...
+2026-10-13T07:42:21.7066149Z   Collecting page data using 3 workers ...
+2026-10-13T07:42:22.6576902Z   Generating static pages using 3 workers (0/8) ...
+2026-10-13T07:42:22.7509396Z   Generating static pages using 3 workers (2/8)
+2026-10-13T07:42:23.0402338Z   Generating static pages using 3 workers (4/8)
+2026-10-13T07:42:23.0443997Z   Generating static pages using 3 workers (6/8)
+2026-10-13T07:42:23.0448866Z ✓ Generating static pages using 3 workers (8/8) in 387ms
+2026-10-13T07:42:23.0515690Z   Finalizing page optimization ...
+2026-10-13T07:42:23.5755426Z
+2026-10-13T07:42:23.5778707Z Route (app)
+2026-10-13T07:42:23.5779375Z ┌ ○ /
+2026-10-13T07:42:23.5779796Z ├ ○ /_not-found
+2026-10-13T07:42:23.5780331Z ├ ƒ /api/health
+2026-10-13T07:42:23.5780808Z ├ ƒ /api/scene/compile
+2026-10-13T07:42:23.5781298Z ├ ƒ /api/scene/explain
+2026-10-13T07:42:23.5781734Z ├ ○ /classic
+2026-10-13T07:42:23.5782191Z ├ ○ /icon.svg
+2026-10-13T07:42:23.5782553Z └ ○ /lab
+2026-10-13T07:42:23.5782740Z
+2026-10-13T07:42:23.5782791Z
+2026-10-13T07:42:23.5783181Z ○  (Static)   prerendered as static content
+2026-10-13T07:42:23.5783847Z ƒ  (Dynamic)  server-rendered on demand
+2026-10-13T07:42:23.5784208Z
+2026-10-13T07:42:23.6700774Z ##[group]Run pnpm exec playwright install --with-deps chromium
+2026-10-13T07:42:23.6701309Z pnpm exec playwright install --with-deps chromium
+2026-10-13T07:42:23.6717105Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:42:23.6717492Z env:
+2026-10-13T07:42:23.6717670Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:42:23.6717894Z   AI_ENABLED: false
+2026-10-13T07:42:23.6718088Z ##[endgroup]
+2026-10-13T07:45:29.9289138Z
+2026-10-13T07:45:29.9303776Z Success Restart Needed Exit Code      Feature Result
+2026-10-13T07:45:29.9305716Z ------- -------------- ---------      --------------
+2026-10-13T07:45:29.9309645Z True    No             Success        {Media Foundation}
+2026-10-13T07:45:29.9313038Z
+2026-10-13T07:45:29.9313270Z
+2026-10-13T07:45:30.0611166Z Downloading Chrome for Testing 149.0.7827.55 (playwright chromium v1228) from https://cdn.playwright.dev/builds/cft/149.0.7827.55/win64/chrome-win64.zip
+2026-10-13T07:45:30.6132237Z |                                                                                |   0% of 183.6 MiB
+2026-10-13T07:45:30.9302720Z |■■■■■■■■                                                                        |  10% of 183.6 MiB
+2026-10-13T07:45:31.1437311Z |■■■■■■■■■■■■■■■■                                                                |  20% of 183.6 MiB
+2026-10-13T07:45:31.3535981Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 183.6 MiB
+2026-10-13T07:45:31.5392669Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 183.6 MiB
+2026-10-13T07:45:31.7136972Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 183.6 MiB
+2026-10-13T07:45:31.8933675Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 183.6 MiB
+2026-10-13T07:45:32.0748180Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 183.6 MiB
+2026-10-13T07:45:32.2517137Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 183.6 MiB
+2026-10-13T07:45:32.4320649Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 183.6 MiB
+2026-10-13T07:45:32.6001393Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 183.6 MiB
+2026-10-13T07:45:38.8605804Z Chrome for Testing 149.0.7827.55 (playwright chromium v1228) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\chromium-1228
+2026-10-13T07:45:38.8613948Z Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-win64.zip
+2026-10-13T07:45:39.3906570Z |                                                                                |   1% of 1.3 MiB
+2026-10-13T07:45:39.4194888Z |■■■■■■■■                                                                        |  10% of 1.3 MiB
+2026-10-13T07:45:39.4350460Z |■■■■■■■■■■■■■■■■                                                                |  20% of 1.3 MiB
+2026-10-13T07:45:39.4437237Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 1.3 MiB
+2026-10-13T07:45:39.4514085Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 1.3 MiB
+2026-10-13T07:45:39.4563257Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 1.3 MiB
+2026-10-13T07:45:39.4610864Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 1.3 MiB
+2026-10-13T07:45:39.4655857Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  71% of 1.3 MiB
+2026-10-13T07:45:39.4681299Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 1.3 MiB
+2026-10-13T07:45:39.4713134Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 1.3 MiB
+2026-10-13T07:45:39.4733000Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 1.3 MiB
+2026-10-13T07:45:39.5855973Z FFmpeg (playwright ffmpeg v1011) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\ffmpeg-1011
+2026-10-13T07:45:39.5865097Z Downloading Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) from https://cdn.playwright.dev/builds/cft/149.0.7827.55/win64/chrome-headless-shell-win64.zip
+2026-10-13T07:45:40.0971760Z |                                                                                |   0% of 113.6 MiB
+2026-10-13T07:45:40.3039279Z |■■■■■■■■                                                                        |  10% of 113.6 MiB
+2026-10-13T07:45:40.4376368Z |■■■■■■■■■■■■■■■■                                                                |  20% of 113.6 MiB
+2026-10-13T07:45:40.5659381Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 113.6 MiB
+2026-10-13T07:45:40.6866836Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 113.6 MiB
+2026-10-13T07:45:40.7991955Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 113.6 MiB
+2026-10-13T07:45:40.9149094Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 113.6 MiB
+2026-10-13T07:45:41.0252970Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 113.6 MiB
+2026-10-13T07:45:41.1392063Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 113.6 MiB
+2026-10-13T07:45:41.2541005Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 113.6 MiB
+2026-10-13T07:45:41.3590483Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 113.6 MiB
+2026-10-13T07:45:45.5994933Z Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\chromium_headless_shell-1228
+2026-10-13T07:45:45.6001363Z Downloading Winldd (playwright winldd v1007) from https://cdn.playwright.dev/dbazure/download/playwright/builds/winldd/1007/winldd-win64.zip
+2026-10-13T07:45:46.1039612Z |■■■■■■■■                                                                        |  12% of 0.1 MiB
+2026-10-13T07:45:46.1042082Z |■■■■■■■■■■■■■■■■                                                                |  25% of 0.1 MiB
+2026-10-13T07:45:46.1056773Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  38% of 0.1 MiB
+2026-10-13T07:45:46.1130559Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  51% of 0.1 MiB
+2026-10-13T07:45:46.1154843Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 0.1 MiB
+2026-10-13T07:45:46.1160991Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  82% of 0.1 MiB
+2026-10-13T07:45:46.1171628Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 0.1 MiB
+2026-10-13T07:45:46.1477910Z Winldd (playwright winldd v1007) downloaded to C:\Users\runneradmin\AppData\Local\ms-playwright\winldd-1007
+2026-10-13T07:45:46.2197784Z ##[group]Run pnpm exec playwright test
+2026-10-13T07:45:46.2198332Z pnpm exec playwright test
+2026-10-13T07:45:46.2214598Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:45:46.2215318Z env:
+2026-10-13T07:45:46.2215581Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:45:46.2215888Z   AI_ENABLED: false
+2026-10-13T07:45:46.2216153Z ##[endgroup]
+2026-10-13T07:45:49.0754191Z [WebServer] $ next start "--hostname" "127.0.0.1" "--port" "3000"
+2026-10-13T07:45:49.5499546Z [WebServer] ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+2026-10-13T07:45:50.7658907Z
+2026-10-13T07:45:50.7659493Z Running 46 tests using 1 worker
+2026-10-13T07:45:50.7682961Z
+2026-10-13T07:45:52.2383796Z   ok  1 [chromium] › tests\e2e\audio-rendering.spec.ts:25:5 › browser renders a finite, decay-controlled reverb and a continuous Raw/Simulated transition (761ms)
+2026-10-13T07:45:53.4968161Z   ok  2 [chromium] › tests\e2e\legacy-regressions.spec.ts:3:5 › preserves the Classic audio, portal and reverb behaviours behind the workspace adapter (1.2s)
+2026-10-13T07:45:54.0305069Z   ok  3 [chromium] › tests\e2e\legacy-regressions.spec.ts:45:5 › preserves the manual scene when the AI compiler rejects adversarial input (517ms)
+2026-10-13T07:45:54.4607578Z   ok  4 [chromium] › tests\e2e\legacy-regressions.spec.ts:64:5 › keeps Classic keyboard editing and focus available through the adapter (416ms)
+2026-10-13T07:45:55.1373560Z   ok  5 [chromium] › tests\e2e\workspace-authoring.spec.ts:7:5 › adds and activates listeners and enforces the source workflow (648ms)
+2026-10-13T07:45:56.1387997Z   ok  6 [chromium] › tests\e2e\workspace-authoring.spec.ts:22:5 › edits a local source and relinks missing audio without moving it (987ms)
+2026-10-13T07:45:56.8151860Z   ok  7 [chromium] › tests\e2e\workspace-authoring.spec.ts:48:5 › exports, imports, and safely rejects complete authoring JSON (663ms)
+2026-10-13T07:45:57.3987590Z   ok  8 [chromium] › tests\e2e\workspace-authoring.spec.ts:69:5 › compiles and applies a validated AI candidate (570ms)
+2026-10-13T07:45:58.1042166Z   ok  9 [chromium] › tests\e2e\workspace-authoring.spec.ts:83:5 › applies a mode-aware AI candidate to Hybrid room and object heights (692ms)
+2026-10-13T07:45:58.7171374Z   ok 10 [chromium] › tests\e2e\workspace-authoring.spec.ts:125:5 › explains the selected source using a deterministic snapshot and a mocked AI response (599ms)
+2026-10-13T07:45:59.5347668Z   ok 11 [chromium] › tests\e2e\workspace-authoring.spec.ts:162:5 › confirms permanent deletes and clears all local project data in two steps (805ms)
+2026-10-13T07:46:00.0261760Z   ok 12 [chromium] › tests\e2e\workspace-failures.spec.ts:3:5 › preserves and downloads an unreadable project cache (469ms)
+2026-10-13T07:46:00.5692273Z   ok 13 [chromium] › tests\e2e\workspace-failures.spec.ts:15:5 › continues in memory and exposes a persistent warning when browser storage is unavailable (527ms)
+2026-10-13T07:46:01.1770619Z   ok 14 [chromium] › tests\e2e\workspace-failures.spec.ts:28:5 › keeps authoring available when Workers cannot start (592ms)
+2026-10-13T07:46:01.7871616Z   ok 15 [chromium] › tests\e2e\workspace-failures.spec.ts:43:5 › preserves scene edits and offers Retry after audio startup fails (592ms)
+2026-10-13T07:46:03.6937207Z   ok 16 [chromium] › tests\e2e\workspace-geometry.spec.ts:3:5 › adds Walls with two viewport points and requires that Wall for a Portal (1.9s)
+2026-10-13T07:46:04.5725188Z   ok 17 [chromium] › tests\e2e\workspace-geometry.spec.ts:22:5 › Classic wall placement remains usable after viewport navigation (864ms)
+2026-10-13T07:46:05.3977793Z   ok 18 [chromium] › tests\e2e\workspace-geometry.spec.ts:48:5 › Hybrid wall placement ignores pan gestures and still accepts two points (810ms)
+2026-10-13T07:46:06.0726002Z   ok 19 [chromium] › tests\e2e\workspace-geometry.spec.ts:75:5 › disables and re-enables a wall without deleting its Outliner record (660ms)
+2026-10-13T07:46:06.7647723Z   ok 20 [chromium] › tests\e2e\workspace-geometry.spec.ts:91:5 › treats a disabled ceiling as an acoustic opening and restores it on Enable (676ms)
+2026-10-13T07:46:07.4276388Z   ok 21 [chromium] › tests\e2e\workspace-geometry.spec.ts:106:5 › edits room dimensions and protects the floor (648ms)
+2026-10-13T07:46:08.0817499Z   ok 22 [chromium] › tests\e2e\workspace-geometry.spec.ts:119:5 › edits Floor and Ceiling materials from their own Inspector selections (637ms)
+2026-10-13T07:46:08.6362470Z   ok 23 [chromium] › tests\e2e\workspace-geometry.spec.ts:136:5 › supports exact numeric input, arrows, and Escape cancel (538ms)
+2026-10-13T07:46:09.4366923Z   ok 24 [chromium] › tests\e2e\workspace-geometry.spec.ts:153:5 › renders newly authored finite walls and hosted portals in the 3D viewport (788ms)
+2026-10-13T07:46:09.9232479Z   ok 25 [chromium] › tests\e2e\workspace-geometry.spec.ts:172:5 › selects a 3D Wall directly from its visible viewport panel (472ms)
+2026-10-13T07:46:10.7211926Z   ok 26 [chromium] › tests\e2e\workspace-geometry.spec.ts:182:5 › protects the final enabled Listener when disabled Listeners remain (784ms)
+2026-10-13T07:46:11.4432734Z   ok 27 [chromium] › tests\e2e\workspace-geometry.spec.ts:200:5 › deletes a playing 3D Source without applying a stale acoustic frame (707ms)
+2026-10-13T07:46:12.4776397Z   ok 28 [chromium] › tests\e2e\workspace-geometry.spec.ts:216:5 › precision-edits Wall endpoints and Portal offset without detaching hosted geometry (1.0s)
+2026-10-13T07:46:13.1553553Z   ok 29 [chromium] › tests\e2e\workspace-paths.spec.ts:3:5 › shows matched direct and first-order 3D paths with presentation controls (659ms)
+2026-10-13T07:46:13.6143401Z   ok 30 [chromium] › tests\e2e\workspace-paths.spec.ts:25:5 › keeps the production audio render gate finite and continuous (443ms)
+2026-10-13T07:46:14.4531266Z   ok 31 [chromium] › tests\e2e\workspace-primitives.spec.ts:3:5 › authors basic acoustic shapes in Hybrid 3D (820ms)
+2026-10-13T07:46:15.2282408Z   ok 32 [chromium] › tests\e2e\workspace-primitives.spec.ts:34:5 › authors and restores faceted shapes in Classic 2.5D (760ms)
+2026-10-13T07:46:15.8863171Z   ok 33 [chromium] › tests\e2e\workspace.spec.ts:4:5 › renders one modelling workspace on every route (637ms)
+2026-10-13T07:46:16.6858436Z   ok 34 [chromium] › tests\e2e\workspace.spec.ts:15:5 › preserves independent mode state across switches and refresh (788ms)
+2026-10-13T07:46:17.4424485Z   ok 35 [chromium] › tests\e2e\workspace.spec.ts:32:5 › persists compact Undo history across refresh (743ms)
+2026-10-13T07:46:23.7633631Z   ok 36 [chromium] › tests\e2e\workspace.spec.ts:45:5 › coalesces continuous numeric scrubbing into one Undo command (6.3s)
+2026-10-13T07:46:24.4379122Z   ok 37 [chromium] › tests\e2e\workspace.spec.ts:69:5 › keeps one AudioContext and toolbar audition state while switching modes (661ms)
+2026-10-13T07:46:25.0335718Z   ok 38 [chromium] › tests\e2e\workspace.spec.ts:86:5 › resets only the active mode and can undo reset (584ms)
+2026-10-13T07:46:25.5526350Z   ok 39 [chromium] › tests\e2e\workspace.spec.ts:99:5 › contains wheel zoom inside the 3D viewport and reports no page errors (506ms)
+2026-10-13T07:46:26.6145890Z   ok 40 [chromium] › tests\e2e\workspace.spec.ts:113:5 › Classic viewport supports pan navigation, Home and Frame All (1.1s)
+2026-10-13T07:46:27.4518136Z   ok 41 [chromium] › tests\e2e\workspace.spec.ts:154:5 › restores each mode camera and overlay preferences after switching and refresh (824ms)
+2026-10-13T07:46:28.2862253Z   ok 42 [chromium] › tests\e2e\workspace.spec.ts:172:5 › Hybrid viewport adds pan navigation without stealing object height editing (822ms)
+2026-10-13T07:46:28.8503734Z   ok 43 [chromium] › tests\e2e\workspace.spec.ts:217:5 › restores the 100-wall project and keeps Outliner selection within the interaction budget (550ms)
+2026-10-13T07:46:29.3326508Z   ok 44 [chromium] › tests\e2e\workspace.spec.ts:247:5 › keeps the viewport primary and exposes modal drawers on narrow screens (470ms)
+2026-10-13T07:46:29.8343057Z   ok 45 [chromium] › tests\e2e\workspace.spec.ts:260:5 › keeps Inspector labels, values, and units inside distinct readable columns (487ms)
+2026-10-13T07:46:37.5951271Z   ok 46 [chromium] › tests\e2e\workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets (7.7s)
+2026-10-13T07:46:37.8184785Z
+2026-10-13T07:46:37.8194571Z   46 passed (49.8s)
+2026-10-13T07:46:37.8814298Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+2026-10-13T07:46:37.8814807Z with:
+2026-10-13T07:46:37.8815075Z   name: chromium-failure-evidence-windows-latest
+2026-10-13T07:46:37.8815959Z   path: test-results/**/test-failed-*.png
+test-results/**/error-context.md
+test-results/**/trace.zip
+test-results/**/attachments/*.json
+test-results/**/worker-stress-metrics.json
+playwright-report/
+
+2026-10-13T07:46:37.8816851Z   if-no-files-found: ignore
+2026-10-13T07:46:37.8817167Z   retention-days: 7
+2026-10-13T07:46:37.8817429Z   compression-level: 6
+2026-10-13T07:46:37.8817695Z   overwrite: false
+2026-10-13T07:46:37.8817957Z   include-hidden-files: false
+2026-10-13T07:46:37.8818242Z   archive: true
+2026-10-13T07:46:37.8818475Z env:
+2026-10-13T07:46:37.8818713Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:46:37.8818999Z   AI_ENABLED: false
+2026-10-13T07:46:37.8819249Z ##[endgroup]
+2026-10-13T07:46:38.0705139Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-13T07:46:38.0708893Z The least common ancestor is D:\a\Echo-Canva-Web\Echo-Canva-Web. This will be the root directory of the artifact
+2026-10-13T07:46:38.0710436Z With the provided path, there will be 2 files uploaded
+2026-10-13T07:46:38.0716427Z Artifact name is valid!
+2026-10-13T07:46:38.0717863Z Root directory input is valid!
+2026-10-13T07:46:38.3521313Z Uploading artifact: chromium-failure-evidence-windows-latest.zip
+2026-10-13T07:46:38.3572236Z Beginning upload of artifact content to blob storage
+2026-10-13T07:46:38.5517284Z Uploaded bytes 2496
+2026-10-13T07:46:38.5962131Z Finished uploading artifact content to blob storage!
+2026-10-13T07:46:38.5963652Z SHA256 digest of uploaded artifact is 2d9d39cb5a73bb1c869978919b2bd4e906b489189fb3ab02d62dce7a57051a7e
+2026-10-13T07:46:38.5964992Z Finalizing artifact upload
+2026-10-13T07:46:38.8996425Z Artifact chromium-failure-evidence-windows-latest successfully finalized. Artifact ID 11796840178
+2026-10-13T07:46:38.8997870Z Artifact chromium-failure-evidence-windows-latest has been successfully uploaded! Final size is 2496 bytes. Artifact ID is 11796840178
+2026-10-13T07:46:38.9004506Z Artifact download URL: https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38364078147/artifacts/11796840178
+2026-10-13T07:46:38.9344091Z Post job cleanup.
+2026-10-13T07:46:39.1155733Z Post job cleanup.
+2026-10-13T07:46:39.3445203Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-13T07:46:39.3742592Z git version 2.55.0.windows.5
+2026-10-13T07:46:39.3817485Z Temporarily overriding HOME='D:\a\_temp\2ba90ec3-033e-45ef-a71f-e3f9439fccb2' before making global git config changes
+2026-10-13T07:46:39.3818995Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-13T07:46:39.3831835Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\Echo-Canva-Web\Echo-Canva-Web
+2026-10-13T07:46:39.4197544Z Removing SSH command configuration
+2026-10-13T07:46:39.4213573Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T07:46:39.4586555Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-13T07:46:40.0481424Z Removing HTTP extra header
+2026-10-13T07:46:40.0495004Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T07:46:40.0839699Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-13T07:46:40.7019252Z Removing includeIf entries pointing to credentials config files
+2026-10-13T07:46:40.7031729Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T07:46:40.7372662Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-13T07:46:41.3151852Z Cleaning up orphan processes

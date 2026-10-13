@@ -1,0 +1,83 @@
+$ vitest run
+
+ RUN  v4.1.11 /app
+
+ ✓ tests/unit/braces-security.test.ts (26 tests) 28ms
+ ✓ tests/unit/geometry.test.ts (8 tests) 8ms
+ ✓ tests/unit/room-acoustics.test.ts (7 tests) 9ms
+ ✓ tests/unit/portal.test.ts (10 tests) 15ms
+ ✓ tests/unit/image-source.test.ts (10 tests) 27ms
+ ✓ tests/unit/hybrid3d-six-band-materials.test.ts (5 tests) 9ms
+ ✓ tests/unit/early-reflection-bank.test.ts (4 tests) 191ms
+ ✓ tests/unit/schroeder-reverb.test.ts (6 tests) 225ms
+ ✓ tests/unit/compute-frame.test.ts (12 tests) 283ms
+ ✓ tests/unit/workspace-project.test.ts (7 tests) 24ms
+ ✓ tests/unit/workspace-geometry-constraints.test.ts (6 tests) 27ms
+ ✓ tests/unit/acoustic-explainer.test.ts (26 tests) 32ms
+ ✓ tests/unit/scene-validation.test.ts (26 tests) 50ms
+ ✓ tests/unit/audio-engine.test.ts (26 tests) 76ms
+ ✓ tests/unit/workspace-primitives.test.ts (7 tests) 36ms
+ ✓ tests/unit/use-acoustic-frame.test.ts (7 tests) 89ms
+ ✓ tests/unit/runtime-license-collector.test.ts (9 tests) 1032ms
+ ✓ tests/unit/hybrid3d-second-order.test.ts (5 tests) 275ms
+ ✓ tests/unit/classic-source-pool.test.ts (50 tests) 409ms
+ ✓ tests/unit/acoustic-worker.test.ts (6 tests) 47ms
+ ✓ tests/unit/viewport-math.test.ts (8 tests) 14ms
+ ✓ tests/unit/ai-client.test.ts (16 tests) 66ms
+ ✓ tests/unit/local-audio-library.test.ts (7 tests) 50ms
+ ✓ tests/unit/workspace-persistence.test.ts (9 tests) 73ms
+ ✓ tests/unit/hybrid-scene-generation.test.ts (4 tests) 37ms
+ ✓ tests/unit/editor-reducer.test.ts (13 tests) 75ms
+ ✓ tests/unit/occlusion.test.ts (5 tests) 25ms
+ ✓ tests/unit/hybrid3d-audible-direct.test.ts (7 tests) 349ms
+ ✓ tests/unit/classic-source-worker.test.ts (3 tests) 26ms
+ ✓ tests/unit/hybrid3d-direct.test.ts (10 tests) 360ms
+ ✓ tests/unit/scene-serialization.test.ts (8 tests) 97ms
+ ✓ tests/unit/scene-compile-route.test.ts (8 tests) 325ms
+ ✓ tests/unit/hybrid-direct-worker.test.ts (4 tests) 89ms
+ ✓ tests/unit/hybrid3d-reflection.test.ts (3 tests) 16ms
+ ✓ tests/unit/hybrid3d-compile.test.ts (4 tests) 54ms
+ ✓ tests/unit/hybrid3d-receiver-connection.test.ts (3 tests) 25ms
+ ✓ tests/unit/hybrid3d-reflection-rendering.test.ts (4 tests) 17ms
+ ✓ tests/unit/ai-request-security.test.ts (11 tests) 162ms
+ ✓ tests/unit/material-registry.test.ts (6 tests) 33ms
+ ✓ tests/unit/hybrid-path-overlay.test.ts (5 tests) 95ms
+ ✓ tests/unit/coordinates.test.ts (7 tests) 21ms
+ ✓ tests/unit/hybrid3d-directional-late-field.test.ts (3 tests) 26ms
+ ✓ tests/unit/ai-scene-prompt-evals.test.ts (15 tests) 92ms
+ ✓ tests/unit/hybrid3d-receiver-connection-benchmark.test.ts (3 tests) 123ms
+ ✓ tests/unit/workspace-history.test.ts (5 tests) 178ms
+ ✓ tests/unit/partition-editing.test.ts (4 tests) 15ms
+ ✓ tests/unit/classic-viewport-math.test.ts (4 tests) 13ms
+ ✓ tests/unit/scene-compiler.test.ts (8 tests) 64ms
+ ✓ tests/unit/audio-math.test.ts (4 tests) 11ms
+ ✓ tests/unit/ai-provider.test.ts (6 tests) 12ms
+ ✓ tests/unit/scene-document.test.ts (5 tests) 63ms
+ ✓ tests/unit/content-policy.test.ts (6 tests) 11ms
+ ✓ tests/unit/scene-explain-route.test.ts (3 tests) 62ms
+ ✓ tests/unit/audio-assets.test.ts (1 test) 18ms
+ ✓ tests/unit/numeric-scrub-field.test.tsx (3 tests) 8ms
+ ✓ tests/unit/workspace-status-bar.test.ts (2 tests) 6ms
+ ✓ tests/unit/ai-contracts.test.ts (4 tests) 11ms
+ ✓ tests/unit/hybrid3d-primitives.test.ts (2 tests) 33ms
+ ✓ tests/unit/workspace-projections.test.ts (3 tests) 13ms
+ ✓ tests/unit/engine-router.test.ts (3 tests) 109ms
+ ✓ tests/unit/workspace-transfer.test.ts (3 tests) 32ms
+ ✓ tests/unit/hybrid-direct-pool.test.ts (51 tests) 797ms
+ ✓ tests/unit/workspace-listeners.test.ts (2 tests) 19ms
+ ✓ tests/unit/scene-schema.test.ts (2 tests) 16ms
+ ✓ tests/unit/development-shell.test.ts (2 tests) 9ms
+ ✓ tests/unit/scene-editor-route.test.ts (1 test) 5ms
+ ✓ tests/unit/smoke.test.ts (1 test) 6ms
+ ✓ tests/unit/classic-baseline-capture.test.ts (1 test) 46ms
+ ✓ tests/unit/hybrid-viewport-adapter.test.ts (2 tests) 69ms
+ ✓ tests/unit/classic-viewport-adapter.test.ts (1 test) 60ms
+ ✓ tests/unit/transport.test.ts (1 test) 14ms
+ ✓ tests/unit/client-only-marker.test.ts (7 tests) 1321ms
+   ✓ preserves Next's actual server/client alias targets and rejection behavior  737ms
+ ✓ tests/unit/playwright-config.test.ts (1 test) 3ms
+
+ Test Files  73 passed (73)
+      Tests  567 passed (567)
+   Start at  06:19:20
+   Duration  4.29s (transform 33.97s, setup 0ms, import 58.20s, tests 8.16s, environment 26ms)

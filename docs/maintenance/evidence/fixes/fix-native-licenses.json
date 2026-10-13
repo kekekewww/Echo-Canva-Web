@@ -1,0 +1,20 @@
+{
+  "stage": "licenses",
+  "startedAt": "2026-10-13T06:09:04.019Z",
+  "cwd": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "scripts/collect-runtime-licenses.mjs"
+  ],
+  "platform": "win32",
+  "arch": "x64",
+  "node": "v22.17.0",
+  "packageManager": "pnpm@11.7.0",
+  "next": "16.3.8",
+  "playwright": "1.61.1",
+  "vitest": "4.1.11",
+  "endedAt": "2026-10-13T06:09:07.400Z",
+  "durationSeconds": 3.3804394,
+  "exitCode": 0,
+  "signal": null
+}

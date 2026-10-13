@@ -1,0 +1,11 @@
+{
+  "sourceHead": "96f3247069a01eac09cf707e90cdc9231f8a4bbe",
+  "baseUrl": "http://127.0.0.1:3102",
+  "config": "playwright.container.config.ts",
+  "exitCode": 0,
+  "seconds": 44.1757648,
+  "image": "sha256:a97fbd885d9e483385bc7d2eea348ad488c5c26ee09a19a46e443662ec17ed01",
+  "retries": 0,
+  "hostNode": "v22.17.0",
+  "utc": "2026-10-13T07:48:05.4631821Z"
+}

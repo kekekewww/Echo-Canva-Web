@@ -1,0 +1,19 @@
+{
+  "Id": "sha256:fa9724e0474e8a65ec251b5b2f12c09d3841350e39dd2bd6c777ca9ca99cc4ac",
+  "Size": 1037614927,
+  "Created": "2026-10-13T06:12:31.071993656Z",
+  "User": "node",
+  "Cmd": [
+    "node",
+    "node_modules/next/dist/bin/next",
+    "dev",
+    "--hostname",
+    "0.0.0.0",
+    "--port",
+    "3000"
+  ],
+  "StopSignal": "SIGTERM",
+  "Ports": {
+    "3000/tcp": {}
+  }
+}

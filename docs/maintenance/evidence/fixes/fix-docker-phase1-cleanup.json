@@ -1,0 +1,11 @@
+{
+  "watchProcess": "already exited after scoped container stop",
+  "taskContainersRemaining": 0,
+  "imagesRetained": true,
+  "browserProfileRetained": true,
+  "projects": [
+    "echo-canvas-fix-prod",
+    "echo-canvas-fix-dev"
+  ],
+  "utc": "2026-10-13T06:27:30.7662581Z"
+}

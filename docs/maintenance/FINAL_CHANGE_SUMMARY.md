@@ -1,6 +1,11 @@
-# Final Change Summary
+# Initial Extraction Change Summary
 
 Date: 2026-10-13. This summary describes the independent local Echo Canvas Web extraction. Command-level outcomes belong in [final verification](FINAL_VERIFICATION.md) and [Docker verification](DOCKER_VERIFICATION.md); configuration presence alone is not a passing test.
+
+This is the initial extraction snapshot. Subsequent fixes, runtime notice
+replacement and actual hosted CI outcomes are recorded in
+[the follow-up ledger](VERIFICATION_FIXES.md). Initial failures and exceptions
+below remain historical evidence, not current status.
 
 ## Source and scope: completed
 
@@ -36,6 +41,6 @@ Public-PR CI has separate application and production-Docker jobs, frozen depende
 
 Three added numerical fixtures cover an analytic Classic second-order path, Eyring dimensional similarity, and two-face partition accounting; the targeted suite passed 18 tests including the unchanged Classic oracle. The original full baseline Chromium run had 44 passes and one 182 ms stress long task against the retained 50 ms limit; its passing targeted rerun does not erase that failure. Final native and production-container complete browser suites each failed 44/45 on the unchanged performance case. A native targeted retry also failed the long-task limit. Complete outcomes and retained failure evidence are recorded separately in [FINAL_VERIFICATION.md](FINAL_VERIFICATION.md). See [acoustic regression](ACOUSTIC_REGRESSION.md).
 
-macOS Docker Desktop, a separate Linux host/ARM64 runtime, remote GitHub Actions, real paid-provider behavior, subjective headphone localization, actual audio hardware/device interruption, physical room calibration and a comprehensive base-image CVE scan remain unverified or separate follow-up. Passing offline rendering and unit tests do not establish these outcomes. [Remaining debt](REMAINING_TECHNICAL_DEBT.md) gives bounded follow-ups.
+At the initial extraction stage, macOS Docker Desktop, a separate Linux host/ARM64 runtime, remote GitHub Actions, real paid-provider behavior, subjective headphone localization, actual audio hardware/device interruption, physical room calibration and a comprehensive base-image CVE scan remained unverified or separate follow-up. Hosted CI has since executed, including native macOS ARM64; see the follow-up ledger for exact pass/fail results. Passing offline rendering and unit tests do not establish physical listening outcomes. [Remaining debt](REMAINING_TECHNICAL_DEBT.md) gives bounded follow-ups.
 
 The completed work branch was pushed to the existing user-supplied repository. Its LICENSE-only `main` remained unchanged at initial publication. The user then authorized PR creation and automatic merge; the content-neutral bridge preserves both that initializer and the immutable extraction history. No public repository, issue, label, Docker image, release or deployment was created. The [maintenance index](README.md) links every requested report and [onboarding](../community/ONBOARDING.md) supports native or Docker contributors.

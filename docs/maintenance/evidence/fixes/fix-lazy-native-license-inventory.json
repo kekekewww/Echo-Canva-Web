@@ -1,0 +1,499 @@
+{
+  "generatedBy": "scripts/collect-runtime-licenses.mjs",
+  "scope": "Standalone runtime packages plus declared production dependencies, including dependencies bundled into server/client chunks. Vendored and pinned supplemental notices are preserved with provenance.",
+  "limitation": "Notice preservation is not a complete source, binary, or license-compliance audit. Re-run on the target build platform.",
+  "summary": {
+    "runtimePackages": 20,
+    "standalonePackages": 18,
+    "skippedManifestsWithoutNameOrVersion": 49,
+    "missingLicenseMetadata": 0,
+    "missingNoticeFiles": 0,
+    "missingInstalledPackages": 0,
+    "ignoredExternalRuntimeLinks": 0,
+    "declaredDependenciesIncluded": 5,
+    "supplementalPackages": 2,
+    "provenanceExceptions": 0
+  },
+  "packages": [
+    {
+      "name": "@echo-canvas/client-only-marker",
+      "version": "1.0.0",
+      "license": "MIT",
+      "sourceRepository": "https://github.com/kekekewww/Echo-Canva-Web.git",
+      "directory": "%40echo-canvas%2Fclient-only-marker%401.0.0",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "@edge-runtime/cookies",
+      "version": "6.0.0",
+      "license": "MIT",
+      "sourceRepository": null,
+      "directory": "%40edge-runtime%2Fcookies%406.0.0",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "supplemental/docs/licenses/edge-cookies-6.0.0/LICENSE.md",
+        "supplemental/docs/licenses/edge-cookies-6.0.0/PROVENANCE.md",
+        "supplemental/docs/licenses/edge-cookies-6.0.0/UPSTREAM_PACKAGE.json"
+      ],
+      "bundledIn": "next@16.3.8",
+      "bundledDirectory": "dist/compiled/@edge-runtime/cookies",
+      "supplementalNotice": {
+        "files": [
+          "docs/licenses/edge-cookies-6.0.0/LICENSE.md",
+          "docs/licenses/edge-cookies-6.0.0/UPSTREAM_PACKAGE.json",
+          "docs/licenses/edge-cookies-6.0.0/PROVENANCE.md"
+        ],
+        "sources": [
+          "https://registry.npmjs.org/@edge-runtime/cookies/-/cookies-6.0.0.tgz"
+        ],
+        "note": "Exact published npm license bytes verified against registry SHA-512 integrity; Next vendored copy omits its license."
+      }
+    },
+    {
+      "name": "@edge-runtime/ponyfill",
+      "version": "4.0.0",
+      "license": "MIT",
+      "sourceRepository": null,
+      "directory": "%40edge-runtime%2Fponyfill%404.0.0",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "supplemental/docs/licenses/edge-ponyfill-4.0.0/LICENSE.md",
+        "supplemental/docs/licenses/edge-ponyfill-4.0.0/PROVENANCE.md",
+        "supplemental/docs/licenses/edge-ponyfill-4.0.0/UPSTREAM_PACKAGE.json"
+      ],
+      "bundledIn": "next@16.3.8",
+      "bundledDirectory": "dist/compiled/@edge-runtime/ponyfill",
+      "supplementalNotice": {
+        "files": [
+          "docs/licenses/edge-ponyfill-4.0.0/LICENSE.md",
+          "docs/licenses/edge-ponyfill-4.0.0/UPSTREAM_PACKAGE.json",
+          "docs/licenses/edge-ponyfill-4.0.0/PROVENANCE.md"
+        ],
+        "sources": [
+          "https://registry.npmjs.org/@edge-runtime/ponyfill/-/ponyfill-4.0.0.tgz"
+        ],
+        "note": "Exact published npm license bytes verified against registry SHA-512 integrity; Next vendored copy omits its license."
+      }
+    },
+    {
+      "name": "@edge-runtime/primitives",
+      "version": "6.0.0",
+      "license": "MIT",
+      "sourceRepository": null,
+      "directory": "%40edge-runtime%2Fprimitives%406.0.0",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "abort-controller.js.LEGAL.txt",
+        "console.js.LEGAL.txt",
+        "crypto.js.LEGAL.txt",
+        "events.js.LEGAL.txt",
+        "fetch.js.LEGAL.txt",
+        "index.js.LEGAL.txt",
+        "load.js.LEGAL.txt",
+        "stream.js.LEGAL.txt",
+        "timers.js.LEGAL.txt",
+        "url.js.LEGAL.txt"
+      ],
+      "bundledIn": "next@16.3.8",
+      "bundledDirectory": "dist/compiled/@edge-runtime/primitives"
+    },
+    {
+      "name": "@img/colour",
+      "version": "1.1.0",
+      "license": "MIT",
+      "sourceRepository": "git+https://github.com/lovell/colour.git",
+      "directory": "%40img%2Fcolour%401.1.0",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "LICENSE.md"
+      ]
+    },
+    {
+      "name": "@img/sharp-win32-x64",
+      "version": "0.35.5",
+      "license": "Apache-2.0 AND LGPL-3.0-or-later",
+      "sourceRepository": "git+https://github.com/lovell/sharp.git",
+      "directory": "%40img%2Fsharp-win32-x64%400.35.5",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "@next/env",
+      "version": "16.3.8",
+      "license": "MIT",
+      "sourceRepository": "https://github.com/vercel/next.js",
+      "directory": "%40next%2Fenv%4016.3.8",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "shared-repository/next%4016.3.8/license.md"
+      ],
+      "sharedRepositoryNotice": {
+        "package": "next@16.3.8",
+        "note": "@next/env is MIT-licensed in the same vercel/next.js repository; retain that release's repository license notice.",
+        "notices": [
+          "shared-repository/next%4016.3.8/license.md"
+        ]
+      }
+    },
+    {
+      "name": "@swc/helpers",
+      "version": "0.5.23",
+      "license": "Apache-2.0",
+      "sourceRepository": "git+https://github.com/swc-project/swc.git",
+      "directory": "%40swc%2Fhelpers%400.5.23",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "detect-libc",
+      "version": "2.1.2",
+      "license": "Apache-2.0",
+      "sourceRepository": "git://github.com/lovell/detect-libc.git",
+      "directory": "detect-libc%402.1.2",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "next",
+      "version": "16.3.8",
+      "license": "MIT",
+      "sourceRepository": "vercel/next.js",
+      "directory": "next%4016.3.8",
+      "inclusion": [
+        "standalone",
+        "declared dependency"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "dist/compiled/@babel/runtime/LICENSE",
+        "dist/compiled/@edge-runtime/primitives/abort-controller.js.LEGAL.txt",
+        "dist/compiled/@edge-runtime/primitives/console.js.LEGAL.txt",
+        "dist/compiled/@edge-runtime/primitives/crypto.js.LEGAL.txt",
+        "dist/compiled/@edge-runtime/primitives/events.js.LEGAL.txt",
+        "dist/compiled/@edge-runtime/primitives/fetch.js.LEGAL.txt",
+        "dist/compiled/@edge-runtime/primitives/index.js.LEGAL.txt",
+        "dist/compiled/@edge-runtime/primitives/load.js.LEGAL.txt",
+        "dist/compiled/@edge-runtime/primitives/stream.js.LEGAL.txt",
+        "dist/compiled/@edge-runtime/primitives/timers.js.LEGAL.txt",
+        "dist/compiled/@edge-runtime/primitives/url.js.LEGAL.txt",
+        "dist/compiled/@hapi/accept/LICENSE",
+        "dist/compiled/@mswjs/interceptors/ClientRequest/LICENSE",
+        "dist/compiled/@napi-rs/triples/LICENSE",
+        "dist/compiled/@opentelemetry/api/LICENSE",
+        "dist/compiled/@vercel/blob/LICENSE",
+        "dist/compiled/@vercel/detect-agent/LICENSE",
+        "dist/compiled/@vercel/nft/LICENSE",
+        "dist/compiled/@vercel/og/LICENSE",
+        "dist/compiled/@vercel/og/satori/LICENSE",
+        "dist/compiled/@vercel/routing-utils/LICENSE",
+        "dist/compiled/acorn/LICENSE",
+        "dist/compiled/anser/LICENSE",
+        "dist/compiled/assert/LICENSE",
+        "dist/compiled/async-retry/LICENSE",
+        "dist/compiled/async-sema/LICENSE",
+        "dist/compiled/babel/LICENSE",
+        "dist/compiled/browserify-zlib/LICENSE",
+        "dist/compiled/browserslist/LICENSE",
+        "dist/compiled/buffer/LICENSE",
+        "dist/compiled/busboy/LICENSE",
+        "dist/compiled/bytes/LICENSE",
+        "dist/compiled/ci-info/LICENSE",
+        "dist/compiled/cli-select/LICENSE",
+        "dist/compiled/commander/LICENSE",
+        "dist/compiled/comment-json/LICENSE",
+        "dist/compiled/compression/LICENSE",
+        "dist/compiled/conf/LICENSE",
+        "dist/compiled/content-disposition/LICENSE",
+        "dist/compiled/content-type/LICENSE",
+        "dist/compiled/cookie/LICENSE",
+        "dist/compiled/cross-spawn/LICENSE",
+        "dist/compiled/crypto-browserify/LICENSE",
+        "dist/compiled/debug/LICENSE",
+        "dist/compiled/devalue/LICENSE",
+        "dist/compiled/domain-browser/LICENSE",
+        "dist/compiled/edge-runtime/LICENSE",
+        "dist/compiled/events/LICENSE",
+        "dist/compiled/find-up/LICENSE",
+        "dist/compiled/fresh/LICENSE",
+        "dist/compiled/glob/LICENSE",
+        "dist/compiled/gzip-size/LICENSE",
+        "dist/compiled/hash.js/sha256/LICENSE",
+        "dist/compiled/https-browserify/LICENSE",
+        "dist/compiled/httpxy/LICENSE",
+        "dist/compiled/icss-utils/LICENSE",
+        "dist/compiled/ignore-loader/LICENSE",
+        "dist/compiled/image-size/LICENSE",
+        "dist/compiled/ipaddr.js/LICENSE",
+        "dist/compiled/is-animated/LICENSE",
+        "dist/compiled/is-docker/LICENSE",
+        "dist/compiled/is-wsl/LICENSE",
+        "dist/compiled/jest-worker/LICENSE",
+        "dist/compiled/json5/LICENSE",
+        "dist/compiled/jsonwebtoken/LICENSE",
+        "dist/compiled/loader-runner/LICENSE",
+        "dist/compiled/loader-utils2/LICENSE",
+        "dist/compiled/loader-utils3/LICENSE",
+        "dist/compiled/lodash.curry/LICENSE",
+        "dist/compiled/lru-cache/LICENSE",
+        "dist/compiled/mini-css-extract-plugin/LICENSE",
+        "dist/compiled/nanoid/LICENSE",
+        "dist/compiled/native-url/LICENSE",
+        "dist/compiled/neo-async/LICENSE",
+        "dist/compiled/node-html-parser/LICENSE",
+        "dist/compiled/ora/LICENSE",
+        "dist/compiled/os-browserify/LICENSE",
+        "dist/compiled/p-limit/LICENSE",
+        "dist/compiled/p-queue/LICENSE",
+        "dist/compiled/path-browserify/LICENSE",
+        "dist/compiled/path-to-regexp/LICENSE",
+        "dist/compiled/picomatch/LICENSE",
+        "dist/compiled/postcss-flexbugs-fixes/LICENSE",
+        "dist/compiled/postcss-modules-extract-imports/LICENSE",
+        "dist/compiled/postcss-modules-local-by-default/LICENSE",
+        "dist/compiled/postcss-modules-scope/LICENSE",
+        "dist/compiled/postcss-modules-values/LICENSE",
+        "dist/compiled/postcss-preset-env/LICENSE",
+        "dist/compiled/postcss-safe-parser/LICENSE",
+        "dist/compiled/postcss-scss/LICENSE",
+        "dist/compiled/postcss-value-parser/LICENSE",
+        "dist/compiled/process/LICENSE",
+        "dist/compiled/querystring-es3/LICENSE",
+        "dist/compiled/raw-body/LICENSE",
+        "dist/compiled/react-dom-experimental/LICENSE",
+        "dist/compiled/react-dom/LICENSE",
+        "dist/compiled/react-experimental/LICENSE",
+        "dist/compiled/react-is/LICENSE",
+        "dist/compiled/react-refresh/LICENSE",
+        "dist/compiled/react-server-dom-turbopack-experimental/LICENSE",
+        "dist/compiled/react-server-dom-turbopack/LICENSE",
+        "dist/compiled/react-server-dom-webpack-experimental/LICENSE",
+        "dist/compiled/react-server-dom-webpack/LICENSE",
+        "dist/compiled/react/LICENSE",
+        "dist/compiled/regenerator-runtime/LICENSE",
+        "dist/compiled/safe-stable-stringify/LICENSE",
+        "dist/compiled/sass-loader/LICENSE",
+        "dist/compiled/scheduler-experimental/LICENSE",
+        "dist/compiled/scheduler/LICENSE",
+        "dist/compiled/schema-utils2/LICENSE",
+        "dist/compiled/schema-utils3/LICENSE",
+        "dist/compiled/semver/LICENSE",
+        "dist/compiled/send/LICENSE",
+        "dist/compiled/serve-handler/LICENSE",
+        "dist/compiled/shell-quote/LICENSE",
+        "dist/compiled/source-map/LICENSE",
+        "dist/compiled/source-map08/LICENSE",
+        "dist/compiled/stacktrace-parser/LICENSE",
+        "dist/compiled/stream-browserify/LICENSE",
+        "dist/compiled/stream-http/LICENSE",
+        "dist/compiled/string_decoder/LICENSE",
+        "dist/compiled/strip-ansi/LICENSE",
+        "dist/compiled/superstruct/LICENSE",
+        "dist/compiled/tar/LICENSE",
+        "dist/compiled/terser/LICENSE",
+        "dist/compiled/text-table/LICENSE",
+        "dist/compiled/timers-browserify/LICENSE",
+        "dist/compiled/tty-browserify/LICENSE",
+        "dist/compiled/ua-parser-js/LICENSE",
+        "dist/compiled/util/LICENSE",
+        "dist/compiled/vm-browserify/LICENSE",
+        "dist/compiled/watchpack/LICENSE",
+        "dist/compiled/web-vitals-attribution/LICENSE",
+        "dist/compiled/web-vitals/LICENSE",
+        "dist/compiled/webpack-sources1/LICENSE",
+        "dist/compiled/webpack-sources3/LICENSE",
+        "dist/compiled/webpack/LICENSE",
+        "dist/compiled/write-file-atomic/LICENSE",
+        "dist/compiled/ws/LICENSE",
+        "dist/compiled/zod-validation-error/LICENSE",
+        "dist/compiled/zod/LICENSE",
+        "dist/docs/01-app/02-guides/third-party-libraries.md",
+        "dist/docs/02-pages/02-guides/third-party-libraries.md",
+        "license.md"
+      ]
+    },
+    {
+      "name": "openai",
+      "version": "6.48.0",
+      "license": "Apache-2.0",
+      "sourceRepository": "github:openai/openai-node",
+      "directory": "openai%406.48.0",
+      "inclusion": [
+        "declared dependency (may be bundled)"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "LICENSE",
+        "src/_vendor/zod-to-json-schema/LICENSE",
+        "src/internal/qs/LICENSE.md"
+      ]
+    },
+    {
+      "name": "react-dom",
+      "version": "19.2.7",
+      "license": "MIT",
+      "sourceRepository": "https://github.com/facebook/react.git",
+      "directory": "react-dom%4019.2.7",
+      "inclusion": [
+        "standalone",
+        "declared dependency"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "react-is",
+      "version": "19.3.0-canary-cbb046ab-20260731",
+      "license": "MIT",
+      "sourceRepository": "https://github.com/react/react.git",
+      "directory": "react-is%4019.3.0-canary-cbb046ab-20260731",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "LICENSE"
+      ],
+      "bundledIn": "next@16.3.8",
+      "bundledDirectory": "dist/compiled/react-is"
+    },
+    {
+      "name": "react",
+      "version": "19.2.7",
+      "license": "MIT",
+      "sourceRepository": "https://github.com/facebook/react.git",
+      "directory": "react%4019.2.7",
+      "inclusion": [
+        "standalone",
+        "declared dependency"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "regenerator-runtime",
+      "version": "0.13.4",
+      "license": "MIT",
+      "sourceRepository": "https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime",
+      "directory": "regenerator-runtime%400.13.4",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "LICENSE"
+      ],
+      "bundledIn": "next@16.3.8",
+      "bundledDirectory": "dist/compiled/regenerator-runtime"
+    },
+    {
+      "name": "semver",
+      "version": "6.3.1",
+      "license": "ISC",
+      "sourceRepository": "https://github.com/npm/node-semver.git",
+      "directory": "semver%406.3.1",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "semver",
+      "version": "7.8.5",
+      "license": "ISC",
+      "sourceRepository": "git+https://github.com/npm/node-semver.git",
+      "directory": "semver%407.8.5",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "sharp",
+      "version": "0.35.5",
+      "license": "Apache-2.0",
+      "sourceRepository": "git+https://github.com/lovell/sharp.git",
+      "directory": "sharp%400.35.5",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "styled-jsx",
+      "version": "5.1.6",
+      "license": "MIT",
+      "sourceRepository": "vercel/styled-jsx",
+      "directory": "styled-jsx%405.1.6",
+      "inclusion": [
+        "standalone"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "license.md"
+      ]
+    },
+    {
+      "name": "zod",
+      "version": "4.4.3",
+      "license": "MIT",
+      "sourceRepository": "git+https://github.com/colinhacks/zod.git",
+      "directory": "zod%404.4.3",
+      "inclusion": [
+        "declared dependency (may be bundled)"
+      ],
+      "noticeStatus": "preserved",
+      "notices": [
+        "LICENSE"
+      ]
+    }
+  ]
+}

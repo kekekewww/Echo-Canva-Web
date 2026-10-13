@@ -1,0 +1,42 @@
+{
+  "stage": "stress",
+  "startedAt": "2026-10-13T06:49:45.634Z",
+  "cwd": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "--config",
+    "../verification-logs/fix-wall-native-playwright.config.cjs",
+    "--grep",
+    "survives the full entity-limit project",
+    "--repeat-each",
+    "3"
+  ],
+  "platform": "win32",
+  "arch": "x64",
+  "node": "v22.17.0",
+  "packageManager": "pnpm@11.7.0",
+  "next": "16.3.8",
+  "playwright": "1.61.1",
+  "vitest": "4.1.11"
+}
+[WebServer] (node:51120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+
+Running 3 tests using 1 worker
+
+(node:38128) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets (8.3s)
+(node:47012) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [chromium] › tests\e2e\workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets (8.3s)
+(node:43052) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [chromium] › tests\e2e\workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets (8.3s)
+
+  3 passed (29.8s)
+
+RESULT {"stage":"stress","startedAt":"2026-10-13T06:49:45.634Z","cwd":"D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web","command":["C:\\Program Files\\nodejs\\node.exe","node_modules/@playwright/test/cli.js","test","--config","../verification-logs/fix-wall-native-playwright.config.cjs","--grep","survives the full entity-limit project","--repeat-each","3"],"platform":"win32","arch":"x64","node":"v22.17.0","packageManager":"pnpm@11.7.0","next":"16.3.8","playwright":"1.61.1","vitest":"4.1.11","endedAt":"2026-10-13T06:50:16.403Z","durationSeconds":30.7667207,"exitCode":0,"signal":null}

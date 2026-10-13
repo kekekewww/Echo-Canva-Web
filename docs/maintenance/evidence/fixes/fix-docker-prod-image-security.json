@@ -1,0 +1,30 @@
+{
+  "actualNode": "v22.23.3",
+  "imageId": "sha256:c33e6183a468ca013b66c041806e5ae15248c71c39d1c0c878272500a74b237d",
+  "devices": null,
+  "ports": {
+    "3000/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "3102"
+      }
+    ]
+  },
+  "apiKeysEmpty": true,
+  "stopSignal": "SIGTERM",
+  "securityOpt": [
+    "no-new-privileges:true"
+  ],
+  "capDrop": [
+    "ALL"
+  ],
+  "containerId": "4cf160fb0d2756abab3ea7d05fad901b7c48f074e0167b5dd20c0c40f613af3b",
+  "privileged": false,
+  "runtimeUser": "node",
+  "init": true,
+  "imageHistoryCredentialOrEnvCopyMatches": 0,
+  "readonlyRootfs": true,
+  "networkMode": "echo-canvas-fix-prod_default",
+  "mounts": [],
+  "imageSize": 386464321
+}

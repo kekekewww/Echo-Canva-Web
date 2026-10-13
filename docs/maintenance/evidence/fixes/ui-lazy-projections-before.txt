@@ -1,0 +1,550 @@
+
+ RUN  v4.1.11 D:/Developing/Echo Canvas Web/Echo-Canva-Web
+
+ ❯ tests/unit/workspace-project-tools.test.ts (2 tests | 2 failed) 19ms
+     × renders Classic AI controls without calculating unused acoustic projections 16ms
+     × renders Hybrid AI controls without calculating unused acoustic projections 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/workspace-project-tools.test.ts > WorkspaceProjectTools idle rendering > renders Classic AI controls without calculating unused acoustic projections
+AssertionError: expected "projectClassicScene" to not be called at all, but actually been called 1 times
+
+Received:
+
+  1st projectClassicScene call:
+
+    Array [
+      Object {
+        "activeListenerId": "listener_primary",
+        "disabledEntityIds": Array [],
+        "listeners": Array [
+          Object {
+            "enabled": true,
+            "headingDeg": 0,
+            "id": "listener_primary",
+            "name": "Listener",
+            "position": Object {
+              "x": 3,
+              "y": 1.5,
+              "z": 4,
+            },
+          },
+        ],
+        "localAudioMetadata": Object {},
+        "missingAudioAssetIds": Array [],
+        "mode": "classic-2d5d",
+        "notice": null,
+        "portal3dById": Object {
+          "partition_door": Object {
+            "bottomM": 0,
+            "thicknessM": 0.12,
+            "topM": 2.1,
+          },
+        },
+        "primitives": Array [],
+        "revision": 0,
+        "room3d": Object {
+          "ceilingEnabled": true,
+          "ceilingMaterialId": "concrete_hard",
+          "depthM": 8,
+          "floorMaterialId": "concrete_hard",
+          "heightM": 3,
+          "widthM": 12,
+        },
+        "scene": Object {
+          "listener": Object {
+            "headingDeg": 0,
+            "position": Object {
+              "x": 3,
+              "y": 4,
+            },
+          },
+          "name": "Concrete Partition",
+          "portals": Array [
+            Object {
+              "center": Object {
+                "x": 6,
+                "y": 4,
+              },
+              "heightM": 2.1,
+              "id": "partition_door",
+              "lossDb": 3,
+              "open": true,
+              "wallId": "partition_center",
+              "widthM": 1.2,
+            },
+          ],
+          "revision": 0,
+          "room": Object {
+            "ceilingMaterialId": "concrete_hard",
+            "floorMaterialId": "concrete_hard",
+            "heightM": 3,
+            "outerPolygon": Array [
+              Object {
+                "x": 0,
+                "y": 0,
+              },
+              Object {
+                "x": 12,
+                "y": 0,
+              },
+              Object {
+                "x": 12,
+                "y": 8,
+              },
+              Object {
+                "x": 0,
+                "y": 8,
+              },
+            ],
+          },
+          "schemaVersion": "1.0",
+          "settings": Object {
+            "acousticUpdateHz": 12,
+            "hrtfEnabled": true,
+            "maxEarlyReflections": 6,
+          },
+          "sources": Array [
+            Object {
+              "clipId": "radio_loop",
+              "gainDb": -3,
+              "id": "radio",
+              "loop": true,
+              "name": "Radio",
+              "position": Object {
+                "x": 9,
+                "y": 4,
+              },
+              "sourceType": "point",
+            },
+            Object {
+              "clipId": "rain_loop",
+              "gainDb": -8,
+              "id": "rain",
+              "loop": true,
+              "name": "Rain",
+              "position": Object {
+                "x": 10,
+                "y": 1.5,
+              },
+              "sourceType": "point",
+            },
+          ],
+          "units": "m",
+          "walls": Array [
+            Object {
+              "a": Object {
+                "x": 0,
+                "y": 0,
+              },
+              "b": Object {
+                "x": 12,
+                "y": 0,
+              },
+              "id": "boundary_north",
+              "kind": "boundary",
+              "materialId": "concrete_hard",
+              "thicknessM": 0.2,
+            },
+            Object {
+              "a": Object {
+                "x": 12,
+                "y": 0,
+              },
+              "b": Object {
+                "x": 12,
+                "y": 8,
+              },
+              "id": "boundary_east",
+              "kind": "boundary",
+              "materialId": "concrete_hard",
+              "thicknessM": 0.2,
+            },
+            Object {
+              "a": Object {
+                "x": 12,
+                "y": 8,
+              },
+              "b": Object {
+                "x": 0,
+                "y": 8,
+              },
+              "id": "boundary_south",
+              "kind": "boundary",
+              "materialId": "concrete_hard",
+              "thicknessM": 0.2,
+            },
+            Object {
+              "a": Object {
+                "x": 0,
+                "y": 8,
+              },
+              "b": Object {
+                "x": 0,
+                "y": 0,
+              },
+              "id": "boundary_west",
+              "kind": "boundary",
+              "materialId": "concrete_hard",
+              "thicknessM": 0.2,
+            },
+            Object {
+              "a": Object {
+                "x": 6,
+                "y": 0,
+              },
+              "b": Object {
+                "x": 6,
+                "y": 8,
+              },
+              "id": "partition_center",
+              "kind": "partition",
+              "materialId": "concrete_hard",
+              "thicknessM": 0.2,
+            },
+          ],
+        },
+        "schemaVersion": "2.0",
+        "selection": Object {
+          "id": "listener_primary",
+          "type": "listener",
+        },
+        "sourceHeightsM": Object {
+          "radio": 1.5,
+          "rain": 1.5,
+        },
+        "view": Object {
+          "camera": Object {
+            "panX": 0,
+            "panY": 0,
+            "pitchDeg": 34,
+            "yawDeg": 38,
+            "zoom": 1,
+          },
+          "overlays": Object {
+            "ceilingVisible": true,
+            "pathsVisible": true,
+            "showAllPaths": false,
+          },
+          "panels": Object {
+            "inspectorCollapsed": false,
+            "outlinerCollapsed": false,
+          },
+        },
+        "wall3dById": Object {
+          "boundary_east": Object {
+            "bottomM": 0,
+            "thicknessM": 0.2,
+            "topM": 3,
+          },
+          "boundary_north": Object {
+            "bottomM": 0,
+            "thicknessM": 0.2,
+            "topM": 3,
+          },
+          "boundary_south": Object {
+            "bottomM": 0,
+            "thicknessM": 0.2,
+            "topM": 3,
+          },
+          "boundary_west": Object {
+            "bottomM": 0,
+            "thicknessM": 0.2,
+            "topM": 3,
+          },
+          "partition_center": Object {
+            "bottomM": 0,
+            "thicknessM": 0.2,
+            "topM": 3,
+          },
+        },
+      },
+    ]
+
+
+Number of calls: 1
+
+ ❯ tests/unit/workspace-project-tools.test.ts:27:35
+     25|     expect(markup).toContain("Generate scene");
+     26|     expect(markup).toContain("Explain selected acoustics");
+     27|     expect(classicProjection).not.toHaveBeenCalled();
+       |                                   ^
+     28|     expect(hybridProjection).not.toHaveBeenCalled();
+     29|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/unit/workspace-project-tools.test.ts > WorkspaceProjectTools idle rendering > renders Hybrid AI controls without calculating unused acoustic projections
+AssertionError: expected "projectClassicScene" to not be called at all, but actually been called 1 times
+
+Received:
+
+  1st projectClassicScene call:
+
+    Array [
+      Object {
+        "activeListenerId": "listener_primary",
+        "disabledEntityIds": Array [],
+        "listeners": Array [
+          Object {
+            "enabled": true,
+            "headingDeg": 0,
+            "id": "listener_primary",
+            "name": "Listener",
+            "position": Object {
+              "x": 3,
+              "y": 1.5,
+              "z": 4,
+            },
+          },
+        ],
+        "localAudioMetadata": Object {},
+        "missingAudioAssetIds": Array [],
+        "mode": "hybrid-3d",
+        "notice": null,
+        "portal3dById": Object {
+          "partition_door": Object {
+            "bottomM": 0,
+            "thicknessM": 0.12,
+            "topM": 2.1,
+          },
+        },
+        "primitives": Array [],
+        "revision": 0,
+        "room3d": Object {
+          "ceilingEnabled": true,
+          "ceilingMaterialId": "concrete_hard",
+          "depthM": 8,
+          "floorMaterialId": "concrete_hard",
+          "heightM": 3,
+          "widthM": 12,
+        },
+        "scene": Object {
+          "listener": Object {
+            "headingDeg": 0,
+            "position": Object {
+              "x": 3,
+              "y": 4,
+            },
+          },
+          "name": "Concrete Partition",
+          "portals": Array [
+            Object {
+              "center": Object {
+                "x": 6,
+                "y": 4,
+              },
+              "heightM": 2.1,
+              "id": "partition_door",
+              "lossDb": 3,
+              "open": true,
+              "wallId": "partition_center",
+              "widthM": 1.2,
+            },
+          ],
+          "revision": 0,
+          "room": Object {
+            "ceilingMaterialId": "concrete_hard",
+            "floorMaterialId": "concrete_hard",
+            "heightM": 3,
+            "outerPolygon": Array [
+              Object {
+                "x": 0,
+                "y": 0,
+              },
+              Object {
+                "x": 12,
+                "y": 0,
+              },
+              Object {
+                "x": 12,
+                "y": 8,
+              },
+              Object {
+                "x": 0,
+                "y": 8,
+              },
+            ],
+          },
+          "schemaVersion": "1.0",
+          "settings": Object {
+            "acousticUpdateHz": 12,
+            "hrtfEnabled": true,
+            "maxEarlyReflections": 6,
+          },
+          "sources": Array [
+            Object {
+              "clipId": "radio_loop",
+              "gainDb": -3,
+              "id": "radio",
+              "loop": true,
+              "name": "Radio",
+              "position": Object {
+                "x": 9,
+                "y": 4,
+              },
+              "sourceType": "point",
+            },
+            Object {
+              "clipId": "rain_loop",
+              "gainDb": -8,
+              "id": "rain",
+              "loop": true,
+              "name": "Rain",
+              "position": Object {
+                "x": 10,
+                "y": 1.5,
+              },
+              "sourceType": "point",
+            },
+          ],
+          "units": "m",
+          "walls": Array [
+            Object {
+              "a": Object {
+                "x": 0,
+                "y": 0,
+              },
+              "b": Object {
+                "x": 12,
+                "y": 0,
+              },
+              "id": "boundary_north",
+              "kind": "boundary",
+              "materialId": "concrete_hard",
+              "thicknessM": 0.2,
+            },
+            Object {
+              "a": Object {
+                "x": 12,
+                "y": 0,
+              },
+              "b": Object {
+                "x": 12,
+                "y": 8,
+              },
+              "id": "boundary_east",
+              "kind": "boundary",
+              "materialId": "concrete_hard",
+              "thicknessM": 0.2,
+            },
+            Object {
+              "a": Object {
+                "x": 12,
+                "y": 8,
+              },
+              "b": Object {
+                "x": 0,
+                "y": 8,
+              },
+              "id": "boundary_south",
+              "kind": "boundary",
+              "materialId": "concrete_hard",
+              "thicknessM": 0.2,
+            },
+            Object {
+              "a": Object {
+                "x": 0,
+                "y": 8,
+              },
+              "b": Object {
+                "x": 0,
+                "y": 0,
+              },
+              "id": "boundary_west",
+              "kind": "boundary",
+              "materialId": "concrete_hard",
+              "thicknessM": 0.2,
+            },
+            Object {
+              "a": Object {
+                "x": 6,
+                "y": 0,
+              },
+              "b": Object {
+                "x": 6,
+                "y": 8,
+              },
+              "id": "partition_center",
+              "kind": "partition",
+              "materialId": "concrete_hard",
+              "thicknessM": 0.2,
+            },
+          ],
+        },
+        "schemaVersion": "2.0",
+        "selection": Object {
+          "id": "listener_primary",
+          "type": "listener",
+        },
+        "sourceHeightsM": Object {
+          "radio": 1.5,
+          "rain": 1.5,
+        },
+        "view": Object {
+          "camera": Object {
+            "panX": 0,
+            "panY": 0,
+            "pitchDeg": 34,
+            "yawDeg": 38,
+            "zoom": 1,
+          },
+          "overlays": Object {
+            "ceilingVisible": true,
+            "pathsVisible": true,
+            "showAllPaths": false,
+          },
+          "panels": Object {
+            "inspectorCollapsed": false,
+            "outlinerCollapsed": false,
+          },
+        },
+        "wall3dById": Object {
+          "boundary_east": Object {
+            "bottomM": 0,
+            "thicknessM": 0.2,
+            "topM": 3,
+          },
+          "boundary_north": Object {
+            "bottomM": 0,
+            "thicknessM": 0.2,
+            "topM": 3,
+          },
+          "boundary_south": Object {
+            "bottomM": 0,
+            "thicknessM": 0.2,
+            "topM": 3,
+          },
+          "boundary_west": Object {
+            "bottomM": 0,
+            "thicknessM": 0.2,
+            "topM": 3,
+          },
+          "partition_center": Object {
+            "bottomM": 0,
+            "thicknessM": 0.2,
+            "topM": 3,
+          },
+        },
+      },
+    ]
+
+
+Number of calls: 1
+
+ ❯ tests/unit/workspace-project-tools.test.ts:27:35
+     25|     expect(markup).toContain("Generate scene");
+     26|     expect(markup).toContain("Explain selected acoustics");
+     27|     expect(classicProjection).not.toHaveBeenCalled();
+       |                                   ^
+     28|     expect(hybridProjection).not.toHaveBeenCalled();
+     29|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  14:58:04
+   Duration  1.82s (transform 386ms, setup 0ms, import 1.30s, tests 19ms, environment 0ms)

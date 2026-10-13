@@ -1,0 +1,26 @@
+[
+  {
+    "Path": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web\\package.json",
+    "Hash": "D26CA895D5A252A461C4F9CD293AE240D6078FAAFE5B740552C58F856EB77BBB"
+  },
+  {
+    "Path": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web\\pnpm-lock.yaml",
+    "Hash": "FE0825B7557B7C1364ECFC90B9F746CBB1DCEC4CD991E18E6A3D5CED0C555F86"
+  },
+  {
+    "Path": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web\\pnpm-workspace.yaml",
+    "Hash": "11E7D2726D356EA3272DA95E1BA0715E2C5E732C857CC44777F6E94530072698"
+  },
+  {
+    "Path": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web\\patches\\braces@3.0.3.patch",
+    "Hash": "0516FF03654C76013AB3ADF767497D634835A3EC34EB4492510772A913E69B33"
+  },
+  {
+    "Path": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web\\patches\\client-only@0.0.1.patch",
+    "Hash": "DE31B2232D1B30CFF0809DD63B65A4709DE451C64F94C212B3EC1E64A1FE1FC3"
+  },
+  {
+    "Path": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web\\patches\\next@16.3.8.patch",
+    "Hash": "B9B3EF163D3B2B8307663E96081210DBD17B2C967EA761E93439035B2046A6F2"
+  }
+]

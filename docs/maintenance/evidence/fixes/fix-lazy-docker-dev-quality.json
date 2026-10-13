@@ -1,0 +1,20 @@
+{
+  "image": "sha256:6613e8c1d516fe1da321adfbbcefb43ede719a29d4cd186e4ee456f57b4528aa",
+  "seconds": 24.2078808,
+  "pnpm": "11.7.0",
+  "node": "v22.23.3",
+  "checks": [
+    {
+      "check": "lint",
+      "exitCode": 0
+    },
+    {
+      "check": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "check": "test",
+      "exitCode": 0
+    }
+  ]
+}

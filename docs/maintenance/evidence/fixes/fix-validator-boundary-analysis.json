@@ -1,0 +1,599 @@
+{
+  "diagnosticOnly": true,
+  "buildId": "2ny829QrRqlazPRczRblE",
+  "hardwareConcurrencyOverride": 3,
+  "metrics": {
+    "browser": {
+      "hardwareConcurrency": 3,
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7827.55 Safari/537.36"
+    },
+    "expectedWorkerCount": 1,
+    "timings": [
+      6,
+      6,
+      7,
+      5,
+      5,
+      4,
+      3,
+      8,
+      7,
+      6,
+      6,
+      4,
+      6,
+      4,
+      6,
+      5,
+      4,
+      3,
+      5,
+      5,
+      7,
+      6,
+      4,
+      4
+    ],
+    "p95Ms": 7,
+    "completedSequences": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ],
+    "longTasks": [],
+    "workerStatuses": [
+      " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 5 · Accepted 5/5 · Local saved · 6.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 6 · Accepted 6/6 · Local saved · 6.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 7 · Accepted 7/7 · Local saved · 7.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 8 · Accepted 8/8 · Local saved · 5.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 9 · Accepted 9/9 · Local saved · 5.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 10 · Accepted 10/10 · Local saved · 4.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 11 · Accepted 11/11 · Local saved · 3.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 12 · Accepted 12/12 · Local saved · 8.00 ms · 1 worker · shard max 6.00 ms · shard total 6.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 13 · Accepted 13/13 · Local saved · 7.00 ms · 1 worker · shard max 7.00 ms · shard total 7.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 14 · Accepted 14/14 · Local saved · 6.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 15 · Accepted 15/15 · Local saved · 6.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 16 · Accepted 16/16 · Local saved · 4.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 17 · Accepted 17/17 · Local saved · 6.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 18 · Accepted 18/18 · Local saved · 4.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 19 · Accepted 19/19 · Local saved · 6.00 ms · 1 worker · shard max 6.00 ms · shard total 6.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 20 · Accepted 20/20 · Local saved · 5.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 21 · Accepted 21/21 · Local saved · 4.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 22 · Accepted 22/22 · Local saved · 3.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 23 · Accepted 23/23 · Local saved · 5.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 24 · Accepted 24/24 · Local saved · 5.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 25 · Accepted 25/25 · Local saved · 7.00 ms · 1 worker · shard max 7.00 ms · shard total 7.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 26 · Accepted 26/26 · Local saved · 6.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 27 · Accepted 27/27 · Local saved · 4.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation",
+      " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 28 · Accepted 28/28 · Local saved · 4.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+    ]
+  },
+  "sampleCount": 24,
+  "handlerDurationMs": {
+    "min": 0.20000000298023224,
+    "p95": 1.7999999970197678,
+    "max": 2.5,
+    "mean": 0.8166666682809591
+  },
+  "dispatchToHandlerStartMs": {
+    "min": 2.2000000029802322,
+    "p95": 7.100000008940697,
+    "max": 7.200000002980232,
+    "mean": 4.59166666554908
+  },
+  "shardComputeMs": {
+    "min": 2,
+    "p95": 7,
+    "max": 7,
+    "mean": 4.125
+  },
+  "latencyMinusRoundedShardMs": {
+    "min": -0.5,
+    "p95": 0.8999999910593033,
+    "max": 1.0999999940395355,
+    "mean": 0.4666666655490796
+  },
+  "rows": [
+    {
+      "workerId": 1,
+      "requestId": 5,
+      "revision": 5,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 4,
+      "dispatchedAtMs": 1185.1000000089407,
+      "handlerStartMs": 1190.2000000029802,
+      "handlerEndMs": 1191.1000000089407,
+      "handlerDurationMs": 0.9000000059604645,
+      "poolWallMs": 6,
+      "dispatchToHandlerStartMs": 5.0999999940395355,
+      "dispatchToHandlerEndMs": 6,
+      "latencyMinusRoundedShardMs": 1.0999999940395355
+    },
+    {
+      "workerId": 1,
+      "requestId": 6,
+      "revision": 6,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 5,
+      "dispatchedAtMs": 1284.2000000029802,
+      "handlerStartMs": 1289.4000000059605,
+      "handlerEndMs": 1290.6000000089407,
+      "handlerDurationMs": 1.2000000029802322,
+      "poolWallMs": 6,
+      "dispatchToHandlerStartMs": 5.200000002980232,
+      "dispatchToHandlerEndMs": 6.4000000059604645,
+      "latencyMinusRoundedShardMs": 0.20000000298023224
+    },
+    {
+      "workerId": 1,
+      "requestId": 7,
+      "revision": 7,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 4,
+      "dispatchedAtMs": 1380.1000000089407,
+      "handlerStartMs": 1385,
+      "handlerEndMs": 1386.300000011921,
+      "handlerDurationMs": 1.300000011920929,
+      "poolWallMs": 7,
+      "dispatchToHandlerStartMs": 4.899999991059303,
+      "dispatchToHandlerEndMs": 6.200000002980232,
+      "latencyMinusRoundedShardMs": 0.8999999910593033
+    },
+    {
+      "workerId": 1,
+      "requestId": 8,
+      "revision": 8,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 3,
+      "dispatchedAtMs": 1534.300000011921,
+      "handlerStartMs": 1537.4000000059605,
+      "handlerEndMs": 1539.9000000059605,
+      "handlerDurationMs": 2.5,
+      "poolWallMs": 5,
+      "dispatchToHandlerStartMs": 3.0999999940395355,
+      "dispatchToHandlerEndMs": 5.5999999940395355,
+      "latencyMinusRoundedShardMs": 0.09999999403953552
+    },
+    {
+      "workerId": 1,
+      "requestId": 9,
+      "revision": 9,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 4,
+      "dispatchedAtMs": 1626,
+      "handlerStartMs": 1630.7000000029802,
+      "handlerEndMs": 1631.1000000089407,
+      "handlerDurationMs": 0.4000000059604645,
+      "poolWallMs": 5,
+      "dispatchToHandlerStartMs": 4.700000002980232,
+      "dispatchToHandlerEndMs": 5.100000008940697,
+      "latencyMinusRoundedShardMs": 0.7000000029802322
+    },
+    {
+      "workerId": 1,
+      "requestId": 10,
+      "revision": 10,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 4,
+      "dispatchedAtMs": 1767.2000000029802,
+      "handlerStartMs": 1771.7000000029802,
+      "handlerEndMs": 1771.9000000059605,
+      "handlerDurationMs": 0.20000000298023224,
+      "poolWallMs": 4,
+      "dispatchToHandlerStartMs": 4.5,
+      "dispatchToHandlerEndMs": 4.700000002980232,
+      "latencyMinusRoundedShardMs": 0.5
+    },
+    {
+      "workerId": 1,
+      "requestId": 11,
+      "revision": 11,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 3,
+      "dispatchedAtMs": 1951.300000011921,
+      "handlerStartMs": 1954.7000000029802,
+      "handlerEndMs": 1955.2000000029802,
+      "handlerDurationMs": 0.5,
+      "poolWallMs": 3,
+      "dispatchToHandlerStartMs": 3.3999999910593033,
+      "dispatchToHandlerEndMs": 3.8999999910593033,
+      "latencyMinusRoundedShardMs": 0.3999999910593033
+    },
+    {
+      "workerId": 1,
+      "requestId": 12,
+      "revision": 12,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 6,
+      "dispatchedAtMs": 2048.300000011921,
+      "handlerStartMs": 2055.2000000029802,
+      "handlerEndMs": 2056.2000000029802,
+      "handlerDurationMs": 1,
+      "poolWallMs": 8,
+      "dispatchToHandlerStartMs": 6.899999991059303,
+      "dispatchToHandlerEndMs": 7.899999991059303,
+      "latencyMinusRoundedShardMs": 0.8999999910593033
+    },
+    {
+      "workerId": 1,
+      "requestId": 13,
+      "revision": 13,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 7,
+      "dispatchedAtMs": 2218.5,
+      "handlerStartMs": 2225.6000000089407,
+      "handlerEndMs": 2226.1000000089407,
+      "handlerDurationMs": 0.5,
+      "poolWallMs": 7,
+      "dispatchToHandlerStartMs": 7.100000008940697,
+      "dispatchToHandlerEndMs": 7.600000008940697,
+      "latencyMinusRoundedShardMs": 0.10000000894069672
+    },
+    {
+      "workerId": 1,
+      "requestId": 14,
+      "revision": 14,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 4,
+      "dispatchedAtMs": 2313,
+      "handlerStartMs": 2317.800000011921,
+      "handlerEndMs": 2318.6000000089407,
+      "handlerDurationMs": 0.7999999970197678,
+      "poolWallMs": 6,
+      "dispatchToHandlerStartMs": 4.800000011920929,
+      "dispatchToHandlerEndMs": 5.600000008940697,
+      "latencyMinusRoundedShardMs": 0.800000011920929
+    },
+    {
+      "workerId": 1,
+      "requestId": 15,
+      "revision": 15,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 4,
+      "dispatchedAtMs": 2468,
+      "handlerStartMs": 2472.4000000059605,
+      "handlerEndMs": 2473.300000011921,
+      "handlerDurationMs": 0.9000000059604645,
+      "poolWallMs": 6,
+      "dispatchToHandlerStartMs": 4.4000000059604645,
+      "dispatchToHandlerEndMs": 5.300000011920929,
+      "latencyMinusRoundedShardMs": 0.4000000059604645
+    },
+    {
+      "workerId": 1,
+      "requestId": 16,
+      "revision": 16,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 2,
+      "dispatchedAtMs": 2633.1000000089407,
+      "handlerStartMs": 2635.5,
+      "handlerEndMs": 2636.800000011921,
+      "handlerDurationMs": 1.300000011920929,
+      "poolWallMs": 4,
+      "dispatchToHandlerStartMs": 2.3999999910593033,
+      "dispatchToHandlerEndMs": 3.7000000029802322,
+      "latencyMinusRoundedShardMs": 0.3999999910593033
+    },
+    {
+      "workerId": 1,
+      "requestId": 17,
+      "revision": 17,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 5,
+      "dispatchedAtMs": 2818.9000000059605,
+      "handlerStartMs": 2824.1000000089407,
+      "handlerEndMs": 2824.5,
+      "handlerDurationMs": 0.3999999910593033,
+      "poolWallMs": 6,
+      "dispatchToHandlerStartMs": 5.200000002980232,
+      "dispatchToHandlerEndMs": 5.5999999940395355,
+      "latencyMinusRoundedShardMs": 0.20000000298023224
+    },
+    {
+      "workerId": 1,
+      "requestId": 18,
+      "revision": 18,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 3,
+      "dispatchedAtMs": 3020.300000011921,
+      "handlerStartMs": 3024,
+      "handlerEndMs": 3024.6000000089407,
+      "handlerDurationMs": 0.6000000089406967,
+      "poolWallMs": 4,
+      "dispatchToHandlerStartMs": 3.699999988079071,
+      "dispatchToHandlerEndMs": 4.299999997019768,
+      "latencyMinusRoundedShardMs": 0.699999988079071
+    },
+    {
+      "workerId": 1,
+      "requestId": 19,
+      "revision": 19,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 6,
+      "dispatchedAtMs": 3119,
+      "handlerStartMs": 3124.5,
+      "handlerEndMs": 3125,
+      "handlerDurationMs": 0.5,
+      "poolWallMs": 6,
+      "dispatchToHandlerStartMs": 5.5,
+      "dispatchToHandlerEndMs": 6,
+      "latencyMinusRoundedShardMs": -0.5
+    },
+    {
+      "workerId": 1,
+      "requestId": 20,
+      "revision": 20,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 4,
+      "dispatchedAtMs": 3218.300000011921,
+      "handlerStartMs": 3223.1000000089407,
+      "handlerEndMs": 3223.800000011921,
+      "handlerDurationMs": 0.7000000029802322,
+      "poolWallMs": 5,
+      "dispatchToHandlerStartMs": 4.799999997019768,
+      "dispatchToHandlerEndMs": 5.5,
+      "latencyMinusRoundedShardMs": 0.7999999970197678
+    },
+    {
+      "workerId": 1,
+      "requestId": 21,
+      "revision": 21,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 3,
+      "dispatchedAtMs": 3322.4000000059605,
+      "handlerStartMs": 3325.9000000059605,
+      "handlerEndMs": 3326.5,
+      "handlerDurationMs": 0.5999999940395355,
+      "poolWallMs": 4,
+      "dispatchToHandlerStartMs": 3.5,
+      "dispatchToHandlerEndMs": 4.0999999940395355,
+      "latencyMinusRoundedShardMs": 0.5
+    },
+    {
+      "workerId": 1,
+      "requestId": 22,
+      "revision": 22,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 2,
+      "dispatchedAtMs": 3450.4000000059605,
+      "handlerStartMs": 3452.6000000089407,
+      "handlerEndMs": 3453.300000011921,
+      "handlerDurationMs": 0.7000000029802322,
+      "poolWallMs": 3,
+      "dispatchToHandlerStartMs": 2.2000000029802322,
+      "dispatchToHandlerEndMs": 2.9000000059604645,
+      "latencyMinusRoundedShardMs": 0.20000000298023224
+    },
+    {
+      "workerId": 1,
+      "requestId": 23,
+      "revision": 23,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 4,
+      "dispatchedAtMs": 3617.2000000029802,
+      "handlerStartMs": 3621.9000000059605,
+      "handlerEndMs": 3622.7000000029802,
+      "handlerDurationMs": 0.7999999970197678,
+      "poolWallMs": 5,
+      "dispatchToHandlerStartMs": 4.700000002980232,
+      "dispatchToHandlerEndMs": 5.5,
+      "latencyMinusRoundedShardMs": 0.7000000029802322
+    },
+    {
+      "workerId": 1,
+      "requestId": 24,
+      "revision": 24,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 3,
+      "dispatchedAtMs": 3802.300000011921,
+      "handlerStartMs": 3805.9000000059605,
+      "handlerEndMs": 3807.7000000029802,
+      "handlerDurationMs": 1.7999999970197678,
+      "poolWallMs": 5,
+      "dispatchToHandlerStartMs": 3.5999999940395355,
+      "dispatchToHandlerEndMs": 5.399999991059303,
+      "latencyMinusRoundedShardMs": 0.5999999940395355
+    },
+    {
+      "workerId": 1,
+      "requestId": 25,
+      "revision": 25,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 7,
+      "dispatchedAtMs": 3906.4000000059605,
+      "handlerStartMs": 3913.6000000089407,
+      "handlerEndMs": 3914.2000000029802,
+      "handlerDurationMs": 0.5999999940395355,
+      "poolWallMs": 7,
+      "dispatchToHandlerStartMs": 7.200000002980232,
+      "dispatchToHandlerEndMs": 7.799999997019768,
+      "latencyMinusRoundedShardMs": 0.20000000298023224
+    },
+    {
+      "workerId": 1,
+      "requestId": 26,
+      "revision": 26,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 5,
+      "dispatchedAtMs": 4067.5,
+      "handlerStartMs": 4072.800000011921,
+      "handlerEndMs": 4073.300000011921,
+      "handlerDurationMs": 0.5,
+      "poolWallMs": 6,
+      "dispatchToHandlerStartMs": 5.300000011920929,
+      "dispatchToHandlerEndMs": 5.800000011920929,
+      "latencyMinusRoundedShardMs": 0.30000001192092896
+    },
+    {
+      "workerId": 1,
+      "requestId": 27,
+      "revision": 27,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 4,
+      "dispatchedAtMs": 4166.600000008941,
+      "handlerStartMs": 4170.70000000298,
+      "handlerEndMs": 4171.100000008941,
+      "handlerDurationMs": 0.4000000059604645,
+      "poolWallMs": 4,
+      "dispatchToHandlerStartMs": 4.0999999940395355,
+      "dispatchToHandlerEndMs": 4.5,
+      "latencyMinusRoundedShardMs": 0.09999999403953552
+    },
+    {
+      "workerId": 1,
+      "requestId": 28,
+      "revision": 28,
+      "sourceIds": [
+        "stress_source_0",
+        "stress_source_1",
+        "stress_source_2",
+        "stress_source_3"
+      ],
+      "shardComputeMs": 3,
+      "dispatchedAtMs": 4300.100000008941,
+      "handlerStartMs": 4304,
+      "handlerEndMs": 4304.5,
+      "handlerDurationMs": 0.5,
+      "poolWallMs": 4,
+      "dispatchToHandlerStartMs": 3.8999999910593033,
+      "dispatchToHandlerEndMs": 4.399999991059303,
+      "latencyMinusRoundedShardMs": 0.8999999910593033
+    }
+  ]
+}

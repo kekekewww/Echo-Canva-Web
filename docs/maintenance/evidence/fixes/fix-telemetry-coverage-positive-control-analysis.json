@@ -1,0 +1,36 @@
+{
+  "diagnosticOnly": true,
+  "buildId": "ts9bLxVDHq2VvhMSK5_jQ",
+  "telemetry": {
+    "previousSequence": 4,
+    "acceptedSequence": 5,
+    "expectedWorkerCount": 4,
+    "matching": []
+  },
+  "actualProjectChangeControl": {
+    "previousSequence": 5,
+    "acceptedSequence": 6,
+    "expectedWorkerCount": 4,
+    "matching": [
+      {
+        "component": "ContextInspector",
+        "functionName": "",
+        "count": 1,
+        "url": "http://127.0.0.1:3101/_next/static/chunks/0sevxx0_tpfxh.js",
+        "startOffset": 356053,
+        "endOffset": 370433,
+        "functionHead": "function({project:e,dispatch:t,localAssets:i=[],onRelinkAudio:n,onRemoveLocalAudio:o,mobileOpen:s=!1}){let[l,d]=(0,a.useState)(!1),[c,m]=(0,a.useState)(null),[p,f]=(0,a.useState)(null),h=e.selection,g=h?.type===\"listener\"?e.listeners.find(({id:e})=>e===h.id):null,v=h?.type===\"source\"?e.scene.sources.find(({id:e})=>e===h.id):null,y=h?.type===\"wall\"?e.scene.walls.find(({id:e})=>e===h.id):null,b=h?.type===\"portal\"?e.scene.portals.find(({id:e})=>e==="
+      },
+      {
+        "component": "SceneOutliner",
+        "functionName": "",
+        "count": 1,
+        "url": "http://127.0.0.1:3101/_next/static/chunks/0sevxx0_tpfxh.js",
+        "startOffset": 419180,
+        "endOffset": 420673,
+        "functionHead": "function({project:e,onSelect:t,mobileOpen:i=!1}){let n=new Set(e.disabledEntityIds),a=(i,n,a,o=!1,s=!0)=>(0,r.jsx)(me,{active:o,enabled:s,id:i.id,kind:a,label:n,onSelect:t,selected:e.selection?.type===i.type&&e.selection.id===i.id,type:i.type},`${i.type}-${i.id}`);return(0,r.jsxs)(\"aside\",{\"aria-label\":\"Scene Outliner\",\"aria-modal\":i||void 0,className:`workspace-outliner${i?\" is-mobile-open\":\"\"}`,role:i?\"dialog\":void 0,children:[(0,r.jsxs)(\"heade"
+      }
+    ]
+  },
+  "interpretation": "No invoked component function entries in telemetry window; same function signatures have nonzero invocation counters on actual listener/project change. Absence is not an explicit count=0 record."
+}

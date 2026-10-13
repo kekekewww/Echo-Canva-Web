@@ -1,0 +1,1406 @@
+[
+  {
+    "rawMetricsFile": "fix-hosted-38364078147-macos-repeat0-metrics.json",
+    "os": "macos",
+    "label": "repeat0",
+    "bytes": 6538,
+    "sha256": "f865c93dea24af1e467207f0aa3b86d134e0e7bd2f2a29f11fc65773078b665e",
+    "hardwareConcurrency": 3,
+    "expectedWorkerCount": 1,
+    "p95Ms": 12,
+    "maximumPoolWallMs": 24,
+    "shardMaxP95Ms": 10,
+    "maximumShardMs": 13,
+    "wallMinusShardMaxP95Ms": 7,
+    "longTasks": [],
+    "overBudgetRows": [
+      {
+        "index": 0,
+        "sequence": 5,
+        "poolWallMs": 12,
+        "shardMaxMs": 10,
+        "shardTotalMs": 10,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 5 · Accepted 5/5 · Local saved · 12.00 ms · 1 worker · shard max 10.00 ms · shard total 10.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 2,
+        "sequence": 7,
+        "poolWallMs": 24,
+        "shardMaxMs": 13,
+        "shardTotalMs": 13,
+        "wallMinusShardMaxMs": 11,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 7 · Accepted 7/7 · Local saved · 24.00 ms · 1 worker · shard max 13.00 ms · shard total 13.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 13,
+        "sequence": 18,
+        "poolWallMs": 12,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 7,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 18 · Accepted 18/18 · Local saved · 12.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      }
+    ],
+    "sampleCount": 24,
+    "rows": [
+      {
+        "index": 0,
+        "sequence": 5,
+        "poolWallMs": 12,
+        "shardMaxMs": 10,
+        "shardTotalMs": 10,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 5 · Accepted 5/5 · Local saved · 12.00 ms · 1 worker · shard max 10.00 ms · shard total 10.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 1,
+        "sequence": 6,
+        "poolWallMs": 5,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 3,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 6 · Accepted 6/6 · Local saved · 5.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 2,
+        "sequence": 7,
+        "poolWallMs": 24,
+        "shardMaxMs": 13,
+        "shardTotalMs": 13,
+        "wallMinusShardMaxMs": 11,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 7 · Accepted 7/7 · Local saved · 24.00 ms · 1 worker · shard max 13.00 ms · shard total 13.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 3,
+        "sequence": 8,
+        "poolWallMs": 3,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 8 · Accepted 8/8 · Local saved · 3.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 4,
+        "sequence": 9,
+        "poolWallMs": 3,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 9 · Accepted 9/9 · Local saved · 3.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 5,
+        "sequence": 10,
+        "poolWallMs": 6,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 10 · Accepted 10/10 · Local saved · 6.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 6,
+        "sequence": 11,
+        "poolWallMs": 4,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 11 · Accepted 11/11 · Local saved · 4.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 7,
+        "sequence": 12,
+        "poolWallMs": 11,
+        "shardMaxMs": 8,
+        "shardTotalMs": 8,
+        "wallMinusShardMaxMs": 3,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 12 · Accepted 12/12 · Local saved · 11.00 ms · 1 worker · shard max 8.00 ms · shard total 8.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 8,
+        "sequence": 13,
+        "poolWallMs": 7,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 13 · Accepted 13/13 · Local saved · 7.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 9,
+        "sequence": 14,
+        "poolWallMs": 4,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 14 · Accepted 14/14 · Local saved · 4.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 10,
+        "sequence": 15,
+        "poolWallMs": 3,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 15 · Accepted 15/15 · Local saved · 3.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 11,
+        "sequence": 16,
+        "poolWallMs": 4,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 16 · Accepted 16/16 · Local saved · 4.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 12,
+        "sequence": 17,
+        "poolWallMs": 4,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 17 · Accepted 17/17 · Local saved · 4.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 13,
+        "sequence": 18,
+        "poolWallMs": 12,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 7,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 18 · Accepted 18/18 · Local saved · 12.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 14,
+        "sequence": 19,
+        "poolWallMs": 4,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 19 · Accepted 19/19 · Local saved · 4.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 15,
+        "sequence": 20,
+        "poolWallMs": 4,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 20 · Accepted 20/20 · Local saved · 4.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 16,
+        "sequence": 21,
+        "poolWallMs": 5,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 21 · Accepted 21/21 · Local saved · 5.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 17,
+        "sequence": 22,
+        "poolWallMs": 5,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 22 · Accepted 22/22 · Local saved · 5.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 18,
+        "sequence": 23,
+        "poolWallMs": 8,
+        "shardMaxMs": 7,
+        "shardTotalMs": 7,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 23 · Accepted 23/23 · Local saved · 8.00 ms · 1 worker · shard max 7.00 ms · shard total 7.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 19,
+        "sequence": 24,
+        "poolWallMs": 3,
+        "shardMaxMs": 1,
+        "shardTotalMs": 1,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 24 · Accepted 24/24 · Local saved · 3.00 ms · 1 worker · shard max 1.00 ms · shard total 1.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 20,
+        "sequence": 25,
+        "poolWallMs": 7,
+        "shardMaxMs": 6,
+        "shardTotalMs": 6,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 25 · Accepted 25/25 · Local saved · 7.00 ms · 1 worker · shard max 6.00 ms · shard total 6.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 21,
+        "sequence": 26,
+        "poolWallMs": 4,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 26 · Accepted 26/26 · Local saved · 4.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 22,
+        "sequence": 27,
+        "poolWallMs": 5,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 3,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 27 · Accepted 27/27 · Local saved · 5.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 23,
+        "sequence": 28,
+        "poolWallMs": 6,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 28 · Accepted 28/28 · Local saved · 6.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      }
+    ]
+  },
+  {
+    "rawMetricsFile": "fix-hosted-38364078147-macos-repeat1-metrics.json",
+    "os": "macos",
+    "label": "repeat1",
+    "bytes": 6532,
+    "sha256": "2232952859744d88333e93826f4b5ef19fa63893ca7662c6fc08f6b537e3c449",
+    "hardwareConcurrency": 3,
+    "expectedWorkerCount": 1,
+    "p95Ms": 10,
+    "maximumPoolWallMs": 11,
+    "shardMaxP95Ms": 8,
+    "maximumShardMs": 9,
+    "wallMinusShardMaxP95Ms": 3,
+    "longTasks": [],
+    "overBudgetRows": [],
+    "sampleCount": 24,
+    "rows": [
+      {
+        "index": 0,
+        "sequence": 5,
+        "poolWallMs": 6,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 5 · Accepted 5/5 · Local saved · 6.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 1,
+        "sequence": 6,
+        "poolWallMs": 9,
+        "shardMaxMs": 7,
+        "shardTotalMs": 7,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 6 · Accepted 6/6 · Local saved · 9.00 ms · 1 worker · shard max 7.00 ms · shard total 7.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 2,
+        "sequence": 7,
+        "poolWallMs": 6,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 7 · Accepted 7/7 · Local saved · 6.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 3,
+        "sequence": 8,
+        "poolWallMs": 9,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 6,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 8 · Accepted 8/8 · Local saved · 9.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 4,
+        "sequence": 9,
+        "poolWallMs": 11,
+        "shardMaxMs": 9,
+        "shardTotalMs": 9,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 9 · Accepted 9/9 · Local saved · 11.00 ms · 1 worker · shard max 9.00 ms · shard total 9.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 5,
+        "sequence": 10,
+        "poolWallMs": 10,
+        "shardMaxMs": 8,
+        "shardTotalMs": 8,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 10 · Accepted 10/10 · Local saved · 10.00 ms · 1 worker · shard max 8.00 ms · shard total 8.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 6,
+        "sequence": 11,
+        "poolWallMs": 7,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 11 · Accepted 11/11 · Local saved · 7.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 7,
+        "sequence": 12,
+        "poolWallMs": 6,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 12 · Accepted 12/12 · Local saved · 6.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 8,
+        "sequence": 13,
+        "poolWallMs": 9,
+        "shardMaxMs": 6,
+        "shardTotalMs": 6,
+        "wallMinusShardMaxMs": 3,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 13 · Accepted 13/13 · Local saved · 9.00 ms · 1 worker · shard max 6.00 ms · shard total 6.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 9,
+        "sequence": 14,
+        "poolWallMs": 3,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 14 · Accepted 14/14 · Local saved · 3.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 10,
+        "sequence": 15,
+        "poolWallMs": 7,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 15 · Accepted 15/15 · Local saved · 7.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 11,
+        "sequence": 16,
+        "poolWallMs": 4,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 16 · Accepted 16/16 · Local saved · 4.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 12,
+        "sequence": 17,
+        "poolWallMs": 6,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 17 · Accepted 17/17 · Local saved · 6.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 13,
+        "sequence": 18,
+        "poolWallMs": 6,
+        "shardMaxMs": 6,
+        "shardTotalMs": 6,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 18 · Accepted 18/18 · Local saved · 6.00 ms · 1 worker · shard max 6.00 ms · shard total 6.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 14,
+        "sequence": 19,
+        "poolWallMs": 4,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 19 · Accepted 19/19 · Local saved · 4.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 15,
+        "sequence": 20,
+        "poolWallMs": 4,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 20 · Accepted 20/20 · Local saved · 4.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 16,
+        "sequence": 21,
+        "poolWallMs": 8,
+        "shardMaxMs": 6,
+        "shardTotalMs": 6,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 21 · Accepted 21/21 · Local saved · 8.00 ms · 1 worker · shard max 6.00 ms · shard total 6.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 17,
+        "sequence": 22,
+        "poolWallMs": 5,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 22 · Accepted 22/22 · Local saved · 5.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 18,
+        "sequence": 23,
+        "poolWallMs": 6,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 23 · Accepted 23/23 · Local saved · 6.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 19,
+        "sequence": 24,
+        "poolWallMs": 4,
+        "shardMaxMs": 1,
+        "shardTotalMs": 1,
+        "wallMinusShardMaxMs": 3,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 24 · Accepted 24/24 · Local saved · 4.00 ms · 1 worker · shard max 1.00 ms · shard total 1.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 20,
+        "sequence": 25,
+        "poolWallMs": 6,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 3,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 25 · Accepted 25/25 · Local saved · 6.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 21,
+        "sequence": 26,
+        "poolWallMs": 3,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 26 · Accepted 26/26 · Local saved · 3.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 22,
+        "sequence": 27,
+        "poolWallMs": 4,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 27 · Accepted 27/27 · Local saved · 4.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 23,
+        "sequence": 28,
+        "poolWallMs": 10,
+        "shardMaxMs": 7,
+        "shardTotalMs": 7,
+        "wallMinusShardMaxMs": 3,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 28 · Accepted 28/28 · Local saved · 10.00 ms · 1 worker · shard max 7.00 ms · shard total 7.00 ms · Interactive acoustic approximation"
+      }
+    ]
+  },
+  {
+    "rawMetricsFile": "fix-hosted-38364078147-macos-repeat2-metrics.json",
+    "os": "macos",
+    "label": "repeat2",
+    "bytes": 6550,
+    "sha256": "61d962ab9bb5633b87b6495bf9963dcb80567c62a178d7259a85902955756a55",
+    "hardwareConcurrency": 3,
+    "expectedWorkerCount": 1,
+    "p95Ms": 28,
+    "maximumPoolWallMs": 28,
+    "shardMaxP95Ms": 14,
+    "maximumShardMs": 16,
+    "wallMinusShardMaxP95Ms": 15,
+    "longTasks": [],
+    "overBudgetRows": [
+      {
+        "index": 0,
+        "sequence": 5,
+        "poolWallMs": 18,
+        "shardMaxMs": 16,
+        "shardTotalMs": 16,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 5 · Accepted 5/5 · Local saved · 18.00 ms · 1 worker · shard max 16.00 ms · shard total 16.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 1,
+        "sequence": 6,
+        "poolWallMs": 28,
+        "shardMaxMs": 13,
+        "shardTotalMs": 13,
+        "wallMinusShardMaxMs": 15,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 6 · Accepted 6/6 · Local saved · 28.00 ms · 1 worker · shard max 13.00 ms · shard total 13.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 2,
+        "sequence": 7,
+        "poolWallMs": 13,
+        "shardMaxMs": 9,
+        "shardTotalMs": 9,
+        "wallMinusShardMaxMs": 4,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 7 · Accepted 7/7 · Local saved · 13.00 ms · 1 worker · shard max 9.00 ms · shard total 9.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 4,
+        "sequence": 9,
+        "poolWallMs": 28,
+        "shardMaxMs": 8,
+        "shardTotalMs": 8,
+        "wallMinusShardMaxMs": 20,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 9 · Accepted 9/9 · Local saved · 28.00 ms · 1 worker · shard max 8.00 ms · shard total 8.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 5,
+        "sequence": 10,
+        "poolWallMs": 15,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 10,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 10 · Accepted 10/10 · Local saved · 15.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 6,
+        "sequence": 11,
+        "poolWallMs": 24,
+        "shardMaxMs": 14,
+        "shardTotalMs": 14,
+        "wallMinusShardMaxMs": 10,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 11 · Accepted 11/11 · Local saved · 24.00 ms · 1 worker · shard max 14.00 ms · shard total 14.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 7,
+        "sequence": 12,
+        "poolWallMs": 16,
+        "shardMaxMs": 12,
+        "shardTotalMs": 12,
+        "wallMinusShardMaxMs": 4,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 12 · Accepted 12/12 · Local saved · 16.00 ms · 1 worker · shard max 12.00 ms · shard total 12.00 ms · Interactive acoustic approximation"
+      }
+    ],
+    "sampleCount": 24,
+    "rows": [
+      {
+        "index": 0,
+        "sequence": 5,
+        "poolWallMs": 18,
+        "shardMaxMs": 16,
+        "shardTotalMs": 16,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 5 · Accepted 5/5 · Local saved · 18.00 ms · 1 worker · shard max 16.00 ms · shard total 16.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 1,
+        "sequence": 6,
+        "poolWallMs": 28,
+        "shardMaxMs": 13,
+        "shardTotalMs": 13,
+        "wallMinusShardMaxMs": 15,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 6 · Accepted 6/6 · Local saved · 28.00 ms · 1 worker · shard max 13.00 ms · shard total 13.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 2,
+        "sequence": 7,
+        "poolWallMs": 13,
+        "shardMaxMs": 9,
+        "shardTotalMs": 9,
+        "wallMinusShardMaxMs": 4,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 7 · Accepted 7/7 · Local saved · 13.00 ms · 1 worker · shard max 9.00 ms · shard total 9.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 3,
+        "sequence": 8,
+        "poolWallMs": 9,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 4,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 8 · Accepted 8/8 · Local saved · 9.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 4,
+        "sequence": 9,
+        "poolWallMs": 28,
+        "shardMaxMs": 8,
+        "shardTotalMs": 8,
+        "wallMinusShardMaxMs": 20,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 9 · Accepted 9/9 · Local saved · 28.00 ms · 1 worker · shard max 8.00 ms · shard total 8.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 5,
+        "sequence": 10,
+        "poolWallMs": 15,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 10,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 10 · Accepted 10/10 · Local saved · 15.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 6,
+        "sequence": 11,
+        "poolWallMs": 24,
+        "shardMaxMs": 14,
+        "shardTotalMs": 14,
+        "wallMinusShardMaxMs": 10,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 11 · Accepted 11/11 · Local saved · 24.00 ms · 1 worker · shard max 14.00 ms · shard total 14.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 7,
+        "sequence": 12,
+        "poolWallMs": 16,
+        "shardMaxMs": 12,
+        "shardTotalMs": 12,
+        "wallMinusShardMaxMs": 4,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 12 · Accepted 12/12 · Local saved · 16.00 ms · 1 worker · shard max 12.00 ms · shard total 12.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 8,
+        "sequence": 13,
+        "poolWallMs": 7,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 3,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 13 · Accepted 13/13 · Local saved · 7.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 9,
+        "sequence": 14,
+        "poolWallMs": 7,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 4,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 14 · Accepted 14/14 · Local saved · 7.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 10,
+        "sequence": 15,
+        "poolWallMs": 5,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 3,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 15 · Accepted 15/15 · Local saved · 5.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 11,
+        "sequence": 16,
+        "poolWallMs": 9,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 7,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 16 · Accepted 16/16 · Local saved · 9.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 12,
+        "sequence": 17,
+        "poolWallMs": 9,
+        "shardMaxMs": 7,
+        "shardTotalMs": 7,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 17 · Accepted 17/17 · Local saved · 9.00 ms · 1 worker · shard max 7.00 ms · shard total 7.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 13,
+        "sequence": 18,
+        "poolWallMs": 4,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 18 · Accepted 18/18 · Local saved · 4.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 14,
+        "sequence": 19,
+        "poolWallMs": 4,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 19 · Accepted 19/19 · Local saved · 4.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 15,
+        "sequence": 20,
+        "poolWallMs": 9,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 4,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 20 · Accepted 20/20 · Local saved · 9.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 16,
+        "sequence": 21,
+        "poolWallMs": 4,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 21 · Accepted 21/21 · Local saved · 4.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 17,
+        "sequence": 22,
+        "poolWallMs": 8,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 3,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 22 · Accepted 22/22 · Local saved · 8.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 18,
+        "sequence": 23,
+        "poolWallMs": 9,
+        "shardMaxMs": 8,
+        "shardTotalMs": 8,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 23 · Accepted 23/23 · Local saved · 9.00 ms · 1 worker · shard max 8.00 ms · shard total 8.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 19,
+        "sequence": 24,
+        "poolWallMs": 2,
+        "shardMaxMs": 1,
+        "shardTotalMs": 1,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 24 · Accepted 24/24 · Local saved · 2.00 ms · 1 worker · shard max 1.00 ms · shard total 1.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 20,
+        "sequence": 25,
+        "poolWallMs": 7,
+        "shardMaxMs": 6,
+        "shardTotalMs": 6,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 25 · Accepted 25/25 · Local saved · 7.00 ms · 1 worker · shard max 6.00 ms · shard total 6.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 21,
+        "sequence": 26,
+        "poolWallMs": 4,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 26 · Accepted 26/26 · Local saved · 4.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 22,
+        "sequence": 27,
+        "poolWallMs": 3,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 27 · Accepted 27/27 · Local saved · 3.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 23,
+        "sequence": 28,
+        "poolWallMs": 10,
+        "shardMaxMs": 6,
+        "shardTotalMs": 6,
+        "wallMinusShardMaxMs": 4,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 28 · Accepted 28/28 · Local saved · 10.00 ms · 1 worker · shard max 6.00 ms · shard total 6.00 ms · Interactive acoustic approximation"
+      }
+    ]
+  },
+  {
+    "rawMetricsFile": "fix-hosted-38364078147-macos-attempt0-metrics.json",
+    "os": "macos",
+    "label": "attempt0",
+    "bytes": 6570,
+    "sha256": "de01f16c8697ed2b3659368a8521384bd32472308b8d0b793793b09269f4aa29",
+    "hardwareConcurrency": 3,
+    "expectedWorkerCount": 1,
+    "p95Ms": 32,
+    "maximumPoolWallMs": 41,
+    "shardMaxP95Ms": 18,
+    "maximumShardMs": 21,
+    "wallMinusShardMaxP95Ms": 17,
+    "longTasks": [],
+    "overBudgetRows": [
+      {
+        "index": 0,
+        "sequence": 5,
+        "poolWallMs": 25,
+        "shardMaxMs": 15,
+        "shardTotalMs": 15,
+        "wallMinusShardMaxMs": 10,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 5 · Accepted 5/5 · Local saved · 25.00 ms · 1 worker · shard max 15.00 ms · shard total 15.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 2,
+        "sequence": 7,
+        "poolWallMs": 12,
+        "shardMaxMs": 7,
+        "shardTotalMs": 7,
+        "wallMinusShardMaxMs": 5,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 7 · Accepted 7/7 · Local saved · 12.00 ms · 1 worker · shard max 7.00 ms · shard total 7.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 4,
+        "sequence": 9,
+        "poolWallMs": 12,
+        "shardMaxMs": 6,
+        "shardTotalMs": 6,
+        "wallMinusShardMaxMs": 6,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 9 · Accepted 9/9 · Local saved · 12.00 ms · 1 worker · shard max 6.00 ms · shard total 6.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 5,
+        "sequence": 10,
+        "poolWallMs": 15,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 12,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 10 · Accepted 10/10 · Local saved · 15.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 7,
+        "sequence": 12,
+        "poolWallMs": 12,
+        "shardMaxMs": 6,
+        "shardTotalMs": 6,
+        "wallMinusShardMaxMs": 6,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 12 · Accepted 12/12 · Local saved · 12.00 ms · 1 worker · shard max 6.00 ms · shard total 6.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 8,
+        "sequence": 13,
+        "poolWallMs": 17,
+        "shardMaxMs": 9,
+        "shardTotalMs": 9,
+        "wallMinusShardMaxMs": 8,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 13 · Accepted 13/13 · Local saved · 17.00 ms · 1 worker · shard max 9.00 ms · shard total 9.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 9,
+        "sequence": 14,
+        "poolWallMs": 24,
+        "shardMaxMs": 18,
+        "shardTotalMs": 18,
+        "wallMinusShardMaxMs": 6,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 14 · Accepted 14/14 · Local saved · 24.00 ms · 1 worker · shard max 18.00 ms · shard total 18.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 11,
+        "sequence": 16,
+        "poolWallMs": 12,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 8,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 16 · Accepted 16/16 · Local saved · 12.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 12,
+        "sequence": 17,
+        "poolWallMs": 28,
+        "shardMaxMs": 21,
+        "shardTotalMs": 21,
+        "wallMinusShardMaxMs": 7,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 17 · Accepted 17/17 · Local saved · 28.00 ms · 1 worker · shard max 21.00 ms · shard total 21.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 14,
+        "sequence": 19,
+        "poolWallMs": 16,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 12,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 19 · Accepted 19/19 · Local saved · 16.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 15,
+        "sequence": 20,
+        "poolWallMs": 41,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 39,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 20 · Accepted 20/20 · Local saved · 41.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 16,
+        "sequence": 21,
+        "poolWallMs": 21,
+        "shardMaxMs": 7,
+        "shardTotalMs": 7,
+        "wallMinusShardMaxMs": 14,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 21 · Accepted 21/21 · Local saved · 21.00 ms · 1 worker · shard max 7.00 ms · shard total 7.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 17,
+        "sequence": 22,
+        "poolWallMs": 26,
+        "shardMaxMs": 11,
+        "shardTotalMs": 11,
+        "wallMinusShardMaxMs": 15,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 22 · Accepted 22/22 · Local saved · 26.00 ms · 1 worker · shard max 11.00 ms · shard total 11.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 18,
+        "sequence": 23,
+        "poolWallMs": 32,
+        "shardMaxMs": 15,
+        "shardTotalMs": 15,
+        "wallMinusShardMaxMs": 17,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 23 · Accepted 23/23 · Local saved · 32.00 ms · 1 worker · shard max 15.00 ms · shard total 15.00 ms · Interactive acoustic approximation"
+      }
+    ],
+    "sampleCount": 24,
+    "rows": [
+      {
+        "index": 0,
+        "sequence": 5,
+        "poolWallMs": 25,
+        "shardMaxMs": 15,
+        "shardTotalMs": 15,
+        "wallMinusShardMaxMs": 10,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 5 · Accepted 5/5 · Local saved · 25.00 ms · 1 worker · shard max 15.00 ms · shard total 15.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 1,
+        "sequence": 6,
+        "poolWallMs": 10,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 5,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 6 · Accepted 6/6 · Local saved · 10.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 2,
+        "sequence": 7,
+        "poolWallMs": 12,
+        "shardMaxMs": 7,
+        "shardTotalMs": 7,
+        "wallMinusShardMaxMs": 5,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 7 · Accepted 7/7 · Local saved · 12.00 ms · 1 worker · shard max 7.00 ms · shard total 7.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 3,
+        "sequence": 8,
+        "poolWallMs": 9,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 7,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 8 · Accepted 8/8 · Local saved · 9.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 4,
+        "sequence": 9,
+        "poolWallMs": 12,
+        "shardMaxMs": 6,
+        "shardTotalMs": 6,
+        "wallMinusShardMaxMs": 6,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 9 · Accepted 9/9 · Local saved · 12.00 ms · 1 worker · shard max 6.00 ms · shard total 6.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 5,
+        "sequence": 10,
+        "poolWallMs": 15,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 12,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 10 · Accepted 10/10 · Local saved · 15.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 6,
+        "sequence": 11,
+        "poolWallMs": 4,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 11 · Accepted 11/11 · Local saved · 4.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 7,
+        "sequence": 12,
+        "poolWallMs": 12,
+        "shardMaxMs": 6,
+        "shardTotalMs": 6,
+        "wallMinusShardMaxMs": 6,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 12 · Accepted 12/12 · Local saved · 12.00 ms · 1 worker · shard max 6.00 ms · shard total 6.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 8,
+        "sequence": 13,
+        "poolWallMs": 17,
+        "shardMaxMs": 9,
+        "shardTotalMs": 9,
+        "wallMinusShardMaxMs": 8,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 13 · Accepted 13/13 · Local saved · 17.00 ms · 1 worker · shard max 9.00 ms · shard total 9.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 9,
+        "sequence": 14,
+        "poolWallMs": 24,
+        "shardMaxMs": 18,
+        "shardTotalMs": 18,
+        "wallMinusShardMaxMs": 6,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 14 · Accepted 14/14 · Local saved · 24.00 ms · 1 worker · shard max 18.00 ms · shard total 18.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 10,
+        "sequence": 15,
+        "poolWallMs": 11,
+        "shardMaxMs": 7,
+        "shardTotalMs": 7,
+        "wallMinusShardMaxMs": 4,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 15 · Accepted 15/15 · Local saved · 11.00 ms · 1 worker · shard max 7.00 ms · shard total 7.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 11,
+        "sequence": 16,
+        "poolWallMs": 12,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 8,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 16 · Accepted 16/16 · Local saved · 12.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 12,
+        "sequence": 17,
+        "poolWallMs": 28,
+        "shardMaxMs": 21,
+        "shardTotalMs": 21,
+        "wallMinusShardMaxMs": 7,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 17 · Accepted 17/17 · Local saved · 28.00 ms · 1 worker · shard max 21.00 ms · shard total 21.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 13,
+        "sequence": 18,
+        "poolWallMs": 10,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 6,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 18 · Accepted 18/18 · Local saved · 10.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 14,
+        "sequence": 19,
+        "poolWallMs": 16,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 12,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 19 · Accepted 19/19 · Local saved · 16.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 15,
+        "sequence": 20,
+        "poolWallMs": 41,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 39,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 20 · Accepted 20/20 · Local saved · 41.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 16,
+        "sequence": 21,
+        "poolWallMs": 21,
+        "shardMaxMs": 7,
+        "shardTotalMs": 7,
+        "wallMinusShardMaxMs": 14,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 21 · Accepted 21/21 · Local saved · 21.00 ms · 1 worker · shard max 7.00 ms · shard total 7.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 17,
+        "sequence": 22,
+        "poolWallMs": 26,
+        "shardMaxMs": 11,
+        "shardTotalMs": 11,
+        "wallMinusShardMaxMs": 15,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 22 · Accepted 22/22 · Local saved · 26.00 ms · 1 worker · shard max 11.00 ms · shard total 11.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 18,
+        "sequence": 23,
+        "poolWallMs": 32,
+        "shardMaxMs": 15,
+        "shardTotalMs": 15,
+        "wallMinusShardMaxMs": 17,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 23 · Accepted 23/23 · Local saved · 32.00 ms · 1 worker · shard max 15.00 ms · shard total 15.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 19,
+        "sequence": 24,
+        "poolWallMs": 4,
+        "shardMaxMs": 1,
+        "shardTotalMs": 1,
+        "wallMinusShardMaxMs": 3,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 24 · Accepted 24/24 · Local saved · 4.00 ms · 1 worker · shard max 1.00 ms · shard total 1.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 20,
+        "sequence": 25,
+        "poolWallMs": 3,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 25 · Accepted 25/25 · Local saved · 3.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 21,
+        "sequence": 26,
+        "poolWallMs": 3,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 26 · Accepted 26/26 · Local saved · 3.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 22,
+        "sequence": 27,
+        "poolWallMs": 7,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 3,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 27 · Accepted 27/27 · Local saved · 7.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 23,
+        "sequence": 28,
+        "poolWallMs": 5,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 28 · Accepted 28/28 · Local saved · 5.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      }
+    ]
+  },
+  {
+    "rawMetricsFile": "fix-hosted-38364078147-macos-attempt1-metrics.json",
+    "os": "macos",
+    "label": "attempt1",
+    "bytes": 6534,
+    "sha256": "a9cc54db47f3a23aef28129434328fdf2e3abd76ccf825c329b50e363033927c",
+    "hardwareConcurrency": 3,
+    "expectedWorkerCount": 1,
+    "p95Ms": 10,
+    "maximumPoolWallMs": 17,
+    "shardMaxP95Ms": 6,
+    "maximumShardMs": 12,
+    "wallMinusShardMaxP95Ms": 5,
+    "longTasks": [],
+    "overBudgetRows": [
+      {
+        "index": 2,
+        "sequence": 7,
+        "poolWallMs": 17,
+        "shardMaxMs": 12,
+        "shardTotalMs": 12,
+        "wallMinusShardMaxMs": 5,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 7 · Accepted 7/7 · Local saved · 17.00 ms · 1 worker · shard max 12.00 ms · shard total 12.00 ms · Interactive acoustic approximation"
+      }
+    ],
+    "sampleCount": 24,
+    "rows": [
+      {
+        "index": 0,
+        "sequence": 5,
+        "poolWallMs": 10,
+        "shardMaxMs": 6,
+        "shardTotalMs": 6,
+        "wallMinusShardMaxMs": 4,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 5 · Accepted 5/5 · Local saved · 10.00 ms · 1 worker · shard max 6.00 ms · shard total 6.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 1,
+        "sequence": 6,
+        "poolWallMs": 8,
+        "shardMaxMs": 5,
+        "shardTotalMs": 5,
+        "wallMinusShardMaxMs": 3,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 6 · Accepted 6/6 · Local saved · 8.00 ms · 1 worker · shard max 5.00 ms · shard total 5.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 2,
+        "sequence": 7,
+        "poolWallMs": 17,
+        "shardMaxMs": 12,
+        "shardTotalMs": 12,
+        "wallMinusShardMaxMs": 5,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 7 · Accepted 7/7 · Local saved · 17.00 ms · 1 worker · shard max 12.00 ms · shard total 12.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 3,
+        "sequence": 8,
+        "poolWallMs": 5,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 3,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 8 · Accepted 8/8 · Local saved · 5.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 4,
+        "sequence": 9,
+        "poolWallMs": 6,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 9 · Accepted 9/9 · Local saved · 6.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 5,
+        "sequence": 10,
+        "poolWallMs": 6,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 4,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 10 · Accepted 10/10 · Local saved · 6.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 6,
+        "sequence": 11,
+        "poolWallMs": 3,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 11 · Accepted 11/11 · Local saved · 3.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 7,
+        "sequence": 12,
+        "poolWallMs": 4,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 12 · Accepted 12/12 · Local saved · 4.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 8,
+        "sequence": 13,
+        "poolWallMs": 4,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 13 · Accepted 13/13 · Local saved · 4.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 9,
+        "sequence": 14,
+        "poolWallMs": 3,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 14 · Accepted 14/14 · Local saved · 3.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 10,
+        "sequence": 15,
+        "poolWallMs": 2,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 15 · Accepted 15/15 · Local saved · 2.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 11,
+        "sequence": 16,
+        "poolWallMs": 2,
+        "shardMaxMs": 1,
+        "shardTotalMs": 1,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 16 · Accepted 16/16 · Local saved · 2.00 ms · 1 worker · shard max 1.00 ms · shard total 1.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 12,
+        "sequence": 17,
+        "poolWallMs": 3,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 17 · Accepted 17/17 · Local saved · 3.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 13,
+        "sequence": 18,
+        "poolWallMs": 3,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 18 · Accepted 18/18 · Local saved · 3.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 14,
+        "sequence": 19,
+        "poolWallMs": 5,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 19 · Accepted 19/19 · Local saved · 5.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 15,
+        "sequence": 20,
+        "poolWallMs": 4,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 20 · Accepted 20/20 · Local saved · 4.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 16,
+        "sequence": 21,
+        "poolWallMs": 5,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 21 · Accepted 21/21 · Local saved · 5.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 17,
+        "sequence": 22,
+        "poolWallMs": 3,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 2Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 22 · Accepted 22/22 · Local saved · 3.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 18,
+        "sequence": 23,
+        "poolWallMs": 10,
+        "shardMaxMs": 4,
+        "shardTotalMs": 4,
+        "wallMinusShardMaxMs": 6,
+        "status": " ReadyListener Stress Listener 3Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 23 · Accepted 23/23 · Local saved · 10.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 19,
+        "sequence": 24,
+        "poolWallMs": 2,
+        "shardMaxMs": 1,
+        "shardTotalMs": 1,
+        "wallMinusShardMaxMs": 1,
+        "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 24 · Accepted 24/24 · Local saved · 2.00 ms · 1 worker · shard max 1.00 ms · shard total 1.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 20,
+        "sequence": 25,
+        "poolWallMs": 3,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 25 · Accepted 25/25 · Local saved · 3.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 21,
+        "sequence": 26,
+        "poolWallMs": 4,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 2,
+        "status": " ReadyListener Stress Listener 6Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 26 · Accepted 26/26 · Local saved · 4.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 22,
+        "sequence": 27,
+        "poolWallMs": 3,
+        "shardMaxMs": 3,
+        "shardTotalMs": 3,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 7Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 27 · Accepted 27/27 · Local saved · 3.00 ms · 1 worker · shard max 3.00 ms · shard total 3.00 ms · Interactive acoustic approximation"
+      },
+      {
+        "index": 23,
+        "sequence": 28,
+        "poolWallMs": 2,
+        "shardMaxMs": 2,
+        "shardTotalMs": 2,
+        "wallMinusShardMaxMs": 0,
+        "status": " ReadyListener Stress Listener 8Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 28 · Accepted 28/28 · Local saved · 2.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+      }
+    ]
+  }
+]

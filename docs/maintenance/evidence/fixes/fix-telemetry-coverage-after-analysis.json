@@ -1,0 +1,9 @@
+{
+  "diagnosticOnly": true,
+  "phase": "after",
+  "previousSequence": 4,
+  "acceptedSequence": 5,
+  "expectedWorkerCount": 4,
+  "measurement": "Precise call coverage starts after listener/project update and includes only existing held SHARD_RESULT callback flush plus telemetry UI update.",
+  "matching": []
+}

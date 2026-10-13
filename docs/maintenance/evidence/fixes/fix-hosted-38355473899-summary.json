@@ -1,0 +1,555 @@
+{
+  "schemaVersion": 1,
+  "repository": "kekekewww/Echo-Canva-Web",
+  "pullRequest": 2,
+  "runId": 38355473899,
+  "runUrl": "https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38355473899",
+  "event": "pull_request",
+  "headSha": "48a2f668de12a3efc0305e0aef71eec60ccc91bd",
+  "status": "completed",
+  "conclusion": "success",
+  "createdAt": "2026-10-13T06:13:00Z",
+  "updatedAt": "2026-10-13T06:19:59Z",
+  "application": {
+    "ubuntu": {
+      "jobId": 115157225484,
+      "unitFiles": 73,
+      "unitTests": 567,
+      "unitResult": "PASS",
+      "markerFixtures": {
+        "turbopackClient": "PASS",
+        "turbopackServerRejection": "PASS",
+        "webpackClient": "PASS",
+        "webpackServerRejection": "PASS"
+      },
+      "chromium": {
+        "cleanPassed": 45,
+        "flaky": 0,
+        "failed": 0,
+        "total": 45,
+        "durationSeconds": 38.1
+      }
+    },
+    "windows": {
+      "jobId": 115157225449,
+      "unitFiles": 73,
+      "unitTests": 567,
+      "unitResult": "PASS",
+      "markerFixtures": {
+        "turbopackClient": "PASS",
+        "turbopackServerRejection": "PASS",
+        "webpackClient": "PASS",
+        "webpackServerRejection": "PASS"
+      },
+      "chromium": {
+        "cleanPassed": 45,
+        "flaky": 0,
+        "failed": 0,
+        "total": 45,
+        "durationSeconds": 46.9
+      }
+    },
+    "macos": {
+      "jobId": 115157225565,
+      "unitFiles": 73,
+      "unitTests": 567,
+      "unitResult": "PASS",
+      "markerFixtures": {
+        "turbopackClient": "PASS",
+        "turbopackServerRejection": "PASS",
+        "webpackClient": "PASS",
+        "webpackServerRejection": "PASS"
+      },
+      "chromium": {
+        "cleanPassed": 44,
+        "flaky": 1,
+        "failed": 0,
+        "total": 45,
+        "durationSeconds": 49.9,
+        "firstAttemptFailure": {
+          "test": "survives the full entity-limit project within Worker and interaction budgets",
+          "file": "tests/e2e/workspace.spec.ts",
+          "line": 476,
+          "metric": "complete Worker pool wall-time p95",
+          "receivedMs": 18,
+          "requiredMs": "<12",
+          "retry1": "PASS"
+        },
+        "runner": {
+          "os": "macOS26.6.2",
+          "build": "25G83",
+          "image": "macos-26-arm64",
+          "imageVersion": "20260907.0351.1",
+          "node": "22.23.3",
+          "chromium": "149.0.7827.55",
+          "playwrightChromiumBuild": "1228",
+          "playwrightWorkers": 1
+        },
+        "notCaptured": [
+          "CPU model/count",
+          "browser hardwareConcurrency",
+          "individual shard compute timings",
+          "all wall-time samples",
+          "long tasks on failed attempt"
+        ],
+        "artifacts": {
+          "totalCount": 0,
+          "reason": "Upload step used failure(); successful flaky job skipped upload."
+        }
+      }
+    }
+  },
+  "docker": {
+    "jobId": 115157225240,
+    "imageId": "sha256:531f1f53ce6fc1c5e9457d12faa5dffdbd5d1b22af773ae2e747a4e4df9b1382",
+    "imageSizeBytes": 267766572,
+    "runtimeUid": 1000,
+    "configuredUser": "node",
+    "exposedPorts": [
+      "3000/tcp"
+    ],
+    "runtimePackages": 21,
+    "standalonePackages": 19,
+    "declaredDependenciesIncluded": 5,
+    "supplementalPackages": 3,
+    "missingLicenseMetadata": 0,
+    "missingNoticeFiles": 0,
+    "missingInstalledPackages": 0,
+    "ignoredExternalRuntimeLinks": 0,
+    "provenanceExceptions": 0,
+    "httpSmoke": "PASS health/Classic/Hybrid/assets/both disabled AI APIs",
+    "shutdown": "PASS accepted exit0|143 and OOMKilledfalse; exact exit was not printed",
+    "health": "PASS"
+  },
+  "limits": [
+    "GitHub job success on macOS includes a flaky stress test; it is not a clean first-attempt pass.",
+    "Hosted native macOS validation is not Docker Desktop macOS validation.",
+    "No real host listening/output validation."
+  ],
+  "jobs": [
+    {
+      "id": 115157225240,
+      "name": "Production Docker integration",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38355473899,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the verified Docker Compose version",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Validate both Compose configurations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Build and start a clean production image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "HTTP, browser-route and no-key API smoke",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Verify runtime isolation and image contents",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Verify graceful shutdown",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Container logs and cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        }
+      ]
+    },
+    {
+      "id": 115157225449,
+      "name": "Application checks and Chromium E2E (windows-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38355473899,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the pinned package manager and dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Verify the immutable source and destination initializer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify the real Next.js Client and Server Component boundary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "ESLint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Production dependency advisory audit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "TypeScript",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Deterministic unit tests (AI mocks)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Production build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Install Chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Chromium E2E against the built application",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Upload browser failure evidence",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        }
+      ]
+    },
+    {
+      "id": 115157225484,
+      "name": "Application checks and Chromium E2E (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38355473899,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the pinned package manager and dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Verify the immutable source and destination initializer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify the real Next.js Client and Server Component boundary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "ESLint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Production dependency advisory audit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "TypeScript",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Deterministic unit tests (AI mocks)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Production build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Install Chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Chromium E2E against the built application",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Upload browser failure evidence",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        }
+      ]
+    },
+    {
+      "id": 115157225565,
+      "name": "Application checks and Chromium E2E (macos-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38355473899,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the pinned package manager and dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Verify the immutable source and destination initializer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify the real Next.js Client and Server Component boundary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "ESLint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Production dependency advisory audit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "TypeScript",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Deterministic unit tests (AI mocks)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Production build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Install Chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Chromium E2E against the built application",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Upload browser failure evidence",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        }
+      ]
+    }
+  ]
+}

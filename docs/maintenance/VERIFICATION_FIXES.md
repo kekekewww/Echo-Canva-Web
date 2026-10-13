@@ -15,7 +15,7 @@ relaxed.
 
 | Finding | Demonstrated cause and correction |
 | --- | --- |
-| Native/container browser stress | Both servers were exercised by the Windows host browser. Listener updates repeatedly invalidated static projection/render caches because the primitive array was recreated each render. Hybrid audible mapping also calculated a complete Classic frame, including unused reflections and room decay. CPU profiling identified both costs; stable primitive identity and an exact extraction of the existing Direct/Portal routing remove that work. Docker does not run the browser solver. |
+| Native/container browser stress | Both servers were exercised by the Windows host browser. Listener updates repeatedly invalidated static projection/render caches because the primitive array was recreated each render. Hybrid audible mapping also calculated a complete Classic frame, including unused reflections and room decay. CPU profiling identified both contributing costs; stable primitive identity and an exact extraction of the existing Direct/Portal routing remove that work. These are not proven to account for every later outlier. Docker does not run the browser solver. |
 | Reported Worker p95 | The pool metric is dispatch-to-complete, validated response wall time, including scheduling and main-thread response handling. It is not isolated Worker CPU time. UI blocking can therefore breach this gate. |
 | `braces` high advisory | The actual development dependency chain is Next ESLint → fast-glob → micromatch → braces. Deep braces/parentheses within the original input-length cap cause native stack exhaustion. The registry still publishes only through 3.0.3. |
 | Missing client-only notice | The exact original npm archive contains only two marker modules and package metadata, with an MIT declaration but no copyright/permission notice or source revision. Neither React's homepage nor Next's wholesale vendoring supplies authentic original attribution. Both executable copies now use an independently authored, project-MIT marker; historical metadata is retained. |
@@ -96,11 +96,11 @@ original case three times with zero retries; evidence directories stay separate.
 | Final corrected-tree check | Status |
 | --- | --- |
 | Wall geometry regressions / full native gates / full Chromium | Geometry PASS: 16 focused tests including three new cases. Native lint/type/build/source/collector PASS. First full unit FAIL: 569 passed / one existing marker-test timeout; unchanged isolated 7/7 and full rerun 74 files / 570 tests PASS. Full Chromium FAIL: 43 passed / two timing failures (100-wall selection 81.2 ms >50, stress p95 20 ms >12). Subsequent no-retry diagnostics pending; neither failure is erased. |
-| Rebuilt final production image / zero-gap runtime / complete Chromium | Pending actual run |
-| Updated final development image / quality / Watch persistence | Pending actual run |
+| Production image at this intermediate wall-only tree | Not rebuilt at this intermediate head; actual final telemetry-tree verification is recorded below. |
+| Development image at this intermediate wall-only tree | Not rebuilt at this intermediate head; actual final telemetry-tree verification is recorded below. |
 | Wall-fix three-OS hosted matrix / macOS zero-retry repetitions / Docker | [Run 38358717111](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38358717111), head `9494d03a260dbdfe11c247a8260cdf1d62e9889a`: FAIL. All OS unit gates PASS (74 files / 570 tests). Ubuntu CLEAN 45/45; Windows 44 passed / stress failed all three attempts, p95 13 / 13 / 14 ms; macOS full suite CLEAN 45/45, extra no-retry repetitions 2 passed / one failed, p95 7 / 10 / 16 ms. Docker PASS, all notice/provenance gaps zero. |
 
-These pending rows are not passes. Phase-one logs and the macOS first failure
+Those intermediate image rows are not passes. Phase-one logs and the macOS first failure
 remain unchanged; final wall-fix outputs use separate `fix-wall-*` names.
 
 Actual browser concurrency is captured in that run: Ubuntu/Windows report four
@@ -134,8 +134,8 @@ pool policy, reflection/RT60 formula or expected numerical value is changed.
 Two real-component idle-render regressions failed before the correction and pass
 after it; scoped lint and full TypeScript pass. Existing Classic/Hybrid Generate
 and Frame All browser cases plus a new mock Explain selected-source case protect
-the handlers. The integrated 46-case browser suite and rebuilt images are pending
-actual execution; the preceding CI failures remain above.
+the handlers. Integrated browser and final image outcomes are recorded below;
+the preceding CI failures remain above.
 
 A separate native HC3 boundary diagnostic before this correction passed p95 7 ms
 with 24 complete frames and no Long Tasks. Native message handling (validation,
@@ -186,9 +186,61 @@ their actual inputs change. Full project identity remains a dependency; a
 revision-only comparator would incorrectly hide selection, view or metadata
 updates. The metadata precedence, asynchronous initiation-mode dispatch, local
 panel/AI state and acoustic Worker/audio behavior remain unchanged. Scoped lint,
-full TypeScript and an independent source review pass. Complete browser,
-telemetry-coverage and final Docker verification are pending; the latest macOS
-failure above remains unresolved until actual new evidence exists.
+full TypeScript and an independent source review pass. The silent native
+lint/typecheck commands returned exit 0 but did not create the claimed
+`Tee-Object` logs; retained tool-result metadata explicitly records that
+limitation rather than fabricating raw output.
+
+The after-fix coverage window contains no invoked Inspector/Outliner function
+entry. A subsequent real listener/project change observes each exact compiled
+function once, proving the functions remain observable and update when needed.
+V8 omitted inactive functions; this is not presented as an explicit zero counter.
+
+| Final telemetry-tree check (`96f3247069a01eac09cf707e90cdc9231f8a4bbe`) | Actual result |
+| --- | --- |
+| Native units / production build / source / notices | PASS: 75 files / 572 tests, 5.707 s process; build 10.259 s, BUILD_ID `ts9bLxVDHq2VvhMSK5_jQ`; immutable 291-file source verification and strict 20-package notice collector pass. |
+| Native complete Chromium suite | CLEAN PASS: 46/46, zero retries, 43.8 s (44.370 s process); original stress p95 4 ms / maximum 5 ms, no Long Tasks. |
+| Native extra original stress repetitions | FAIL overall: 2/3 pass, zero retries. p95 12 / 4 / 4 ms; first maximum 57 ms and Long Task 98 ms, so both original limits would fail (the p95 assertion aborts before the Long Task assertion). All attempts still complete 24 unique frames, actual HC32 / four Workers. No unchanged rerun is used to replace that failure. |
+| Final hosted three-OS matrix / Docker | [Run 38364078147](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38364078147) FAIL overall. Each OS passes 572 units, four actual compiler fixtures, lint/type/build/source/production audit. Ubuntu CLEAN 46/46 (41.6 s), stress p95 9 ms; Windows CLEAN 46/46 (49.8 s), p95 10 ms. macOS 45 clean / one flaky stress: first p95 32 ms fails, retry passes at 10 ms. Additional zero-retry repetitions: one pass / two fail, p95 12 / 10 / 28 ms. Docker PASS: 267,766,624 bytes, UID 1000, zero notice/provenance gaps. Failed macOS checks block merge. |
+| Final local production container | PASS: actual rebuilt image, health/main routes/static/public assets/no-key API smoke, strict 21-package inventory (19 standalone / all five declared; every gap zero), non-root isolation and bounded offline secret/notice scan. Chromium CLEAN 46/46, zero retries, 43.6 s (44.176 s process), original stress 8.0 s. Actual SIGTERM cleanup-start/finished, 1.088 s / exit 143 / OOM false; restart smoke passes. |
+| Final local development container | PASS: Node 22.23.3 / pnpm 11.7.0, non-root lint/typecheck and 75 files / 572 units (Vitest 4.27 s; quality process 24.208 s). Two actual Watch/HMR updates without refresh take 870 / 843 ms and restore exact source bytes. Two stop/start cycles preserve Classic X=2.25, Hybrid X=4.5 and the same local 192,044-byte WAV ID/SHA in IndexedDB; zero uploads, relink warnings or page errors. |
+
+The failed native repetition's 57 ms frame reports shard maximum 51 ms (total
+155 ms); another 12 ms frame reports maximum 8 ms (total 28 ms). Coarse wall/shard
+timing alone cannot isolate CPU execution, scheduling, transport, validation or
+garbage collection. No trace captured those stalls. The panel-render correction
+is demonstrated, but cross-platform timing variability remains unresolved;
+neither Worker validation nor the original 12/50 ms gates is weakened.
+
+Hosted macOS uses HC3 / one Worker and records no Long Tasks in all five stress
+attempts. The failed first attempt includes a 41 ms pool sample with a 2 ms shard;
+the last failed repetition includes two 28 ms samples with shards 13 and 8 ms.
+Absence of >50 ms Long Tasks does not eliminate shorter main-thread blocking or
+scheduling delays. All seven hosted raw metric files, four full job logs and
+their exact-head artifact/hash mapping are retained in the follow-up evidence.
+There was no manual rerun or change to the gate. At this failed head PR #2 remains
+a draft instead of merging a failed CI run.
+
+Final local production image:
+`sha256:a97fbd885d9e483385bc7d2eea348ad488c5c26ee09a19a46e443662ec17ed01`,
+386,464,548 bytes / 39.096 s build. Final development image:
+`sha256:6613e8c1d516fe1da321adfbbcefb43ede719a29d4cd186e4ee456f57b4528aa`,
+1,037,625,384 bytes / 4.959 s build. The final application layer is rebuilt from
+the exact head above; unchanged dependency stages use cache. This is not a second
+no-cache build. The earlier actual no-cache build remains separately recorded.
+The final bounded scan reads 1,489 text files / 20,930,282 bytes, with six explicit
+binary skips and zero credential/client-key matches; independently authored
+marker and libvips notices pass. It is not a complete OS CVE scan. Images were
+built locally and were not published.
+
+Only the two final task-owned Compose projects were removed; both have zero
+remaining containers. Their Watch process had exited, exact host/container
+toolbar hashes match and Git shows no probe change. Images, diagnostic logs and
+the browser profile are retained; unrelated containers/processes were untouched.
+Full final evidence summaries are
+[native](evidence/fixes/fix-telemetry-native-summary.md),
+[Docker](evidence/fixes/fix-lazy-docker-summary.json) and
+[hosted](evidence/fixes/fix-hosted-38364078147-summary.json).
 
 ## Already verified remote adoption
 

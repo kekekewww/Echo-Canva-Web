@@ -1,0 +1,28 @@
+{
+  "diagnosticOnly": true,
+  "phase": "before-rerun",
+  "previousSequence": 4,
+  "acceptedSequence": 5,
+  "expectedWorkerCount": 4,
+  "measurement": "Precise call coverage starts after listener/project update and includes only existing held SHARD_RESULT callback flush plus telemetry UI update.",
+  "matching": [
+    {
+      "component": "ContextInspector",
+      "functionName": "cy",
+      "count": 1,
+      "scriptUrl": "http://127.0.0.1:3101/_next/static/chunks/143rtjdpjlxec.js",
+      "startOffset": 356035,
+      "endOffset": 370418,
+      "functionHead": "function cy({project:e,dispatch:t,localAssets:i=[],onRelinkAudio:n,onRemoveLocalAudio:o,mobileOpen:s=!1}){let[l,d]=(0,a.useState)(!1),[c,m]=(0,a.useState)(null),[p,f]=(0,a.useState)(null),h=e.selection,g=h?.type===\"listener\"?e.listeners.find(({id:e})=>e===h.id):null,v=h?.type===\"source\"?e.scene.sources.find(({id:e})=>e===h.id):null,y=h?.type===\"wall\"?e.scene.walls.find(({id:e})=>e===h.id):null,b=h?.type===\"portal\"?e.scene.portals.find(({id:e})=>e"
+    },
+    {
+      "component": "SceneOutliner",
+      "functionName": "mt",
+      "count": 1,
+      "scriptUrl": "http://127.0.0.1:3101/_next/static/chunks/143rtjdpjlxec.js",
+      "startOffset": 419149,
+      "endOffset": 420645,
+      "functionHead": "function mt({project:e,onSelect:t,mobileOpen:i=!1}){let n=new Set(e.disabledEntityIds),a=(i,n,a,o=!1,s=!0)=>(0,r.jsx)(me,{active:o,enabled:s,id:i.id,kind:a,label:n,onSelect:t,selected:e.selection?.type===i.type&&e.selection.id===i.id,type:i.type},`${i.type}-${i.id}`);return(0,r.jsxs)(\"aside\",{\"aria-label\":\"Scene Outliner\",\"aria-modal\":i||void 0,className:`workspace-outliner${i?\" is-mobile-open\":\"\"}`,role:i?\"dialog\":void 0,children:[(0,r.jsxs)(\"he"
+    }
+  ]
+}

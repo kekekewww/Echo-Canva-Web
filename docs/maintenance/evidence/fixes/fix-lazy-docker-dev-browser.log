@@ -1,0 +1,4 @@
+PASS real Compose Watch + Next hot reload without browser refresh, cycle 1 : 870 ms; source bytes restored
+PASS real Compose Watch + Next hot reload without browser refresh, cycle 2 : 843 ms; source bytes restored
+PASS container stop/start cycle 1 preserves both scene modes and browser IndexedDB local audio; no upload/page errors
+PASS container stop/start cycle 2 preserves both scene modes and browser IndexedDB local audio; no upload/page errors

@@ -1,0 +1,140 @@
+
+ RUN  v4.1.11 D:/Developing/Echo Canvas Web/Echo-Canva-Web
+
+ ❯ tests/unit/braces-security.test.ts (26 tests | 16 failed) 477ms
+     × parse rejects the 9,999-character stack-exhaustion pattern before recursive work 12ms
+     × compile rejects the 9,999-character stack-exhaustion pattern before recursive work 19ms
+     × expand rejects the 9,999-character stack-exhaustion pattern before recursive work 23ms
+     × stringify rejects the 9,999-character stack-exhaustion pattern before recursive work 4ms
+     × the default API rejects hostile patterns with expand=false 16ms
+     × the default API rejects hostile patterns with expand=true 10ms
+     × also rejects deeply nested parentheses and mixed groups 21ms
+     × compile guards caller-supplied ASTs that bypass the parser 18ms
+     × expand guards caller-supplied ASTs that bypass the parser 333ms
+     × stringify guards caller-supplied ASTs that bypass the parser 8ms
+     × compile accepts 128 nested groups and rejects the next level 1ms
+     × expand accepts 128 nested groups and rejects the next level 2ms
+     × stringify accepts 128 nested groups and rejects the next level 1ms
+     × compile preserves valid brace alternatives at the nesting boundary 1ms
+     × expand preserves valid brace alternatives at the nesting boundary 1ms
+     × stringify preserves valid brace alternatives at the nesting boundary 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 16 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > parse rejects the 9,999-character stack-exhaustion pattern before recursive work
+AssertionError: expected undefined to be an instance of SyntaxError
+ ❯ expectDepthRejection tests/unit/braces-security.test.ts:53:18
+     51|     caught = error;
+     52|   }
+     53|   expect(caught).toBeInstanceOf(SyntaxError);
+       |                  ^
+     54|   expect(caught).toMatchObject({ code: "BRACES_MAX_DEPTH" });
+     55| }
+ ❯ tests/unit/braces-security.test.ts:62:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/16]⎯
+
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > compile rejects the 9,999-character stack-exhaustion pattern before recursive work
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > expand rejects the 9,999-character stack-exhaustion pattern before recursive work
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > stringify rejects the 9,999-character stack-exhaustion pattern before recursive work
+AssertionError: expected RangeError: Maximum call stack size excee… to be an instance of SyntaxError
+ ❯ expectDepthRejection tests/unit/braces-security.test.ts:53:18
+     51|     caught = error;
+     52|   }
+     53|   expect(caught).toBeInstanceOf(SyntaxError);
+       |                  ^
+     54|   expect(caught).toMatchObject({ code: "BRACES_MAX_DEPTH" });
+     55| }
+ ❯ tests/unit/braces-security.test.ts:62:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/16]⎯
+
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > the default API rejects hostile patterns with expand=false
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > the default API rejects hostile patterns with expand=true
+AssertionError: expected RangeError: Maximum call stack size excee… to be an instance of SyntaxError
+ ❯ expectDepthRejection tests/unit/braces-security.test.ts:53:18
+     51|     caught = error;
+     52|   }
+     53|   expect(caught).toBeInstanceOf(SyntaxError);
+       |                  ^
+     54|   expect(caught).toMatchObject({ code: "BRACES_MAX_DEPTH" });
+     55| }
+ ❯ tests/unit/braces-security.test.ts:67:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/16]⎯
+
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > also rejects deeply nested parentheses and mixed groups
+AssertionError: expected RangeError: Maximum call stack size excee… to be an instance of SyntaxError
+ ❯ expectDepthRejection tests/unit/braces-security.test.ts:53:18
+     51|     caught = error;
+     52|   }
+     53|   expect(caught).toBeInstanceOf(SyntaxError);
+       |                  ^
+     54|   expect(caught).toMatchObject({ code: "BRACES_MAX_DEPTH" });
+     55| }
+ ❯ tests/unit/braces-security.test.ts:71:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/16]⎯
+
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > compile guards caller-supplied ASTs that bypass the parser
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > stringify guards caller-supplied ASTs that bypass the parser
+AssertionError: expected RangeError: Maximum call stack size excee… to be an instance of SyntaxError
+ ❯ expectDepthRejection tests/unit/braces-security.test.ts:53:18
+     51|     caught = error;
+     52|   }
+     53|   expect(caught).toBeInstanceOf(SyntaxError);
+       |                  ^
+     54|   expect(caught).toMatchObject({ code: "BRACES_MAX_DEPTH" });
+     55| }
+ ❯ tests/unit/braces-security.test.ts:77:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/16]⎯
+
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > expand guards caller-supplied ASTs that bypass the parser
+AssertionError: expected undefined to be an instance of SyntaxError
+ ❯ expectDepthRejection tests/unit/braces-security.test.ts:53:18
+     51|     caught = error;
+     52|   }
+     53|   expect(caught).toBeInstanceOf(SyntaxError);
+       |                  ^
+     54|   expect(caught).toMatchObject({ code: "BRACES_MAX_DEPTH" });
+     55| }
+ ❯ tests/unit/braces-security.test.ts:77:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/16]⎯
+
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > compile accepts 128 nested groups and rejects the next level
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > expand accepts 128 nested groups and rejects the next level
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > stringify accepts 128 nested groups and rejects the next level
+AssertionError: expected undefined to be an instance of SyntaxError
+ ❯ expectDepthRejection tests/unit/braces-security.test.ts:53:18
+     51|     caught = error;
+     52|   }
+     53|   expect(caught).toBeInstanceOf(SyntaxError);
+       |                  ^
+     54|   expect(caught).toMatchObject({ code: "BRACES_MAX_DEPTH" });
+     55| }
+ ❯ tests/unit/braces-security.test.ts:86:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/16]⎯
+
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > compile preserves valid brace alternatives at the nesting boundary
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > expand preserves valid brace alternatives at the nesting boundary
+ FAIL  tests/unit/braces-security.test.ts > locally patched braces dependency > stringify preserves valid brace alternatives at the nesting boundary
+AssertionError: expected undefined to be an instance of SyntaxError
+ ❯ expectDepthRejection tests/unit/braces-security.test.ts:53:18
+     51|     caught = error;
+     52|   }
+     53|   expect(caught).toBeInstanceOf(SyntaxError);
+       |                  ^
+     54|   expect(caught).toMatchObject({ code: "BRACES_MAX_DEPTH" });
+     55| }
+ ❯ tests/unit/braces-security.test.ts:104:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/16]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  16 failed | 10 passed (26)
+   Start at  13:47:46
+   Duration  903ms (transform 24ms, setup 0ms, import 71ms, tests 477ms, environment 0ms)

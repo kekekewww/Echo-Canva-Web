@@ -1,0 +1,16 @@
+{
+  "runtimeUser": 1000,
+  "summary": {
+    "runtimePackages": 21,
+    "standalonePackages": 19,
+    "skippedManifestsWithoutNameOrVersion": 49,
+    "missingLicenseMetadata": 0,
+    "missingNoticeFiles": 0,
+    "missingInstalledPackages": 0,
+    "ignoredExternalRuntimeLinks": 0,
+    "declaredDependenciesIncluded": 5,
+    "supplementalPackages": 3,
+    "provenanceExceptions": 0
+  },
+  "unresolvedProvenance": []
+}

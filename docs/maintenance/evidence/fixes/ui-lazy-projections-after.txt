@@ -1,0 +1,10 @@
+
+ RUN  v4.1.11 D:/Developing/Echo Canvas Web/Echo-Canva-Web
+
+ ✓ tests/unit/workspace-project-tools.test.ts > WorkspaceProjectTools idle rendering > renders Classic AI controls without calculating unused acoustic projections 14ms
+ ✓ tests/unit/workspace-project-tools.test.ts > WorkspaceProjectTools idle rendering > renders Hybrid AI controls without calculating unused acoustic projections 1ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  15:06:40
+   Duration  1.05s (transform 324ms, setup 0ms, import 641ms, tests 17ms, environment 0ms)

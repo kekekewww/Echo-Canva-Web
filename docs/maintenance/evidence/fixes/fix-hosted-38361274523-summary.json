@@ -1,0 +1,778 @@
+{
+  "schemaVersion": 1,
+  "repository": "kekekewww/Echo-Canva-Web",
+  "pullRequest": 2,
+  "runId": 38361274523,
+  "runUrl": "https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38361274523",
+  "headSha": "13035395b5f8f20bad9e663ef11a6366a788b995",
+  "event": "pull_request",
+  "status": "completed",
+  "conclusion": "failure",
+  "createdAt": "2026-10-13T07:13:02Z",
+  "updatedAt": "2026-10-13T07:20:43Z",
+  "quality": {
+    "ubuntu": {
+      "unitSummary": [
+        "2026-10-13T07:14:30.8730549Z  Test Files  75 passed (75)",
+        "2026-10-13T07:14:30.8733571Z       Tests  572 passed (572)"
+      ],
+      "markerPassLines": [
+        "2026-10-13T07:13:38.4231534Z PASS Next turbopack client marker boundary: build accepted",
+        "2026-10-13T07:13:43.0367638Z PASS Next turbopack server marker boundary: build rejected as required",
+        "2026-10-13T07:14:00.7680484Z PASS Next webpack client marker boundary: build accepted",
+        "2026-10-13T07:14:03.9872297Z PASS Next webpack server marker boundary: build rejected as required"
+      ],
+      "productionBuild": "PASS",
+      "lint": "PASS",
+      "typecheck": "PASS",
+      "productionDependencyAudit": "PASS zero registry findings",
+      "immutableSourceVerifier": "PASS 291 baseline files and exact two history roots"
+    },
+    "windows": {
+      "unitSummary": [
+        "2026-10-13T07:15:34.0734012Z  Test Files  75 passed (75)",
+        "2026-10-13T07:15:34.0736924Z       Tests  572 passed (572)"
+      ],
+      "markerPassLines": [
+        "2026-10-13T07:14:10.4159495Z PASS Next turbopack client marker boundary: build accepted",
+        "2026-10-13T07:14:16.3356429Z PASS Next turbopack server marker boundary: build rejected as required",
+        "2026-10-13T07:14:41.7971543Z PASS Next webpack client marker boundary: build accepted",
+        "2026-10-13T07:14:46.3432422Z PASS Next webpack server marker boundary: build rejected as required"
+      ],
+      "productionBuild": "PASS",
+      "lint": "PASS",
+      "typecheck": "PASS",
+      "productionDependencyAudit": "PASS zero registry findings",
+      "immutableSourceVerifier": "PASS 291 baseline files and exact two history roots"
+    },
+    "macos": {
+      "unitSummary": [
+        "2026-10-13T07:15:21.4040390Z  Test Files  75 passed (75)",
+        "2026-10-13T07:15:21.4041460Z       Tests  572 passed (572)"
+      ],
+      "markerPassLines": [
+        "2026-10-13T07:14:15.7647860Z PASS Next turbopack client marker boundary: build accepted",
+        "2026-10-13T07:14:22.6527300Z PASS Next turbopack server marker boundary: build rejected as required",
+        "2026-10-13T07:14:41.1017970Z PASS Next webpack client marker boundary: build accepted",
+        "2026-10-13T07:14:44.4142300Z PASS Next webpack server marker boundary: build rejected as required"
+      ],
+      "productionBuild": "PASS",
+      "lint": "PASS",
+      "typecheck": "PASS",
+      "productionDependencyAudit": "PASS zero registry findings",
+      "immutableSourceVerifier": "PASS 291 baseline files and exact two history roots"
+    }
+  },
+  "application": {
+    "ubuntu": {
+      "jobId": 115175877664,
+      "conclusion": "success",
+      "unitFiles": 75,
+      "unitTests": 572,
+      "chromium": {
+        "cleanPassed": 46,
+        "flaky": 0,
+        "failed": 0,
+        "total": 46,
+        "durationSeconds": 42.3
+      },
+      "stress": {
+        "rawMetricsFile": "fix-hosted-38361274523-ubuntu-fullsuite-metrics.json",
+        "bytes": 6554,
+        "sha256": "780dd5e972e2fc4a043a55816bb59cc9de4b9fe9cc1bb0c89449ef227ef3ca88",
+        "hardwareConcurrency": 4,
+        "expectedWorkerCount": 2,
+        "p95Ms": 9,
+        "maximumPoolWallMs": 14,
+        "shardMaxP95Ms": 6,
+        "maximumShardMs": 7,
+        "wallMinusShardMaxP95Ms": 5,
+        "longTasks": [],
+        "overBudgetRows": [
+          {
+            "index": 0,
+            "sequence": 5,
+            "poolWallMs": 14,
+            "shardMaxMs": 6,
+            "shardTotalMs": 12,
+            "wallMinusShardMaxMs": 8,
+            "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 5 · Accepted 5/5 · Local saved · 14.00 ms · 2 workers · shard max 6.00 ms · shard total 12.00 ms · Interactive acoustic approximation"
+          }
+        ],
+        "sampleCount": 24
+      }
+    },
+    "windows": {
+      "jobId": 115175877677,
+      "conclusion": "success",
+      "unitFiles": 75,
+      "unitTests": 572,
+      "chromium": {
+        "cleanPassed": 46,
+        "flaky": 0,
+        "failed": 0,
+        "total": 46,
+        "durationSeconds": 55.2
+      },
+      "stress": {
+        "rawMetricsFile": "fix-hosted-38361274523-windows-fullsuite-metrics.json",
+        "bytes": 6552,
+        "sha256": "0052894c58979e574c85bddf677a367da89bdbbb60a308521c573fd58f26d059",
+        "hardwareConcurrency": 4,
+        "expectedWorkerCount": 2,
+        "p95Ms": 9,
+        "maximumPoolWallMs": 10,
+        "shardMaxP95Ms": 5,
+        "maximumShardMs": 8,
+        "wallMinusShardMaxP95Ms": 3,
+        "longTasks": [],
+        "overBudgetRows": [],
+        "sampleCount": 24
+      }
+    },
+    "macos": {
+      "jobId": 115175877521,
+      "conclusion": "failure",
+      "unitFiles": 75,
+      "unitTests": 572,
+      "chromiumFullSuite": {
+        "cleanPassed": 46,
+        "flaky": 0,
+        "failed": 0,
+        "total": 46,
+        "durationSeconds": 41.6
+      },
+      "repeatWithoutRetries": {
+        "passed": 2,
+        "failed": 1,
+        "total": 3,
+        "durationSeconds": 27.9
+      },
+      "stressTrials": [
+        {
+          "rawMetricsFile": "fix-hosted-38361274523-macos-repeat0-metrics.json",
+          "bytes": 6532,
+          "sha256": "f1ac0122aec5afd6d89ec35453f6b1bfb030d85e0a4755f51ec8e8975c984a10",
+          "hardwareConcurrency": 3,
+          "expectedWorkerCount": 1,
+          "p95Ms": 13,
+          "maximumPoolWallMs": 29,
+          "shardMaxP95Ms": 5,
+          "maximumShardMs": 6,
+          "wallMinusShardMaxP95Ms": 9,
+          "longTasks": [],
+          "overBudgetRows": [
+            {
+              "index": 3,
+              "sequence": 8,
+              "poolWallMs": 29,
+              "shardMaxMs": 2,
+              "shardTotalMs": 2,
+              "wallMinusShardMaxMs": 27,
+              "status": " ReadyListener Stress Listener 4Route directGain 0.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 8 · Accepted 8/8 · Local saved · 29.00 ms · 1 worker · shard max 2.00 ms · shard total 2.00 ms · Interactive acoustic approximation"
+            },
+            {
+              "index": 4,
+              "sequence": 9,
+              "poolWallMs": 13,
+              "shardMaxMs": 4,
+              "shardTotalMs": 4,
+              "wallMinusShardMaxMs": 9,
+              "status": " ReadyListener Stress Listener 5Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 9 · Accepted 9/9 · Local saved · 13.00 ms · 1 worker · shard max 4.00 ms · shard total 4.00 ms · Interactive acoustic approximation"
+            },
+            {
+              "index": 16,
+              "sequence": 21,
+              "poolWallMs": 12,
+              "shardMaxMs": 6,
+              "shardTotalMs": 6,
+              "wallMinusShardMaxMs": 6,
+              "status": " ReadyListener Stress Listener 1Route blockedGain -36.0 dBRT60 0.34 sWorkerDebugHybrid 3D · Rev 21 · Accepted 21/21 · Local saved · 12.00 ms · 1 worker · shard max 6.00 ms · shard total 6.00 ms · Interactive acoustic approximation"
+            }
+          ],
+          "sampleCount": 24
+        },
+        {
+          "rawMetricsFile": "fix-hosted-38361274523-macos-repeat1-metrics.json",
+          "bytes": 6525,
+          "sha256": "cc71315a25c0644ca729366296d0a627148a55f93d8ebc91f97b8ca1a1541317",
+          "hardwareConcurrency": 3,
+          "expectedWorkerCount": 1,
+          "p95Ms": 6,
+          "maximumPoolWallMs": 8,
+          "shardMaxP95Ms": 5,
+          "maximumShardMs": 5,
+          "wallMinusShardMaxP95Ms": 2,
+          "longTasks": [],
+          "overBudgetRows": [],
+          "sampleCount": 24
+        },
+        {
+          "rawMetricsFile": "fix-hosted-38361274523-macos-repeat2-metrics.json",
+          "bytes": 6527,
+          "sha256": "d1af9613d4f39e143e9c9ac986fa9af78ec5bc44d8166bb6c01bfe9df43a15c4",
+          "hardwareConcurrency": 3,
+          "expectedWorkerCount": 1,
+          "p95Ms": 8,
+          "maximumPoolWallMs": 10,
+          "shardMaxP95Ms": 4,
+          "maximumShardMs": 7,
+          "wallMinusShardMaxP95Ms": 5,
+          "longTasks": [],
+          "overBudgetRows": [],
+          "sampleCount": 24
+        },
+        {
+          "rawMetricsFile": "fix-hosted-38361274523-macos-fullsuite-metrics.json",
+          "bytes": 6525,
+          "sha256": "7a3aaaf723d89ac94a24d7cf0aed7348958977268b08515d106ed03d8593068b",
+          "hardwareConcurrency": 3,
+          "expectedWorkerCount": 1,
+          "p95Ms": 7,
+          "maximumPoolWallMs": 9,
+          "shardMaxP95Ms": 4,
+          "maximumShardMs": 4,
+          "wallMinusShardMaxP95Ms": 3,
+          "longTasks": [],
+          "overBudgetRows": [],
+          "sampleCount": 24
+        }
+      ]
+    }
+  },
+  "docker": {
+    "jobId": 115175877662,
+    "conclusion": "success",
+    "imageId": "sha256:ede730d31c5bb94356d2fff92a36c29556501b3b2ad7870e5d514228eeb29e16",
+    "imageSizeBytes": 267766346,
+    "runtimeUid": 1000,
+    "configuredUser": "node",
+    "exposedPorts": [
+      "3000/tcp"
+    ],
+    "runtimePackages": 21,
+    "standalonePackages": 19,
+    "declaredDependenciesIncluded": 5,
+    "supplementalPackages": 3,
+    "missingLicenseMetadata": 0,
+    "missingNoticeFiles": 0,
+    "missingInstalledPackages": 0,
+    "ignoredExternalRuntimeLinks": 0,
+    "provenanceExceptions": 0,
+    "httpSmoke": "PASS health/Classic/Hybrid/assets/both disabled AI APIs",
+    "shutdown": "PASS accepted exit0|143 and OOMKilledfalse; exact exit not printed",
+    "health": "PASS"
+  },
+  "artifacts": {
+    "artifacts": [
+      {
+        "digest": "sha256:2f5840814cebf2fccffdfa723b36f0e54cfaddfb37115de80237c51f6c8880d5",
+        "expired": false,
+        "id": 11795401457,
+        "name": "chromium-failure-evidence-windows-latest",
+        "size_in_bytes": 2470
+      },
+      {
+        "digest": "sha256:df8f2646ce9686662936f4a741e4fec8653987cdef112787a8e5ee174aa3d8d6",
+        "expired": false,
+        "id": 11794544063,
+        "name": "chromium-failure-evidence-macos-latest",
+        "size_in_bytes": 175361
+      },
+      {
+        "digest": "sha256:590b0c812615c14c561ea041ba2b14a7a81a1d3224a537338fad470484288cce",
+        "expired": false,
+        "id": 11794449094,
+        "name": "chromium-failure-evidence-ubuntu-latest",
+        "size_in_bytes": 2524
+      }
+    ],
+    "total_count": 3
+  },
+  "flattenedRawMetrics": [
+    {
+      "name": "fix-hosted-38361274523-macos-repeat0-metrics.json",
+      "bytes": 6532,
+      "sha256": "f1ac0122aec5afd6d89ec35453f6b1bfb030d85e0a4755f51ec8e8975c984a10"
+    },
+    {
+      "name": "fix-hosted-38361274523-macos-repeat1-metrics.json",
+      "bytes": 6525,
+      "sha256": "cc71315a25c0644ca729366296d0a627148a55f93d8ebc91f97b8ca1a1541317"
+    },
+    {
+      "name": "fix-hosted-38361274523-macos-repeat2-metrics.json",
+      "bytes": 6527,
+      "sha256": "d1af9613d4f39e143e9c9ac986fa9af78ec5bc44d8166bb6c01bfe9df43a15c4"
+    },
+    {
+      "name": "fix-hosted-38361274523-macos-fullsuite-metrics.json",
+      "bytes": 6525,
+      "sha256": "7a3aaaf723d89ac94a24d7cf0aed7348958977268b08515d106ed03d8593068b"
+    },
+    {
+      "name": "fix-hosted-38361274523-windows-fullsuite-metrics.json",
+      "bytes": 6552,
+      "sha256": "0052894c58979e574c85bddf677a367da89bdbbb60a308521c573fd58f26d059"
+    },
+    {
+      "name": "fix-hosted-38361274523-ubuntu-fullsuite-metrics.json",
+      "bytes": 6554,
+      "sha256": "780dd5e972e2fc4a043a55816bb59cc9de4b9fe9cc1bb0c89449ef227ef3ca88"
+    }
+  ],
+  "interpretationLimits": [
+    "Overall run failed the macOS repeat gate despite all three full E2E suites passing cleanly.",
+    "Metric overBudgetRows denotes samples at or above12ms, not an independent per-sample assertion. The actual unchanged gate is p95<12ms; Ubuntu's single14ms sample is therefore compatible with its9ms passing p95.",
+    "Pool wall minus max shard includes transport, main-thread handling, validation and browser scheduling; no phase ownership can be inferred from coarse measurements.",
+    "All captured LongTasks arrays are empty; sub50ms main-thread work and scheduling are still possible.",
+    "DesktopChrome device userAgent containsWindows even onmacOS; runnerOS must come from hosted job identity.",
+    "Original fixture,24samples,poolpolicy,p95<12ms and LongTask<=50ms remain unchanged.",
+    "Metrics were written after measurement disconnect; early poll/protocol assertion failures may not produce JSON.",
+    "Hosted native validation is not Docker Desktop macOS validation or real headphone listening."
+  ],
+  "jobs": [
+    {
+      "id": 115175877521,
+      "name": "Application checks and Chromium E2E (macos-latest)",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 38361274523,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the pinned package manager and dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Verify the immutable source and destination initializer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify the real Next.js Client and Server Component boundary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "ESLint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Production dependency advisory audit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "TypeScript",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Deterministic unit tests (AI mocks)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Production build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Install Chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Chromium E2E against the built application",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Repeat the original stress gate on macOS without retries",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 14
+        },
+        {
+          "name": "Upload browser failure evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 29
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31
+        }
+      ]
+    },
+    {
+      "id": 115175877662,
+      "name": "Production Docker integration",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38361274523,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the verified Docker Compose version",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Validate both Compose configurations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Build and start a clean production image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "HTTP, browser-route and no-key API smoke",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Verify runtime isolation and image contents",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Verify graceful shutdown",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Container logs and cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        }
+      ]
+    },
+    {
+      "id": 115175877664,
+      "name": "Application checks and Chromium E2E (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38361274523,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the pinned package manager and dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Verify the immutable source and destination initializer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify the real Next.js Client and Server Component boundary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "ESLint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Production dependency advisory audit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "TypeScript",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Deterministic unit tests (AI mocks)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Production build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Install Chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Chromium E2E against the built application",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Repeat the original stress gate on macOS without retries",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14
+        },
+        {
+          "name": "Upload browser failure evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31
+        }
+      ]
+    },
+    {
+      "id": 115175877677,
+      "name": "Application checks and Chromium E2E (windows-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38361274523,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install the pinned package manager and dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Verify the immutable source and destination initializer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify the real Next.js Client and Server Component boundary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "ESLint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Production dependency advisory audit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "TypeScript",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Deterministic unit tests (AI mocks)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Production build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Install Chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Chromium E2E against the built application",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Repeat the original stress gate on macOS without retries",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14
+        },
+        {
+          "name": "Upload browser failure evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31
+        }
+      ]
+    }
+  ]
+}

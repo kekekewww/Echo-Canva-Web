@@ -1,0 +1,1186 @@
+{
+  "date": "2026-10-13",
+  "scope": "Subsequent authorized verification fixes; initial manifest is unchanged",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2856,
+      "sha256": "7d28039a9bceb3d45073edad9264ed144ac95894de05e05860f7859542b80927"
+    },
+    {
+      "path": "braces-after-patch.txt",
+      "bytes": 227,
+      "sha256": "d7a9787a31f20e69f8838530725765b065f36fb7f73141ff0bafab62d560a0f2"
+    },
+    {
+      "path": "braces-before-patch.txt",
+      "bytes": 7875,
+      "sha256": "3a0ee2f6a362245620e4c5074c84082d2c2e5c57c806370b68a24b9d682eb752"
+    },
+    {
+      "path": "client-marker-next-compilers-summary.json",
+      "bytes": 116,
+      "sha256": "b052590228edd56328eb55d3021d3c6bec9cb4e4fe1993bbfccfb4c298968b25"
+    },
+    {
+      "path": "client-marker-next-compilers.log",
+      "bytes": 256,
+      "sha256": "aeb78d7b78ed4130f5f8a4cce4f8b83b4f133fe06f0b852d53bd8b00a6d68684"
+    },
+    {
+      "path": "client-marker-notice-tests-verified-summary.json",
+      "bytes": 172,
+      "sha256": "0df02a9d01b69ad33a81e17e81658e42d36e4c1252437817782373f49e9b936b"
+    },
+    {
+      "path": "client-marker-notice-tests-verified.log",
+      "bytes": 392,
+      "sha256": "68fafd095286268db0426b32fc05cb63b791500f2903d2541c1dfea40257e64a"
+    },
+    {
+      "path": "fix-docker-dev-browser.log",
+      "bytes": 2244,
+      "sha256": "3bdb0f9b9a505c89e4d3c0a92a789f9f469baf6121897b186b915ece4b8acf47"
+    },
+    {
+      "path": "fix-docker-dev-build.json",
+      "bytes": 175,
+      "sha256": "0e149d4caa63989988b6c6e28f523ed0905a24e2a74114d39a809a7d4721bac0"
+    },
+    {
+      "path": "fix-docker-dev-build.log",
+      "bytes": 6098,
+      "sha256": "28e0ac8a9345333ca5eb0f71ee29fff5ca095a6da9cb019bc764c41f39e51aa3"
+    },
+    {
+      "path": "fix-docker-dev-cleanup.log",
+      "bytes": 273,
+      "sha256": "46fc33a909fd81f0797b39435605429c8076d0f3e0079f0ca4b755e33d55f29a"
+    },
+    {
+      "path": "fix-docker-dev-image.json",
+      "bytes": 373,
+      "sha256": "ae3d9d053ceaf878c393325ad0ac76ffe54e20a762247e62eb16d72615645a81"
+    },
+    {
+      "path": "fix-docker-dev-lint.log",
+      "bytes": 28,
+      "sha256": "b543827ce56a63357c629028555ecec2cc964dda33dbbf2a9a2872b1a2ab20f8"
+    },
+    {
+      "path": "fix-docker-dev-persistence.log",
+      "bytes": 155,
+      "sha256": "74b9c17b87a4e1737c6d383615ed96dabd56c0e2e370ef6c5d7baedd8964a603"
+    },
+    {
+      "path": "fix-docker-dev-quality.json",
+      "bytes": 314,
+      "sha256": "658b49399139b4cbd88ed8fe8b7ed496153488a501e3cee5fc1ca1a7056c5c18"
+    },
+    {
+      "path": "fix-docker-dev-restart-smoke.log",
+      "bytes": 106,
+      "sha256": "6608c96f200bc803f02603a7b3d30fd1bed74e27b7bcaad4f676d2d124e6362a"
+    },
+    {
+      "path": "fix-docker-dev-start.log",
+      "bytes": 454,
+      "sha256": "1efd41b4560525abe35fae11abd6152cd63d1a634074d7a27bb478c4e78d12f9"
+    },
+    {
+      "path": "fix-docker-dev-test.log",
+      "bytes": 4526,
+      "sha256": "429a765fea85df082e0ca173f4e20aec78f030ab84baeab61d253f9961ac5a8b"
+    },
+    {
+      "path": "fix-docker-dev-typecheck.log",
+      "bytes": 15,
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    },
+    {
+      "path": "fix-docker-dev-watch-process.json",
+      "bytes": 246,
+      "sha256": "f45238381b43bb650e52b228bc26cd74641ba9e1d89b571bda0de2efd969f241"
+    },
+    {
+      "path": "fix-docker-dev-watch.stderr.log",
+      "bytes": 122,
+      "sha256": "2af9b79f966659abaa0e898b5438b9d0c5ef6e606aea11656dd81e67e309069e"
+    },
+    {
+      "path": "fix-docker-dev-watch.stdout.log",
+      "bytes": 3428,
+      "sha256": "aa067b249f257e48727fefaea1b26abd287be4f9df723b09b3d3fde116192db2"
+    },
+    {
+      "path": "fix-docker-final-runtime.json",
+      "bytes": 855,
+      "sha256": "96f4203455f56be72ab3442a04db9c6a934a7855246d9d147a4378325aa54d9b"
+    },
+    {
+      "path": "fix-docker-phase1-cleanup.json",
+      "bytes": 275,
+      "sha256": "aa4cf656178c86b65c99127b40b281af838fe82b04dd370806371691af993bfe"
+    },
+    {
+      "path": "fix-docker-phase1-summary.json",
+      "bytes": 2554,
+      "sha256": "4a337321162d4b7cc0c99c01a48296014487b6f11b4e47017c8b10d8e92663ca"
+    },
+    {
+      "path": "fix-docker-prod-build.json",
+      "bytes": 190,
+      "sha256": "50c85991ea52b0f0860a4d74c3920cf4ef73a3f59fa19a3bb4bb2d097854a2ba"
+    },
+    {
+      "path": "fix-docker-prod-build.log",
+      "bytes": 11783,
+      "sha256": "3abcaa739f127c0ca0703e7d49d183456467243243aa7e92abaded051e332f53"
+    },
+    {
+      "path": "fix-docker-prod-cleanup.log",
+      "bytes": 279,
+      "sha256": "35f1dfbb88a826fa44ef3fbf0053194af49d25ec77bb6e303e78164a2f632f1d"
+    },
+    {
+      "path": "fix-docker-prod-e2e.json",
+      "bytes": 212,
+      "sha256": "04beb5fbec4cbe738e6584d2d5428ed9c30a7a2a68a399f41adadc17cb3fa065"
+    },
+    {
+      "path": "fix-docker-prod-e2e.log",
+      "bytes": 6550,
+      "sha256": "8cc5601c0c389729b4387afb13fa0b5f530a6671f4ffc6458a893cc4cd1bd48c"
+    },
+    {
+      "path": "fix-docker-prod-image-security.json",
+      "bytes": 701,
+      "sha256": "509c77aff820efc5b38cb599d823de2abf40720ff785d72cb8d357bc7aaa31e2"
+    },
+    {
+      "path": "fix-docker-prod-restart-smoke.log",
+      "bytes": 106,
+      "sha256": "6608c96f200bc803f02603a7b3d30fd1bed74e27b7bcaad4f676d2d124e6362a"
+    },
+    {
+      "path": "fix-docker-prod-restart.log",
+      "bytes": 93,
+      "sha256": "6d22434b739e9255db8d8fc80738a4873654250576fb839fa16bd8eedc927cfe"
+    },
+    {
+      "path": "fix-docker-prod-runtime.log",
+      "bytes": 416,
+      "sha256": "af39af383e942e4f6cc1774055dd0286e316ed590165c9b521480e6067034f4c"
+    },
+    {
+      "path": "fix-docker-prod-secret-scan.json",
+      "bytes": 2307,
+      "sha256": "a85da39f401b4bc7ed40b14690ec23dfc28f43a0bdc1d2f01d5f08a87e3d6ad8"
+    },
+    {
+      "path": "fix-docker-prod-server.log",
+      "bytes": 363,
+      "sha256": "005e3632cc1ec5bedf00950ce5cacba8a1d27b0953a93ebfe73ab3ae57f79b97"
+    },
+    {
+      "path": "fix-docker-prod-smoke.log",
+      "bytes": 106,
+      "sha256": "6608c96f200bc803f02603a7b3d30fd1bed74e27b7bcaad4f676d2d124e6362a"
+    },
+    {
+      "path": "fix-docker-prod-start.log",
+      "bytes": 464,
+      "sha256": "9cb9b675c4ec3be976c5ddfd766c4d430a8261a91a3cde0c1ddff1bb7da34842"
+    },
+    {
+      "path": "fix-docker-prod-stop.json",
+      "bytes": 183,
+      "sha256": "8c59a8b71bafbcbcbc42b236d110efa76b518c8f36f0e8021dfd9ea9180cf135"
+    },
+    {
+      "path": "fix-docker-prod-stop.log",
+      "bytes": 93,
+      "sha256": "a0b203e93c4337760d194bd330dda287c215297f7a19b87ba94f23b5fab076be"
+    },
+    {
+      "path": "fix-hosted-38355473899-docker.log",
+      "bytes": 40542,
+      "sha256": "43a761e2c8b02e4ba3c1d1e01fb216a5462fba1ddc6b3c6d9ac5e4a64dbb18a2"
+    },
+    {
+      "path": "fix-hosted-38355473899-macos.log",
+      "bytes": 52718,
+      "sha256": "72c9bf033b6eeb632cc460b420861269b5bcde2aef8a28b7bfc8738829015852"
+    },
+    {
+      "path": "fix-hosted-38355473899-summary.json",
+      "bytes": 15835,
+      "sha256": "23541607bc5759cacc010688fa55d33e7b348cdfdc4d1366602a5aba42bc92c8"
+    },
+    {
+      "path": "fix-hosted-38355473899-ubuntu.log",
+      "bytes": 66573,
+      "sha256": "647323134aa5ba68fb5ec21915fecac9decea6b3976e6c9b1e690c3837d88f91"
+    },
+    {
+      "path": "fix-hosted-38355473899-windows.log",
+      "bytes": 52832,
+      "sha256": "ebf0ade2a130f7c600d8e97f47c20739faeb533313f78bcac2b37d14994afa70"
+    },
+    {
+      "path": "fix-hosted-38358717111-docker.log",
+      "bytes": 40197,
+      "sha256": "648723b19fbd7c1b70addd331176b60547ab61625d18735d7787c9b00d268280"
+    },
+    {
+      "path": "fix-hosted-38358717111-macos-fullsuite-metrics.json",
+      "bytes": 6526,
+      "sha256": "51c5e271d9675430072b5a161eb2395cb39ee6faf84d282faa18e6e6316acc41"
+    },
+    {
+      "path": "fix-hosted-38358717111-macos-metrics-analysis.json",
+      "bytes": 44766,
+      "sha256": "9740905e518f626f7cd823528b2f134a42d9227531dbdec4db2e296ab9d8630c"
+    },
+    {
+      "path": "fix-hosted-38358717111-macos-repeat0-metrics.json",
+      "bytes": 6526,
+      "sha256": "ccde9bbda2c342e3b11723d7b0f5ccf5508dbb123938f41de4d7f9d769a1c982"
+    },
+    {
+      "path": "fix-hosted-38358717111-macos-repeat1-metrics.json",
+      "bytes": 6531,
+      "sha256": "029ceda3a002d854d9d4d728593d22e9ce17ebe2907ed06a28f47090e0d104ee"
+    },
+    {
+      "path": "fix-hosted-38358717111-macos-repeat2-metrics.json",
+      "bytes": 6537,
+      "sha256": "62fc59fcd8f9f4fe93fb6312130461f8fda791b21a02e0a7934d6ff29ab3cebb"
+    },
+    {
+      "path": "fix-hosted-38358717111-macos.log",
+      "bytes": 57429,
+      "sha256": "8585bdd940d93e2a2eecc86bfd67f7d62b9ec5837510eeb66ef6e0f351d732a5"
+    },
+    {
+      "path": "fix-hosted-38358717111-summary.json",
+      "bytes": 29619,
+      "sha256": "c90919b55bdabf2927e3e51f1f110ba8582ee7953aed0bf3382c4ea5ae0f5e23"
+    },
+    {
+      "path": "fix-hosted-38358717111-ubuntu-fullsuite-metrics.json",
+      "bytes": 6551,
+      "sha256": "b8dc61e8444e24ec4a477c563c0d3b3352bb7b3d87f19a6b529e32572d40d86a"
+    },
+    {
+      "path": "fix-hosted-38358717111-ubuntu.log",
+      "bytes": 68992,
+      "sha256": "9c1b2327cd758758ab2ec4e0ceb4d729ca2ebe7b8be6d338acab20641552f4f2"
+    },
+    {
+      "path": "fix-hosted-38358717111-windows-attempt0-metrics.json",
+      "bytes": 6568,
+      "sha256": "884b600913495fab2be85f95d4274dac3ffc13cd65e62b1c16521be44fb57ae4"
+    },
+    {
+      "path": "fix-hosted-38358717111-windows-attempt1-metrics.json",
+      "bytes": 6577,
+      "sha256": "c4432e56e9543befc028a675733ed814905d96d4ce5b47f82c3ac8955a8c291a"
+    },
+    {
+      "path": "fix-hosted-38358717111-windows-attempt2-metrics.json",
+      "bytes": 6563,
+      "sha256": "94ab51c57ca6ba108b279e19c61f15215dd9efa980973849c4ff167d93293042"
+    },
+    {
+      "path": "fix-hosted-38358717111-windows-metrics-analysis.json",
+      "bytes": 37420,
+      "sha256": "c8e7b4771d5582ef03f464adad48d95ee3707b1b1e04d1e95296516866cbbec2"
+    },
+    {
+      "path": "fix-hosted-38358717111-windows.log",
+      "bytes": 65345,
+      "sha256": "d646273ca61ecc50f9f796a34ed2b694da852855f96539f01f680b6d5b45d5d2"
+    },
+    {
+      "path": "fix-hosted-38360894547-docker.log",
+      "bytes": 40344,
+      "sha256": "6fd01e7524bec41492b910554969c9f13b449a6adec87e62a874b71c1f170874"
+    },
+    {
+      "path": "fix-hosted-38360894547-macos.log",
+      "bytes": 54623,
+      "sha256": "796fe94c25201a7dd4f4e7bb792cc44003aed427a8fd39be372d159938b0276e"
+    },
+    {
+      "path": "fix-hosted-38360894547-summary.json",
+      "bytes": 14838,
+      "sha256": "4e11ba2958819e2eba6b3e21d9c01ae5740654514b1a96511f075cb4f98f5b65"
+    },
+    {
+      "path": "fix-hosted-38360894547-ubuntu.log",
+      "bytes": 69369,
+      "sha256": "5deb0b61db142e0237f1b8accca4f90e57a2c3152c6106f529a9609c7cf312d4"
+    },
+    {
+      "path": "fix-hosted-38360894547-windows.log",
+      "bytes": 33824,
+      "sha256": "d1e96a5822d7338fb522ba03ad4869ae5658c79ebf1ca9937acb4ac2c3035dbf"
+    },
+    {
+      "path": "fix-hosted-38361274523-control-metrics-analysis.json",
+      "bytes": 22329,
+      "sha256": "e80725600a73891b251fcd691c0e70483fc1206df51a7ee687852b725233ec3a"
+    },
+    {
+      "path": "fix-hosted-38361274523-docker.log",
+      "bytes": 40851,
+      "sha256": "765c29ffc224ea5a0f21c74bcb904d6548bfb4a9cd1fdb757cbcd81c9610d307"
+    },
+    {
+      "path": "fix-hosted-38361274523-macos-fullsuite-metrics.json",
+      "bytes": 6526,
+      "sha256": "4c6521610aef080e850e585d696c984fd9cda5a266da6a4497d150f564a2fc07"
+    },
+    {
+      "path": "fix-hosted-38361274523-macos-metrics-analysis.json",
+      "bytes": 44958,
+      "sha256": "3129c51f35de6bdb7911c564d0aaf40909b1a104cdc6b418bd6d7d3c47b0be1e"
+    },
+    {
+      "path": "fix-hosted-38361274523-macos-repeat0-metrics.json",
+      "bytes": 6533,
+      "sha256": "cd3572f34481cea7e993763ece8807203de54b04e28edf1b154a9153f6d1a6b3"
+    },
+    {
+      "path": "fix-hosted-38361274523-macos-repeat1-metrics.json",
+      "bytes": 6526,
+      "sha256": "79023e58df5be0f1333a748f8cacbb712be400bc5f52c9156235b577324a9e43"
+    },
+    {
+      "path": "fix-hosted-38361274523-macos-repeat2-metrics.json",
+      "bytes": 6528,
+      "sha256": "e48a8390ab1641d3f63a5d58c20e296045fadfb190d83fab523bc0fe4b39aca0"
+    },
+    {
+      "path": "fix-hosted-38361274523-macos.log",
+      "bytes": 57839,
+      "sha256": "b21039f56c6eae655d32c0733f504bb6925ff49bb84258444a31cda308406a74"
+    },
+    {
+      "path": "fix-hosted-38361274523-summary.json",
+      "bytes": 25513,
+      "sha256": "5c84b9f6172be8e82dcd44b28ad9c08f819c2f2b203a02208db783c9654e7ecf"
+    },
+    {
+      "path": "fix-hosted-38361274523-ubuntu-fullsuite-metrics.json",
+      "bytes": 6555,
+      "sha256": "0d375b03150d74c5a4dfdde2c5e81c2460651d956333374d7d2c4dfe6e059eb7"
+    },
+    {
+      "path": "fix-hosted-38361274523-ubuntu.log",
+      "bytes": 69165,
+      "sha256": "23e07b0e2a173d8e029e32772401057f1e5100df4fa7aa5f9c0f0a1a98c9f9b2"
+    },
+    {
+      "path": "fix-hosted-38361274523-windows-fullsuite-metrics.json",
+      "bytes": 6553,
+      "sha256": "cd2d4c0afa1a8e3a48c8a0b84dc1741166d0850c931ac111841501b2959c099f"
+    },
+    {
+      "path": "fix-hosted-38361274523-windows.log",
+      "bytes": 55028,
+      "sha256": "56f4e03b19d125b08c119c83db296fa006960ccb12471922af76c0b879dc2a0f"
+    },
+    {
+      "path": "fix-hosted-38364078147-control-metrics-analysis.json",
+      "bytes": 22555,
+      "sha256": "5d6a0f07563d9f4d49bbf2d3dae17aa5344216d3f5fcedced8d08384971ca0f2"
+    },
+    {
+      "path": "fix-hosted-38364078147-docker.log",
+      "bytes": 40443,
+      "sha256": "ee3e37ebad4947b23d5a761468f190ecf026b0549cf9ac709ed0974dbfd3519a"
+    },
+    {
+      "path": "fix-hosted-38364078147-macos-attempt0-metrics.json",
+      "bytes": 6571,
+      "sha256": "d317996254b2011ef23470430b7dbe4e925d9c8226ccfba3746a3d55f5caebca"
+    },
+    {
+      "path": "fix-hosted-38364078147-macos-attempt1-metrics.json",
+      "bytes": 6535,
+      "sha256": "d810af609c6fcf4281d5cc556da3dd2beb28545fcbd7f56c7c459796dfa79497"
+    },
+    {
+      "path": "fix-hosted-38364078147-macos-metrics-analysis.json",
+      "bytes": 64977,
+      "sha256": "7b7e396c9ed519f27cfc93eb9cccfa65a1d04ac528542b9c04b00a2602d377a7"
+    },
+    {
+      "path": "fix-hosted-38364078147-macos-repeat0-metrics.json",
+      "bytes": 6539,
+      "sha256": "d6a0dff4d5d07ee08add6dbee959a09ae91b0ad4c20850263b0bce9c8c87e15d"
+    },
+    {
+      "path": "fix-hosted-38364078147-macos-repeat1-metrics.json",
+      "bytes": 6533,
+      "sha256": "4c9d3ae38ff68d804a38ac1212af3971742963ef57fbd68c3560138ba76f0906"
+    },
+    {
+      "path": "fix-hosted-38364078147-macos-repeat2-metrics.json",
+      "bytes": 6551,
+      "sha256": "ce34e003e087c124ec8e83b4a6950f679e594b721f5c33db2f6b0d573a0555ef"
+    },
+    {
+      "path": "fix-hosted-38364078147-macos.log",
+      "bytes": 64117,
+      "sha256": "a39cd8a3333d7758f258327bcf8d2fac427875f3cba86fd4f0a2341d22040333"
+    },
+    {
+      "path": "fix-hosted-38364078147-summary.json",
+      "bytes": 43213,
+      "sha256": "9dd8c01a467332261c6aedda8609d4fbed2c3a5e238f8bef2222f505360936f7"
+    },
+    {
+      "path": "fix-hosted-38364078147-ubuntu-fullsuite-metrics.json",
+      "bytes": 6554,
+      "sha256": "92514d995e5b2679bb54a59416c8382a2ff08ea69c938a5b17b38ffec71047bd"
+    },
+    {
+      "path": "fix-hosted-38364078147-ubuntu.log",
+      "bytes": 69253,
+      "sha256": "fc901207c067be4a75a89e96eda379902bd490a7197f69d9ca9f3a8a2fff829f"
+    },
+    {
+      "path": "fix-hosted-38364078147-windows-fullsuite-metrics.json",
+      "bytes": 6557,
+      "sha256": "771e320034bf6bae3e7fcd677fc1b3013a385688256453f49cbb1743b6fe440e"
+    },
+    {
+      "path": "fix-hosted-38364078147-windows.log",
+      "bytes": 54805,
+      "sha256": "4bae3ea516dc9a0dc9657fb8cc4a1f20381f385fbc11a0fcc1640f0f3122fac5"
+    },
+    {
+      "path": "fix-lazy-docker-cleanup.json",
+      "bytes": 441,
+      "sha256": "797cedeec5f622954983960f7ff585bdf76c040c1252686d567095ceb0e2bb23"
+    },
+    {
+      "path": "fix-lazy-docker-dependency-inputs.json",
+      "bytes": 1051,
+      "sha256": "181a4baec7bc66714d95e50df656e1874a1452fcb9032a4a85cee39e2bbb3c64"
+    },
+    {
+      "path": "fix-lazy-docker-dev-browser-results.json",
+      "bytes": 2083,
+      "sha256": "d9c20fb603f921722d90ce812040bc2ac5c7d0246ffe4925b3afd9b3ace57c31"
+    },
+    {
+      "path": "fix-lazy-docker-dev-browser.log",
+      "bytes": 450,
+      "sha256": "3ac6885431af55c73816048373374f68f83c7d5fe6521994339dbdf83f27c3e7"
+    },
+    {
+      "path": "fix-lazy-docker-dev-build.json",
+      "bytes": 216,
+      "sha256": "f24577f53ad60229bfef81c2e3e21cddf577e530140073dd2f3c27a2bf7d5300"
+    },
+    {
+      "path": "fix-lazy-docker-dev-build.log",
+      "bytes": 2682,
+      "sha256": "4485ca42057e0b74179d4f45dc00a92e974f7eaa323b72bd712a90dec77d64f2"
+    },
+    {
+      "path": "fix-lazy-docker-dev-cleanup.log",
+      "bytes": 303,
+      "sha256": "6f547c4ee4a14aae8344b34cbb2cbb8b1d20bc316abf5b16e3c192640522ede1"
+    },
+    {
+      "path": "fix-lazy-docker-dev-lint.log",
+      "bytes": 28,
+      "sha256": "b543827ce56a63357c629028555ecec2cc964dda33dbbf2a9a2872b1a2ab20f8"
+    },
+    {
+      "path": "fix-lazy-docker-dev-quality.json",
+      "bytes": 347,
+      "sha256": "a64c490b0d5626de0c1802b880b4f974e02bc597c77a6891ca3e73f63715f7a1"
+    },
+    {
+      "path": "fix-lazy-docker-dev-restart-smoke.log",
+      "bytes": 106,
+      "sha256": "6608c96f200bc803f02603a7b3d30fd1bed74e27b7bcaad4f676d2d124e6362a"
+    },
+    {
+      "path": "fix-lazy-docker-dev-start.log",
+      "bytes": 504,
+      "sha256": "01f022e43003703820f399befe3d829e67b4fa16fa0ea019e05c16911afaad82"
+    },
+    {
+      "path": "fix-lazy-docker-dev-test.log",
+      "bytes": 4664,
+      "sha256": "eb3bbfa1038a9cd77ca0dc350c175d5f70020a68d11dbd9c5aedeb40353b61cc"
+    },
+    {
+      "path": "fix-lazy-docker-dev-typecheck.log",
+      "bytes": 15,
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    },
+    {
+      "path": "fix-lazy-docker-dev-watch-process.json",
+      "bytes": 117,
+      "sha256": "a30b3a1fd4d071f2215b063ef0fb6f456c62dac61f8e23e695401671e1f4beb6"
+    },
+    {
+      "path": "fix-lazy-docker-dev-watch.stderr.log",
+      "bytes": 137,
+      "sha256": "0ead6b6bec554927d3c1755d08880edfeb7899990be2d6e8123d23fd9d7d960c"
+    },
+    {
+      "path": "fix-lazy-docker-dev-watch.stdout.log",
+      "bytes": 3727,
+      "sha256": "b765091b2caac27b4fb37453ac4fcdd1c2811d741e3fc337e80da72cb713dc0a"
+    },
+    {
+      "path": "fix-lazy-docker-final-runtime.json",
+      "bytes": 1157,
+      "sha256": "7ddf4e1dbbb9225e9612507181a26a3e895c4d5ceed794d3ff1ea72c018a4d7f"
+    },
+    {
+      "path": "fix-lazy-docker-images-security.json",
+      "bytes": 1299,
+      "sha256": "354a7802e4288de49e4b5fe4e7572b995bbb62ee93bab8e77a526a240dc7d903"
+    },
+    {
+      "path": "fix-lazy-docker-prod-build.json",
+      "bytes": 218,
+      "sha256": "e64c429733ead0c31649430ce09b7032952f366242228d049170a776785658f7"
+    },
+    {
+      "path": "fix-lazy-docker-prod-build.log",
+      "bytes": 4845,
+      "sha256": "932cdffdc431a3caa34933c43b5dd71d8254420f64707e7649fe112d517de933"
+    },
+    {
+      "path": "fix-lazy-docker-prod-cleanup.log",
+      "bytes": 309,
+      "sha256": "cb719c0d5e03e3046970c1d289fda09151b1f79db9ada95ee2264d6fd7a8de10"
+    },
+    {
+      "path": "fix-lazy-docker-prod-e2e.json",
+      "bytes": 358,
+      "sha256": "1489e87f5e488e0372842bc0c58e7216abaaeca70e421c439945ae60f5c8cdd5"
+    },
+    {
+      "path": "fix-lazy-docker-prod-e2e.log",
+      "bytes": 6715,
+      "sha256": "66bb9d3f153ffd729092906264bc9b9ea2f7ede5cf43a3986dc57c4557d7ab3d"
+    },
+    {
+      "path": "fix-lazy-docker-prod-restart-smoke.log",
+      "bytes": 106,
+      "sha256": "6608c96f200bc803f02603a7b3d30fd1bed74e27b7bcaad4f676d2d124e6362a"
+    },
+    {
+      "path": "fix-lazy-docker-prod-restart.log",
+      "bytes": 103,
+      "sha256": "ede02a2ae2e0f24a31f2aa6c2436f480bd60da34fc7870d2c1157bddd5bc16ca"
+    },
+    {
+      "path": "fix-lazy-docker-prod-runtime.log",
+      "bytes": 416,
+      "sha256": "af39af383e942e4f6cc1774055dd0286e316ed590165c9b521480e6067034f4c"
+    },
+    {
+      "path": "fix-lazy-docker-prod-secret-scan.json",
+      "bytes": 2307,
+      "sha256": "cdbd1083d44107b851169dc24892d899ed5595da2cd6e02e8e6854e47132ef9e"
+    },
+    {
+      "path": "fix-lazy-docker-prod-server.log",
+      "bytes": 363,
+      "sha256": "373559c2982610afb3474bba0ef039b4c0453712e369af89446b8e5ab68b3a49"
+    },
+    {
+      "path": "fix-lazy-docker-prod-smoke.log",
+      "bytes": 106,
+      "sha256": "6608c96f200bc803f02603a7b3d30fd1bed74e27b7bcaad4f676d2d124e6362a"
+    },
+    {
+      "path": "fix-lazy-docker-prod-start.log",
+      "bytes": 514,
+      "sha256": "e7c0e7eec32263179a496be7025c1fe458de1ed382ab1ccfe35e92de15829da5"
+    },
+    {
+      "path": "fix-lazy-docker-prod-stop.json",
+      "bytes": 174,
+      "sha256": "6629fb5a7698d5538ac1f16fbd1a05d64ed30b541e8c3a02e391be7a85d21a60"
+    },
+    {
+      "path": "fix-lazy-docker-prod-stop.log",
+      "bytes": 103,
+      "sha256": "914b814fcbcc2519f97cf39adef1135d0d7d873218c61b19f16d1b90f0e3e867"
+    },
+    {
+      "path": "fix-lazy-docker-summary.json",
+      "bytes": 12794,
+      "sha256": "f8eb2fa9523ec9123b5df378e96ab5f7b46d9cd0875b99f9717a6be8fef37c62"
+    },
+    {
+      "path": "fix-lazy-native-build.json",
+      "bytes": 514,
+      "sha256": "c6650e089d5ffb95f34befcf51e6c85daf58a23f2f74170cf767979f37964c13"
+    },
+    {
+      "path": "fix-lazy-native-build.log",
+      "bytes": 1647,
+      "sha256": "ba670c7dbc8c50749d6811c57866817a318f3e33e351ea7cf9fd49ca2ad600b1"
+    },
+    {
+      "path": "fix-lazy-native-e2e-metrics-summary.json",
+      "bytes": 7036,
+      "sha256": "3a8dfa59213a13e81f1c8533f782ffb415687acecfa144f1369faa9d469c29cb"
+    },
+    {
+      "path": "fix-lazy-native-e2e.json",
+      "bytes": 598,
+      "sha256": "a650c361e9a12d67f6599d7154b0bcefcfdbf0470e1d00418581350e53a1cc0e"
+    },
+    {
+      "path": "fix-lazy-native-e2e.log",
+      "bytes": 8040,
+      "sha256": "ba090b890b7a6d5453f90bbdf6589238256882ffba62b89cfe807caabed553bb"
+    },
+    {
+      "path": "fix-lazy-native-license-inventory.json",
+      "bytes": 17243,
+      "sha256": "0754afd2c8a15891a57e645eff5c109d83c7c2cc9e4c2ea424877bf71ad7a8c5"
+    },
+    {
+      "path": "fix-lazy-native-licenses.json",
+      "bytes": 508,
+      "sha256": "e5ac9e824baceba35b258d72a4edd99cb1fa64014dd37b90eb120c5fb86e5bc7"
+    },
+    {
+      "path": "fix-lazy-native-licenses.log",
+      "bytes": 976,
+      "sha256": "36196031c75ec13529c9a4c46e1dad286ef5c5bee6e5c23ff30311bd69baa9ce"
+    },
+    {
+      "path": "fix-lazy-native-lint-marker-fixed.json",
+      "bytes": 583,
+      "sha256": "cf4851b364967239f17952230cfa92ab00c4d77d318cdb4dd477151be801d3cd"
+    },
+    {
+      "path": "fix-lazy-native-lint-marker-fixed.log",
+      "bytes": 982,
+      "sha256": "1a6f0bd0f9312e06a2a4c7148aa92803dada55cb99e073ce93d90af173871d19"
+    },
+    {
+      "path": "fix-lazy-native-source.json",
+      "bytes": 514,
+      "sha256": "5b6089a48bdd01f8665dca2ac02edf226d80675fa89e62409b7a61425cc23b3f"
+    },
+    {
+      "path": "fix-lazy-native-source.log",
+      "bytes": 1069,
+      "sha256": "b0e337f3562107c4988d2a0845bb153b8522fa24fb4842264964f1cb8267f584"
+    },
+    {
+      "path": "fix-lazy-native-stress-metrics-summary.json",
+      "bytes": 21133,
+      "sha256": "e1794fac9e8d498edc4fc1958d673a69d2cd5ff278f223f76dd67449359af052"
+    },
+    {
+      "path": "fix-lazy-native-stress.json",
+      "bytes": 691,
+      "sha256": "81633ef0f695664b9088c693c6f38963ffd1f3e13ef7ed2004015f605471313e"
+    },
+    {
+      "path": "fix-lazy-native-stress.log",
+      "bytes": 2468,
+      "sha256": "98663db54c6590a493aaf35e85582ad98d1edccbabc82edc01545cf7a032fa16"
+    },
+    {
+      "path": "fix-lazy-native-summary.md",
+      "bytes": 5909,
+      "sha256": "c02ac18f4892a077991c3d54443a151c6e0d0b3c5e0b42db1bdc2f1d605209aa"
+    },
+    {
+      "path": "fix-lazy-native-unit-marker-fixed.json",
+      "bytes": 567,
+      "sha256": "aeed291aa1a0eeed465a5e868049c5c76cb47305b0970d404b8104ae5f575a70"
+    },
+    {
+      "path": "fix-lazy-native-unit-marker-fixed.log",
+      "bytes": 1178,
+      "sha256": "9e8ac5c1087859b1084d41d690a9f2120b4225bc0eb52bc19cf8cf4060c2e82b"
+    },
+    {
+      "path": "fix-lazy-native-unit-marker.json",
+      "bytes": 561,
+      "sha256": "6dd5dcc8ed7e71ac29cf3eea489d4e36c65ec62998628726b6c0ad86645bb2b5"
+    },
+    {
+      "path": "fix-lazy-native-unit-marker.log",
+      "bytes": 1165,
+      "sha256": "c9d0024928719f398ffc16845ec967a6cb744df5a1bffd0a508be14a5ebafef2"
+    },
+    {
+      "path": "fix-lazy-native-unit-rerun.json",
+      "bytes": 515,
+      "sha256": "ff39366615e520bf8f53ed1a106525eecf660fd26ed193b9fd751b0140e478e0"
+    },
+    {
+      "path": "fix-lazy-native-unit-rerun.log",
+      "bytes": 1090,
+      "sha256": "e32ebba3d2be058b1043db0ce4dd233c0a5f1ccec41d41a597e6f23c15d063e6"
+    },
+    {
+      "path": "fix-lazy-native-unit.json",
+      "bytes": 509,
+      "sha256": "5f546fe6413710c166c564e4313f0d0390060e9ad04cdbeab9266c184107ed79"
+    },
+    {
+      "path": "fix-lazy-native-unit.log",
+      "bytes": 1903,
+      "sha256": "547bf1d8fce4b4dda6be4cc154991745579359db3ebf0efa9277d159099651a6"
+    },
+    {
+      "path": "fix-native-build.json",
+      "bytes": 514,
+      "sha256": "e1f873b616548eaae46ebf7ad86e7db469b0571a8a7d1cf5bbd7bd5a2fd38f77"
+    },
+    {
+      "path": "fix-native-build.log",
+      "bytes": 1647,
+      "sha256": "039fcaf79d2304d96f842f5e7c579da16098bf80286a9a8ff182f1fda6f77585"
+    },
+    {
+      "path": "fix-native-e2e.json",
+      "bytes": 601,
+      "sha256": "d411816e5c70d4fcc4b2151a8ec6e92d452a4ea9d6bcc84c5497e7c6db86e371"
+    },
+    {
+      "path": "fix-native-e2e.log",
+      "bytes": 7871,
+      "sha256": "a516fa54490ac1e95b724f31cbbe321908b0343d4cc2e98b061d1d18e5880cf2"
+    },
+    {
+      "path": "fix-native-license-inventory.json",
+      "bytes": 17243,
+      "sha256": "0754afd2c8a15891a57e645eff5c109d83c7c2cc9e4c2ea424877bf71ad7a8c5"
+    },
+    {
+      "path": "fix-native-licenses.json",
+      "bytes": 508,
+      "sha256": "296f243c06cc37a371204ccc2447384d80821774183d86b51cc3d4b1c8721916"
+    },
+    {
+      "path": "fix-native-licenses.log",
+      "bytes": 976,
+      "sha256": "99c29806a1ae16a2d7f46bcbcec04babe23f8b113c819535cede5096ffa8d41a"
+    },
+    {
+      "path": "fix-native-lint.json",
+      "bytes": 543,
+      "sha256": "2dd529263a14f164ac427b9c4b05073488398b984819ff98b76862492dd538c6"
+    },
+    {
+      "path": "fix-native-lint.log",
+      "bytes": 893,
+      "sha256": "859b97194cf2a27ef8bfffecc6ba6d54cbf2553c4ed38c118a2c41cd5e2afc67"
+    },
+    {
+      "path": "fix-native-source.json",
+      "bytes": 503,
+      "sha256": "2e8b870bd9a928e520196516d489b5b45df3e91b9c0af6ff4fa78e2df430766a"
+    },
+    {
+      "path": "fix-native-source.log",
+      "bytes": 1058,
+      "sha256": "ad55600df0949ab5fc4e1fb19cbcf0ff6c66abdf42d4f348565faf110fa5a7f2"
+    },
+    {
+      "path": "fix-native-summary.md",
+      "bytes": 4251,
+      "sha256": "f3edc8b76ec8328def1527175a4582700fc0ce04f81adb3e00ed967a60f980f8"
+    },
+    {
+      "path": "fix-native-typecheck-sandbox.json",
+      "bytes": 519,
+      "sha256": "7d66ec1990b29ba26d18b05ceaf21ce8fef7e8ea869f0326585edb0493f70984"
+    },
+    {
+      "path": "fix-native-typecheck-sandbox.log",
+      "bytes": 18941,
+      "sha256": "10f9df64d5dd4161422227feaea394dfe2c861352e1635461fb900eb13e5457a"
+    },
+    {
+      "path": "fix-native-typecheck.json",
+      "bytes": 528,
+      "sha256": "b85c1e353779a701f23cd70b01987a68387b49526cdefa95b716ebb6276b25df"
+    },
+    {
+      "path": "fix-native-typecheck.log",
+      "bytes": 869,
+      "sha256": "9241aaf87ff4835fba8a3b178f89ca72fca20343a692c41a3290928ed8e17725"
+    },
+    {
+      "path": "fix-native-unit.json",
+      "bytes": 517,
+      "sha256": "cc45c6ef90b19427a540f1ea0ea42c17bb9662f01fc249783ed25cc0adb36470"
+    },
+    {
+      "path": "fix-native-unit.log",
+      "bytes": 1086,
+      "sha256": "98e7a4a758938d9f9a27e7a3935f573c9628f6b3fb4d0c08c5560e64228c2773"
+    },
+    {
+      "path": "fix-preceding-main-ci.json",
+      "bytes": 5932,
+      "sha256": "b10b087a2598b1e1ecb6ac067f5870a0ddf22bae26a8ba5ab5d4e4e0694075ac"
+    },
+    {
+      "path": "fix-telemetry-coverage-after-analysis.json",
+      "bytes": 310,
+      "sha256": "e5df56475f0509fcc4162d9226a6a6b9294c74f49d1760f9f1fa53c549057863"
+    },
+    {
+      "path": "fix-telemetry-coverage-after.log",
+      "bytes": 700,
+      "sha256": "b98c1ed30488b807b88c296b39f20f3362ee2a427db45d5398764ed3a616615b"
+    },
+    {
+      "path": "fix-telemetry-coverage-before-rerun-analysis.json",
+      "bytes": 1759,
+      "sha256": "2ad8f7e1a55f6a5ab058d3d072145566c5552b54c102810fbe21b99518ea1362"
+    },
+    {
+      "path": "fix-telemetry-coverage-before-rerun.log",
+      "bytes": 700,
+      "sha256": "1a9fcd7327dcd8f633c8c80b50b48ddda54753b7a8f9fe019d5686abd84ba67c"
+    },
+    {
+      "path": "fix-telemetry-coverage-before.log",
+      "bytes": 2834,
+      "sha256": "6b8d95fe33eaaaf0f07124cc848efde9de13ffc1ba393eae0f6b02f0c66c9e86"
+    },
+    {
+      "path": "fix-telemetry-coverage-control.log",
+      "bytes": 707,
+      "sha256": "9d502d925a48c4cf0bcab9c2ff720597d48b8f69d4d64cae3a1e0c7090076c5f"
+    },
+    {
+      "path": "fix-telemetry-coverage-positive-control-analysis.json",
+      "bytes": 2016,
+      "sha256": "b3168679ac59b52644a6d070a5d96c4d3cdad1323b3c7b88cb9dbad8e0ad9401"
+    },
+    {
+      "path": "fix-telemetry-native-build.json",
+      "bytes": 513,
+      "sha256": "fbd6be93a1b56a5f56b7f527d57eb0ff18dae08d5347174d6df290328bb75197"
+    },
+    {
+      "path": "fix-telemetry-native-build.log",
+      "bytes": 1648,
+      "sha256": "2c7fed391e314a465075fb6a8677ef90935ed58c85ec5e9d7b95d593dbcd0149"
+    },
+    {
+      "path": "fix-telemetry-native-e2e-metrics-summary.json",
+      "bytes": 7040,
+      "sha256": "6c60ecb3b41c805fee4d4a8d69cb567171b9717f9be76c9490b1da5e5df29f50"
+    },
+    {
+      "path": "fix-telemetry-native-e2e.json",
+      "bytes": 603,
+      "sha256": "beb379460ae2f75b5d5b96bff3fe8dec475a22b99a24fe02211b8daa283eea15"
+    },
+    {
+      "path": "fix-telemetry-native-e2e.log",
+      "bytes": 8051,
+      "sha256": "05e23049ddf1bd233cb2b84a9e46074d5df1054fc6bb563c1531d601946f138d"
+    },
+    {
+      "path": "fix-telemetry-native-license-inventory.json",
+      "bytes": 17243,
+      "sha256": "0754afd2c8a15891a57e645eff5c109d83c7c2cc9e4c2ea424877bf71ad7a8c5"
+    },
+    {
+      "path": "fix-telemetry-native-licenses.json",
+      "bytes": 508,
+      "sha256": "a5924ad0af4be2ff57f366a8848438dabe36c109fce34f36f36c399a6fc32bb4"
+    },
+    {
+      "path": "fix-telemetry-native-licenses.log",
+      "bytes": 976,
+      "sha256": "608a1b997ad385f302d393e0bfb9351f7b55211a9d1dac8f4e4c019ddfbd73ca"
+    },
+    {
+      "path": "fix-telemetry-native-source.json",
+      "bytes": 514,
+      "sha256": "6a5c3f27b174be1b153c4c8f04a2d56c4e029e31de0421d701e623d77fb562c5"
+    },
+    {
+      "path": "fix-telemetry-native-source.log",
+      "bytes": 1069,
+      "sha256": "d42494731996a6e996d40d2e0e4e2e5a033d759b5cc0dfe8583cab5af6b9e46d"
+    },
+    {
+      "path": "fix-telemetry-native-stress-metrics-summary.json",
+      "bytes": 21178,
+      "sha256": "a8616c71a8a7bf723678e8f64a1786d571de8b02440af35ca340f8a12c1ce92b"
+    },
+    {
+      "path": "fix-telemetry-native-stress.json",
+      "bytes": 704,
+      "sha256": "3c6ce6d103ef61bc8c3962ab26af35a27cf6eefa9a81418c5986cd97428415a8"
+    },
+    {
+      "path": "fix-telemetry-native-stress.log",
+      "bytes": 4870,
+      "sha256": "09667b80d2dd8522fd1c52d06eeb2ec0922947f3cf9d634d02b1d153a1633fb3"
+    },
+    {
+      "path": "fix-telemetry-native-summary.md",
+      "bytes": 6630,
+      "sha256": "58e85abb594eef1b76b19e0def5b21be82d6384d6f6353e6e3d2e6f70ff51753"
+    },
+    {
+      "path": "fix-telemetry-native-unit.json",
+      "bytes": 509,
+      "sha256": "bec78154eb55844c4517059a622bec0fdcf9a97410a09d4226652d8b1cb11f11"
+    },
+    {
+      "path": "fix-telemetry-native-unit.log",
+      "bytes": 1077,
+      "sha256": "f59b7ae284f6a81088508982204d4aefa0f217208477fa0f3ba079264e4bb6ae"
+    },
+    {
+      "path": "fix-validator-boundary-analysis.json",
+      "bytes": 21370,
+      "sha256": "ed8afdbd647e52b3e1753f72c42c2bf1995185c97c7c524049fc0e0317c19d43"
+    },
+    {
+      "path": "fix-validator-boundary.log",
+      "bytes": 701,
+      "sha256": "679eea16f19d8409e8520763d473e2a9199fbcb595ae46c19cabd16afe2d0057"
+    },
+    {
+      "path": "fix-validator-investigation.md",
+      "bytes": 6393,
+      "sha256": "2ffbfdd765e2098783a16860bbffa46f0e5e36eca77a94e5892bece44620099c"
+    },
+    {
+      "path": "fix-validator-profile-analysis-stdout.log",
+      "bytes": 45689,
+      "sha256": "afc00534b149de735144ee69bd876da832db299b9295d154a43486a54eafb8f0"
+    },
+    {
+      "path": "fix-validator-profile-analysis.json",
+      "bytes": 283091,
+      "sha256": "9bb01043d6c571a696bc385208c77f4892e71a6d882553d3aa1ebcf68fe35d7d"
+    },
+    {
+      "path": "fix-validator-profile.json",
+      "bytes": 557,
+      "sha256": "6d5cb40867c9216e2a5343788264f0ffe0ac1e51c75c0c956487fdf5e06b389b"
+    },
+    {
+      "path": "fix-validator-profile.log",
+      "bytes": 4017,
+      "sha256": "908570e88857e41e960fe9c2616ec0a80f8a7ebbee9d11fe11a3b1069fa6e314"
+    },
+    {
+      "path": "fix-wall-native-build.json",
+      "bytes": 513,
+      "sha256": "88b1d16c1e3927db9483dfb7351c3eafa8d5a684893282d41d32a390c8318785"
+    },
+    {
+      "path": "fix-wall-native-build.log",
+      "bytes": 1646,
+      "sha256": "cf4333ff2a4ddb4fe32dde41d5c025ff0dbc5a99b68eb80eab318d6646814346"
+    },
+    {
+      "path": "fix-wall-native-e2e.json",
+      "bytes": 598,
+      "sha256": "310b63d35377cb22fc44984a55e4033326fa74d3f25c34b44cefd05961213415"
+    },
+    {
+      "path": "fix-wall-native-e2e.log",
+      "bytes": 11302,
+      "sha256": "b3f15470ea118313dc3c844a354d93b5b7fa7ddbfae5285c76ba7560d3cf9ae5"
+    },
+    {
+      "path": "fix-wall-native-license-inventory.json",
+      "bytes": 17243,
+      "sha256": "0754afd2c8a15891a57e645eff5c109d83c7c2cc9e4c2ea424877bf71ad7a8c5"
+    },
+    {
+      "path": "fix-wall-native-licenses.json",
+      "bytes": 508,
+      "sha256": "f8b652f37da90fd0fae6656f7ff4f5fa6ccb390756f36e6a14b8937595e2c136"
+    },
+    {
+      "path": "fix-wall-native-licenses.log",
+      "bytes": 976,
+      "sha256": "95195af945d382a760626b232c634b3d450a35ab929ff8d82941d38e96105e81"
+    },
+    {
+      "path": "fix-wall-native-lint-e2e.json",
+      "bytes": 573,
+      "sha256": "4f3a88e0d13898305c76183a01866201a95cb04dfe91292b0dd7a6924b1f228d"
+    },
+    {
+      "path": "fix-wall-native-lint-e2e.log",
+      "bytes": 953,
+      "sha256": "8e0ce8abaf81f7328fb5627592eef87e7a01123c8ef191d0c667cdba58a247aa"
+    },
+    {
+      "path": "fix-wall-native-lint.json",
+      "bytes": 536,
+      "sha256": "f7e32ac331f7dd6a8963757567122a12a84b5a399f0ffe9630358ac7c5c1d90d"
+    },
+    {
+      "path": "fix-wall-native-lint.log",
+      "bytes": 886,
+      "sha256": "6dbceb02d10f18c8175bbc982e6c105715c906cd5968345298f6dbf6abe588a0"
+    },
+    {
+      "path": "fix-wall-native-source.json",
+      "bytes": 514,
+      "sha256": "aaccec93a46293e833cbde84cf394a965d31c83b82e5b32c14e1dd6bb88d06d0"
+    },
+    {
+      "path": "fix-wall-native-source.log",
+      "bytes": 1069,
+      "sha256": "c68f711c487cec915d28933a545cc39ff55d28f04897caf38d70e520b7d9450e"
+    },
+    {
+      "path": "fix-wall-native-stress-summary.json",
+      "bytes": 20723,
+      "sha256": "08ca76a65e37ab41439b26ab003741aae03bcb6fa15e875c13b70522f592a50c"
+    },
+    {
+      "path": "fix-wall-native-stress.json",
+      "bytes": 691,
+      "sha256": "7d4f5c5d8146eeeb48155f2866351b5ac2c2d9f1b29c9d93eb70a86e0a42803c"
+    },
+    {
+      "path": "fix-wall-native-stress.log",
+      "bytes": 2468,
+      "sha256": "6cce66b7cd790cb64fa1206bf5f6e3dfb664b41ef586c84e4bf6bc4572d1248f"
+    },
+    {
+      "path": "fix-wall-native-typecheck-diagnostics.json",
+      "bytes": 531,
+      "sha256": "456d58b041be778a05e9bc2df4b34aba32b747f61705b5f35e1449cde9321361"
+    },
+    {
+      "path": "fix-wall-native-typecheck-diagnostics.log",
+      "bytes": 884,
+      "sha256": "bedb00673d28c5f074a6cebd1c60030a374afab9f7ba29d8bb8795298176d630"
+    },
+    {
+      "path": "fix-wall-native-typecheck.json",
+      "bytes": 521,
+      "sha256": "0b28684ca0d453478bb7f7216faf25382ce390e4e3e14b7f83ed2d44a07195d5"
+    },
+    {
+      "path": "fix-wall-native-typecheck.log",
+      "bytes": 862,
+      "sha256": "afce43da22d5eb5ba946213cbcacb713edfbf416718b1368836931d8bb0ae5c7"
+    },
+    {
+      "path": "fix-wall-native-unit-first-failed.json",
+      "bytes": 508,
+      "sha256": "3c67493abdbe66d36dd0daf214a668e812acbf4980c7e9f2c427d913e2c68f99"
+    },
+    {
+      "path": "fix-wall-native-unit-first-failed.log",
+      "bytes": 1898,
+      "sha256": "3ca563966e93f5dcf6c558152e382e4cd33df62d60fa1dc3bc4fdbd7aa628bc3"
+    },
+    {
+      "path": "fix-wall-native-unit-rerun.json",
+      "bytes": 509,
+      "sha256": "7a2b68bac21113a8f222614bb40131bd6c186f4399eb2159e89b1ea540b35dcb"
+    },
+    {
+      "path": "fix-wall-native-unit-rerun.log",
+      "bytes": 1078,
+      "sha256": "6a2533f3fb7f95abd2830e94913f35d8236f526a5f3ce11850d7ead16558d160"
+    },
+    {
+      "path": "fix-wall-native-unit.json",
+      "bytes": 508,
+      "sha256": "3c67493abdbe66d36dd0daf214a668e812acbf4980c7e9f2c427d913e2c68f99"
+    },
+    {
+      "path": "fix-wall-native-unit.log",
+      "bytes": 1898,
+      "sha256": "3ca563966e93f5dcf6c558152e382e4cd33df62d60fa1dc3bc4fdbd7aa628bc3"
+    },
+    {
+      "path": "fix-wall-projection-green.json",
+      "bytes": 654,
+      "sha256": "0e07982619b61faebb41bd7f3922be0eae482ac07b177ffc0e30a19f59f32b88"
+    },
+    {
+      "path": "fix-wall-projection-green.log",
+      "bytes": 1345,
+      "sha256": "246528311d492ffb06fe4393584a4d62b8ac99304c0f9c8051a64844704fac84"
+    },
+    {
+      "path": "fix-wall-projection-red.json",
+      "bytes": 567,
+      "sha256": "33743149e6028c3d8c544834e3cc89fbf8238f610ce5254d0088ac7a52f361d6"
+    },
+    {
+      "path": "fix-wall-projection-red.log",
+      "bytes": 2946,
+      "sha256": "591ebafca680b430131801941420ec8813fd15e11ccdc9371b4733957ec04659"
+    },
+    {
+      "path": "local-patches-frozen-install.txt",
+      "bytes": 51,
+      "sha256": "767cd53c0d5115c3af1675448f9b452af5c3995b849793e0d6a2e8c995b40c60"
+    },
+    {
+      "path": "local-patches-install.txt",
+      "bytes": 777,
+      "sha256": "049d978ad4328d344ac669a25beaa215005cacf7d44f6bcd13fa749ea0a88271"
+    },
+    {
+      "path": "repaired-audit-production.json",
+      "bytes": 277,
+      "sha256": "ec7ba0817cec92f37ebfdf21b6076a19a703e7cbf009cbe3656cde85e06cf987"
+    },
+    {
+      "path": "repaired-audit.json",
+      "bytes": 986,
+      "sha256": "4c597db73110827687fe7bf377d8933a66bfd18e68b6427e02573ae832c02c51"
+    },
+    {
+      "path": "stress-native-optimized-metrics.json",
+      "bytes": 209,
+      "sha256": "8eda163efb817b6d8cd25bb7a773680392f548aed5730d5ac571e26f1f31fe46"
+    },
+    {
+      "path": "ui-lazy-projections-after.txt",
+      "bytes": 565,
+      "sha256": "f491589b97de637f479f74c421093405c9ae0857a83738127816b96b5ec2a21a"
+    },
+    {
+      "path": "ui-lazy-projections-before.txt",
+      "bytes": 15044,
+      "sha256": "2731d89ac2850ef2643cede80cd7fa1ef356b8497891ddf32d94e782d7b34874"
+    },
+    {
+      "path": "ui-stable-props-tool-results.json",
+      "bytes": 1137,
+      "sha256": "4b37a165bd426aac8ed65806240a41ef29e99dcb8a655539e624b620dc3beb94"
+    }
+  ]
+}

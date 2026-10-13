@@ -1,0 +1,8 @@
+
+ RUN  v4.1.11 D:/Developing/Echo Canvas Web/Echo-Canva-Web
+
+
+ Test Files  1 passed (1)
+      Tests  26 passed (26)
+   Start at  13:56:10
+   Duration  391ms (transform 28ms, setup 0ms, import 75ms, tests 26ms, environment 0ms)

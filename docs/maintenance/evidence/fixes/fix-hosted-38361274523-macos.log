@@ -1,0 +1,603 @@
+2026-10-13T07:13:27.6608770Z Current runner version: '2.337.0'
+2026-10-13T07:13:27.6633390Z ##[group]Runner Image Provisioner
+2026-10-13T07:13:27.6634500Z Hosted Compute Agent
+2026-10-13T07:13:27.6635760Z Version: 20260828.587
+2026-10-13T07:13:27.6636460Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-10-13T07:13:27.6637940Z Build Date: 2026-08-28T16:44:25Z
+2026-10-13T07:13:27.6639060Z Worker ID: {2cbd74e3-d110-4138-9097-3c635f6ceb08}
+2026-10-13T07:13:27.6639600Z Azure Region: westus
+2026-10-13T07:13:27.6639990Z ##[endgroup]
+2026-10-13T07:13:27.6641490Z ##[group]Operating System
+2026-10-13T07:13:27.6641980Z macOS
+2026-10-13T07:13:27.6642350Z 26.6.2
+2026-10-13T07:13:27.6642760Z 25G83
+2026-10-13T07:13:27.6643100Z ##[endgroup]
+2026-10-13T07:13:27.6643600Z ##[group]Runner Image
+2026-10-13T07:13:27.6644140Z Image: macos-26-arm64
+2026-10-13T07:13:27.6644570Z Version: 20260907.0351.1
+2026-10-13T07:13:27.6645480Z Included Software: https://github.com/actions/runner-images/blob/macos-26-arm64/20260907.0351/images/macos/macos-26-arm64-Readme.md
+2026-10-13T07:13:27.6647230Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-26-arm64%2F20260907.0351
+2026-10-13T07:13:27.6648270Z ##[endgroup]
+2026-10-13T07:13:27.6649350Z ##[group]GITHUB_TOKEN Permissions
+2026-10-13T07:13:27.6651480Z Contents: read
+2026-10-13T07:13:27.6652050Z Metadata: read
+2026-10-13T07:13:27.6652480Z ##[endgroup]
+2026-10-13T07:13:27.6654790Z Secret source: Actions
+2026-10-13T07:13:27.6655580Z Cache mode: write
+2026-10-13T07:13:27.6656170Z Prepare workflow directory
+2026-10-13T07:13:27.7083520Z Prepare all required actions
+2026-10-13T07:13:27.7139890Z Getting action download info
+2026-10-13T07:13:27.8648940Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-13T07:13:28.1923040Z Download action repository 'actions/setup-node@820762786026740c76f36085b0efc47a31fe5020' (SHA:820762786026740c76f36085b0efc47a31fe5020)
+2026-10-13T07:13:28.3306450Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+2026-10-13T07:13:29.5597380Z Complete job name: Application checks and Chromium E2E (macos-latest)
+2026-10-13T07:13:29.6311420Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-10-13T07:13:29.6312230Z with:
+2026-10-13T07:13:29.6312590Z   persist-credentials: false
+2026-10-13T07:13:29.6312990Z   fetch-depth: 0
+2026-10-13T07:13:29.6313360Z   repository: kekekewww/Echo-Canva-Web
+2026-10-13T07:13:29.6316450Z   token: ***
+2026-10-13T07:13:29.6316790Z   ssh-strict: true
+2026-10-13T07:13:29.6317140Z   ssh-user: git
+2026-10-13T07:13:29.6317530Z   clean: true
+2026-10-13T07:13:29.6318020Z   sparse-checkout-cone-mode: true
+2026-10-13T07:13:29.6318520Z   fetch-tags: false
+2026-10-13T07:13:29.6318930Z   show-progress: true
+2026-10-13T07:13:29.6319330Z   lfs: false
+2026-10-13T07:13:29.6319700Z   submodules: false
+2026-10-13T07:13:29.6320110Z   set-safe-directory: true
+2026-10-13T07:13:29.6320610Z   allow-unsafe-pr-checkout: false
+2026-10-13T07:13:29.6321290Z env:
+2026-10-13T07:13:29.6321680Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:13:29.6322110Z   AI_ENABLED: false
+2026-10-13T07:13:29.6322500Z ##[endgroup]
+2026-10-13T07:13:30.1571570Z Syncing repository: kekekewww/Echo-Canva-Web
+2026-10-13T07:13:30.1573780Z ##[group]Getting Git version info
+2026-10-13T07:13:30.1574440Z Working directory is '/Users/runner/work/Echo-Canva-Web/Echo-Canva-Web'
+2026-10-13T07:13:30.1575620Z [command]/opt/homebrew/bin/git version
+2026-10-13T07:13:30.2099710Z git version 2.55.0
+2026-10-13T07:13:30.2133540Z ##[endgroup]
+2026-10-13T07:13:30.2148150Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/f5e3fb10-532f-4066-bcc8-bcb5f06c6b22/.gitconfig'
+2026-10-13T07:13:30.2151970Z Temporarily overriding HOME='/Users/runner/work/_temp/f5e3fb10-532f-4066-bcc8-bcb5f06c6b22' before making global git config changes
+2026-10-13T07:13:30.2155470Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-13T07:13:30.2159710Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/Echo-Canva-Web/Echo-Canva-Web
+2026-10-13T07:13:30.2348800Z Deleting the contents of '/Users/runner/work/Echo-Canva-Web/Echo-Canva-Web'
+2026-10-13T07:13:30.2401990Z ##[group]Determining repository object format
+2026-10-13T07:13:30.2405540Z ##[endgroup]
+2026-10-13T07:13:30.2407530Z ##[group]Initializing the repository
+2026-10-13T07:13:30.2409450Z [command]/opt/homebrew/bin/git init /Users/runner/work/Echo-Canva-Web/Echo-Canva-Web
+2026-10-13T07:13:30.3023470Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-13T07:13:30.3025790Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-13T07:13:30.3026610Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-13T07:13:30.3027250Z hint: call:
+2026-10-13T07:13:30.3027600Z hint:
+2026-10-13T07:13:30.3028190Z hint: 	git config --global init.defaultBranch <name>
+2026-10-13T07:13:30.3028840Z hint:
+2026-10-13T07:13:30.3029420Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-13T07:13:30.3030280Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-13T07:13:30.3030970Z hint:
+2026-10-13T07:13:30.3031490Z hint: 	git branch -m <name>
+2026-10-13T07:13:30.3031950Z hint:
+2026-10-13T07:13:30.3032500Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-13T07:13:30.3033910Z Initialized empty Git repository in /Users/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git/
+2026-10-13T07:13:30.3035810Z [command]/opt/homebrew/bin/git remote add origin https://github.com/kekekewww/Echo-Canva-Web
+2026-10-13T07:13:30.3134960Z ##[endgroup]
+2026-10-13T07:13:30.3136110Z ##[group]Disabling automatic garbage collection
+2026-10-13T07:13:30.3137480Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-10-13T07:13:30.3221970Z ##[endgroup]
+2026-10-13T07:13:30.3223750Z ##[group]Setting up auth
+2026-10-13T07:13:30.3224660Z Removing SSH command configuration
+2026-10-13T07:13:30.3225670Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T07:13:30.3317940Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-13T07:13:30.4814870Z Removing HTTP extra header
+2026-10-13T07:13:30.4816340Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T07:13:30.4870940Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-13T07:13:30.6379720Z Removing includeIf entries pointing to credentials config files
+2026-10-13T07:13:30.6504700Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T07:13:30.6814910Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-13T07:13:30.8891770Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/_temp/git-credentials-fe092db1-0347-4225-8ff1-95a9393e5eed.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-13T07:13:30.9081070Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git.path /Users/runner/work/_temp/git-credentials-fe092db1-0347-4225-8ff1-95a9393e5eed.config
+2026-10-13T07:13:30.9146490Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git/worktrees/*.path /Users/runner/work/_temp/git-credentials-fe092db1-0347-4225-8ff1-95a9393e5eed.config
+2026-10-13T07:13:30.9386970Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-fe092db1-0347-4225-8ff1-95a9393e5eed.config
+2026-10-13T07:13:30.9431580Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-fe092db1-0347-4225-8ff1-95a9393e5eed.config
+2026-10-13T07:13:30.9565210Z ##[endgroup]
+2026-10-13T07:13:30.9575170Z ##[group]Fetching the repository
+2026-10-13T07:13:30.9583590Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +5ef2842da5b3469ea761db9e0984a478e8b464a8:refs/remotes/pull/2/merge
+2026-10-13T07:13:32.0609010Z From https://github.com/kekekewww/Echo-Canva-Web
+2026-10-13T07:13:32.0612260Z  * [new branch]      chore/open-source-extraction             -> origin/chore/open-source-extraction
+2026-10-13T07:13:32.0614870Z  * [new branch]      fix/verification-debt                    -> origin/fix/verification-debt
+2026-10-13T07:13:32.0617410Z  * [new branch]      main                                     -> origin/main
+2026-10-13T07:13:32.0619350Z  * [new ref]         5ef2842da5b3469ea761db9e0984a478e8b464a8 -> pull/2/merge
+2026-10-13T07:13:32.0623320Z ##[endgroup]
+2026-10-13T07:13:32.0624890Z ##[group]Determining the checkout info
+2026-10-13T07:13:32.0626750Z ##[endgroup]
+2026-10-13T07:13:32.0627790Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2026-10-13T07:13:32.0729070Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-13T07:13:32.0837320Z ##[group]Checking out the ref
+2026-10-13T07:13:32.0846510Z [command]/opt/homebrew/bin/git checkout --progress --force refs/remotes/pull/2/merge
+2026-10-13T07:13:32.1902600Z HEAD is now at 5ef2842 Merge 13035395b5f8f20bad9e663ef11a6366a788b995 into 3b2a6b5d6f7b9518e2a8ac9f488cabb0a568a648
+2026-10-13T07:13:32.1912710Z ##[endgroup]
+2026-10-13T07:13:32.2021940Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-10-13T07:13:32.2126920Z 5ef2842da5b3469ea761db9e0984a478e8b464a8
+2026-10-13T07:13:32.2219020Z ##[group]Removing auth
+2026-10-13T07:13:32.2220070Z Removing SSH command configuration
+2026-10-13T07:13:32.2222180Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T07:13:32.2276880Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-13T07:13:32.3608430Z Removing HTTP extra header
+2026-10-13T07:13:32.3709740Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T07:13:32.4016350Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-13T07:13:32.5726200Z Removing includeIf entries pointing to credentials config files
+2026-10-13T07:13:32.5829730Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T07:13:32.5896820Z includeif.gitdir:/Users/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git.path
+2026-10-13T07:13:32.5985990Z includeif.gitdir:/Users/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git/worktrees/*.path
+2026-10-13T07:13:32.6027140Z includeif.gitdir:/github/workspace/.git.path
+2026-10-13T07:13:32.6056770Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-13T07:13:32.6116200Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git.path
+2026-10-13T07:13:32.6119020Z /Users/runner/work/_temp/git-credentials-fe092db1-0347-4225-8ff1-95a9393e5eed.config
+2026-10-13T07:13:32.6127640Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git.path \/Users\/runner\/work\/_temp\/git\-credentials\-fe092db1\-0347\-4225\-8ff1\-95a9393e5eed\.config
+2026-10-13T07:13:32.6136490Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git/worktrees/*.path
+2026-10-13T07:13:32.6139210Z /Users/runner/work/_temp/git-credentials-fe092db1-0347-4225-8ff1-95a9393e5eed.config
+2026-10-13T07:13:32.6144250Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git/worktrees/*.path \/Users\/runner\/work\/_temp\/git\-credentials\-fe092db1\-0347\-4225\-8ff1\-95a9393e5eed\.config
+2026-10-13T07:13:32.6149550Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-13T07:13:32.6154070Z /github/runner_temp/git-credentials-fe092db1-0347-4225-8ff1-95a9393e5eed.config
+2026-10-13T07:13:32.6173690Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-fe092db1\-0347\-4225\-8ff1\-95a9393e5eed\.config
+2026-10-13T07:13:32.6275640Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-13T07:13:32.6335000Z /github/runner_temp/git-credentials-fe092db1-0347-4225-8ff1-95a9393e5eed.config
+2026-10-13T07:13:32.6389860Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-fe092db1\-0347\-4225\-8ff1\-95a9393e5eed\.config
+2026-10-13T07:13:32.6633160Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-13T07:13:32.7986990Z Removing credentials config '/Users/runner/work/_temp/git-credentials-fe092db1-0347-4225-8ff1-95a9393e5eed.config'
+2026-10-13T07:13:32.8069450Z ##[endgroup]
+2026-10-13T07:13:32.8286890Z ##[group]Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+2026-10-13T07:13:32.8287410Z with:
+2026-10-13T07:13:32.8287780Z   node-version-file: .nvmrc
+2026-10-13T07:13:32.8288110Z   package-manager-cache: false
+2026-10-13T07:13:32.8288360Z   check-latest: false
+2026-10-13T07:13:32.8290850Z   token: ***
+2026-10-13T07:13:32.8291090Z env:
+2026-10-13T07:13:32.8291300Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:13:32.8291540Z   AI_ENABLED: false
+2026-10-13T07:13:32.8291730Z ##[endgroup]
+2026-10-13T07:13:33.0356840Z Node version file is not JSON file
+2026-10-13T07:13:33.0358200Z Resolved .nvmrc as 22.23.3
+2026-10-13T07:13:33.0383360Z Attempting to download 22.23.3...
+2026-10-13T07:13:34.3005620Z Acquiring 22.23.3 - arm64 from https://github.com/actions/node-versions/releases/download/22.23.3-35947643734/node-22.23.3-darwin-arm64.tar.gz
+2026-10-13T07:13:34.7899640Z Extracting ...
+2026-10-13T07:13:34.8443140Z [command]/usr/bin/tar xz --strip 1 -C /Users/runner/work/_temp/1bc1c497-0180-4720-aa0e-df6edeab1abc -f /Users/runner/work/_temp/c53d077f-640d-46d4-81ee-5f42ba481d9f
+2026-10-13T07:13:36.5809620Z Adding to the cache ...
+2026-10-13T07:13:39.8898260Z ##[group]Environment details
+2026-10-13T07:13:40.6751370Z node: v22.23.3
+2026-10-13T07:13:40.6759780Z npm: 10.9.9
+2026-10-13T07:13:40.6760120Z yarn: 1.22.22
+2026-10-13T07:13:40.6761190Z ##[endgroup]
+2026-10-13T07:13:40.7291910Z ##[group]Run npm install --global pnpm@11.7.0
+2026-10-13T07:13:40.7292770Z npm install --global pnpm@11.7.0
+2026-10-13T07:13:40.7294060Z pnpm install --frozen-lockfile
+2026-10-13T07:13:40.7434670Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:13:40.7435100Z env:
+2026-10-13T07:13:40.7435580Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:13:40.7436090Z   AI_ENABLED: false
+2026-10-13T07:13:40.7436430Z ##[endgroup]
+2026-10-13T07:13:42.3325890Z
+2026-10-13T07:13:42.3331550Z added 1 package in 1s
+2026-10-13T07:13:42.3332850Z
+2026-10-13T07:13:42.3333090Z 1 package is looking for funding
+2026-10-13T07:13:42.3333830Z   run `npm fund` for details
+2026-10-13T07:13:43.0580630Z ? Verifying lockfile against supply-chain policies (464 entries)...
+2026-10-13T07:13:43.2107620Z Lockfile is up to date, resolution step is skipped
+2026-10-13T07:13:43.4024300Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-10-13T07:13:43.4438060Z Packages: +379
+2026-10-13T07:13:43.4542720Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-10-13T07:13:44.4130030Z Progress: resolved 379, reused 0, downloaded 0, added 0
+2026-10-13T07:13:45.4414440Z Progress: resolved 379, reused 0, downloaded 1, added 0
+2026-10-13T07:13:46.4780860Z Progress: resolved 379, reused 0, downloaded 47, added 0
+2026-10-13T07:13:47.5327710Z Progress: resolved 379, reused 0, downloaded 62, added 0
+2026-10-13T07:13:48.5467620Z Progress: resolved 379, reused 0, downloaded 67, added 4
+2026-10-13T07:13:49.6481940Z Progress: resolved 379, reused 0, downloaded 68, added 4
+2026-10-13T07:13:50.2876840Z ✓ Lockfile passes supply-chain policies (464 entries in 7.2s)
+2026-10-13T07:13:50.6474150Z Progress: resolved 379, reused 0, downloaded 126, added 5
+2026-10-13T07:13:51.6510900Z Progress: resolved 379, reused 0, downloaded 193, added 12
+2026-10-13T07:13:52.6524860Z Progress: resolved 379, reused 0, downloaded 279, added 16
+2026-10-13T07:13:53.6588380Z Progress: resolved 379, reused 0, downloaded 321, added 20
+2026-10-13T07:13:54.6732890Z Progress: resolved 379, reused 0, downloaded 379, added 66
+2026-10-13T07:13:55.6666420Z Progress: resolved 379, reused 0, downloaded 379, added 226
+2026-10-13T07:13:56.6790650Z Progress: resolved 379, reused 0, downloaded 379, added 329
+2026-10-13T07:13:57.6801940Z Progress: resolved 379, reused 0, downloaded 379, added 378
+2026-10-13T07:13:58.0370280Z Progress: resolved 379, reused 0, downloaded 379, added 379, done
+2026-10-13T07:13:58.3727200Z .../node_modules/unrs-resolver postinstall$ node postinstall.js
+2026-10-13T07:13:58.4789590Z .../node_modules/unrs-resolver postinstall: Done
+2026-10-13T07:14:03.7781500Z
+2026-10-13T07:14:03.7790550Z dependencies:
+2026-10-13T07:14:03.7791470Z + next 16.3.8
+2026-10-13T07:14:03.7792180Z + openai 6.48.0
+2026-10-13T07:14:03.7793030Z + react 19.2.7
+2026-10-13T07:14:03.7793340Z + react-dom 19.2.7
+2026-10-13T07:14:03.7793700Z + zod 4.4.3
+2026-10-13T07:14:03.7793910Z
+2026-10-13T07:14:03.7794700Z devDependencies:
+2026-10-13T07:14:03.7795000Z + @playwright/test 1.61.1
+2026-10-13T07:14:03.7795400Z + @types/node 26.1.1
+2026-10-13T07:14:03.7795650Z + @types/react 19.2.17
+2026-10-13T07:14:03.7796030Z + @types/react-dom 19.2.3
+2026-10-13T07:14:03.7796330Z + eslint 9.39.3
+2026-10-13T07:14:03.7796630Z + eslint-config-next 16.3.8
+2026-10-13T07:14:03.7796990Z + typescript 5.9.3
+2026-10-13T07:14:03.7797300Z + vitest 4.1.11
+2026-10-13T07:14:03.7797470Z
+2026-10-13T07:14:03.8276980Z Done in 21.3s using pnpm v11.7.0
+2026-10-13T07:14:04.0063400Z ##[group]Run node scripts/verify-source-baseline.mjs
+2026-10-13T07:14:04.0064760Z node scripts/verify-source-baseline.mjs
+2026-10-13T07:14:04.0824840Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:14:04.0825420Z env:
+2026-10-13T07:14:04.0825750Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:14:04.0826130Z   AI_ENABLED: false
+2026-10-13T07:14:04.0826350Z ##[endgroup]
+2026-10-13T07:14:04.4265300Z PASS: 291 source files; immutable root tree ca4a2543f6f0e8848fe8d8eb57f3ed70faaba294; upstream c8fe24700b67861e2f64fbb8950e9281c0e13a3c; exact LICENSE initializer 923b79dd73b572100c6505694a50fa267dd3df72; no additional roots
+2026-10-13T07:14:04.4379750Z ##[group]Run node scripts/verify-client-marker-boundary.mjs
+2026-10-13T07:14:04.4382080Z node scripts/verify-client-marker-boundary.mjs
+2026-10-13T07:14:04.4439430Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:14:04.4440000Z env:
+2026-10-13T07:14:04.4440330Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:14:04.4440850Z   AI_ENABLED: false
+2026-10-13T07:14:04.4441190Z ##[endgroup]
+2026-10-13T07:14:15.7647860Z PASS Next turbopack client marker boundary: build accepted
+2026-10-13T07:14:22.6527300Z PASS Next turbopack server marker boundary: build rejected as required
+2026-10-13T07:14:41.1017970Z PASS Next webpack client marker boundary: build accepted
+2026-10-13T07:14:44.4142300Z PASS Next webpack server marker boundary: build rejected as required
+2026-10-13T07:14:44.4694170Z ##[group]Run pnpm lint
+2026-10-13T07:14:44.4698070Z pnpm lint
+2026-10-13T07:14:44.4768350Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:14:44.4768770Z env:
+2026-10-13T07:14:44.4769110Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:14:44.4769420Z   AI_ENABLED: false
+2026-10-13T07:14:44.4769790Z ##[endgroup]
+2026-10-13T07:14:45.0196230Z $ eslint . --max-warnings=0
+2026-10-13T07:14:57.3969960Z ##[group]Run pnpm audit --prod --audit-level=low
+2026-10-13T07:14:57.3979570Z pnpm audit --prod --audit-level=low
+2026-10-13T07:14:57.4075860Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:14:57.4076430Z env:
+2026-10-13T07:14:57.4076680Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:14:57.4076990Z   AI_ENABLED: false
+2026-10-13T07:14:57.4077220Z ##[endgroup]
+2026-10-13T07:14:58.6248670Z No known vulnerabilities found
+2026-10-13T07:14:58.6561010Z ##[group]Run pnpm typecheck
+2026-10-13T07:14:58.6561370Z pnpm typecheck
+2026-10-13T07:14:58.6670890Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:14:58.6676520Z env:
+2026-10-13T07:14:58.6678330Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:14:58.6679830Z   AI_ENABLED: false
+2026-10-13T07:14:58.6680130Z ##[endgroup]
+2026-10-13T07:14:59.4550590Z $ tsc --noEmit
+2026-10-13T07:15:10.8373820Z ##[group]Run pnpm test
+2026-10-13T07:15:10.8374860Z pnpm test
+2026-10-13T07:15:10.8498890Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:15:10.8499410Z env:
+2026-10-13T07:15:10.8499630Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:15:10.8500090Z   AI_ENABLED: false
+2026-10-13T07:15:10.8500400Z ##[endgroup]
+2026-10-13T07:15:11.5869690Z $ vitest run
+2026-10-13T07:15:12.6513140Z
+2026-10-13T07:15:12.6527640Z  RUN  v4.1.11 /Users/runner/work/Echo-Canva-Web/Echo-Canva-Web
+2026-10-13T07:15:12.6531040Z
+2026-10-13T07:15:13.1123530Z  ✓ tests/unit/audio-engine.test.ts (26 tests) 35ms
+2026-10-13T07:15:13.1886600Z  ✓ tests/unit/classic-source-pool.test.ts (50 tests) 98ms
+2026-10-13T07:15:13.6835510Z  ✓ tests/unit/hybrid-direct-pool.test.ts (51 tests) 248ms
+2026-10-13T07:15:13.9166380Z  ✓ tests/unit/runtime-license-collector.test.ts (9 tests) 579ms
+2026-10-13T07:15:13.9280940Z  ✓ tests/unit/editor-reducer.test.ts (13 tests) 20ms
+2026-10-13T07:15:14.1310570Z  ✓ tests/unit/compute-frame.test.ts (12 tests) 26ms
+2026-10-13T07:15:14.2397370Z  ✓ tests/unit/hybrid3d-direct.test.ts (10 tests) 69ms
+2026-10-13T07:15:14.4421130Z  ✓ tests/unit/image-source.test.ts (10 tests) 26ms
+2026-10-13T07:15:14.6699470Z  ✓ tests/unit/use-acoustic-frame.test.ts (7 tests) 51ms
+2026-10-13T07:15:14.7370700Z  ✓ tests/unit/ai-request-security.test.ts (11 tests) 115ms
+2026-10-13T07:15:14.9421610Z  ✓ tests/unit/hybrid3d-audible-direct.test.ts (7 tests) 67ms
+2026-10-13T07:15:14.9465620Z  ✓ tests/unit/scene-validation.test.ts (26 tests) 31ms
+2026-10-13T07:15:15.1042830Z  ✓ tests/unit/room-acoustics.test.ts (7 tests) 5ms
+2026-10-13T07:15:15.2535480Z  ✓ tests/unit/schroeder-reverb.test.ts (6 tests) 7ms
+2026-10-13T07:15:15.2543600Z  ✓ tests/unit/workspace-persistence.test.ts (9 tests) 39ms
+2026-10-13T07:15:15.3762510Z  ✓ tests/unit/early-reflection-bank.test.ts (4 tests) 7ms
+2026-10-13T07:15:15.3809230Z  ✓ tests/unit/portal.test.ts (10 tests) 8ms
+2026-10-13T07:15:15.5971700Z  ✓ tests/unit/ai-client.test.ts (16 tests) 28ms
+2026-10-13T07:15:15.6820650Z  ✓ tests/unit/scene-compile-route.test.ts (8 tests) 43ms
+2026-10-13T07:15:15.7656040Z  ✓ tests/unit/braces-security.test.ts (26 tests) 17ms
+2026-10-13T07:15:15.9213510Z  ✓ tests/unit/hybrid-direct-worker.test.ts (4 tests) 38ms
+2026-10-13T07:15:15.9927060Z  ✓ tests/unit/workspace-project.test.ts (7 tests) 10ms
+2026-10-13T07:15:16.0965850Z  ✓ tests/unit/hybrid3d-second-order.test.ts (5 tests) 18ms
+2026-10-13T07:15:16.1779730Z  ✓ tests/unit/acoustic-explainer.test.ts (26 tests) 14ms
+2026-10-13T07:15:16.2654760Z  ✓ tests/unit/geometry.test.ts (8 tests) 5ms
+2026-10-13T07:15:16.3803600Z  ✓ tests/unit/workspace-geometry-constraints.test.ts (6 tests) 11ms
+2026-10-13T07:15:16.4429400Z  ✓ tests/unit/workspace-primitives.test.ts (7 tests) 11ms
+2026-10-13T07:15:16.6164490Z  ✓ tests/unit/hybrid3d-six-band-materials.test.ts (5 tests) 5ms
+2026-10-13T07:15:16.6778140Z  ✓ tests/unit/hybrid-path-overlay.test.ts (5 tests) 32ms
+2026-10-13T07:15:16.7916620Z  ✓ tests/unit/acoustic-worker.test.ts (6 tests) 21ms
+2026-10-13T07:15:16.8646060Z  ✓ tests/unit/hybrid-scene-generation.test.ts (4 tests) 16ms
+2026-10-13T07:15:16.9963230Z  ✓ tests/unit/viewport-math.test.ts (8 tests) 5ms
+2026-10-13T07:15:17.0510490Z  ✓ tests/unit/scene-serialization.test.ts (8 tests) 14ms
+2026-10-13T07:15:17.2086710Z  ✓ tests/unit/hybrid-viewport-wall.test.ts (3 tests) 21ms
+2026-10-13T07:15:17.2150410Z  ✓ tests/unit/local-audio-library.test.ts (7 tests) 21ms
+2026-10-13T07:15:17.4151820Z  ✓ tests/unit/classic-source-worker.test.ts (3 tests) 7ms
+2026-10-13T07:15:17.4948890Z  ✓ tests/unit/hybrid3d-compile.test.ts (4 tests) 27ms
+2026-10-13T07:15:17.6442080Z  ✓ tests/unit/ai-scene-prompt-evals.test.ts (15 tests) 24ms
+2026-10-13T07:15:17.6836140Z  ✓ tests/unit/hybrid3d-receiver-connection-benchmark.test.ts (3 tests) 42ms
+2026-10-13T07:15:17.8134800Z  ✓ tests/unit/hybrid3d-receiver-connection.test.ts (3 tests) 6ms
+2026-10-13T07:15:17.8383140Z  ✓ tests/unit/occlusion.test.ts (5 tests) 4ms
+2026-10-13T07:15:17.9339370Z  ✓ tests/unit/hybrid3d-reflection-rendering.test.ts (4 tests) 5ms
+2026-10-13T07:15:18.0279080Z  ✓ tests/unit/scene-compiler.test.ts (8 tests) 17ms
+2026-10-13T07:15:18.0710670Z  ✓ tests/unit/hybrid3d-reflection.test.ts (3 tests) 5ms
+2026-10-13T07:15:18.2036850Z  ✓ tests/unit/workspace-history.test.ts (5 tests) 7ms
+2026-10-13T07:15:18.2126900Z  ✓ tests/unit/hybrid3d-directional-late-field.test.ts (3 tests) 5ms
+2026-10-13T07:15:18.4171420Z  ✓ tests/unit/scene-document.test.ts (5 tests) 26ms
+2026-10-13T07:15:18.6818470Z  ✓ tests/unit/scene-explain-route.test.ts (3 tests) 29ms
+2026-10-13T07:15:18.8248640Z  ✓ tests/unit/material-registry.test.ts (6 tests) 7ms
+2026-10-13T07:15:18.8350880Z  ✓ tests/unit/client-only-marker.test.ts (7 tests) 171ms
+2026-10-13T07:15:19.0661210Z  ✓ tests/unit/engine-router.test.ts (3 tests) 67ms
+2026-10-13T07:15:19.2154460Z  ✓ tests/unit/coordinates.test.ts (7 tests) 10ms
+2026-10-13T07:15:19.2256940Z  ✓ tests/unit/hybrid-viewport-adapter.test.ts (2 tests) 45ms
+2026-10-13T07:15:19.3743440Z  ✓ tests/unit/classic-viewport-math.test.ts (4 tests) 3ms
+2026-10-13T07:15:19.4452390Z  ✓ tests/unit/workspace-transfer.test.ts (3 tests) 16ms
+2026-10-13T07:15:19.5267630Z  ✓ tests/unit/partition-editing.test.ts (4 tests) 4ms
+2026-10-13T07:15:19.6109160Z  ✓ tests/unit/ai-provider.test.ts (6 tests) 5ms
+2026-10-13T07:15:19.7074540Z  ✓ tests/unit/workspace-projections.test.ts (3 tests) 5ms
+2026-10-13T07:15:19.7679590Z  ✓ tests/unit/ai-contracts.test.ts (4 tests) 5ms
+2026-10-13T07:15:19.8370910Z  ✓ tests/unit/audio-math.test.ts (4 tests) 5ms
+2026-10-13T07:15:19.9187600Z  ✓ tests/unit/hybrid3d-primitives.test.ts (2 tests) 13ms
+2026-10-13T07:15:20.0937190Z  ✓ tests/unit/workspace-project-tools.test.ts (2 tests) 13ms
+2026-10-13T07:15:20.0978810Z  ✓ tests/unit/workspace-listeners.test.ts (2 tests) 8ms
+2026-10-13T07:15:20.2470470Z  ✓ tests/unit/content-policy.test.ts (6 tests) 5ms
+2026-10-13T07:15:20.2783570Z  ✓ tests/unit/numeric-scrub-field.test.tsx (3 tests) 3ms
+2026-10-13T07:15:20.3960210Z  ✓ tests/unit/workspace-status-bar.test.ts (2 tests) 2ms
+2026-10-13T07:15:20.5234900Z  ✓ tests/unit/classic-viewport-adapter.test.ts (1 test) 17ms
+2026-10-13T07:15:20.5533650Z  ✓ tests/unit/audio-assets.test.ts (1 test) 12ms
+2026-10-13T07:15:20.6844060Z  ✓ tests/unit/scene-schema.test.ts (2 tests) 6ms
+2026-10-13T07:15:20.7369530Z  ✓ tests/unit/classic-baseline-capture.test.ts (1 test) 26ms
+2026-10-13T07:15:20.8598510Z  ✓ tests/unit/scene-editor-route.test.ts (1 test) 3ms
+2026-10-13T07:15:20.9585700Z  ✓ tests/unit/transport.test.ts (1 test) 2ms
+2026-10-13T07:15:20.9868070Z  ✓ tests/unit/development-shell.test.ts (2 tests) 3ms
+2026-10-13T07:15:21.1181050Z  ✓ tests/unit/smoke.test.ts (1 test) 3ms
+2026-10-13T07:15:21.3990340Z  ✓ tests/unit/playwright-config.test.ts (1 test) 2ms
+2026-10-13T07:15:21.4036360Z
+2026-10-13T07:15:21.4040390Z  Test Files  75 passed (75)
+2026-10-13T07:15:21.4041460Z       Tests  572 passed (572)
+2026-10-13T07:15:21.4042320Z    Start at  07:15:12
+2026-10-13T07:15:21.4043150Z    Duration  8.74s (transform 1.99s, setup 0ms, import 5.88s, tests 2.43s, environment 6ms)
+2026-10-13T07:15:21.4043890Z
+2026-10-13T07:15:21.4631160Z ##[group]Run pnpm build
+2026-10-13T07:15:21.4631370Z pnpm build
+2026-10-13T07:15:21.4979120Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:15:21.4979500Z env:
+2026-10-13T07:15:21.4979760Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:15:21.4980110Z   AI_ENABLED: false
+2026-10-13T07:15:21.4980340Z ##[endgroup]
+2026-10-13T07:15:21.9678380Z $ next build
+2026-10-13T07:15:22.4190860Z ▲ Next.js 16.3.8 (Turbopack)
+2026-10-13T07:15:22.4448070Z ✓ Running next.config.ts took 29ms
+2026-10-13T07:15:22.4451450Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2026-10-13T07:15:22.4548100Z
+2026-10-13T07:15:22.4788330Z   Creating an optimized production build ...
+2026-10-13T07:15:30.4894240Z ✓ Compiled successfully in 7.8s
+2026-10-13T07:15:30.5428560Z   Running TypeScript ...
+2026-10-13T07:15:38.3955980Z   Finished TypeScript in 7.8s ...
+2026-10-13T07:15:38.3981170Z   Collecting page data using 2 workers ...
+2026-10-13T07:15:39.3208480Z   Generating static pages using 2 workers (0/8) ...
+2026-10-13T07:15:39.4035970Z   Generating static pages using 2 workers (2/8)
+2026-10-13T07:15:39.6270430Z   Generating static pages using 2 workers (4/8)
+2026-10-13T07:15:39.6370910Z   Generating static pages using 2 workers (6/8)
+2026-10-13T07:15:39.6477170Z ✓ Generating static pages using 2 workers (8/8) in 310ms
+2026-10-13T07:15:39.6578300Z   Finalizing page optimization ...
+2026-10-13T07:15:40.1534970Z
+2026-10-13T07:15:40.1636630Z Route (app)
+2026-10-13T07:15:40.1692920Z ┌ ○ /
+2026-10-13T07:15:40.1693780Z ├ ○ /_not-found
+2026-10-13T07:15:40.1694370Z ├ ƒ /api/health
+2026-10-13T07:15:40.1725270Z ├ ƒ /api/scene/compile
+2026-10-13T07:15:40.1727160Z ├ ƒ /api/scene/explain
+2026-10-13T07:15:40.1727890Z ├ ○ /classic
+2026-10-13T07:15:40.1728370Z ├ ○ /icon.svg
+2026-10-13T07:15:40.1729910Z └ ○ /lab
+2026-10-13T07:15:40.1730160Z
+2026-10-13T07:15:40.1730250Z
+2026-10-13T07:15:40.1730750Z ○  (Static)   prerendered as static content
+2026-10-13T07:15:40.1731510Z ƒ  (Dynamic)  server-rendered on demand
+2026-10-13T07:15:40.1731820Z
+2026-10-13T07:15:40.2474170Z ##[group]Run pnpm exec playwright install --with-deps chromium
+2026-10-13T07:15:40.2474830Z pnpm exec playwright install --with-deps chromium
+2026-10-13T07:15:40.2847860Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:15:40.2848270Z env:
+2026-10-13T07:15:40.2848540Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:15:40.2848830Z   AI_ENABLED: false
+2026-10-13T07:15:40.2849040Z ##[endgroup]
+2026-10-13T07:15:41.5162150Z Downloading Chrome for Testing 149.0.7827.55 (playwright chromium v1228) from https://cdn.playwright.dev/builds/cft/149.0.7827.55/mac-arm64/chrome-mac-arm64.zip
+2026-10-13T07:15:42.3433970Z |                                                                                |   0% of 171 MiB
+2026-10-13T07:15:43.1610280Z |■■■■■■■■                                                                        |  10% of 171 MiB
+2026-10-13T07:15:43.5849610Z |■■■■■■■■■■■■■■■■                                                                |  20% of 171 MiB
+2026-10-13T07:15:43.8955810Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 171 MiB
+2026-10-13T07:15:44.1933990Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 171 MiB
+2026-10-13T07:15:44.4810930Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 171 MiB
+2026-10-13T07:15:44.7852730Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 171 MiB
+2026-10-13T07:15:45.0941430Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 171 MiB
+2026-10-13T07:15:45.3783680Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 171 MiB
+2026-10-13T07:15:45.6798890Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 171 MiB
+2026-10-13T07:15:45.9653140Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 171 MiB
+2026-10-13T07:15:48.3348100Z Chrome for Testing 149.0.7827.55 (playwright chromium v1228) downloaded to /Users/runner/Library/Caches/ms-playwright/chromium-1228
+2026-10-13T07:15:48.3353960Z Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-mac-arm64.zip
+2026-10-13T07:15:49.1795940Z |                                                                                |   1% of 1 MiB
+2026-10-13T07:15:49.2456770Z |■■■■■■■■                                                                        |  10% of 1 MiB
+2026-10-13T07:15:49.3332140Z |■■■■■■■■■■■■■■■■                                                                |  20% of 1 MiB
+2026-10-13T07:15:49.3443640Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 1 MiB
+2026-10-13T07:15:49.3532870Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 1 MiB
+2026-10-13T07:15:49.3975440Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  51% of 1 MiB
+2026-10-13T07:15:49.4066560Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 1 MiB
+2026-10-13T07:15:49.4169960Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 1 MiB
+2026-10-13T07:15:49.4390370Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 1 MiB
+2026-10-13T07:15:49.4470420Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  91% of 1 MiB
+2026-10-13T07:15:49.4613530Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 1 MiB
+2026-10-13T07:15:49.5502400Z FFmpeg (playwright ffmpeg v1011) downloaded to /Users/runner/Library/Caches/ms-playwright/ffmpeg-1011
+2026-10-13T07:15:49.5609760Z Downloading Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) from https://cdn.playwright.dev/builds/cft/149.0.7827.55/mac-arm64/chrome-headless-shell-mac-arm64.zip
+2026-10-13T07:15:50.3745570Z |                                                                                |   0% of 93.5 MiB
+2026-10-13T07:15:51.0547070Z |■■■■■■■■                                                                        |  10% of 93.5 MiB
+2026-10-13T07:15:51.1981480Z |■■■■■■■■■■■■■■■■                                                                |  20% of 93.5 MiB
+2026-10-13T07:15:51.3487230Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 93.5 MiB
+2026-10-13T07:15:51.5017150Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 93.5 MiB
+2026-10-13T07:15:51.6661360Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 93.5 MiB
+2026-10-13T07:15:51.8173790Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 93.5 MiB
+2026-10-13T07:15:51.9629030Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 93.5 MiB
+2026-10-13T07:15:52.1203180Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 93.5 MiB
+2026-10-13T07:15:52.2818650Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 93.5 MiB
+2026-10-13T07:15:52.4281280Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 93.5 MiB
+2026-10-13T07:15:53.8296510Z Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) downloaded to /Users/runner/Library/Caches/ms-playwright/chromium_headless_shell-1228
+2026-10-13T07:15:53.8719680Z ##[group]Run pnpm exec playwright test
+2026-10-13T07:15:53.8720270Z pnpm exec playwright test
+2026-10-13T07:15:53.8769480Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:15:53.8769870Z env:
+2026-10-13T07:15:53.8770120Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:15:53.8770380Z   AI_ENABLED: false
+2026-10-13T07:15:53.8770660Z ##[endgroup]
+2026-10-13T07:15:56.1547560Z [WebServer] $ next start --hostname 127.0.0.1 --port 3000
+2026-10-13T07:15:56.5312400Z [WebServer] ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+2026-10-13T07:15:56.9380710Z
+2026-10-13T07:15:56.9381220Z Running 46 tests using 1 worker
+2026-10-13T07:15:56.9398770Z
+2026-10-13T07:15:58.3828150Z   ✓   1 [chromium] › tests/e2e/audio-rendering.spec.ts:25:5 › browser renders a finite, decay-controlled reverb and a continuous Raw/Simulated transition (772ms)
+2026-10-13T07:15:59.7067070Z   ✓   2 [chromium] › tests/e2e/legacy-regressions.spec.ts:3:5 › preserves the Classic audio, portal and reverb behaviours behind the workspace adapter (1.3s)
+2026-10-13T07:16:00.2650770Z   ✓   3 [chromium] › tests/e2e/legacy-regressions.spec.ts:45:5 › preserves the manual scene when the AI compiler rejects adversarial input (550ms)
+2026-10-13T07:16:00.5877660Z   ✓   4 [chromium] › tests/e2e/legacy-regressions.spec.ts:64:5 › keeps Classic keyboard editing and focus available through the adapter (311ms)
+2026-10-13T07:16:01.0647820Z   ✓   5 [chromium] › tests/e2e/workspace-authoring.spec.ts:7:5 › adds and activates listeners and enforces the source workflow (467ms)
+2026-10-13T07:16:01.8724200Z   ✓   6 [chromium] › tests/e2e/workspace-authoring.spec.ts:22:5 › edits a local source and relinks missing audio without moving it (800ms)
+2026-10-13T07:16:02.4210550Z   ✓   7 [chromium] › tests/e2e/workspace-authoring.spec.ts:48:5 › exports, imports, and safely rejects complete authoring JSON (540ms)
+2026-10-13T07:16:02.9053580Z   ✓   8 [chromium] › tests/e2e/workspace-authoring.spec.ts:69:5 › compiles and applies a validated AI candidate (470ms)
+2026-10-13T07:16:03.4200940Z   ✓   9 [chromium] › tests/e2e/workspace-authoring.spec.ts:83:5 › applies a mode-aware AI candidate to Hybrid room and object heights (508ms)
+2026-10-13T07:16:03.8227960Z   ✓  10 [chromium] › tests/e2e/workspace-authoring.spec.ts:125:5 › explains the selected source using a deterministic snapshot and a mocked AI response (400ms)
+2026-10-13T07:16:04.4431050Z   ✓  11 [chromium] › tests/e2e/workspace-authoring.spec.ts:162:5 › confirms permanent deletes and clears all local project data in two steps (615ms)
+2026-10-13T07:16:04.7896340Z   ✓  12 [chromium] › tests/e2e/workspace-failures.spec.ts:3:5 › preserves and downloads an unreadable project cache (335ms)
+2026-10-13T07:16:05.0822690Z   ✓  13 [chromium] › tests/e2e/workspace-failures.spec.ts:15:5 › continues in memory and exposes a persistent warning when browser storage is unavailable (287ms)
+2026-10-13T07:16:05.3767940Z   ✓  14 [chromium] › tests/e2e/workspace-failures.spec.ts:28:5 › keeps authoring available when Workers cannot start (284ms)
+2026-10-13T07:16:05.6804380Z   ✓  15 [chromium] › tests/e2e/workspace-failures.spec.ts:43:5 › preserves scene edits and offers Retry after audio startup fails (296ms)
+2026-10-13T07:16:06.4530370Z   ✓  16 [chromium] › tests/e2e/workspace-geometry.spec.ts:3:5 › adds Walls with two viewport points and requires that Wall for a Portal (759ms)
+2026-10-13T07:16:07.1886920Z   ✓  17 [chromium] › tests/e2e/workspace-geometry.spec.ts:22:5 › Classic wall placement remains usable after viewport navigation (737ms)
+2026-10-13T07:16:07.7957910Z   ✓  18 [chromium] › tests/e2e/workspace-geometry.spec.ts:48:5 › Hybrid wall placement ignores pan gestures and still accepts two points (597ms)
+2026-10-13T07:16:08.2405670Z   ✓  19 [chromium] › tests/e2e/workspace-geometry.spec.ts:75:5 › disables and re-enables a wall without deleting its Outliner record (439ms)
+2026-10-13T07:16:08.6923140Z   ✓  20 [chromium] › tests/e2e/workspace-geometry.spec.ts:91:5 › treats a disabled ceiling as an acoustic opening and restores it on Enable (444ms)
+2026-10-13T07:16:09.1018470Z   ✓  21 [chromium] › tests/e2e/workspace-geometry.spec.ts:106:5 › edits room dimensions and protects the floor (404ms)
+2026-10-13T07:16:09.5317640Z   ✓  22 [chromium] › tests/e2e/workspace-geometry.spec.ts:119:5 › edits Floor and Ceiling materials from their own Inspector selections (424ms)
+2026-10-13T07:16:09.9479690Z   ✓  23 [chromium] › tests/e2e/workspace-geometry.spec.ts:136:5 › supports exact numeric input, arrows, and Escape cancel (411ms)
+2026-10-13T07:16:10.5445380Z   ✓  24 [chromium] › tests/e2e/workspace-geometry.spec.ts:153:5 › renders newly authored finite walls and hosted portals in the 3D viewport (590ms)
+2026-10-13T07:16:10.8930520Z   ✓  25 [chromium] › tests/e2e/workspace-geometry.spec.ts:172:5 › selects a 3D Wall directly from its visible viewport panel (343ms)
+2026-10-13T07:16:11.4646620Z   ✓  26 [chromium] › tests/e2e/workspace-geometry.spec.ts:182:5 › protects the final enabled Listener when disabled Listeners remain (565ms)
+2026-10-13T07:16:11.9949000Z   ✓  27 [chromium] › tests/e2e/workspace-geometry.spec.ts:200:5 › deletes a playing 3D Source without applying a stale acoustic frame (520ms)
+2026-10-13T07:16:12.8098870Z   ✓  28 [chromium] › tests/e2e/workspace-geometry.spec.ts:216:5 › precision-edits Wall endpoints and Portal offset without detaching hosted geometry (811ms)
+2026-10-13T07:16:13.3137140Z   ✓  29 [chromium] › tests/e2e/workspace-paths.spec.ts:3:5 › shows matched direct and first-order 3D paths with presentation controls (486ms)
+2026-10-13T07:16:13.6406570Z   ✓  30 [chromium] › tests/e2e/workspace-paths.spec.ts:25:5 › keeps the production audio render gate finite and continuous (328ms)
+2026-10-13T07:16:14.2369960Z   ✓  31 [chromium] › tests/e2e/workspace-primitives.spec.ts:3:5 › authors basic acoustic shapes in Hybrid 3D (587ms)
+2026-10-13T07:16:14.7599850Z   ✓  32 [chromium] › tests/e2e/workspace-primitives.spec.ts:34:5 › authors and restores faceted shapes in Classic 2.5D (517ms)
+2026-10-13T07:16:15.2651900Z   ✓  33 [chromium] › tests/e2e/workspace.spec.ts:4:5 › renders one modelling workspace on every route (491ms)
+2026-10-13T07:16:15.8456650Z   ✓  34 [chromium] › tests/e2e/workspace.spec.ts:15:5 › preserves independent mode state across switches and refresh (573ms)
+2026-10-13T07:16:16.4239610Z   ✓  35 [chromium] › tests/e2e/workspace.spec.ts:32:5 › persists compact Undo history across refresh (571ms)
+2026-10-13T07:16:22.7535690Z   ✓  36 [chromium] › tests/e2e/workspace.spec.ts:45:5 › coalesces continuous numeric scrubbing into one Undo command (6.3s)
+2026-10-13T07:16:23.5640010Z   ✓  37 [chromium] › tests/e2e/workspace.spec.ts:69:5 › keeps one AudioContext and toolbar audition state while switching modes (801ms)
+2026-10-13T07:16:24.0648490Z   ✓  38 [chromium] › tests/e2e/workspace.spec.ts:86:5 › resets only the active mode and can undo reset (493ms)
+2026-10-13T07:16:24.5673020Z   ✓  39 [chromium] › tests/e2e/workspace.spec.ts:99:5 › contains wheel zoom inside the 3D viewport and reports no page errors (489ms)
+2026-10-13T07:16:25.4513940Z   ✓  40 [chromium] › tests/e2e/workspace.spec.ts:113:5 › Classic viewport supports pan navigation, Home and Frame All (879ms)
+2026-10-13T07:16:26.2336790Z   ✓  41 [chromium] › tests/e2e/workspace.spec.ts:154:5 › restores each mode camera and overlay preferences after switching and refresh (775ms)
+2026-10-13T07:16:26.9974400Z   ✓  42 [chromium] › tests/e2e/workspace.spec.ts:172:5 › Hybrid viewport adds pan navigation without stealing object height editing (756ms)
+2026-10-13T07:16:27.4383890Z   ✓  43 [chromium] › tests/e2e/workspace.spec.ts:217:5 › restores the 100-wall project and keeps Outliner selection within the interaction budget (432ms)
+2026-10-13T07:16:27.8260080Z   ✓  44 [chromium] › tests/e2e/workspace.spec.ts:247:5 › keeps the viewport primary and exposes modal drawers on narrow screens (381ms)
+2026-10-13T07:16:28.2427790Z   ✓  45 [chromium] › tests/e2e/workspace.spec.ts:260:5 › keeps Inspector labels, values, and units inside distinct readable columns (410ms)
+2026-10-13T07:16:36.2844130Z   ✓  46 [chromium] › tests/e2e/workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets (8.0s)
+2026-10-13T07:16:36.6033590Z
+2026-10-13T07:16:36.6049680Z   46 passed (41.6s)
+2026-10-13T07:16:36.6568630Z ##[group]Run pnpm exec playwright test tests/e2e/workspace.spec.ts --grep 'survives the full entity-limit project' --repeat-each=3 --retries=0 --output=test-results/macos-repeat
+2026-10-13T07:16:36.6571500Z pnpm exec playwright test tests/e2e/workspace.spec.ts --grep 'survives the full entity-limit project' --repeat-each=3 --retries=0 --output=test-results/macos-repeat
+2026-10-13T07:16:36.6643240Z shell: /bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-13T07:16:36.6643620Z env:
+2026-10-13T07:16:36.6643890Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:16:36.6644140Z   AI_ENABLED: false
+2026-10-13T07:16:36.6644470Z ##[endgroup]
+2026-10-13T07:16:38.6607720Z [WebServer] $ next start --hostname 127.0.0.1 --port 3000
+2026-10-13T07:16:38.9832470Z [WebServer] ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+2026-10-13T07:16:39.2109870Z
+2026-10-13T07:16:39.2210680Z Running 3 tests using 1 worker
+2026-10-13T07:16:39.2229200Z
+2026-10-13T07:16:47.8980150Z   ✘  1 [chromium] › tests/e2e/workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets (8.1s)
+2026-10-13T07:16:56.6926530Z   ✓  2 [chromium] › tests/e2e/workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets (8.2s)
+2026-10-13T07:17:05.5815200Z   ✓  3 [chromium] › tests/e2e/workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets (8.3s)
+2026-10-13T07:17:05.6747110Z
+2026-10-13T07:17:05.6952100Z
+2026-10-13T07:17:05.6999200Z   1) [chromium] › tests/e2e/workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets
+2026-10-13T07:17:05.7000030Z
+2026-10-13T07:17:05.7000430Z     Error: expect(received).toBeLessThan(expected)
+2026-10-13T07:17:05.7000910Z
+2026-10-13T07:17:05.7001250Z     Expected: < 12
+2026-10-13T07:17:05.7001850Z     Received:   13
+2026-10-13T07:17:05.7002220Z
+2026-10-13T07:17:05.7002740Z       497 |   expect(sorted).toHaveLength(24);
+2026-10-13T07:17:05.7003370Z       498 |   expect(completedSequences.size).toBe(24);
+2026-10-13T07:17:05.7004310Z     > 499 |   expect(sorted[Math.ceil(sorted.length * 0.95) - 1]).toBeLessThan(12);
+2026-10-13T07:17:05.7005270Z           |                                                       ^
+2026-10-13T07:17:05.7005800Z       500 |   expect(
+2026-10-13T07:17:05.7006470Z       501 |     longTasks.every((duration) => duration <= 50),
+2026-10-13T07:17:05.7007240Z       502 |     `Observed long tasks: ${JSON.stringify(longTasks)}`,
+2026-10-13T07:17:05.7007980Z         at /Users/runner/work/Echo-Canva-Web/Echo-Canva-Web/tests/e2e/workspace.spec.ts:499:55
+2026-10-13T07:17:05.7008980Z
+2026-10-13T07:17:05.7009770Z     attachment #1: worker-stress-metrics (application/json) ────────────────────────────────────────
+2026-10-13T07:17:05.7012830Z     test-results/macos-repeat/workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium/attachments/worker-stress-metrics-b6f5eef2f782b49a5eeb5259085a46c770fcd6c8.json
+2026-10-13T07:17:05.7014080Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-13T07:17:05.7014420Z
+2026-10-13T07:17:05.7014950Z     attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-10-13T07:17:05.7015880Z     test-results/macos-repeat/workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium/test-failed-1.png
+2026-10-13T07:17:05.7016870Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-13T07:17:05.7017210Z
+2026-10-13T07:17:05.7018020Z     Error Context: test-results/macos-repeat/workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium/error-context.md
+2026-10-13T07:17:05.7018690Z
+2026-10-13T07:17:05.7018880Z   1 failed
+2026-10-13T07:17:05.7020800Z     [chromium] › tests/e2e/workspace.spec.ts:282:5 › survives the full entity-limit project within Worker and interaction budgets
+2026-10-13T07:17:05.7021410Z   2 passed (27.9s)
+2026-10-13T07:17:05.7121430Z ##[error]Process completed with exit code 1.
+2026-10-13T07:17:05.7302930Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+2026-10-13T07:17:05.7303490Z with:
+2026-10-13T07:17:05.7303810Z   name: chromium-failure-evidence-macos-latest
+2026-10-13T07:17:05.7304750Z   path: test-results/**/test-failed-*.png
+test-results/**/error-context.md
+test-results/**/trace.zip
+test-results/**/attachments/*.json
+test-results/**/worker-stress-metrics.json
+playwright-report/
+
+2026-10-13T07:17:05.7305580Z   if-no-files-found: ignore
+2026-10-13T07:17:05.7305810Z   retention-days: 7
+2026-10-13T07:17:05.7306090Z   compression-level: 6
+2026-10-13T07:17:05.7306350Z   overwrite: false
+2026-10-13T07:17:05.7306580Z   include-hidden-files: false
+2026-10-13T07:17:05.7307440Z   archive: true
+2026-10-13T07:17:05.7307800Z env:
+2026-10-13T07:17:05.7308060Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T07:17:05.7308350Z   AI_ENABLED: false
+2026-10-13T07:17:05.7308550Z ##[endgroup]
+2026-10-13T07:17:06.2335200Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-13T07:17:06.2337060Z The least common ancestor is /Users/runner/work/Echo-Canva-Web/Echo-Canva-Web. This will be the root directory of the artifact
+2026-10-13T07:17:06.2337650Z With the provided path, there will be 10 files uploaded
+2026-10-13T07:17:06.2338280Z Artifact name is valid!
+2026-10-13T07:17:06.2338500Z Root directory input is valid!
+2026-10-13T07:17:06.4612950Z Uploading artifact: chromium-failure-evidence-macos-latest.zip
+2026-10-13T07:17:06.4613820Z Beginning upload of artifact content to blob storage
+2026-10-13T07:17:06.5635220Z Uploaded bytes 175361
+2026-10-13T07:17:06.5764080Z Finished uploading artifact content to blob storage!
+2026-10-13T07:17:06.5765180Z SHA256 digest of uploaded artifact is df8f2646ce9686662936f4a741e4fec8653987cdef112787a8e5ee174aa3d8d6
+2026-10-13T07:17:06.5766220Z Finalizing artifact upload
+2026-10-13T07:17:06.8356240Z Artifact chromium-failure-evidence-macos-latest successfully finalized. Artifact ID 11794544063
+2026-10-13T07:17:06.8357590Z Artifact chromium-failure-evidence-macos-latest has been successfully uploaded! Final size is 175361 bytes. Artifact ID is 11794544063
+2026-10-13T07:17:06.8358850Z Artifact download URL: https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38361274523/artifacts/11794544063
+2026-10-13T07:17:06.8502820Z Post job cleanup.
+2026-10-13T07:17:06.9883360Z [command]/opt/homebrew/bin/git version
+2026-10-13T07:17:07.0165740Z git version 2.55.0
+2026-10-13T07:17:07.0188570Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/b9d56513-065b-44aa-9883-62a11db69a5e/.gitconfig'
+2026-10-13T07:17:07.0198270Z Temporarily overriding HOME='/Users/runner/work/_temp/b9d56513-065b-44aa-9883-62a11db69a5e' before making global git config changes
+2026-10-13T07:17:07.0200350Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-13T07:17:07.0202570Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/Echo-Canva-Web/Echo-Canva-Web
+2026-10-13T07:17:07.0324200Z Removing SSH command configuration
+2026-10-13T07:17:07.0330600Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T07:17:07.0416610Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-13T07:17:07.1980370Z Removing HTTP extra header
+2026-10-13T07:17:07.1987680Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T07:17:07.2078470Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-13T07:17:07.3677750Z Removing includeIf entries pointing to credentials config files
+2026-10-13T07:17:07.3779520Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T07:17:07.4119640Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-13T07:17:07.6451430Z Cleaning up orphan processes

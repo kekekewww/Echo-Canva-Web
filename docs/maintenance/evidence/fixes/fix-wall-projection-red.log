@@ -1,0 +1,73 @@
+{
+  "stage": "projection-red",
+  "startedAt": "2026-10-13T06:30:21.582Z",
+  "cwd": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "tests/unit/hybrid-viewport-wall.test.ts"
+  ],
+  "platform": "win32",
+  "arch": "x64",
+  "node": "v22.17.0",
+  "packageManager": "pnpm@11.7.0",
+  "next": "16.3.8",
+  "playwright": "1.61.1",
+  "vitest": "4.1.11"
+}
+
+ RUN  v4.1.11 D:/Developing/Echo Canvas Web/Echo-Canva-Web
+
+ ❯ tests/unit/hybrid-viewport-wall.test.ts (3 tests | 2 failed) 42ms
+     × projects each solid wall face once without coincident polygon overdraw 27ms
+     × keeps a closed Portal outlined over the same solid wall coverage 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/hybrid-viewport-wall.test.ts > Hybrid wall viewport surfaces > projects each solid wall face once without coincident polygon overdraw
+AssertionError: expected [ { …(2) }, { …(2) }, { …(2) }, …(3) ] to have a length of 4 but got 6
+
+- Expected
++ Received
+
+- 4
++ 6
+
+ ❯ tests/unit/hybrid-viewport-wall.test.ts:52:20
+     50|     const { panels } = projectWall(wall, DEFAULT_VIEWPORT_CAMERA);
+     51|
+     52|     expect(panels).toHaveLength(4);
+       |                    ^
+     53|     expect(new Set(panels.map(({ points }) => JSON.stringify(points)))…
+     54|     expect(panels.reduce((sum, panel) => sum + area(panel.points), 0))…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/unit/hybrid-viewport-wall.test.ts > Hybrid wall viewport surfaces > keeps a closed Portal outlined over the same solid wall coverage
+AssertionError: expected [ { …(2) }, { …(2) }, { …(2) }, …(3) ] to have a length of 4 but got 6
+
+- Expected
++ Received
+
+- 4
++ 6
+
+ ❯ tests/unit/hybrid-viewport-wall.test.ts:69:27
+     67|     const closed = projectWall({ ...wall, portals: [portal] }, DEFAULT…
+     68|
+     69|     expect(closed.panels).toHaveLength(4);
+       |                           ^
+     70|     expect(closed.panels).toEqual(solid.panels);
+     71|     expect(closed.portalOutlines).toHaveLength(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  14:30:33
+   Duration  5.70s (transform 2.32s, setup 0ms, import 3.03s, tests 42ms, environment 0ms)
+
+
+RESULT {"stage":"projection-red","startedAt":"2026-10-13T06:30:21.582Z","cwd":"D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web","command":["C:\\Program Files\\nodejs\\node.exe","node_modules/vitest/vitest.mjs","run","tests/unit/hybrid-viewport-wall.test.ts"],"platform":"win32","arch":"x64","node":"v22.17.0","packageManager":"pnpm@11.7.0","next":"16.3.8","playwright":"1.61.1","vitest":"4.1.11","endedAt":"2026-10-13T06:30:38.849Z","durationSeconds":17.2279205,"exitCode":1,"signal":null}

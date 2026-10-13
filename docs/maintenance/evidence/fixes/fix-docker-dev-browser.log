@@ -1,0 +1,45 @@
+PASS real Compose Watch + Next hot reload without browser refresh: 1011 ms; source bytes restored
+ExpectError: expect(locator).toHaveValue(expected) failed
+
+Locator:  getByRole('textbox', { name: 'X position', exact: true })
+Expected: "2.25"
+Received: "4.5"
+Timeout:  5000ms
+
+Call log:
+  - Expect "to.have.value" with timeout 5000ms
+  - waiting for getByRole('textbox', { name: 'X position', exact: true })
+    10 × locator resolved to <input value="4.5" inputmode="decimal" aria-invalid="false" aria-label="X position"/>
+       - unexpected value "4.5"
+
+    at captureRawStack (D:\Developing\Echo Canvas Web\Echo-Canva-Web\node_modules\.pnpm\playwright-core@1.61.1\node_modules\playwright-core\lib\coreBundle.js:3172:17)
+    at callMatcherAsStep (D:\Developing\Echo Canvas Web\Echo-Canva-Web\node_modules\.pnpm\playwright@1.61.1\node_modules\playwright\lib\matchers\expect.js:12877:57)
+    at Object.toHaveValue (D:\Developing\Echo Canvas Web\Echo-Canva-Web\node_modules\.pnpm\playwright@1.61.1\node_modules\playwright\lib\matchers\expect.js:12867:23)
+    at D:\Developing\Echo Canvas Web\verification-logs\fix-dev-browser-verification.cjs:124:86 {
+  matcherResult: {
+    name: 'toHaveValue',
+    expected: '2.25',
+    message: 'expect(locator).toHaveValue(expected) failed\n' +
+      '\n' +
+      "Locator:  getByRole('textbox', { name: 'X position', exact: true })\n" +
+      'Expected: "2.25"\n' +
+      'Received: "4.5"\n' +
+      'Timeout:  5000ms\n' +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.have.value" with timeout 5000ms\n' +
+      "  - waiting for getByRole('textbox', { name: 'X position', exact: true })\n" +
+      '    10 × locator resolved to <input value="4.5" inputmode="decimal" aria-invalid="false" aria-label="X position"/>\n' +
+      '       - unexpected value "4.5"\n',
+    pass: false,
+    actual: '4.5',
+    log: [
+      '  - Expect "to.have.value" with timeout 5000ms',
+      "  - waiting for getByRole('textbox', { name: 'X position', exact: true })",
+      '    10 × locator resolved to <input value="4.5" inputmode="decimal" aria-invalid="false" aria-label="X position"/>',
+      '       - unexpected value "4.5"'
+    ],
+    timeout: 5000,
+    ariaSnapshot: '- textbox "X position": "4.5"'
+  }
+}
