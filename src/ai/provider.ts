@@ -24,6 +24,15 @@ export type AiProviderConfig = Readonly<{
 export function getAiProviderConfig(
   environment: Readonly<Record<string, string | undefined>> = process.env,
 ): AiProviderConfig | null {
+  const enabled = environment.AI_ENABLED?.trim().toLowerCase();
+  // A production key alone must not silently expose a paid anonymous endpoint.
+  // Public shared-key use requires an operator-controlled authenticated gateway.
+  if (
+    (enabled !== undefined && enabled !== "" && enabled !== "true") ||
+    (environment.NODE_ENV === "production" && enabled !== "true")
+  ) {
+    return null;
+  }
   const provider = environment.AI_PROVIDER?.trim().toLowerCase();
 
   if (provider === "openrouter") {

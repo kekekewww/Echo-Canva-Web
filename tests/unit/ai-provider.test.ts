@@ -3,6 +3,21 @@ import { describe, expect, it } from "vitest";
 import { OPENROUTER_BASE_URL, getAiProviderConfig } from "@/ai/provider";
 
 describe("getAiProviderConfig", () => {
+  it("requires explicit production opt-in even when a server key exists", () => {
+    expect(getAiProviderConfig({ NODE_ENV: "production", OPENAI_API_KEY: "test-key" })).toBeNull();
+    expect(getAiProviderConfig({ NODE_ENV: "production", AI_ENABLED: "true", OPENAI_API_KEY: "test-key" }))
+      .toMatchObject({ provider: "openai", apiKey: "test-key" });
+    expect(getAiProviderConfig({ NODE_ENV: "production", AI_ENABLED: "true" })).toBeNull();
+  });
+
+  it("allows explicit disable and rejects misspelled opt-in values in either environment", () => {
+    for (const NODE_ENV of ["development", "production"]) {
+      for (const AI_ENABLED of ["false", "yes", "1"]) {
+        expect(getAiProviderConfig({ NODE_ENV, AI_ENABLED, OPENAI_API_KEY: "test-key" })).toBeNull();
+      }
+    }
+  });
+
   it("keeps OpenAI as the default provider", () => {
     expect(getAiProviderConfig({ OPENAI_API_KEY: "official-key" })).toEqual({
       provider: "openai",

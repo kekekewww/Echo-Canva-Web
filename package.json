@@ -18,7 +18,7 @@
     "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm e2e"
   },
   "dependencies": {
-    "next": "16.2.10",
+    "next": "16.3.8",
     "openai": "6.48.0",
     "react": "19.2.7",
     "react-dom": "19.2.7",
@@ -30,8 +30,8 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "eslint": "9.39.3",
-    "eslint-config-next": "16.2.10",
+    "eslint-config-next": "16.3.8",
     "typescript": "5.9.3",
-    "vitest": "4.1.10"
+    "vitest": "4.1.11"
   }
 }

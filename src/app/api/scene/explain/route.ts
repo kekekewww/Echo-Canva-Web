@@ -11,6 +11,7 @@ import {
 import { getAiProviderConfig, type AiProviderConfig } from "@/ai/provider";
 import { acousticExplanationJsonSchema, explainAcoustics } from "@/ai/acoustic-explainer";
 import { createSlidingWindowLimiter, type SlidingWindowLimiter } from "@/ai/rate-limit";
+import { aiJsonResponse, getProcessAiRequestBudget, readBoundedJson, type AiRequestBudget } from "@/ai/request-security";
 
 export const runtime = "nodejs";
 
@@ -29,6 +30,7 @@ export type ExplainRouteDependencies = ExplainDependencies & {
   available: boolean;
   limiter: SlidingWindowLimiter;
   clientKey(request: Request): string;
+  budget?: AiRequestBudget;
 };
 
 type FailureCode =
@@ -41,7 +43,7 @@ type FailureCode =
   | "RATE_LIMITED";
 
 function jsonFailure(code: FailureCode, message: string, status: number): Response {
-  return Response.json({ ok: false, error: { code, message } }, { status });
+  return aiJsonResponse({ ok: false, error: { code, message } }, { status });
 }
 
 function requestTimeoutMs(): number {
@@ -54,7 +56,7 @@ function hasRefusal(response: { output: Array<{ type: string }> }): boolean {
 }
 
 function createOpenAIAdapter(config: AiProviderConfig): ExplainDependencies["generateExplanation"] {
-  const client = new OpenAI({ apiKey: config.apiKey, baseURL: config.baseURL, timeout: requestTimeoutMs() });
+  const client = new OpenAI({ apiKey: config.apiKey, baseURL: config.baseURL, timeout: requestTimeoutMs(), maxRetries: 0 });
 
   return async (schemaPrompt: ExplainSchemaPrompt): Promise<unknown> => {
     const response = await client.responses.create({
@@ -101,6 +103,7 @@ function createDefaultDependencies(): ExplainRouteDependencies {
         },
     limiter: createSlidingWindowLimiter(RATE_LIMIT_MAX_REQUESTS, RATE_LIMIT_WINDOW_MS),
     clientKey: derivedClientKey,
+    budget: getProcessAiRequestBudget(),
   };
 }
 
@@ -133,14 +136,32 @@ function isExplainRequestBody(value: Record<string, unknown>): value is ExplainA
 }
 
 async function parseRequestBody(request: Request): Promise<Record<string, unknown> | Response> {
-  try {
-    const body: unknown = await request.json();
-    return isRecord(body)
-      ? body
-      : jsonFailure("INVALID_REQUEST", "Request body must be a JSON object.", 400);
-  } catch {
+  const result = await readBoundedJson(request);
+  if (!result.ok) {
+    if (result.reason === "too_large") {
+      return jsonFailure("INVALID_REQUEST", "Request body must be 256 KiB or smaller.", 413);
+    }
     return jsonFailure("INVALID_JSON", "Request body must be valid JSON.", 400);
   }
+  return isRecord(result.value)
+    ? result.value
+    : jsonFailure("INVALID_REQUEST", "Request body must be a JSON object.", 400);
+}
+
+/** Pass only the documented projection to the provider, never hidden JSON fields. */
+function projectExplainRequest(body: ExplainAcousticsRequest): ExplainAcousticsRequest {
+  return {
+    sceneName: body.sceneName,
+    sourceName: body.sourceName,
+    snapshot: {
+      routeType: body.snapshot.routeType,
+      effectiveDistanceM: body.snapshot.effectiveDistanceM,
+      dryGainDb: body.snapshot.dryGainDb,
+      lowpassHz: body.snapshot.lowpassHz,
+      portalCount: body.snapshot.portalCount,
+      rt60S: { low: body.snapshot.rt60S.low, mid: body.snapshot.rt60S.mid, high: body.snapshot.rt60S.high },
+    },
+  };
 }
 
 function isTimeout(error: unknown): boolean {
@@ -170,7 +191,7 @@ export async function handleExplainRequest(
 
   const rateLimit = dependencies.limiter.check(dependencies.clientKey(request), Date.now());
   if (!rateLimit.allowed) {
-    return Response.json(
+    return aiJsonResponse(
       {
         ok: false,
         error: { code: "RATE_LIMITED", message: "Too many explanation requests. Try again shortly." },
@@ -184,9 +205,21 @@ export async function handleExplainRequest(
     return jsonFailure("AI_UNAVAILABLE", "AI explanations are unavailable. Keep editing manually.", 503);
   }
 
+  const budget = dependencies.budget?.acquire(Date.now());
+  if (budget && !budget.allowed) {
+    return aiJsonResponse(
+      {
+        ok: false,
+        error: { code: "RATE_LIMITED", message: "AI request capacity is busy. Try again shortly." },
+        retryAfterMs: budget.retryAfterMs,
+      },
+      { status: 429, headers: { "Retry-After": String(Math.ceil(budget.retryAfterMs / 1_000)) } },
+    );
+  }
+
   try {
-    const result = await explainAcoustics(body, dependencies);
-    return Response.json(result, { status: result.ok ? 200 : 422 });
+    const result = await explainAcoustics(projectExplainRequest(body), dependencies);
+    return aiJsonResponse(result, { status: result.ok ? 200 : 422 });
   } catch (error) {
     if (isTimeout(error)) {
       return jsonFailure("AI_TIMEOUT", "The acoustic explanation timed out. Try again.", 504);
@@ -195,6 +228,8 @@ export async function handleExplainRequest(
       return jsonFailure("AI_REFUSED", "The acoustic explanation could not be completed.", 422);
     }
     return jsonFailure("AI_REQUEST_FAILED", "The acoustic explanation is temporarily unavailable.", 502);
+  } finally {
+    if (budget?.allowed) budget.release();
   }
 }
 

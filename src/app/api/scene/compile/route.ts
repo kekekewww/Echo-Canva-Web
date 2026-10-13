@@ -13,6 +13,7 @@ import {
 import { generatedHybridSceneJsonSchema } from "@/ai/hybrid-scene";
 import { getAiProviderConfig, type AiProviderConfig } from "@/ai/provider";
 import { createSlidingWindowLimiter, type SlidingWindowLimiter } from "@/ai/rate-limit";
+import { aiJsonResponse, getProcessAiRequestBudget, readBoundedJson, type AiRequestBudget } from "@/ai/request-security";
 import { compileScene } from "@/ai/scene-compiler";
 import { DEFAULT_PRESET_ID } from "@/domain/presets";
 import { validateScene } from "@/domain/scene/validate";
@@ -35,6 +36,7 @@ export type CompileRouteDependencies = CompileDependencies & {
   available: boolean;
   limiter: SlidingWindowLimiter;
   clientKey(request: Request): string;
+  budget?: AiRequestBudget;
 };
 
 function jsonFailure(
@@ -42,7 +44,7 @@ function jsonFailure(
   message: string,
   status: number,
 ): Response {
-  return Response.json(
+  return aiJsonResponse(
     { ok: false, error: { code, message }, fallbackSceneId: DEFAULT_PRESET_ID },
     { status },
   );
@@ -63,7 +65,7 @@ function hasRefusal(response: { output: Array<{ type: string }> }): boolean {
 }
 
 function createOpenAIAdapter(config: AiProviderConfig): CompileDependencies["generateScene"] {
-  const client = new OpenAI({ apiKey: config.apiKey, baseURL: config.baseURL, timeout: requestTimeoutMs() });
+  const client = new OpenAI({ apiKey: config.apiKey, baseURL: config.baseURL, timeout: requestTimeoutMs(), maxRetries: 0 });
 
   return async (
     schemaPrompt: CompileSchemaPrompt,
@@ -125,6 +127,7 @@ function createDefaultDependencies(): CompileRouteDependencies {
         },
     limiter: createSlidingWindowLimiter(RATE_LIMIT_MAX_REQUESTS, RATE_LIMIT_WINDOW_MS),
     clientKey: derivedClientKey,
+    budget: getProcessAiRequestBudget(),
   };
 }
 
@@ -139,14 +142,16 @@ function isSceneCompileMode(value: unknown): value is SceneCompileMode {
 }
 
 async function parseRequestBody(request: Request): Promise<Record<string, unknown> | Response> {
-  try {
-    const body: unknown = await request.json();
-    return isRecord(body)
-      ? body
-      : jsonFailure("INVALID_REQUEST", "Request body must be a JSON object.", 400);
-  } catch {
+  const result = await readBoundedJson(request);
+  if (!result.ok) {
+    if (result.reason === "too_large") {
+      return jsonFailure("INVALID_REQUEST", "Request body must be 256 KiB or smaller.", 413);
+    }
     return jsonFailure("INVALID_JSON", "Request body must be valid JSON.", 400);
   }
+  return isRecord(result.value)
+    ? result.value
+    : jsonFailure("INVALID_REQUEST", "Request body must be a JSON object.", 400);
 }
 
 function isTimeout(error: unknown): boolean {
@@ -189,7 +194,7 @@ export async function handleCompileRequest(
 
   const rateLimit = dependencies.limiter.check(dependencies.clientKey(request), Date.now());
   if (!rateLimit.allowed) {
-    return Response.json(
+    return aiJsonResponse(
       {
         ok: false,
         error: { code: "RATE_LIMITED", message: "Too many scene compile requests. Try again shortly." },
@@ -204,10 +209,23 @@ export async function handleCompileRequest(
     return jsonFailure("AI_UNAVAILABLE", "AI scene generation is unavailable. Load a preset instead.", 503);
   }
 
+  const budget = dependencies.budget?.acquire(Date.now());
+  if (budget && !budget.allowed) {
+    return aiJsonResponse(
+      {
+        ok: false,
+        error: { code: "RATE_LIMITED", message: "AI request capacity is busy. Try again shortly." },
+        fallbackSceneId: DEFAULT_PRESET_ID,
+        retryAfterMs: budget.retryAfterMs,
+      },
+      { status: 429, headers: { "Retry-After": String(Math.ceil(budget.retryAfterMs / 1_000)) } },
+    );
+  }
+
   try {
     const result = await compileScene({ prompt: body.prompt, baseScene, targetMode }, dependencies);
     const status = result.ok ? 200 : result.error.code === "PROMPT_TOO_LONG" ? 400 : 422;
-    return Response.json(result, { status });
+    return aiJsonResponse(result, { status });
   } catch (error) {
     if (isTimeout(error)) {
       return jsonFailure("AI_TIMEOUT", "The scene generator timed out. Try again.", 504);
@@ -216,6 +234,8 @@ export async function handleCompileRequest(
       return jsonFailure("AI_REFUSED", "The scene generator could not complete that request.", 422);
     }
     return jsonFailure("AI_REQUEST_FAILED", "The scene generator is temporarily unavailable.", 502);
+  } finally {
+    if (budget?.allowed) budget.release();
   }
 }
 
