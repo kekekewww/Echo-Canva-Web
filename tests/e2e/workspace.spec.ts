@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./browser-evidence";
 import { writeFile } from "node:fs/promises";
 
 test("renders one modelling workspace on every route", async ({ page }) => {

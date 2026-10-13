@@ -63,6 +63,14 @@ jobs:
       - name: Repeat the original stress gate on macOS without retries
         if: runner.os == 'macOS'
         run: pnpm exec playwright test tests/e2e/workspace.spec.ts --grep 'survives the full entity-limit project' --repeat-each=3 --retries=0 --output=test-results/macos-repeat
+      - name: Diagnose first attempts with CPU traces (not performance acceptance)
+        if: ${{ !cancelled() && (runner.os == 'macOS' || runner.os == 'Windows') }}
+        # Instrumentation changes timing. This supplementary run cannot replace
+        # or turn green either of the unprofiled acceptance steps above.
+        continue-on-error: true
+        env:
+          BROWSER_DIAGNOSTICS: "1"
+        run: pnpm exec playwright test tests/e2e/workspace.spec.ts --grep 'survives the full entity-limit project|Hybrid viewport adds pan navigation' --repeat-each=6 --retries=0 --trace=on --output=test-results/diagnostic
       - name: Upload browser failure evidence
         # A retry can make the job green while a real first-attempt failure
         # remains. Preserve that evidence as well as terminal failures.
@@ -76,6 +84,8 @@ jobs:
             test-results/**/trace.zip
             test-results/**/attachments/*.json
             test-results/**/worker-stress-metrics.json
+            test-results/**/browser-events.json
+            test-results/**/chromium-cpu-trace.json
             playwright-report/
           if-no-files-found: ignore
           retention-days: 7
