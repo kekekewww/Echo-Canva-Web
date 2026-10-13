@@ -188,7 +188,7 @@ function portalInterval(wall: HybridViewportWall, portal: HybridViewportPortal):
   };
 }
 
-function projectWall(wall: HybridViewportWall, camera: ViewportCamera): ProjectedWall {
+export function projectWall(wall: HybridViewportWall, camera: ViewportCamera): ProjectedWall {
   const length = Math.max(0.001, Math.hypot(wall.b.x - wall.a.x, wall.b.z - wall.a.z));
   const openings = wall.portals.filter(({ open }) => open).map((portal) => ({ portal, ...portalInterval(wall, portal) }))
     .sort((left, right) => left.start - right.start);
@@ -201,7 +201,6 @@ function projectWall(wall: HybridViewportWall, camera: ViewportCamera): Projecte
     cursor = Math.max(cursor, opening.end);
   }
   if (cursor < length) rectangles.push({ start: cursor, end: length, bottom: wall.bottomM, top: wall.topM });
-  if (openings.length === 0) rectangles.push({ start: 0, end: length, bottom: wall.bottomM, top: wall.topM });
 
   const panelVertices = (start: number, end: number, bottom: number, top: number, offset: number): readonly ViewportVec3[] => {
     const a = wallPoint(wall, start, offset);

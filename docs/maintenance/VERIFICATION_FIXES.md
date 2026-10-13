@@ -45,7 +45,7 @@ Native causal tests used Windows Node 22.17.0, Next 16.3.8, Playwright 1.61.1
 Chromium, 1280×720, one worker/no retries and production server port 3101.
 Containers and hosted CI pin Node 22.23.3 / pnpm 11.7.0.
 
-## Integrated verification of the corrected tree
+## First integrated correction (head 48a2f668)
 
 | Check | Status |
 | --- | --- |
@@ -53,15 +53,55 @@ Containers and hosted CI pin Node 22.23.3 / pnpm 11.7.0.
 | Native full Chromium suite | PASS: 45/45, 49.6 s (process 50.47 s), one worker / zero retries; original stress 8.7 s at unchanged 12/50 ms gates. |
 | Real Next Client/Server compiler boundary | PASS: four actual default Turbopack / Webpack positive and negative fixtures, 46.21 s; valid Client builds and forbidden Server imports reject for the boundary reason. |
 | Strict marker/notice collector/runtime guard regressions | PASS in full suite: 16 new marker/collector/guard cases, including original identity with borrowed LICENSE and falsely clean summary. Earlier 15-case run passed separately. Actual Windows collector also passed: 20 packages, all five gap counters zero, 3.38 s. |
-| Updated development image, quality checks, Watch/HMR/restart | Pending actual run |
-| Updated production image, runtime contents, health/API/shutdown | Pending actual run |
-| Full Chromium against updated production container | Pending actual run |
-| Ubuntu / Windows / macOS hosted application matrix | Configured; pending new PR execution |
-| Updated hosted production Docker job | Configured; pending new PR execution |
+| Updated development image, quality checks, Watch/HMR/restart | PASS: non-root lint/typecheck and 73 files / 567 units (Vitest 4.29 s); actual Watch HMR 1,011 ms without refresh. Source restored exactly. Two stop/start cycles preserve Classic X=2.25, Hybrid X=4.5 and the same 192,044-byte local WAV ID/SHA-256 in IndexedDB; zero POST uploads or page errors. A helper's initial incorrect assumption that `/` forces Classic was retained, then corrected to explicitly select the persisted mode; the same existing profile/blob passed without resetting data. |
+| Updated production image, runtime contents, health/API/shutdown | No-cache build/start/health/routes/assets/no-key APIs and strict runtime guard PASS; UID 1000, read-only root, capabilities dropped, no host devices. 21 packages / 19 standalone / all five declared; every gap and exception counter zero. Bounded network-disabled secret/notice scan PASS: 1,489 text files / 20,930,230 bytes, six explicit binary skips, zero matching credentials or client-key symbols. Actual SIGTERM PASS: 1.380 s, exit 143 / OOM false, cleanup-start and cleanup-finished logs; restart smoke PASS. |
+| Full Chromium against updated production container | PASS: 45/45, 46.2 s, one worker / zero retries; original stress 8.0 s at unchanged limits. |
+| Ubuntu / Windows / macOS hosted application matrix | [Run 38355473899](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38355473899) succeeded at head `48a2f668de12a3efc0305e0aef71eec60ccc91bd`. Each OS passed four real compiler fixtures, lint/type/build/source/prod audit and 73 files / 567 units. Ubuntu CLEAN 45/45 (38.1 s), Windows CLEAN 45/45 (46.9 s). macOS ARM64: 44 clean / one flaky stress, first p95 18 ms failed <12 ms, retry #1 passed (49.9 s). This is not a clean macOS full pass; further investigation is in progress. |
+| Updated hosted production Docker job | PASS in [PR run 38355473899](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38355473899): fresh build/start/health/HTTP/API/runtime/shutdown assertions, UID 1000 and zero notice/provenance gaps. Image `sha256:531f1f53ce6fc1c5e9457d12faa5dffdbd5d1b22af773ae2e747a4e4df9b1382`, 267,766,572 bytes. |
 
-Pending rows are not passes. Update them with actual evidence before completion.
 Portable follow-up evidence lives separately from the initial hashed outputs;
 full local diagnostics remain in sibling `verification-logs/`.
+
+Local production image: `sha256:c33e6183a468ca013b66c041806e5ae15248c71c39d1c0c878272500a74b237d`,
+386,464,321 bytes. Local development image: `sha256:fa9724e0474e8a65ec251b5b2f12c09d3841350e39dd2bd6c777ca9ca99cc4ac`,
+1,037,614,927 bytes; development build 89.33 s, production no-cache build 76.53 s. These are measured local Docker
+image sizes, not registry download sizes or a claim that every platform's layers
+are identical.
+
+## Additional wall overdraw correction and final checks
+
+The macOS first-attempt failure above is retained; a retry does not establish
+clean cross-platform timing. Further inspection confirms a separate, concrete
+viewport defect: a wall without an open Portal adds the full side rectangle
+twice. Its six rendered polygons contain two identical duplicates; the intended
+existing coverage is two side faces and two endpoint caps, four unique panels.
+The scoped correction removes that redundant insertion only. It preserves open
+Portal holes, the existing caps and acoustic geometry. Closed walls intentionally
+lose duplicate translucent fill/stroke overdraw; this small visual difference is
+documented rather than presented as identical pixels.
+
+Three independent projected-geometry regressions were first run against the
+duplicate: two failed and the open-aperture case passed. They check unique faces,
+analytically projected area, closed-Portal equivalence and open-Portal coverage.
+This demonstrates the defect; it does not establish the cause of the macOS 18 ms
+sample, whose CPU/shard diagnostics were absent in that hosted run.
+
+The stress test now attaches browser hardware concurrency, all 24 complete-frame
+timings/sequences, p95, Long Tasks and existing Worker status text **after** closing
+the measured window. Its input, sample count, pool policy, expected values and
+12/50 ms gates are unchanged. CI retains failed/retried screenshots/traces and
+metrics even when a retry makes a job green. macOS additionally repeats the same
+original case three times with zero retries; evidence directories stay separate.
+
+| Final corrected-tree check | Status |
+| --- | --- |
+| Wall geometry regressions / full native gates / full Chromium | Geometry PASS: 16 focused tests including three new cases. Native lint/type/build/source/collector PASS. First full unit FAIL: 569 passed / one existing marker-test timeout; unchanged isolated 7/7 and full rerun 74 files / 570 tests PASS. Full Chromium FAIL: 43 passed / two timing failures (100-wall selection 81.2 ms >50, stress p95 20 ms >12). Subsequent no-retry diagnostics pending; neither failure is erased. |
+| Rebuilt final production image / zero-gap runtime / complete Chromium | Pending actual run |
+| Updated final development image / quality / Watch persistence | Pending actual run |
+| Final three-OS hosted matrix / macOS zero-retry repetitions / Docker | Pending new-head execution |
+
+These pending rows are not passes. Phase-one logs and the macOS first failure
+remain unchanged; final wall-fix outputs use separate `fix-wall-*` names.
 
 ## Already verified remote adoption
 

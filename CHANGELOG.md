@@ -29,6 +29,7 @@ Changes use Conventional Commit subjects. Releases should record compatibility c
 - Retained baseline schema versions, material presets, geometry/acoustic algorithms, browser audio, and local audio storage behavior.
 - Additional regression fixtures and actual results are recorded in [docs/maintenance/ACOUSTIC_REGRESSION.md](docs/maintenance/ACOUSTIC_REGRESSION.md).
 - Reduced Hybrid listener-update work by retaining static primitive identity and computing only the needed Classic Direct/Portal projection; numerical oracles, formulas and performance budgets are unchanged. See [follow-up verification](docs/maintenance/VERIFICATION_FIXES.md).
+- Removed duplicate coincident side polygons for walls without open Portals; this preserves the existing surface coverage and removes translucent fill/stroke overdraw. Added independent projected-geometry regressions and post-measurement stress diagnostics; CI preserves retry evidence and repeats the original macOS stress gate without retries.
 
 ## Source release — v1.0.0-build-week
 
