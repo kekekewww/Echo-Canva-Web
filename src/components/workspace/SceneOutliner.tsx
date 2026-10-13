@@ -41,7 +41,7 @@ const OutlinerEntityRow = memo(function OutlinerEntityRow({
   );
 });
 
-export function SceneOutliner({ project, onSelect, mobileOpen = false }: Props) {
+export const SceneOutliner = memo(function SceneOutliner({ project, onSelect, mobileOpen = false }: Props) {
   const disabled = new Set(project.disabledEntityIds);
   const row = (entity: EntityRef, label: string, kind: string, active = false, enabled = true) => (
     <OutlinerEntityRow
@@ -94,4 +94,4 @@ export function SceneOutliner({ project, onSelect, mobileOpen = false }: Props) 
       </nav>
     </aside>
   );
-}
+});

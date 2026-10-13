@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { memo, useState } from "react";
 
 import { MATERIALS } from "@/domain/materials/registry";
 import { NumericScrubField } from "@/components/workspace/NumericScrubField";
@@ -11,7 +11,7 @@ import { constrainPortal3D, constrainWall3D, resizeRoomAndClamp } from "@/domain
 import type { LocalAudioMetadata } from "@/domain/workspace/transfer";
 import { AUDIO_ASSETS } from "@/domain/audio-assets/registry";
 
-export function ContextInspector({ project, dispatch, localAssets = [], onRelinkAudio, onRemoveLocalAudio, mobileOpen = false }: Readonly<{
+export const ContextInspector = memo(function ContextInspector({ project, dispatch, localAssets = [], onRelinkAudio, onRemoveLocalAudio, mobileOpen = false }: Readonly<{
   project: WorkspaceProject;
   dispatch: (action: ProjectAction) => void;
   localAssets?: readonly LocalAudioMetadata[];
@@ -241,4 +241,4 @@ export function ContextInspector({ project, dispatch, localAssets = [], onRelink
       {project.notice ? <div className="workspace-notice" role="status"><span>{project.notice.message}</span><button aria-label="Dismiss notice" onClick={() => dispatch({ type: "CLEAR_NOTICE" })} type="button">×</button></div> : null}
     </aside>
   );
-}
+});

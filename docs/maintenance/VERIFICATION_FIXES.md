@@ -153,6 +153,43 @@ mock. Marker regressions pass 7/7 and the full suite passes 75 files / 572 tests
 (6.047 s process). Compiler import time remains part of total execution/import
 reporting; this changes no application timing gate.
 
+The integrated request-only UI correction passed the complete native browser
+suite, 46/46 with zero retries (45.9 s), and three further original stress runs
+passed with p95 4 / 4 / 3 ms. The native build, immutable source verifier and
+strict 20-package notice collector also passed. These results do not replace the
+preceding failed native runs.
+
+Hosted [run 38361274523](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38361274523)
+at `13035395b5f8f20bad9e663ef11a6366a788b995` is **FAIL**, despite clean 46/46
+full-suite runs on all three OSes and 572 unit tests on each. Ubuntu and Windows
+stress p95 are both 9 ms. macOS full-suite stress p95 is 7 ms, but the additional
+zero-retry repetitions are 13 / 6 / 8 ms: two pass and one fails the unchanged
+12 ms gate. The failed repetition has no Long Tasks and a 29 ms complete-pool
+sample whose shard reports 2 ms. This does not identify the remaining 27 ms as
+solver CPU time or prove which scheduling/UI phase caused it. The Docker job
+passed, with a 267,766,346-byte image and zero notice/provenance gaps. The earlier
+run at `2975ac6` was cancelled by the subsequent push and is not an overall pass.
+
+## Stable panels during acoustic telemetry
+
+A separate precise-coverage diagnostic held and released the existing Worker
+responses only after the listener/project render completed. The accepted
+telemetry-only frame invoked `ContextInspector` and `SceneOutliner` once each,
+although their project input had not changed. Compiled function ranges and full
+coverage are retained separately; this instrumented check is causal render
+evidence, not a performance pass. Its initial Debugger setup failure is also
+retained.
+
+Both panels now use React's default shallow memoization. The merged local-audio
+metadata and existing relink/remove callbacks retain stable references until
+their actual inputs change. Full project identity remains a dependency; a
+revision-only comparator would incorrectly hide selection, view or metadata
+updates. The metadata precedence, asynchronous initiation-mode dispatch, local
+panel/AI state and acoustic Worker/audio behavior remain unchanged. Scoped lint,
+full TypeScript and an independent source review pass. Complete browser,
+telemetry-coverage and final Docker verification are pending; the latest macOS
+failure above remains unresolved until actual new evidence exists.
+
 ## Already verified remote adoption
 
 These runs tested the previous tree, not the new local fixes:

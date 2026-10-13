@@ -31,6 +31,7 @@ Changes use Conventional Commit subjects. Releases should record compatibility c
 - Reduced Hybrid listener-update work by retaining static primitive identity and computing only the needed Classic Direct/Portal projection; numerical oracles, formulas and performance budgets are unchanged. See [follow-up verification](docs/maintenance/VERIFICATION_FIXES.md).
 - Removed duplicate coincident side polygons for walls without open Portals; this preserves the existing surface coverage and removes translucent fill/stroke overdraw. Added independent projected-geometry regressions and post-measurement stress diagnostics; CI preserves retry evidence and repeats the original macOS stress gate without retries.
 - Compute AI request projections and Frame All points when their buttons are used, avoiding unused scene work during listener/Worker status renders. Existing acoustic and camera calculations remain unchanged; mock Explain and idle-render regressions cover the UI boundaries.
+- Keep Inspector/Outliner inputs stable during acoustic status updates, avoiding unnecessary panel rerenders while preserving project, local-audio and panel-state updates.
 
 ## Source release — v1.0.0-build-week
 
