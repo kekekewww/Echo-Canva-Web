@@ -8,7 +8,7 @@ documentation-only commit repeatedly invalidating the tested head.
 ## CI platform policy update — 2026-10-14 (Asia/Taipei)
 
 The maintainer requested removal of macOS CI, cancellation of the temporary
-ten-minute PR monitor, and merging PR #2. The monitor is paused and its pending
+ten-minute PR monitor, and merging PR #2. The monitor is paused and its
 macOS retry was cancelled. CI now requires Ubuntu and Windows application checks
 and the separate production Docker job. Both three-repeat, zero-retry stress
 gates (native capacity and single Worker) move to Ubuntu with unchanged assertions.
@@ -17,10 +17,14 @@ At `f7ee10e79aca5d68fb647fd61f73c0bb28b7b354`, Ubuntu and Windows each passed
 575 unit tests and a clean 46/46 Chromium suite; production Docker integration also
 passed. In [run 38426347157](https://github.com/kekekewww/Echo-Canva-Web/actions/runs/38426347157),
 the first macOS job never executed: GitHub reported that no hosted runner acquired
-the job and cited macOS ARM64 capacity constraints. Its one authorized retry was
-cancelled at the maintainer's request. This final revision therefore has **no
-macOS acceptance result**. Earlier executed macOS results below remain historical
-evidence. The new workflow commit must pass its retained checks before merging;
+the job and cited macOS ARM64 capacity constraints. Its one authorized retry later
+acquired a runner: the full Chromium suite step passed, the native-capacity stress
+repeat failed, and the single-Worker step was skipped. Cancellation was requested
+and then forced while supplementary diagnostics were still executing. This final
+visibility revision therefore **did not pass macOS acceptance**. Removing the
+platform is an explicit maintainer policy decision, not a successful retry or a
+claim that its performance failure is fixed. Earlier executed macOS results below
+remain historical evidence. The new workflow commit must pass its retained checks before merging;
 consult PR #2 for those exact-head results.
 
 ## Confirmed failures and limits

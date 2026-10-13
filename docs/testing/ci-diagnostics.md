@@ -43,6 +43,7 @@ native-capacity repeat use the original fixture and thresholds without profiling
 
 At the maintainer's request on 2026-10-14 (Asia/Taipei), macOS was removed from the
 CI matrix after hosted ARM64 runner capacity prevented the first final-revision
-job from starting. The pending retry was cancelled. Both extra stress gates moved
+job from starting. Its retry was cancelled after it began executing and failed the
+native-capacity stress repeat. Both extra stress gates moved
 to Ubuntu; this change does not establish macOS acceptance or erase its historical
 performance failures.
