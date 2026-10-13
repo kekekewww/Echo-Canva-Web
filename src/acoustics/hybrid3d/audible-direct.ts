@@ -1,6 +1,6 @@
 import {
-  computeAcousticFrame,
-  type AcousticFrameSource,
+  computeClassicSourceRoute,
+  type AcousticSourceRoute,
 } from "@/acoustics/compute-frame";
 import type { HybridDirectAudioState, HybridDirectRouteType, SpatialPosition3 } from "@/audio/types";
 import type { HybridGeometry } from "@/acoustics/hybrid3d/compile";
@@ -116,7 +116,7 @@ function portalPosition(
 }
 
 function portalRoutePoints(
-  projection: AcousticFrameSource,
+  projection: AcousticSourceRoute,
   sourcePosition: SpatialPosition3,
   listenerPosition: SpatialPosition3,
   geometry: HybridGeometry,
@@ -147,7 +147,7 @@ function portalRouteIsVisible3D(
 
 function resolvePath(
   path: DirectPath3D,
-  projection: AcousticFrameSource | undefined,
+  projection: AcousticSourceRoute | undefined,
   geometry: HybridGeometry,
 ): HybridAudiblePath {
   const sourcePosition = geometry.sourcePositions[path.sourceId!]!;
@@ -211,9 +211,11 @@ export function resolveHybridAudibleDirectState(
   geometry: HybridGeometry,
   directFrame: HybridDirectFrame,
 ): HybridAudibleDirectState {
-  const projections = new Map(
-    computeAcousticFrame(geometry.document.baseScene).sources.map((source) => [source.sourceId, source]),
-  );
+  const scene = geometry.document.baseScene;
+  const projections = new Map(scene.sources.map((source) => [
+    source.id,
+    computeClassicSourceRoute(source, scene.listener, scene),
+  ]));
   const paths = directFrame.paths.flatMap((path) => {
     if (!path.sourceId || !geometry.sourcePositions[path.sourceId]) return [];
     return [resolvePath(path, projections.get(path.sourceId), geometry)];

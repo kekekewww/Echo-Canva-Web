@@ -24,6 +24,8 @@ export type AcousticFrameSource = Readonly<{
 
 export type AcousticEarlyReflection = ReflectionTap;
 
+export type AcousticSourceRoute = Omit<AcousticFrameSource, "earlyReflections" | "reverbSendDb">;
+
 export type AcousticFrame = Readonly<{
   revision: number;
   generatedAtMs: number;
@@ -84,6 +86,35 @@ export function createClassicPoseSnapshot(scene: SceneSpec): ClassicPoseSnapshot
   };
 }
 
+/** Computes the shared direct/portal projection without reflection or room-decay work. */
+export function computeClassicSourceRoute(
+  source: SceneSpec["sources"][number],
+  listener: SceneSpec["listener"],
+  scene: SceneSpec,
+): AcousticSourceRoute {
+  const trace = traceDirectPath(source.position, listener.position, scene);
+  const occlusion = estimateDirectOcclusion(trace);
+  const portalRoute = trace.visible
+    ? null
+    : findBestPortalRoute(source.position, listener.position, scene);
+  const physicalDistanceM = distance(source.position, listener.position);
+  const effectiveDistanceM = portalRoute?.effectiveDistanceM ?? physicalDistanceM;
+
+  return {
+    sourceId: source.id,
+    routeType: trace.visible ? "direct" : portalRoute === null ? "blocked" : "portal",
+    directVisible: trace.visible,
+    physicalDistanceM,
+    effectiveDistanceM,
+    dryGainDb: portalRoute?.dryGainDb ?? occlusion.dryGainDb,
+    lowpassHz: portalRoute?.lowpassHz ?? occlusion.lowpassHz,
+    virtualPosition: portalRoute?.virtualPosition ?? source.position,
+    occluderWallIds: occlusion.occluderWallIds,
+    portalIds: portalRoute?.portalIds ?? [],
+    routePolyline: portalRoute?.polyline ?? trace.polyline,
+  };
+}
+
 export function computeClassicSourceFrame(
   source: SceneSpec["sources"][number],
   listener: SceneSpec["listener"],
@@ -99,20 +130,14 @@ export function computeClassicSourceFrame(
     6,
     Math.max(0, Math.floor(scene.settings.maxEarlyReflections)),
   );
-  const trace = traceDirectPath(source.position, listener.position, scene);
-  const occlusion = estimateDirectOcclusion(trace);
-  const portalRoute = trace.visible
-    ? null
-    : findBestPortalRoute(source.position, listener.position, scene);
-  const physicalDistanceM = distance(source.position, listener.position);
-  const effectiveDistanceM = portalRoute?.effectiveDistanceM ?? physicalDistanceM;
+  const route = computeClassicSourceRoute(source, listener, scene);
   const firstOrderReflections = findFirstOrderReflections(
     source.position,
     listener.position,
     scene,
     earlyReflectionLimit,
   );
-  const secondOrderReflections = trace.visible
+  const secondOrderReflections = route.directVisible
     ? []
     : findSecondOrderReflections(
         source.position,
@@ -130,22 +155,12 @@ export function computeClassicSourceFrame(
     .slice(0, earlyReflectionLimit)
     .map((tap) => ({
     ...tap,
-    delayMs: Math.max(0, ((tap.pathLengthM - effectiveDistanceM) / 343) * 1000),
+    delayMs: Math.max(0, ((tap.pathLengthM - route.effectiveDistanceM) / 343) * 1000),
   }));
 
   return {
-    sourceId: source.id,
-    routeType: trace.visible ? "direct" : portalRoute === null ? "blocked" : "portal",
-    directVisible: trace.visible,
-    physicalDistanceM,
-    effectiveDistanceM,
-    dryGainDb: portalRoute?.dryGainDb ?? occlusion.dryGainDb,
-    lowpassHz: portalRoute?.lowpassHz ?? occlusion.lowpassHz,
+    ...route,
     reverbSendDb: 0,
-    virtualPosition: portalRoute?.virtualPosition ?? source.position,
-    occluderWallIds: occlusion.occluderWallIds,
-    portalIds: portalRoute?.portalIds ?? [],
-    routePolyline: portalRoute?.polyline ?? trace.polyline,
     earlyReflections,
   };
 }

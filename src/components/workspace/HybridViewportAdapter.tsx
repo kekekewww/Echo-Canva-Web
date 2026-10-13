@@ -75,6 +75,10 @@ export function HybridViewportAdapter({ project, dispatch, audioEngine, wallPlac
     ])),
   }), [direct.frame.firstOrderReflectionsBySource, direct.frame.secondOrderReflectionsBySource, geometry.listenerPosition, scene.sources]);
   const disabled = useMemo(() => new Set(project.disabledEntityIds), [project.disabledEntityIds]);
+  const visiblePrimitives = useMemo(
+    () => project.primitives.filter(({ id }) => !disabled.has(id)),
+    [disabled, project.primitives],
+  );
   const selectedSourceId = project.selection?.type === "source"
     ? project.selection.id
     : project.scene.sources.find(({ id }) => !disabled.has(id))?.id ?? null;
@@ -238,7 +242,7 @@ export function HybridViewportAdapter({ project, dispatch, audioEngine, wallPlac
         paths={accepted ? displayPaths : []}
         pathsVisible={pathsVisible}
         roomDimensions={project.room3d}
-        primitives={project.primitives.filter(({ id }) => !disabled.has(id))}
+        primitives={visiblePrimitives}
         selectedTarget={selectedTarget}
         showAllPaths={showAllPaths}
         wallPlacementFirst={wallPlacementFirst}
