@@ -1,0 +1,92 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 600B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 2.38kB done
+#2 DONE 0.0s
+
+#3 [auth] docker/dockerfile:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#4 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#4 DONE 1.2s
+
+#5 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#5 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.0s done
+#5 DONE 0.0s
+
+#5 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#5 CACHED
+
+#6 [internal] load metadata for docker.io/library/node:22.23.3-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392
+#6 DONE 0.0s
+
+#7 [internal] load .dockerignore
+#7 transferring context: 1.13kB done
+#7 DONE 0.0s
+
+#8 [base 1/3] FROM docker.io/library/node:22.23.3-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392
+#8 resolve docker.io/library/node:22.23.3-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392 0.0s done
+#8 DONE 0.0s
+
+#9 [internal] load build context
+#9 transferring context: 15.34kB 0.0s done
+#9 DONE 0.0s
+
+#10 [base 2/3] WORKDIR /app
+#10 CACHED
+
+#11 [base 3/3] RUN npm install --global pnpm@11.7.0     && mkdir -p /pnpm/store     && chown node:node /pnpm/store
+#11 CACHED
+
+#12 [dependencies 3/3] RUN pnpm install --frozen-lockfile
+#12 CACHED
+
+#13 [development 1/3] COPY --from=dependencies --chown=node:node /app/node_modules ./node_modules
+#13 CACHED
+
+#14 [dependencies 2/3] COPY patches ./patches
+#14 CACHED
+
+#15 [dependencies 1/3] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#15 CACHED
+
+#16 [development 2/3] COPY --chown=node:node . .
+#16 CACHED
+
+#17 [development 3/3] RUN mkdir -p .next && chown node:node /app .next
+#17 CACHED
+
+#18 exporting to image
+#18 exporting layers done
+#18 exporting manifest sha256:2d73bb0326cdb4b2105eb6325df9382787441981de4b476f166327f0a98469e5 done
+#18 exporting config sha256:fc337f24a1da8a7da70f673f95ae1c6b3a552fab1b4ec305f7b5abb7ae5d4f39 done
+#18 exporting attestation manifest sha256:c570445edbb318bf38cce2368873cc542fad295cf249abab51a36a62021e4fca 0.0s done
+#18 exporting manifest list sha256:1bc33d55fd9ac41247bbacd36a73955e92f098c9fafc46bb021b84d5923c1855
+#18 exporting manifest list sha256:1bc33d55fd9ac41247bbacd36a73955e92f098c9fafc46bb021b84d5923c1855 done
+#18 naming to docker.io/library/echo-canvas-fix-lazy-dev-web:latest done
+#18 unpacking to docker.io/library/echo-canvas-fix-lazy-dev-web:latest 0.0s done
+#18 DONE 0.1s
+
+#19 resolving provenance for metadata file
+#19 DONE 0.0s
+        ⦿ Watch enabled
+Attaching to web-1
+web-1   |  GET / 200 in 2.5s (next.js: 2.1s, application-code: 416ms)
+        ⦿ Syncing service "web" after 1 changes were detected
+web-1   |  GET / 200 in 21ms (next.js: 5ms, application-code: 16ms)
+web-1   | ✓ Compiled in 10ms
+        ⦿ Syncing service "web" after 1 changes were detected
+web-1   |  GET / 200 in 16ms (next.js: 3ms, application-code: 12ms)
+web-1   | ✓ Compiled in 9ms
+        ⦿ Syncing service "web" after 1 changes were detected
+web-1   |  GET / 200 in 27ms (next.js: 10ms, application-code: 17ms)
+web-1   | ✓ Compiled in 27ms
+        ⦿ Syncing service "web" after 1 changes were detected
+web-1   |  GET / 200 in 17ms (next.js: 4ms, application-code: 13ms)
+web-1   | ✓ Compiled in 9ms
+web-1   |  GET /api/health 200 in 5ms (next.js: 2ms, application-code: 3ms)
+web-1   | [?25h
+[Kweb-1 exited with code 0
+        ⦿ Watch disabled

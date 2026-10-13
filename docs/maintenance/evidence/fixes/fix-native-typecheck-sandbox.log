@@ -1,0 +1,167 @@
+{
+  "stage": "typecheck",
+  "startedAt": "2026-10-13T06:06:53.325Z",
+  "cwd": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "node_modules/typescript/bin/tsc",
+    "--noEmit"
+  ],
+  "platform": "win32",
+  "arch": "x64",
+  "node": "v22.17.0",
+  "packageManager": "pnpm@11.7.0",
+  "next": "16.3.8",
+  "playwright": "1.61.1",
+  "vitest": "4.1.11"
+}
+playwright.config.ts(1,10): error TS2614: Module '"@playwright/test"' has no exported member 'defineConfig'. Did you mean to use 'import defineConfig from "@playwright/test"' instead?
+playwright.config.ts(1,24): error TS2614: Module '"@playwright/test"' has no exported member 'devices'. Did you mean to use 'import devices from "@playwright/test"' instead?
+playwright.container.config.ts(1,10): error TS2614: Module '"@playwright/test"' has no exported member 'defineConfig'. Did you mean to use 'import defineConfig from "@playwright/test"' instead?
+tests/e2e/audio-rendering.spec.ts(1,10): error TS2614: Module '"@playwright/test"' has no exported member 'expect'. Did you mean to use 'import expect from "@playwright/test"' instead?
+tests/e2e/audio-rendering.spec.ts(1,18): error TS2614: Module '"@playwright/test"' has no exported member 'test'. Did you mean to use 'import test from "@playwright/test"' instead?
+tests/e2e/audio-rendering.spec.ts(25,110): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/legacy-regressions.spec.ts(1,10): error TS2614: Module '"@playwright/test"' has no exported member 'expect'. Did you mean to use 'import expect from "@playwright/test"' instead?
+tests/e2e/legacy-regressions.spec.ts(1,18): error TS2614: Module '"@playwright/test"' has no exported member 'test'. Did you mean to use 'import test from "@playwright/test"' instead?
+tests/e2e/legacy-regressions.spec.ts(3,105): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/legacy-regressions.spec.ts(5,25): error TS7006: Parameter 'error' implicitly has an 'any' type.
+tests/e2e/legacy-regressions.spec.ts(45,92): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/legacy-regressions.spec.ts(46,45): error TS7006: Parameter 'route' implicitly has an 'any' type.
+tests/e2e/legacy-regressions.spec.ts(64,89): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-authoring.spec.ts(2,10): error TS2614: Module '"@playwright/test"' has no exported member 'expect'. Did you mean to use 'import expect from "@playwright/test"' instead?
+tests/e2e/workspace-authoring.spec.ts(2,18): error TS2614: Module '"@playwright/test"' has no exported member 'test'. Did you mean to use 'import test from "@playwright/test"' instead?
+tests/e2e/workspace-authoring.spec.ts(6,80): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-authoring.spec.ts(8,50): error TS7006: Parameter 'element' implicitly has an 'any' type.
+tests/e2e/workspace-authoring.spec.ts(13,50): error TS7006: Parameter 'element' implicitly has an 'any' type.
+tests/e2e/workspace-authoring.spec.ts(21,83): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-authoring.spec.ts(47,79): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-authoring.spec.ts(68,64): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-authoring.spec.ts(69,51): error TS7006: Parameter 'route' implicitly has an 'any' type.
+tests/e2e/workspace-authoring.spec.ts(82,86): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-authoring.spec.ts(84,51): error TS7006: Parameter 'route' implicitly has an 'any' type.
+tests/e2e/workspace-authoring.spec.ts(124,92): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-failures.spec.ts(1,10): error TS2614: Module '"@playwright/test"' has no exported member 'expect'. Did you mean to use 'import expect from "@playwright/test"' instead?
+tests/e2e/workspace-failures.spec.ts(1,18): error TS2614: Module '"@playwright/test"' has no exported member 'test'. Did you mean to use 'import test from "@playwright/test"' instead?
+tests/e2e/workspace-failures.spec.ts(3,70): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-failures.spec.ts(15,107): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-failures.spec.ts(28,70): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-failures.spec.ts(43,83): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(1,10): error TS2614: Module '"@playwright/test"' has no exported member 'expect'. Did you mean to use 'import expect from "@playwright/test"' instead?
+tests/e2e/workspace-geometry.spec.ts(1,18): error TS2614: Module '"@playwright/test"' has no exported member 'test'. Did you mean to use 'import test from "@playwright/test"' instead?
+tests/e2e/workspace-geometry.spec.ts(3,90): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(22,82): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(48,90): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(75,86): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(91,93): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(106,63): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(119,88): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(136,74): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(153,92): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(172,77): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(182,85): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(184,25): error TS7006: Parameter 'error' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(200,86): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(202,25): error TS7006: Parameter 'error' implicitly has an 'any' type.
+tests/e2e/workspace-geometry.spec.ts(216,101): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-paths.spec.ts(1,10): error TS2614: Module '"@playwright/test"' has no exported member 'expect'. Did you mean to use 'import expect from "@playwright/test"' instead?
+tests/e2e/workspace-paths.spec.ts(1,18): error TS2614: Module '"@playwright/test"' has no exported member 'test'. Did you mean to use 'import test from "@playwright/test"' instead?
+tests/e2e/workspace-paths.spec.ts(3,91): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-paths.spec.ts(25,79): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-primitives.spec.ts(1,10): error TS2614: Module '"@playwright/test"' has no exported member 'expect'. Did you mean to use 'import expect from "@playwright/test"' instead?
+tests/e2e/workspace-primitives.spec.ts(1,18): error TS2614: Module '"@playwright/test"' has no exported member 'test'. Did you mean to use 'import test from "@playwright/test"' instead?
+tests/e2e/workspace-primitives.spec.ts(3,61): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace-primitives.spec.ts(15,82): error TS7006: Parameter 'nodes' implicitly has an 'any' type.
+tests/e2e/workspace-primitives.spec.ts(16,16): error TS7006: Parameter 'node' implicitly has an 'any' type.
+tests/e2e/workspace-primitives.spec.ts(34,70): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(1,10): error TS2614: Module '"@playwright/test"' has no exported member 'expect'. Did you mean to use 'import expect from "@playwright/test"' instead?
+tests/e2e/workspace.spec.ts(1,18): error TS2614: Module '"@playwright/test"' has no exported member 'test'. Did you mean to use 'import test from "@playwright/test"' instead?
+tests/e2e/workspace.spec.ts(3,65): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(14,79): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(31,63): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(44,79): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(68,90): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(85,65): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(98,88): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(100,25): error TS7006: Parameter 'error' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(112,79): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(153,96): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(171,93): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(216,107): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(246,89): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(259,93): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(281,95): error TS7031: Binding element 'page' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(348,31): error TS7031: Binding element 'cache' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(414,55): error TS7006: Parameter 'element' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(414,64): error TS7006: Parameter 'expected' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(432,46): error TS7006: Parameter 'element' implicitly has an 'any' type.
+tests/e2e/workspace.spec.ts(478,22): error TS7006: Parameter 'duration' implicitly has an 'any' type.
+tests/unit/acoustic-explainer.test.ts(127,47): error TS7006: Parameter 'evidence' implicitly has an 'any' type.
+tests/unit/ai-client.test.ts(61,81): error TS7006: Parameter 'code' implicitly has an 'any' type.
+tests/unit/ai-client.test.ts(61,87): error TS7006: Parameter 'message' implicitly has an 'any' type.
+tests/unit/ai-client.test.ts(148,88): error TS7006: Parameter 'fallbackSceneId' implicitly has an 'any' type.
+tests/unit/ai-scene-prompt-evals.test.ts(12,14): error TS7031: Binding element 'prompt' implicitly has an 'any' type.
+tests/unit/ai-scene-prompt-evals.test.ts(12,22): error TS7031: Binding element 'firstCandidate' implicitly has an 'any' type.
+tests/unit/ai-scene-prompt-evals.test.ts(12,38): error TS7031: Binding element 'repairedCandidate' implicitly has an 'any' type.
+tests/unit/ai-scene-prompt-evals.test.ts(12,57): error TS7031: Binding element 'expected' implicitly has an 'any' type.
+tests/unit/ai-scene-prompt-evals.test.ts(79,14): error TS7031: Binding element 'prompt' implicitly has an 'any' type.
+tests/unit/ai-scene-prompt-evals.test.ts(79,22): error TS7031: Binding element 'invalidCandidate' implicitly has an 'any' type.
+tests/unit/braces-security.test.ts(62,6): error TS7006: Parameter 'api' implicitly has an 'any' type.
+tests/unit/braces-security.test.ts(62,41): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'BraceApi'.
+tests/unit/braces-security.test.ts(67,6): error TS7006: Parameter 'expand' implicitly has an 'any' type.
+tests/unit/braces-security.test.ts(77,6): error TS7006: Parameter 'api' implicitly has an 'any' type.
+tests/unit/braces-security.test.ts(77,41): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'BraceApi'.
+tests/unit/braces-security.test.ts(82,6): error TS7006: Parameter 'api' implicitly has an 'any' type.
+tests/unit/braces-security.test.ts(84,22): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'BraceApi'.
+tests/unit/braces-security.test.ts(86,34): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'BraceApi'.
+tests/unit/braces-security.test.ts(87,14): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'BraceApi'.
+tests/unit/braces-security.test.ts(88,34): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'BraceApi'.
+tests/unit/braces-security.test.ts(94,6): error TS7006: Parameter 'api' implicitly has an 'any' type.
+tests/unit/braces-security.test.ts(103,14): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'BraceApi'.
+tests/unit/braces-security.test.ts(104,34): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'BraceApi'.
+tests/unit/braces-security.test.ts(119,51): error TS7031: Binding element 'pattern' implicitly has an 'any' type.
+tests/unit/braces-security.test.ts(119,60): error TS7031: Binding element 'compiled' implicitly has an 'any' type.
+tests/unit/braces-security.test.ts(119,70): error TS7031: Binding element 'expanded' implicitly has an 'any' type.
+tests/unit/braces-security.test.ts(129,70): error TS7031: Binding element 'pattern' implicitly has an 'any' type.
+tests/unit/braces-security.test.ts(129,79): error TS7031: Binding element 'literal' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(163,54): error TS7006: Parameter 'hardwareConcurrency' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(163,75): error TS7006: Parameter 'expected' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(169,73): error TS7006: Parameter 'sourceCount' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(409,63): error TS7006: Parameter '_' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(409,66): error TS7006: Parameter 'alter' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(450,51): error TS7006: Parameter '_' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(450,54): error TS7006: Parameter 'alter' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(532,57): error TS7006: Parameter '_' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(532,60): error TS7006: Parameter 'alter' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(629,65): error TS7006: Parameter '_' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(629,68): error TS7006: Parameter 'alter' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(734,45): error TS7006: Parameter 'scenario' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(734,55): error TS7006: Parameter 'alter' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(770,6): error TS7006: Parameter 'scenario' implicitly has an 'any' type.
+tests/unit/classic-source-pool.test.ts(956,116): error TS7006: Parameter 'failureMode' implicitly has an 'any' type.
+tests/unit/client-only-marker.test.ts(16,37): error TS7031: Binding element 'directory' implicitly has an 'any' type.
+tests/unit/compute-frame.test.ts(72,77): error TS7006: Parameter '_' implicitly has an 'any' type.
+tests/unit/compute-frame.test.ts(72,80): error TS7006: Parameter 'scene' implicitly has an 'any' type.
+tests/unit/content-policy.test.ts(8,6): error TS7006: Parameter 'value' implicitly has an 'any' type.
+tests/unit/content-policy.test.ts(16,6): error TS7006: Parameter 'value' implicitly has an 'any' type.
+tests/unit/coordinates.test.ts(18,58): error TS7006: Parameter 'point' implicitly has an 'any' type.
+tests/unit/hybrid-direct-pool.test.ts(250,84): error TS7006: Parameter 'sourceCount' implicitly has an 'any' type.
+tests/unit/hybrid-direct-pool.test.ts(462,50): error TS7006: Parameter '_' implicitly has an 'any' type.
+tests/unit/hybrid-direct-pool.test.ts(462,53): error TS7006: Parameter 'alter' implicitly has an 'any' type.
+tests/unit/hybrid-direct-pool.test.ts(534,57): error TS7006: Parameter '_' implicitly has an 'any' type.
+tests/unit/hybrid-direct-pool.test.ts(534,60): error TS7006: Parameter 'alter' implicitly has an 'any' type.
+tests/unit/hybrid-direct-pool.test.ts(652,63): error TS7006: Parameter '_' implicitly has an 'any' type.
+tests/unit/hybrid-direct-pool.test.ts(652,66): error TS7006: Parameter 'alter' implicitly has an 'any' type.
+tests/unit/hybrid-direct-pool.test.ts(670,6): error TS7006: Parameter 'scenario' implicitly has an 'any' type.
+tests/unit/hybrid-direct-pool.test.ts(842,113): error TS7006: Parameter 'mode' implicitly has an 'any' type.
+tests/unit/scene-compiler.test.ts(69,12): error TS7006: Parameter 'unsafeLabel' implicitly has an 'any' type.
+tests/unit/scene-validation.test.ts(75,37): error TS7006: Parameter '_label' implicitly has an 'any' type.
+tests/unit/scene-validation.test.ts(75,45): error TS7006: Parameter 'lengthM' implicitly has an 'any' type.
+tests/unit/scene-validation.test.ts(153,6): error TS7006: Parameter 'coordinate' implicitly has an 'any' type.
+tests/unit/scene-validation.test.ts(175,6): error TS7006: Parameter 'acousticUpdateHz' implicitly has an 'any' type.
+tests/unit/scene-validation.test.ts(175,24): error TS7006: Parameter 'expectedOk' implicitly has an 'any' type.
+tests/unit/scene-validation.test.ts(196,57): error TS7006: Parameter 'collection' implicitly has an 'any' type.
+tests/unit/scene-validation.test.ts(196,69): error TS7006: Parameter 'count' implicitly has an 'any' type.
+tests/unit/use-acoustic-frame.test.ts(225,6): error TS7006: Parameter 'failureMode' implicitly has an 'any' type.
+tests/unit/viewport-math.test.ts(100,34): error TS7006: Parameter 'point' implicitly has an 'any' type.
+
+RESULT {"stage":"typecheck","startedAt":"2026-10-13T06:06:53.325Z","cwd":"D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web","command":["C:\\Program Files\\nodejs\\node.exe","node_modules/typescript/bin/tsc","--noEmit"],"platform":"win32","arch":"x64","node":"v22.17.0","packageManager":"pnpm@11.7.0","next":"16.3.8","playwright":"1.61.1","vitest":"4.1.11","endedAt":"2026-10-13T06:07:00.387Z","durationSeconds":7.059009,"exitCode":2,"signal":null}

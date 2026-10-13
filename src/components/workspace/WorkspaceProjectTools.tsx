@@ -21,7 +21,6 @@ export function WorkspaceProjectTools({ project, dispatch, localAssets = [] }: R
   const [candidate, setCandidate] = useState<CompileSceneSuccess | null>(null);
   const [status, setStatus] = useState<string | null>(null);
   const [explanation, setExplanation] = useState<AcousticExplanation | null>(null);
-  const scene = projectClassicScene(project);
 
   function exportAuthoring(): void {
     const metadata = new Map(Object.entries(project.localAudioMetadata));
@@ -53,7 +52,7 @@ export function WorkspaceProjectTools({ project, dispatch, localAssets = [] }: R
 
   async function generate(): Promise<void> {
     setStatus("Generating…");
-    const baseScene = project.mode === "hybrid-3d" ? projectHybridDocument(project) : scene;
+    const baseScene = project.mode === "hybrid-3d" ? projectHybridDocument(project) : projectClassicScene(project);
     const result = await requestSceneCompilation(prompt, baseScene, project.mode);
     if (!result.ok) {
       setStatus(result.error.message);
@@ -64,6 +63,7 @@ export function WorkspaceProjectTools({ project, dispatch, localAssets = [] }: R
   }
 
   async function explain(): Promise<void> {
+    const scene = projectClassicScene(project);
     const source = project.selection?.type === "source"
       ? scene.sources.find(({ id }) => id === project.selection?.id)
       : scene.sources[0];

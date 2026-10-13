@@ -188,7 +188,7 @@ function portalInterval(wall: HybridViewportWall, portal: HybridViewportPortal):
   };
 }
 
-function projectWall(wall: HybridViewportWall, camera: ViewportCamera): ProjectedWall {
+export function projectWall(wall: HybridViewportWall, camera: ViewportCamera): ProjectedWall {
   const length = Math.max(0.001, Math.hypot(wall.b.x - wall.a.x, wall.b.z - wall.a.z));
   const openings = wall.portals.filter(({ open }) => open).map((portal) => ({ portal, ...portalInterval(wall, portal) }))
     .sort((left, right) => left.start - right.start);
@@ -201,7 +201,6 @@ function projectWall(wall: HybridViewportWall, camera: ViewportCamera): Projecte
     cursor = Math.max(cursor, opening.end);
   }
   if (cursor < length) rectangles.push({ start: cursor, end: length, bottom: wall.bottomM, top: wall.topM });
-  if (openings.length === 0) rectangles.push({ start: 0, end: length, bottom: wall.bottomM, top: wall.topM });
 
   const panelVertices = (start: number, end: number, bottom: number, top: number, offset: number): readonly ViewportVec3[] => {
     const a = wallPoint(wall, start, offset);
@@ -333,35 +332,38 @@ export function HybridSpatialViewport({
     };
   }, [camera, room.depthM, room.widthM]);
 
-  const framePoints = useMemo<readonly ViewportVec3[]>(() => [
-    { x: 0, y: 0, z: 0 },
-    { x: room.widthM, y: 0, z: 0 },
-    { x: room.widthM, y: 0, z: room.depthM },
-    { x: 0, y: 0, z: room.depthM },
-    { x: 0, y: room.heightM, z: 0 },
-    { x: room.widthM, y: room.heightM, z: 0 },
-    { x: room.widthM, y: room.heightM, z: room.depthM },
-    { x: 0, y: room.heightM, z: room.depthM },
-    ...objects.map(({ position }) => position),
-    ...primitives.flatMap((primitive) => primitivePatches(primitive).flatMap(({ vertices }) => vertices)),
-    ...walls.flatMap((wall) => [
-      { x: wall.a.x, y: wall.bottomM, z: wall.a.z },
-      { x: wall.a.x, y: wall.topM, z: wall.a.z },
-      { x: wall.b.x, y: wall.bottomM, z: wall.b.z },
-      { x: wall.b.x, y: wall.topM, z: wall.b.z },
-      ...wall.portals.flatMap((portal) => {
-        const interval = portalInterval(wall, portal);
-        const a = wallPoint(wall, interval.start, 0);
-        const b = wallPoint(wall, interval.end, 0);
-        return [
-          { x: a.x, y: portal.bottomM, z: a.z },
-          { x: a.x, y: portal.topM, z: a.z },
-          { x: b.x, y: portal.bottomM, z: b.z },
-          { x: b.x, y: portal.topM, z: b.z },
-        ];
-      }),
-    ]),
-  ], [objects, primitives, room.depthM, room.heightM, room.widthM, walls]);
+  function frameAll(): void {
+    const framePoints: readonly ViewportVec3[] = [
+      { x: 0, y: 0, z: 0 },
+      { x: room.widthM, y: 0, z: 0 },
+      { x: room.widthM, y: 0, z: room.depthM },
+      { x: 0, y: 0, z: room.depthM },
+      { x: 0, y: room.heightM, z: 0 },
+      { x: room.widthM, y: room.heightM, z: 0 },
+      { x: room.widthM, y: room.heightM, z: room.depthM },
+      { x: 0, y: room.heightM, z: room.depthM },
+      ...objects.map(({ position }) => position),
+      ...primitives.flatMap((primitive) => primitivePatches(primitive).flatMap(({ vertices }) => vertices)),
+      ...walls.flatMap((wall) => [
+        { x: wall.a.x, y: wall.bottomM, z: wall.a.z },
+        { x: wall.a.x, y: wall.topM, z: wall.a.z },
+        { x: wall.b.x, y: wall.bottomM, z: wall.b.z },
+        { x: wall.b.x, y: wall.topM, z: wall.b.z },
+        ...wall.portals.flatMap((portal) => {
+          const interval = portalInterval(wall, portal);
+          const a = wallPoint(wall, interval.start, 0);
+          const b = wallPoint(wall, interval.end, 0);
+          return [
+            { x: a.x, y: portal.bottomM, z: a.z },
+            { x: a.x, y: portal.topM, z: a.z },
+            { x: b.x, y: portal.bottomM, z: b.z },
+            { x: b.x, y: portal.topM, z: b.z },
+          ];
+        }),
+      ]),
+    ];
+    onCameraChange(frameViewportPoints(framePoints, camera));
+  }
 
   useEffect(() => {
     const viewport = svgRef.current;
@@ -485,7 +487,7 @@ export function HybridSpatialViewport({
           <button onClick={() => onCameraChange({ yawDeg: 0, pitchDeg: 78, zoom: 1, panX: 0, panY: 0 })} type="button">Top</button>
           <button onClick={() => onCameraChange({ yawDeg: 0, pitchDeg: 28, zoom: 1, panX: 0, panY: 0 })} type="button">Front</button>
           <button onClick={() => onCameraChange(DEFAULT_VIEWPORT_CAMERA)} type="button">Home</button>
-          <button onClick={() => onCameraChange(frameViewportPoints(framePoints, camera))} type="button">Frame All</button>
+          <button onClick={frameAll} type="button">Frame All</button>
         </div>
       </header>
       <p className="hybrid-viewport-help" id="hybrid-viewport-help">

@@ -1,0 +1,51 @@
+{
+  "securityOpt": [
+    "no-new-privileges:true"
+  ],
+  "readOnly": true,
+  "node": "v22.23.3",
+  "devices": null,
+  "apiKeysEmpty": true,
+  "init": true,
+  "prodImage": "sha256:a97fbd885d9e483385bc7d2eea348ad488c5c26ee09a19a46e443662ec17ed01",
+  "network": "echo-canvas-fix-lazy-prod_default",
+  "prodBytes": 386464548,
+  "user": "node",
+  "capDrop": [
+    "ALL"
+  ],
+  "prodBuild": {
+    "seconds": 39.0956481,
+    "role": "prod",
+    "exitCode": 0,
+    "noCache": false,
+    "utc": "2026-10-13T07:45:43.5919249Z",
+    "dependencyCacheAllowed": true,
+    "sourceHead": "96f3247069a01eac09cf707e90cdc9231f8a4bbe"
+  },
+  "sourceHead": "96f3247069a01eac09cf707e90cdc9231f8a4bbe",
+  "ports": {
+    "3000/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "3102"
+      }
+    ]
+  },
+  "tmpfs": {
+    "/app/.next/cache": "uid=1000,gid=1000,nosuid,size=128m",
+    "/tmp": "noexec,nosuid,size=64m"
+  },
+  "devBuild": {
+    "seconds": 4.9587684,
+    "role": "dev",
+    "exitCode": 0,
+    "noCache": false,
+    "utc": "2026-10-13T07:45:48.6367496Z",
+    "dependencyCacheAllowed": true,
+    "sourceHead": "96f3247069a01eac09cf707e90cdc9231f8a4bbe"
+  },
+  "devBytes": 1037625384,
+  "privileged": false,
+  "devImage": "sha256:6613e8c1d516fe1da321adfbbcefb43ede719a29d4cd186e4ee456f57b4528aa"
+}

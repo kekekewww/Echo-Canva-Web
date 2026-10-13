@@ -1,0 +1,26 @@
+{
+  "devPrivileged": false,
+  "devRuntimeUid": "1000",
+  "devDevices": null,
+  "devPorts": {
+    "3000/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "3103"
+      }
+    ]
+  },
+  "devNetwork": "echo-canvas-fix-dev_default",
+  "prodImage": "sha256:c33e6183a468ca013b66c041806e5ae15248c71c39d1c0c878272500a74b237d",
+  "hostContainerSourceBytesMatch": true,
+  "prodRestoredHealth": "healthy",
+  "prodTmpfs": {
+    "/app/.next/cache": "uid=1000,gid=1000,nosuid,size=128m",
+    "/tmp": "noexec,nosuid,size=64m"
+  },
+  "devStore": "/pnpm/store",
+  "devMounts": [],
+  "devLiveImage": "sha256:fa9724e0474e8a65ec251b5b2f12c09d3841350e39dd2bd6c777ca9ca99cc4ac",
+  "sourceHash": "00b1ea75722e8753515bb1426c2d4c9d211ff9b19cce347fee5af9014855f201",
+  "devCurrentWatchTag": "sha256:c3494ecbc592ad5dfc82dc01786d194288ce4cd7080600dbf08ffe39e3fd9782"
+}

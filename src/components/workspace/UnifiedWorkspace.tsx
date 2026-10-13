@@ -31,6 +31,8 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
   const workspace = useWorkspaceProjects(initialMode);
   const dispatchWorkspace = workspace.dispatch;
   const audioLibrary = useLocalAudioLibrary();
+  const relinkLocalAudio = audioLibrary.relink;
+  const removeLocalAudio = audioLibrary.remove;
   const [addOpen, setAddOpen] = useState(false);
   const [audioPickerOpen, setAudioPickerOpen] = useState(false);
   const [wallPlacement, setWallPlacement] = useState<Readonly<{
@@ -65,6 +67,32 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
     dispatchWorkspace({ type: "SELECT_ENTITY", selection });
     setMobilePanel(null);
   }, [dispatchWorkspace]);
+  const localAssets = useMemo(() => Object.values({
+    ...workspace.activeProject.localAudioMetadata,
+    ...Object.fromEntries(audioLibrary.records.map((record) => [record.id, {
+      id: record.id,
+      name: record.name,
+      mimeType: record.mimeType,
+      size: record.size,
+      createdAt: record.createdAt,
+    }])),
+  }), [workspace.activeProject.localAudioMetadata, audioLibrary.records]);
+  const relinkAudio = useCallback(async (clipId: string, file: File) => {
+    const record = await relinkLocalAudio(clipId, file);
+    dispatchWorkspace({ type: "SET_LOCAL_AUDIO_METADATA", metadata: {
+      id: record.id,
+      name: record.name,
+      mimeType: record.mimeType,
+      size: record.size,
+      createdAt: record.createdAt,
+    } });
+    dispatchWorkspace({ type: "SET_AUDIO_ASSET_MISSING", clipId, missing: false });
+    return record.id;
+  }, [dispatchWorkspace, relinkLocalAudio]);
+  const removeAudio = useCallback(async (clipId: string) => {
+    await removeLocalAudio(clipId);
+    dispatchWorkspace({ type: "SET_AUDIO_ASSET_MISSING", clipId, missing: true });
+  }, [dispatchWorkspace, removeLocalAudio]);
 
   useEffect(() => installGateCAudioRenderValidation(), []);
 
@@ -327,32 +355,9 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
           />}
         <ContextInspector
           dispatch={workspace.dispatch}
-          localAssets={Object.values({
-            ...workspace.activeProject.localAudioMetadata,
-            ...Object.fromEntries(audioLibrary.records.map((record) => [record.id, {
-              id: record.id,
-              name: record.name,
-              mimeType: record.mimeType,
-              size: record.size,
-              createdAt: record.createdAt,
-            }])),
-          })}
-          onRelinkAudio={async (clipId, file) => {
-            const record = await audioLibrary.relink(clipId, file);
-            workspace.dispatch({ type: "SET_LOCAL_AUDIO_METADATA", metadata: {
-              id: record.id,
-              name: record.name,
-              mimeType: record.mimeType,
-              size: record.size,
-              createdAt: record.createdAt,
-            } });
-            workspace.dispatch({ type: "SET_AUDIO_ASSET_MISSING", clipId, missing: false });
-            return record.id;
-          }}
-          onRemoveLocalAudio={async (clipId) => {
-            await audioLibrary.remove(clipId);
-            workspace.dispatch({ type: "SET_AUDIO_ASSET_MISSING", clipId, missing: true });
-          }}
+          localAssets={localAssets}
+          onRelinkAudio={relinkAudio}
+          onRemoveLocalAudio={removeAudio}
           mobileOpen={mobilePanel === "inspector"}
           project={workspace.activeProject}
         />

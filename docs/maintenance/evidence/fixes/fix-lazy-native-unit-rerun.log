@@ -1,0 +1,28 @@
+{
+  "stage": "unit-rerun",
+  "startedAt": "2026-10-13T07:11:23.534Z",
+  "cwd": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "node_modules/vitest/vitest.mjs",
+    "run"
+  ],
+  "platform": "win32",
+  "arch": "x64",
+  "node": "v22.17.0",
+  "packageManager": "pnpm@11.7.0",
+  "next": "16.3.8",
+  "playwright": "1.61.1",
+  "vitest": "4.1.11"
+}
+
+ RUN  v4.1.11 D:/Developing/Echo Canvas Web/Echo-Canva-Web
+
+
+ Test Files  75 passed (75)
+      Tests  572 passed (572)
+   Start at  15:11:24
+   Duration  5.47s (transform 25.05s, setup 0ms, import 60.12s, tests 11.11s, environment 21ms)
+
+
+RESULT {"stage":"unit-rerun","startedAt":"2026-10-13T07:11:23.534Z","cwd":"D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web","command":["C:\\Program Files\\nodejs\\node.exe","node_modules/vitest/vitest.mjs","run"],"platform":"win32","arch":"x64","node":"v22.17.0","packageManager":"pnpm@11.7.0","next":"16.3.8","playwright":"1.61.1","vitest":"4.1.11","endedAt":"2026-10-13T07:11:29.583Z","durationSeconds":6.0471065,"exitCode":0,"signal":null}

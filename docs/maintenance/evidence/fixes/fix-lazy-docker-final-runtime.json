@@ -1,0 +1,34 @@
+{
+  "sourceHead": "96f3247069a01eac09cf707e90cdc9231f8a4bbe",
+  "sourceHashSHA256": "00b1ea75722e8753515bb1426c2d4c9d211ff9b19cce347fee5af9014855f201",
+  "containerSourceHashSHA256": "00b1ea75722e8753515bb1426c2d4c9d211ff9b19cce347fee5af9014855f201",
+  "toolbarDiffEmpty": true,
+  "devLiveImage": "sha256:6613e8c1d516fe1da321adfbbcefb43ede719a29d4cd186e4ee456f57b4528aa",
+  "devTagImage": "sha256:1bc33d55fd9ac41247bbacd36a73955e92f098c9fafc46bb021b84d5923c1855",
+  "devLiveUid": 1000,
+  "devPnpmStore": "/pnpm/store",
+  "devMounts": [],
+  "devPorts": {
+    "3000/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "3103"
+      }
+    ]
+  },
+  "devCapDrop": [
+    "ALL"
+  ],
+  "devSecurityOpt": [
+    "no-new-privileges:true"
+  ],
+  "devInit": true,
+  "devPrivileged": false,
+  "devDevices": null,
+  "prodLiveImage": "sha256:a97fbd885d9e483385bc7d2eea348ad488c5c26ee09a19a46e443662ec17ed01",
+  "prodHealthAfterRestart": "healthy",
+  "historyPatternFindings": 0,
+  "historyScope": "Credential/private-key shapes and accidental COPY .env only; not a general secret proof",
+  "devHttpSmokeExitCode": 0,
+  "utc": "2026-10-13T07:55:09.6503837Z"
+}

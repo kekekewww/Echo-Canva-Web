@@ -1,0 +1,7 @@
+web-1  | ▲ Next.js 16.3.8
+web-1  | - Local:         http://localhost:3000
+web-1  | - Network:       http://0.0.0.0:3000
+web-1  | ✓ Ready in 0ms
+web-1  | ✓ Running next.config took 1.3ms
+web-1  | 2026-10-13T07:49:00.659Z next:start-server start-server process cleanup
+web-1  | 2026-10-13T07:49:00.660Z next:start-server start-server process cleanup finished

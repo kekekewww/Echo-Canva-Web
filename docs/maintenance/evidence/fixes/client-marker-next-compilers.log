@@ -1,0 +1,4 @@
+PASS Next turbopack client marker boundary: build accepted
+PASS Next turbopack server marker boundary: build rejected as required
+PASS Next webpack client marker boundary: build accepted
+PASS Next webpack server marker boundary: build rejected as required

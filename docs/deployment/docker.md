@@ -237,14 +237,17 @@ listening and subjective positioning checks.
 CI has separate application and production-Docker jobs. It checks both Compose
 configurations, builds a fresh image, starts it, runs HTTP/no-key API smoke, checks
 the non-root runtime and absence of local source/secret trees, and verifies a clean
-stop. Production dependency advisories fail CI; the currently unpatched development
-`braces` advisory is documented separately rather than suppressed. Runtime notice
-checks reject unreviewed gaps, preserving the explicitly unresolved
-`client-only@0.0.1` upstream provenance exception. These checks are not a complete
-license compliance audit. CI has read-only repository permissions and no deployment/API secrets.
+stop. Production dependency advisories fail CI. Development-only braces has a
+tested, lockfile-hashed local nesting guard; version-based audit still reports the
+upstream advisory without suppression. Both client-only markers are independently
+reimplemented under project MIT; runtime notice checks allow no gap or exception.
+Patches are copied before frozen installation and patch edits rebuild the Watch
+container. These checks are not a complete license compliance audit. CI has
+read-only repository permissions and no deployment/API secrets.
 Local pass/fail results, image size/build time and unverified platform checks are
 in [DOCKER_VERIFICATION.md](../maintenance/DOCKER_VERIFICATION.md); workflow execution
-evidence is in [CI_VERIFICATION.md](../maintenance/CI_VERIFICATION.md).
+evidence is in [CI_VERIFICATION.md](../maintenance/CI_VERIFICATION.md). The subsequent
+fixed-tree results are in [VERIFICATION_FIXES.md](../maintenance/VERIFICATION_FIXES.md).
 
 ## Maintenance
 

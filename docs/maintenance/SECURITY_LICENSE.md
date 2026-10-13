@@ -1,5 +1,12 @@
 # Security and license audit
 
+The following ledger preserves the initial extraction's audit, including the
+then-unpatched braces advisory and original client-only notice exception.
+[The follow-up report](VERIFICATION_FIXES.md) records the subsequent bounded
+braces patch, independently authored MIT marker replacements, strict zero-gap
+runtime checks and actual reruns. The upstream version-based advisory remains
+visible; the original notice has not been invented or retroactively discovered.
+
 Audit date: 2026-10-13. Source scope: the immutable Build Week extraction in
 [ORIGIN.md](../ORIGIN.md), its local maintenance changes, and installed dependencies.
 No production deployment, provider request using a real key, or image publication

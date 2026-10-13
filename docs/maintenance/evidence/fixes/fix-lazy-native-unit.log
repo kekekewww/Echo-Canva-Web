@@ -1,0 +1,45 @@
+{
+  "stage": "unit",
+  "startedAt": "2026-10-13T07:08:23.883Z",
+  "cwd": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "node_modules/vitest/vitest.mjs",
+    "run"
+  ],
+  "platform": "win32",
+  "arch": "x64",
+  "node": "v22.17.0",
+  "packageManager": "pnpm@11.7.0",
+  "next": "16.3.8",
+  "playwright": "1.61.1",
+  "vitest": "4.1.11"
+}
+
+ RUN  v4.1.11 D:/Developing/Echo Canvas Web/Echo-Canva-Web
+
+ ❯ tests/unit/client-only-marker.test.ts (7 tests | 1 failed) 19532ms
+   × preserves Next's actual server/client alias targets and rejection behavior 18141ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/client-only-marker.test.ts > preserves Next's actual server/client alias targets and rejection behavior
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/unit/client-only-marker.test.ts:61:29
+     55|   expect(() => require(serverTarget)).toThrow("A client-only module ca…
+     56|   expect(require(clientTarget)).toEqual({});
+     57| });
+       |    ^
+     58|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 74 passed (75)
+      Tests  1 failed | 571 passed (572)
+   Start at  15:08:25
+   Duration  22.22s (transform 68.55s, setup 0ms, import 159.70s, tests 37.12s, environment 35ms)
+
+
+RESULT {"stage":"unit","startedAt":"2026-10-13T07:08:23.883Z","cwd":"D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web","command":["C:\\Program Files\\nodejs\\node.exe","node_modules/vitest/vitest.mjs","run"],"platform":"win32","arch":"x64","node":"v22.17.0","packageManager":"pnpm@11.7.0","next":"16.3.8","playwright":"1.61.1","vitest":"4.1.11","endedAt":"2026-10-13T07:08:47.886Z","durationSeconds":23.999649,"exitCode":1,"signal":null}

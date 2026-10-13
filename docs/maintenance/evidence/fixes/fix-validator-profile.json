@@ -1,0 +1,21 @@
+{
+  "startedAt": "2026-10-13T07:00:13.440Z",
+  "buildId": "2ny829QrRqlazPRczRblE",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "--config",
+    "../verification-logs/fix-validator-profile.config.cjs"
+  ],
+  "platform": "win32",
+  "arch": "x64",
+  "node": "v22.17.0",
+  "diagnosticOnly": true,
+  "hardwareConcurrencyOverride": 3,
+  "profilerSamplingIntervalUs": 250,
+  "endedAt": "2026-10-13T07:00:25.482Z",
+  "durationSeconds": 12.041971300000002,
+  "exitCode": 1,
+  "signal": null
+}

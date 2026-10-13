@@ -50,11 +50,18 @@ The Docker base image also contains Node.js and Debian packages with their own
 notices, including `/usr/share/doc/*/copyright` where supplied by Debian. The
 application dependency inventory is separate from the base-image package inventory.
 
-`client-only@0.0.1` declares MIT but its published archive omits an original
-copyright/permission notice and source revision. Its exact metadata, publication
-integrity and explicit provenance exception are retained. A supplemental notice
-file count does not resolve this upstream authorship question; no copyright holder
-has been invented or borrowed from another package.
+The original `client-only@0.0.1` archive declares MIT but omits a
+copyright/permission notice and source revision. Its exact published metadata and
+integrity remain as [historical provenance](docs/licenses/client-only-0.0.1/PROVENANCE.md).
+No authentic upstream copyright notice was established, and none is invented.
+Version-specific [Next.js](patches/next@16.3.8.patch) and
+[installed marker](patches/client-only@0.0.1.patch) patches replace both copies with
+the independently authored `@echo-canvas/client-only-marker@1.0.0`, under the
+repository's complete MIT notice. Its fixed filenames, default no-op entry and
+`react-server` rejection preserve the documented marker convention. These patches
+do not assign this repository's copyright to the original npm code. The collector
+fails on notice/provenance gaps, and the runtime guard rejects the original marker
+artifact and any provenance exception.
 
 This file and the automated inventory document provenance and retain notices. They
 are not a certification that every downstream redistribution arrangement satisfies

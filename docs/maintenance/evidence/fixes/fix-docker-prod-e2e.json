@@ -1,0 +1,9 @@
+{
+  "hostNode": "v22.17.0",
+  "retries": 0,
+  "baseUrl": "http://127.0.0.1:3102",
+  "seconds": 47.2208127,
+  "utc": "2026-10-13T06:17:24.4088854Z",
+  "exitCode": 0,
+  "config": "playwright.container.config.ts"
+}

@@ -3,6 +3,12 @@ allowBuilds:
   unrs-resolver: true
 minimumReleaseAgeExclude:
   - openai@6.48.0
+# Reproducible local security/license corrections. Original versions remain
+# visible to version-based audit tools; see the dependency maintenance report.
+patchedDependencies:
+  braces@3.0.3: patches/braces@3.0.3.patch
+  client-only@0.0.1: patches/client-only@0.0.1.patch
+  next@16.3.8: patches/next@16.3.8.patch
 # Security patches within the existing major dependency families. See
 # docs/maintenance/ARCHITECTURE_DEPENDENCIES.md before changing these pins.
 overrides:

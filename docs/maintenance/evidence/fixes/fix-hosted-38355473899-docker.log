@@ -1,0 +1,516 @@
+2026-10-13T06:13:04.2162593Z Current runner version: '2.337.0'
+2026-10-13T06:13:04.2182558Z ##[group]Runner Image Provisioner
+2026-10-13T06:13:04.2183294Z Hosted Compute Agent
+2026-10-13T06:13:04.2183784Z Version: 20261002.596
+2026-10-13T06:13:04.2184339Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-13T06:13:04.2184952Z Build Date: 2026-10-02T22:28:27Z
+2026-10-13T06:13:04.2185499Z Worker ID: {f6f59de0-7980-43dd-83b9-d173990bdb19}
+2026-10-13T06:13:04.2186125Z Region: centralus
+2026-10-13T06:13:04.2186592Z Cloud: Azure
+2026-10-13T06:13:04.2187044Z ##[endgroup]
+2026-10-13T06:13:04.2188100Z ##[group]Operating System
+2026-10-13T06:13:04.2188615Z Ubuntu
+2026-10-13T06:13:04.2189439Z 24.04.5
+2026-10-13T06:13:04.2189896Z LTS
+2026-10-13T06:13:04.2190329Z ##[endgroup]
+2026-10-13T06:13:04.2190797Z ##[group]Runner Image
+2026-10-13T06:13:04.2191316Z Image: ubuntu-24.04
+2026-10-13T06:13:04.2191793Z Version: 20261004.327.1
+2026-10-13T06:13:04.2192833Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-13T06:13:04.2194094Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-13T06:13:04.2194888Z ##[endgroup]
+2026-10-13T06:13:04.2195879Z ##[group]GITHUB_TOKEN Permissions
+2026-10-13T06:13:04.2197573Z Contents: read
+2026-10-13T06:13:04.2198070Z Metadata: read
+2026-10-13T06:13:04.2198532Z ##[endgroup]
+2026-10-13T06:13:04.2200616Z Secret source: Actions
+2026-10-13T06:13:04.2201380Z Cache mode: write
+2026-10-13T06:13:04.2201949Z Prepare workflow directory
+2026-10-13T06:13:04.2538543Z Prepare all required actions
+2026-10-13T06:13:04.2580324Z Getting action download info
+2026-10-13T06:13:04.5202423Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-13T06:13:04.6372439Z Download action repository 'actions/setup-node@820762786026740c76f36085b0efc47a31fe5020' (SHA:820762786026740c76f36085b0efc47a31fe5020)
+2026-10-13T06:13:05.0067646Z Complete job name: Production Docker integration
+2026-10-13T06:13:05.0695445Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-10-13T06:13:05.0696497Z with:
+2026-10-13T06:13:05.0697021Z   persist-credentials: false
+2026-10-13T06:13:05.0697646Z   repository: kekekewww/Echo-Canva-Web
+2026-10-13T06:13:05.0701784Z   token: ***
+2026-10-13T06:13:05.0702302Z   ssh-strict: true
+2026-10-13T06:13:05.0702846Z   ssh-user: git
+2026-10-13T06:13:05.0703338Z   clean: true
+2026-10-13T06:13:05.0703867Z   sparse-checkout-cone-mode: true
+2026-10-13T06:13:05.0704471Z   fetch-depth: 1
+2026-10-13T06:13:05.0704996Z   fetch-tags: false
+2026-10-13T06:13:05.0705528Z   show-progress: true
+2026-10-13T06:13:05.0706039Z   lfs: false
+2026-10-13T06:13:05.0706509Z   submodules: false
+2026-10-13T06:13:05.0707094Z   set-safe-directory: true
+2026-10-13T06:13:05.0707697Z   allow-unsafe-pr-checkout: false
+2026-10-13T06:13:05.0708656Z env:
+2026-10-13T06:13:05.0709262Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T06:13:05.0709833Z   AI_ENABLED: false
+2026-10-13T06:13:05.0710506Z ##[endgroup]
+2026-10-13T06:13:05.1619673Z Syncing repository: kekekewww/Echo-Canva-Web
+2026-10-13T06:13:05.1622312Z ##[group]Getting Git version info
+2026-10-13T06:13:05.1623086Z Working directory is '/home/runner/work/Echo-Canva-Web/Echo-Canva-Web'
+2026-10-13T06:13:05.1624399Z [command]/usr/bin/git version
+2026-10-13T06:13:05.1676931Z git version 2.55.0
+2026-10-13T06:13:05.1698024Z ##[endgroup]
+2026-10-13T06:13:05.1708098Z Temporarily overriding HOME='/home/runner/work/_temp/68dd686c-22e1-4f16-9508-eb3d264b6a36' before making global git config changes
+2026-10-13T06:13:05.1710017Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-13T06:13:05.1713277Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Echo-Canva-Web/Echo-Canva-Web
+2026-10-13T06:13:05.1760739Z Deleting the contents of '/home/runner/work/Echo-Canva-Web/Echo-Canva-Web'
+2026-10-13T06:13:05.1767076Z ##[group]Determining repository object format
+2026-10-13T06:13:05.1768828Z ##[endgroup]
+2026-10-13T06:13:05.1770147Z ##[group]Initializing the repository
+2026-10-13T06:13:05.1782185Z [command]/usr/bin/git init /home/runner/work/Echo-Canva-Web/Echo-Canva-Web
+2026-10-13T06:13:05.1860191Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-13T06:13:05.1862101Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-13T06:13:05.1863397Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-13T06:13:05.1864133Z hint: call:
+2026-10-13T06:13:05.1864703Z hint:
+2026-10-13T06:13:05.1865456Z hint: 	git config --global init.defaultBranch <name>
+2026-10-13T06:13:05.1866208Z hint:
+2026-10-13T06:13:05.1867031Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-13T06:13:05.1868756Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-13T06:13:05.1870060Z hint:
+2026-10-13T06:13:05.1870712Z hint: 	git branch -m <name>
+2026-10-13T06:13:05.1871576Z hint:
+2026-10-13T06:13:05.1872528Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-13T06:13:05.1874075Z Initialized empty Git repository in /home/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git/
+2026-10-13T06:13:05.1880877Z [command]/usr/bin/git remote add origin https://github.com/kekekewww/Echo-Canva-Web
+2026-10-13T06:13:05.1933158Z ##[endgroup]
+2026-10-13T06:13:05.1949709Z ##[group]Disabling automatic garbage collection
+2026-10-13T06:13:05.1960014Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-13T06:13:05.1970948Z ##[endgroup]
+2026-10-13T06:13:05.1972490Z ##[group]Setting up auth
+2026-10-13T06:13:05.1974582Z Removing SSH command configuration
+2026-10-13T06:13:05.1977650Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T06:13:05.2010060Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-13T06:13:05.2288791Z Removing HTTP extra header
+2026-10-13T06:13:05.2293013Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T06:13:05.2319795Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-13T06:13:05.2540366Z Removing includeIf entries pointing to credentials config files
+2026-10-13T06:13:05.2547652Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T06:13:05.2579491Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-13T06:13:05.2762071Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-71bf784c-5025-4065-8487-d3237898ddf4.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-13T06:13:05.2794386Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git.path /home/runner/work/_temp/git-credentials-71bf784c-5025-4065-8487-d3237898ddf4.config
+2026-10-13T06:13:05.2825239Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-71bf784c-5025-4065-8487-d3237898ddf4.config
+2026-10-13T06:13:05.2855061Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-71bf784c-5025-4065-8487-d3237898ddf4.config
+2026-10-13T06:13:05.2879697Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-71bf784c-5025-4065-8487-d3237898ddf4.config
+2026-10-13T06:13:05.2904177Z ##[endgroup]
+2026-10-13T06:13:05.2905401Z ##[group]Fetching the repository
+2026-10-13T06:13:05.2910241Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +c5f7079c7b9ab2166c62c4527318529995e7cd73:refs/remotes/pull/2/merge
+2026-10-13T06:13:06.2024530Z From https://github.com/kekekewww/Echo-Canva-Web
+2026-10-13T06:13:06.2051332Z  * [new ref]         c5f7079c7b9ab2166c62c4527318529995e7cd73 -> pull/2/merge
+2026-10-13T06:13:06.2090910Z ##[endgroup]
+2026-10-13T06:13:06.2091809Z ##[group]Determining the checkout info
+2026-10-13T06:13:06.2092642Z ##[endgroup]
+2026-10-13T06:13:06.2093168Z [command]/usr/bin/git sparse-checkout disable
+2026-10-13T06:13:06.2185407Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-13T06:13:06.2221807Z ##[group]Checking out the ref
+2026-10-13T06:13:06.2226006Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/2/merge
+2026-10-13T06:13:06.2524298Z Note: switching to 'refs/remotes/pull/2/merge'.
+2026-10-13T06:13:06.2525023Z
+2026-10-13T06:13:06.2525865Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-13T06:13:06.2527706Z changes and commit them, and you can discard any commits you make in this
+2026-10-13T06:13:06.2529857Z state without impacting any branches by switching back to a branch.
+2026-10-13T06:13:06.2531330Z
+2026-10-13T06:13:06.2532649Z If you want to create a new branch to retain commits you create, you may
+2026-10-13T06:13:06.2534909Z do so (now or later) by using -c with the switch command. Example:
+2026-10-13T06:13:06.2536118Z
+2026-10-13T06:13:06.2536767Z   git switch -c <new-branch-name>
+2026-10-13T06:13:06.2537682Z
+2026-10-13T06:13:06.2538151Z Or undo this operation with:
+2026-10-13T06:13:06.2538870Z
+2026-10-13T06:13:06.2539362Z   git switch -
+2026-10-13T06:13:06.2539931Z
+2026-10-13T06:13:06.2540841Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-13T06:13:06.2542182Z
+2026-10-13T06:13:06.2543993Z HEAD is now at c5f7079 Merge 48a2f668de12a3efc0305e0aef71eec60ccc91bd into 3b2a6b5d6f7b9518e2a8ac9f488cabb0a568a648
+2026-10-13T06:13:06.2547858Z ##[endgroup]
+2026-10-13T06:13:06.2571315Z [command]/usr/bin/git log -1 --format=%H
+2026-10-13T06:13:06.2592847Z c5f7079c7b9ab2166c62c4527318529995e7cd73
+2026-10-13T06:13:06.2601365Z ##[group]Removing auth
+2026-10-13T06:13:06.2602694Z Removing SSH command configuration
+2026-10-13T06:13:06.2604599Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T06:13:06.2629892Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-13T06:13:06.2795954Z Removing HTTP extra header
+2026-10-13T06:13:06.2801114Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T06:13:06.2830692Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-13T06:13:06.2993411Z Removing includeIf entries pointing to credentials config files
+2026-10-13T06:13:06.2995626Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T06:13:06.3015628Z includeif.gitdir:/home/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git.path
+2026-10-13T06:13:06.3018457Z includeif.gitdir:/home/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git/worktrees/*.path
+2026-10-13T06:13:06.3020918Z includeif.gitdir:/github/workspace/.git.path
+2026-10-13T06:13:06.3022687Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-13T06:13:06.3027295Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git.path
+2026-10-13T06:13:06.3040909Z /home/runner/work/_temp/git-credentials-71bf784c-5025-4065-8487-d3237898ddf4.config
+2026-10-13T06:13:06.3048667Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-71bf784c\-5025\-4065\-8487\-d3237898ddf4\.config
+2026-10-13T06:13:06.3159959Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git/worktrees/*.path
+2026-10-13T06:13:06.3179950Z /home/runner/work/_temp/git-credentials-71bf784c-5025-4065-8487-d3237898ddf4.config
+2026-10-13T06:13:06.3189747Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Echo-Canva-Web/Echo-Canva-Web/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-71bf784c\-5025\-4065\-8487\-d3237898ddf4\.config
+2026-10-13T06:13:06.3426755Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-13T06:13:06.3447204Z /github/runner_temp/git-credentials-71bf784c-5025-4065-8487-d3237898ddf4.config
+2026-10-13T06:13:06.3456018Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-71bf784c\-5025\-4065\-8487\-d3237898ddf4\.config
+2026-10-13T06:13:06.3570860Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-13T06:13:06.3589057Z /github/runner_temp/git-credentials-71bf784c-5025-4065-8487-d3237898ddf4.config
+2026-10-13T06:13:06.3646860Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-71bf784c\-5025\-4065\-8487\-d3237898ddf4\.config
+2026-10-13T06:13:06.3700023Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-13T06:13:06.3857398Z Removing credentials config '/home/runner/work/_temp/git-credentials-71bf784c-5025-4065-8487-d3237898ddf4.config'
+2026-10-13T06:13:06.3864581Z ##[endgroup]
+2026-10-13T06:13:06.4192053Z ##[group]Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+2026-10-13T06:13:06.4193173Z with:
+2026-10-13T06:13:06.4193772Z   node-version-file: .nvmrc
+2026-10-13T06:13:06.4194553Z   package-manager-cache: false
+2026-10-13T06:13:06.4195260Z   check-latest: false
+2026-10-13T06:13:06.4203266Z   token: ***
+2026-10-13T06:13:06.4203840Z env:
+2026-10-13T06:13:06.4204400Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T06:13:06.4205119Z   AI_ENABLED: false
+2026-10-13T06:13:06.4205704Z ##[endgroup]
+2026-10-13T06:13:06.5301955Z Node version file is not JSON file
+2026-10-13T06:13:06.5303265Z Resolved .nvmrc as 22.23.3
+2026-10-13T06:13:06.5317030Z Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+2026-10-13T06:13:06.5319559Z ##[group]Environment details
+2026-10-13T06:13:11.7100117Z node: v22.23.3
+2026-10-13T06:13:11.7100648Z npm: 10.9.9
+2026-10-13T06:13:11.7101223Z yarn: 1.22.22
+2026-10-13T06:13:11.7102549Z ##[endgroup]
+2026-10-13T06:13:11.7236407Z ##[group]Run compose_binary="$HOME/.docker/cli-plugins/docker-compose"
+2026-10-13T06:13:11.7237148Z compose_binary="$HOME/.docker/cli-plugins/docker-compose"
+2026-10-13T06:13:11.7237744Z mkdir -p "$(dirname "$compose_binary")"
+2026-10-13T06:13:11.7238562Z curl --fail --location --retry 3 https://github.com/docker/compose/releases/download/v5.5.1/docker-compose-linux-x86_64 --output "$compose_binary"
+2026-10-13T06:13:11.7239916Z printf '%s  %s\n' 'db1889184726840f75c4f9c001048430d4f25b3be3cb084d3ddd762bc0aed576' "$compose_binary" | sha256sum --check
+2026-10-13T06:13:11.7240559Z chmod 755 "$compose_binary"
+2026-10-13T06:13:11.7240966Z docker compose version
+2026-10-13T06:13:11.7454765Z shell: /usr/bin/bash -e {0}
+2026-10-13T06:13:11.7455307Z env:
+2026-10-13T06:13:11.7455716Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T06:13:11.7456182Z   AI_ENABLED: false
+2026-10-13T06:13:11.7456574Z ##[endgroup]
+2026-10-13T06:13:11.7613394Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-10-13T06:13:11.7614563Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-10-13T06:13:11.7615273Z
+2026-10-13T06:13:11.9446114Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-10-13T06:13:11.9447161Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-10-13T06:13:12.1505571Z
+2026-10-13T06:13:12.2401830Z  17 30.8M   17 5613k    0     0  14.0M      0  0:00:02 --:--:--  0:00:02 14.0M
+2026-10-13T06:13:12.2680614Z 100 30.8M  100 30.8M    0     0  64.3M      0 --:--:-- --:--:-- --:--:--  284M
+2026-10-13T06:13:12.2681974Z /home/runner/.docker/cli-plugins/docker-compose: OK
+2026-10-13T06:13:12.3479564Z Docker Compose version v5.5.1
+2026-10-13T06:13:12.3535727Z ##[group]Run docker compose config --quiet
+2026-10-13T06:13:12.3536167Z docker compose config --quiet
+2026-10-13T06:13:12.3536584Z docker compose -f compose.dev.yaml config --quiet
+2026-10-13T06:13:12.3575142Z shell: /usr/bin/bash -e {0}
+2026-10-13T06:13:12.3575565Z env:
+2026-10-13T06:13:12.3575832Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T06:13:12.3576160Z   AI_ENABLED: false
+2026-10-13T06:13:12.3576484Z ##[endgroup]
+2026-10-13T06:13:12.4512227Z ##[group]Run docker compose up -d --build --wait --wait-timeout 120
+2026-10-13T06:13:12.4512760Z docker compose up -d --build --wait --wait-timeout 120
+2026-10-13T06:13:12.4550705Z shell: /usr/bin/bash -e {0}
+2026-10-13T06:13:12.4551082Z env:
+2026-10-13T06:13:12.4551377Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T06:13:12.4551679Z   AI_ENABLED: false
+2026-10-13T06:13:12.4551961Z ##[endgroup]
+2026-10-13T06:13:12.6392105Z  Image echo-canvas-web:local Building
+2026-10-13T06:13:12.7355521Z #1 [internal] load local bake definitions
+2026-10-13T06:13:12.8527424Z #1 reading from stdin 578B done
+2026-10-13T06:13:12.8528122Z #1 DONE 0.0s
+2026-10-13T06:13:13.0159988Z
+2026-10-13T06:13:13.0162671Z #2 [internal] load build definition from Dockerfile
+2026-10-13T06:13:13.0163778Z #2 transferring dockerfile: 2.38kB done
+2026-10-13T06:13:13.0164243Z #2 DONE 0.0s
+2026-10-13T06:13:13.0164560Z
+2026-10-13T06:13:13.0164933Z #3 [auth] docker/dockerfile:pull token for registry-1.docker.io
+2026-10-13T06:13:13.1665775Z #3 DONE 0.0s
+2026-10-13T06:13:13.1666074Z
+2026-10-13T06:13:13.1666475Z #4 resolve image config for docker-image://docker.io/docker/dockerfile:1
+2026-10-13T06:13:13.5632383Z #4 DONE 0.7s
+2026-10-13T06:13:13.6693914Z
+2026-10-13T06:13:13.6695618Z #5 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+2026-10-13T06:13:13.6697079Z #5 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e done
+2026-10-13T06:13:13.6698363Z #5 sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 9.08kB / 9.08kB done
+2026-10-13T06:13:13.6699589Z #5 sha256:7b32114e84ca21aeb2d6f871a0b62b3a0762193f75d9afd048ee4cbe889f3148 1.13kB / 1.13kB done
+2026-10-13T06:13:13.6700672Z #5 sha256:528c92d70d7e39dbb3dd1c6681f6750c565c7e45b70527cda47c1a61495c1b6a 1.41kB / 1.41kB done
+2026-10-13T06:13:13.6701851Z #5 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 0B / 14.28MB 0.1s
+2026-10-13T06:13:13.8620293Z #5 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 7.34MB / 14.28MB 0.2s
+2026-10-13T06:13:13.8621803Z #5 extracting sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62
+2026-10-13T06:13:13.9622609Z #5 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 14.28MB / 14.28MB 0.3s done
+2026-10-13T06:13:14.1501817Z #5 extracting sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 0.1s done
+2026-10-13T06:13:14.1502721Z #5 DONE 0.4s
+2026-10-13T06:13:14.1502875Z
+2026-10-13T06:13:14.1503193Z #6 [auth] library/node:pull token for registry-1.docker.io
+2026-10-13T06:13:14.3004520Z #6 DONE 0.0s
+2026-10-13T06:13:14.3004964Z
+2026-10-13T06:13:14.3006469Z #7 [internal] load metadata for docker.io/library/node:22.23.3-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392
+2026-10-13T06:13:14.6035251Z #7 DONE 0.5s
+2026-10-13T06:13:14.7614289Z
+2026-10-13T06:13:14.7615057Z #8 [internal] load .dockerignore
+2026-10-13T06:13:14.7615768Z #8 transferring context: 1.13kB done
+2026-10-13T06:13:14.7616315Z #8 DONE 0.0s
+2026-10-13T06:13:17.9398861Z
+2026-10-13T06:13:17.9399635Z #9 [internal] load build context
+2026-10-13T06:13:17.9400213Z #9 transferring context: 2.31MB 0.0s done
+2026-10-13T06:13:17.9401346Z #9 DONE 0.0s
+2026-10-13T06:13:17.9401489Z
+2026-10-13T06:13:17.9402031Z #10 [base 1/3] FROM docker.io/library/node:22.23.3-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392
+2026-10-13T06:13:17.9402992Z #10 resolve docker.io/library/node:22.23.3-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392 done
+2026-10-13T06:13:17.9403769Z #10 sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392 5.22kB / 5.22kB done
+2026-10-13T06:13:17.9404448Z #10 sha256:efd0ab5780c2d9ab1f0f869571a00d5edb17793bff4cce4a2792e3eb0ffc7562 1.93kB / 1.93kB done
+2026-10-13T06:13:17.9405449Z #10 sha256:d0a16be756b6ec6658aecb8b7bcf87fa6c7d0d7fcc6ca53ad14bb49a4c90bdd7 6.77kB / 6.77kB done
+2026-10-13T06:13:17.9406120Z #10 sha256:7fd1ebe418b5079d4aa36f416af9b143d127bc75b0155d71cb5fd559b5e04d39 0B / 28.25MB 0.1s
+2026-10-13T06:13:17.9406819Z #10 sha256:f0400f4b55b0ad346bf6167a1b64a258e4d73db608c457798ce35e4ffeebfaaf 0B / 3.31kB 0.1s
+2026-10-13T06:13:17.9407488Z #10 sha256:d22c69a95cf463f4cb74462bd2899597ce505d82bd4c01ceddf7845e12f13856 0B / 49.84MB 0.1s
+2026-10-13T06:13:18.1397478Z #10 sha256:7fd1ebe418b5079d4aa36f416af9b143d127bc75b0155d71cb5fd559b5e04d39 28.25MB / 28.25MB 0.3s
+2026-10-13T06:13:18.1398872Z #10 sha256:f0400f4b55b0ad346bf6167a1b64a258e4d73db608c457798ce35e4ffeebfaaf 3.31kB / 3.31kB 0.1s done
+2026-10-13T06:13:18.1400381Z #10 sha256:d22c69a95cf463f4cb74462bd2899597ce505d82bd4c01ceddf7845e12f13856 16.78MB / 49.84MB 0.3s
+2026-10-13T06:13:18.1401540Z #10 sha256:2cfab517365cfc6b4bd1f8c4cb01754884ef75bc38758b3c41e291c696f019f5 1.05MB / 1.71MB 0.3s
+2026-10-13T06:13:18.2749664Z #10 sha256:d22c69a95cf463f4cb74462bd2899597ce505d82bd4c01ceddf7845e12f13856 36.70MB / 49.84MB 0.4s
+2026-10-13T06:13:18.2751210Z #10 sha256:2cfab517365cfc6b4bd1f8c4cb01754884ef75bc38758b3c41e291c696f019f5 1.71MB / 1.71MB 0.4s
+2026-10-13T06:13:18.2752503Z #10 extracting sha256:7fd1ebe418b5079d4aa36f416af9b143d127bc75b0155d71cb5fd559b5e04d39
+2026-10-13T06:13:18.3788826Z #10 sha256:7fd1ebe418b5079d4aa36f416af9b143d127bc75b0155d71cb5fd559b5e04d39 28.25MB / 28.25MB 0.4s done
+2026-10-13T06:13:18.3791362Z #10 sha256:d22c69a95cf463f4cb74462bd2899597ce505d82bd4c01ceddf7845e12f13856 49.84MB / 49.84MB 0.5s
+2026-10-13T06:13:18.3793156Z #10 sha256:2cfab517365cfc6b4bd1f8c4cb01754884ef75bc38758b3c41e291c696f019f5 1.71MB / 1.71MB 0.4s done
+2026-10-13T06:13:18.3793899Z #10 sha256:a8de9fa052209313d8e45435a8486e29b20eebaa820e2e7f63a7c3c94b4fa567 448B / 448B 0.5s
+2026-10-13T06:13:18.7526254Z #10 sha256:d22c69a95cf463f4cb74462bd2899597ce505d82bd4c01ceddf7845e12f13856 49.84MB / 49.84MB 0.7s done
+2026-10-13T06:13:18.7527758Z #10 sha256:a8de9fa052209313d8e45435a8486e29b20eebaa820e2e7f63a7c3c94b4fa567 448B / 448B 0.7s done
+2026-10-13T06:13:19.2453856Z #10 extracting sha256:7fd1ebe418b5079d4aa36f416af9b143d127bc75b0155d71cb5fd559b5e04d39 0.8s done
+2026-10-13T06:13:19.2454805Z #10 extracting sha256:f0400f4b55b0ad346bf6167a1b64a258e4d73db608c457798ce35e4ffeebfaaf done
+2026-10-13T06:13:19.6609513Z #10 extracting sha256:d22c69a95cf463f4cb74462bd2899597ce505d82bd4c01ceddf7845e12f13856
+2026-10-13T06:13:20.8157888Z #10 extracting sha256:d22c69a95cf463f4cb74462bd2899597ce505d82bd4c01ceddf7845e12f13856 1.0s done
+2026-10-13T06:13:21.5411854Z #10 extracting sha256:2cfab517365cfc6b4bd1f8c4cb01754884ef75bc38758b3c41e291c696f019f5
+2026-10-13T06:13:21.6489116Z #10 extracting sha256:2cfab517365cfc6b4bd1f8c4cb01754884ef75bc38758b3c41e291c696f019f5 0.0s done
+2026-10-13T06:13:21.6490275Z #10 extracting sha256:a8de9fa052209313d8e45435a8486e29b20eebaa820e2e7f63a7c3c94b4fa567 done
+2026-10-13T06:13:21.6491070Z #10 DONE 3.8s
+2026-10-13T06:13:21.8282671Z
+2026-10-13T06:13:21.8283817Z #11 [base 2/3] WORKDIR /app
+2026-10-13T06:13:21.8284864Z #11 DONE 0.0s
+2026-10-13T06:13:21.8285679Z
+2026-10-13T06:13:21.8286763Z #12 [base 3/3] RUN npm install --global pnpm@11.7.0     && mkdir -p /pnpm/store     && chown node:node /pnpm/store
+2026-10-13T06:13:22.7246859Z #12 1.047
+2026-10-13T06:13:22.7247346Z #12 1.047 added 1 package in 883ms
+2026-10-13T06:13:22.7247967Z #12 1.047
+2026-10-13T06:13:22.7248400Z #12 1.047 1 package is looking for funding
+2026-10-13T06:13:22.7249216Z #12 1.047   run `npm fund` for details
+2026-10-13T06:13:22.8760244Z #12 1.048 npm notice
+2026-10-13T06:13:22.8761419Z #12 1.048 npm notice New major version of npm available! 10.9.9 -> 12.2.0
+2026-10-13T06:13:22.8762456Z #12 1.048 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+2026-10-13T06:13:22.8763444Z #12 1.048 npm notice To update run: npm install -g npm@12.2.0
+2026-10-13T06:13:22.8764126Z #12 1.048 npm notice
+2026-10-13T06:13:22.9461263Z #12 DONE 1.3s
+2026-10-13T06:13:23.1392199Z
+2026-10-13T06:13:23.1393672Z #13 [dependencies 1/3] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+2026-10-13T06:13:23.1394371Z #13 DONE 0.0s
+2026-10-13T06:13:23.1394560Z
+2026-10-13T06:13:23.1394792Z #14 [dependencies 2/3] COPY patches ./patches
+2026-10-13T06:13:23.1395213Z #14 DONE 0.0s
+2026-10-13T06:13:23.1395389Z
+2026-10-13T06:13:23.1395635Z #15 [dependencies 3/3] RUN pnpm install --frozen-lockfile
+2026-10-13T06:13:23.6700202Z #15 0.681 ? Verifying lockfile against supply-chain policies (464 entries)...
+2026-10-13T06:13:23.7838315Z #15 0.725 Lockfile is up to date, resolution step is skipped
+2026-10-13T06:13:23.7839216Z #15 0.764 Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-10-13T06:13:23.7839980Z #15 0.795 Packages: +377
+2026-10-13T06:13:23.7840891Z #15 0.795 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-10-13T06:13:24.7544181Z #15 1.764 Progress: resolved 377, reused 0, downloaded 25, added 0
+2026-10-13T06:13:25.6271192Z #15 2.638
+2026-10-13T06:13:25.6273784Z #15 2.638    ╭──────────────────────────────────────────╮
+2026-10-13T06:13:25.6274536Z #15 2.638    │                                          │
+2026-10-13T06:13:25.6275302Z #15 2.638    │   Update available! 11.7.0 → 12.11.2.    │
+2026-10-13T06:13:25.6275898Z #15 2.638    │   Changelog: https://pnpm.io/v/12.11.2   │
+2026-10-13T06:13:25.6276460Z #15 2.638    │     To update, run: pnpm add -g pnpm     │
+2026-10-13T06:13:25.6277033Z #15 2.638    │                                          │
+2026-10-13T06:13:25.6277483Z #15 2.638    ╰──────────────────────────────────────────╯
+2026-10-13T06:13:25.6277820Z #15 2.638
+2026-10-13T06:13:25.7552175Z #15 2.766 Progress: resolved 377, reused 0, downloaded 216, added 31
+2026-10-13T06:13:26.7743295Z #15 3.785 Progress: resolved 377, reused 0, downloaded 352, added 43
+2026-10-13T06:13:27.7740362Z #15 4.785 Progress: resolved 377, reused 0, downloaded 377, added 376
+2026-10-13T06:13:28.0976592Z #15 5.109 ✓ Lockfile passes supply-chain policies (464 entries in 4.4s)
+2026-10-13T06:13:30.4797448Z #15 7.491 Progress: resolved 377, reused 0, downloaded 377, added 377
+2026-10-13T06:13:30.6116854Z #15 7.491 Progress: resolved 377, reused 0, downloaded 377, added 377, done
+2026-10-13T06:13:30.6129253Z #15 7.622 .../node_modules/unrs-resolver postinstall$ node postinstall.js
+2026-10-13T06:13:30.8143556Z #15 7.675 .../node_modules/unrs-resolver postinstall: Done
+2026-10-13T06:13:31.3645361Z #15 8.375
+2026-10-13T06:13:31.3646307Z #15 8.375 dependencies:
+2026-10-13T06:13:31.3647061Z #15 8.375 + next 16.3.8
+2026-10-13T06:13:31.3647574Z #15 8.375 + openai 6.48.0
+2026-10-13T06:13:31.3647988Z #15 8.375 + react 19.2.7
+2026-10-13T06:13:31.3648380Z #15 8.375 + react-dom 19.2.7
+2026-10-13T06:13:31.3649103Z #15 8.375 + zod 4.4.3
+2026-10-13T06:13:31.3649601Z #15 8.375
+2026-10-13T06:13:31.3650160Z #15 8.375 devDependencies:
+2026-10-13T06:13:31.3650793Z #15 8.375 + @playwright/test 1.61.1
+2026-10-13T06:13:31.3651601Z #15 8.375 + @types/node 26.1.1
+2026-10-13T06:13:31.3652101Z #15 8.375 + @types/react 19.2.17
+2026-10-13T06:13:31.3652936Z #15 8.375 + @types/react-dom 19.2.3
+2026-10-13T06:13:31.3653449Z #15 8.375 + eslint 9.39.3
+2026-10-13T06:13:31.3653924Z #15 8.375 + eslint-config-next 16.3.8
+2026-10-13T06:13:31.3658170Z #15 8.375 + typescript 5.9.3
+2026-10-13T06:13:31.3658728Z #15 8.375 + vitest 4.1.11
+2026-10-13T06:13:31.3659251Z #15 8.375
+2026-10-13T06:13:31.5193737Z #15 8.407 Done in 8.2s using pnpm v11.7.0
+2026-10-13T06:13:31.5194369Z #15 DONE 8.5s
+2026-10-13T06:13:31.6755496Z
+2026-10-13T06:13:31.6756470Z #16 [builder 1/2] COPY . .
+2026-10-13T06:13:35.7005496Z #16 DONE 4.2s
+2026-10-13T06:13:35.8516277Z
+2026-10-13T06:13:35.8517373Z #17 [builder 2/2] RUN pnpm build && node scripts/collect-runtime-licenses.mjs
+2026-10-13T06:13:36.1594047Z #17 0.458 $ next build
+2026-10-13T06:13:36.4654543Z #17 0.764 ▲ Next.js 16.3.8 (Turbopack)
+2026-10-13T06:13:36.6682654Z #17 0.786 ✓ Running next.config.ts took 22ms
+2026-10-13T06:13:36.6683296Z #17 0.796
+2026-10-13T06:13:36.6683864Z #17 0.817   Creating an optimized production build ...
+2026-10-13T06:13:42.2709020Z #17 6.569 ✓ Compiled successfully in 5.6s
+2026-10-13T06:13:42.4241820Z #17 6.572   Running TypeScript ...
+2026-10-13T06:13:47.8185959Z #17 12.12   Finished TypeScript in 5.5s ...
+2026-10-13T06:13:47.9711940Z #17 12.12   Collecting page data using 3 workers ...
+2026-10-13T06:13:48.4102928Z #17 12.71   Generating static pages using 3 workers (0/8) ...
+2026-10-13T06:13:48.6493750Z #17 12.80   Generating static pages using 3 workers (2/8)
+2026-10-13T06:13:48.6896491Z #17 12.99   Generating static pages using 3 workers (4/8)
+2026-10-13T06:13:48.8487511Z #17 12.99   Generating static pages using 3 workers (6/8)
+2026-10-13T06:13:48.8488425Z #17 12.99 ✓ Generating static pages using 3 workers (8/8) in 285ms
+2026-10-13T06:13:48.8489132Z #17 13.00   Finalizing page optimization ...
+2026-10-13T06:13:49.0194921Z #17 13.32
+2026-10-13T06:13:49.1715924Z #17 13.32 Route (app)
+2026-10-13T06:13:49.1716552Z #17 13.32 ┌ ○ /
+2026-10-13T06:13:49.1716968Z #17 13.32 ├ ○ /_not-found
+2026-10-13T06:13:49.1717350Z #17 13.32 ├ ƒ /api/health
+2026-10-13T06:13:49.1717754Z #17 13.32 ├ ƒ /api/scene/compile
+2026-10-13T06:13:49.1718138Z #17 13.32 ├ ƒ /api/scene/explain
+2026-10-13T06:13:49.1718463Z #17 13.32 ├ ○ /classic
+2026-10-13T06:13:49.1718782Z #17 13.32 ├ ○ /icon.svg
+2026-10-13T06:13:49.1719253Z #17 13.32 └ ○ /lab
+2026-10-13T06:13:49.1719504Z #17 13.32
+2026-10-13T06:13:49.1719828Z #17 13.32
+2026-10-13T06:13:49.1720222Z #17 13.32 ○  (Static)   prerendered as static content
+2026-10-13T06:13:49.1720689Z #17 13.32 ƒ  (Dynamic)  server-rendered on demand
+2026-10-13T06:13:49.1721009Z #17 13.32
+2026-10-13T06:13:49.5202903Z #17 13.82 Runtime notices: 21 packages; 0 missing license metadata; 0 missing notices (0 provenance exceptions); 0 missing installed originals.
+2026-10-13T06:13:49.6834819Z #17 DONE 14.0s
+2026-10-13T06:13:50.1698247Z
+2026-10-13T06:13:50.1699877Z #18 [runner 3/8] COPY --from=builder --chown=node:node /app/.next/standalone ./
+2026-10-13T06:13:50.5472795Z #18 DONE 0.4s
+2026-10-13T06:13:50.7564747Z
+2026-10-13T06:13:50.7565996Z #19 [runner 4/8] COPY --from=builder --chown=node:node /app/.next/static ./.next/static
+2026-10-13T06:13:50.7566654Z #19 DONE 0.0s
+2026-10-13T06:13:50.7566829Z
+2026-10-13T06:13:50.7567099Z #20 [runner 5/8] COPY --from=builder --chown=node:node /app/public ./public
+2026-10-13T06:13:50.7567522Z #20 DONE 0.0s
+2026-10-13T06:13:50.7567668Z
+2026-10-13T06:13:50.7568054Z #21 [runner 6/8] COPY --from=builder --chown=node:node /app/third-party-licenses ./third-party-licenses
+2026-10-13T06:13:50.7568575Z #21 DONE 0.0s
+2026-10-13T06:13:50.7568718Z
+2026-10-13T06:13:50.7569331Z #22 [runner 7/8] COPY --chown=node:node LICENSE THIRD_PARTY_NOTICES.md ./
+2026-10-13T06:13:50.7569933Z #22 DONE 0.0s
+2026-10-13T06:13:50.7570231Z
+2026-10-13T06:13:50.7570595Z #23 [runner 8/8] RUN mkdir -p .next/cache && chown node:node .next/cache
+2026-10-13T06:13:50.7571212Z #23 DONE 0.1s
+2026-10-13T06:13:50.9080247Z
+2026-10-13T06:13:50.9081331Z #24 exporting to image
+2026-10-13T06:13:50.9082582Z #24 exporting layers
+2026-10-13T06:13:51.3799031Z #24 exporting layers 0.6s done
+2026-10-13T06:13:51.4055170Z #24 writing image sha256:531f1f53ce6fc1c5e9457d12faa5dffdbd5d1b22af773ae2e747a4e4df9b1382 done
+2026-10-13T06:13:51.4056287Z #24 naming to docker.io/library/echo-canvas-web:local done
+2026-10-13T06:13:51.4057004Z #24 DONE 0.6s
+2026-10-13T06:13:51.4057227Z
+2026-10-13T06:13:51.4057612Z #25 resolving provenance for metadata file
+2026-10-13T06:13:51.4058206Z #25 DONE 0.0s
+2026-10-13T06:13:51.4076526Z  Image echo-canvas-web:local Built
+2026-10-13T06:13:51.4174134Z  Network echo-canvas-web_default Creating
+2026-10-13T06:13:51.4174903Z  Network echo-canvas-web_default Creating
+2026-10-13T06:13:51.4435041Z  Network echo-canvas-web_default Created
+2026-10-13T06:13:51.4435671Z  Network echo-canvas-web_default Created
+2026-10-13T06:13:51.4436019Z  Container echo-canvas-web-web-1 Creating
+2026-10-13T06:13:51.4621410Z  Container echo-canvas-web-web-1 Created
+2026-10-13T06:13:51.4628749Z  Container echo-canvas-web-web-1 Starting
+2026-10-13T06:13:51.7771187Z  Container echo-canvas-web-web-1 Started
+2026-10-13T06:13:51.7771943Z  Container echo-canvas-web-web-1 Waiting
+2026-10-13T06:13:57.2788531Z  Container echo-canvas-web-web-1 Healthy
+2026-10-13T06:13:57.2842289Z ##[group]Run node scripts/docker-smoke.mjs http://127.0.0.1:3000
+2026-10-13T06:13:57.2842814Z node scripts/docker-smoke.mjs http://127.0.0.1:3000
+2026-10-13T06:13:57.2879284Z shell: /usr/bin/bash -e {0}
+2026-10-13T06:13:57.2879670Z env:
+2026-10-13T06:13:57.2879969Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T06:13:57.2880273Z   AI_ENABLED: false
+2026-10-13T06:13:57.2880580Z ##[endgroup]
+2026-10-13T06:13:57.6150748Z Docker HTTP smoke passed: health, Classic/Hybrid routes, static/public assets, and both disabled AI APIs.
+2026-10-13T06:13:57.6230130Z ##[group]Run docker compose exec -T web node --input-type=module < scripts/docker-runtime-check.mjs
+2026-10-13T06:13:57.6230769Z docker compose exec -T web node --input-type=module < scripts/docker-runtime-check.mjs
+2026-10-13T06:13:57.6231555Z docker image inspect echo-canvas-web:local --format 'Image size: {{.Size}} bytes; user: {{.Config.User}}; exposed ports: {{json .Config.ExposedPorts}}'
+2026-10-13T06:13:57.6273283Z shell: /usr/bin/bash -e {0}
+2026-10-13T06:13:57.6273657Z env:
+2026-10-13T06:13:57.6273937Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T06:13:57.6274315Z   AI_ENABLED: false
+2026-10-13T06:13:57.6274604Z ##[endgroup]
+2026-10-13T06:13:57.7368852Z {
+2026-10-13T06:13:57.7369433Z   "runtimeUser": 1000,
+2026-10-13T06:13:57.7369819Z   "summary": {
+2026-10-13T06:13:57.7370235Z     "runtimePackages": 21,
+2026-10-13T06:13:57.7370573Z     "standalonePackages": 19,
+2026-10-13T06:13:57.7371027Z     "skippedManifestsWithoutNameOrVersion": 49,
+2026-10-13T06:13:57.7371596Z     "missingLicenseMetadata": 0,
+2026-10-13T06:13:57.7372029Z     "missingNoticeFiles": 0,
+2026-10-13T06:13:57.7372516Z     "missingInstalledPackages": 0,
+2026-10-13T06:13:57.7373008Z     "ignoredExternalRuntimeLinks": 0,
+2026-10-13T06:13:57.7373588Z     "declaredDependenciesIncluded": 5,
+2026-10-13T06:13:57.7374048Z     "supplementalPackages": 3,
+2026-10-13T06:13:57.7374648Z     "provenanceExceptions": 0
+2026-10-13T06:13:57.7375076Z   },
+2026-10-13T06:13:57.7375519Z   "unresolvedProvenance": []
+2026-10-13T06:13:57.7375943Z }
+2026-10-13T06:13:57.7557781Z Image size: 267766572 bytes; user: node; exposed ports: {"3000/tcp":{}}
+2026-10-13T06:13:57.7600473Z ##[group]Run container_id=$(docker compose ps -q web)
+2026-10-13T06:13:57.7600909Z container_id=$(docker compose ps -q web)
+2026-10-13T06:13:57.7601264Z docker compose stop --timeout 30 web
+2026-10-13T06:13:57.7601699Z exit_code=$(docker inspect --format '{{.State.ExitCode}}' "$container_id")
+2026-10-13T06:13:57.7602211Z # Next 16.3.8 exits 143 after its SIGTERM cleanup (128 + signal 15).
+2026-10-13T06:13:57.7602593Z case "$exit_code" in
+2026-10-13T06:13:57.7602871Z   0|143) ;;
+2026-10-13T06:13:57.7603370Z   *) echo "Unexpected container shutdown exit code: $exit_code"; exit 1 ;;
+2026-10-13T06:13:57.7603763Z esac
+2026-10-13T06:13:57.7604141Z test "$(docker inspect --format '{{.State.OOMKilled}}' "$container_id")" = false
+2026-10-13T06:13:57.7641875Z shell: /usr/bin/bash -e {0}
+2026-10-13T06:13:57.7642218Z env:
+2026-10-13T06:13:57.7642474Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T06:13:57.7642863Z   AI_ENABLED: false
+2026-10-13T06:13:57.7643111Z ##[endgroup]
+2026-10-13T06:13:57.8691469Z  Container echo-canvas-web-web-1 Stopping
+2026-10-13T06:13:57.9807081Z  Container echo-canvas-web-web-1 Stopped
+2026-10-13T06:13:58.0083562Z ##[group]Run docker compose logs --no-color
+2026-10-13T06:13:58.0083962Z docker compose logs --no-color
+2026-10-13T06:13:58.0084267Z docker compose down
+2026-10-13T06:13:58.0119830Z shell: /usr/bin/bash -e {0}
+2026-10-13T06:13:58.0120218Z env:
+2026-10-13T06:13:58.0120486Z   NEXT_TELEMETRY_DISABLED: 1
+2026-10-13T06:13:58.0120844Z   AI_ENABLED: false
+2026-10-13T06:13:58.0121144Z ##[endgroup]
+2026-10-13T06:13:58.0587979Z web-1  | ▲ Next.js 16.3.8
+2026-10-13T06:13:58.0588668Z web-1  | - Local:         http://localhost:3000
+2026-10-13T06:13:58.0589636Z web-1  | - Network:       http://0.0.0.0:3000
+2026-10-13T06:13:58.0590299Z web-1  | ✓ Ready in 0ms
+2026-10-13T06:13:58.0590996Z web-1  | ✓ Running next.config took 0.8ms
+2026-10-13T06:13:58.1003576Z  Container echo-canvas-web-web-1 Stopping
+2026-10-13T06:13:58.1005587Z  Container echo-canvas-web-web-1 Stopped
+2026-10-13T06:13:58.1006487Z  Container echo-canvas-web-web-1 Removing
+2026-10-13T06:13:58.1051347Z  Container echo-canvas-web-web-1 Removed
+2026-10-13T06:13:58.1058591Z  Network echo-canvas-web_default Removing
+2026-10-13T06:13:58.1749757Z  Network echo-canvas-web_default Removed
+2026-10-13T06:13:58.1859280Z Post job cleanup.
+2026-10-13T06:13:58.2991132Z Post job cleanup.
+2026-10-13T06:13:58.3797997Z [command]/usr/bin/git version
+2026-10-13T06:13:58.3847492Z git version 2.55.0
+2026-10-13T06:13:58.3885052Z Temporarily overriding HOME='/home/runner/work/_temp/57662678-15b2-4353-9931-022e14cd8947' before making global git config changes
+2026-10-13T06:13:58.3886716Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-13T06:13:58.3888203Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Echo-Canva-Web/Echo-Canva-Web
+2026-10-13T06:13:58.3919486Z Removing SSH command configuration
+2026-10-13T06:13:58.3927385Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T06:13:58.3966943Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-13T06:13:58.4158863Z Removing HTTP extra header
+2026-10-13T06:13:58.4160256Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T06:13:58.4182096Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-13T06:13:58.4365984Z Removing includeIf entries pointing to credentials config files
+2026-10-13T06:13:58.4370591Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T06:13:58.4397962Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-13T06:13:58.4715799Z Cleaning up orphan processes

@@ -1,0 +1,58 @@
+{
+  "startedAt": "2026-10-13T07:00:13.440Z",
+  "buildId": "2ny829QrRqlazPRczRblE",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "--config",
+    "../verification-logs/fix-validator-profile.config.cjs"
+  ],
+  "platform": "win32",
+  "arch": "x64",
+  "node": "v22.17.0",
+  "diagnosticOnly": true,
+  "hardwareConcurrencyOverride": 3,
+  "profilerSamplingIntervalUs": 250
+}
+[WebServer] (node:5656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+
+Running 1 test using 1 worker
+
+(node:54068) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › ..\verification-logs\fix-validator-profile.spec.ts:3:1 › survives the full entity-limit project within Worker and interaction budgets (8.8s)
+
+
+  1) [chromium] › ..\verification-logs\fix-validator-profile.spec.ts:3:1 › survives the full entity-limit project within Worker and interaction budgets
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 12
+    Received:   14
+
+      227 |   expect(sorted).toHaveLength(24);
+      228 |   expect(completedSequences.size).toBe(24);
+    > 229 |   expect(sorted[Math.ceil(sorted.length * 0.95) - 1]).toBeLessThan(12);
+          |                                                       ^
+      230 |   expect(
+      231 |     longTasks.every((duration) => duration <= 50),
+      232 |     `Observed long tasks: ${JSON.stringify(longTasks)}`,
+        at D:\Developing\Echo Canvas Web\verification-logs\fix-validator-profile.spec.ts:229:55
+
+    attachment #1: worker-stress-metrics (application/json) ────────────────────────────────────────
+    ..\verification-logs\fix-validator-profile-results\fix-validator-profile-surv-2ac27-ker-and-interaction-budgets-chromium\attachments\worker-stress-metrics-b0093afcbfa0ae848d21a7dd5086086281f8da4e.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\verification-logs\fix-validator-profile-results\fix-validator-profile-surv-2ac27-ker-and-interaction-budgets-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\verification-logs\fix-validator-profile-results\fix-validator-profile-surv-2ac27-ker-and-interaction-budgets-chromium\error-context.md
+
+  1 failed
+    [chromium] › ..\verification-logs\fix-validator-profile.spec.ts:3:1 › survives the full entity-limit project within Worker and interaction budgets
+
+RESULT {"startedAt":"2026-10-13T07:00:13.440Z","buildId":"2ny829QrRqlazPRczRblE","command":["C:\\Program Files\\nodejs\\node.exe","node_modules/@playwright/test/cli.js","test","--config","../verification-logs/fix-validator-profile.config.cjs"],"platform":"win32","arch":"x64","node":"v22.17.0","diagnosticOnly":true,"hardwareConcurrencyOverride":3,"profilerSamplingIntervalUs":250,"endedAt":"2026-10-13T07:00:25.482Z","durationSeconds":12.041971300000002,"exitCode":1,"signal":null}

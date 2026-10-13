@@ -1,0 +1,87 @@
+{
+  "project": "echo-canvas-fix-lazy-dev",
+  "base": "http://127.0.0.1:3103",
+  "hmrCycles": [
+    {
+      "cycle": 1,
+      "milliseconds": 870,
+      "sourceRestored": true
+    },
+    {
+      "cycle": 2,
+      "milliseconds": 843,
+      "sourceRestored": true
+    }
+  ],
+  "sourceRestored": true,
+  "browserScenePersisted": true,
+  "browserAudioPersisted": true,
+  "stopCycles": [
+    {
+      "cycle": 1,
+      "exitCode": 0,
+      "oomKilled": false,
+      "milliseconds": 1342
+    },
+    {
+      "cycle": 2,
+      "exitCode": 0,
+      "oomKilled": false,
+      "milliseconds": 1349
+    }
+  ],
+  "persistenceCycles": [
+    {
+      "cycle": 1,
+      "classicX": "2.25",
+      "hybridLocalSourceX": "4.5",
+      "audioAfter": [
+        {
+          "id": "local_aac0e20e_5039_4dfb_b3d7_aeebe3135f17",
+          "name": "voice-loop.wav",
+          "mimeType": "audio/wav",
+          "size": 192044,
+          "blobSize": 192044,
+          "sha256": "6eb6c689dde03b1b5e0e57bce73262d44b1cbae1ac63f8f9378b2a2c1e531cc3"
+        }
+      ]
+    },
+    {
+      "cycle": 2,
+      "classicX": "2.25",
+      "hybridLocalSourceX": "4.5",
+      "audioAfter": [
+        {
+          "id": "local_aac0e20e_5039_4dfb_b3d7_aeebe3135f17",
+          "name": "voice-loop.wav",
+          "mimeType": "audio/wav",
+          "size": 192044,
+          "blobSize": 192044,
+          "sha256": "6eb6c689dde03b1b5e0e57bce73262d44b1cbae1ac63f8f9378b2a2c1e531cc3"
+        }
+      ]
+    }
+  ],
+  "browserErrors": [],
+  "postRequests": [],
+  "audioBefore": [
+    {
+      "id": "local_aac0e20e_5039_4dfb_b3d7_aeebe3135f17",
+      "name": "voice-loop.wav",
+      "mimeType": "audio/wav",
+      "size": 192044,
+      "blobSize": 192044,
+      "sha256": "6eb6c689dde03b1b5e0e57bce73262d44b1cbae1ac63f8f9378b2a2c1e531cc3"
+    }
+  ],
+  "audioAfter": [
+    {
+      "id": "local_aac0e20e_5039_4dfb_b3d7_aeebe3135f17",
+      "name": "voice-loop.wav",
+      "mimeType": "audio/wav",
+      "size": 192044,
+      "blobSize": 192044,
+      "sha256": "6eb6c689dde03b1b5e0e57bce73262d44b1cbae1ac63f8f9378b2a2c1e531cc3"
+    }
+  ]
+}

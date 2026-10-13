@@ -14,6 +14,7 @@ RUN npm install --global pnpm@11.7.0 \
 
 FROM base AS dependencies
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY patches ./patches
 RUN pnpm install --frozen-lockfile
 
 # Development and production intentionally use separate targets.

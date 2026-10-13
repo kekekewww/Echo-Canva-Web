@@ -1,0 +1,21 @@
+{
+  "recordType": "Retrospective metadata from retained tool execution results; not a raw stdout log",
+  "cwd": "D:/Developing/Echo Canvas Web/Echo-Canva-Web",
+  "checks": [
+    {
+      "command": "node node_modules/eslint/bin/eslint.js src/components/workspace/UnifiedWorkspace.tsx src/components/workspace/ContextInspector.tsx src/components/workspace/SceneOutliner.tsx 2>&1 | Tee-Object -FilePath '../verification-logs/ui-stable-props-lint.txt'; exit $LASTEXITCODE",
+      "exitCode": 0,
+      "wallTimeSeconds": 7.3830963,
+      "stdout": "",
+      "rawLogCreated": false
+    },
+    {
+      "command": "node node_modules/typescript/bin/tsc --noEmit 2>&1 | Tee-Object -FilePath '../verification-logs/ui-stable-props-typecheck.txt'; exit $LASTEXITCODE",
+      "exitCode": 0,
+      "wallTimeSeconds": 4.6479224,
+      "stdout": "",
+      "rawLogCreated": false
+    }
+  ],
+  "note": "Silent successful Tee-Object pipelines did not create files. Earlier claims that those raw files were saved were corrected. No check was rerun to manufacture a raw log. Earlier ui-lazy lint/typecheck pipelines have the same silent-output limitation."
+}

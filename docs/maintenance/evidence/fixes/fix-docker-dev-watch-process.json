@@ -1,0 +1,7 @@
+{
+  "port": 3103,
+  "project": "echo-canvas-fix-dev",
+  "utc": "2026-10-13T06:20:18.6965891Z",
+  "pid": 65928,
+  "arguments": "compose --env-file ../verification-logs/fix-empty.env -p echo-canvas-fix-dev -f compose.dev.yaml up --build --watch"
+}

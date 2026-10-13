@@ -1,4 +1,5 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./browser-evidence";
+import { writeFile } from "node:fs/promises";
 
 test("renders one modelling workspace on every route", async ({ page }) => {
   for (const [route, mode] of [["/", "classic-2d5d"], ["/classic", "classic-2d5d"], ["/lab", "hybrid-3d"]] as const) {
@@ -404,6 +405,7 @@ test("survives the full entity-limit project within Worker and interaction budge
     state.__echoLongTaskObserver.observe({ type: "longtask", buffered: false });
   });
   const timings: number[] = [];
+  const workerStatuses: (string | null)[] = [];
   const completedSequences = new Set<number>();
   let previousSequence = Number(await statusbar.getAttribute("data-acoustic-sequence"));
   let previousRevision = Number(await statusbar.getAttribute("data-acoustic-revision"));
@@ -435,6 +437,7 @@ test("survives the full entity-limit project within Worker and interaction budge
       sequence: element.getAttribute("data-acoustic-sequence"),
       workerCount: element.getAttribute("data-worker-count"),
       workerSource: element.getAttribute("data-worker-source"),
+      statusText: element.textContent,
     }));
     expect(sample.timing).not.toBeNull();
     expect(sample.timing).not.toBe("");
@@ -453,6 +456,7 @@ test("survives the full entity-limit project within Worker and interaction budge
     expect(completedSequences.has(sequence)).toBe(false);
     completedSequences.add(sequence);
     timings.push(timing);
+    workerStatuses.push(sample.statusText);
     previousRevision = revision;
     previousSequence = sequence;
   }
@@ -471,6 +475,25 @@ test("survives the full entity-limit project within Worker and interaction budge
     return state.__echoLongTasks ?? [];
   });
   const sorted = timings.toSorted((a, b) => a - b);
+  // Record after the measured window closes, before the final budget assertions.
+  // Keep the original input, pool policy, sample count and acceptance limits.
+  const metricsPath = test.info().outputPath("worker-stress-metrics.json");
+  await writeFile(metricsPath, JSON.stringify({
+      browser: await page.evaluate(() => ({
+        hardwareConcurrency: navigator.hardwareConcurrency,
+        userAgent: navigator.userAgent,
+      })),
+      expectedWorkerCount,
+      timings,
+      p95Ms: sorted[Math.ceil(sorted.length * 0.95) - 1],
+      completedSequences: [...completedSequences],
+      longTasks,
+      workerStatuses,
+    }, null, 2));
+  await test.info().attach("worker-stress-metrics", {
+    path: metricsPath,
+    contentType: "application/json",
+  });
   expect(sorted).toHaveLength(24);
   expect(completedSequences.size).toBe(24);
   expect(sorted[Math.ceil(sorted.length * 0.95) - 1]).toBeLessThan(12);

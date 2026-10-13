@@ -1,0 +1,68 @@
+{
+  "cleanup": "PASS scoped task projects removed; images, browser profile and evidence retained",
+  "environment": "Windows hostNode22.17.0 / DockerDesktop4.93.0 / Linuxamd64Engine29.8.1 / Compose5.5.1 / containerNode22.23.3 / pnpm11.7.0",
+  "limitations": [
+    "Evidence applies to phase1 immutable images; follow-up wall-panel source requires separate final images and regression.",
+    "No macOS/Linux-host DockerDesktop validation, subjective real-device listening, OS vulnerability scan, or proof all secret encodings absent."
+  ],
+  "production": {
+    "licenseGapCounts": "all five zero",
+    "e2e": {
+      "retries": 0,
+      "suiteSeconds": 46.2,
+      "processSeconds": 47.2208127,
+      "testsPassed": 45,
+      "exitCode": 0
+    },
+    "boundedSecretScan": "PASS with explicit six binary skips",
+    "restartSmoke": "PASS",
+    "gracefulStop": {
+      "immutableImage": "sha256:c33e6183a468ca013b66c041806e5ae15248c71c39d1c0c878272500a74b237d",
+      "seconds": 1.3801646,
+      "oomKilled": false,
+      "exitCode": 143,
+      "running": false
+    },
+    "imageId": "sha256:c33e6183a468ca013b66c041806e5ae15248c71c39d1c0c878272500a74b237d",
+    "bytes": 386464321,
+    "noCacheBuildSeconds": 76.5330066,
+    "httpAndRuntimeGuard": "PASS"
+  },
+  "phase": "Initial verification-debt fixes, before follow-up wall-panel geometry correction",
+  "evidencePrefix": "fix-docker-*",
+  "development": {
+    "unitTests": 567,
+    "buildSeconds": 89.3267685,
+    "unitFiles": 73,
+    "imageId": "sha256:fa9724e0474e8a65ec251b5b2f12c09d3841350e39dd2bd6c777ca9ca99cc4ac",
+    "bytes": 1037614927,
+    "quality": {
+      "actualNode": "v22.23.3",
+      "actualPnpm": "11.7.0",
+      "utc": "2026-10-13T06:19:26.5223223Z",
+      "seconds": 28.3163702,
+      "checks": [
+        {
+          "check": "lint",
+          "exitCode": 0
+        },
+        {
+          "check": "typecheck",
+          "exitCode": 0
+        },
+        {
+          "check": "test",
+          "exitCode": 0
+        }
+      ]
+    },
+    "hmrMs": 1011,
+    "persistenceStatus": "PASS",
+    "persistenceEvidence": "fix-dev-browser-persistence-results.json"
+  },
+  "sourceBranch": "fix/verification-debt",
+  "correctedHarnessAssumptions": [
+    "Watch enabled readiness was emitted on stdout, not stderr; both streams checked before browser run.",
+    "Initial persistence helper assumed / forces Classic; source shows persisted active mode restores Hybrid. Original failure retained; follow-up explicitly selects modes using untouched browser asset/profile, no reimport/reset."
+  ]
+}

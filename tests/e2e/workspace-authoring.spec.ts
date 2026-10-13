@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { expect, test } from "@playwright/test";
 
 import { CONCRETE_PARTITION_PRESET } from "@/domain/presets/concrete-partition";
+import type { ExplainAcousticsRequest } from "@/ai/contracts";
 
 test("adds and activates listeners and enforces the source workflow", async ({ page }) => {
   await page.goto("/lab");
@@ -119,6 +120,43 @@ test("applies a mode-aware AI candidate to Hybrid room and object heights", asyn
   await expect(page.getByRole("textbox", { name: "Height" })).toHaveValue("4.5");
   await page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "Radio" }).click();
   await expect(page.getByRole("textbox", { name: "Y position" })).toHaveValue("1.4");
+});
+
+test("explains the selected source using a deterministic snapshot and a mocked AI response", async ({ page }) => {
+  let requested: ExplainAcousticsRequest | undefined;
+  await page.route("**/api/scene/explain", async (route) => {
+    requested = await route.request().postDataJSON() as ExplainAcousticsRequest;
+    await route.fulfill({ json: {
+      ok: true,
+      explanation: {
+        summary: "Rain follows the calculated acoustic route.",
+        factors: [{ label: "Distance", evidence: "The snapshot contains the selected source distance." }],
+        limitations: ["Portal routing is a geometric perceptual approximation."],
+      },
+      model: "gpt-5.6",
+    } });
+  });
+
+  await page.goto("/");
+  await page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "Rain", exact: true }).click();
+  await page.getByText("AI scene tools").click();
+  await page.getByRole("button", { name: "Explain selected acoustics" }).click();
+
+  await expect(page.locator(".workspace-explanation")).toContainText("Rain follows the calculated acoustic route.");
+  await expect(page.locator(".workspace-explanation")).toContainText("Distance: The snapshot contains the selected source distance.");
+  expect(requested).toMatchObject({
+    sceneName: "Concrete Partition",
+    sourceName: "Rain",
+    snapshot: {
+      routeType: expect.stringMatching(/^(direct|portal|blocked)$/),
+      effectiveDistanceM: expect.any(Number),
+      dryGainDb: expect.any(Number),
+      lowpassHz: expect.any(Number),
+      portalCount: expect.any(Number),
+      rt60S: { low: expect.any(Number), mid: expect.any(Number), high: expect.any(Number) },
+    },
+  });
+  expect(requested?.snapshot.effectiveDistanceM).toBeGreaterThan(0);
 });
 
 test("confirms permanent deletes and clears all local project data in two steps", async ({ page }) => {

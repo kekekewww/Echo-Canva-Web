@@ -19,9 +19,16 @@ env:
 
 jobs:
   application:
-    name: Application checks and Chromium E2E
-    runs-on: ubuntu-latest
+    name: Application checks and Chromium E2E (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -37,6 +44,8 @@ jobs:
           pnpm install --frozen-lockfile
       - name: Verify the immutable source and destination initializer
         run: node scripts/verify-source-baseline.mjs
+      - name: Verify the real Next.js Client and Server Component boundary
+        run: node scripts/verify-client-marker-boundary.mjs
       - name: ESLint
         run: pnpm lint
       - name: Production dependency advisory audit
@@ -51,13 +60,30 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
       - name: Chromium E2E against the built application
         run: pnpm exec playwright test
+      - name: Diagnose first attempts with CPU traces (not performance acceptance)
+        if: ${{ failure() && !cancelled() && runner.os == 'Windows' }}
+        # Instrumentation changes timing. This supplementary run cannot replace
+        # or turn green the unprofiled acceptance suite above.
+        continue-on-error: true
+        env:
+          BROWSER_DIAGNOSTICS: "1"
+          E2E_SINGLE_ACOUSTIC_WORKER: "1"
+        run: pnpm exec playwright test tests/e2e/workspace.spec.ts --grep 'survives the full entity-limit project|Hybrid viewport adds pan navigation' --repeat-each=6 --retries=0 --trace=off --output=test-results/diagnostic
       - name: Upload browser failure evidence
-        if: failure()
+        # A retry can make the job green while a real first-attempt failure
+        # remains. Preserve that evidence as well as terminal failures.
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
-          name: chromium-failure-evidence
+          name: chromium-failure-evidence-${{ matrix.os }}
           path: |
-            test-results/
+            test-results/**/test-failed-*.png
+            test-results/**/error-context.md
+            test-results/**/trace.zip
+            test-results/**/attachments/*.json
+            test-results/**/worker-stress-metrics.json
+            test-results/**/browser-events.json
+            test-results/**/chromium-cpu-trace.json
             playwright-report/
           if-no-files-found: ignore
           retention-days: 7

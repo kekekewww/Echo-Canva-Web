@@ -1,6 +1,8 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { resolveHybridAudibleDirectState } from "@/acoustics/hybrid3d/audible-direct";
+import * as classicReflections from "@/acoustics/image-source";
+import * as roomAcoustics from "@/acoustics/room-acoustics";
 import { bindHybridPoses, compileHybridStaticGeometry } from "@/acoustics/hybrid3d/compile";
 import { computeHybridDirectFrame } from "@/acoustics/hybrid3d/direct";
 import { CONCRETE_PARTITION_PRESET } from "@/domain/presets/concrete-partition";
@@ -38,6 +40,32 @@ function buildGeometry(options: Readonly<{
 }
 
 describe("resolveHybridAudibleDirectState", () => {
+  afterEach(() => vi.restoreAllMocks());
+
+  it("maps a Hybrid portal candidate without computing unused Classic reflections or decay", () => {
+    const geometry = buildGeometry({
+      listenerPlan: { x: 3, z: 1.5 },
+      radioPlan: { x: 9, z: 1.5 },
+    });
+    const frame = computeHybridDirectFrame(geometry);
+    const firstOrder = vi.spyOn(classicReflections, "findFirstOrderReflections");
+    const secondOrder = vi.spyOn(classicReflections, "findSecondOrderReflections");
+    const decay = vi.spyOn(roomAcoustics, "estimateRoomAcoustics");
+
+    const result = resolveHybridAudibleDirectState(geometry, frame);
+
+    expect(result.paths.find(({ sourceId }) => sourceId === "radio")).toMatchObject({
+      routeType: "portal",
+      dryGainDb: -3,
+      lowpassHz: 18_500,
+      portalIds: ["partition_door"],
+      virtualPosition: { x: 6, y: 1.05, z: 4 },
+    });
+    expect(firstOrder).not.toHaveBeenCalled();
+    expect(secondOrder).not.toHaveBeenCalled();
+    expect(decay).not.toHaveBeenCalled();
+  });
+
   it("uses the actual 3D source position for a clear direct path", () => {
     const geometry = buildGeometry({
       listenerPlan: { x: 3, z: 4 },

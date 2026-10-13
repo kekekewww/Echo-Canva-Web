@@ -1,0 +1,128 @@
+diff --git a/lib/compile.js b/lib/compile.js
+index dce69be..1051f68 100644
+--- a/lib/compile.js
++++ b/lib/compile.js
+@@ -2,9 +2,11 @@
+ 
+ const fill = require('fill-range');
+ const utils = require('./utils');
++const guardDepth = require('./guard-depth');
+ 
+ const compile = (ast, options = {}) => {
+-  const walk = (node, parent = {}) => {
++  const walk = (node, parent = {}, depth = 0) => {
++    if (node.nodes) guardDepth(depth);
+     const invalidBlock = utils.isInvalidBrace(parent);
+     const invalidNode = node.invalid === true && options.escapeInvalid === true;
+     const invalid = invalidBlock === true || invalidNode === true;
+@@ -47,7 +49,7 @@ const compile = (ast, options = {}) => {
+ 
+     if (node.nodes) {
+       for (const child of node.nodes) {
+-        output += walk(child, node);
++        output += walk(child, node, depth + 1);
+       }
+     }
+ 
+diff --git a/lib/expand.js b/lib/expand.js
+index 35b2c41..38419b3 100644
+--- a/lib/expand.js
++++ b/lib/expand.js
+@@ -3,6 +3,7 @@
+ const fill = require('fill-range');
+ const stringify = require('./stringify');
+ const utils = require('./utils');
++const guardDepth = require('./guard-depth');
+ 
+ const append = (queue = '', stash = '', enclose = false) => {
+   const result = [];
+@@ -33,7 +34,8 @@ const append = (queue = '', stash = '', enclose = false) => {
+ const expand = (ast, options = {}) => {
+   const rangeLimit = options.rangeLimit === undefined ? 1000 : options.rangeLimit;
+ 
+-  const walk = (node, parent = {}) => {
++  const walk = (node, parent = {}, depth = 0) => {
++    if (node.nodes) guardDepth(depth);
+     node.queue = [];
+ 
+     let p = parent;
+@@ -100,7 +102,7 @@ const expand = (ast, options = {}) => {
+       }
+ 
+       if (child.nodes) {
+-        walk(child, node);
++        walk(child, node, depth + 1);
+       }
+     }
+ 
+diff --git a/lib/guard-depth.js b/lib/guard-depth.js
+new file mode 100644
+index 0000000..d19876c
+--- /dev/null
++++ b/lib/guard-depth.js
+@@ -0,0 +1,11 @@
++'use strict';
++
++// Local security patch for GHSA-vfj7-8cjw-p6xm. Keep recursive AST walkers
++// bounded independently of pattern length and caller-supplied options.
++module.exports = depth => {
++  if (depth > 128) {
++    const error = new SyntaxError('Brace pattern exceeds maximum nesting depth (128)');
++    error.code = 'BRACES_MAX_DEPTH';
++    throw error;
++  }
++};
+diff --git a/lib/parse.js b/lib/parse.js
+index 3a6988e..19c9a50 100644
+--- a/lib/parse.js
++++ b/lib/parse.js
+@@ -1,6 +1,7 @@
+ 'use strict';
+ 
+ const stringify = require('./stringify');
++const guardDepth = require('./guard-depth');
+ 
+ /**
+  * Constants
+@@ -143,6 +144,7 @@ const parse = (input, options = {}) => {
+      */
+ 
+     if (value === CHAR_LEFT_PARENTHESES) {
++      guardDepth(stack.length);
+       block = push({ type: 'paren', nodes: [] });
+       stack.push(block);
+       push({ type: 'text', value });
+@@ -195,6 +197,7 @@ const parse = (input, options = {}) => {
+      */
+ 
+     if (value === CHAR_LEFT_CURLY_BRACE) {
++      guardDepth(stack.length);
+       depth++;
+ 
+       const dollar = prev.value && prev.value.slice(-1) === '$' || block.dollar === true;
+diff --git a/lib/stringify.js b/lib/stringify.js
+index 8bcf872..9e6aad5 100644
+--- a/lib/stringify.js
++++ b/lib/stringify.js
+@@ -1,9 +1,11 @@
+ 'use strict';
+ 
+ const utils = require('./utils');
++const guardDepth = require('./guard-depth');
+ 
+ module.exports = (ast, options = {}) => {
+-  const stringify = (node, parent = {}) => {
++  const stringify = (node, parent = {}, depth = 0) => {
++    if (node.nodes) guardDepth(depth);
+     const invalidBlock = options.escapeInvalid && utils.isInvalidBrace(parent);
+     const invalidNode = node.invalid === true && options.escapeInvalid === true;
+     let output = '';
+@@ -21,7 +23,7 @@ module.exports = (ast, options = {}) => {
+ 
+     if (node.nodes) {
+       for (const child of node.nodes) {
+-        output += stringify(child);
++        output += stringify(child, undefined, depth + 1);
+       }
+     }
+     return output;

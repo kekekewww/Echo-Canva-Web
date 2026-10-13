@@ -16,8 +16,9 @@ old notice record to an unreviewed new native release.
   plus GPL-3.0 texts are retained because the packaging distribution invokes the
   LGPL's later-version option.
 - The `client-only@0.0.1` archive declares MIT but supplies no copyright/license
-  text or original source revision. Its original metadata and provenance exception
-  are retained without inventing an author or assigning another project's notice.
+  text or original source revision. Its original metadata is retained as historical
+  provenance. Both executable copies are independently reimplemented under this
+  project's MIT license; there is no runtime exception. See [ADR 0006](../adr/0006-local-dependency-patches.md).
 
 Upstream notices, source links and exact package provenance are evidence, not a
 legal certification. Base-image and bundled-native component obligations remain

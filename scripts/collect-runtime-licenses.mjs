@@ -339,3 +339,13 @@ await writeFile(path.join(outputRoot, "inventory.json"), `${JSON.stringify({
   packages,
 }, null, 2)}\n`);
 console.log(`Runtime notices: ${packages.length} packages; ${summary.missingLicenseMetadata} missing license metadata; ${summary.missingNoticeFiles} missing notices (${summary.provenanceExceptions} provenance exceptions); ${summary.missingInstalledPackages} missing installed originals.`);
+if (packages.some((entry) => entry.name === "client-only" && entry.version === "0.0.1")) {
+  throw new Error("Original client-only artifact remains; the independently authored marker replacement is required. See third-party-licenses/inventory.json.");
+}
+const unresolved = [
+  "missingLicenseMetadata", "missingNoticeFiles", "missingInstalledPackages",
+  "ignoredExternalRuntimeLinks", "provenanceExceptions",
+].filter((key) => summary[key] !== 0);
+if (unresolved.length) {
+  throw new Error(`Runtime license inventory has unresolved gaps: ${unresolved.map((key) => `${key}=${summary[key]}`).join(", ")}. See third-party-licenses/inventory.json.`);
+}

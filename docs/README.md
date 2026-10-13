@@ -12,6 +12,7 @@ Start with [README](../README.md), [CONTRIBUTING](../CONTRIBUTING.md), and [onbo
 | [Research](RESEARCH.md) | Preserved bibliography and implementation map |
 | [API contracts](API_CONTRACTS.md) | Scene and API contract reference with source-era context |
 | [Docker](deployment/docker.md) | Optional contributor environment and self-hosting |
+| [Browser listening/Desktop checks](testing/browser-listening.md) | Human audio/HRTF/IndexedDB protocol and Windows/macOS Docker Desktop hot reload |
 | [ADRs](adr/README.md) | Decision records and template |
 | [Maintenance reports](maintenance/README.md) | Baseline/final/audit/security/license/dependency evidence and debt |
 | [Community issues](community/INITIAL_ISSUES.md) | Sciwork documentation, testing and visualization drafts |

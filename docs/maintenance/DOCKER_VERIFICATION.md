@@ -1,5 +1,9 @@
 # Docker Development and Production Verification Report
 
+This is the retained initial image ledger, including its failed stress runs and
+then-documented notice exception. The patched images and current native/container
+verification are recorded separately in [VERIFICATION_FIXES.md](VERIFICATION_FIXES.md).
+
 Date: 2026-10-13. Source: `v1.0.0-build-week` at
 `c8fe24700b67861e2f64fbb8950e9281c0e13a3c` plus documented maintenance/security
 changes. This report records actual final-image results and keeps failures separate

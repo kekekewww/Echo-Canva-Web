@@ -11,6 +11,7 @@ coverage/
 playwright-report/
 test-results/
 third-party-licenses/
+.tmp-client-marker-*/
 
 # Local configuration
 .env*

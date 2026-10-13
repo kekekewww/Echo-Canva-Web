@@ -1,0 +1,5 @@
+{
+  "Command": "pnpm exec vitest run tests/unit/client-only-marker.test.ts tests/unit/runtime-license-collector.test.ts",
+  "ExitCode": 0,
+  "DurationSeconds": 8.6765993
+}

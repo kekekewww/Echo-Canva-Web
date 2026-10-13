@@ -1,7 +1,10 @@
-# Final Verification Report
+# Initial Extraction Verification Report
 
-Date: 2026-10-13, Asia/Taipei. Local implementation and verification are complete.
-**Full browser acceptance is not passing:** the unchanged entity-limit performance
+Date: 2026-10-13, Asia/Taipei. This is the initial extraction's retained ledger.
+The subsequent performance/dependency/notice fixes and new integrated outcomes
+are in [VERIFICATION_FIXES.md](VERIFICATION_FIXES.md). The failures below describe
+the earlier tree and are not rewritten by later passes.
+**At this initial stage full browser acceptance was not passing:** the unchanged entity-limit performance
 case failed in both final complete Chromium runs and in a targeted native retry.
 This report preserves those results rather than treating earlier passing runs as
 the final verdict. All other checks below have their own scope and status.

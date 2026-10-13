@@ -34,11 +34,5 @@
     "files": ["docs/licenses/edge-ponyfill-4.0.0/LICENSE.md", "docs/licenses/edge-ponyfill-4.0.0/UPSTREAM_PACKAGE.json", "docs/licenses/edge-ponyfill-4.0.0/PROVENANCE.md"],
     "sources": ["https://registry.npmjs.org/@edge-runtime/ponyfill/-/ponyfill-4.0.0.tgz"],
     "note": "Exact published npm license bytes verified against registry SHA-512 integrity; Next vendored copy omits its license."
-  },
-  "client-only@0.0.1": {
-    "provenanceException": true,
-    "files": ["docs/licenses/client-only-0.0.1/UPSTREAM_PACKAGE.json", "docs/licenses/client-only-0.0.1/PROVENANCE.md"],
-    "sources": ["https://registry.npmjs.org/client-only/0.0.1", "https://registry.npmjs.org/client-only/-/client-only-0.0.1.tgz"],
-    "note": "PROVENANCE EXCEPTION: npm declares MIT but has no original license/copyright notice or source revision. Supplemental record retains actual metadata/integrity; it does not resolve copyright authorship or assign another project's notice."
   }
 }

@@ -1,0 +1,5 @@
+{
+  "Command": "node scripts/verify-client-marker-boundary.mjs",
+  "ExitCode": 0,
+  "DurationSeconds": 46.2123633
+}
