@@ -1,0 +1,37 @@
+ .env.example                                       |  11 +-
+ AGENTS.md                                          |   2 +-
+ README.md                                          |  15 +-
+ artifacts/release/deployment-smoke-test.md         |  27 ++++
+ artifacts/release/rc-metadata.json                 |  23 ++-
+ artifacts/release/release-acceptance-report.md     |  24 +--
+ artifacts/release/screenshots/public-ai-tools.png  | Bin 0 -> 84228 bytes
+ artifacts/release/screenshots/public-classic.png   | Bin 0 -> 72861 bytes
+ artifacts/release/screenshots/public-hybrid.png    | Bin 0 -> 136223 bytes
+ artifacts/release/submission-metadata.json         |  10 +-
+ docs/ACCEPTANCE_TESTS.md                           |   4 +-
+ docs/API_CONTRACTS.md                              |  16 +-
+ docs/ARCHITECTURE.md                               |   7 +-
+ docs/BUILD_CHECKLIST.md                            |   2 +-
+ docs/DECISION_LOG.md                               |  60 +++++++
+ docs/PRD.md                                        |   2 +-
+ docs/STATUS.md                                     | 132 ++++++++++++++-
+ .../templates/SUBMISSION_METADATA.json             |   2 +-
+ scripts/capture-submission-screenshots.mjs         |  31 ++++
+ src/ai/acoustic-explainer.ts                       |  72 +++++++--
+ src/ai/client.ts                                   |  21 ++-
+ src/ai/contracts.ts                                |  10 +-
+ src/ai/provider.ts                                 |  64 ++++----
+ src/app/api/scene/compile/route.ts                 |  40 +++--
+ src/app/api/scene/explain/route.ts                 |  56 +++++--
+ src/app/globals.css                                | 177 +++++++++++++++++++++
+ src/components/workspace/ContextInspector.tsx      |   7 +-
+ src/components/workspace/UnifiedWorkspace.tsx      |  92 ++++++++++-
+ src/components/workspace/WorkspaceProjectTools.tsx |  10 +-
+ .../workspace/WorkspaceSettingsDialog.tsx          | 159 ++++++++++++++++++
+ tests/e2e/workspace-authoring.spec.ts              |  22 +++
+ tests/unit/acoustic-explainer.test.ts              |  95 ++++++++++-
+ tests/unit/ai-client.test.ts                       |  70 +++++++-
+ tests/unit/ai-provider.test.ts                     |  44 ++---
+ tests/unit/scene-compile-route.test.ts             |  27 +++-
+ tests/unit/scene-explain-route.test.ts             |  14 ++
+ 36 files changed, 1179 insertions(+), 169 deletions(-)

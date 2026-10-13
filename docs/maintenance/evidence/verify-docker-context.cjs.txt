@@ -1,0 +1,14 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = '/context';
+const excluded = ['.env.docker-context-probe', 'public/docker-context-probe.key', '.git', 'node_modules', '.next', 'docs/archive', 'docs/maintenance', '.github', '.superpowers', 'playwright-report', 'test-results', 'third-party-licenses'];
+for (const file of excluded) assert.equal(fs.existsSync(path.join(root, file)), false, `Unexpected context entry: ${file}`);
+const expectedOracles = ['mvp-baseline-audio.json', 'mvp-baseline.json'];
+assert.deepEqual(fs.readdirSync(path.join(root, 'benchmarks/results')).sort(), expectedOracles);
+assert(fs.existsSync(path.join(root, 'src/app/api/health/route.ts')));
+assert(fs.existsSync(path.join(root, 'tests/unit/classic-baseline-capture.test.ts')));
+const notices = fs.readdirSync(path.join(root, 'docs/licenses'), { recursive: true }).map(String);
+assert(notices.some(file => file.endsWith('COPYING.LESSER')));
+assert(notices.some(file => file.endsWith('COPYING')));
+console.log(JSON.stringify({ result: 'PASS', excluded, oracles: expectedOracles, applicationAndUnitFixturesPresent: true, gplAndLgplPresent: true }, null, 2));

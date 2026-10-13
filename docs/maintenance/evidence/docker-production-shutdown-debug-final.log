@@ -1,0 +1,13 @@
+▲ Next.js 16.3.8
+- Local:         http://localhost:3000
+- Network:       http://0.0.0.0:3000
+✓ Ready in 0ms
+✓ Running next.config took 4ms
+docker : 2026-10-13T03:16:29.186Z next:start-server start-server process cleanup
+位於 線路:2 字元:433
++ ... talSeconds; docker logs echo-canvas-web-shutdown-verification *> '..\ ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-10-13T03:1...process cleanup:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+2026-10-13T03:16:29.186Z next:start-server start-server process cleanup finished

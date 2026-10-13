@@ -1,0 +1,51 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const root = '/app';
+const seen = new Set();
+const result = { scanned: 0, bytesScanned: 0, matches: [], forbidden: [], clientCredentialSymbols: 0 };
+const patterns = {
+  providerCredential: /\b(?:sk-proj-|sk-or-v1-|sk-)[A-Za-z0-9_-]{24,}/g,
+  githubToken: /\bgh[pousr]_[A-Za-z0-9]{30,}/g,
+  awsAccessKey: /\bAKIA[0-9A-Z]{16}/g,
+  privateKey: /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/g,
+};
+function visit(file) {
+  let resolved;
+  try { resolved = fs.realpathSync(file); } catch { return; }
+  if (resolved !== root && !resolved.startsWith(root + '/')) return;
+  if (seen.has(resolved)) return;
+  seen.add(resolved);
+  const stat = fs.statSync(resolved);
+  const relative = path.relative(root, resolved);
+  if (stat.isDirectory()) {
+    if (path.basename(resolved) === '.git') result.forbidden.push(relative);
+    for (const name of fs.readdirSync(resolved)) visit(path.join(resolved, name));
+    return;
+  }
+  if (!stat.isFile()) return;
+  if (/^\.env(?:\.|$)/.test(path.basename(resolved))) result.forbidden.push(relative);
+  if (!/\.(?:js|mjs|cjs|json|css|html|txt|md|map|yaml|yml|sh)$/i.test(resolved) && !/(?:license|licence|copying|notice|copyright|legal)/i.test(path.basename(resolved))) return;
+  const bytes = fs.readFileSync(resolved);
+  const value = bytes.toString('utf8');
+  result.scanned += 1;
+  result.bytesScanned += bytes.length;
+  for (const [name, pattern] of Object.entries(patterns)) {
+    pattern.lastIndex = 0;
+    const matches = [...value.matchAll(pattern)];
+    if (matches.length) result.matches.push({ path: relative, type: name, count: matches.length });
+  }
+  if (relative.startsWith('.next/static/')) result.clientCredentialSymbols += (value.match(/OPENAI_API_KEY|OPENROUTER_API_KEY/g) || []).length;
+}
+visit(root);
+result.rootSourcePresent = fs.existsSync('/app/src');
+result.rootTestsPresent = fs.existsSync('/app/tests');
+const inventory = JSON.parse(fs.readFileSync('/app/third-party-licenses/inventory.json', 'utf8'));
+const entries = inventory.packages;
+result.inventory = inventory.summary;
+result.missingListedFiles = entries.flatMap(entry => (entry.notices || []).map(file => path.join('/app/third-party-licenses', entry.directory, file))).filter(file => !fs.existsSync(file)).length;
+const native = entries.find(entry => entry.name === '@img/sharp-libvips-linux-x64');
+const files = native?.notices || [];
+result.libvips = { version: native?.version, hasLgpl: files.some(file => /COPYING\.LESSER/.test(file)), hasGpl: files.some(file => /COPYING$/.test(file)), hasComponentNotices: files.some(file => /THIRD-PARTY-NOTICES/.test(file)) };
+result.directBundledDependencies = entries.filter(entry => ['openai', 'zod'].includes(entry.name)).map(entry => ({ name: entry.name, version: entry.version, notices: (entry.notices || []).length }));
+console.log(JSON.stringify(result, null, 2));
+if (result.matches.length || result.forbidden.length || result.clientCredentialSymbols || result.missingListedFiles || !result.libvips.hasLgpl || !result.libvips.hasGpl || !result.libvips.hasComponentNotices) process.exitCode = 1;

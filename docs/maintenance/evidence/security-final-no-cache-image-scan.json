@@ -1,0 +1,40 @@
+{
+  "scanned": 1453,
+  "bytesScanned": 20655557,
+  "matches": [],
+  "forbidden": [],
+  "clientCredentialSymbols": 0,
+  "rootSourcePresent": false,
+  "rootTestsPresent": false,
+  "inventory": {
+    "runtimePackages": 21,
+    "standalonePackages": 19,
+    "skippedManifestsWithoutNameOrVersion": 49,
+    "missingLicenseMetadata": 0,
+    "missingNoticeFiles": 1,
+    "missingInstalledPackages": 0,
+    "ignoredExternalRuntimeLinks": 0,
+    "declaredDependenciesIncluded": 5,
+    "supplementalPackages": 4,
+    "provenanceExceptions": 1
+  },
+  "missingListedFiles": 0,
+  "libvips": {
+    "version": "1.3.4",
+    "hasLgpl": true,
+    "hasGpl": true,
+    "hasComponentNotices": true
+  },
+  "directBundledDependencies": [
+    {
+      "name": "openai",
+      "version": "6.48.0",
+      "notices": 3
+    },
+    {
+      "name": "zod",
+      "version": "4.4.3",
+      "notices": 1
+    }
+  ]
+}

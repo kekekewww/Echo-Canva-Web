@@ -1,0 +1,15 @@
+pnpm.exe : $ vitest run
+位於 C:\Users\kevin\AppData\Local\pnpm\bin\pnpm.ps1:14 字元:3
++   & "$basedir/../global/v11/e9b8-19fbe146e2d-68c1886746feab5d/node_mo ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ($ vitest run:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+
+ RUN  v4.1.10 D:/Developing/Echo Canvas Web/Echo-Canva-Web
+
+
+ Test Files  69 passed (69)
+      Tests  508 passed (508)
+   Start at  10:30:40
+   Duration  14.11s (transform 69.01s, setup 0ms, import 130.31s, tests 14.27s, environment 21ms)

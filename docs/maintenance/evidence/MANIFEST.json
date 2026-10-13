@@ -1,0 +1,220 @@
+{
+  "date": "2026-10-13",
+  "files": [
+    {
+      "path": "baseline-audit-summary.json",
+      "bytes": 8025,
+      "sha256": "632cc1aee5adb124833f58d81612cda3c988364002f71797c34736f39efeea56"
+    },
+    {
+      "path": "baseline-build.log",
+      "bytes": 1113,
+      "sha256": "e92717c1e253318ac52b7444988dbaa1983c7b861bb7e7cdcf607e60be7ed5c1"
+    },
+    {
+      "path": "baseline-e2e.log",
+      "bytes": 9067,
+      "sha256": "fd41ee5b35abfbd3a1ac66c57fd1719244b80a4652d6014ffa176db1a546382e"
+    },
+    {
+      "path": "baseline-lint.log",
+      "bytes": 403,
+      "sha256": "f144f0e562c8360227303ed24dadfca3054735a10124b6c9863d69b410f7598a"
+    },
+    {
+      "path": "baseline-stress-retry.log",
+      "bytes": 1186,
+      "sha256": "eb4d2a3e6f30bb0384ca5c376770d0fb977de139da4dac9c7957290b5e34fb95"
+    },
+    {
+      "path": "baseline-typecheck.log",
+      "bytes": 377,
+      "sha256": "164a29d1fd26019dc9d2bb555cd3f035cda075f00d6b78c69b9b5be526e4c35f"
+    },
+    {
+      "path": "baseline-unit.log",
+      "bytes": 614,
+      "sha256": "069745551933d09c5cdfad7cf162046a1ed588c876e32378a7fa2183ef164624"
+    },
+    {
+      "path": "container-stress-first-final-error-context.md",
+      "bytes": 28555,
+      "sha256": "cafe44880f1e0249d809972b9d8ab813ada7e7301f147a5a9386a4c37fceba61"
+    },
+    {
+      "path": "container-stress-first-final-failure.png",
+      "bytes": 146326,
+      "sha256": "4a13d9a9f1a26d08fe5cd297628343df9df41fc3248473f3e6b49dbe46387f95"
+    },
+    {
+      "path": "docker-context-audit-final.json",
+      "bytes": 461,
+      "sha256": "b63462f21a01e5eb9c19b159acdfb0a7a2b5340642aedf023938f3629a2be5d2"
+    },
+    {
+      "path": "docker-dev-final-host-browser.png",
+      "bytes": 116154,
+      "sha256": "8ca32b3d2320675313669ba93bb166a1571852e5f740f9c864049429cb2e3a0e"
+    },
+    {
+      "path": "docker-development-browser-final.log",
+      "bytes": 109,
+      "sha256": "538fa28012157a4cd4dd174563c0ba93df21a7122e99aebe640cb595a3be0f57"
+    },
+    {
+      "path": "docker-development-build-final.log",
+      "bytes": 13465,
+      "sha256": "fb94a3f5bc212842de8af08cf30a8a92f77034f5993d441daaf0cf66f97da078"
+    },
+    {
+      "path": "docker-development-hmr-final-config.log",
+      "bytes": 190,
+      "sha256": "95282da19a2706f801ad9de310742da45bccf936ecebad0e24992d7b6b2e56f6"
+    },
+    {
+      "path": "docker-development-quality-final.log",
+      "bytes": 5638,
+      "sha256": "443886d7d813ba5f695d2c473d185f9e1b2764a67c42e1d39c1be3f258f36d6a"
+    },
+    {
+      "path": "docker-development-smoke-final.log",
+      "bytes": 106,
+      "sha256": "6608c96f200bc803f02603a7b3d30fd1bed74e27b7bcaad4f676d2d124e6362a"
+    },
+    {
+      "path": "docker-development-start-final.log",
+      "bytes": 803,
+      "sha256": "8cb982d18a45ad8c22b9bc7a398e22f49fc7159a2ff1d5090c68a05897a74312"
+    },
+    {
+      "path": "docker-production-build-final.log",
+      "bytes": 17126,
+      "sha256": "fdc9bb931134f0c452c6edbdcb8b92ce75691807135f10f7713fd43528db33b6"
+    },
+    {
+      "path": "docker-production-e2e-final.log",
+      "bytes": 8602,
+      "sha256": "936c246e5c75792775e6acb75f617c6b1d790065634ab86f804cb200c9ebeea0"
+    },
+    {
+      "path": "docker-production-runtime-final.log",
+      "bytes": 443,
+      "sha256": "3863277923ff791514ae4d26814fae89cd5d5a488e31641f36456269f7d28a3c"
+    },
+    {
+      "path": "docker-production-shutdown-debug-final.json",
+      "bytes": 259,
+      "sha256": "fb471b57b87e3028e905cdc8c6d3d8c19e250860b795f32b9afee0bcfe0567fe"
+    },
+    {
+      "path": "docker-production-shutdown-debug-final.log",
+      "bytes": 647,
+      "sha256": "db18d2749081033048958fdfbb930aa3ba3eace62e142f46bb48427d8aa20d7e"
+    },
+    {
+      "path": "docker-production-smoke-final.log",
+      "bytes": 106,
+      "sha256": "6608c96f200bc803f02603a7b3d30fd1bed74e27b7bcaad4f676d2d124e6362a"
+    },
+    {
+      "path": "docker-production-start-final.log",
+      "bytes": 599,
+      "sha256": "b2a9212b1d13c590345cada2bff8a307c91d8c565b369fe274c20ecc3c6f7d1c"
+    },
+    {
+      "path": "docker-production-stop-final.json",
+      "bytes": 197,
+      "sha256": "260ac1112611ec4041307c6f6fab5b5784f94df45a332f442e44ea90f1895e5f"
+    },
+    {
+      "path": "Dockerfile.context-audit.txt",
+      "bytes": 130,
+      "sha256": "1d0c03882122bb678be387c9af8243ec55d9943d218ddea7bbfe57888423383a"
+    },
+    {
+      "path": "final-audit-production.json",
+      "bytes": 277,
+      "sha256": "ec7ba0817cec92f37ebfdf21b6076a19a703e7cbf009cbe3656cde85e06cf987"
+    },
+    {
+      "path": "final-audit.json",
+      "bytes": 986,
+      "sha256": "4c597db73110827687fe7bf377d8933a66bfd18e68b6427e02573ae832c02c51"
+    },
+    {
+      "path": "final-build.log",
+      "bytes": 1172,
+      "sha256": "f13485a417f794777d053659fbd20ffe8617961d7bab8b8688870404291f2606"
+    },
+    {
+      "path": "final-lint.log",
+      "bytes": 403,
+      "sha256": "f144f0e562c8360227303ed24dadfca3054735a10124b6c9863d69b410f7598a"
+    },
+    {
+      "path": "final-native-e2e.log",
+      "bytes": 9182,
+      "sha256": "ed2dd6a01d27bab18f8f1ba9fd36fc200941b493347a83f08c4d1542da8b8ff9"
+    },
+    {
+      "path": "final-native-stress-retry.log",
+      "bytes": 2988,
+      "sha256": "a651754b23d248746ece8625a5b66b4b426050370fd8ef0c5e5c6b7d49e4cc40"
+    },
+    {
+      "path": "final-typecheck.log",
+      "bytes": 377,
+      "sha256": "164a29d1fd26019dc9d2bb555cd3f035cda075f00d6b78c69b9b5be526e4c35f"
+    },
+    {
+      "path": "final-unit.log",
+      "bytes": 615,
+      "sha256": "b69a7864d62059c55d980f39c582ecfa56a313acf8e56572827975fcd9cabab5"
+    },
+    {
+      "path": "native-dev-host-browser.png",
+      "bytes": 116154,
+      "sha256": "8ca32b3d2320675313669ba93bb166a1571852e5f740f9c864049429cb2e3a0e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2744,
+      "sha256": "933f85f5c656153b1a63f03f62981c536efbf16a65ae0b94ad615fa6f53096f4"
+    },
+    {
+      "path": "security-final-image-scan.cjs.txt",
+      "bytes": 3131,
+      "sha256": "101860c3962cbb5d91012cfd62c37db1fcef0ed046528319c35f850f67e78bc5"
+    },
+    {
+      "path": "security-final-no-cache-image-config-history.json",
+      "bytes": 763,
+      "sha256": "878e2a4453c6dde4bc186ced7f0259706fded2c39cd81468e8fec3437a73c00f"
+    },
+    {
+      "path": "security-final-no-cache-image-scan.json",
+      "bytes": 882,
+      "sha256": "835855183b9209c9186cecad6525726502b1f4255cb4ec9ec50a3eb65731f09a"
+    },
+    {
+      "path": "source-main-diff.txt",
+      "bytes": 2406,
+      "sha256": "96e15a7d437b999fca834084bc8d70be12fffeb51b48cd716b9012bdc5c73062"
+    },
+    {
+      "path": "upstream-refs-after.txt",
+      "bytes": 1214,
+      "sha256": "3a8540290d96631fa69e599e2e8909baa95868e0100b89ab3303c1ea61d4258c"
+    },
+    {
+      "path": "upstream-refs-before.txt",
+      "bytes": 1214,
+      "sha256": "3a8540290d96631fa69e599e2e8909baa95868e0100b89ab3303c1ea61d4258c"
+    },
+    {
+      "path": "verify-docker-context.cjs.txt",
+      "bytes": 1209,
+      "sha256": "0bf047b09809d2fe298171c782ffba9fe4cfe744748e41a65c14c3a1c1d92440"
+    }
+  ]
+}

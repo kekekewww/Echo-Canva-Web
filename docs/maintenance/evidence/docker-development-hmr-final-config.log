@@ -1,0 +1,2 @@
+PASS host Chromium Compose Watch + Next hot reload without browser refresh; milliseconds: 1173
+PASS development restart preserves browser scene state; no page errors; source bytes restored.

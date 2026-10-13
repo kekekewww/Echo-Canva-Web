@@ -1,0 +1,99 @@
+docker : $ tsc --noEmit
+位於 線路:2 字元:1
++ docker run --rm --network none --name echo-canvas-web-dev-final-check ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ($ tsc --noEmit:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+$ eslint . --max-warnings=0
+$ vitest run
+
+ RUN  v4.1.11 /app
+
+ ✓ tests/unit/portal.test.ts (10 tests) 31ms
+ ✓ tests/unit/geometry.test.ts (8 tests) 32ms
+ ✓ tests/unit/viewport-math.test.ts (8 tests) 23ms
+ ✓ tests/unit/room-acoustics.test.ts (7 tests) 23ms
+ ✓ tests/unit/image-source.test.ts (10 tests) 56ms
+ ✓ tests/unit/early-reflection-bank.test.ts (4 tests) 19ms
+ ✓ tests/unit/schroeder-reverb.test.ts (6 tests) 26ms
+ ✓ tests/unit/hybrid3d-six-band-materials.test.ts (5 tests) 22ms
+ ✓ tests/unit/compute-frame.test.ts (12 tests) 969ms
+     ✓ uses portal direction and total route distance only after direct visibility is blocked  451ms
+ ✓ tests/unit/acoustic-explainer.test.ts (26 tests) 420ms
+ ✓ tests/unit/workspace-project.test.ts (7 tests) 64ms
+ ✓ tests/unit/audio-engine.test.ts (26 tests) 988ms
+     ✓ maps a multi-portal frame to the listener-facing final portal  532ms
+ ✓ tests/unit/workspace-geometry-constraints.test.ts (6 tests) 40ms
+ ✓ tests/unit/scene-validation.test.ts (26 tests) 137ms
+ ✓ tests/unit/hybrid3d-second-order.test.ts (5 tests) 91ms
+ ✓ tests/unit/hybrid-scene-generation.test.ts (4 tests) 82ms
+ ✓ tests/unit/workspace-primitives.test.ts (7 tests) 71ms
+ ✓ tests/unit/use-acoustic-frame.test.ts (7 tests) 449ms
+     ✓ falls back deterministically when Worker is onmessageerror  303ms
+ ✓ tests/unit/local-audio-library.test.ts (7 tests) 409ms
+ ✓ tests/unit/classic-source-pool.test.ts (50 tests) 916ms
+     ✓ fails once and terminates all workers on onmessageerror failure  330ms
+ ✓ tests/unit/editor-reducer.test.ts (13 tests) 420ms
+ ✓ tests/unit/workspace-persistence.test.ts (9 tests) 441ms
+ ✓ tests/unit/hybrid3d-compile.test.ts (4 tests) 68ms
+ ✓ tests/unit/ai-client.test.ts (16 tests) 146ms
+ ✓ tests/unit/acoustic-worker.test.ts (6 tests) 97ms
+ ✓ tests/unit/hybrid3d-reflection.test.ts (3 tests) 16ms
+ ✓ tests/unit/occlusion.test.ts (5 tests) 24ms
+ ✓ tests/unit/scene-serialization.test.ts (8 tests) 44ms
+ ✓ tests/unit/hybrid3d-reflection-rendering.test.ts (4 tests) 16ms
+ ✓ tests/unit/classic-source-worker.test.ts (3 tests) 20ms
+ ✓ tests/unit/hybrid3d-receiver-connection.test.ts (3 tests) 315ms
+ ✓ tests/unit/scene-compile-route.test.ts (8 tests) 495ms
+     ✓ returns an unavailable fallback without OPENAI_API_KEY  394ms
+ ✓ tests/unit/hybrid3d-audible-direct.test.ts (6 tests) 904ms
+     ✓ uses the actual 3D source position for a clear direct path  454ms
+ ✓ tests/unit/hybrid3d-direct.test.ts (10 tests) 888ms
+     ✓ deep-equals ordered assembly when independently computed results arrive reversed  477ms
+ ✓ tests/unit/material-registry.test.ts (6 tests) 266ms
+ ✓ tests/unit/hybrid3d-receiver-connection-benchmark.test.ts (3 tests) 433ms
+ ✓ tests/unit/hybrid-direct-worker.test.ts (4 tests) 410ms
+     ✓ reuses the installed BVH for pose-only shards and ignores work after disposal  303ms
+ ✓ tests/unit/workspace-history.test.ts (5 tests) 116ms
+ ✓ tests/unit/scene-compiler.test.ts (8 tests) 338ms
+ ✓ tests/unit/hybrid-path-overlay.test.ts (5 tests) 473ms
+ ✓ tests/unit/hybrid3d-directional-late-field.test.ts (3 tests) 19ms
+ ✓ tests/unit/coordinates.test.ts (7 tests) 8ms
+ ✓ tests/unit/scene-document.test.ts (5 tests) 63ms
+ ✓ tests/unit/ai-request-security.test.ts (11 tests) 962ms
+     ✓ accepts a JSON document exactly at the byte boundary  371ms
+ ✓ tests/unit/audio-math.test.ts (4 tests) 61ms
+ ✓ tests/unit/partition-editing.test.ts (4 tests) 19ms
+ ✓ tests/unit/ai-scene-prompt-evals.test.ts (15 tests) 558ms
+     ✓ keeps adversarial fixture 'wall limit' out of validated candidate state  413ms
+ ✓ tests/unit/classic-viewport-math.test.ts (4 tests) 18ms
+ ✓ tests/unit/hybrid3d-primitives.test.ts (2 tests) 58ms
+ ✓ tests/unit/numeric-scrub-field.test.tsx (3 tests) 5ms
+ ✓ tests/unit/content-policy.test.ts (6 tests) 25ms
+ ✓ tests/unit/ai-provider.test.ts (6 tests) 18ms
+ ✓ tests/unit/scene-explain-route.test.ts (3 tests) 148ms
+ ✓ tests/unit/workspace-listeners.test.ts (2 tests) 28ms
+ ✓ tests/unit/audio-assets.test.ts (1 test) 54ms
+ ✓ tests/unit/ai-contracts.test.ts (4 tests) 186ms
+ ✓ tests/unit/workspace-status-bar.test.ts (2 tests) 67ms
+ ✓ tests/unit/engine-router.test.ts (3 tests) 704ms
+     ✓ switches engines repeatedly without retaining disposed instances  635ms
+ ✓ tests/unit/hybrid-direct-pool.test.ts (51 tests) 2381ms
+ ✓ tests/unit/scene-schema.test.ts (2 tests) 95ms
+ ✓ tests/unit/workspace-projections.test.ts (3 tests) 22ms
+ ✓ tests/unit/workspace-transfer.test.ts (3 tests) 58ms
+ ✓ tests/unit/scene-editor-route.test.ts (1 test) 36ms
+ ✓ tests/unit/development-shell.test.ts (2 tests) 20ms
+ ✓ tests/unit/smoke.test.ts (1 test) 7ms
+ ✓ tests/unit/classic-baseline-capture.test.ts (1 test) 129ms
+ ✓ tests/unit/transport.test.ts (1 test) 5ms
+ ✓ tests/unit/classic-viewport-adapter.test.ts (1 test) 119ms
+ ✓ tests/unit/hybrid-viewport-adapter.test.ts (2 tests) 497ms
+     ✓ accepts a matching complete fallback frame for audio and overlays  466ms
+ ✓ tests/unit/playwright-config.test.ts (1 test) 229ms
+
+ Test Files  70 passed (70)
+      Tests  524 passed (524)
+   Start at  03:08:23
+   Duration  17.07s (transform 159.75s, setup 0ms, import 263.91s, tests 17.40s, environment 144ms)
