@@ -15,7 +15,7 @@ Start with [README](../README.md), [CONTRIBUTING](../CONTRIBUTING.md), and [onbo
 | [Browser listening/Desktop checks](testing/browser-listening.md) | Human audio/HRTF/IndexedDB protocol and Windows/macOS Docker Desktop hot reload |
 | [ADRs](adr/README.md) | Decision records and template |
 | [Maintenance reports](maintenance/README.md) | Baseline/final/audit/security/license/dependency evidence and debt |
-| [Community issues](community/INITIAL_ISSUES.md) | Sciwork documentation, testing and visualization drafts |
+| [Community issues](community/INITIAL_ISSUES.md) | Published sciwork starter issues and contributor-help issues |
 
 Use [SECURITY](../SECURITY.md) for private vulnerabilities and follow [community conduct](../CODE_OF_CONDUCT.md).
 

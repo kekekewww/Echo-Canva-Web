@@ -22,10 +22,10 @@ Automated checks use deterministic inputs and mocked AI. No provider account, se
 | Schemas and persistence | `src/domain`, `schemas`, serialization/project tests |
 | Background computation | `src/workers`, pool/worker unit tests and failure E2E |
 
-Pick one [initial issue draft](INITIAL_ISSUES.md) or an existing published issue labeled `good first issue`/`help wanted`. Comment on a published issue before a substantial change so maintainers can avoid duplicate work. Keep your first pull request focused and use the template to report the problem, change, validation, and remaining limitations.
+Pick an open issue labeled [`good first issue`](https://github.com/kekekewww/Echo-Canva-Web/labels/good%20first%20issue) or [`help wanted`](https://github.com/kekekewww/Echo-Canva-Web/labels/help%20wanted); the [community issue list](INITIAL_ISSUES.md) explains the starter tasks. Comment on the issue before a substantial change so maintainers can avoid duplicate work. Keep your first pull request focused and use the template to report the problem, change, validation, and remaining limitations.
 
 ## Interpreting evidence
 
 Passing tests establish the covered numerical and software contracts. They do not establish architectural-acoustics accuracy, measured material coefficients, personalized HRTF performance, or subjective listening quality. Keep research-only P5/P6/P7 helpers out of audible runtime claims. Read [the acoustic classification](../ACOUSTICS.md) and [research map](../RESEARCH.md) before proposing model changes.
 
-The proposed label manifest and issue drafts are local preparation for maintainers; the extraction does not publish labels, issues, images, repositories, or deployments automatically.
+Maintainers apply the [label manifest](../../.github/labels.yml) to GitHub by hand and publish reviewed issues there. No automation publishes labels, issues, images, repositories, or deployments.

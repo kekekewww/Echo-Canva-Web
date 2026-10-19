@@ -29,7 +29,7 @@ Open http://localhost:3000. Compose Watch synchronizes source changes and isolat
 
 ## Find a first task
 
-The [initial community issue drafts](docs/community/INITIAL_ISSUES.md) include a documentation task, a deterministic test task, and a bounded visualization task. They are drafts for maintainers to publish; no GitHub issue is created by this checkout. See the [onboarding guide](docs/community/ONBOARDING.md) for a complete first contribution walkthrough.
+Browse open issues labeled [`good first issue`](https://github.com/kekekewww/Echo-Canva-Web/labels/good%20first%20issue) or [`help wanted`](https://github.com/kekekewww/Echo-Canva-Web/labels/help%20wanted). The [community issue list](docs/community/INITIAL_ISSUES.md) describes the starter tasks (a documentation task, a deterministic test task, and a bounded visualization task) and links every published issue. Comment on an issue before starting so work is not duplicated. See the [onboarding guide](docs/community/ONBOARDING.md) for a complete first contribution walkthrough.
 
 ## Change workflow
 

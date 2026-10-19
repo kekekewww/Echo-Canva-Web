@@ -104,7 +104,7 @@ subjective localization use the [host-browser checklist](docs/testing/browser-li
 
 ## Contribute and learn
 
-Start with [CONTRIBUTING.md](CONTRIBUTING.md), [onboarding](docs/community/ONBOARDING.md), and [initial sciwork issue drafts](docs/community/INITIAL_ISSUES.md). Documentation, tests, accessibility, visualization, and reproducible research contributions are welcome. Docker and AI tools are optional.
+Start with [CONTRIBUTING.md](CONTRIBUTING.md), [onboarding](docs/community/ONBOARDING.md), and the [community issues](docs/community/INITIAL_ISSUES.md), published on GitHub under [`good first issue`](https://github.com/kekekewww/Echo-Canva-Web/labels/good%20first%20issue) and [`help wanted`](https://github.com/kekekewww/Echo-Canva-Web/labels/help%20wanted). Documentation, tests, accessibility, visualization, and reproducible research contributions are welcome. Docker and AI tools are optional.
 
 See [documentation](docs/README.md), [architecture](docs/ARCHITECTURE.md), [research](docs/RESEARCH.md), [ADRs](docs/adr/README.md), [Code of Conduct](CODE_OF_CONDUCT.md), [security reporting](SECURITY.md), and [changelog](CHANGELOG.md).
 
