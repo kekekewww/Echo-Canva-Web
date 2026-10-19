@@ -53,7 +53,10 @@ try {
       await mkdir(path.join(directory, "app"), { recursive: true });
       await symlink(path.join(projectRoot, "node_modules"), path.join(directory, "node_modules"), process.platform === "win32" ? "junction" : "dir");
       await writeFile(path.join(directory, "package.json"), JSON.stringify({ name: `marker-${mode}-fixture`, private: true, dependencies: { next: "16.4.2", react: "19.3.1", "react-dom": "19.3.1" } }));
-      await writeFile(path.join(directory, "next.config.mjs"), `export default { agentRules: false, turbopack: { root: ${JSON.stringify(projectRoot)} } };\n`);
+      // Next 16.4.2's webpack build worker on Windows intermittently reports the
+      // rejected compile with empty error text; compiling in-process keeps it.
+      const webpackWorker = compiler === "webpack" ? ", experimental: { webpackBuildWorker: false }" : "";
+      await writeFile(path.join(directory, "next.config.mjs"), `export default { agentRules: false, turbopack: { root: ${JSON.stringify(projectRoot)} }${webpackWorker} };\n`);
       await writeFile(path.join(directory, "app", "layout.js"), "export default function Layout({ children }) { return <html><body>{children}</body></html>; }\n");
       await writeFile(path.join(directory, "app", "page.js"), `${mode === "client" ? '"use client";\n' : ""}import "client-only";\nexport default function Page() { return <p>Marker boundary fixture</p>; }\n`);
       const result = await build(directory, compiler);

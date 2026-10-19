@@ -73,6 +73,14 @@ above and the dated results below describe the earlier 16.3.8 maintenance and
 are retained as history. The Next.js client-only patch is now
 `patches/next@16.4.2.patch`; its replacement content is unchanged.
 
+On hosted Windows CI, 16.4.2's webpack build worker rejected the forbidden
+Server Component marker every time but intermittently reported the failure
+with empty error text (2 of 3 diagnostic builds; Linux 0 of 3). The same build
+compiled in-process (`experimental.webpackBuildWorker: false`) reported the
+`client-only` boundary message in 3 of 3. The boundary check therefore builds
+its webpack fixtures in-process and keeps its exact message assertion; the
+application build still uses Next's default worker.
+
 Other direct dependencies retain their original exact versions. Registry
 manifests confirm Next.js 16.3.8 requires Node >=20.9 and Vitest 4.1.11 supports
 Node 22; both use MIT. Docker/CI use the explicitly pinned Node 22 runtime from
