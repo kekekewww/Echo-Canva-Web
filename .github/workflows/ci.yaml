@@ -125,7 +125,7 @@ jobs:
           container_id=$(docker compose ps -q web)
           docker compose stop --timeout 30 web
           exit_code=$(docker inspect --format '{{.State.ExitCode}}' "$container_id")
-          # Next 16.3.8 exits 143 after its SIGTERM cleanup (128 + signal 15).
+          # Next 16.4.2 exits 143 after its SIGTERM cleanup (128 + signal 15).
           case "$exit_code" in
             0|143) ;;
             *) echo "Unexpected container shutdown exit code: $exit_code"; exit 1 ;;

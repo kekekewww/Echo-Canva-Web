@@ -24,6 +24,7 @@ Changes use Conventional Commit subjects. Releases should record compatibility c
 - Updated affected dependencies as a separate maintenance change; the lockfile and [security report](docs/maintenance/SECURITY_LICENSE.md) contain the resolved versions and audit results.
 - Added a reproducible local `braces@3.0.3` nesting guard; version-based audits still report the upstream advisory until a fixed release exists.
 - Replaced both client-only markers with independently authored project-MIT implementations and made runtime notice gaps fail collection/inspection. Real Next compiler checks protect Client/Server boundaries.
+- Refreshed dependencies within their current majors (closes #13): Next.js and `eslint-config-next` 16.3.8 to 16.4.2, React and React DOM 19.2.7 to 19.3.1, Zod 4.4.3 to 4.6.7, Playwright 1.61.1 to 1.64.1, `@types/node` 26.1.1 to 26.6.5, `@types/react` and `@types/react-dom` to 19.3.0. The Next.js client-only marker patch was ported to `patches/next@16.4.2.patch` with identical replacement content (ADR 0006); the braces and client-only patches and the security overrides are unchanged. Node, pnpm and the ESLint, TypeScript, Vitest and OpenAI majors are not changed.
 
 ### Acoustic compatibility
 

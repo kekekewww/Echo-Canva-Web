@@ -66,6 +66,13 @@ its nested versions; they are not 44 distinct runtime components.
 | `eslint-config-next` | 16.2.10 | 16.3.8 | Keep Next.js lint rules aligned with the server/build version. |
 | `vitest` | 4.1.10 | 4.1.11 | Same-major security fix for redirect mock traversal. |
 
+Later same-major refresh (issue #13): `next` and `eslint-config-next` are now
+16.4.2, `react`/`react-dom` 19.3.1, `zod` 4.6.7, `@playwright/test` 1.64.1,
+`@types/node` 26.6.5 and `@types/react`/`@types/react-dom` 19.3.0. The table
+above and the dated results below describe the earlier 16.3.8 maintenance and
+are retained as history. The Next.js client-only patch is now
+`patches/next@16.4.2.patch`; its replacement content is unchanged.
+
 Other direct dependencies retain their original exact versions. Registry
 manifests confirm Next.js 16.3.8 requires Node >=20.9 and Vitest 4.1.11 supports
 Node 22; both use MIT. Docker/CI use the explicitly pinned Node 22 runtime from
