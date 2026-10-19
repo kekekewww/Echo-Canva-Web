@@ -1,4 +1,5 @@
-# Proposed labels only; no automation applies these to GitHub.
+# Label definitions, applied to GitHub by hand on 2026-10-19. No automation
+# syncs them: when editing this file, update the repository labels to match.
 - name: good first issue
   color: "7057ff"
   description: A bounded task with a clear starting point and acceptance criteria
