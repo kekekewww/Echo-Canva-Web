@@ -141,7 +141,7 @@ filesystem with bounded writable temporary/cache directories. Docker's init
 forwards signals and reaps children. Node launches directly through exec-form CMD;
 Compose allows 30 seconds for SIGTERM shutdown.
 
-Next.js 16.3.8's built-in signal handler stops accepting new connections, awaits
+Next.js 16.4.2's built-in signal handler stops accepting new connections, awaits
 HTTP/server cleanup and trace flushing, then deliberately exits **143** for
 SIGTERM (`128 + 15`). CI accepts only 0 or this known signal exit and rejects
 other exits, including forced-kill 137, and any OOM indication. An initial

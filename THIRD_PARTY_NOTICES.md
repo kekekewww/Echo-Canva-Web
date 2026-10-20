@@ -54,7 +54,7 @@ The original `client-only@0.0.1` archive declares MIT but omits a
 copyright/permission notice and source revision. Its exact published metadata and
 integrity remain as [historical provenance](docs/licenses/client-only-0.0.1/PROVENANCE.md).
 No authentic upstream copyright notice was established, and none is invented.
-Version-specific [Next.js](patches/next@16.3.8.patch) and
+Version-specific [Next.js](patches/next@16.4.2.patch) and
 [installed marker](patches/client-only@0.0.1.patch) patches replace both copies with
 the independently authored `@echo-canvas/client-only-marker@1.0.0`, under the
 repository's complete MIT notice. Its fixed filenames, default no-op entry and

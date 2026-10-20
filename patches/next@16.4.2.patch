@@ -1,0 +1,83 @@
+diff --git a/dist/compiled/client-only/LICENSE b/dist/compiled/client-only/LICENSE
+new file mode 100644
+index 0000000000000000000000000000000000000000..c8016f0c6346720d3172abde5f7f834e21c0946e
+--- /dev/null
++++ b/dist/compiled/client-only/LICENSE	
+@@ -0,0 +1,21 @@
++MIT License
++
++Copyright (c) 2026 Kevin_Yang_tw
++
++Permission is hereby granted, free of charge, to any person obtaining a copy
++of this software and associated documentation files (the "Software"), to deal
++in the Software without restriction, including without limitation the rights
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++copies of the Software, and to permit persons to whom the Software is
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in all
++copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++SOFTWARE.
+diff --git a/dist/compiled/client-only/error.js b/dist/compiled/client-only/error.js
+index 2e0083d083ce452069106117a5643254bad84eaa..4385b45810a4118a67d99231fe7230ea9f09ade8 100644
+--- a/dist/compiled/client-only/error.js
++++ b/dist/compiled/client-only/error.js	
+@@ -1,4 +1,2 @@
+-throw new Error(
+-  "This module cannot be imported from a Server Component module. " +
+-    "It should only be used from a Client Component."
+-);
++// Echo Canvas Web compatibility marker. See LICENSE.
++throw new Error("A client-only module cannot run in a React Server Component.");
+diff --git a/dist/compiled/client-only/index.js b/dist/compiled/client-only/index.js
+index e69de29bb2d1d6434b8b29ae775ad8c2e48c5391..ea59437c59cda38a94b3976bdd799e63260098ef 100644
+--- a/dist/compiled/client-only/index.js
++++ b/dist/compiled/client-only/index.js	
+@@ -0,0 +1 @@
++// Intentionally empty: Client Component environments may import this marker.
+diff --git a/dist/compiled/client-only/package.json b/dist/compiled/client-only/package.json
+index 9af6d8dfe9949064ba23a8f0a46134e14bb616d1..31b7eb41922ff547973d96164c5d61d33788737b 100644
+--- a/dist/compiled/client-only/package.json
++++ b/dist/compiled/client-only/package.json	
+@@ -1,19 +1,23 @@
+ {
+-  "name": "client-only",
+-  "description": "This is a marker package to indicate that a module can only be used in Client Components.",
+-  "keywords": [
+-    "react"
+-  ],
+-  "version": "0.0.1",
+-  "homepage": "https://reactjs.org/",
+-  "bugs": "https://github.com/facebook/react/issues",
++  "name": "@echo-canvas/client-only-marker",
++  "version": "1.0.0",
++  "private": true,
++  "description": "Independently authored client boundary marker for Echo Canvas Web.",
+   "license": "MIT",
+-  "files": ["index.js", "error.js"],
+-  "main": "index.js",
++  "repository": {
++    "type": "git",
++    "url": "https://github.com/kekekewww/Echo-Canva-Web.git"
++  },
++  "main": "./index.js",
+   "exports": {
+     ".": {
+       "react-server": "./error.js",
+       "default": "./index.js"
+     }
+-  }
++  },
++  "files": [
++    "index.js",
++    "error.js",
++    "LICENSE"
++  ]
+ }
