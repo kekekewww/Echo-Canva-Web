@@ -541,7 +541,7 @@ export function createClassicSourcePool(
         installedFingerprints.push(null);
       }
       const context = createClassicStaticContext(scene);
-      const snapshot = createClassicPoseSnapshot(scene);
+      const snapshot = createClassicPoseSnapshot(scene, context);
       const nextRequestId = ++requestId;
       const assignments = Array.from({ length: activeCount }, (_, index) => scene.sources
         .filter((_, sourceIndex) => sourceIndex % activeCount === index)

@@ -36,6 +36,15 @@ Changes use Conventional Commit subjects. Releases should record compatibility c
 - Keep Inspector/Outliner inputs stable during acoustic status updates, avoiding unnecessary panel rerenders while preserving project, local-audio and panel-state updates.
 - Stop Hybrid reflection visibility searches at the first non-allowed blocker, preserving intersection formulas and full direct/transmission hit lists. Add first-attempt CI diagnostics, seeded equivalence tests and a separate single-Worker stress check; see [CI remediation](docs/maintenance/CI_REMEDIATION.md).
 
+### Browser audio
+
+- Removed interaction clicks and bursts tracked in #18. Formulas, ranking, tie-breakers, the six-tap limit, Worker protocols and frame acceptance rules are unchanged:
+  - between accepted frames, simulation parameters now hold their accepted occlusion/Portal state instead of a free-field estimate that jumped by more than 20 dB for blocked sources during drags (#19);
+  - Hybrid audio state no longer suppresses source-gain and HRTF updates or outlives Hybrid mode (#22);
+  - source graphs fade in on start and out before stop/disconnect, and the master output fades around suspend, resume and disposal (#20). A production-Chromium `OfflineAudioContext` check renders the real SourceGraph start/retire;
+  - reflection taps keep their path while it stays audible and retune silently when reassigned, so delay lines no longer glide between unrelated paths (#21).
+- Skipped re-scheduling identical automation targets, kept workspace projections stable across camera/selection/notice changes so they no longer re-run acoustic jobs or audio reconciles, and built the Classic static context once per Worker dispatch (#24, #25, partial). Frame delivery under continuous edits (#23), `latencyHint`, and Worker capacity are not changed.
+
 ## Source release — v1.0.0-build-week
 
 This upstream tag is a source provenance label, not a new release of this repository. See [ORIGIN.md](docs/ORIGIN.md) for its original date, commit, capabilities, and extraction differences. No release or deployment is published by the local cleanup.

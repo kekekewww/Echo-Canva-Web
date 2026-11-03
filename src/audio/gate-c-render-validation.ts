@@ -1,4 +1,5 @@
 import { SchroederReverb } from "@/audio/SchroederReverb";
+import { SourceGraph } from "@/audio/SourceGraph";
 import { scheduleEqualPowerCrossfade } from "@/audio/parameter-smoothing";
 import type { AudioContextLike } from "@/audio/types";
 import type { RoomAcousticFrame } from "@/acoustics/types";
@@ -11,6 +12,9 @@ const TRANSITION_START_SECONDS = 0.25;
 const TRANSITION_RENDER_SECONDS = 0.5;
 const WINDOW_SECONDS = 0.02;
 const RT60_ENERGY_RATIO = 1e-6;
+const LIFECYCLE_RENDER_SECONDS = 0.5;
+const LIFECYCLE_RETIRE_SECONDS = 0.25;
+const LIFECYCLE_SIGNAL_LEVEL = 0.1;
 
 export type GateCAudioRenderValidation = Readonly<{
   available: boolean;
@@ -26,6 +30,12 @@ export type GateCAudioRenderValidation = Readonly<{
   transitionMaxStep: number;
   transitionPeak: number;
   transitionMaxStepRatio: number;
+  /** Production SourceGraph start (fade-in) and retire (fade-out) on a constant signal. */
+  lifecycleMaxStep: number;
+  lifecyclePeak: number;
+  lifecycleMaxStepRatio: number;
+  /** Peak after the retire fade has finished; should be silence. */
+  lifecycleTailPeak: number;
 }>;
 
 declare global {
@@ -64,6 +74,16 @@ export async function renderGateCAudioValidation(): Promise<GateCAudioRenderVali
     TRANSITION_START_SECONDS + 0.08,
   );
   const transitionPeak = peakAmplitude(transitionSamples);
+  const lifecycleBuffer = await renderSourceLifecycle();
+  const lifecycleSamples = lifecycleBuffer.getChannelData(0);
+  const lifecycleMaxStep = maxSampleStep(
+    lifecycleSamples,
+    lifecycleBuffer.sampleRate,
+    0,
+    LIFECYCLE_RENDER_SECONDS,
+  );
+  const lifecyclePeak = peakAmplitude(lifecycleSamples);
+  const tailStart = Math.ceil((LIFECYCLE_RETIRE_SECONDS + 0.05) * lifecycleBuffer.sampleRate);
 
   return {
     available: true,
@@ -76,6 +96,10 @@ export async function renderGateCAudioValidation(): Promise<GateCAudioRenderVali
     transitionMaxStep,
     transitionPeak,
     transitionMaxStepRatio: transitionPeak > 0 ? transitionMaxStep / transitionPeak : Number.NaN,
+    lifecycleMaxStep,
+    lifecyclePeak,
+    lifecycleMaxStepRatio: lifecyclePeak > 0 ? lifecycleMaxStep / lifecyclePeak : Number.NaN,
+    lifecycleTailPeak: peakAmplitude(lifecycleSamples.subarray(tailStart)),
   };
 }
 
@@ -145,6 +169,48 @@ async function renderModeTransition(): Promise<AudioBuffer> {
   return context.startRendering();
 }
 
+/**
+ * Renders the production SourceGraph on a constant (DC) signal in Raw mode:
+ * it starts at 0 s and is retired at 0.25 s. Any sample step therefore comes
+ * from the lifecycle envelopes; a hard start or stop would step by the full
+ * signal level.
+ */
+async function renderSourceLifecycle(): Promise<AudioBuffer> {
+  const context = new OfflineAudioContext(
+    2,
+    Math.ceil(LIFECYCLE_RENDER_SECONDS * SAMPLE_RATE),
+    SAMPLE_RATE,
+  );
+  const signal = context.createBuffer(1, SAMPLE_RATE, SAMPLE_RATE);
+  signal.getChannelData(0).fill(LIFECYCLE_SIGNAL_LEVEL);
+  const output = context.createGain();
+  const reverbInput = context.createGain();
+  output.connect(context.destination);
+  const graph = new SourceGraph(
+    context as unknown as AudioContextLike,
+    output as unknown as AudioContextLike["destination"],
+    reverbInput as unknown as AudioContextLike["destination"],
+    {
+      id: "lifecycle_validation",
+      name: "Lifecycle validation",
+      clipId: "radio_loop",
+      sourceType: "point",
+      position: { x: 1, y: 0 },
+      gainDb: 0,
+      loop: true,
+    },
+    { position: { x: 0, y: 0 }, headingDeg: 0 },
+    signal,
+    "raw",
+    false,
+  );
+  graph.retire(LIFECYCLE_RETIRE_SECONDS);
+  const rendered = await context.startRendering();
+  graph.dispose();
+  output.disconnect();
+  return rendered;
+}
+
 function unavailableValidation(): GateCAudioRenderValidation {
   return {
     available: false,
@@ -157,6 +223,10 @@ function unavailableValidation(): GateCAudioRenderValidation {
     transitionMaxStep: Number.NaN,
     transitionPeak: Number.NaN,
     transitionMaxStepRatio: Number.NaN,
+    lifecycleMaxStep: Number.NaN,
+    lifecyclePeak: Number.NaN,
+    lifecycleMaxStepRatio: Number.NaN,
+    lifecycleTailPeak: Number.NaN,
   };
 }
 

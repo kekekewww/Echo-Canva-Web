@@ -10,6 +10,8 @@ export interface AudioParamLike {
     duration: number,
   ): AudioParamLike;
   setTargetAtTime(target: number, startTime: number, timeConstant: number): AudioParamLike;
+  setValueAtTime(value: number, startTime: number): AudioParamLike;
+  linearRampToValueAtTime(value: number, endTime: number): AudioParamLike;
 }
 
 export interface AudioNodeLike {
@@ -51,8 +53,8 @@ export type AudioBufferLike = Readonly<{
 export interface AudioBufferSourceNodeLike extends AudioNodeLike {
   buffer: AudioBufferLike | null;
   loop: boolean;
-  start(): void;
-  stop(): void;
+  start(when?: number): void;
+  stop(when?: number): void;
 }
 
 export type DynamicsCompressorNodeLike = AudioNodeLike;

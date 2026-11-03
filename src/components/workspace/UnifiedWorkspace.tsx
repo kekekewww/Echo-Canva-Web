@@ -19,7 +19,7 @@ import { useLocalAudioLibrary } from "@/hooks/useLocalAudioLibrary";
 import { installGateCAudioRenderValidation } from "@/audio/gate-c-render-validation";
 import { AudioEngine } from "@/audio/AudioEngine";
 import type { PreviewMode } from "@/domain/editor/state";
-import { projectClassicScene } from "@/domain/workspace/projections";
+import { createProjectProjectionCache, projectClassicScene } from "@/domain/workspace/projections";
 import { useAudioEngine } from "@/hooks/useAudioEngine";
 
 export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: WorkspaceMode }>) {
@@ -49,11 +49,15 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
   const [acousticStatus, setAcousticStatus] = useState<WorkspaceAcousticStatus | null>(null);
   const reportAcousticStatus = useCallback((status: WorkspaceAcousticStatus) => setAcousticStatus(status), []);
   const [audioEngine] = useState(() => new AudioEngine({ resolveAudioAsset: audioLibrary.resolveAudioAsset }));
-  const activeScene = useMemo(() => {
-    const scene = projectClassicScene(workspace.activeProject);
-    const missing = new Set(workspace.activeProject.missingAudioAssetIds);
+  const [projectAudibleScene] = useState(() => createProjectProjectionCache((project) => {
+    const scene = projectClassicScene(project);
+    const missing = new Set(project.missingAudioAssetIds);
     return { ...scene, sources: scene.sources.filter(({ clipId }) => !missing.has(clipId)) };
-  }, [workspace.activeProject]);
+  }));
+  const activeScene = useMemo(
+    () => projectAudibleScene(workspace.activeProject),
+    [projectAudibleScene, workspace.activeProject],
+  );
   const audio = useAudioEngine(
     activeScene,
     previewMode,

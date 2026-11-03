@@ -272,3 +272,15 @@ describe("computeAcousticFrame", () => {
     );
   });
 });
+
+describe("createClassicPoseSnapshot", () => {
+  it("reuses a provided static context instead of fingerprinting the static scene again", () => {
+    const scene = structuredClone(CONCRETE_PARTITION_PRESET) as SceneSpec;
+    const context = createClassicStaticContext(scene);
+
+    expect(createClassicPoseSnapshot(scene, context).staticFingerprint).toBe(context.fingerprint);
+    expect(createClassicPoseSnapshot(scene)).toEqual(createClassicPoseSnapshot(scene, context));
+    expect(createClassicPoseSnapshot(scene, { ...context, fingerprint: "provided" }).staticFingerprint)
+      .toBe("provided");
+  });
+});

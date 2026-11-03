@@ -77,10 +77,17 @@ export function createClassicStaticContext(scene: SceneSpec): ClassicStaticConte
   };
 }
 
-export function createClassicPoseSnapshot(scene: SceneSpec): ClassicPoseSnapshot {
+/**
+ * Pass the scene's already-built static context to avoid serializing and
+ * hashing the static scene a second time for the same dispatch.
+ */
+export function createClassicPoseSnapshot(
+  scene: SceneSpec,
+  context: ClassicStaticContext = createClassicStaticContext(scene),
+): ClassicPoseSnapshot {
   return {
     revision: scene.revision,
-    staticFingerprint: createClassicStaticContext(scene).fingerprint,
+    staticFingerprint: context.fingerprint,
     listener: scene.listener,
     sources: scene.sources,
   };
@@ -234,7 +241,7 @@ export function computeAcousticFrame(
   generatedAtMs = 0,
 ): AcousticFrame {
   const context = createClassicStaticContext(scene);
-  const snapshot = createClassicPoseSnapshot(scene);
+  const snapshot = createClassicPoseSnapshot(scene, context);
   const room = estimateRoomAcoustics(scene);
   const results = computeClassicSourceResults(
     context,

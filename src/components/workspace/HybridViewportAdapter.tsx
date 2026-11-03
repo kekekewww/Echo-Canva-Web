@@ -15,7 +15,11 @@ import {
 } from "@/components/lab/HybridSpatialViewport";
 import { deriveHybridPathDisplay } from "@/components/workspace/HybridPathOverlay";
 import { constrainPortal3D, constrainWall3D } from "@/domain/workspace/geometry-constraints";
-import { projectClassicScene, projectHybridDocument } from "@/domain/workspace/projections";
+import {
+  createProjectProjectionCache,
+  projectClassicScene,
+  projectHybridDocument,
+} from "@/domain/workspace/projections";
 import type { ProjectAction, Vec3, WorkspaceProject } from "@/domain/workspace/types";
 import { useHybridDirectPaths } from "@/hooks/useHybridDirectPaths";
 import type { AudioEngine } from "@/audio/AudioEngine";
@@ -57,8 +61,10 @@ export function HybridViewportAdapter({ project, dispatch, audioEngine, wallPlac
 }>) {
   const { pathsVisible, showAllPaths, ceilingVisible } = project.view.overlays;
   const [geometryCompiler] = useState(() => createHybridGeometryCompiler());
-  const scene = useMemo(() => projectClassicScene(project), [project]);
-  const document = useMemo(() => projectHybridDocument(project), [project]);
+  const [projectScene] = useState(() => createProjectProjectionCache(projectClassicScene));
+  const [projectDocument] = useState(() => createProjectProjectionCache(projectHybridDocument));
+  const scene = useMemo(() => projectScene(project), [project, projectScene]);
+  const document = useMemo(() => projectDocument(project), [project, projectDocument]);
   const geometry = useMemo(() => geometryCompiler.compile(document), [document, geometryCompiler]);
   const direct = useHybridDirectPaths(document, geometry);
   const presentation = resolveHybridAcousticPresentation(direct, document);

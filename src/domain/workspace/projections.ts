@@ -4,6 +4,51 @@ import type { SceneDocumentV2 } from "@/domain/scene-document/types";
 import type { WorkspaceProject } from "@/domain/workspace/types";
 import { primitiveFootprintWalls } from "@/domain/workspace/primitives";
 
+/**
+ * Project fields that only affect presentation or local metadata. No acoustic
+ * projection reads them, so a change to them must not invalidate one.
+ */
+const PRESENTATION_ONLY_FIELDS: ReadonlySet<string> = new Set<keyof WorkspaceProject>([
+  "selection",
+  "view",
+  "notice",
+  "localAudioMetadata",
+]);
+
+function sameProjectionInputs(left: WorkspaceProject, right: WorkspaceProject): boolean {
+  if (left === right) return true;
+  const keys = new Set([...Object.keys(left), ...Object.keys(right)]);
+  for (const key of keys) {
+    if (PRESENTATION_ONLY_FIELDS.has(key)) continue;
+    if (!Object.is(left[key as keyof WorkspaceProject], right[key as keyof WorkspaceProject])) return false;
+  }
+  return true;
+}
+
+/**
+ * Memoizes one projection of a workspace project (an LRU of one).
+ *
+ * Workspace updates are immutable (reducer commits and history patches clone
+ * what they change), so when every non-presentation field keeps its reference
+ * the acoustic content is unchanged. Camera, selection, and notice updates then
+ * return the previous projection object, which keeps downstream acoustic jobs
+ * and audio reconciles keyed on that object from re-running. The comparison is
+ * by reference, never by revision, because undo/redo reuses revision numbers.
+ */
+export function createProjectProjectionCache<T>(
+  project: (value: WorkspaceProject) => T,
+): (value: WorkspaceProject) => T {
+  let cached: Readonly<{ input: WorkspaceProject; output: T }> | null = null;
+  return (value) => {
+    if (cached && sameProjectionInputs(cached.input, value)) {
+      cached = { input: value, output: cached.output };
+      return cached.output;
+    }
+    cached = { input: value, output: project(value) };
+    return cached.output;
+  };
+}
+
 function activeListener(project: WorkspaceProject) {
   return (
     project.listeners.find(
