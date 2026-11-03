@@ -1,0 +1,452 @@
+{
+  "date": "2026-11-03",
+  "harness": "tests/e2e/audio-render-capacity.spec.ts (copied unchanged into each baseline checkout)",
+  "trees": {
+    "pre40": {
+      "commit": "0ab76be",
+      "description": "main before PR #40 (audio-application fixes)"
+    },
+    "mainpre23": {
+      "commit": "905db67",
+      "description": "main after PR #40, before #23/#24 (this branch's base)"
+    },
+    "branch": {
+      "commit": "fe2786a",
+      "description": "this branch after #23 and #24"
+    }
+  },
+  "runs": [
+    {
+      "tree": "pre40",
+      "commit": "0ab76be",
+      "round": 1,
+      "metrics": {
+        "environment": {
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "hardwareConcurrency": 4
+        },
+        "settings": {
+          "dragMs": 10000,
+          "idleMs": 2000,
+          "sampleEveryMs": 250,
+          "pointerStepMs": 16
+        },
+        "idleRenderCapacity": {
+          "count": 8,
+          "mean": 0.17633059007103363,
+          "p50": 0.17803030303030304,
+          "p95": 0.23475212819228844,
+          "max": 0.23475212819228844
+        },
+        "dragRenderCapacity": {
+          "count": 39,
+          "mean": 0.21864784154942163,
+          "p50": 0.2032446594115276,
+          "p95": 0.323932393239324,
+          "max": 0.39445671821650935
+        },
+        "dragCallbackIntervalMeanMs": {
+          "count": 39,
+          "mean": 10.023174629740716,
+          "p50": 9.999435866755276,
+          "p95": 10.232121364251153,
+          "max": 10.284038884183715
+        },
+        "dragCallbackIntervalStdMs": {
+          "count": 39,
+          "mean": 0.6355431467312033,
+          "p50": 0.22335791208267322,
+          "p95": 3.902657315367685,
+          "max": 4.308396342324445
+        },
+        "pointerMoves": 276,
+        "distinctAcceptedRevisionsSampledDuringDrag": 0,
+        "samplesDuringDrag": 39
+      }
+    },
+    {
+      "tree": "mainpre23",
+      "commit": "905db67",
+      "round": 1,
+      "metrics": {
+        "environment": {
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "hardwareConcurrency": 4
+        },
+        "settings": {
+          "dragMs": 10000,
+          "idleMs": 2000,
+          "sampleEveryMs": 250,
+          "pointerStepMs": 16
+        },
+        "idleRenderCapacity": {
+          "count": 8,
+          "mean": 0.23240075674186028,
+          "p50": 0.12066033016508254,
+          "p95": 0.9167570695016997,
+          "max": 0.9167570695016997
+        },
+        "dragRenderCapacity": {
+          "count": 39,
+          "mean": 0.15172218398275705,
+          "p50": 0.14516450648055831,
+          "p95": 0.21812214044161526,
+          "max": 0.3446683931989641
+        },
+        "dragCallbackIntervalMeanMs": {
+          "count": 39,
+          "mean": 10.016198726598613,
+          "p50": 10.000647076663256,
+          "p95": 10.114366810479378,
+          "max": 10.147040184159884
+        },
+        "dragCallbackIntervalStdMs": {
+          "count": 39,
+          "mean": 0.8233466899899758,
+          "p50": 0.5542074766761818,
+          "p95": 2.6230181563772743,
+          "max": 2.9710909376591803
+        },
+        "pointerMoves": 277,
+        "distinctAcceptedRevisionsSampledDuringDrag": 0,
+        "samplesDuringDrag": 39
+      }
+    },
+    {
+      "tree": "branch",
+      "commit": "fe2786a",
+      "round": 1,
+      "metrics": {
+        "environment": {
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "hardwareConcurrency": 4
+        },
+        "settings": {
+          "dragMs": 10000,
+          "idleMs": 2000,
+          "sampleEveryMs": 250,
+          "pointerStepMs": 16
+        },
+        "idleRenderCapacity": {
+          "count": 8,
+          "mean": 0.14603348548081557,
+          "p50": 0.13479526086052795,
+          "p95": 0.20614165428429915,
+          "max": 0.20614165428429915
+        },
+        "dragRenderCapacity": {
+          "count": 39,
+          "mean": 0.14527184141751662,
+          "p50": 0.14716829292827685,
+          "p95": 0.22227732592739533,
+          "max": 0.222594737376816
+        },
+        "dragCallbackIntervalMeanMs": {
+          "count": 39,
+          "mean": 9.999074050734395,
+          "p50": 9.999324339685097,
+          "p95": 10.001998662981535,
+          "max": 10.003520865108106
+        },
+        "dragCallbackIntervalStdMs": {
+          "count": 39,
+          "mean": 0.23580915098354546,
+          "p50": 0.21131840364945764,
+          "p95": 0.4873756914007204,
+          "max": 0.539597682445512
+        },
+        "pointerMoves": 283,
+        "distinctAcceptedRevisionsSampledDuringDrag": 39,
+        "samplesDuringDrag": 39
+      }
+    },
+    {
+      "tree": "pre40",
+      "commit": "0ab76be",
+      "round": 2,
+      "metrics": {
+        "environment": {
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "hardwareConcurrency": 4
+        },
+        "settings": {
+          "dragMs": 10000,
+          "idleMs": 2000,
+          "sampleEveryMs": 250,
+          "pointerStepMs": 16
+        },
+        "idleRenderCapacity": {
+          "count": 8,
+          "mean": 0.18220831161226295,
+          "p50": 0.16379833974488764,
+          "p95": 0.23664815749621404,
+          "max": 0.23664815749621404
+        },
+        "dragRenderCapacity": {
+          "count": 39,
+          "mean": 0.21336924062209717,
+          "p50": 0.20423661071143084,
+          "p95": 0.29584426064151703,
+          "max": 0.33550034827025776
+        },
+        "dragCallbackIntervalMeanMs": {
+          "count": 39,
+          "mean": 10.007644081886186,
+          "p50": 9.999144708291562,
+          "p95": 10.14468266951321,
+          "max": 10.189665355965303
+        },
+        "dragCallbackIntervalStdMs": {
+          "count": 39,
+          "mean": 0.4094095964587549,
+          "p50": 0.2953370900965545,
+          "p95": 2.1336951346703192,
+          "max": 2.4249743094915557
+        },
+        "pointerMoves": 280,
+        "distinctAcceptedRevisionsSampledDuringDrag": 0,
+        "samplesDuringDrag": 39
+      }
+    },
+    {
+      "tree": "mainpre23",
+      "commit": "905db67",
+      "round": 2,
+      "metrics": {
+        "environment": {
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "hardwareConcurrency": 4
+        },
+        "settings": {
+          "dragMs": 10000,
+          "idleMs": 2000,
+          "sampleEveryMs": 250,
+          "pointerStepMs": 16
+        },
+        "idleRenderCapacity": {
+          "count": 8,
+          "mean": 0.1402769796181301,
+          "p50": 0.13239578101456553,
+          "p95": 0.21401916288451842,
+          "max": 0.21401916288451842
+        },
+        "dragRenderCapacity": {
+          "count": 40,
+          "mean": 0.18174558567315913,
+          "p50": 0.15913913307062746,
+          "p95": 0.22652265226522655,
+          "max": 0.9829110194460813
+        },
+        "dragCallbackIntervalMeanMs": {
+          "count": 40,
+          "mean": 9.998500425258198,
+          "p50": 9.99891055410696,
+          "p95": 10.000278433673367,
+          "max": 10.016681849989247
+        },
+        "dragCallbackIntervalStdMs": {
+          "count": 40,
+          "mean": 0.5307589056466162,
+          "p50": 0.47116563707389403,
+          "p95": 0.9385617613803497,
+          "max": 1.186489721532197
+        },
+        "pointerMoves": 272,
+        "distinctAcceptedRevisionsSampledDuringDrag": 0,
+        "samplesDuringDrag": 40
+      }
+    },
+    {
+      "tree": "branch",
+      "commit": "fe2786a",
+      "round": 2,
+      "metrics": {
+        "environment": {
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "hardwareConcurrency": 4
+        },
+        "settings": {
+          "dragMs": 10000,
+          "idleMs": 2000,
+          "sampleEveryMs": 250,
+          "pointerStepMs": 16
+        },
+        "idleRenderCapacity": {
+          "count": 8,
+          "mean": 0.1245389795797845,
+          "p50": 0.12472820715556435,
+          "p95": 0.1460595795556441,
+          "max": 0.1460595795556441
+        },
+        "dragRenderCapacity": {
+          "count": 39,
+          "mean": 0.16997698089181634,
+          "p50": 0.14763286958262437,
+          "p95": 0.32455877953933593,
+          "max": 0.6159586110834744
+        },
+        "dragCallbackIntervalMeanMs": {
+          "count": 39,
+          "mean": 9.998535732708943,
+          "p50": 9.999010658671741,
+          "p95": 10.000244311574228,
+          "max": 10.001055127636805
+        },
+        "dragCallbackIntervalStdMs": {
+          "count": 39,
+          "mean": 0.41759968713983897,
+          "p50": 0.4055514797831161,
+          "p95": 0.6274877554420817,
+          "max": 0.6460088240106384
+        },
+        "pointerMoves": 275,
+        "distinctAcceptedRevisionsSampledDuringDrag": 39,
+        "samplesDuringDrag": 39
+      }
+    },
+    {
+      "tree": "pre40",
+      "commit": "0ab76be",
+      "round": 3,
+      "metrics": {
+        "environment": {
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "hardwareConcurrency": 4
+        },
+        "settings": {
+          "dragMs": 10000,
+          "idleMs": 2000,
+          "sampleEveryMs": 250,
+          "pointerStepMs": 16
+        },
+        "idleRenderCapacity": {
+          "count": 8,
+          "mean": 0.1768663088708254,
+          "p50": 0.1481331987891019,
+          "p95": 0.24310052804622892,
+          "max": 0.24310052804622892
+        },
+        "dragRenderCapacity": {
+          "count": 40,
+          "mean": 0.2111573036751721,
+          "p50": 0.19731436015632828,
+          "p95": 0.2830037946874376,
+          "max": 0.5148148148148148
+        },
+        "dragCallbackIntervalMeanMs": {
+          "count": 40,
+          "mean": 10.032329050470524,
+          "p50": 10.011912117815484,
+          "p95": 10.117976598856227,
+          "max": 10.192183501242525
+        },
+        "dragCallbackIntervalStdMs": {
+          "count": 40,
+          "mean": 1.2020205021597847,
+          "p50": 1.0246409018317857,
+          "p95": 2.4693478070907973,
+          "max": 2.791037539143169
+        },
+        "pointerMoves": 277,
+        "distinctAcceptedRevisionsSampledDuringDrag": 0,
+        "samplesDuringDrag": 40
+      }
+    },
+    {
+      "tree": "mainpre23",
+      "commit": "905db67",
+      "round": 3,
+      "metrics": {
+        "environment": {
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "hardwareConcurrency": 4
+        },
+        "settings": {
+          "dragMs": 10000,
+          "idleMs": 2000,
+          "sampleEveryMs": 250,
+          "pointerStepMs": 16
+        },
+        "idleRenderCapacity": {
+          "count": 8,
+          "mean": 0.1482424471688651,
+          "p50": 0.11322225470135439,
+          "p95": 0.2117063492063492,
+          "max": 0.2117063492063492
+        },
+        "dragRenderCapacity": {
+          "count": 40,
+          "mean": 0.14558950126408918,
+          "p50": 0.14393028846153846,
+          "p95": 0.2066107449570601,
+          "max": 0.22936784469885516
+        },
+        "dragCallbackIntervalMeanMs": {
+          "count": 40,
+          "mean": 10.007653078869506,
+          "p50": 9.999849408290244,
+          "p95": 10.046805836468847,
+          "max": 10.080623855302536
+        },
+        "dragCallbackIntervalStdMs": {
+          "count": 40,
+          "mean": 0.47085890735893365,
+          "p50": 0.2880407726859307,
+          "p95": 1.3651161256272595,
+          "max": 1.7237321143073805
+        },
+        "pointerMoves": 284,
+        "distinctAcceptedRevisionsSampledDuringDrag": 0,
+        "samplesDuringDrag": 40
+      }
+    },
+    {
+      "tree": "branch",
+      "commit": "fe2786a",
+      "round": 3,
+      "metrics": {
+        "environment": {
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "hardwareConcurrency": 4
+        },
+        "settings": {
+          "dragMs": 10000,
+          "idleMs": 2000,
+          "sampleEveryMs": 250,
+          "pointerStepMs": 16
+        },
+        "idleRenderCapacity": {
+          "count": 8,
+          "mean": 0.1469741707079396,
+          "p50": 0.13438814340076108,
+          "p95": 0.18426605043705416,
+          "max": 0.18426605043705416
+        },
+        "dragRenderCapacity": {
+          "count": 39,
+          "mean": 0.1583201867439605,
+          "p50": 0.1539696878450266,
+          "p95": 0.23633976366023635,
+          "max": 0.3017533373181909
+        },
+        "dragCallbackIntervalMeanMs": {
+          "count": 39,
+          "mean": 10.089920870655682,
+          "p50": 10.006418213303427,
+          "p95": 10.628930838414762,
+          "max": 10.7574534558822
+        },
+        "dragCallbackIntervalStdMs": {
+          "count": 39,
+          "mean": 1.5051527647483307,
+          "p50": 0.6871733939443333,
+          "p95": 5.8708412200912985,
+          "max": 6.511890383536315
+        },
+        "pointerMoves": 274,
+        "distinctAcceptedRevisionsSampledDuringDrag": 39,
+        "samplesDuringDrag": 39
+      }
+    }
+  ]
+}
