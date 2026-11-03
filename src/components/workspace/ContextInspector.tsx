@@ -125,7 +125,7 @@ export const ContextInspector = memo(function ContextInspector({ project, dispat
           </label> : null}
           {localAsset && onRemoveLocalAudio ? (
             confirmAudioRemoval
-              ? <div className="workspace-confirm-card" role="alert"><strong>Remove local audio?</strong><p>The Source stays in place and becomes silent until relinked.</p><button onClick={() => {
+              ? <div className="workspace-confirm-card" role="alert"><strong>Remove local audio?</strong><p>The Source stays in place and becomes silent until relinked.</p><button className="workspace-button-danger" onClick={() => {
                 setAudioEditStatus("Removing audio…");
                 void onRemoveLocalAudio(source.clipId).then(() => {
                   setConfirmAudioRemoval(false);
@@ -237,7 +237,7 @@ export const ContextInspector = memo(function ContextInspector({ project, dispat
           {selection.type !== "surface" ? <button onClick={() => setConfirmDelete(selection)} type="button">Delete</button> : null}
         </section>
       ) : <HintCard title="Select an object">Choose an item in the Outliner or viewport to edit exact values.</HintCard>}
-      {confirmDelete ? <div aria-label="Confirm delete" aria-modal="true" className="workspace-confirm-card" role="alertdialog"><strong>Delete {confirmDelete.type}?</strong><p>This permanently removes the object and follows Portal cascade rules.</p><button autoFocus onClick={() => deleteConfirmed(confirmDelete)} type="button">Delete {confirmDelete.type}</button><button onClick={() => setConfirmDelete(null)} type="button">Cancel</button></div> : null}
+      {confirmDelete ? <div aria-label="Confirm delete" aria-modal="true" className="workspace-confirm-card" role="alertdialog"><strong>Delete {confirmDelete.type}?</strong><p>This permanently removes the object and follows Portal cascade rules.</p><button autoFocus className="workspace-button-danger" onClick={() => deleteConfirmed(confirmDelete)} type="button">Delete {confirmDelete.type}</button><button onClick={() => setConfirmDelete(null)} type="button">Cancel</button></div> : null}
       {project.notice ? <div className="workspace-notice" role="status"><span>{project.notice.message}</span><button aria-label="Dismiss notice" onClick={() => dispatch({ type: "CLEAR_NOTICE" })} type="button">×</button></div> : null}
     </aside>
   );

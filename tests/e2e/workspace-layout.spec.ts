@@ -25,3 +25,19 @@ test("keeps both viewports inside their panel without scrolling on desktop sizes
     }
   }
 });
+
+test("styles overlay actions like workspace controls and separates disabled reasons", async ({ page }) => {
+  await page.goto("/classic");
+  await page.getByRole("button", { name: "Reset", exact: true }).click();
+  const reset = page.getByRole("alertdialog", { name: "Reset active project" }).getByRole("button", { name: "Reset project" });
+  const style = await reset.evaluate((element) => {
+    const computed = getComputedStyle(element);
+    return { borderStyle: computed.borderTopStyle, background: computed.backgroundColor };
+  });
+  expect(style).toEqual({ borderStyle: "solid", background: "rgba(0, 0, 0, 0)" });
+  await page.getByRole("button", { name: "Cancel", exact: true }).click();
+
+  await page.getByTestId("add-object").click();
+  await expect(page.getByTestId("add-portal")).toBeDisabled();
+  await expect(page.getByTestId("add-portal")).toContainText("Portal Select an enabled Wall first");
+});

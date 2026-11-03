@@ -25,7 +25,7 @@ export function AddObjectMenu({ onAdd, onClose, availability = {} }: Readonly<{
           <div className="add-object-item" key={kind}>
             {showGroup ? <p>{group}</p> : null}
             <button autoFocus={kind === "listener"} data-testid={`add-${kind}`} disabled={state?.enabled === false} onClick={() => { onAdd(kind); onClose(); }} title={state?.reason} type="button">
-              <span aria-hidden="true">{glyph}</span>{label}{state?.reason ? <small>{state.reason}</small> : null}
+              <span aria-hidden="true">{glyph}</span>{label}{state?.reason ? <>{" "}<small>{state.reason}</small></> : null}
             </button>
           </div>
         );

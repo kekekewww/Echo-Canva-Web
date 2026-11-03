@@ -54,4 +54,9 @@ test("preserves scene edits and offers Retry after audio startup fails", async (
   await expect(page.locator(".workspace-error")).toContainText("audio denied");
   await expect(page.getByRole("button", { name: "Retry" })).toBeVisible();
   await expect(x).toHaveValue("4.4");
+  // The error floats above the editor; it must not take over a row of the workspace grid.
+  const grid = await page.locator(".workspace-grid").boundingBox();
+  const viewportHeight = page.viewportSize()?.height ?? 0;
+  expect(grid?.height ?? 0).toBeGreaterThan(viewportHeight * 0.75);
+  await expect(page.getByTestId("classic-workspace-viewport")).toBeVisible();
 });
