@@ -16,7 +16,11 @@ import {
   type HybridViewportSelection,
   type HybridViewportWall,
 } from "@/components/lab/HybridSpatialViewport";
-import { deriveHybridPathDisplay } from "@/components/workspace/HybridPathOverlay";
+import {
+  deriveHybridArrivalLabel,
+  deriveHybridPathDisplay,
+  HybridArrivalDirectionLabel,
+} from "@/components/workspace/HybridPathOverlay";
 import { ViewportHelp, type ViewportHelpItem } from "@/components/workspace/ViewportHelp";
 import { useCameraTween } from "@/hooks/useCameraTween";
 import { DEFAULT_VIEWPORT_CAMERA, frameViewportPoints, type ViewportCamera } from "@/components/lab/viewport-math";
@@ -126,6 +130,18 @@ export function HybridViewportAdapter({ project, dispatch, audioEngine, wallPlac
     project.revision,
     audible.paths,
   ), [audible.paths, direct.frame, geometry, project.revision, selectedSourceId, showAllPaths]);
+  const selectedSourceName = project.scene.sources.find(({ id }) => id === selectedSourceId)?.name;
+  // A pose-lagging frame is accepted for overlay/audio continuity, but its direction describes the
+  // previous pose, so the arrival label shows pending until a current frame arrives.
+  const arrivalCurrent = accepted && !presentation.lagging;
+  const arrivalLabel = useMemo(() => deriveHybridArrivalLabel({
+    accepted: arrivalCurrent,
+    frame: direct.frame,
+    expectedRevision: project.revision,
+    selectedSourceId,
+    sourceName: selectedSourceName,
+    audiblePaths: audible.paths,
+  }), [arrivalCurrent, audible.paths, direct.frame, project.revision, selectedSourceId, selectedSourceName]);
 
   const objects = useMemo<readonly HybridViewportObject[]>(() => [
     ...project.listeners.filter(({ enabled }) => enabled).map((listener) => ({
@@ -305,6 +321,7 @@ export function HybridViewportAdapter({ project, dispatch, audioEngine, wallPlac
         onWallPlacementPoint={onWallPlacementPoint}
         walls={walls}
       />
+      {pathsVisible ? <HybridArrivalDirectionLabel label={arrivalLabel} /> : null}
     </section>
   );
 }

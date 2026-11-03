@@ -571,6 +571,8 @@ For a top-down editor:
 - set listener forward/up orientation consistently;
 - provide an explicit Headphones recommended label.
 
+The Hybrid path overlay shows a text label for the selected source's direct or blocked arrival direction. It copies `azimuthDeg` and `elevationDeg` from the accepted frame's `solveDirectPath3D` result, rounded to 0.1°. The direction is world-aligned and runs from the listener position to the source: azimuth \(\operatorname{atan2}(x, z)\), so 0° is +Z (north) and 90° is +X; elevation \(\arcsin(y)\), positive above the listener. The listener heading does not rotate it. For a blocked source with an audible Portal route, the label still shows the blocked straight-line direction and says the Portal route differs. A frame whose revision or Classic projection hash does not match shows a pending state. The label is a display of a geometric approximation, not a measured or perceived localization, and it changes no acoustic revision or audio parameter.
+
 ## 15. Parameter smoothing
 
 Equivalent one-pole target smoothing:
