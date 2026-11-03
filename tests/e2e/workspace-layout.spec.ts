@@ -48,7 +48,6 @@ test("keeps both viewports inside their panel without scrolling on desktop sizes
 
 test("keeps Hybrid viewport labels apart and shows coordinates only for the selection", async ({ page }) => {
   await page.goto("/lab");
-  const viewport = page.getByTestId("hybrid-spatial-viewport");
   const labels = page.getByTestId("hybrid-viewport-label-layer");
   await expect(labels.locator("text")).not.toHaveCount(0);
   await expect(labels.locator(".hybrid-viewport-object-value")).toHaveCount(1);
@@ -62,7 +61,7 @@ test("keeps Hybrid viewport labels apart and shows coordinates only for the sele
   await expect(page.getByTestId("hybrid-viewport-listener")).toHaveAttribute("aria-label", /X 3\.0 m, Y 1\.5 m, Z 4\.0 m/);
 
   for (const view of ["Top", "Front", "Home"]) {
-    await viewport.getByRole("button", { name: view, exact: true }).click();
+    await page.getByTestId("hybrid-workspace-viewport").getByRole("button", { name: view, exact: true }).click();
     expect(await overlappingLabelPairs(page), view).toEqual([]);
   }
 });
@@ -104,5 +103,32 @@ test("keeps workspace chrome text at 11 px or larger with tabular numerals", asy
     });
     expect(report.small, route).toEqual([]);
     expect(report.numeric).toContain("tabular-nums");
+  }
+});
+
+test("uses one viewport header with the same control order in both modes", async ({ page }) => {
+  for (const [route, label, groups] of [
+    ["/classic", "2.5D viewport help", ["Camera views"]],
+    ["/lab", "3D viewport help", ["Camera views", "Overlays"]],
+  ] as const) {
+    await page.goto(route);
+    const panel = page.locator(".workspace-viewport-panel");
+    await expect(panel.locator("header")).toHaveCount(1);
+    await expect(panel.locator(".hybrid-viewport-header, .hybrid-viewport-help:not(.visually-hidden)")).toHaveCount(0);
+    const order = await panel.locator("header > [role='group'], header .viewport-help > button").evaluateAll((elements) =>
+      elements.map((element) => element.getAttribute("aria-label")));
+    expect(order, route).toEqual([...groups, label]);
+
+    const help = page.getByRole("button", { name: label });
+    await help.click();
+    await expect(page.getByRole("note", { name: label })).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(page.getByRole("note", { name: label })).toBeHidden();
+    await expect(help).toBeFocused();
+
+    const status = page.locator(".workspace-statusbar");
+    await expect(status.locator(".statusbar-engine-state")).toHaveText(/^(Worker|Fallback|Stopped)/);
+    await expect(status.getByRole("group", { name: "Acoustic readout" })).toContainText("RT60");
+    await expect(status).not.toContainText("Listener Listener");
   }
 });
