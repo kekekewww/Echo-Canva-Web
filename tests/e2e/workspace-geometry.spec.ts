@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { deleteSelection } from "./workspace-helpers";
 
 test("adds Walls with two viewport points and requires that Wall for a Portal", async ({ page }) => {
   for (const mode of ["/classic", "/lab"] as const) {
@@ -175,7 +176,7 @@ test("selects a 3D Wall directly from its visible viewport panel", async ({ page
 
   await panel.click();
 
-  await expect(page.getByRole("heading", { name: "Wall", exact: true })).toBeVisible();
+  await expect(page.getByRole("complementary", { name: "Inspector" }).locator(".inspector-type")).toHaveText("Wall");
   await expect(page.getByTestId("hybrid-viewport-partition-a")).toBeVisible();
 });
 
@@ -188,8 +189,7 @@ test("protects the final enabled Listener when disabled Listeners remain", async
   const listeners = page.getByRole("complementary", { name: "Scene Outliner" }).locator(".kind-listener");
   await listeners.first().click();
   await page.getByRole("button", { name: "Disable", exact: true }).click();
-  await page.getByRole("button", { name: "Delete", exact: true }).click();
-  await page.getByRole("button", { name: "Delete listener", exact: true }).click();
+  await deleteSelection(page);
 
   await expect(listeners).toHaveCount(2);
   await expect(page.getByRole("status")).toContainText("At least one listener must remain enabled.");
@@ -205,8 +205,7 @@ test("deletes a playing 3D Source without applying a stale acoustic frame", asyn
   const sources = page.getByRole("complementary", { name: "Scene Outliner" }).locator(".kind-source");
   const before = await sources.count();
   await sources.first().click();
-  await page.getByRole("button", { name: "Delete", exact: true }).click();
-  await page.getByRole("button", { name: "Delete source", exact: true }).click();
+  await deleteSelection(page);
 
   await expect(sources).toHaveCount(before - 1);
   await expect(page.getByTestId("hybrid-spatial-viewport")).toBeVisible();

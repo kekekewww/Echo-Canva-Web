@@ -179,6 +179,8 @@ export function useWorkspaceProjects(initialMode?: WorkspaceMode) {
     undo,
     redo,
     canUndo: activeHistory.past.length > 0,
+    /** Number of undoable steps in the active mode (capped by the history limit). */
+    historyDepth: activeHistory.past.length,
     canRedo: activeHistory.future.length > 0,
     resetActiveProject,
     clearAllProjects,

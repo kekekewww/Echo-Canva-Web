@@ -69,9 +69,9 @@ test("keeps Hybrid viewport labels apart and shows coordinates only for the sele
 test("styles overlay actions like workspace controls and separates disabled reasons", async ({ page }) => {
   await page.goto("/classic");
   await openProjectMenu(page);
-  await page.getByRole("button", { name: /^Reset .* project…$/ }).click();
-  const reset = page.getByRole("alertdialog", { name: "Reset active project" }).getByRole("button", { name: "Reset project" });
-  const style = await reset.evaluate((element) => {
+  await page.getByRole("button", { name: "Clear all local data…" }).click();
+  const confirm = page.getByRole("alertdialog", { name: "Clear all local data" }).getByRole("button", { name: "Confirm clear all" });
+  const style = await confirm.evaluate((element) => {
     const computed = getComputedStyle(element);
     return { borderStyle: computed.borderTopStyle, background: computed.backgroundColor };
   });

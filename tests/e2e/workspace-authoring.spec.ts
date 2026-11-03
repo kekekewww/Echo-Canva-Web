@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 
 import { CONCRETE_PARTITION_PRESET } from "@/domain/presets/concrete-partition";
 import type { ExplainAcousticsRequest } from "@/ai/contracts";
-import { openProjectMenu, selectPreset } from "./workspace-helpers";
+import { deleteSelection, openProjectMenu, selectPreset } from "./workspace-helpers";
 
 test("adds and activates listeners and enforces the source workflow", async ({ page }) => {
   await page.goto("/lab");
@@ -161,19 +161,19 @@ test("explains the selected source using a deterministic snapshot and a mocked A
   expect(requested?.snapshot.effectiveDistanceM).toBeGreaterThan(0);
 });
 
-test("confirms permanent deletes and clears all local project data in two steps", async ({ page }) => {
+test("deletes immediately with an Undo toast and clears all local project data in two steps", async ({ page }) => {
   await page.goto("/lab");
   const outliner = page.getByRole("complementary", { name: "Scene Outliner" });
   await outliner.getByRole("button", { name: "partition center", exact: true }).click();
-  await page.getByRole("button", { name: "Delete", exact: true }).click();
-  const confirmation = page.getByRole("alertdialog", { name: "Confirm delete" });
-  await expect(confirmation).toBeVisible();
-  await confirmation.getByRole("button", { name: "Cancel" }).click();
-  await expect(outliner.getByRole("button", { name: "partition center", exact: true })).toBeVisible();
-  await page.getByRole("button", { name: "Delete", exact: true }).click();
-  await confirmation.getByRole("button", { name: "Delete wall" }).click();
+  await deleteSelection(page);
   await expect(outliner.getByRole("button", { name: "partition center", exact: true })).toHaveCount(0);
   await expect(outliner.locator(".kind-portal")).toHaveCount(0);
+  const toast = page.getByRole("status").filter({ hasText: "Deleted partition center and 1 Portal" });
+  await expect(toast).toBeVisible();
+  await toast.getByRole("button", { name: "Undo" }).click();
+  await expect(outliner.getByRole("button", { name: "partition center", exact: true })).toBeVisible();
+  await expect(outliner.locator(".kind-portal")).toHaveCount(1);
+  await expect(toast).toBeHidden();
 
   await openProjectMenu(page);
   await page.getByRole("button", { name: "Clear all local data…" }).click();

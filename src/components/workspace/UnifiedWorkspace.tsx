@@ -5,13 +5,15 @@ import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore
 import { AddObjectMenu } from "@/components/workspace/AddObjectMenu";
 import { AudioAssetPicker } from "@/components/workspace/AudioAssetPicker";
 import { ClassicViewportAdapter } from "@/components/workspace/ClassicViewportAdapter";
-import { ContextInspector } from "@/components/workspace/ContextInspector";
+import { ContextInspector, type InspectorAddKind } from "@/components/workspace/ContextInspector";
 import { HybridViewportAdapter } from "@/components/workspace/HybridViewportAdapter";
 import { SceneOutliner } from "@/components/workspace/SceneOutliner";
 import { WorkspaceStatusBar, type WorkspaceAcousticStatus } from "@/components/workspace/WorkspaceStatusBar";
 import { PROJECT_TRIGGER_ID, WorkspaceToolbar } from "@/components/workspace/WorkspaceToolbar";
 import { WorkspaceProjectTools } from "@/components/workspace/WorkspaceProjectTools";
 import type { WorkspaceMode } from "@/domain/workspace/types";
+import { cascadedPortalCount, deleteActionFor, describeEntity, entityExists } from "@/domain/workspace/entities";
+import { createDefaultClassicProject, createDefaultHybridProject } from "@/domain/workspace/defaults";
 import type { EntityRef } from "@/domain/workspace/types";
 import type { PrimitiveKind } from "@/domain/workspace/types";
 import { MAX_PRIMITIVES } from "@/domain/workspace/primitives";
@@ -22,6 +24,28 @@ import { AudioEngine } from "@/audio/AudioEngine";
 import type { PreviewMode } from "@/domain/editor/state";
 import { createProjectProjectionCache, projectClassicScene } from "@/domain/workspace/projections";
 import { useAudioEngine } from "@/hooks/useAudioEngine";
+
+/**
+ * Feedback for an undoable action, with an Undo button. It stays visible only while the action is the latest
+ * history step in its mode (same depth and revision, and for deletes the entity is still gone), so its Undo can
+ * never revert a different edit.
+ */
+type UndoToast = Readonly<{
+  id: number;
+  message: string;
+  mode: WorkspaceMode;
+  depthAfter: number;
+  revisionAfter: number;
+  deleted?: EntityRef;
+}>;
+
+const UNDO_TOAST_MS = 8000;
+const HISTORY_LIMIT = 50;
+
+function isEditableTarget(target: EventTarget | null): boolean {
+  const element = target as HTMLElement | null;
+  return Boolean(element?.closest?.("input, textarea, select, [contenteditable='true']"));
+}
 
 export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: WorkspaceMode }>) {
   const hydrated = useSyncExternalStore(
@@ -45,7 +69,7 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
   const [audioPending, setAudioPending] = useState(false);
   const audioPendingRef = useRef(false);
   const [audioError, setAudioError] = useState<string | null>(null);
-  const [confirmReset, setConfirmReset] = useState(false);
+  const [undoToast, setUndoToast] = useState<UndoToast | null>(null);
   const [projectOpen, setProjectOpen] = useState(false);
   const [confirmClearAll, setConfirmClearAll] = useState(false);
   const [mobilePanel, setMobilePanel] = useState<"outliner" | "inspector" | null>(null);
@@ -103,13 +127,62 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
 
   useEffect(() => installGateCAudioRenderValidation(), []);
 
+  const showUndoToast = useCallback((toast: Omit<UndoToast, "id" | "mode" | "depthAfter">) => {
+    setUndoToast({
+      ...toast,
+      id: Date.now(),
+      mode: workspace.activeMode,
+      depthAfter: Math.min(workspace.historyDepth + 1, HISTORY_LIMIT),
+    });
+  }, [workspace.activeMode, workspace.historyDepth]);
+
+  const deleteSelection = useCallback(() => {
+    const project = workspace.activeProject;
+    const selection = project.selection;
+    const action = selection ? deleteActionFor(selection) : null;
+    if (!selection || !action) return;
+    const portals = cascadedPortalCount(project, selection);
+    const label = describeEntity(project, selection);
+    dispatchWorkspace(action);
+    showUndoToast({
+      message: `Deleted ${label}${portals ? ` and ${portals} Portal${portals === 1 ? "" : "s"}` : ""}`,
+      revisionAfter: project.revision + 1,
+      deleted: selection,
+    });
+  }, [dispatchWorkspace, showUndoToast, workspace.activeProject]);
+
+  const resetActiveProject = useCallback(() => {
+    const mode = workspace.activeMode;
+    workspace.resetActiveProject();
+    showUndoToast({
+      message: `Reset ${mode === "hybrid-3d" ? "3D" : "2.5D"} project`,
+      revisionAfter: (mode === "hybrid-3d" ? createDefaultHybridProject() : createDefaultClassicProject()).revision,
+    });
+  }, [showUndoToast, workspace]);
+
+  // Stable callback for the memoised Inspector; addObject itself reads the latest project on each call.
+  const addObjectRef = useRef(addObject);
+  useEffect(() => { addObjectRef.current = addObject; });
+  const addFromInspector = useCallback((kind: InspectorAddKind) => addObjectRef.current(kind), []);
+
+  const toastVisible = undoToast !== null
+    && undoToast.mode === workspace.activeMode
+    && workspace.historyDepth === undoToast.depthAfter
+    && workspace.activeProject.revision === undoToast.revisionAfter
+    && (!undoToast.deleted || !entityExists(workspace.activeProject, undoToast.deleted));
+
+  useEffect(() => {
+    if (!undoToast) return undefined;
+    const timer = window.setTimeout(() => setUndoToast((current) => current?.id === undoToast.id ? null : current), UNDO_TOAST_MS);
+    return () => window.clearTimeout(timer);
+  }, [undoToast]);
+
   useEffect(() => {
     function shortcuts(event: KeyboardEvent): void {
       if (event.key === "Escape" && addOpen) { setAddOpen(false); return; }
       if (event.key === "Escape" && audioPickerOpen) { setAudioPickerOpen(false); return; }
-      if (event.key === "Escape" && (confirmClearAll || confirmReset)) {
+      if (event.key === "Escape" && confirmClearAll) {
         setConfirmClearAll(false);
-        setConfirmReset(false);
         return;
       }
       if (event.key === "Escape" && projectOpen) {
@@ -125,6 +198,13 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
         setMobilePanel(null);
         return;
       }
+      if ((event.key === "Delete" || event.key === "Backspace") && !event.ctrlKey && !event.metaKey && !event.altKey
+        && !isEditableTarget(event.target)
+        && (event.target === document.body || (event.target as Element | null)?.closest?.(".workspace-outliner, .workspace-viewport-panel"))) {
+        event.preventDefault();
+        deleteSelection();
+        return;
+      }
       if (!(event.ctrlKey || event.metaKey)) return;
       if (event.key.toLowerCase() === "z") {
         event.preventDefault();
@@ -134,7 +214,7 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
     }
     window.addEventListener("keydown", shortcuts);
     return () => window.removeEventListener("keydown", shortcuts);
-  }, [addOpen, audioPickerOpen, confirmClearAll, confirmReset, mobilePanel, projectOpen, wallPlacement, workspace]);
+  }, [addOpen, audioPickerOpen, confirmClearAll, deleteSelection, mobilePanel, projectOpen, wallPlacement, workspace]);
 
   useEffect(() => {
     if (!projectOpen) return undefined;
@@ -335,7 +415,7 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
               localAssets={localAssets}
               onDone={() => setProjectOpen(false)}
               onRequestClearAll={() => { setProjectOpen(false); setConfirmClearAll(true); }}
-              onRequestReset={() => { setProjectOpen(false); setConfirmReset(true); }}
+              onRequestReset={() => { setProjectOpen(false); resetActiveProject(); }}
               project={workspace.activeProject}
             />
           </div>
@@ -347,9 +427,17 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
       />
       {(workspace.persistenceStatus !== "saved" || audioLibrary.warning) ? <div className="workspace-persistence-warning" role="status"><strong>Memory-only warning</strong><span>{audioLibrary.warning ?? workspace.persistenceStatus}</span></div> : null}
       {workspace.recoveryRaw ? <div className="workspace-confirm-card workspace-recovery-card" role="status"><strong>Project cache recovery</strong><p>A safe preset is loaded. Download the unread record before replacing it.</p><button className="workspace-button-primary" onClick={downloadRecoveryRecord} type="button">Download unread cache</button></div> : null}
-      {confirmReset ? <div className="workspace-confirm-card workspace-floating-card" role="alertdialog" aria-label="Reset active project"><strong>Reset {workspace.activeMode === "hybrid-3d" ? "3D" : "2.5D"} project?</strong><p>The other mode and local audio stay unchanged.</p><button autoFocus className="workspace-button-danger" onClick={() => { workspace.resetActiveProject(); setConfirmReset(false); }} type="button">Reset project</button><button onClick={() => setConfirmReset(false)} type="button">Cancel</button></div> : null}
       {confirmClearAll ? <div aria-label="Clear all local data" aria-modal="true" className="workspace-confirm-card workspace-floating-card" role="alertdialog"><strong>Clear all local data?</strong><p>This removes both local projects and every local audio file. It cannot be undone.</p><button autoFocus className="workspace-button-danger" onClick={() => void audioLibrary.clear().then(() => { workspace.clearAllProjects(); setConfirmClearAll(false); })} type="button">Confirm clear all</button><button onClick={() => setConfirmClearAll(false)} type="button">Cancel</button></div> : null}
-      {audioError ? <div className="workspace-error" role="alert"><span>{audioError}</span><button onClick={() => void togglePlaying()} type="button">Retry</button></div> : null}
+      <div className="workspace-toast-region">
+        {audioError ? <div className="workspace-error" role="alert"><span>{audioError}</span><button onClick={() => void togglePlaying()} type="button">Retry</button></div> : null}
+        {toastVisible && undoToast ? (
+          <div className="workspace-toast" key={undoToast.id} role="status">
+            <span>{undoToast.message}</span>
+            <button className="workspace-toast-undo" onClick={() => { workspace.undo(); setUndoToast(null); }} type="button">Undo</button>
+            <button aria-label="Dismiss" className="workspace-toast-dismiss" onClick={() => setUndoToast(null)} type="button">×</button>
+          </div>
+        ) : null}
+      </div>
       {addOpen ? <AddObjectMenu
         availability={{
           listener: { enabled: workspace.activeProject.listeners.length < 8, reason: workspace.activeProject.listeners.length >= 8 ? "Limit: 8 listeners" : undefined },
@@ -402,6 +490,9 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
           localAssets={localAssets}
           onRelinkAudio={relinkAudio}
           onRemoveLocalAudio={removeAudio}
+          onAdd={addFromInspector}
+          onDelete={deleteSelection}
+          rt60MidS={workspace.activeProject.selection ? null : acousticStatus?.rt60MidS ?? null}
           mobileOpen={mobilePanel === "inspector"}
           project={workspace.activeProject}
         />

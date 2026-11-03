@@ -92,11 +92,12 @@ test("resets only the active mode and can undo reset", async ({ page }) => {
   await x.press("Enter");
   await openProjectMenu(page);
   await page.getByRole("button", { name: /^Reset .* project…$/ }).click();
-  await expect(page.getByRole("alertdialog", { name: "Reset active project" })).toBeVisible();
-  await page.getByRole("button", { name: "Reset project" }).click();
   await expect(x).toHaveValue("3");
+  const toast = page.getByRole("status").filter({ hasText: "Reset 3D project" });
+  await expect(toast).toBeVisible();
   await page.getByTitle("Undo (Ctrl+Z)").click();
   await expect(x).toHaveValue("5");
+  await expect(toast).toBeHidden();
 });
 
 test("contains wheel zoom inside the 3D viewport and reports no page errors", async ({ page }) => {
