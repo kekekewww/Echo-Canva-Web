@@ -49,6 +49,8 @@ Paths below are relative to `tests/unit/`. These tests existed at the immutable 
 
 Production Chromium coverage in `tests/e2e/audio-rendering.spec.ts` renders the actual Schroeder implementation in `OfflineAudioContext`. It asserts finite non-zero stereo output with peak at or below full scale, an equal-band 0.8-second target within +/-20%, and a Raw/Simulated transition whose largest adjacent-sample step is at most 1% of its rendered peak. The extracted baseline run passed this case; a physical audio device is unnecessary for this rendered-signal check.
 
+A second case in the same spec renders the production `SourceGraph` twice in Simulated mode with identical seeded white noise (mulberry32, uniform, peak 0.25). The source is the Concrete Partition radio behind the partition; `computeAcousticFrame` supplies a direct frame with `partition_door` open (0 dB, 20 kHz cutoff) and a blocked frame with it closed (-24 dB, 700 Hz cutoff), applied through `SourceGraph.applyFrame`. Early-reflection taps are omitted to isolate the direct path, and the reverb send is not rendered. Analysis uses the settled 0.6-1.0 s window (7.5 smoothing time constants after the frame), a Hann-windowed 4096-point Welch estimate at 48 kHz, and mean-square dB re full scale summed over both channels. Bands are low `[20, 500) Hz` and high `[4, 16) kHz`. The case asserts finite, non-zero, at-or-below-full-scale output for both renders, direct broadband level within +/-1 dB of the analytic -32.42 dB, a low-band change within +/-3 dB of the dry-gain change, and a high-band change at least 20 dB below the dry-gain change. A local Chromium run measured a low-band change of -23.2 dB and a high-band change of -64.9 dB; with the lowpass write removed from `applyFrame` as a negative control the high-band change was -24.0 dB and the case failed. This is rendered-graph evidence, not listening or localization evidence.
+
 ## Additional reproducible numerical fixtures
 
 ### Classic second-order analytic path
@@ -96,7 +98,6 @@ Classic retains its v1 three-band scene and constant `343 m/s` propagation. Hybr
 
 ## Remaining scientific verification debt
 
-- Add a rendered direct-versus-occluded spectral-energy comparison using the real source graph. Historical acceptance text lists this check, but current `audio-rendering.spec.ts` checks reverb/crossfade only; unit filter assertions do not measure a rendered spectrum.
 - Broaden geometry and Hybrid reference fixtures with independently derived concave/near-degenerate cases and property checks before changing tolerances or search budgets.
 - Measure moving-listener and narrow-portal convergence before enabling any research late-field renderer. Existing stationary helper tests demonstrate determinism and accounting rather than measured physical convergence.
 - Perform and record a host-browser headphone session for localization, portal direction, material contrast, and transition continuity. Automated graph/state tests cannot substitute for those judgments.
