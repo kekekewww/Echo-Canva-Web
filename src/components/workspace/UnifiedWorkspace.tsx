@@ -127,6 +127,21 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
 
   useEffect(() => installGateCAudioRenderValidation(), []);
 
+  // Keyboard-initiated actions are never animated (see globals.css [data-input="keyboard"]).
+  useEffect(() => {
+    const root = document.documentElement;
+    const onKeyDown = (event: KeyboardEvent): void => {
+      if (!event.metaKey && !event.ctrlKey && !event.altKey) root.dataset.input = "keyboard";
+    };
+    const onPointerDown = (): void => { root.dataset.input = "pointer"; };
+    window.addEventListener("keydown", onKeyDown, true);
+    window.addEventListener("pointerdown", onPointerDown, true);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown, true);
+      window.removeEventListener("pointerdown", onPointerDown, true);
+    };
+  }, []);
+
   const showUndoToast = useCallback((toast: Omit<UndoToast, "id" | "mode" | "depthAfter">) => {
     setUndoToast({
       ...toast,
@@ -383,6 +398,7 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
       data-audio-graphs={audio.diagnostics.graphCount}
       data-testid="unified-workspace"
       data-mode={workspace.activeMode}
+      data-playing={playing ? "true" : "false"}
       onPointerCancelCapture={(event) => {
         if ((event.target as Element).closest?.(".numeric-scrub-label")) workspace.endHistoryTransaction();
       }}
@@ -420,6 +436,37 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
             />
           </div>
         )}
+        addMenu={(
+          <>
+            {addOpen ? <AddObjectMenu
+              availability={{
+                listener: { enabled: workspace.activeProject.listeners.length < 8, reason: workspace.activeProject.listeners.length >= 8 ? "Limit: 8 listeners" : undefined },
+                source: { enabled: workspace.activeProject.scene.sources.length < 4, reason: workspace.activeProject.scene.sources.length >= 4 ? "Limit: 4 sources" : undefined },
+                wall: { enabled: workspace.activeProject.scene.walls.length < 100, reason: workspace.activeProject.scene.walls.length >= 100 ? "Limit: 100 walls" : undefined },
+                box: { enabled: workspace.activeProject.primitives.length < MAX_PRIMITIVES, reason: workspace.activeProject.primitives.length >= MAX_PRIMITIVES ? `Limit: ${MAX_PRIMITIVES} shapes` : undefined },
+                cylinder: { enabled: workspace.activeProject.primitives.length < MAX_PRIMITIVES, reason: workspace.activeProject.primitives.length >= MAX_PRIMITIVES ? `Limit: ${MAX_PRIMITIVES} shapes` : undefined },
+                sphere: { enabled: workspace.activeProject.primitives.length < MAX_PRIMITIVES, reason: workspace.activeProject.primitives.length >= MAX_PRIMITIVES ? `Limit: ${MAX_PRIMITIVES} shapes` : undefined },
+                portal: {
+                  enabled: workspace.activeProject.scene.portals.length < 8 && workspace.activeProject.selection?.type === "wall" && !workspace.activeProject.disabledEntityIds.includes(workspace.activeProject.selection.id),
+                  reason: workspace.activeProject.scene.portals.length >= 8
+                    ? "Limit: 8 Portals"
+                    : workspace.activeProject.selection?.type === "wall" && !workspace.activeProject.disabledEntityIds.includes(workspace.activeProject.selection.id)
+                      ? undefined
+                      : "Select an enabled Wall first",
+                },
+              }}
+              onAdd={addObject}
+              onClose={() => setAddOpen(false)}
+            /> : null}
+            {audioPickerOpen ? <AudioAssetPicker
+              onChoose={addSource}
+              onClose={() => setAudioPickerOpen(false)}
+              onUpload={audioLibrary.add}
+              records={audioLibrary.records}
+              warning={audioLibrary.warning}
+            /> : null}
+          </>
+        )}
         projectOpen={projectOpen}
         sceneName={workspace.activeProject.scene.name}
         onShowInspector={() => setMobilePanel("inspector")}
@@ -438,34 +485,7 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
           </div>
         ) : null}
       </div>
-      {addOpen ? <AddObjectMenu
-        availability={{
-          listener: { enabled: workspace.activeProject.listeners.length < 8, reason: workspace.activeProject.listeners.length >= 8 ? "Limit: 8 listeners" : undefined },
-          source: { enabled: workspace.activeProject.scene.sources.length < 4, reason: workspace.activeProject.scene.sources.length >= 4 ? "Limit: 4 sources" : undefined },
-          wall: { enabled: workspace.activeProject.scene.walls.length < 100, reason: workspace.activeProject.scene.walls.length >= 100 ? "Limit: 100 walls" : undefined },
-          box: { enabled: workspace.activeProject.primitives.length < MAX_PRIMITIVES, reason: workspace.activeProject.primitives.length >= MAX_PRIMITIVES ? `Limit: ${MAX_PRIMITIVES} shapes` : undefined },
-          cylinder: { enabled: workspace.activeProject.primitives.length < MAX_PRIMITIVES, reason: workspace.activeProject.primitives.length >= MAX_PRIMITIVES ? `Limit: ${MAX_PRIMITIVES} shapes` : undefined },
-          sphere: { enabled: workspace.activeProject.primitives.length < MAX_PRIMITIVES, reason: workspace.activeProject.primitives.length >= MAX_PRIMITIVES ? `Limit: ${MAX_PRIMITIVES} shapes` : undefined },
-          portal: {
-            enabled: workspace.activeProject.scene.portals.length < 8 && workspace.activeProject.selection?.type === "wall" && !workspace.activeProject.disabledEntityIds.includes(workspace.activeProject.selection.id),
-            reason: workspace.activeProject.scene.portals.length >= 8
-              ? "Limit: 8 Portals"
-              : workspace.activeProject.selection?.type === "wall" && !workspace.activeProject.disabledEntityIds.includes(workspace.activeProject.selection.id)
-                ? undefined
-                : "Select an enabled Wall first",
-          },
-        }}
-        onAdd={addObject}
-        onClose={() => setAddOpen(false)}
-      /> : null}
       {wallPlacement ? <div className="workspace-placement-card" role="status"><strong>Add Wall</strong><span>{wallPlacement.first ? "Choose endpoint B" : "Choose endpoint A"}</span><button onClick={() => setWallPlacement(null)} type="button">Cancel</button></div> : null}
-      {audioPickerOpen ? <AudioAssetPicker
-        onChoose={addSource}
-        onClose={() => setAudioPickerOpen(false)}
-        onUpload={audioLibrary.add}
-        records={audioLibrary.records}
-        warning={audioLibrary.warning}
-      /> : null}
       <div className="workspace-grid">
         <SceneOutliner mobileOpen={mobilePanel === "outliner"} project={workspace.activeProject} onSelect={selectOutlinerEntity} />
         {workspace.activeMode === "classic-2d5d"

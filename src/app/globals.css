@@ -249,7 +249,11 @@
 .statusbar-readout .statusbar-listener { background: var(--listener); }
 
 .add-object-popover,
-.audio-picker { background: var(--surface-2); border: 1px solid var(--border-popover); border-radius: var(--radius); box-shadow: 0 18px 60px rgba(0,0,0,.5); display: grid; font-family: var(--grotesk); left: 50%; min-width: 15rem; padding: .45rem; position: fixed; top: 3rem; transform: translateX(-50%); z-index: 30; }
+.audio-picker { background: var(--surface-2); border: 1px solid var(--border-popover); border-radius: var(--radius); box-shadow: 0 18px 60px rgba(0,0,0,.5); display: grid; font-family: var(--grotesk); left: 0; min-width: 15rem; padding: .45rem; position: absolute; top: calc(100% + .45rem); transform-origin: top left; z-index: 30; }
+.toolbar-anchor { position: relative; }
+.toolbar-anchor .add-object-popover button,
+.toolbar-anchor .audio-picker button { border-color: transparent; }
+.toolbar-anchor .add-object-popover button:disabled { opacity: 1; }
 .add-object-popover header { align-items: center; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; padding: .35rem .45rem .55rem; }
 .add-object-popover header strong,
 .audio-picker header strong { color: var(--text-1); font: 600 var(--text-md) var(--grotesk); }
@@ -279,6 +283,52 @@
 .unified-workspace .workspace-statusbar,
 .unified-workspace .viewport-tools > span + span { font-variant-numeric: tabular-nums; }
 
+/* Motion (#36). Only transform-like properties and opacity animate; frequent and keyboard-initiated
+   actions stay instant; reduced motion keeps fades and drops movement via the tokens above. */
+.unified-workspace button { transition: scale var(--dur-press) var(--ease-out), color 120ms ease, background-color 120ms ease, border-color 120ms ease; }
+.unified-workspace button:not(:disabled):not(.numeric-scrub-label):not(.outliner-row):not(.workspace-drawer-backdrop):active { scale: var(--press-scale); }
+.add-object-popover,
+.audio-picker,
+.workspace-project-menu,
+.viewport-help-panel,
+.inspector-more-panel {
+  transition: opacity var(--dur-pop) var(--ease-out), scale var(--dur-pop) var(--ease-out), display var(--dur-pop-exit) allow-discrete;
+}
+.workspace-project-menu[hidden],
+.viewport-help-panel[hidden],
+.inspector-more-panel[hidden] { opacity: 0; scale: var(--pop-scale); transition-duration: var(--dur-pop-exit); }
+.workspace-project-menu { transform-origin: top left; }
+.viewport-help-panel,
+.inspector-more-panel { transform-origin: top right; }
+@starting-style {
+  .add-object-popover,
+  .audio-picker,
+  .workspace-project-menu,
+  .viewport-help-panel,
+  .inspector-more-panel { opacity: 0; scale: var(--pop-scale); }
+  .workspace-toast,
+  .workspace-error { opacity: 0; translate: 0 var(--toast-shift); }
+  .workspace-viewport-panel { opacity: 0; }
+}
+.workspace-toast,
+.workspace-error { transition: opacity var(--dur-toast) var(--ease-out), translate var(--dur-toast) var(--ease-out); }
+/* The incoming viewport fades in when switching 2.5D <-> 3D instead of swapping abruptly. */
+.workspace-viewport-panel { transition: opacity 150ms var(--ease-out); }
+/* Keyboard-opened popovers appear and close without animation. */
+html[data-input="keyboard"] .add-object-popover,
+html[data-input="keyboard"] .audio-picker,
+html[data-input="keyboard"] .workspace-project-menu,
+html[data-input="keyboard"] .viewport-help-panel,
+html[data-input="keyboard"] .inspector-more-panel { transition: none; }
+/* Mode switch: the selected indicator slides between 2.5D and 3D. */
+.workspace-mode-switch { position: relative; }
+.workspace-mode-switch button { position: relative; width: 3.25rem; z-index: 1; }
+.workspace-mode-switch button[aria-pressed="true"] { background: transparent; border-color: transparent; }
+.workspace-mode-switch::before { background: rgba(103,205,211,.14); border: 1px solid var(--signal); border-radius: var(--radius); bottom: .15rem; content: ""; left: .15rem; position: absolute; top: .15rem; transition: translate var(--dur-move) var(--ease-in-out); width: 3.25rem; }
+.workspace-mode-switch:has(button:nth-child(2)[aria-pressed="true"])::before { translate: 100% 0; }
+/* The source wavefront only pulses while audio plays, so the motion means "this source is sounding". */
+.unified-workspace:not([data-playing="true"]) .wavefront-signature circle { animation: none; opacity: 0.22; }
+
 /* Viewport chrome inside the workspace (the Hybrid header and canvas legend come from shared components). */
 .unified-workspace .panel-kicker { color: var(--text-3); font: 600 var(--text-xs) var(--grotesk); letter-spacing: .06em; text-transform: uppercase; }
 .unified-workspace .hybrid-viewport-header h3 { color: var(--text-1); font: 600 var(--text-md) var(--grotesk); }
@@ -290,6 +340,9 @@
   .workspace-toolbar { gap: .35rem; grid-template-columns: auto auto minmax(0, 1fr); padding: 0 .35rem; }
   /* Start-aligned so overflow goes right, where it can be scrolled to (flex-end overflow is unreachable). */
   .workspace-toolbar-actions { justify-content: flex-start; overflow-x: auto; }
+  /* The scrolling actions row would clip anchored menus, so they centre under the toolbar here. */
+  .toolbar-anchor .add-object-popover,
+  .toolbar-anchor .audio-picker { left: 50%; position: fixed; top: 3rem; transform-origin: top center; translate: -50% 0; }
   .workspace-brand { display: none; }
   .workspace-project-trigger { max-width: 9rem; }
   .toolbar-group + .toolbar-group { margin-left: .2rem; padding-left: .3rem; }
@@ -351,6 +404,18 @@
   --text-sm: 0.75rem;
   --text-md: 0.8125rem;
   --text-lg: 0.9375rem;
+  /* Motion tokens (#36): strong ease-out for enter/exit, ease-in-out for on-screen movement. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-press: 120ms;
+  --dur-pop: 160ms;
+  --dur-pop-exit: 120ms;
+  --dur-toast: 200ms;
+  --dur-move: 200ms;
+  --press-scale: 0.97;
+  --pop-scale: 0.96;
+  --toast-shift: 8px;
 }
 
 html,
@@ -1586,11 +1651,18 @@ select {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Gentler, not zero: fades and colour changes stay; movement, scale and looping motion go (#36). */
+  :root {
+    --press-scale: 1;
+    --pop-scale: 1;
+    --toast-shift: 0px;
+    --dur-move: 0ms;
+  }
+
   *,
   *::before,
   *::after {
     scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
   }
 
   .wavefront-signature circle {
