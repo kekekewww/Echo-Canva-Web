@@ -21,7 +21,7 @@ async function importLocalSource(page: Page) {
   await page.getByTestId("add-object").click();
   await page.getByTestId("add-source").click();
   await page.getByLabel("Import WAV / MP3 / Ogg").setInputFiles("public/audio/voice-loop.wav");
-  await expect(page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "voice-loop" })).toBeVisible();
+  await expect(page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "voice-loop", exact: true })).toBeVisible();
 }
 
 test("commits local audio writes and deletes to real IndexedDB", async ({ page }) => {
@@ -33,7 +33,7 @@ test("commits local audio writes and deletes to real IndexedDB", async ({ page }
   await page.reload();
   await expect.poll(() => storedAssetNames(page)).toEqual(["voice-loop.wav"]);
 
-  await page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "voice-loop" }).click();
+  await page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "voice-loop", exact: true }).click();
   await page.getByRole("button", { name: "Remove local audio" }).click();
   await page.getByRole("button", { name: "Remove audio", exact: true }).click();
   await expect(page.getByText("Relink required", { exact: true })).toBeVisible();
