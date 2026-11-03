@@ -9,8 +9,7 @@ import type { ProjectAction, WorkspaceProject } from "@/domain/workspace/types";
 import { constrainPortal3D, constrainWall3D, resizeRoomAndClamp } from "@/domain/workspace/geometry-constraints";
 import type { LocalAudioMetadata } from "@/domain/workspace/transfer";
 import { AUDIO_ASSETS } from "@/domain/audio-assets/registry";
-import { describeEntity, describeEntityType } from "@/domain/workspace/entities";
-import { MAX_PRIMITIVES } from "@/domain/workspace/primitives";
+import { describeEntity, describeEntityType, WORKSPACE_LIMITS } from "@/domain/workspace/entities";
 
 export type InspectorAddKind = "listener" | "source" | "wall";
 
@@ -252,7 +251,8 @@ export const ContextInspector = memo(function ContextInspector({ project, dispat
   ) : null;
 
   const active = listener && listener.id === project.activeListenerId;
-  const enabledCounts = {
+  // Totals (disabled entities included), because the limits count them too.
+  const counts = {
     listeners: project.listeners.length,
     sources: project.scene.sources.length,
     walls: project.scene.walls.length,
@@ -310,11 +310,11 @@ export const ContextInspector = memo(function ContextInspector({ project, dispat
           </Section>
           <Section title="Objects">
             <dl className="inspector-summary">
-              <div><dt>Listeners</dt><dd>{enabledCounts.listeners} / 8</dd></div>
-              <div><dt>Sources</dt><dd>{enabledCounts.sources} / 4</dd></div>
-              <div><dt>Walls</dt><dd>{enabledCounts.walls} / 100</dd></div>
-              <div><dt>Portals</dt><dd>{enabledCounts.portals} / 8</dd></div>
-              <div><dt>Shapes</dt><dd>{enabledCounts.shapes} / {MAX_PRIMITIVES}</dd></div>
+              <div><dt>Listeners</dt><dd>{counts.listeners} / {WORKSPACE_LIMITS.listeners}</dd></div>
+              <div><dt>Sources</dt><dd>{counts.sources} / {WORKSPACE_LIMITS.sources}</dd></div>
+              <div><dt>Walls</dt><dd>{counts.walls} / {WORKSPACE_LIMITS.walls}</dd></div>
+              <div><dt>Portals</dt><dd>{counts.portals} / {WORKSPACE_LIMITS.portals}</dd></div>
+              <div><dt>Shapes</dt><dd>{counts.shapes} / {WORKSPACE_LIMITS.primitives}</dd></div>
             </dl>
             {onAdd ? (
               <div className="inspector-summary-actions">

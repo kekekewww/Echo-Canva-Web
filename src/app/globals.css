@@ -100,11 +100,27 @@
   padding: 0 .75rem;
 }
 .workspace-outliner header small { color: var(--text-3); font: 500 var(--text-xs) var(--grotesk); text-transform: capitalize; }
-.workspace-outliner nav > p,
+.outliner-group > p,
 .add-object-item > p,
 .audio-picker p,
 .inspector-section h3 { color: var(--text-3); font: 600 var(--text-xs) var(--grotesk); letter-spacing: .06em; text-transform: uppercase; }
-.workspace-outliner nav > p { margin: .75rem .75rem .25rem; }
+/* Outliner group headers (#33): label, count / limit, and an add button that follows the Add menu's rules. */
+.outliner-group { align-items: center; display: flex; gap: .4rem; margin: .7rem .5rem .2rem .75rem; min-height: 1.5rem; }
+.outliner-group > p { flex: 1; margin: 0; }
+.outliner-count { color: var(--text-3); font: 500 var(--text-xs) var(--mono); }
+.outliner-add { align-items: center; background: transparent; border: 1px solid transparent; border-radius: var(--radius); color: var(--text-2); display: inline-flex; font: 600 var(--text-sm) var(--grotesk); height: 1.5rem; justify-content: center; line-height: 1; padding: 0; width: 1.5rem; }
+.outliner-add:not(:disabled):hover,
+.outliner-add[aria-expanded="true"] { background: var(--surface-3); border-color: var(--border-subtle); color: var(--text-1); }
+.outliner-add:disabled { cursor: not-allowed; opacity: .35; }
+/* Rows carry an on/off toggle; it shows on hover or focus and stays visible while the entity is off. */
+.outliner-item { position: relative; }
+.outliner-item:has(.outliner-toggle) .outliner-row { padding-right: 2.1rem; }
+.outliner-toggle { align-items: center; background: transparent; border: 0; border-radius: var(--radius); color: var(--text-3); display: inline-flex; height: 1.5rem; justify-content: center; opacity: 0; padding: 0; position: absolute; right: .35rem; top: 50%; translate: 0 -50%; width: 1.5rem; }
+.outliner-item:hover .outliner-toggle,
+.outliner-toggle:focus-visible,
+.outliner-item.is-disabled .outliner-toggle { opacity: 1; }
+.outliner-toggle:hover { background: var(--surface-3); color: var(--text-1); }
+.outliner-item.is-disabled .outliner-toggle { color: var(--text-2); }
 .outliner-row { align-items: center; background: transparent; border: 0; color: var(--text-2); display: grid; font: var(--text-md) var(--grotesk); gap: .55rem; grid-template-columns: .5rem minmax(0,1fr) auto; padding: .36rem .75rem; text-align: left; width: 100%; }
 .outliner-row span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .outliner-row:hover { background: rgba(255,255,255,.035); color: var(--text-1); }

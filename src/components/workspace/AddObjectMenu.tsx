@@ -1,4 +1,11 @@
-const ITEMS = [
+import type { CSSProperties } from "react";
+
+import type { AddableKind, AddAvailability } from "@/domain/workspace/entities";
+
+export type AddObjectKind = AddableKind;
+export type { AddAvailability };
+
+const ITEMS: readonly Readonly<{ kind: AddObjectKind; glyph: string; label: string; group: string }>[] = [
   { kind: "listener", glyph: "L", label: "Listener", group: "Scene" },
   { kind: "source", glyph: "S", label: "Source", group: "Scene" },
   { kind: "wall", glyph: "W", label: "Wall", group: "Geometry" },
@@ -6,25 +13,31 @@ const ITEMS = [
   { kind: "box", glyph: "□", label: "Box", group: "Basic shapes" },
   { kind: "cylinder", glyph: "○", label: "Cylinder", group: "Basic shapes" },
   { kind: "sphere", glyph: "●", label: "Sphere", group: "Basic shapes" },
-] as const;
+];
 
-type AddObjectKind = (typeof ITEMS)[number]["kind"];
+export const GEOMETRY_ADD_KINDS: readonly AddObjectKind[] = ["wall", "portal", "box", "cylinder", "sphere"];
 
-export function AddObjectMenu({ onAdd, onClose, availability = {} }: Readonly<{
+export function AddObjectMenu({ onAdd, onClose, availability = {}, kinds, title = "Add object", testIdPrefix = "add", style }: Readonly<{
   onAdd: (kind: AddObjectKind) => void;
   onClose: () => void;
-  availability?: Partial<Record<AddObjectKind, Readonly<{ enabled: boolean; reason?: string }>>>;
+  availability?: AddAvailability;
+  /** Restrict the menu to these kinds (e.g. the Outliner's Geometry group). */
+  kinds?: readonly AddObjectKind[];
+  title?: string;
+  testIdPrefix?: string;
+  style?: CSSProperties;
 }>) {
+  const items = kinds ? ITEMS.filter(({ kind }) => kinds.includes(kind)) : ITEMS;
   return (
-    <div className="add-object-popover" role="dialog" aria-modal="true" aria-label="Add object">
-      <header><strong>Add object</strong><button aria-label="Close" onClick={onClose} type="button">×</button></header>
-      {ITEMS.map(({ kind, glyph, label, group }, index) => {
+    <div aria-label={title} aria-modal="true" className="add-object-popover" role="dialog" style={style}>
+      <header><strong>{title}</strong><button aria-label="Close" onClick={onClose} type="button">×</button></header>
+      {items.map(({ kind, glyph, label, group }, index) => {
         const state = availability[kind];
-        const showGroup = index === 0 || ITEMS[index - 1]?.group !== group;
+        const showGroup = index === 0 || items[index - 1]?.group !== group;
         return (
           <div className="add-object-item" key={kind}>
             {showGroup ? <p>{group}</p> : null}
-            <button autoFocus={kind === "listener"} data-testid={`add-${kind}`} disabled={state?.enabled === false} onClick={() => { onAdd(kind); onClose(); }} title={state?.reason} type="button">
+            <button autoFocus={index === 0} data-testid={`${testIdPrefix}-${kind}`} disabled={state?.enabled === false} onClick={() => { onAdd(kind); onClose(); }} title={state?.reason} type="button">
               <span aria-hidden="true">{glyph}</span>{label}{state?.reason ? <>{" "}<small>{state.reason}</small></> : null}
             </button>
           </div>
