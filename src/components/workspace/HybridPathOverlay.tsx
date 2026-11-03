@@ -144,7 +144,10 @@ export function deriveHybridArrivalLabel({
   sourceName,
   audiblePaths,
 }: Readonly<{
-  /** `resolveHybridAcousticPresentation(...).accepted`: revision and Classic projection hash match. */
+  /**
+   * True only for a current frame: `resolveHybridAcousticPresentation(...).accepted` and not
+   * `lagging` (revision and Classic projection hash match the current document).
+   */
   accepted: boolean;
   frame: HybridDirectFrame;
   expectedRevision: number;

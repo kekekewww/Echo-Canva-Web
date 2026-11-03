@@ -8,6 +8,7 @@ import { projectHybridDocument } from "@/domain/workspace/projections";
 import { deriveHybridArrivalLabel, deriveHybridPathDisplay } from "@/components/workspace/HybridPathOverlay";
 import { resolveHybridAcousticPresentation } from "@/components/workspace/HybridViewportAdapter";
 import type { WorkspaceProject } from "@/domain/workspace/types";
+import type { HybridDirectPathsState } from "@/hooks/useHybridDirectPaths";
 
 describe("Hybrid path overlay", () => {
   it("rejects stale frames", () => {
@@ -99,14 +100,8 @@ describe("Hybrid path overlay", () => {
 });
 
 describe("Hybrid arrival-direction label", () => {
-  // Default Hybrid fixture: listener (3, 1.5, 4) m, Radio (9, 1.5, 4) m with clear line of
-  // sight, Rain (10, 1.5, 1.5) m behind the partition with an audible Portal route.
-  function labelFor(project: WorkspaceProject, selectedSourceId: string | null, frameOverride?: (frame: ReturnType<typeof computeHybridDirectFrame>) => ReturnType<typeof computeHybridDirectFrame>) {
-    const document = projectHybridDocument(project);
-    const geometry = compileHybridGeometry(document);
-    const computed = computeHybridDirectFrame(geometry);
-    const frame = frameOverride ? frameOverride(computed) : computed;
-    const presentation = resolveHybridAcousticPresentation({
+  function workerState(frame: ReturnType<typeof computeHybridDirectFrame>, staticFingerprint: string): HybridDirectPathsState {
+    return {
       frame,
       source: "worker",
       computeMs: 0,
@@ -116,9 +111,20 @@ describe("Hybrid arrival-direction label", () => {
       sourceComputeMsMax: 0,
       sourceComputeMsTotal: 0,
       notice: null,
-    }, document);
+      staticFingerprint,
+    };
+  }
+
+  // Default Hybrid fixture: listener (3, 1.5, 4) m, Radio (9, 1.5, 4) m with clear line of
+  // sight, Rain (10, 1.5, 1.5) m behind the partition with an audible Portal route.
+  function labelFor(project: WorkspaceProject, selectedSourceId: string | null, frameOverride?: (frame: ReturnType<typeof computeHybridDirectFrame>) => ReturnType<typeof computeHybridDirectFrame>) {
+    const document = projectHybridDocument(project);
+    const geometry = compileHybridGeometry(document);
+    const computed = computeHybridDirectFrame(geometry);
+    const frame = frameOverride ? frameOverride(computed) : computed;
+    const presentation = resolveHybridAcousticPresentation(workerState(frame, geometry.staticGeometryHash), document, geometry.staticGeometryHash);
     return deriveHybridArrivalLabel({
-      accepted: presentation.accepted,
+      accepted: presentation.accepted && !presentation.lagging,
       frame,
       expectedRevision: project.revision,
       selectedSourceId,
@@ -191,6 +197,19 @@ describe("Hybrid arrival-direction label", () => {
       selectedSourceId: "radio",
       audiblePaths: [],
     }).state).toBe("pending");
+  });
+
+  it("shows pending for a pose-lagging frame from the previous pose", () => {
+    // The frame is from the same static geometry but an older revision, which the presentation
+    // accepts as lagging; the label must not present its direction as current.
+    const project = createDefaultHybridProject();
+    const document = projectHybridDocument(project);
+    const geometry = compileHybridGeometry(document);
+    const computed = computeHybridDirectFrame(geometry);
+    const lagging = { ...computed, revision: computed.revision - 1 };
+    const presentation = resolveHybridAcousticPresentation(workerState(lagging, geometry.staticGeometryHash), document, geometry.staticGeometryHash);
+    expect(presentation).toMatchObject({ accepted: true, lagging: true });
+    expect(labelFor(project, "radio", () => lagging).state).toBe("pending");
   });
 
   it("shows an empty state when no source is in the accepted frame", () => {

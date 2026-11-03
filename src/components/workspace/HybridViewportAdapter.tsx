@@ -131,14 +131,17 @@ export function HybridViewportAdapter({ project, dispatch, audioEngine, wallPlac
     audible.paths,
   ), [audible.paths, direct.frame, geometry, project.revision, selectedSourceId, showAllPaths]);
   const selectedSourceName = project.scene.sources.find(({ id }) => id === selectedSourceId)?.name;
+  // A pose-lagging frame is accepted for overlay/audio continuity, but its direction describes the
+  // previous pose, so the arrival label shows pending until a current frame arrives.
+  const arrivalCurrent = accepted && !presentation.lagging;
   const arrivalLabel = useMemo(() => deriveHybridArrivalLabel({
-    accepted,
+    accepted: arrivalCurrent,
     frame: direct.frame,
     expectedRevision: project.revision,
     selectedSourceId,
     sourceName: selectedSourceName,
     audiblePaths: audible.paths,
-  }), [accepted, audible.paths, direct.frame, project.revision, selectedSourceId, selectedSourceName]);
+  }), [arrivalCurrent, audible.paths, direct.frame, project.revision, selectedSourceId, selectedSourceName]);
 
   const objects = useMemo<readonly HybridViewportObject[]>(() => [
     ...project.listeners.filter(({ enabled }) => enabled).map((listener) => ({
