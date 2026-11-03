@@ -34,6 +34,7 @@ import type {
   HybridDirectWorkerRequest,
   HybridDirectWorkerResponse,
 } from "@/workers/hybrid-direct.worker";
+import { sameIdOrder } from "@/acoustics/frame-acceptance";
 import { classicSourcePoolCapacity } from "@/workers/worker-pool-policy";
 
 export type HybridDirectPoolWorkerLike = {
@@ -55,6 +56,8 @@ export type HybridDirectPoolMetrics = Readonly<{
 
 export type HybridDirectPoolResult = Readonly<{
   frame: HybridDirectFrame;
+  /** Static geometry hash the frame was computed against (ADR 0008). */
+  staticFingerprint: string;
   source: "worker" | "fallback";
   metrics: HybridDirectPoolMetrics;
   notice: string | null;
@@ -508,6 +511,7 @@ export function createHybridDirectPool(
     const frame = { ...computedFrame, computedAtMs: completedAtMs };
     return {
       frame,
+      staticFingerprint: pair.geometry.staticGeometryHash,
       source: "fallback",
       notice: FALLBACK_NOTICE,
       metrics: {
@@ -578,6 +582,7 @@ export function createHybridDirectPool(
       const shardTimes = [...job.computeMsByWorker.values()];
       const result: HybridDirectPoolResult = {
         frame,
+        staticFingerprint: job.snapshot.staticFingerprint,
         source: "worker",
         notice: null,
         metrics: {
@@ -589,7 +594,12 @@ export function createHybridDirectPool(
           requestSequence: job.requestId,
         },
       };
-      const obsolete = pendingPair !== null;
+      // Publish a complete frame as pose-lagging when the newer pending document
+      // differs only in pose; a structural change still discards it (ADR 0008).
+      const obsolete = pendingPair !== null && !(
+        pendingPair.geometry.staticGeometryHash === job.snapshot.staticFingerprint
+        && sameIdOrder(job.snapshot.sources, pendingPair.document.baseScene.sources)
+      );
       lastFrameAtMs = completedAtMs;
       cancelJobWatchdog(job);
       inFlight = null;

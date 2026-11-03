@@ -11,6 +11,7 @@ import {
 import { isSceneDocumentV2 } from "@/domain/scene-document/validate";
 import type { SceneDocumentV2 } from "@/domain/scene-document/types";
 import { primitivePatches } from "@/acoustics/hybrid3d/primitives";
+import { jsonEqual } from "@/acoustics/frame-acceptance";
 
 export type HybridGeometry = Readonly<{
   document: SceneDocumentV2;
@@ -47,10 +48,11 @@ function requireSpatialDocument(document: SceneDocumentV2): NonNullable<SceneDoc
 }
 
 /** Fingerprint only the fields that change finite static patches or their BVH. */
-export function hybridStaticGeometryHash(document: SceneDocumentV2): string {
+/** The exact static inputs that `hybridStaticGeometryHash` serializes. */
+function hybridStaticGeometryInputs(document: SceneDocumentV2): unknown {
   const spatial = requireSpatialDocument(document);
   const scene = document.baseScene;
-  return fnv1a(JSON.stringify({
+  return {
     room: scene.room,
     floorElevationM: spatial.floorElevationM,
     disabledSurfaceIds: [...(spatial.disabledSurfaceIds ?? [])].toSorted(),
@@ -68,7 +70,11 @@ export function hybridStaticGeometryHash(document: SceneDocumentV2): string {
       vertical: spatial.portalVerticalBoundsM?.[portal.id] ?? null,
     })),
     primitives: spatial.primitives ?? [],
-  }));
+  };
+}
+
+export function hybridStaticGeometryHash(document: SceneDocumentV2): string {
+  return fnv1a(JSON.stringify(hybridStaticGeometryInputs(document)));
 }
 
 function portalOpening(
@@ -246,10 +252,17 @@ export function createHybridGeometryCompiler(
   compileStatic: (document: SceneDocumentV2) => HybridStaticGeometry = compileHybridStaticGeometry,
 ): Readonly<{ compile: (document: SceneDocumentV2) => HybridGeometry }> {
   let cached: HybridStaticGeometry | null = null;
+  let cachedInputs: unknown = null;
   return {
     compile(document): HybridGeometry {
-      const hash = hybridStaticGeometryHash(document);
-      if (!cached || cached.staticGeometryHash !== hash) cached = compileStatic(document);
+      // Pose-only updates (every pointermove of a drag) keep the static inputs
+      // structurally equal; compare them instead of re-serializing and hashing.
+      const inputs = hybridStaticGeometryInputs(document);
+      if (!cached || !jsonEqual(cachedInputs, inputs)) {
+        const hash = fnv1a(JSON.stringify(inputs));
+        if (!cached || cached.staticGeometryHash !== hash) cached = compileStatic(document);
+        cachedInputs = inputs;
+      }
       return bindHybridPosesFromValidatedStructure(cached, document);
     },
   };

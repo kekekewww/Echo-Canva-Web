@@ -18,7 +18,17 @@ export type WorkerMetrics = Readonly<{
 }>;
 
 export type AcousticWorkerResponse =
-  | { type: "FRAME"; revision: number; frame: AcousticFrame; metrics: WorkerMetrics }
+  | {
+    type: "FRAME";
+    revision: number;
+    frame: AcousticFrame;
+    metrics: WorkerMetrics;
+    /**
+     * Static-structure fingerprint the frame was computed against. Present for
+     * pooled frames, so a pose-lagging frame can be adopted (ADR 0008).
+     */
+    staticFingerprint?: string;
+  }
   | { type: "ERROR"; revision: number; code: string; message: string };
 
 type WorkerResponseSink = Readonly<{

@@ -11,6 +11,7 @@ describe("Classic viewport acoustic presentation", () => {
 
     expect(resolveClassicAcousticPresentation({
       frame,
+      lagging: false,
       fallbackNotice: notice,
       metrics: { source: "fallback", computeMs: 3 },
     })).toEqual({

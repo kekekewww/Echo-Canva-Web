@@ -46,9 +46,11 @@ export function useAudioEngine(
 
   useEffect(() => {
     if (acousticFrame === null) return;
-    engine.applyAcousticFrame(acousticFrame);
+    // useAcousticFrame only returns accepted frames, so an older revision here is pose-lagging.
+    // Re-running on a revision change re-applies identical targets, which the engine skips.
+    engine.applyAcousticFrame(acousticFrame, { lagging: acousticFrame.revision !== scene.revision });
     refreshDiagnostics();
-  }, [acousticFrame, engine, refreshDiagnostics]);
+  }, [acousticFrame, engine, refreshDiagnostics, scene.revision]);
 
   useEffect(() => {
     mounted.current = true;

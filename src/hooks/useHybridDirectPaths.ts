@@ -12,6 +12,8 @@ import {
 
 export type HybridDirectPathsState = Readonly<{
   frame: HybridDirectFrame;
+  /** Static geometry hash the frame was computed against (ADR 0008). */
+  staticFingerprint: string;
   source: "worker" | "fallback";
   computeMs: number;
   completedAtMs: number;
@@ -29,6 +31,7 @@ export function useHybridDirectPaths(
   const pool = useRef<HybridDirectPoolLike | null>(null);
   const [state, setState] = useState<HybridDirectPathsState>(() => ({
     frame: computeHybridDirectFrame(geometry),
+    staticFingerprint: geometry.staticGeometryHash,
     source: "fallback",
     computeMs: 0,
     completedAtMs: 0,
@@ -43,8 +46,9 @@ export function useHybridDirectPaths(
     const instance = createHybridDirectPool({
       hardwareConcurrency: typeof navigator === "undefined" ? undefined : navigator.hardwareConcurrency,
     });
-    instance.onresult = ({ frame, source, metrics, notice }) => setState({
+    instance.onresult = ({ frame, staticFingerprint, source, metrics, notice }) => setState({
       frame,
+      staticFingerprint,
       source,
       computeMs: metrics.computeMs,
       completedAtMs: metrics.completedAtMs,

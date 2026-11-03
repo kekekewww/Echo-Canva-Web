@@ -48,7 +48,7 @@ Root, `/classic`, and `/lab` render `UnifiedWorkspace`, with the latter routes s
 4. Classic calculates direct/occluded/Portal paths and first/bounded second-order reflections per source; room RT60 is frame-level. Hybrid uses finite patches/BVH and validates lifted planar Portal candidates against 3D visibility.
 5. Validation checks request/revision, source assignments, fingerprints, compatibility hashes where applicable, bounds, and path semantics. Static installs require exactly one acknowledgement per worker; default job watchdog is 2,000 ms.
 6. All valid shards merge atomically in stable source order. Pool failure discards partial results, terminates workers, and publishes complete serial fallback with visible `Fallback` status.
-7. Matching accepted frames drive overlays and smoothed audio. Stale results cannot satisfy a current scene/listener revision.
+7. Accepted frames drive overlays and smoothed audio. A frame is accepted for the current revision, or, during continuous edits, as *pose-lagging* when the current scene differs from its input only in listener/source pose: same static fingerprint/geometry hash and same ordered sources ([ADR 0008](adr/0008-adopt-pose-lagging-frames.md)). Results computed for a different static structure or source set cannot satisfy the current scene.
 
 Hybrid workers cache cloned BVHs. Static fingerprints include room/wall/Portal/primitive/material/vertical geometry; poses and presentation do not invalidate them. Pose messages remain compact; static edits reinstall before computation. This is bounded CPU sharding, not GPU acceleration.
 

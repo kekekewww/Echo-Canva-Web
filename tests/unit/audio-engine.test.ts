@@ -1421,3 +1421,24 @@ describe("AudioEngine automation dedupe (#25)", () => {
     expect(added).toEqual(["forwardX", "forwardZ"]);
   });
 });
+
+describe("AudioEngine pose-lagging frames (#23, ADR 0008)", () => {
+  it("rejects an older-revision frame by default and accepts it when the caller marks it lagging", async () => {
+    const harness = makeHarness();
+    const computed = closedDoorScene(1, 10);
+    const frame = computeAcousticFrame(computed);
+    const current = closedDoorScene(2, 10.4);
+    await harness.engine.start(current);
+    const rain = sourceControls(harness.context, 1);
+    const before = rain.distance.gain.targets.length;
+
+    harness.engine.applyAcousticFrame(frame);
+    expect(rain.distance.gain.targets).toHaveLength(before);
+
+    harness.engine.applyAcousticFrame(frame, { lagging: true });
+    const rainFrame = frame.sources.find(({ sourceId }) => sourceId === "rain")!;
+    expect(rain.distance.gain.targets.at(-1)?.target).toBe(
+      dbToLinear(rainFrame.dryGainDb) * distanceAttenuation(rainFrame.effectiveDistanceM),
+    );
+  });
+});
