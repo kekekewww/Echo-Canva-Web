@@ -21,5 +21,6 @@ Use an ADR for changes to scene/schema compatibility, acoustic formulas or inter
 | [0004](0004-versioned-maintainer-instructions.md) | Accepted | Keep reviewed AGENTS instructions stable during Next.js development |
 | [0005](0005-preserve-destination-initializer.md) | Accepted | Preserve the destination initializer and immutable extraction history during PR adoption |
 | [0006](0006-local-dependency-patches.md) | Accepted | Hash and test bounded dependency security patches and independently licensed boundary markers |
+| [0007](0007-report-only-image-vulnerability-scan.md) | Proposed | Run a report-only, SHA-pinned Grype scan of the built image in CI |
 
 These initial records capture the authorized extraction scope and implemented maintenance choices. Historical decisions remain available in [the archived decision log](../archive/build-week/docs/DECISION_LOG.md).
