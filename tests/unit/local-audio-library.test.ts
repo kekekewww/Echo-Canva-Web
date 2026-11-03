@@ -2,10 +2,74 @@ import { describe, expect, it, vi } from "vitest";
 
 import {
   FallbackAudioStore,
+  IndexedDbAudioStore,
   LocalAudioLibrary,
   type LocalAudioStore,
+  MemoryAudioStore,
   validateLocalAudioFile,
 } from "@/domain/audio-assets/local-library";
+
+type Handler = (() => void) | null;
+
+type FakeRequest = { result: unknown; error: DOMException | null; onsuccess: Handler; onerror: Handler };
+
+type FakeTransaction = {
+  error: DOMException | null;
+  oncomplete: Handler;
+  onerror: Handler;
+  onabort: Handler;
+  operation: "put" | "delete" | "getAll";
+  request: FakeRequest;
+};
+
+/**
+ * Minimal IDBFactory double. Database open succeeds on the next macrotask;
+ * every transaction is held open until the test emits request and transaction
+ * events explicitly, so event ordering is fully controlled.
+ */
+function fakeIndexedDb() {
+  const transactions: FakeTransaction[] = [];
+  const request = (): FakeRequest => ({ result: undefined, error: null, onsuccess: null, onerror: null });
+  const database = {
+    objectStoreNames: { contains: () => true },
+    transaction: () => {
+      const transaction = { error: null, oncomplete: null, onerror: null, onabort: null } as unknown as FakeTransaction;
+      const objectStore = {
+        put: () => { transaction.operation = "put"; transaction.request = request(); return transaction.request; },
+        delete: () => { transaction.operation = "delete"; transaction.request = request(); return transaction.request; },
+        getAll: () => { transaction.operation = "getAll"; transaction.request = request(); return transaction.request; },
+      };
+      Object.assign(transaction, { objectStore: () => objectStore });
+      transactions.push(transaction);
+      return transaction;
+    },
+  };
+  const factory = {
+    open: () => {
+      const openRequest = { ...request(), result: database, onupgradeneeded: null };
+      setTimeout(() => openRequest.onsuccess?.(), 0);
+      return openRequest;
+    },
+  } as unknown as IDBFactory;
+  return { factory, transactions };
+}
+
+function track(promise: Promise<unknown>) {
+  const state: { settled: "pending" | "resolved" | "rejected" } = { settled: "pending" };
+  promise.then(() => { state.settled = "resolved"; }, () => { state.settled = "rejected"; });
+  return state;
+}
+
+const flush = () => new Promise((resolve) => setTimeout(resolve, 0));
+
+async function nextTransaction(transactions: FakeTransaction[], index: number) {
+  await vi.waitFor(() => expect(transactions[index]?.request).toBeDefined());
+  return transactions[index];
+}
+
+function abortError() {
+  return new DOMException("Simulated late abort", "AbortError");
+}
 
 function audioBlob(size: number, type = "audio/wav") {
   return new Blob([new Uint8Array(size)], { type });
@@ -93,5 +157,91 @@ describe("local audio library", () => {
     expect((await library.list()).map(({ id }) => id)).toEqual(["local_memory"]);
     expect(warning).toHaveBeenCalledOnce();
     expect(store.persistent).toBe(false);
+  });
+
+  describe.each(["put", "delete"] as const)("IndexedDB %s transaction commit", (operation) => {
+    const record = { id: "local_tx", name: "tx.wav", mimeType: "audio/wav", size: 8, blob: audioBlob(8), createdAt: 1 };
+    const run = (store: IndexedDbAudioStore | FallbackAudioStore) =>
+      operation === "put" ? store.put(record) : store.delete(record.id);
+
+    it("rejects when the transaction aborts after request success", async () => {
+      const { factory, transactions } = fakeIndexedDb();
+      const store = new IndexedDbAudioStore(factory);
+      const pending = run(store);
+      const state = track(pending);
+      const transaction = await nextTransaction(transactions, 0);
+      expect(transaction.operation).toBe(operation);
+
+      transaction.request.onsuccess?.();
+      await flush();
+      expect(state.settled).toBe("pending");
+
+      transaction.error = abortError();
+      transaction.onabort?.();
+      await expect(pending).rejects.toThrow("Simulated late abort");
+    });
+
+    it("resolves only after the transaction completes", async () => {
+      const { factory, transactions } = fakeIndexedDb();
+      const store = new IndexedDbAudioStore(factory);
+      const pending = run(store);
+      const state = track(pending);
+      const transaction = await nextTransaction(transactions, 0);
+
+      transaction.request.onsuccess?.();
+      await flush();
+      expect(state.settled).toBe("pending");
+
+      transaction.oncomplete?.();
+      await expect(pending).resolves.toBeUndefined();
+    });
+
+    it("rejects on request error", async () => {
+      const { factory, transactions } = fakeIndexedDb();
+      const pending = run(new IndexedDbAudioStore(factory));
+      const transaction = await nextTransaction(transactions, 0);
+      transaction.request.error = new DOMException("Simulated constraint failure", "ConstraintError");
+      transaction.request.onerror?.();
+      await expect(pending).rejects.toThrow("Simulated constraint failure");
+    });
+
+    it("switches the fallback store to memory-only after a late abort", async () => {
+      const { factory, transactions } = fakeIndexedDb();
+      const warning = vi.fn();
+      const memory = new MemoryAudioStore();
+      if (operation === "delete") await memory.put(record);
+      const store = new FallbackAudioStore(new IndexedDbAudioStore(factory), memory, warning);
+      const pending = run(store);
+      const transaction = await nextTransaction(transactions, 0);
+
+      transaction.request.onsuccess?.();
+      await flush();
+      expect(store.persistent).toBe(true);
+
+      transaction.error = abortError();
+      transaction.onabort?.();
+      await expect(pending).resolves.toBeUndefined();
+      expect(store.persistent).toBe(false);
+      expect(warning).toHaveBeenCalledOnce();
+      expect((await memory.list()).map(({ id }) => id)).toEqual(operation === "put" ? ["local_tx"] : []);
+    });
+
+    it("keeps the fallback store persistent after a normal commit", async () => {
+      const { factory, transactions } = fakeIndexedDb();
+      const warning = vi.fn();
+      const store = new FallbackAudioStore(new IndexedDbAudioStore(factory), undefined, warning);
+      const pending = run(store);
+      const state = track(pending);
+      const transaction = await nextTransaction(transactions, 0);
+
+      transaction.request.onsuccess?.();
+      await flush();
+      expect(state.settled).toBe("pending");
+
+      transaction.oncomplete?.();
+      await expect(pending).resolves.toBeUndefined();
+      expect(store.persistent).toBe(true);
+      expect(warning).not.toHaveBeenCalled();
+    });
   });
 });

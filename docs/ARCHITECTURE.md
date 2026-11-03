@@ -38,7 +38,7 @@ No database, account service, message queue, host sound device, desktop runtime,
 
 Classic converts enabled primitive footprints to synthetic full-height walls. Hybrid retains elevations and finite patches. Box/Cylinder/Sphere are bounded faceted approximations, not arbitrary room meshes. External import, AI, and migration boundaries validate schemas/invariants. Hot internal projection relies on reducer invariants; external validation remains required.
 
-Root, `/classic`, and `/lab` render `UnifiedWorkspace`, with the latter routes selecting initial modes. The live Hybrid adapter uses `useHybridDirectPaths` and its pool directly. Generic `EngineRouter`/default-false extension flags are a separate compatibility foundation, not the workbench mode switch.
+Root, `/classic`, and `/lab` render `UnifiedWorkspace`, with the latter routes selecting initial modes. `src/components/workbench/SceneEditor.tsx` is the live Classic canvas used by `ClassicViewportAdapter`; the source-baseline `EchoWorkbench` shell was unreachable and has been removed (#11). The live Hybrid adapter uses `useHybridDirectPaths` and its pool directly. Generic `EngineRouter`/default-false extension flags are a separate compatibility foundation, not the workbench mode switch.
 
 ## Calculation lifecycle
 

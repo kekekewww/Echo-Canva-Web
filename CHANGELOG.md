@@ -10,6 +10,7 @@ Changes use Conventional Commit subjects. Releases should record compatibility c
 - Established long-term contributor instructions, security reporting, community conduct, issue/PR templates, proposed labels, and sciwork issue drafts.
 - Preserved Build Week delivery documents and original active documentation in [docs/archive/build-week](docs/archive/build-week/INDEX.md).
 - Clarified live Classic/Hybrid behavior and data-only P5/P6/P7 research foundations without enabling additional acoustic features.
+- Removed the unreachable legacy `EchoWorkbench` shell and the components only it used (`AiScenePanel`, `Inspector`, `ReadoutStrip`, `Transport`, `SceneTransfer`) with their single dead-code test, after mapping every consumer (#11). Routes, the live Classic `SceneEditor`, `src/domain/editor`, and Classic/Hybrid regression coverage are unchanged.
 
 ### Development and deployment
 

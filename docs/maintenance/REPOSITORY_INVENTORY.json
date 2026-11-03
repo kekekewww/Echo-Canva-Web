@@ -3,10 +3,10 @@
   "sourceTag": "v1.0.0-build-week",
   "originalFileCount": 291,
   "counts": {
-    "Active": 220,
+    "Active": 214,
     "Historical": 66,
     "Generated": 4,
-    "Unknown": 1
+    "Retired": 7
   },
   "method": "Original 7c033459 extracted tree inventory, original Git blob content, and byte comparison for archived snapshots. Generated build/test/dependency directories are excluded because not in the source tag. No redundant file removal justified. Current active files may have documented maintenance changes.",
   "files": [
@@ -1492,43 +1492,43 @@
     },
     {
       "path": "src/components/workbench/AiScenePanel.tsx",
-      "classification": "Active",
+      "classification": "Retired",
       "originalGitBlob": "14c7549dbad5392aa8b3a94a15fcab2bad94516b",
       "sha256": "6c6572adac9a5c837d472336ed67a8518730f72845d39d3da67b719e37135d02",
       "bytes": 6123,
-      "currentPath": "src/components/workbench/AiScenePanel.tsx",
+      "currentPath": null,
       "originalPreservation": "immutable initial extraction commit 7c033459",
-      "reason": "Required by runtime, development, tests, or maintained contracts."
+      "reason": "Retired in #11: unreachable legacy EchoWorkbench shell or a test/component used only by it; no route, live component, hook or other test imported it. Original bytes remain in the immutable extraction commit."
     },
     {
       "path": "src/components/workbench/EchoWorkbench.tsx",
-      "classification": "Unknown",
+      "classification": "Retired",
       "originalGitBlob": "ca82598f61bf3a8b8fa4b8d55417392a29c9c12e",
       "sha256": "5a9d9763eb09f8507d199d63843d279ba2eed4ff57771f15d00015c83785f338",
       "bytes": 9751,
-      "currentPath": "src/components/workbench/EchoWorkbench.tsx",
+      "currentPath": null,
       "originalPreservation": "immutable initial extraction commit 7c033459",
-      "reason": "Legacy shell has no static inbound import; shared subcomponents remain active. Retained pending retirement proof."
+      "reason": "Retired in #11: unreachable legacy EchoWorkbench shell or a test/component used only by it; no route, live component, hook or other test imported it. Original bytes remain in the immutable extraction commit."
     },
     {
       "path": "src/components/workbench/Inspector.tsx",
-      "classification": "Active",
+      "classification": "Retired",
       "originalGitBlob": "8baabdfda765ee9486cac3fa86bab76ab43855fc",
       "sha256": "465f6a0141a8f737cc30bdfb138dd14746db076a1752cd9b7c8451ec20a4aa00",
       "bytes": 5730,
-      "currentPath": "src/components/workbench/Inspector.tsx",
+      "currentPath": null,
       "originalPreservation": "immutable initial extraction commit 7c033459",
-      "reason": "Required by runtime, development, tests, or maintained contracts."
+      "reason": "Retired in #11: unreachable legacy EchoWorkbench shell or a test/component used only by it; no route, live component, hook or other test imported it. Original bytes remain in the immutable extraction commit."
     },
     {
       "path": "src/components/workbench/ReadoutStrip.tsx",
-      "classification": "Active",
+      "classification": "Retired",
       "originalGitBlob": "50d940102985ea132786089a42960c6f50dfca1c",
       "sha256": "618b9843a2407d1a80bd19b534e444758c03fa1a7f20c6f47b07daed5eb1c732",
       "bytes": 5831,
-      "currentPath": "src/components/workbench/ReadoutStrip.tsx",
+      "currentPath": null,
       "originalPreservation": "immutable initial extraction commit 7c033459",
-      "reason": "Required by runtime, development, tests, or maintained contracts."
+      "reason": "Retired in #11: unreachable legacy EchoWorkbench shell or a test/component used only by it; no route, live component, hook or other test imported it. Original bytes remain in the immutable extraction commit."
     },
     {
       "path": "src/components/workbench/SceneEditor.tsx",
@@ -1542,23 +1542,23 @@
     },
     {
       "path": "src/components/workbench/SceneTransfer.tsx",
-      "classification": "Active",
+      "classification": "Retired",
       "originalGitBlob": "f0bb1eaa75b7c8f5a8b7a557277a75f0956dfc12",
       "sha256": "4b41c8266f6d574ea0b8bdd1ef656577efb32c99d90944831292bfa3b0a5985c",
       "bytes": 3358,
-      "currentPath": "src/components/workbench/SceneTransfer.tsx",
+      "currentPath": null,
       "originalPreservation": "immutable initial extraction commit 7c033459",
-      "reason": "Required by runtime, development, tests, or maintained contracts."
+      "reason": "Retired in #11: unreachable legacy EchoWorkbench shell or a test/component used only by it; no route, live component, hook or other test imported it. Original bytes remain in the immutable extraction commit."
     },
     {
       "path": "src/components/workbench/Transport.tsx",
-      "classification": "Active",
+      "classification": "Retired",
       "originalGitBlob": "e6aa326c0d164ded60d87d1e3c8151c535e45b07",
       "sha256": "2bbe168bb918831364b7476ae501d40a743a1b776b358bf5abff37fb88065b0b",
       "bytes": 5866,
-      "currentPath": "src/components/workbench/Transport.tsx",
+      "currentPath": null,
       "originalPreservation": "immutable initial extraction commit 7c033459",
-      "reason": "Required by runtime, development, tests, or maintained contracts."
+      "reason": "Retired in #11: unreachable legacy EchoWorkbench shell or a test/component used only by it; no route, live component, hook or other test imported it. Original bytes remain in the immutable extraction commit."
     },
     {
       "path": "src/components/workspace/AddObjectMenu.tsx",
@@ -2782,13 +2782,13 @@
     },
     {
       "path": "tests/unit/transport.test.ts",
-      "classification": "Active",
+      "classification": "Retired",
       "originalGitBlob": "dfb0814a789f58634c71c31607516830a990879a",
       "sha256": "c06f00a58dd53b6b4ae96b4460ea81c56cf0f5462306a0457fe52826ced6a06e",
       "bytes": 615,
-      "currentPath": "tests/unit/transport.test.ts",
+      "currentPath": null,
       "originalPreservation": "immutable initial extraction commit 7c033459",
-      "reason": "Required by runtime, development, tests, or maintained contracts."
+      "reason": "Retired in #11: unreachable legacy EchoWorkbench shell or a test/component used only by it; no route, live component, hook or other test imported it. Original bytes remain in the immutable extraction commit."
     },
     {
       "path": "tests/unit/use-acoustic-frame.test.ts",

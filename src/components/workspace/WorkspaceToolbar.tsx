@@ -8,6 +8,8 @@ type Props = Readonly<{
   sceneName: string;
   projectOpen: boolean;
   projectMenu?: ReactNode;
+  /** Add menu / audio picker, anchored under the Add button. */
+  addMenu?: ReactNode;
   canUndo: boolean;
   canRedo: boolean;
   playing: boolean;
@@ -62,7 +64,10 @@ export function WorkspaceToolbar(props: Props) {
         <button className="mobile-panel-toggle" onClick={props.onShowOutliner} type="button">Scene</button>
         <button className="mobile-panel-toggle" onClick={props.onShowInspector} type="button">Inspector</button>
         <div className="toolbar-group" role="group" aria-label="Edit">
-          <button data-testid="add-object" onClick={props.onAdd} type="button">＋ Add</button>
+          <div className="toolbar-anchor">
+            <button data-testid="add-object" onClick={props.onAdd} type="button">＋ Add</button>
+            {props.addMenu}
+          </div>
           <button aria-label="Undo" className="toolbar-icon" disabled={!props.canUndo} onClick={props.onUndo} type="button" title="Undo (Ctrl+Z)">↶</button>
           <button aria-label="Redo" className="toolbar-icon" disabled={!props.canRedo} onClick={props.onRedo} type="button" title="Redo (Ctrl+Shift+Z)">↷</button>
         </div>

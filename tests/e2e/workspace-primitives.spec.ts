@@ -1,11 +1,12 @@
 import { expect, test } from "@playwright/test";
+import { deleteSelection } from "./workspace-helpers";
 
 test("authors basic acoustic shapes in Hybrid 3D", async ({ page }) => {
   await page.goto("/lab");
   await page.getByTestId("add-object").click();
   await page.getByTestId("add-box").click();
 
-  await expect(page.getByRole("heading", { name: "Box", exact: true })).toBeVisible();
+  await expect(page.getByRole("complementary", { name: "Inspector" }).locator(".inspector-type")).toHaveText("Box");
   await expect(page.getByRole("complementary", { name: "Scene Outliner" }).locator(".kind-primitive")).toHaveCount(1);
   await expect(page.locator('[data-testid^="hybrid-primitive-box_"]')).toBeVisible();
 
@@ -41,7 +42,6 @@ test("authors and restores faceted shapes in Classic 2.5D", async ({ page }) => 
   await page.reload();
   await expect(page.locator('[data-testid^="classic-primitive-cylinder_"]')).toBeVisible();
   await page.getByRole("button", { name: "Cylinder 1", exact: true }).click();
-  await page.getByRole("button", { name: "Delete", exact: true }).click();
-  await page.getByRole("button", { name: "Delete primitive", exact: true }).click();
+  await deleteSelection(page);
   await expect(page.locator('[data-testid^="classic-primitive-cylinder_"]')).toHaveCount(0);
 });

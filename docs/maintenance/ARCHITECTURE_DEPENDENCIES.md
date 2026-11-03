@@ -45,7 +45,8 @@ Validation geometry and acoustic geometry intentionally have different
 intersection/collinearity policies. Similar names are not evidence that they
 are interchangeable. No formula or numerical tolerance was consolidated just
 to make the tree look simpler. Shared UI remains under its existing directory
-where active adapters depend on it; the legacy shell is retained and reported.
+where active adapters depend on it. The unreachable legacy shell was removed in
+#11; `src/components/workbench` now holds only the live Classic `SceneEditor`.
 
 ## Dependency use and security maintenance
 

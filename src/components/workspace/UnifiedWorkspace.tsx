@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 
-import { AddObjectMenu } from "@/components/workspace/AddObjectMenu";
+import { AddObjectMenu, type AddObjectKind } from "@/components/workspace/AddObjectMenu";
 import { AudioAssetPicker } from "@/components/workspace/AudioAssetPicker";
 import { ClassicViewportAdapter } from "@/components/workspace/ClassicViewportAdapter";
 import { ContextInspector } from "@/components/workspace/ContextInspector";
@@ -12,9 +12,9 @@ import { WorkspaceStatusBar, type WorkspaceAcousticStatus } from "@/components/w
 import { PROJECT_TRIGGER_ID, WorkspaceToolbar } from "@/components/workspace/WorkspaceToolbar";
 import { WorkspaceProjectTools } from "@/components/workspace/WorkspaceProjectTools";
 import type { WorkspaceMode } from "@/domain/workspace/types";
+import { addAvailabilityFor, cascadedPortalCount, deleteActionFor, describeEntity, entityExists } from "@/domain/workspace/entities";
+import { createDefaultClassicProject, createDefaultHybridProject } from "@/domain/workspace/defaults";
 import type { EntityRef } from "@/domain/workspace/types";
-import type { PrimitiveKind } from "@/domain/workspace/types";
-import { MAX_PRIMITIVES } from "@/domain/workspace/primitives";
 import { useWorkspaceProjects } from "@/hooks/useWorkspaceProjects";
 import { useLocalAudioLibrary } from "@/hooks/useLocalAudioLibrary";
 import { installGateCAudioRenderValidation } from "@/audio/gate-c-render-validation";
@@ -22,6 +22,28 @@ import { AudioEngine } from "@/audio/AudioEngine";
 import type { PreviewMode } from "@/domain/editor/state";
 import { createProjectProjectionCache, projectClassicScene } from "@/domain/workspace/projections";
 import { useAudioEngine } from "@/hooks/useAudioEngine";
+
+/**
+ * Feedback for an undoable action, with an Undo button. It stays visible only while the action is the latest
+ * history step in its mode (same depth and revision, and for deletes the entity is still gone), so its Undo can
+ * never revert a different edit.
+ */
+type UndoToast = Readonly<{
+  id: number;
+  message: string;
+  mode: WorkspaceMode;
+  depthAfter: number;
+  revisionAfter: number;
+  deleted?: EntityRef;
+}>;
+
+const UNDO_TOAST_MS = 8000;
+const HISTORY_LIMIT = 50;
+
+function isEditableTarget(target: EventTarget | null): boolean {
+  const element = target as HTMLElement | null;
+  return Boolean(element?.closest?.("input, textarea, select, [contenteditable='true']"));
+}
 
 export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: WorkspaceMode }>) {
   const hydrated = useSyncExternalStore(
@@ -45,7 +67,7 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
   const [audioPending, setAudioPending] = useState(false);
   const audioPendingRef = useRef(false);
   const [audioError, setAudioError] = useState<string | null>(null);
-  const [confirmReset, setConfirmReset] = useState(false);
+  const [undoToast, setUndoToast] = useState<UndoToast | null>(null);
   const [projectOpen, setProjectOpen] = useState(false);
   const [confirmClearAll, setConfirmClearAll] = useState(false);
   const [mobilePanel, setMobilePanel] = useState<"outliner" | "inspector" | null>(null);
@@ -103,13 +125,82 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
 
   useEffect(() => installGateCAudioRenderValidation(), []);
 
+  // Keyboard-initiated actions are never animated (see globals.css [data-input="keyboard"]).
+  useEffect(() => {
+    const root = document.documentElement;
+    const onKeyDown = (event: KeyboardEvent): void => {
+      if (!event.metaKey && !event.ctrlKey && !event.altKey) root.dataset.input = "keyboard";
+    };
+    const onPointerDown = (): void => { root.dataset.input = "pointer"; };
+    window.addEventListener("keydown", onKeyDown, true);
+    window.addEventListener("pointerdown", onPointerDown, true);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown, true);
+      window.removeEventListener("pointerdown", onPointerDown, true);
+    };
+  }, []);
+
+  const showUndoToast = useCallback((toast: Omit<UndoToast, "id" | "mode" | "depthAfter">) => {
+    setUndoToast({
+      ...toast,
+      id: Date.now(),
+      mode: workspace.activeMode,
+      depthAfter: Math.min(workspace.historyDepth + 1, HISTORY_LIMIT),
+    });
+  }, [workspace.activeMode, workspace.historyDepth]);
+
+  const deleteSelection = useCallback(() => {
+    const project = workspace.activeProject;
+    const selection = project.selection;
+    const action = selection ? deleteActionFor(selection) : null;
+    if (!selection || !action) return;
+    const portals = cascadedPortalCount(project, selection);
+    const label = describeEntity(project, selection);
+    dispatchWorkspace(action);
+    showUndoToast({
+      message: `Deleted ${label}${portals ? ` and ${portals} Portal${portals === 1 ? "" : "s"}` : ""}`,
+      revisionAfter: project.revision + 1,
+      deleted: selection,
+    });
+  }, [dispatchWorkspace, showUndoToast, workspace.activeProject]);
+
+  const resetActiveProject = useCallback(() => {
+    const mode = workspace.activeMode;
+    workspace.resetActiveProject();
+    showUndoToast({
+      message: `Reset ${mode === "hybrid-3d" ? "3D" : "2.5D"} project`,
+      revisionAfter: (mode === "hybrid-3d" ? createDefaultHybridProject() : createDefaultClassicProject()).revision,
+    });
+  }, [showUndoToast, workspace]);
+
+  // Stable callback for the memoised Inspector and Outliner; addObject itself reads the latest project on each call.
+  const addObjectRef = useRef(addObject);
+  useEffect(() => { addObjectRef.current = addObject; });
+  const addFromPanel = useCallback((kind: AddObjectKind) => addObjectRef.current(kind), []);
+  const toggleEntityEnabled = useCallback((entity: EntityRef, enabled: boolean) => {
+    dispatchWorkspace({ type: "SET_ENTITY_ENABLED", entity, enabled });
+  }, [dispatchWorkspace]);
+  // The same limits and Portal host rule apply to the toolbar Add menu and the Outliner's group buttons.
+  const addAvailability = useMemo(() => addAvailabilityFor(workspace.activeProject), [workspace.activeProject]);
+
+  const toastVisible = undoToast !== null
+    && undoToast.mode === workspace.activeMode
+    && workspace.historyDepth === undoToast.depthAfter
+    && workspace.activeProject.revision === undoToast.revisionAfter
+    && (!undoToast.deleted || !entityExists(workspace.activeProject, undoToast.deleted));
+
+  useEffect(() => {
+    if (!undoToast) return undefined;
+    const timer = window.setTimeout(() => setUndoToast((current) => current?.id === undoToast.id ? null : current), UNDO_TOAST_MS);
+    return () => window.clearTimeout(timer);
+  }, [undoToast]);
+
   useEffect(() => {
     function shortcuts(event: KeyboardEvent): void {
       if (event.key === "Escape" && addOpen) { setAddOpen(false); return; }
       if (event.key === "Escape" && audioPickerOpen) { setAudioPickerOpen(false); return; }
-      if (event.key === "Escape" && (confirmClearAll || confirmReset)) {
+      if (event.key === "Escape" && confirmClearAll) {
         setConfirmClearAll(false);
-        setConfirmReset(false);
         return;
       }
       if (event.key === "Escape" && projectOpen) {
@@ -125,6 +216,13 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
         setMobilePanel(null);
         return;
       }
+      if ((event.key === "Delete" || event.key === "Backspace") && !event.ctrlKey && !event.metaKey && !event.altKey
+        && !isEditableTarget(event.target)
+        && (event.target === document.body || (event.target as Element | null)?.closest?.(".workspace-outliner, .workspace-viewport-panel"))) {
+        event.preventDefault();
+        deleteSelection();
+        return;
+      }
       if (!(event.ctrlKey || event.metaKey)) return;
       if (event.key.toLowerCase() === "z") {
         event.preventDefault();
@@ -134,7 +232,7 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
     }
     window.addEventListener("keydown", shortcuts);
     return () => window.removeEventListener("keydown", shortcuts);
-  }, [addOpen, audioPickerOpen, confirmClearAll, confirmReset, mobilePanel, projectOpen, wallPlacement, workspace]);
+  }, [addOpen, audioPickerOpen, confirmClearAll, deleteSelection, mobilePanel, projectOpen, wallPlacement, workspace]);
 
   useEffect(() => {
     if (!projectOpen) return undefined;
@@ -158,7 +256,7 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
     URL.revokeObjectURL(url);
   }
 
-  function addObject(kind: "listener" | "source" | "wall" | "portal" | PrimitiveKind): void {
+  function addObject(kind: AddObjectKind): void {
     const project = workspace.activeProject;
     const suffix = `${project.revision + 1}`;
     if (kind === "listener") {
@@ -303,6 +401,7 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
       data-audio-graphs={audio.diagnostics.graphCount}
       data-testid="unified-workspace"
       data-mode={workspace.activeMode}
+      data-playing={playing ? "true" : "false"}
       onPointerCancelCapture={(event) => {
         if ((event.target as Element).closest?.(".numeric-scrub-label")) workspace.endHistoryTransaction();
       }}
@@ -335,10 +434,26 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
               localAssets={localAssets}
               onDone={() => setProjectOpen(false)}
               onRequestClearAll={() => { setProjectOpen(false); setConfirmClearAll(true); }}
-              onRequestReset={() => { setProjectOpen(false); setConfirmReset(true); }}
+              onRequestReset={() => { setProjectOpen(false); resetActiveProject(); }}
               project={workspace.activeProject}
             />
           </div>
+        )}
+        addMenu={(
+          <>
+            {addOpen ? <AddObjectMenu
+              availability={addAvailability}
+              onAdd={addObject}
+              onClose={() => setAddOpen(false)}
+            /> : null}
+            {audioPickerOpen ? <AudioAssetPicker
+              onChoose={addSource}
+              onClose={() => setAudioPickerOpen(false)}
+              onUpload={audioLibrary.add}
+              records={audioLibrary.records}
+              warning={audioLibrary.warning}
+            /> : null}
+          </>
         )}
         projectOpen={projectOpen}
         sceneName={workspace.activeProject.scene.name}
@@ -347,39 +462,27 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
       />
       {(workspace.persistenceStatus !== "saved" || audioLibrary.warning) ? <div className="workspace-persistence-warning" role="status"><strong>Memory-only warning</strong><span>{audioLibrary.warning ?? workspace.persistenceStatus}</span></div> : null}
       {workspace.recoveryRaw ? <div className="workspace-confirm-card workspace-recovery-card" role="status"><strong>Project cache recovery</strong><p>A safe preset is loaded. Download the unread record before replacing it.</p><button className="workspace-button-primary" onClick={downloadRecoveryRecord} type="button">Download unread cache</button></div> : null}
-      {confirmReset ? <div className="workspace-confirm-card workspace-floating-card" role="alertdialog" aria-label="Reset active project"><strong>Reset {workspace.activeMode === "hybrid-3d" ? "3D" : "2.5D"} project?</strong><p>The other mode and local audio stay unchanged.</p><button autoFocus className="workspace-button-danger" onClick={() => { workspace.resetActiveProject(); setConfirmReset(false); }} type="button">Reset project</button><button onClick={() => setConfirmReset(false)} type="button">Cancel</button></div> : null}
       {confirmClearAll ? <div aria-label="Clear all local data" aria-modal="true" className="workspace-confirm-card workspace-floating-card" role="alertdialog"><strong>Clear all local data?</strong><p>This removes both local projects and every local audio file. It cannot be undone.</p><button autoFocus className="workspace-button-danger" onClick={() => void audioLibrary.clear().then(() => { workspace.clearAllProjects(); setConfirmClearAll(false); })} type="button">Confirm clear all</button><button onClick={() => setConfirmClearAll(false)} type="button">Cancel</button></div> : null}
-      {audioError ? <div className="workspace-error" role="alert"><span>{audioError}</span><button onClick={() => void togglePlaying()} type="button">Retry</button></div> : null}
-      {addOpen ? <AddObjectMenu
-        availability={{
-          listener: { enabled: workspace.activeProject.listeners.length < 8, reason: workspace.activeProject.listeners.length >= 8 ? "Limit: 8 listeners" : undefined },
-          source: { enabled: workspace.activeProject.scene.sources.length < 4, reason: workspace.activeProject.scene.sources.length >= 4 ? "Limit: 4 sources" : undefined },
-          wall: { enabled: workspace.activeProject.scene.walls.length < 100, reason: workspace.activeProject.scene.walls.length >= 100 ? "Limit: 100 walls" : undefined },
-          box: { enabled: workspace.activeProject.primitives.length < MAX_PRIMITIVES, reason: workspace.activeProject.primitives.length >= MAX_PRIMITIVES ? `Limit: ${MAX_PRIMITIVES} shapes` : undefined },
-          cylinder: { enabled: workspace.activeProject.primitives.length < MAX_PRIMITIVES, reason: workspace.activeProject.primitives.length >= MAX_PRIMITIVES ? `Limit: ${MAX_PRIMITIVES} shapes` : undefined },
-          sphere: { enabled: workspace.activeProject.primitives.length < MAX_PRIMITIVES, reason: workspace.activeProject.primitives.length >= MAX_PRIMITIVES ? `Limit: ${MAX_PRIMITIVES} shapes` : undefined },
-          portal: {
-            enabled: workspace.activeProject.scene.portals.length < 8 && workspace.activeProject.selection?.type === "wall" && !workspace.activeProject.disabledEntityIds.includes(workspace.activeProject.selection.id),
-            reason: workspace.activeProject.scene.portals.length >= 8
-              ? "Limit: 8 Portals"
-              : workspace.activeProject.selection?.type === "wall" && !workspace.activeProject.disabledEntityIds.includes(workspace.activeProject.selection.id)
-                ? undefined
-                : "Select an enabled Wall first",
-          },
-        }}
-        onAdd={addObject}
-        onClose={() => setAddOpen(false)}
-      /> : null}
+      <div className="workspace-toast-region">
+        {audioError ? <div className="workspace-error" role="alert"><span>{audioError}</span><button onClick={() => void togglePlaying()} type="button">Retry</button></div> : null}
+        {toastVisible && undoToast ? (
+          <div className="workspace-toast" key={undoToast.id} role="status">
+            <span>{undoToast.message}</span>
+            <button className="workspace-toast-undo" onClick={() => { workspace.undo(); setUndoToast(null); }} type="button">Undo</button>
+            <button aria-label="Dismiss" className="workspace-toast-dismiss" onClick={() => setUndoToast(null)} type="button">×</button>
+          </div>
+        ) : null}
+      </div>
       {wallPlacement ? <div className="workspace-placement-card" role="status"><strong>Add Wall</strong><span>{wallPlacement.first ? "Choose endpoint B" : "Choose endpoint A"}</span><button onClick={() => setWallPlacement(null)} type="button">Cancel</button></div> : null}
-      {audioPickerOpen ? <AudioAssetPicker
-        onChoose={addSource}
-        onClose={() => setAudioPickerOpen(false)}
-        onUpload={audioLibrary.add}
-        records={audioLibrary.records}
-        warning={audioLibrary.warning}
-      /> : null}
       <div className="workspace-grid">
-        <SceneOutliner mobileOpen={mobilePanel === "outliner"} project={workspace.activeProject} onSelect={selectOutlinerEntity} />
+        <SceneOutliner
+          addAvailability={addAvailability}
+          mobileOpen={mobilePanel === "outliner"}
+          onAdd={addFromPanel}
+          onSelect={selectOutlinerEntity}
+          onToggleEnabled={toggleEntityEnabled}
+          project={workspace.activeProject}
+        />
         {workspace.activeMode === "classic-2d5d"
           ? <ClassicViewportAdapter
             audioEngine={audioEngine}
@@ -402,6 +505,9 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
           localAssets={localAssets}
           onRelinkAudio={relinkAudio}
           onRemoveLocalAudio={removeAudio}
+          onAdd={addFromPanel}
+          onDelete={deleteSelection}
+          rt60MidS={workspace.activeProject.selection ? null : acousticStatus?.rt60MidS ?? null}
           mobileOpen={mobilePanel === "inspector"}
           project={workspace.activeProject}
         />
