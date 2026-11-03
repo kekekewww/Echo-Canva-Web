@@ -12,6 +12,7 @@ import type { ProjectAction, WorkspaceProject } from "@/domain/workspace/types";
 import { useAcousticFrame, type AcousticFrameResult } from "@/hooks/useAcousticFrame";
 import type { AudioEngine } from "@/audio/AudioEngine";
 import type { WorkspaceAcousticStatus } from "@/components/workspace/WorkspaceStatusBar";
+import { ViewportHelp, type ViewportHelpItem } from "@/components/workspace/ViewportHelp";
 
 export function resolveClassicAcousticPresentation(acoustic: AcousticFrameResult): Readonly<{
   frame: AcousticFrameResult["frame"];
@@ -27,6 +28,14 @@ export function resolveClassicAcousticPresentation(acoustic: AcousticFrameResult
       : acoustic.frame ? "Worker" : "Starting",
   };
 }
+
+const CLASSIC_HELP: readonly ViewportHelpItem[] = [
+  { gesture: "Drag a source, listener or shape", action: "Move it on the floor plan" },
+  { gesture: "Drag a wall endpoint", action: "Reshape the wall" },
+  { gesture: "Click a Portal", action: "Select it; open or close it in the Inspector" },
+  { gesture: "Middle-drag or Shift-drag empty space", action: "Pan" },
+  { gesture: "Wheel", action: "Zoom at the pointer" },
+];
 
 export function ClassicViewportAdapter({ project, dispatch, audioEngine, wallPlacementFirst, onWallPlacementPoint, onAcousticStatus }: Readonly<{
   project: WorkspaceProject;
@@ -54,6 +63,7 @@ export function ClassicViewportAdapter({ project, dispatch, audioEngine, wallPla
       gainDb: source?.dryGainDb ?? null,
       rt60MidS: acceptedFrame?.room.rt60S.mid ?? null,
       worker: acceptedFrame ? presentation.worker : "Stopped",
+      engineDetail: presentation.headerStatus,
       computeMs: acceptedFrame ? acoustic.metrics?.computeMs ?? null : null,
       acceptedRevision: acceptedFrame?.revision ?? null,
       requestSequence: acceptedFrame ? acoustic.metrics?.requestSequence ?? null : null,
@@ -61,7 +71,7 @@ export function ClassicViewportAdapter({ project, dispatch, audioEngine, wallPla
       sourceComputeMsMax: acceptedFrame ? acoustic.metrics?.sourceComputeMsMax ?? null : null,
       sourceComputeMsTotal: acceptedFrame ? acoustic.metrics?.sourceComputeMsTotal ?? null : null,
     });
-  }, [acceptedFrame, acoustic.metrics, onAcousticStatus, presentation.worker, project.activeListenerId, project.listeners, project.selection, scene.sources]);
+  }, [acceptedFrame, acoustic.metrics, onAcousticStatus, presentation.headerStatus, presentation.worker, project.activeListenerId, project.listeners, project.selection, scene.sources]);
   const selection: EditorSelection = project.selection?.type === "listener"
     ? { type: "listener" }
     : project.selection?.type === "source" || project.selection?.type === "wall" || project.selection?.type === "portal"
@@ -133,9 +143,11 @@ export function ClassicViewportAdapter({ project, dispatch, audioEngine, wallPla
     <section className="workspace-viewport-panel" data-testid="classic-workspace-viewport">
       <header className="viewport-tools">
         <span>{scene.name}</span>
-        <span>{presentation.headerStatus}</span>
-        <button onClick={() => onCameraChange({ ...project.view.camera, zoom: 1, panX: 0, panY: 0 })} type="button">Home</button>
-        <button onClick={frameAll} type="button">Frame All</button>
+        <div aria-label="Camera views" className="viewport-tools-group" role="group">
+          <button onClick={() => onCameraChange({ ...project.view.camera, zoom: 1, panX: 0, panY: 0 })} type="button">Home</button>
+          <button onClick={frameAll} type="button">Frame All</button>
+        </div>
+        <ViewportHelp items={CLASSIC_HELP} label="2.5D viewport help" />
       </header>
       <SceneEditor
         acousticFrame={acceptedFrame}
