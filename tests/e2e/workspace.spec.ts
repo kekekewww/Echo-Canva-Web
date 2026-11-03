@@ -1,5 +1,6 @@
 import { expect, test } from "./browser-evidence";
 import { writeFile } from "node:fs/promises";
+import { openProjectMenu, selectPreset } from "./workspace-helpers";
 
 test("renders one modelling workspace on every route", async ({ page }) => {
   for (const [route, mode] of [["/", "classic-2d5d"], ["/classic", "classic-2d5d"], ["/lab", "hybrid-3d"]] as const) {
@@ -80,7 +81,8 @@ test("keeps one AudioContext and toolbar audition state while switching modes", 
   await expect(workspace).toHaveAttribute("data-audio-contexts", "1");
   await expect(workspace).toHaveAttribute("data-audio-graphs", initialGraphs ?? "2");
   await page.getByRole("button", { name: "Raw", exact: true }).click();
-  await expect(page.getByRole("button", { name: "Simulated", exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Raw", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("button", { name: "Simulated", exact: true })).toHaveAttribute("aria-pressed", "false");
 });
 
 test("resets only the active mode and can undo reset", async ({ page }) => {
@@ -88,7 +90,8 @@ test("resets only the active mode and can undo reset", async ({ page }) => {
   const x = page.getByRole("textbox", { name: "X position" });
   await x.fill("5");
   await x.press("Enter");
-  await page.getByRole("button", { name: "Reset", exact: true }).click();
+  await openProjectMenu(page);
+  await page.getByRole("button", { name: /^Reset .* project…$/ }).click();
   await expect(page.getByRole("alertdialog", { name: "Reset active project" })).toBeVisible();
   await page.getByRole("button", { name: "Reset project" }).click();
   await expect(x).toHaveValue("3");
@@ -216,7 +219,7 @@ test("Hybrid viewport adds pan navigation without stealing object height editing
 
 test("restores the 100-wall project and keeps Outliner selection within the interaction budget", async ({ page }) => {
   await page.goto("/classic");
-  await page.getByLabel("Scene preset").selectOption("stress-100-walls");
+  await selectPreset(page, "stress-100-walls");
   const outliner = page.getByRole("complementary", { name: "Scene Outliner" });
   await expect(outliner.locator(".outliner-row.kind-wall")).toHaveCount(100);
 
@@ -281,7 +284,7 @@ test("keeps Inspector labels, values, and units inside distinct readable columns
 
 test("survives the full entity-limit project within Worker and interaction budgets", async ({ page }) => {
   await page.goto("/lab");
-  await page.getByLabel("Scene preset").selectOption("stress-100-walls");
+  await selectPreset(page, "stress-100-walls");
   await expect.poll(() => page.evaluate(() => {
     const raw = localStorage.getItem("echo-canvas:project:hybrid:v1");
     if (!raw) return false;

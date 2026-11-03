@@ -3,6 +3,7 @@ import { expect, test } from "@playwright/test";
 
 import { CONCRETE_PARTITION_PRESET } from "@/domain/presets/concrete-partition";
 import type { ExplainAcousticsRequest } from "@/ai/contracts";
+import { openProjectMenu, selectPreset } from "./workspace-helpers";
 
 test("adds and activates listeners and enforces the source workflow", async ({ page }) => {
   await page.goto("/lab");
@@ -47,7 +48,7 @@ test("edits a local source and relinks missing audio without moving it", async (
 
 test("exports, imports, and safely rejects complete authoring JSON", async ({ page }) => {
   await page.goto("/");
-  await page.getByText("Import / export").click();
+  await openProjectMenu(page);
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export authoring JSON" }).click();
   const path = await (await downloadPromise).path();
@@ -59,7 +60,8 @@ test("exports, imports, and safely rejects complete authoring JSON", async ({ pa
     project: { schemaVersion: "2.0", mode: "classic-2d5d", listeners: expect.any(Array) },
     localAssets: expect.any(Array),
   });
-  await page.getByLabel("Scene preset").selectOption("hard-room");
+  await selectPreset(page, "hard-room");
+  await openProjectMenu(page);
   await page.getByLabel("Import authoring JSON").setInputFiles({ name: "scene.json", mimeType: "application/json", buffer: Buffer.from(json) });
   await expect(page.getByRole("status")).toContainText("imported");
   await page.getByLabel("Import authoring JSON").setInputFiles({ name: "bad.json", mimeType: "application/json", buffer: Buffer.from("{") });
@@ -72,7 +74,7 @@ test("compiles and applies a validated AI candidate", async ({ page }) => {
     await route.fulfill({ json: { ok: true, scene: { ...body.baseScene, name: "AI Studio" }, model: "gpt-5.6", repairAttempted: false, warnings: [] } });
   });
   await page.goto("/");
-  await page.getByText("AI scene tools").click();
+  await openProjectMenu(page);
   await page.getByLabel("Describe a scene").fill("A compact treated studio");
   await page.getByRole("button", { name: "Generate scene" }).click();
   await expect(page.getByRole("button", { name: "Apply AI Studio" })).toBeVisible();
@@ -108,7 +110,7 @@ test("applies a mode-aware AI candidate to Hybrid room and object heights", asyn
   });
 
   await page.goto("/lab");
-  await page.getByText("AI scene tools").click();
+  await openProjectMenu(page);
   await page.getByLabel("Describe a scene").fill("A 14 by 10 by 4.5 metre gallery");
   await page.getByRole("button", { name: "Generate scene" }).click();
   await page.getByRole("button", { name: "Apply AI Gallery" }).click();
@@ -139,7 +141,7 @@ test("explains the selected source using a deterministic snapshot and a mocked A
 
   await page.goto("/");
   await page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "Rain", exact: true }).click();
-  await page.getByText("AI scene tools").click();
+  await openProjectMenu(page);
   await page.getByRole("button", { name: "Explain selected acoustics" }).click();
 
   await expect(page.locator(".workspace-explanation")).toContainText("Rain follows the calculated acoustic route.");
@@ -173,9 +175,9 @@ test("confirms permanent deletes and clears all local project data in two steps"
   await expect(outliner.getByRole("button", { name: "partition center", exact: true })).toHaveCount(0);
   await expect(outliner.locator(".kind-portal")).toHaveCount(0);
 
-  await page.getByRole("button", { name: "Settings" }).click();
-  await page.getByRole("button", { name: "Clear all local data" }).click();
-  await expect(page.getByRole("dialog", { name: "Workspace settings" })).toContainText("both local projects");
+  await openProjectMenu(page);
+  await page.getByRole("button", { name: "Clear all local data…" }).click();
+  await expect(page.getByRole("alertdialog", { name: "Clear all local data" })).toContainText("both local projects");
   await page.getByRole("button", { name: "Confirm clear all" }).click();
   await expect(outliner.getByRole("button", { name: "partition center", exact: true })).toBeVisible();
 });

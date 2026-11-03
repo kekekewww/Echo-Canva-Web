@@ -1,6 +1,7 @@
 import type { Page } from "@playwright/test";
 
 import { expect, test } from "./browser-evidence";
+import { openProjectMenu } from "./workspace-helpers";
 
 const DESKTOP_SIZES = [
   { width: 1280, height: 720 },
@@ -68,7 +69,8 @@ test("keeps Hybrid viewport labels apart and shows coordinates only for the sele
 
 test("styles overlay actions like workspace controls and separates disabled reasons", async ({ page }) => {
   await page.goto("/classic");
-  await page.getByRole("button", { name: "Reset", exact: true }).click();
+  await openProjectMenu(page);
+  await page.getByRole("button", { name: /^Reset .* project…$/ }).click();
   const reset = page.getByRole("alertdialog", { name: "Reset active project" }).getByRole("button", { name: "Reset project" });
   const style = await reset.evaluate((element) => {
     const computed = getComputedStyle(element);

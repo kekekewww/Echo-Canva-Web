@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 
 import { AddObjectMenu } from "@/components/workspace/AddObjectMenu";
 import { AudioAssetPicker } from "@/components/workspace/AudioAssetPicker";
@@ -9,7 +9,8 @@ import { ContextInspector } from "@/components/workspace/ContextInspector";
 import { HybridViewportAdapter } from "@/components/workspace/HybridViewportAdapter";
 import { SceneOutliner } from "@/components/workspace/SceneOutliner";
 import { WorkspaceStatusBar, type WorkspaceAcousticStatus } from "@/components/workspace/WorkspaceStatusBar";
-import { WorkspaceToolbar } from "@/components/workspace/WorkspaceToolbar";
+import { PROJECT_TRIGGER_ID, WorkspaceToolbar } from "@/components/workspace/WorkspaceToolbar";
+import { WorkspaceProjectTools } from "@/components/workspace/WorkspaceProjectTools";
 import type { WorkspaceMode } from "@/domain/workspace/types";
 import type { EntityRef } from "@/domain/workspace/types";
 import type { PrimitiveKind } from "@/domain/workspace/types";
@@ -41,9 +42,11 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
   }> | null>(null);
   const [previewMode, setPreviewMode] = useState<PreviewMode>("simulated");
   const [playing, setPlaying] = useState(false);
+  const [audioPending, setAudioPending] = useState(false);
+  const audioPendingRef = useRef(false);
   const [audioError, setAudioError] = useState<string | null>(null);
   const [confirmReset, setConfirmReset] = useState(false);
-  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [projectOpen, setProjectOpen] = useState(false);
   const [confirmClearAll, setConfirmClearAll] = useState(false);
   const [mobilePanel, setMobilePanel] = useState<"outliner" | "inspector" | null>(null);
   const [acousticStatus, setAcousticStatus] = useState<WorkspaceAcousticStatus | null>(null);
@@ -100,10 +103,14 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
     function shortcuts(event: KeyboardEvent): void {
       if (event.key === "Escape" && addOpen) { setAddOpen(false); return; }
       if (event.key === "Escape" && audioPickerOpen) { setAudioPickerOpen(false); return; }
-      if (event.key === "Escape" && (settingsOpen || confirmReset)) {
-        setSettingsOpen(false);
+      if (event.key === "Escape" && (confirmClearAll || confirmReset)) {
         setConfirmClearAll(false);
         setConfirmReset(false);
+        return;
+      }
+      if (event.key === "Escape" && projectOpen) {
+        setProjectOpen(false);
+        document.getElementById(PROJECT_TRIGGER_ID)?.focus();
         return;
       }
       if (event.key === "Escape" && wallPlacement) {
@@ -123,7 +130,18 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
     }
     window.addEventListener("keydown", shortcuts);
     return () => window.removeEventListener("keydown", shortcuts);
-  }, [addOpen, audioPickerOpen, confirmReset, mobilePanel, settingsOpen, wallPlacement, workspace]);
+  }, [addOpen, audioPickerOpen, confirmClearAll, confirmReset, mobilePanel, projectOpen, wallPlacement, workspace]);
+
+  useEffect(() => {
+    if (!projectOpen) return undefined;
+    function closeOnOutsidePointer(event: PointerEvent): void {
+      const target = event.target as Element | null;
+      if (target?.closest?.(`#${PROJECT_TRIGGER_ID}, #workspace-project-menu`)) return;
+      setProjectOpen(false);
+    }
+    document.addEventListener("pointerdown", closeOnOutsidePointer);
+    return () => document.removeEventListener("pointerdown", closeOnOutsidePointer);
+  }, [projectOpen]);
 
   function downloadRecoveryRecord(): void {
     if (!workspace.recoveryRaw) return;
@@ -255,6 +273,10 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
   }
 
   async function togglePlaying(): Promise<void> {
+    // Ignore repeated activation while the AudioContext starts or stops; the button shows the pending state.
+    if (audioPendingRef.current) return;
+    audioPendingRef.current = true;
+    setAudioPending(true);
     setAudioError(null);
     try {
       if (playing) await audio.stopAudio();
@@ -262,6 +284,9 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
       setPlaying(!playing);
     } catch (error) {
       setAudioError(error instanceof Error ? error.message : "Audio is unavailable.");
+    } finally {
+      audioPendingRef.current = false;
+      setAudioPending(false);
     }
   }
 
@@ -285,26 +310,41 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
       }}
     >
       <WorkspaceToolbar
+        audioPending={audioPending}
         canRedo={workspace.canRedo}
         canUndo={workspace.canUndo}
         mode={workspace.activeMode}
-        onAdd={() => setAddOpen(true)}
+        onAdd={() => { setProjectOpen(false); setAddOpen(true); }}
         onModeChange={workspace.setActiveMode}
+        onPreviewModeChange={setPreviewMode}
         onRedo={workspace.redo}
-        onReset={() => setConfirmReset(true)}
+        onToggleProject={() => setProjectOpen((open) => !open)}
         onUndo={workspace.undo}
         onTogglePlaying={() => void togglePlaying()}
-        onTogglePreviewMode={() => setPreviewMode((mode) => mode === "raw" ? "simulated" : "raw")}
         playing={playing}
         previewMode={previewMode}
-        onOpenSettings={() => setSettingsOpen(true)}
+        projectMenu={(
+          // Kept mounted while closed so an unapplied AI candidate or prompt survives closing the menu.
+          <div aria-label="Project" className="workspace-project-menu" hidden={!projectOpen} id="workspace-project-menu" role="dialog">
+            <WorkspaceProjectTools
+              dispatch={workspace.dispatch}
+              localAssets={localAssets}
+              onDone={() => setProjectOpen(false)}
+              onRequestClearAll={() => { setProjectOpen(false); setConfirmClearAll(true); }}
+              onRequestReset={() => { setProjectOpen(false); setConfirmReset(true); }}
+              project={workspace.activeProject}
+            />
+          </div>
+        )}
+        projectOpen={projectOpen}
+        sceneName={workspace.activeProject.scene.name}
         onShowInspector={() => setMobilePanel("inspector")}
         onShowOutliner={() => setMobilePanel("outliner")}
       />
       {(workspace.persistenceStatus !== "saved" || audioLibrary.warning) ? <div className="workspace-persistence-warning" role="status"><strong>Memory-only warning</strong><span>{audioLibrary.warning ?? workspace.persistenceStatus}</span></div> : null}
       {workspace.recoveryRaw ? <div className="workspace-confirm-card workspace-recovery-card" role="status"><strong>Project cache recovery</strong><p>A safe preset is loaded. Download the unread record before replacing it.</p><button className="workspace-button-primary" onClick={downloadRecoveryRecord} type="button">Download unread cache</button></div> : null}
       {confirmReset ? <div className="workspace-confirm-card workspace-floating-card" role="alertdialog" aria-label="Reset active project"><strong>Reset {workspace.activeMode === "hybrid-3d" ? "3D" : "2.5D"} project?</strong><p>The other mode and local audio stay unchanged.</p><button autoFocus className="workspace-button-danger" onClick={() => { workspace.resetActiveProject(); setConfirmReset(false); }} type="button">Reset project</button><button onClick={() => setConfirmReset(false)} type="button">Cancel</button></div> : null}
-      {settingsOpen ? <div className="workspace-confirm-card workspace-floating-card" role="dialog" aria-modal="true" aria-label="Workspace settings"><strong>Workspace settings</strong>{confirmClearAll ? <><p>This removes both local projects and every local audio file.</p><button autoFocus className="workspace-button-danger" onClick={() => void audioLibrary.clear().then(() => { workspace.clearAllProjects(); setConfirmClearAll(false); setSettingsOpen(false); })} type="button">Confirm clear all</button><button onClick={() => setConfirmClearAll(false)} type="button">Cancel</button></> : <><button autoFocus className="workspace-button-danger" onClick={() => setConfirmClearAll(true)} type="button">Clear all local data</button><button onClick={() => setSettingsOpen(false)} type="button">Close</button></>}</div> : null}
+      {confirmClearAll ? <div aria-label="Clear all local data" aria-modal="true" className="workspace-confirm-card workspace-floating-card" role="alertdialog"><strong>Clear all local data?</strong><p>This removes both local projects and every local audio file. It cannot be undone.</p><button autoFocus className="workspace-button-danger" onClick={() => void audioLibrary.clear().then(() => { workspace.clearAllProjects(); setConfirmClearAll(false); })} type="button">Confirm clear all</button><button onClick={() => setConfirmClearAll(false)} type="button">Cancel</button></div> : null}
       {audioError ? <div className="workspace-error" role="alert"><span>{audioError}</span><button onClick={() => void togglePlaying()} type="button">Retry</button></div> : null}
       {addOpen ? <AddObjectMenu
         availability={{
