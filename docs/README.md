@@ -13,6 +13,7 @@ Start with [README](../README.md), [CONTRIBUTING](../CONTRIBUTING.md), and [onbo
 | [API contracts](API_CONTRACTS.md) | Scene and API contract reference with source-era context |
 | [Docker](deployment/docker.md) | Optional contributor environment and self-hosting |
 | [Browser listening/Desktop checks](testing/browser-listening.md) | Human audio/HRTF/IndexedDB protocol and Windows/macOS Docker Desktop hot reload |
+| [Portal walkthrough](tutorials/portal-walkthrough.md) | Reproducible Concrete Partition direct/Portal/blocked tutorial for Classic and Hybrid, with importable fixtures |
 | [ADRs](adr/README.md) | Decision records and template |
 | [Maintenance reports](maintenance/README.md) | Baseline/final/audit/security/license/dependency evidence and debt |
 | [Community issues](community/INITIAL_ISSUES.md) | Published sciwork starter issues and contributor-help issues |
