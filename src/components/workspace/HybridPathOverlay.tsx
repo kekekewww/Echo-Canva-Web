@@ -8,6 +8,7 @@ import type { HybridDirectFrame } from "@/acoustics/hybrid3d/direct";
 import type { Vec3 } from "@/acoustics/hybrid3d/geometry";
 import { renderHybridEarlyReflections } from "@/acoustics/hybrid3d/reflection-rendering";
 import { projectViewportPoint, type ViewportCamera } from "@/components/lab/viewport-math";
+import type { HybridDirectRouteType } from "@/audio/types";
 
 export type HybridDisplayPath = Readonly<{
   id: string;
@@ -102,6 +103,98 @@ export function deriveHybridPathDisplay(
     }
   }
   return display;
+}
+
+/**
+ * Presentation-only arrival-direction label for the selected source.
+ *
+ * Values are copied from the accepted frame's DirectPath3D (`solveDirectPath3D`): the unit
+ * direction from the listener position to the source, in world axes. Azimuth is
+ * atan2(x, z) in degrees (0° = +Z/north, 90° = +X, range -180°..180°); elevation is
+ * asin(y) in degrees (positive = above the listener). The azimuth is NOT rotated by the
+ * listener heading. Nothing here computes a path or touches audio; the label is a
+ * geometric approximation, not a measured or perceived localization.
+ */
+export type HybridArrivalLabel =
+  | Readonly<{ state: "pending" | "empty"; text: string }>
+  | Readonly<{
+    state: "ready";
+    sourceId: string;
+    sourceName: string;
+    routeType: "direct" | "blocked";
+    audibleRouteType: HybridDirectRouteType | null;
+    azimuthDeg: number;
+    elevationDeg: number;
+    text: string;
+    accessibleText: string;
+  }>;
+
+export const HYBRID_ARRIVAL_CONVENTION = "World-aligned, listener to source; azimuth 0° = +Z (north), 90° = +X; not rotated by listener heading; geometric approximation.";
+
+function formatDegrees(value: number): string {
+  const rounded = Math.round(value * 10) / 10;
+  return (Object.is(rounded, -0) ? 0 : rounded).toFixed(1);
+}
+
+export function deriveHybridArrivalLabel({
+  accepted,
+  frame,
+  expectedRevision,
+  selectedSourceId,
+  sourceName,
+  audiblePaths,
+}: Readonly<{
+  /** `resolveHybridAcousticPresentation(...).accepted`: revision and Classic projection hash match. */
+  accepted: boolean;
+  frame: HybridDirectFrame;
+  expectedRevision: number;
+  selectedSourceId: string | null;
+  sourceName?: string;
+  audiblePaths: readonly HybridAudiblePath[];
+}>): HybridArrivalLabel {
+  if (!accepted || frame.revision !== expectedRevision) {
+    return { state: "pending", text: "Arrival direction pending · waiting for matching acoustic frame" };
+  }
+  const path = selectedSourceId ? frame.paths.find(({ sourceId }) => sourceId === selectedSourceId) : undefined;
+  if (!selectedSourceId || !path) {
+    return { state: "empty", text: "Arrival direction unavailable · no enabled source in the accepted frame" };
+  }
+  const name = sourceName ?? selectedSourceId;
+  const audibleRouteType = audiblePaths.find(({ sourceId }) => sourceId === selectedSourceId)?.routeType ?? null;
+  const azimuth = formatDegrees(path.azimuthDeg);
+  const elevation = formatDegrees(path.elevationDeg);
+  const route = path.routeType === "direct" ? "Direct" : "Blocked line of sight";
+  const portalNote = audibleRouteType === "portal" ? " · audible route via Portal (not this direction)" : "";
+  return {
+    state: "ready",
+    sourceId: selectedSourceId,
+    sourceName: name,
+    routeType: path.routeType,
+    audibleRouteType,
+    azimuthDeg: path.azimuthDeg,
+    elevationDeg: path.elevationDeg,
+    text: `Arrival · ${name} · ${route} · az ${azimuth}° · el ${elevation}°${portalNote}`,
+    accessibleText: `Arrival direction for ${name}: ${route.toLowerCase()}${audibleRouteType === "portal" ? ", audible route via Portal is not this direction" : ""}; azimuth ${azimuth} degrees, elevation ${elevation} degrees. ${HYBRID_ARRIVAL_CONVENTION}`,
+  };
+}
+
+export function HybridArrivalDirectionLabel({ label }: Readonly<{ label: HybridArrivalLabel }>) {
+  const accessibleText = label.state === "ready" ? label.accessibleText : label.text;
+  return (
+    <p
+      aria-label={accessibleText}
+      className="hybrid-arrival-label"
+      data-route-type={label.state === "ready" ? label.routeType : undefined}
+      data-state={label.state}
+      data-testid="hybrid-arrival-label"
+      role="note"
+      style={{ color: "var(--text-2)", font: "var(--text-xs) var(--mono)", margin: ".35rem 0 0" }}
+      tabIndex={0}
+    >
+      <span>{label.text}</span>
+      {label.state === "ready" ? <span style={{ display: "block", opacity: 0.75 }}>{HYBRID_ARRIVAL_CONVENTION}</span> : null}
+    </p>
+  );
 }
 
 export function HybridPathOverlay({ paths, camera, xRay = false }: Readonly<{

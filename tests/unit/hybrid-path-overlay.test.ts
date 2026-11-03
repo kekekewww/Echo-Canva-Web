@@ -1,10 +1,13 @@
 import { describe, expect, it } from "vitest";
 
 import { compileHybridGeometry } from "@/acoustics/hybrid3d/compile";
+import { resolveHybridAudibleDirectState } from "@/acoustics/hybrid3d/audible-direct";
 import { computeHybridDirectFrame } from "@/acoustics/hybrid3d/direct";
 import { createDefaultHybridProject } from "@/domain/workspace/defaults";
 import { projectHybridDocument } from "@/domain/workspace/projections";
-import { deriveHybridPathDisplay } from "@/components/workspace/HybridPathOverlay";
+import { deriveHybridArrivalLabel, deriveHybridPathDisplay } from "@/components/workspace/HybridPathOverlay";
+import { resolveHybridAcousticPresentation } from "@/components/workspace/HybridViewportAdapter";
+import type { WorkspaceProject } from "@/domain/workspace/types";
 
 describe("Hybrid path overlay", () => {
   it("rejects stale frames", () => {
@@ -92,5 +95,106 @@ describe("Hybrid path overlay", () => {
     expect(secondOrder).toBeDefined();
     expect(secondOrder?.vertices).toHaveLength(4);
     expect(secondOrder?.surfaceName).toContain("→");
+  });
+});
+
+describe("Hybrid arrival-direction label", () => {
+  // Default Hybrid fixture: listener (3, 1.5, 4) m, Radio (9, 1.5, 4) m with clear line of
+  // sight, Rain (10, 1.5, 1.5) m behind the partition with an audible Portal route.
+  function labelFor(project: WorkspaceProject, selectedSourceId: string | null, frameOverride?: (frame: ReturnType<typeof computeHybridDirectFrame>) => ReturnType<typeof computeHybridDirectFrame>) {
+    const document = projectHybridDocument(project);
+    const geometry = compileHybridGeometry(document);
+    const computed = computeHybridDirectFrame(geometry);
+    const frame = frameOverride ? frameOverride(computed) : computed;
+    const presentation = resolveHybridAcousticPresentation({
+      frame,
+      source: "worker",
+      computeMs: 0,
+      completedAtMs: 0,
+      requestSequence: 1,
+      workerCount: 1,
+      sourceComputeMsMax: 0,
+      sourceComputeMsTotal: 0,
+      notice: null,
+    }, document);
+    return deriveHybridArrivalLabel({
+      accepted: presentation.accepted,
+      frame,
+      expectedRevision: project.revision,
+      selectedSourceId,
+      sourceName: project.scene.sources.find(({ id }) => id === selectedSourceId)?.name,
+      audiblePaths: resolveHybridAudibleDirectState(geometry, frame).paths,
+    });
+  }
+
+  it("reports the accepted direct path's world-aligned azimuth and elevation in degrees", () => {
+    const label = labelFor(createDefaultHybridProject(), "radio");
+    expect(label.state).toBe("ready");
+    if (label.state !== "ready") return;
+    expect(label.routeType).toBe("direct");
+    // atan2(x = 6, z = 0) = 90° (+X); asin(0) = 0°. Tolerance 1e-9 degrees.
+    expect(label.azimuthDeg).toBeCloseTo(90, 9);
+    expect(label.elevationDeg).toBeCloseTo(0, 9);
+    expect(label.text).toBe("Arrival · Radio · Direct · az 90.0° · el 0.0°");
+    expect(label.accessibleText).toContain("azimuth 90.0 degrees, elevation 0.0 degrees");
+    expect(label.accessibleText).toContain("not rotated by listener heading");
+    expect(label.accessibleText).toContain("approximation");
+  });
+
+  it("labels a blocked line of sight and notes that the audible Portal route differs", () => {
+    const label = labelFor(createDefaultHybridProject(), "rain");
+    expect(label.state).toBe("ready");
+    if (label.state !== "ready") return;
+    expect(label.routeType).toBe("blocked");
+    expect(label.audibleRouteType).toBe("portal");
+    // Listener→Rain = (7, 0, -2.5) m; atan2(7, -2.5) ≈ 109.654°.
+    expect(label.azimuthDeg).toBeCloseTo(109.654, 3);
+    expect(label.text).toContain("Blocked line of sight · az 109.7° · el 0.0°");
+    expect(label.text).toContain("Portal");
+  });
+
+  it("copies the frame values rather than recomputing a path", () => {
+    const label = labelFor(createDefaultHybridProject(), "radio", (frame) => ({
+      ...frame,
+      paths: frame.paths.map((path) => path.sourceId === "radio" ? { ...path, azimuthDeg: -45.04, elevationDeg: 12.36 } : path),
+    }));
+    expect(label.state === "ready" && label.text).toBe("Arrival · Radio · Direct · az -45.0° · el 12.4°");
+  });
+
+  it("does not rotate the azimuth by listener heading", () => {
+    const base = createDefaultHybridProject();
+    const turned: WorkspaceProject = {
+      ...base,
+      listeners: base.listeners.map((listener) => ({ ...listener, headingDeg: listener.headingDeg + 90 })),
+    };
+    const a = labelFor(base, "radio");
+    const b = labelFor(turned, "radio");
+    expect(a.state === "ready" && b.state === "ready" && b.azimuthDeg).toBe(a.state === "ready" ? a.azimuthDeg : null);
+  });
+
+  it("shows a pending state for stale revision or projection-hash frames", () => {
+    const project = createDefaultHybridProject();
+    const staleRevision = labelFor(project, "radio", (frame) => ({ ...frame, revision: frame.revision + 1 }));
+    const staleHash = labelFor(project, "radio", (frame) => ({ ...frame, classicProjectionHash: "stale" }));
+    for (const label of [staleRevision, staleHash]) {
+      expect(label.state).toBe("pending");
+      expect(label.text).toMatch(/pending/);
+      expect(label.text).not.toMatch(/az |°/);
+    }
+    // Defence in depth: an otherwise accepted frame from another revision is still pending.
+    const geometry = compileHybridGeometry(projectHybridDocument(project));
+    const frame = computeHybridDirectFrame(geometry);
+    expect(deriveHybridArrivalLabel({
+      accepted: true,
+      frame,
+      expectedRevision: frame.revision + 1,
+      selectedSourceId: "radio",
+      audiblePaths: [],
+    }).state).toBe("pending");
+  });
+
+  it("shows an empty state when no source is in the accepted frame", () => {
+    expect(labelFor(createDefaultHybridProject(), null).state).toBe("empty");
+    expect(labelFor(createDefaultHybridProject(), "missing").state).toBe("empty");
   });
 });

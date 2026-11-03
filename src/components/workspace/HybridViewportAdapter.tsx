@@ -13,7 +13,11 @@ import {
   type HybridViewportSelection,
   type HybridViewportWall,
 } from "@/components/lab/HybridSpatialViewport";
-import { deriveHybridPathDisplay } from "@/components/workspace/HybridPathOverlay";
+import {
+  deriveHybridArrivalLabel,
+  deriveHybridPathDisplay,
+  HybridArrivalDirectionLabel,
+} from "@/components/workspace/HybridPathOverlay";
 import { constrainPortal3D, constrainWall3D } from "@/domain/workspace/geometry-constraints";
 import {
   createProjectProjectionCache,
@@ -96,6 +100,15 @@ export function HybridViewportAdapter({ project, dispatch, audioEngine, wallPlac
     project.revision,
     audible.paths,
   ), [audible.paths, direct.frame, geometry, project.revision, selectedSourceId, showAllPaths]);
+  const selectedSourceName = project.scene.sources.find(({ id }) => id === selectedSourceId)?.name;
+  const arrivalLabel = useMemo(() => deriveHybridArrivalLabel({
+    accepted,
+    frame: direct.frame,
+    expectedRevision: project.revision,
+    selectedSourceId,
+    sourceName: selectedSourceName,
+    audiblePaths: audible.paths,
+  }), [accepted, audible.paths, direct.frame, project.revision, selectedSourceId, selectedSourceName]);
 
   const objects = useMemo<readonly HybridViewportObject[]>(() => [
     ...project.listeners.filter(({ enabled }) => enabled).map((listener) => ({
@@ -255,6 +268,7 @@ export function HybridViewportAdapter({ project, dispatch, audioEngine, wallPlac
         onWallPlacementPoint={onWallPlacementPoint}
         walls={walls}
       />
+      {pathsVisible ? <HybridArrivalDirectionLabel label={arrivalLabel} /> : null}
     </section>
   );
 }
