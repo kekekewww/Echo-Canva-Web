@@ -8,9 +8,7 @@ import { primitivePatches } from "@/acoustics/hybrid3d/primitives";
 import type { AcousticPrimitive } from "@/domain/workspace/types";
 
 import {
-  DEFAULT_VIEWPORT_CAMERA,
   clampViewportCamera,
-  frameViewportPoints,
   northViewportAngleDeg,
   projectViewportDepth,
   projectViewportPoint,
@@ -74,7 +72,6 @@ type Props = Readonly<{
   primitives?: readonly HybridViewportPrimitive[];
   paths?: readonly HybridDisplayPath[];
   pathsVisible?: boolean;
-  showAllPaths?: boolean;
   camera: ViewportCamera;
   selectedTarget: HybridViewportSelection;
   onMoveObject: (id: string, position: ViewportVec3) => void;
@@ -82,9 +79,6 @@ type Props = Readonly<{
   onMovePortalCenter: (id: string, center: PlanPosition) => void;
   onMovePrimitive?: (id: string, position: ViewportVec3) => void;
   onSelectTarget: (target: NonNullable<HybridViewportSelection>) => void;
-  onTogglePaths?: () => void;
-  onToggleShowAllPaths?: () => void;
-  onToggleCeiling?: () => void;
   onCameraChange: (camera: ViewportCamera) => void;
   wallPlacementFirst?: PlanPosition | null;
   onWallPlacementPoint?: (point: PlanPosition) => void;
@@ -296,6 +290,47 @@ export function projectWall(wall: HybridViewportWall, camera: ViewportCamera): P
   };
 }
 
+export const TOP_VIEW_CAMERA: ViewportCamera = Object.freeze({ yawDeg: 0, pitchDeg: 78, zoom: 1, panX: 0, panY: 0 });
+export const FRONT_VIEW_CAMERA: ViewportCamera = Object.freeze({ yawDeg: 0, pitchDeg: 28, zoom: 1, panX: 0, panY: 0 });
+
+/** World points that Frame All fits: the room box, objects, primitive facets, and wall/Portal extents. */
+export function hybridFramePoints({ room, objects, primitives, walls }: Readonly<{
+  room: Props["roomDimensions"];
+  objects: readonly HybridViewportObject[];
+  primitives: readonly HybridViewportPrimitive[];
+  walls: readonly HybridViewportWall[];
+}>): ViewportVec3[] {
+  return [
+    { x: 0, y: 0, z: 0 },
+    { x: room.widthM, y: 0, z: 0 },
+    { x: room.widthM, y: 0, z: room.depthM },
+    { x: 0, y: 0, z: room.depthM },
+    { x: 0, y: room.heightM, z: 0 },
+    { x: room.widthM, y: room.heightM, z: 0 },
+    { x: room.widthM, y: room.heightM, z: room.depthM },
+    { x: 0, y: room.heightM, z: room.depthM },
+    ...objects.map(({ position }) => position),
+    ...primitives.flatMap((primitive) => primitivePatches(primitive).flatMap(({ vertices }) => vertices)),
+    ...walls.flatMap((wall) => [
+      { x: wall.a.x, y: wall.bottomM, z: wall.a.z },
+      { x: wall.a.x, y: wall.topM, z: wall.a.z },
+      { x: wall.b.x, y: wall.bottomM, z: wall.b.z },
+      { x: wall.b.x, y: wall.topM, z: wall.b.z },
+      ...wall.portals.flatMap((portal) => {
+        const interval = portalInterval(wall, portal);
+        const a = wallPoint(wall, interval.start, 0);
+        const b = wallPoint(wall, interval.end, 0);
+        return [
+          { x: a.x, y: portal.bottomM, z: a.z },
+          { x: a.x, y: portal.topM, z: a.z },
+          { x: b.x, y: portal.bottomM, z: b.z },
+          { x: b.x, y: portal.topM, z: b.z },
+        ];
+      }),
+    ]),
+  ];
+}
+
 export function HybridSpatialViewport({
   roomDimensions: room,
   ceilingVisible = true,
@@ -304,16 +339,12 @@ export function HybridSpatialViewport({
   primitives = [],
   paths = [],
   pathsVisible = true,
-  showAllPaths = false,
   selectedTarget,
   onMoveObject,
   onMoveWallEndpoint,
   onMovePortalCenter,
   onMovePrimitive,
   onSelectTarget,
-  onTogglePaths,
-  onToggleShowAllPaths,
-  onToggleCeiling,
   camera,
   onCameraChange,
   wallPlacementFirst = null,
@@ -448,38 +479,6 @@ export function HybridSpatialViewport({
     return layoutViewportLabels(candidates, obstacles, LABEL_BOUNDS);
   }, [camera, objects, primitives, projected.walls, selectedTarget]);
 
-  function frameAll(): void {
-    const framePoints: readonly ViewportVec3[] = [
-      { x: 0, y: 0, z: 0 },
-      { x: room.widthM, y: 0, z: 0 },
-      { x: room.widthM, y: 0, z: room.depthM },
-      { x: 0, y: 0, z: room.depthM },
-      { x: 0, y: room.heightM, z: 0 },
-      { x: room.widthM, y: room.heightM, z: 0 },
-      { x: room.widthM, y: room.heightM, z: room.depthM },
-      { x: 0, y: room.heightM, z: room.depthM },
-      ...objects.map(({ position }) => position),
-      ...primitives.flatMap((primitive) => primitivePatches(primitive).flatMap(({ vertices }) => vertices)),
-      ...walls.flatMap((wall) => [
-        { x: wall.a.x, y: wall.bottomM, z: wall.a.z },
-        { x: wall.a.x, y: wall.topM, z: wall.a.z },
-        { x: wall.b.x, y: wall.bottomM, z: wall.b.z },
-        { x: wall.b.x, y: wall.topM, z: wall.b.z },
-        ...wall.portals.flatMap((portal) => {
-          const interval = portalInterval(wall, portal);
-          const a = wallPoint(wall, interval.start, 0);
-          const b = wallPoint(wall, interval.end, 0);
-          return [
-            { x: a.x, y: portal.bottomM, z: a.z },
-            { x: a.x, y: portal.topM, z: a.z },
-            { x: b.x, y: portal.bottomM, z: b.z },
-            { x: b.x, y: portal.topM, z: b.z },
-          ];
-        }),
-      ]),
-    ];
-    onCameraChange(frameViewportPoints(framePoints, camera));
-  }
 
   useEffect(() => {
     const viewport = svgRef.current;
@@ -594,21 +593,10 @@ export function HybridSpatialViewport({
   const northAngle = northViewportAngleDeg(camera);
   return (
     <section className="hybrid-spatial-viewport" data-camera={`${camera.yawDeg.toFixed(1)},${camera.pitchDeg.toFixed(1)},${camera.zoom.toFixed(2)},${camera.panX.toFixed(1)},${camera.panY.toFixed(1)}`} data-testid="hybrid-spatial-viewport">
-      <header className="hybrid-viewport-header">
-        <div><p className="panel-kicker">3D viewport</p><h3>Orbit · select · place</h3></div>
-        <div className="hybrid-view-buttons" aria-label="Camera views">
-          {onTogglePaths ? <button aria-pressed={pathsVisible} onClick={onTogglePaths} type="button">Paths</button> : null}
-          {onToggleShowAllPaths ? <button aria-pressed={showAllPaths} onClick={onToggleShowAllPaths} type="button">Show all paths</button> : null}
-          {onToggleCeiling ? <button aria-pressed={ceilingVisible} onClick={onToggleCeiling} type="button">Ceiling</button> : null}
-          <button onClick={() => onCameraChange({ yawDeg: 0, pitchDeg: 78, zoom: 1, panX: 0, panY: 0 })} type="button">Top</button>
-          <button onClick={() => onCameraChange({ yawDeg: 0, pitchDeg: 28, zoom: 1, panX: 0, panY: 0 })} type="button">Front</button>
-          <button onClick={() => onCameraChange(DEFAULT_VIEWPORT_CAMERA)} type="button">Home</button>
-          <button onClick={frameAll} type="button">Frame All</button>
-        </div>
-      </header>
-      <p className="hybrid-viewport-help" id="hybrid-viewport-help">
-        <span>Amber: listener</span><span>Cyan: source / Portal</span><span>Coral: wall</span>
-        <span>Drag: X/Z</span><span>Shift-object: Y</span><span>MMB / Shift-empty: pan</span><span>Wheel: zoom</span><span>North: +Z</span>
+      <p className="visually-hidden" id="hybrid-viewport-help">
+        Amber marks the listener, cyan marks sources and Portals, coral marks walls. Drag an object to move it in X and Z;
+        Shift-drag an object to change its height (Y). Drag empty space to orbit; middle-drag or Shift-drag empty space to pan;
+        use the wheel to zoom. North is positive Z.
       </p>
       <svg aria-describedby="hybrid-viewport-help" aria-label="Interactive 3D acoustic scene viewport" className="hybrid-viewport-svg" data-panning={dragState?.kind === "pan" ? "true" : "false"} data-placing-wall={onWallPlacementPoint ? "true" : "false"} onLostPointerCapture={() => { if (dragState?.kind === "pan") setDragState(null); }} onPointerCancel={endDrag} onPointerDownCapture={(event) => { if (event.button === 1) beginPan(event); }} onPointerMove={moveView} onPointerUp={endDrag} preserveAspectRatio="xMidYMid meet" ref={svgRef} role="group" viewBox="0 0 1200 720">
         <defs>
@@ -680,6 +668,12 @@ export function HybridSpatialViewport({
         <g aria-label="XYZ coordinate axes" className="hybrid-viewport-axis" transform="translate(94 610)"><circle className="hybrid-viewport-axis-origin" r="4" /><line className="hybrid-viewport-axis-x" x1="0" x2={axis.x.x} y1="0" y2={axis.x.y} /><line className="hybrid-viewport-axis-y" x1="0" x2={axis.y.x} y1="0" y2={axis.y.y} /><line className="hybrid-viewport-axis-z" x1="0" x2={axis.z.x} y1="0" y2={axis.z.y} /><text className="hybrid-viewport-axis-x" x={axis.x.x * 1.18} y={axis.x.y * 1.18}>X</text><text className="hybrid-viewport-axis-y" x={axis.y.x * 1.18} y={axis.y.y * 1.18}>Y</text><text className="hybrid-viewport-axis-z" x={axis.z.x * 1.18} y={axis.z.y * 1.18}>Z</text></g>
         <g aria-label="Compass; north is positive Z" className="hybrid-viewport-compass" transform="translate(1090 88)"><circle r="42" /><g transform={`rotate(${northAngle})`}><path d="M0 -33 L8 7 L0 0 L-8 7 Z" /></g><text textAnchor="middle" x="0" y="-51">N</text><text textAnchor="middle" x="0" y="66">+Z north</text></g>
       </svg>
+      <div aria-hidden="true" className="canvas-legend hybrid-legend">
+        <span><i className="legend-listener" /> Listener</span>
+        <span><i className="legend-source" /> Source</span>
+        <span><i className="legend-portal" /> Portal</span>
+        <span><i className="legend-wall" /> Wall</span>
+      </div>
     </section>
   );
 }

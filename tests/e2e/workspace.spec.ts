@@ -92,11 +92,12 @@ test("resets only the active mode and can undo reset", async ({ page }) => {
   await x.press("Enter");
   await openProjectMenu(page);
   await page.getByRole("button", { name: /^Reset .* project…$/ }).click();
-  await expect(page.getByRole("alertdialog", { name: "Reset active project" })).toBeVisible();
-  await page.getByRole("button", { name: "Reset project" }).click();
   await expect(x).toHaveValue("3");
+  const toast = page.getByRole("status").filter({ hasText: "Reset 3D project" });
+  await expect(toast).toBeVisible();
   await page.getByTitle("Undo (Ctrl+Z)").click();
   await expect(x).toHaveValue("5");
+  await expect(toast).toBeHidden();
 });
 
 test("contains wheel zoom inside the 3D viewport and reports no page errors", async ({ page }) => {
@@ -147,6 +148,8 @@ test("Classic viewport supports pan navigation, Home and Frame All", async ({ pa
   await page.getByRole("button", { name: "Home", exact: true }).click();
   await expect(viewport).toHaveAttribute("data-camera", /,1\.00,0\.0,0\.0$/);
   await page.getByRole("button", { name: "Frame All", exact: true }).click();
+  // Camera presets tween (#37); read the committed camera once the tween ends.
+  await expect(page.getByTestId("classic-workspace-viewport")).toHaveAttribute("data-camera-animating", "false");
   await expect(viewport).not.toHaveAttribute("data-camera", initialCamera ?? "");
   const framedCamera = await viewport.getAttribute("data-camera");
   await page.waitForTimeout(180);

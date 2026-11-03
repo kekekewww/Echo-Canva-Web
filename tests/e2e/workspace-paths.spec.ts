@@ -17,7 +17,7 @@ test("shows matched direct and first-order 3D paths with presentation controls",
   await expect(overlay).toHaveCount(0);
   await page.getByRole("button", { name: "Paths", exact: true }).click();
   await expect(overlay).toBeVisible();
-  await page.getByTestId("hybrid-spatial-viewport").getByRole("button", { name: "Ceiling" }).click();
+  await page.getByTestId("hybrid-workspace-viewport").getByRole("button", { name: "Ceiling" }).click();
   await expect(page.locator(".hybrid-viewport-ceiling")).toHaveCount(0);
   await expect(overlay).toBeVisible();
 });

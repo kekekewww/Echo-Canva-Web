@@ -236,8 +236,8 @@ listening and subjective positioning checks.
 
 CI has separate application and production-Docker jobs. It checks both Compose
 configurations, builds a fresh image, starts it, runs HTTP/no-key API smoke, checks
-the non-root runtime and absence of local source/secret trees, and verifies a clean
-stop. Production dependency advisories fail CI. Development-only braces has a
+the non-root runtime and absence of local source/secret trees, runs a report-only
+image vulnerability scan, and verifies a clean stop. Production dependency advisories fail CI. Development-only braces has a
 tested, lockfile-hashed local nesting guard; version-based audit still reports the
 upstream advisory without suppression. Both client-only markers are independently
 reimplemented under project MIT; runtime notice checks allow no gap or exception.
@@ -248,6 +248,72 @@ Local pass/fail results, image size/build time and unverified platform checks ar
 in [DOCKER_VERIFICATION.md](../maintenance/DOCKER_VERIFICATION.md); workflow execution
 evidence is in [CI_VERIFICATION.md](../maintenance/CI_VERIFICATION.md). The subsequent
 fixed-tree results are in [VERIFICATION_FIXES.md](../maintenance/VERIFICATION_FIXES.md).
+
+## Image vulnerability scan
+
+The `docker` CI job scans the freshly built `echo-canvas-web:local` runner image
+with [Grype](https://github.com/anchore/grype) **v0.118.0** through
+`anchore/scan-action` v7.4.2, pinned by commit SHA. The action's installer is
+pinned to the Grype release tag and verifies that release's checksums. Grype reads
+the image from the runner's Docker daemon (`docker:` source); nothing is pushed or
+pulled from a registry. It downloads its vulnerability database from Anchore at run
+time, so results for the same image change as advisories are published. The scan
+needs no secrets and runs under the workflow's `contents: read` permission
+([ADR 0007](../adr/0007-report-only-image-vulnerability-scan.md)).
+
+The scan is **report-only**. Findings never fail the job, and a scanner or database
+download failure is tolerated (`continue-on-error`) and reported as a missing
+report. `scripts/summarize-image-scan.mjs` prints severity counts, fix availability
+and the Critical/High matches (first 50) to the job log and the run's step summary.
+The complete Grype JSON is uploaded as the `image-vulnerability-scan` artifact for
+30 days. To scan locally with an installed Grype:
+
+```sh
+docker build --target runner -t echo-canvas-web:local .
+grype docker:echo-canvas-web:local -o json --file grype-results.json
+node scripts/summarize-image-scan.mjs grype-results.json
+```
+
+### Triage
+
+Review the summary when a PR changes the Dockerfile, lockfile, Node version or
+runtime files, and at each base-image refresh below. For each Critical or High
+match:
+
+1. **Locate the layer.** `deb` matches come from the Debian Bookworm base;
+   `binary`/Node and npm-bundled matches come from the Node image; `npm` matches
+   under `/app` come from the traced application dependencies, which `pnpm audit
+   --prod` already gates.
+2. **Fix available upstream?** If the base image has a newer patch or rebuilt
+   digest with the fix, refresh the digest (below). Do not add `apt-get upgrade`
+   or ad hoc package installs to the runner; they make the image unreproducible
+   and bypass the pinned base.
+3. **No fix, or not reachable?** Record it in a tracking issue with the CVE/GHSA,
+   package, layer, and why it is or is not reachable. The runtime is a non-root
+   Node server with a read-only root filesystem under Compose and no shell use by
+   the application, which lowers but does not remove exposure. Do not suppress
+   findings with an ignore file without a reviewed, dated justification per entry.
+4. **Application dependency findings** follow the existing audit and patch policy
+   ([ADR 0006](../adr/0006-local-dependency-patches.md)).
+
+A follow-up change can make the scan blocking (for example, fixable Critical
+findings) once the base-image baseline is triaged; that would change PR
+acceptance and should be recorded as an ADR update.
+
+### Refreshing the pinned base-image digest
+
+The Dockerfile pins `node:22.23.3-bookworm-slim` by its multi-platform registry
+digest (both the `base` and `runner` stages). Refresh it:
+
+- **Monthly**, and whenever the scan reports a Critical/High base-image match with
+  an available fix, or a Node 22 security release is published.
+- By resolving the current digest of the same tag (for example
+  `docker buildx imagetools inspect node:22.23.3-bookworm-slim`, using the
+  top-level multi-platform index digest), updating both `FROM` lines and the
+  verification date comment together. A Node patch change also updates `.nvmrc`,
+  documentation and CI as described in Maintenance below.
+- In a focused `build(docker): refresh Node base-image digest` PR that includes the
+  scan summary before and after, and the passing Docker CI job.
 
 ## Maintenance
 

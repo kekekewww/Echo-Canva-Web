@@ -8,6 +8,7 @@ import {
   createDefaultHybridProject,
 } from "@/domain/workspace/defaults";
 import { applyHistoryPatch, createHistory, createHistoryPatch, type HistoryPatch, type HistoryState } from "@/domain/workspace/history";
+import { validateWorkspaceSpatialState } from "@/domain/workspace/spatial-validation";
 import type { WorkspaceMode, WorkspaceProject, WorkspaceViewState } from "@/domain/workspace/types";
 
 export const CLASSIC_PROJECT_KEY = "echo-canvas:project:classic:v1";
@@ -193,7 +194,34 @@ function projectFromScene(scene: SceneSpec, mode: WorkspaceMode): WorkspaceProje
   };
 }
 
+export type WorkspaceMigrationResult =
+  | Readonly<{ ok: true; project: WorkspaceProject }>
+  | Readonly<{ ok: false; reason: "unsupported" } | { ok: false; reason: "invalid_spatial_state"; message: string }>;
+
 function migrateProjectCandidate(input: unknown, mode: WorkspaceMode): WorkspaceProject | null {
+  const result = migrateWorkspaceProject(input, mode);
+  return result.ok ? result.project : null;
+}
+
+/**
+ * Migrates a cached/imported authoring candidate and validates its full
+ * spatial state. Only the authoring-envelope branch carries free-form spatial
+ * records; SceneSpec/SceneDocumentV2 branches derive them from validated scenes.
+ */
+export function migrateWorkspaceProject(input: unknown, mode: WorkspaceMode): WorkspaceMigrationResult {
+  const migrated = migrateProjectCandidateUnchecked(input, mode);
+  if (!migrated) return { ok: false, reason: "unsupported" };
+  if (migrated.fromEnvelope) {
+    const issues = validateWorkspaceSpatialState(migrated.project);
+    if (issues.length > 0) return { ok: false, reason: "invalid_spatial_state", message: issues[0]!.message };
+  }
+  return { ok: true, project: migrated.project };
+}
+
+function migrateProjectCandidateUnchecked(
+  input: unknown,
+  mode: WorkspaceMode,
+): Readonly<{ project: WorkspaceProject; fromEnvelope: boolean }> | null {
   const currentCache = cacheDocumentSchema.safeParse(input);
   const legacyCache = legacyCacheDocumentSchema.safeParse(input);
   const candidate = currentCache.success ? currentCache.data.present : legacyCache.success ? legacyCache.data.present : input;
@@ -205,7 +233,7 @@ function migrateProjectCandidate(input: unknown, mode: WorkspaceMode): Workspace
       ({ id, enabled }) => id === parsedProject.data.activeListenerId && enabled,
     );
     if (!active) return null;
-    return {
+    return { fromEnvelope: true, project: {
       ...(parsedProject.data as Omit<WorkspaceProject, "schemaVersion" | "scene" | "notice" | "view" | "missingAudioAssetIds" | "localAudioMetadata" | "room3d">),
       schemaVersion: "2.0",
       scene: scene.scene,
@@ -220,7 +248,7 @@ function migrateProjectCandidate(input: unknown, mode: WorkspaceMode): Workspace
       localAudioMetadata: parsedProject.data.localAudioMetadata ?? {},
       primitives: parsedProject.data.primitives ?? [],
       notice: null,
-    };
+    } };
   }
 
   const document = validateSceneDocument(candidate);
@@ -229,8 +257,8 @@ function migrateProjectCandidate(input: unknown, mode: WorkspaceMode): Workspace
     if (mode !== "hybrid-3d") return null;
     const project = projectFromScene(document.document.baseScene, mode);
     const spatial = document.document.extensions.spatial3d;
-    if (!spatial) return project;
-    return {
+    if (!spatial) return { fromEnvelope: false, project };
+    return { fromEnvelope: false, project: {
       ...project,
       listeners: project.listeners.map((listener, index) => index === 0 ? {
         ...listener,
@@ -255,10 +283,10 @@ function migrateProjectCandidate(input: unknown, mode: WorkspaceMode): Workspace
       })),
       disabledEntityIds: spatial.disabledSurfaceIds ?? [],
       primitives: spatial.primitives ?? [],
-    };
+    } };
   }
   if (mode !== "classic-2d5d") return null;
-  return projectFromScene(document.document, mode);
+  return { fromEnvelope: false, project: projectFromScene(document.document, mode) };
 }
 
 export function migrateWorkspaceCache(input: unknown, mode: WorkspaceMode): WorkspaceProject | null {
@@ -271,10 +299,14 @@ function migrateHistory(input: unknown, mode: WorkspaceMode): HistoryState<Works
     const present = migrateProjectCandidate(cache.data.present, mode);
     if (!present) return null;
     try {
+      const assertReachable = (state: WorkspaceProject) => {
+        if (validateWorkspaceSpatialState(state).length > 0) throw new Error("invalid history state");
+        return state;
+      };
       let cursor = present;
-      for (const patch of [...cache.data.past].reverse()) cursor = applyHistoryPatch(cursor, patch as HistoryPatch, "backward");
+      for (const patch of [...cache.data.past].reverse()) cursor = assertReachable(applyHistoryPatch(cursor, patch as HistoryPatch, "backward"));
       cursor = present;
-      for (const patch of cache.data.future) cursor = applyHistoryPatch(cursor, patch as HistoryPatch, "forward");
+      for (const patch of cache.data.future) cursor = assertReachable(applyHistoryPatch(cursor, patch as HistoryPatch, "forward"));
       return { present, past: cache.data.past as readonly HistoryPatch[], future: cache.data.future as readonly HistoryPatch[] };
     } catch {
       return null;
