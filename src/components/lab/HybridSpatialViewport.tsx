@@ -20,6 +20,13 @@ import {
   type ViewportCamera,
   type ViewportVec3,
 } from "./viewport-math";
+import {
+  boxAround,
+  layoutViewportLabels,
+  type LabelBox,
+  type LabelOffset,
+  type ViewportLabelCandidate,
+} from "./viewport-labels";
 
 type PlanPosition = Readonly<{ x: number; z: number }>;
 
@@ -115,6 +122,39 @@ type GeometrySurface = Readonly<{
 }>;
 
 const VIEW_BOX: Rect = { minX: 0, minY: 0, width: 1200, height: 720 };
+// Label sizes mirror the font sizes in globals.css (.hybrid-viewport-*-label/-value) so estimated boxes match.
+const OBJECT_LABEL_PX = 18;
+const OBJECT_VALUE_PX = 14;
+const HANDLE_LABEL_PX = 13;
+const PRIMITIVE_LABEL_PX = 15;
+const OBJECT_LABEL_OFFSETS: readonly LabelOffset[] = [
+  { dx: 0, dy: -31, align: "middle" },
+  { dx: 26, dy: 6, align: "start" },
+  { dx: -26, dy: 6, align: "end" },
+  { dx: 0, dy: 47, align: "middle" },
+];
+const OBJECT_VALUE_OFFSETS: readonly LabelOffset[] = [
+  { dx: 0, dy: 43, align: "middle" },
+  { dx: 0, dy: -31, align: "middle" },
+  { dx: 26, dy: 24, align: "start" },
+  { dx: -26, dy: 24, align: "end" },
+];
+const HANDLE_LABEL_OFFSETS: readonly LabelOffset[] = [
+  { dx: 0, dy: -19, align: "middle" },
+  { dx: 0, dy: 30, align: "middle" },
+  { dx: 16, dy: 5, align: "start" },
+  { dx: -16, dy: 5, align: "end" },
+];
+const PRIMITIVE_LABEL_OFFSETS: readonly LabelOffset[] = [
+  { dx: 0, dy: -18, align: "middle" },
+  { dx: 0, dy: 30, align: "middle" },
+];
+const LABEL_BOUNDS: LabelBox = { minX: 0, minY: 0, maxX: VIEW_BOX.width, maxY: VIEW_BOX.height };
+// Fixed decorations drawn at constant viewBox positions (axis gizmo and compass, see the end of the SVG).
+const FIXED_LABEL_OBSTACLES: readonly LabelBox[] = [
+  { minX: 34, minY: 550, maxX: 154, maxY: 670 },
+  { minX: 1040, minY: 30, maxX: 1140, maxY: 160 },
+];
 const MIN_PLAN = 0.2;
 const MIN_HEIGHT = 0.2;
 
@@ -331,6 +371,82 @@ export function HybridSpatialViewport({
       z: lineDelta(origin, projectViewportPoint({ x: room.widthM / 2, y: 0, z: room.depthM / 2 + 1 }, camera)),
     };
   }, [camera, room.depthM, room.widthM]);
+  const labels = useMemo(() => {
+    const candidates: ViewportLabelCandidate[] = [];
+    const obstacles: LabelBox[] = [...FIXED_LABEL_OBSTACLES];
+    for (const object of objects) {
+      const screen = projectViewportPoint(object.position, camera);
+      const selected = selectedTarget?.type === "object" && selectedTarget.id === object.id;
+      obstacles.push(object.kind === "listener" ? boxAround(screen, 21, 22, 26) : boxAround(screen, 17, 17));
+      candidates.push({
+        key: `object-${object.id}`,
+        text: object.label,
+        className: "hybrid-viewport-object-label",
+        anchor: screen,
+        fontSizePx: OBJECT_LABEL_PX,
+        letterSpacingEm: 0.05,
+        priority: selected ? 100 : object.kind === "listener" ? 80 : 60,
+        offsets: OBJECT_LABEL_OFFSETS,
+        required: selected,
+      });
+      // Exact coordinates stay in the object's accessible name and the Inspector; show them on the canvas only
+      // for the object being edited.
+      if (selected) candidates.push({
+        key: `object-${object.id}-value`,
+        text: `X ${object.position.x.toFixed(1)} · Y ${object.position.y.toFixed(1)} · Z ${object.position.z.toFixed(1)}`,
+        className: "hybrid-viewport-object-value",
+        anchor: screen,
+        fontSizePx: OBJECT_VALUE_PX,
+        priority: 95,
+        offsets: OBJECT_VALUE_OFFSETS,
+        required: true,
+      });
+    }
+    for (const { wall, portalOutlines, endpointA, endpointB } of projected.walls) {
+      for (const { portal, center } of portalOutlines) {
+        obstacles.push(boxAround(center, 12, 12));
+        candidates.push({
+          key: `portal-${portal.id}`,
+          text: "Portal",
+          className: "hybrid-viewport-partition-handle-label",
+          anchor: center,
+          fontSizePx: HANDLE_LABEL_PX,
+          letterSpacingEm: 0.06,
+          priority: selectedTarget?.type === "portal" && selectedTarget.id === portal.id ? 90 : 40,
+          offsets: HANDLE_LABEL_OFFSETS,
+        });
+      }
+      if (selectedTarget?.type !== "wall" || selectedTarget.id !== wall.id) continue;
+      for (const [endpoint, screen] of [["a", endpointA], ["b", endpointB]] as const) {
+        obstacles.push(boxAround(screen, 9, 9));
+        candidates.push({
+          key: `wall-${wall.id}-${endpoint}`,
+          text: endpoint.toUpperCase(),
+          className: "hybrid-viewport-partition-handle-label",
+          anchor: screen,
+          fontSizePx: HANDLE_LABEL_PX,
+          letterSpacingEm: 0.06,
+          priority: 90,
+          offsets: HANDLE_LABEL_OFFSETS,
+          required: true,
+        });
+      }
+    }
+    for (const primitive of primitives) {
+      const selected = selectedTarget?.type === "primitive" && selectedTarget.id === primitive.id;
+      candidates.push({
+        key: `primitive-${primitive.id}`,
+        text: primitive.name,
+        className: "hybrid-viewport-primitive-label",
+        anchor: projectViewportPoint(primitive.position, camera),
+        fontSizePx: PRIMITIVE_LABEL_PX,
+        priority: selected ? 100 : 30,
+        offsets: PRIMITIVE_LABEL_OFFSETS,
+        required: selected,
+      });
+    }
+    return layoutViewportLabels(candidates, obstacles, LABEL_BOUNDS);
+  }, [camera, objects, primitives, projected.walls, selectedTarget]);
 
   function frameAll(): void {
     const framePoints: readonly ViewportVec3[] = [
@@ -532,14 +648,13 @@ export function HybridSpatialViewport({
             tabIndex={0}
           >
             {panels.map((panel, index) => <polygon className="hybrid-viewport-primitive-hit-panel" key={`${primitive.id}-${index}`} points={points(panel.points)} />)}
-            <text x={projectViewportPoint(primitive.position, camera).x} y={projectViewportPoint(primitive.position, camera).y - 18} textAnchor="middle">{primitive.name}</text>
           </g>;
         })}
         {projected.walls.flatMap(({ portalOutlines }) => portalOutlines.map(({ portal, points: outline, center }) => (
           <g key={portal.id}>
             <polyline className="hybrid-viewport-portal" fill="none" points={points(outline)} />
             <g aria-label={`Drag ${portal.id} along its wall`} className={`hybrid-viewport-portal-handle${selectedTarget?.type === "portal" && selectedTarget.id === portal.id ? " is-selected" : ""}`} data-testid={`hybrid-viewport-portal-${portal.id}`} onPointerCancel={endDrag} onPointerDown={(event) => { event.preventDefault(); event.stopPropagation(); onSelectTarget({ type: "portal", id: portal.id }); event.currentTarget.setPointerCapture(event.pointerId); setDragState({ kind: "portal", id: portal.id, heightM: (portal.bottomM + portal.topM) / 2 }); }} onPointerMove={dragGeometry} onPointerUp={endDrag} role="button" tabIndex={0} transform={`translate(${center.x} ${center.y})`}>
-              <circle className="hybrid-viewport-portal-handle-hit" r="30" /><path className="hybrid-viewport-portal-handle-core" d="M-10 10 L-10 -10 L10 -10 L10 10 Z" /><text className="hybrid-viewport-partition-handle-label" textAnchor="middle" x="0" y="-22">Portal</text>
+              <circle className="hybrid-viewport-portal-handle-hit" r="30" /><path className="hybrid-viewport-portal-handle-core" d="M-10 10 L-10 -10 L10 -10 L10 10 Z" />
             </g>
           </g>
         )))}
@@ -547,7 +662,7 @@ export function HybridSpatialViewport({
           if (selectedTarget?.type !== "wall" || selectedTarget.id !== wall.id) return null;
           const screen = endpoint === "a" ? endpointA : endpointB;
           const position = endpoint === "a" ? wall.a : wall.b;
-          return <g aria-label={`Drag wall endpoint ${endpoint.toUpperCase()} in 3D scene`} className="hybrid-viewport-partition-handle is-selected" data-position={`${position.x.toFixed(1)},${position.z.toFixed(1)}`} data-testid={`hybrid-viewport-partition-${endpoint}`} key={`${wall.id}-${endpoint}`} onPointerCancel={endDrag} onPointerDown={(event) => { event.preventDefault(); event.stopPropagation(); onSelectTarget({ type: "wall", id: wall.id, endpoint }); event.currentTarget.setPointerCapture(event.pointerId); setDragState({ kind: "wall", id: wall.id, endpoint }); }} onPointerMove={dragGeometry} onPointerUp={endDrag} role="button" tabIndex={0} transform={`translate(${screen.x} ${screen.y})`}><circle className="hybrid-viewport-partition-handle-hit" r="28" /><rect className="hybrid-viewport-partition-handle-core" height="14" width="14" x="-7" y="-7" /><text className="hybrid-viewport-partition-handle-label" textAnchor="middle" x="0" y="-19">{endpoint.toUpperCase()}</text></g>;
+          return <g aria-label={`Drag wall endpoint ${endpoint.toUpperCase()} in 3D scene`} className="hybrid-viewport-partition-handle is-selected" data-position={`${position.x.toFixed(1)},${position.z.toFixed(1)}`} data-testid={`hybrid-viewport-partition-${endpoint}`} key={`${wall.id}-${endpoint}`} onPointerCancel={endDrag} onPointerDown={(event) => { event.preventDefault(); event.stopPropagation(); onSelectTarget({ type: "wall", id: wall.id, endpoint }); event.currentTarget.setPointerCapture(event.pointerId); setDragState({ kind: "wall", id: wall.id, endpoint }); }} onPointerMove={dragGeometry} onPointerUp={endDrag} role="button" tabIndex={0} transform={`translate(${screen.x} ${screen.y})`}><circle className="hybrid-viewport-partition-handle-hit" r="28" /><rect className="hybrid-viewport-partition-handle-core" height="14" width="14" x="-7" y="-7" /></g>;
         }))}
         {pathsVisible ? <HybridPathOverlay camera={camera} paths={paths} xRay={ceilingVisible} /> : null}
         {objects.map((object) => {
@@ -557,9 +672,11 @@ export function HybridSpatialViewport({
           return <g aria-label={`Drag ${object.label} in 3D scene; X ${object.position.x.toFixed(1)} m, Y ${object.position.y.toFixed(1)} m, Z ${object.position.z.toFixed(1)} m`} className={`hybrid-viewport-object ${object.kind === "listener" ? "hybrid-viewport-listener" : "hybrid-viewport-source"}${selected ? " is-selected" : ""}`} data-position={`${object.position.x.toFixed(1)},${object.position.y.toFixed(1)},${object.position.z.toFixed(1)}`} data-testid={testId} key={object.id} onPointerCancel={endDrag} onPointerDown={(event) => { event.preventDefault(); event.stopPropagation(); onSelectTarget({ type: "object", id: object.id }); event.currentTarget.setPointerCapture(event.pointerId); setDragState({ kind: "object", id: object.id, pointer: clientToViewport(event), position: object.position }); }} onPointerMove={dragObject} onPointerUp={endDrag} role="button" tabIndex={0} transform={`translate(${screen.x} ${screen.y})`}>
             <circle className="hybrid-viewport-object-hit" r="34" />
             {object.kind === "listener" ? <><circle className="hybrid-viewport-listener-head" cy="-6" r="14" /><path className="hybrid-viewport-listener-body" d="M-19 24 C-17 7 17 7 19 24 Z" /></> : <><circle className="hybrid-viewport-source-core" r="15" /><path className="hybrid-viewport-source-glyph" d="M-5 -7 L8 0 L-5 7 Z" /></>}
-            <text className="hybrid-viewport-object-label" textAnchor="middle" x="0" y="-31">{object.label}</text><text className="hybrid-viewport-object-value" textAnchor="middle" x="0" y="43">X {object.position.x.toFixed(1)} · Y {object.position.y.toFixed(1)} · Z {object.position.z.toFixed(1)}</text>
           </g>;
         })}
+        <g aria-hidden="true" className="hybrid-viewport-label-layer" data-testid="hybrid-viewport-label-layer">
+          {labels.map((label) => <text className={label.className} data-label-key={label.key} key={label.key} textAnchor={label.align} x={label.x} y={label.y}>{label.text}</text>)}
+        </g>
         <g aria-label="XYZ coordinate axes" className="hybrid-viewport-axis" transform="translate(94 610)"><circle className="hybrid-viewport-axis-origin" r="4" /><line className="hybrid-viewport-axis-x" x1="0" x2={axis.x.x} y1="0" y2={axis.x.y} /><line className="hybrid-viewport-axis-y" x1="0" x2={axis.y.x} y1="0" y2={axis.y.y} /><line className="hybrid-viewport-axis-z" x1="0" x2={axis.z.x} y1="0" y2={axis.z.y} /><text className="hybrid-viewport-axis-x" x={axis.x.x * 1.18} y={axis.x.y * 1.18}>X</text><text className="hybrid-viewport-axis-y" x={axis.y.x * 1.18} y={axis.y.y * 1.18}>Y</text><text className="hybrid-viewport-axis-z" x={axis.z.x * 1.18} y={axis.z.y * 1.18}>Z</text></g>
         <g aria-label="Compass; north is positive Z" className="hybrid-viewport-compass" transform="translate(1090 88)"><circle r="42" /><g transform={`rotate(${northAngle})`}><path d="M0 -33 L8 7 L0 0 L-8 7 Z" /></g><text textAnchor="middle" x="0" y="-51">N</text><text textAnchor="middle" x="0" y="66">+Z north</text></g>
       </svg>

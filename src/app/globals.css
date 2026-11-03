@@ -2026,7 +2026,7 @@ select {
 .hybrid-viewport-primitive-panel.is-selected { fill: rgba(169, 150, 216, .62); stroke: #f0eaff; stroke-width: 3; }
 .hybrid-viewport-primitive { cursor: move; outline: none; }
 .hybrid-viewport-primitive-hit-panel { fill: rgba(0, 0, 0, .001); pointer-events: all; stroke: transparent; stroke-width: 8; }
-.hybrid-viewport-primitive text { fill: #ded5f4; font: 15px var(--mono); pointer-events: none; }
+.hybrid-viewport-primitive-label { fill: #ded5f4; font: 15px var(--mono); }
 .hybrid-viewport-primitive:hover .hybrid-viewport-primitive-hit-panel,
 .hybrid-viewport-primitive:focus-visible .hybrid-viewport-primitive-hit-panel,
 .hybrid-viewport-primitive.is-selected .hybrid-viewport-primitive-hit-panel { filter: url(#hybrid-viewport-glow); stroke: #f0eaff; }
@@ -2084,6 +2084,16 @@ select {
 
 .hybrid-viewport-object-label { fill: var(--ink-soft); font-size: 18px; letter-spacing: 0.05em; }
 .hybrid-viewport-object-value { fill: var(--muted); font-size: 14px; }
+
+/* One top label layer (placed by viewport-labels.ts); a halo keeps text legible over translucent wall panels and paths. */
+.hybrid-viewport-label-layer { pointer-events: none; }
+.hybrid-viewport-label-layer text {
+  paint-order: stroke;
+  stroke: var(--base);
+  stroke-linejoin: round;
+  stroke-opacity: 0.92;
+  stroke-width: 4px;
+}
 
 .hybrid-viewport-object:hover .hybrid-viewport-source-core,
 .hybrid-viewport-object:focus-visible .hybrid-viewport-source-core {
