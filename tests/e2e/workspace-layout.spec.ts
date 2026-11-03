@@ -81,3 +81,26 @@ test("styles overlay actions like workspace controls and separates disabled reas
   await expect(page.getByTestId("add-portal")).toBeDisabled();
   await expect(page.getByTestId("add-portal")).toContainText("Portal Select an enabled Wall first");
 });
+
+test("keeps workspace chrome text at 11 px or larger with tabular numerals", async ({ page }) => {
+  for (const route of ["/classic", "/lab"]) {
+    await page.goto(route);
+    await page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "Radio", exact: true }).click();
+    const report = await page.getByTestId("unified-workspace").evaluate((root) => {
+      const small: string[] = [];
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        const element = walker.currentNode.parentElement;
+        if (!element || !walker.currentNode.textContent?.trim() || element.closest("svg")) continue;
+        const box = element.getBoundingClientRect();
+        if (!box.width || !box.height) continue;
+        const size = Number.parseFloat(getComputedStyle(element).fontSize);
+        if (size < 11) small.push(`${element.textContent?.trim().slice(0, 30)} (${size}px)`);
+      }
+      const numeric = root.querySelector<HTMLInputElement>('input[aria-label="X position"]')!;
+      return { small, numeric: getComputedStyle(numeric).fontVariantNumeric };
+    });
+    expect(report.small, route).toEqual([]);
+    expect(report.numeric).toContain("tabular-nums");
+  }
+});

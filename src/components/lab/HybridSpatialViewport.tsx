@@ -124,8 +124,8 @@ type GeometrySurface = Readonly<{
 const VIEW_BOX: Rect = { minX: 0, minY: 0, width: 1200, height: 720 };
 // Label sizes mirror the font sizes in globals.css (.hybrid-viewport-*-label/-value) so estimated boxes match.
 const OBJECT_LABEL_PX = 18;
-const OBJECT_VALUE_PX = 14;
-const HANDLE_LABEL_PX = 13;
+const OBJECT_VALUE_PX = 15;
+const HANDLE_LABEL_PX = 15;
 const PRIMITIVE_LABEL_PX = 15;
 const OBJECT_LABEL_OFFSETS: readonly LabelOffset[] = [
   { dx: 0, dy: -31, align: "middle" },
