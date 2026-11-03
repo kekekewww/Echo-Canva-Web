@@ -1,9 +1,13 @@
 import { SourceGraph } from "@/audio/SourceGraph";
 import { SchroederReverb } from "@/audio/SchroederReverb";
-import { smoothParameter } from "@/audio/parameter-smoothing";
+import {
+  MASTER_FADE_SECONDS,
+  SmoothedParam,
+} from "@/audio/parameter-smoothing";
 import type {
   AudioBufferLike,
   AudioContextLike,
+  AudioParamLike,
   AudioEngineDiagnostics,
   AudioEngineStatus,
   DynamicsCompressorNodeLike,
@@ -20,7 +24,12 @@ export type AudioEngineDependencies = Readonly<{
   createContext?: () => AudioContextLike;
   fetchArrayBuffer?: (url: string) => Promise<ArrayBuffer>;
   resolveAudioAsset?: (clipId: string) => Promise<ArrayBuffer | null>;
+  /** Wall-clock scheduler for deferred graph cleanup and fade waits (defaults to setTimeout). */
+  schedule?: (callback: () => void, delayMs: number) => unknown;
 }>;
+
+/** Extra wall-clock margin so a fade has rendered before the next step runs. */
+const FADE_WAIT_MARGIN_MS = 10;
 
 function createBrowserAudioContext(): AudioContextLike {
   if (typeof window === "undefined") {
@@ -46,11 +55,17 @@ export class AudioEngine {
   private readonly createContext: () => AudioContextLike;
   private readonly fetchArrayBuffer: (url: string) => Promise<ArrayBuffer>;
   private readonly resolveAudioAsset: ((clipId: string) => Promise<ArrayBuffer | null>) | null;
+  private readonly schedule: (callback: () => void, delayMs: number) => unknown;
   private readonly sourceGraphs = new Map<string, SourceGraph>();
+  private readonly retiringGraphs = new Set<SourceGraph>();
   private readonly bufferCache = new Map<string, Promise<AudioBufferLike>>();
   private context: AudioContextLike | null = null;
   private masterCompressor: DynamicsCompressorNodeLike | null = null;
+  private masterGain: GainNodeLike | null = null;
+  private masterMuted = false;
+  private listenerParams: readonly SmoothedParam[] = [];
   private simulatedReverbReturn: GainNodeLike | null = null;
+  private simulatedReverbLevel: SmoothedParam | null = null;
   private schroederReverb: SchroederReverb | null = null;
   private status: AudioEngineStatus = "idle";
   private mode: PreviewMode = "raw";
@@ -61,6 +76,7 @@ export class AudioEngine {
   private operationTail: Promise<void> = Promise.resolve();
   private desiredScene: SceneSpec | null = null;
   private latestAcousticFrame: AcousticFrame | null = null;
+  private latestAcousticFrameListener: SceneSpec["listener"] | null = null;
   private hybridDirectState: HybridDirectAudioState | null = null;
   private hybridReflectionState: HybridReflectionAudioState | null = null;
   private sceneVersion = 0;
@@ -73,6 +89,7 @@ export class AudioEngine {
     this.createContext = dependencies.createContext ?? createBrowserAudioContext;
     this.fetchArrayBuffer = dependencies.fetchArrayBuffer ?? fetchLocalArrayBuffer;
     this.resolveAudioAsset = dependencies.resolveAudioAsset ?? null;
+    this.schedule = dependencies.schedule ?? ((callback, delayMs) => setTimeout(callback, delayMs));
   }
 
   async start(scene: SceneSpec): Promise<void> {
@@ -119,18 +136,27 @@ export class AudioEngine {
     this.applyMode();
   }
 
+  /**
+   * Accepts a Classic frame for the current revision. Accepted acoustic data
+   * from one engine replaces the other's held state: only one adapter is
+   * mounted at a time, so the latest accepted source of truth wins.
+   */
   applyAcousticFrame(frame: AcousticFrame): void {
     if (this.disposed || frame.revision !== this.desiredScene?.revision) return;
     this.latestAcousticFrame = frame;
+    this.latestAcousticFrameListener = this.desiredScene.listener;
+    this.hybridDirectState = null;
+    this.hybridReflectionState = null;
     const context = this.context;
     const scene = this.desiredScene;
     if (!context || !scene) return;
-    this.applyFrameParameters(frame, scene, context);
+    this.applyFrameParameters(frame, scene.listener, context);
   }
 
   applyHybridDirectState(state: HybridDirectAudioState): void {
     if (this.disposed) return;
     this.hybridDirectState = state;
+    this.clearClassicFrame();
     const context = this.context;
     const scene = this.desiredScene;
     if (!context || !scene) return;
@@ -140,6 +166,7 @@ export class AudioEngine {
   applyHybridReflectionState(state: HybridReflectionAudioState): void {
     if (this.disposed) return;
     this.hybridReflectionState = state;
+    this.clearClassicFrame();
     const context = this.context;
     const scene = this.desiredScene;
     if (!context || !scene) return;
@@ -154,6 +181,13 @@ export class AudioEngine {
     await this.enqueue(async () => {
       const context = this.context;
       if (!context || this.disposed) return;
+      if (context.state === "running") {
+        // Fade the master out before suspending so the output does not stop mid-cycle.
+        await this.fadeMasterOut(context);
+        if (this.disposed) return;
+        // A newer Start intent arrived during the fade; its reconcile fades back in.
+        if (this.desiredRunning) return;
+      }
       if (context.state !== "closed" && context.state !== "suspended") {
         await context.suspend();
       }
@@ -171,25 +205,35 @@ export class AudioEngine {
     this.status = "disposed";
     this.error = null;
 
-    for (const graph of this.sourceGraphs.values()) graph.dispose();
+    const graphs = [...this.sourceGraphs.values(), ...this.retiringGraphs];
     this.sourceGraphs.clear();
+    this.retiringGraphs.clear();
     this.bufferCache.clear();
-    this.schroederReverb?.dispose();
-    this.schroederReverb = null;
-    try {
-      this.simulatedReverbReturn?.disconnect();
-    } catch {
-      // Continue terminal cleanup even if a browser node is already disconnected.
-    }
-    this.simulatedReverbReturn = null;
-    try {
-      this.masterCompressor?.disconnect();
-    } catch {
-      // Continue terminal cleanup even if a browser node is already disconnected.
-    }
     const context = this.context;
+    const reverb = this.schroederReverb;
+    const reverbReturn = this.simulatedReverbReturn;
+    const compressor = this.masterCompressor;
+    const masterGain = this.masterGain;
+    this.schroederReverb = null;
+    this.simulatedReverbReturn = null;
+    this.simulatedReverbLevel = null;
     this.masterCompressor = null;
+    this.masterGain = null;
     this.context = null;
+
+    if (context?.state === "running" && masterGain) {
+      // Fade out before tearing the graph down so disposal does not click.
+      await this.fadeOut(masterGain.gain, context);
+    }
+    for (const graph of graphs) graph.dispose();
+    reverb?.dispose();
+    for (const node of [reverbReturn, compressor, masterGain]) {
+      try {
+        node?.disconnect();
+      } catch {
+        // Continue terminal cleanup even if a browser node is already disconnected.
+      }
+    }
     if (context && context.state !== "closed") await context.close();
   }
 
@@ -215,11 +259,15 @@ export class AudioEngine {
     const context = this.createContext();
     this.contextCreations += 1;
     let compressor: DynamicsCompressorNodeLike | null = null;
+    let masterGain: GainNodeLike | null = null;
     let simulatedReverbReturn: GainNodeLike | null = null;
     let schroederReverb: SchroederReverb | null = null;
     try {
       compressor = context.createDynamicsCompressor();
-      compressor.connect(context.destination);
+      masterGain = context.createGain();
+      masterGain.gain.value = 1;
+      compressor.connect(masterGain);
+      masterGain.connect(context.destination);
       simulatedReverbReturn = context.createGain();
       simulatedReverbReturn.gain.value = this.mode === "simulated" ? 1 : 0;
       simulatedReverbReturn.connect(compressor);
@@ -236,6 +284,11 @@ export class AudioEngine {
       } catch {
         // Best-effort rollback of a context that was never committed.
       }
+      try {
+        masterGain?.disconnect();
+      } catch {
+        // Best-effort rollback of a context that was never committed.
+      }
       if (context.state !== "closed") {
         void context.close().catch(() => undefined);
       }
@@ -243,7 +296,22 @@ export class AudioEngine {
     }
     this.context = context;
     this.masterCompressor = compressor;
+    this.masterGain = masterGain;
+    this.masterMuted = false;
+    const listener = context.listener;
+    this.listenerParams = [
+      listener.positionX,
+      listener.positionY,
+      listener.positionZ,
+      listener.forwardX,
+      listener.forwardY,
+      listener.forwardZ,
+      listener.upX,
+      listener.upY,
+      listener.upZ,
+    ].map((parameter) => new SmoothedParam(parameter));
     this.simulatedReverbReturn = simulatedReverbReturn;
+    this.simulatedReverbLevel = new SmoothedParam(simulatedReverbReturn.gain);
     this.schroederReverb = schroederReverb;
     return context;
   }
@@ -311,7 +379,7 @@ export class AudioEngine {
     const activeSourceIds = new Set(scene.sources.map(({ id }) => id));
     for (const [sourceId, graph] of this.sourceGraphs) {
       if (!activeSourceIds.has(sourceId) || staged.has(sourceId)) {
-        graph.dispose();
+        this.retireGraph(graph, context);
         this.sourceGraphs.delete(sourceId);
       }
     }
@@ -355,24 +423,50 @@ export class AudioEngine {
     return loading;
   }
 
+  /**
+   * Scene reconcile. Authoring parameters always follow the scene. Simulation
+   * parameters are never re-derived from the scene for a graph that already
+   * holds accepted acoustic data; a graph without any (new source, replaced
+   * clip) first takes the held accepted data, and only falls back to a
+   * free-field estimate when none exists for its source.
+   */
   private applySourceParameters(scene: SceneSpec, context: AudioContextLike): void {
-    if (this.hybridDirectState) {
-      this.applyHybridDirectParameters(this.hybridDirectState, scene, context);
-      if (this.hybridReflectionState) {
-        this.applyHybridReflectionParameters(this.hybridReflectionState, scene, context);
-      }
+    const now = context.currentTime;
+    for (const source of scene.sources) {
+      const graph = this.sourceGraphs.get(source.id);
+      if (!graph) continue;
+      graph.applyAuthoring(source, scene.settings.hrtfEnabled, now);
+      if (graph.hasSimulation) continue;
+      this.applyHeldSimulation(graph, source.id, now);
+      if (!graph.hasSimulation) graph.applyFreeField(source, scene.listener, now);
+    }
+    if (this.latestAcousticFrame) this.schroederReverb?.apply(this.latestAcousticFrame.room, now);
+  }
+
+  private applyHeldSimulation(graph: SourceGraph, sourceId: string, now: number): void {
+    const frame = this.latestAcousticFrame;
+    const frameListener = this.latestAcousticFrameListener;
+    const sourceFrame = frame?.sources.find((candidate) => candidate.sourceId === sourceId);
+    if (sourceFrame && frameListener) {
+      graph.applyFrame(sourceFrame, frameListener, now);
       return;
     }
-    const hasMatchingFrame = this.latestAcousticFrame?.revision === scene.revision;
-    for (const source of scene.sources) {
-      this.sourceGraphs.get(source.id)?.apply(
-        source,
-        scene.listener,
-        context.currentTime,
-        scene.settings.hrtfEnabled,
-        !hasMatchingFrame,
+    const direct = this.hybridDirectState;
+    const directState = direct?.sourceStates[sourceId];
+    if (direct && directState) graph.applySpatialDirect(directState, direct.listenerPosition, now);
+    const reflections = this.hybridReflectionState;
+    if (reflections) {
+      graph.applySpatialReflections(
+        reflections.listenerPosition,
+        reflections.reflectionsBySource[sourceId] ?? [],
+        now,
       );
     }
+  }
+
+  private clearClassicFrame(): void {
+    this.latestAcousticFrame = null;
+    this.latestAcousticFrameListener = null;
   }
 
   private applyHybridDirectParameters(
@@ -407,44 +501,70 @@ export class AudioEngine {
 
   private applyFrameParameters(
     frame: AcousticFrame,
-    scene: SceneSpec,
+    listener: SceneSpec["listener"],
     context: AudioContextLike,
   ): void {
-    if (frame.revision !== scene.revision) return;
     this.schroederReverb?.apply(frame.room, context.currentTime);
     for (const sourceFrame of frame.sources) {
       this.sourceGraphs.get(sourceFrame.sourceId)?.applyFrame(
         sourceFrame,
-        scene.listener,
+        listener,
         context.currentTime,
       );
     }
   }
 
   private applyListener(scene: SceneSpec, context: AudioContextLike): void {
-    const listener = context.listener;
     const now = context.currentTime;
     const headingRad = (scene.listener.headingDeg * Math.PI) / 180;
-    smoothParameter(listener.positionX, 0, now);
-    smoothParameter(listener.positionY, 0, now);
-    smoothParameter(listener.positionZ, 0, now);
-    smoothParameter(listener.forwardX, Math.sin(headingRad), now);
-    smoothParameter(listener.forwardY, 0, now);
-    smoothParameter(listener.forwardZ, -Math.cos(headingRad), now);
-    smoothParameter(listener.upX, 0, now);
-    smoothParameter(listener.upY, 1, now);
-    smoothParameter(listener.upZ, 0, now);
+    // Positions are listener-relative, so the listener stays at the origin.
+    const values = [0, 0, 0, Math.sin(headingRad), 0, -Math.cos(headingRad), 0, 1, 0];
+    this.listenerParams.forEach((parameter, index) => parameter.smooth(values[index]!, now));
+  }
+
+  private retireGraph(graph: SourceGraph, context: AudioContextLike): void {
+    if (context.state !== "running") {
+      // A suspended clock never reaches a fade's end; nothing is audible anyway.
+      graph.dispose();
+      return;
+    }
+    const now = context.currentTime;
+    const releasedAt = graph.retire(now);
+    this.retiringGraphs.add(graph);
+    this.schedule(() => {
+      if (!this.retiringGraphs.delete(graph)) return;
+      graph.dispose();
+    }, Math.max(0, (releasedAt - now) * 1000) + FADE_WAIT_MARGIN_MS);
+  }
+
+  private async fadeMasterOut(context: AudioContextLike): Promise<void> {
+    const masterGain = this.masterGain;
+    if (!masterGain) return;
+    this.masterMuted = true;
+    await this.fadeOut(masterGain.gain, context);
+  }
+
+  private fadeMasterIn(context: AudioContextLike): void {
+    const masterGain = this.masterGain;
+    if (!masterGain || !this.masterMuted) return;
+    this.masterMuted = false;
+    const now = context.currentTime;
+    masterGain.gain.cancelAndHoldAtTime(now);
+    masterGain.gain.linearRampToValueAtTime(1, now + MASTER_FADE_SECONDS);
+  }
+
+  private fadeOut(parameter: AudioParamLike, context: AudioContextLike): Promise<void> {
+    const now = context.currentTime;
+    parameter.cancelAndHoldAtTime(now);
+    parameter.linearRampToValueAtTime(0, now + MASTER_FADE_SECONDS);
+    return new Promise((resolve) => {
+      this.schedule(resolve, MASTER_FADE_SECONDS * 1000 + FADE_WAIT_MARGIN_MS);
+    });
   }
 
   private applyMode(): void {
     if (!this.context) return;
-    if (this.simulatedReverbReturn) {
-      smoothParameter(
-        this.simulatedReverbReturn.gain,
-        this.mode === "simulated" ? 1 : 0,
-        this.context.currentTime,
-      );
-    }
+    this.simulatedReverbLevel?.smooth(this.mode === "simulated" ? 1 : 0, this.context.currentTime);
     for (const graph of this.sourceGraphs.values()) {
       graph.applyMode(this.mode, this.context.currentTime);
     }
@@ -481,9 +601,6 @@ export class AudioEngine {
 
       this.applyListener(scene, context);
       this.applySourceParameters(scene, context);
-      if (this.latestAcousticFrame?.revision === scene.revision) {
-        this.applyFrameParameters(this.latestAcousticFrame, scene, context);
-      }
       this.applyMode();
       this.error = null;
 
@@ -497,6 +614,7 @@ export class AudioEngine {
         this.status = "suspended";
         return;
       }
+      this.fadeMasterIn(context);
       if (version !== this.sceneVersion) continue;
       this.status = "running";
       this.hasSuccessfullyStarted = true;

@@ -15,6 +15,8 @@ class FakeParam implements AudioParamLike {
   cancelAndHoldAtTime(): AudioParamLike { return this; }
   cancelScheduledValues(): AudioParamLike { return this; }
   setValueCurveAtTime(): AudioParamLike { return this; }
+  setValueAtTime(): AudioParamLike { return this; }
+  linearRampToValueAtTime(): AudioParamLike { return this; }
   setTargetAtTime(target: number, startTime: number, timeConstant: number): AudioParamLike {
     this.targets.push({ target, startTime, timeConstant });
     return this;

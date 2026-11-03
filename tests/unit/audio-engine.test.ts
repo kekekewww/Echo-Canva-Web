@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { AudioEngine } from "@/audio/AudioEngine";
+import { dbToLinear, distanceAttenuation } from "@/audio/math";
 import { computeAcousticFrame, type AcousticFrame } from "@/acoustics/compute-frame";
 import type {
   AudioBufferLike,
@@ -26,6 +27,8 @@ class FakeParam implements AudioParamLike {
   }> = [];
   readonly cancellations: number[] = [];
   readonly holds: number[] = [];
+  readonly sets: Array<{ value: number; startTime: number }> = [];
+  readonly ramps: Array<{ value: number; endTime: number }> = [];
   private activeCurveEnd = Number.NEGATIVE_INFINITY;
 
   constructor(initialValue = 0) {
@@ -52,6 +55,16 @@ class FakeParam implements AudioParamLike {
 
   cancelScheduledValues(startTime: number): AudioParamLike {
     this.cancellations.push(startTime);
+    return this;
+  }
+
+  setValueAtTime(value: number, startTime: number): AudioParamLike {
+    this.sets.push({ value, startTime });
+    return this;
+  }
+
+  linearRampToValueAtTime(value: number, endTime: number): AudioParamLike {
+    this.ramps.push({ value, endTime });
     return this;
   }
 
@@ -106,6 +119,7 @@ class FakeBufferSourceNode extends FakeNode implements AudioBufferSourceNodeLike
   loop = false;
   startCalls = 0;
   stopCalls = 0;
+  readonly stopTimes: Array<number | undefined> = [];
 
   constructor(
     private readonly onStart: () => void,
@@ -120,8 +134,9 @@ class FakeBufferSourceNode extends FakeNode implements AudioBufferSourceNodeLike
     this.onStart();
   }
 
-  stop(): void {
+  stop(when?: number): void {
     this.stopCalls += 1;
+    this.stopTimes.push(when);
   }
 }
 
@@ -272,7 +287,8 @@ function firstSourceControls(context: FakeAudioContext): Readonly<{
   simulated: FakeGainNode;
   panner: FakePannerNode;
 }> {
-  const sourceGain = context.sources[0]!.connections[0] as FakeGainNode;
+  const envelope = context.sources[0]!.connections[0] as FakeGainNode;
+  const sourceGain = envelope.connections[0] as FakeGainNode;
   const raw = sourceGain.connections.find(
     (node): node is FakeGainNode => node instanceof FakeGainNode && node.connections.includes(context.compressors[0]!),
   );
@@ -392,13 +408,15 @@ describe("AudioEngine", () => {
       },
     });
 
+    // The tap was silent, so its position and delay are set exactly before it fades in.
     const firstRadioReflectionPanner = harness.context.panners[1]!;
-    expect(firstRadioReflectionPanner.positionX.targets.at(-1)?.target).toBe(2);
-    expect(firstRadioReflectionPanner.positionY.targets.at(-1)?.target).toBe(1.5);
-    expect(firstRadioReflectionPanner.positionZ.targets.at(-1)?.target).toBe(-3);
+    expect(firstRadioReflectionPanner.positionX.sets.at(-1)?.value).toBe(2);
+    expect(firstRadioReflectionPanner.positionY.sets.at(-1)?.value).toBe(1.5);
+    expect(firstRadioReflectionPanner.positionZ.sets.at(-1)?.value).toBe(-3);
     expect(harness.context.delays.some(
-      (delay) => delay.delayTime.targets.at(-1)?.target === 0.021,
+      (delay) => delay.delayTime.sets.at(-1)?.value === 0.021,
     )).toBe(true);
+    expect(harness.context.delays.every((delay) => delay.delayTime.targets.length === 0)).toBe(true);
     expect([harness.context.delays.length, harness.context.gains.length, harness.context.filters.length, harness.context.panners.length])
       .toEqual(nodeCounts);
   });
@@ -482,8 +500,9 @@ describe("AudioEngine", () => {
     const frameControlledPannerTargetCount = harness.context.panners[0]?.positionX.targets.length;
     await harness.engine.applyScene(scene);
 
+    // Reconcile neither overwrites nor redundantly re-schedules the held frame values.
     expect(harness.context.panners[0]?.positionX.targets).toHaveLength(
-      (frameControlledPannerTargetCount ?? 0) + 1,
+      frameControlledPannerTargetCount ?? 0,
     );
     expect(harness.context.panners[0]?.positionX.targets.at(-1)?.target).toBe(
       frame.sources[0]?.virtualPosition.x - scene.listener.position.x,
@@ -1041,5 +1060,364 @@ describe("AudioEngine", () => {
 
     await expect(engine.start(cloneScene())).rejects.toThrow(/mono/i);
     expect(engine.getDiagnostics().status).toBe("error");
+  });
+});
+
+function sourceControls(context: FakeAudioContext, index: number) {
+  const source = context.sources[index]!;
+  const envelope = source.connections[0] as FakeGainNode;
+  const sourceGain = envelope.connections[0] as FakeGainNode;
+  const raw = sourceGain.connections.find(
+    (node): node is FakeGainNode => node instanceof FakeGainNode && node.connections.includes(context.compressors[0]!),
+  )!;
+  const distance = sourceGain.connections.find(
+    (node): node is FakeGainNode => node instanceof FakeGainNode && node !== raw,
+  )!;
+  const lowPass = distance.connections[0] as FakeBiquadFilterNode;
+  const panner = lowPass.connections[0] as FakePannerNode;
+  return { source, envelope, sourceGain, raw, distance, lowPass, panner };
+}
+
+function masterGain(context: FakeAudioContext): FakeGainNode {
+  return context.gains.find((gain) => gain.connections.includes(context.destination))!;
+}
+
+function makeScheduledHarness() {
+  const context = new FakeAudioContext();
+  const tasks: Array<{ callback: () => void; delayMs: number }> = [];
+  const engine = new AudioEngine({
+    createContext: () => context,
+    fetchArrayBuffer: async () => new ArrayBuffer(16),
+    schedule: (callback, delayMs) => {
+      tasks.push({ callback, delayMs });
+      return tasks.length;
+    },
+  });
+  const runScheduled = () => {
+    for (const task of tasks.splice(0)) task.callback();
+  };
+  return { context, engine, tasks, runScheduled };
+}
+
+/** Concrete Partition with the door closed, so "rain" is blocked behind the partition. */
+function closedDoorScene(revision: number, rainX: number): SceneSpec {
+  const scene = cloneScene();
+  scene.revision = revision;
+  scene.portals = scene.portals.map((portal) => ({ ...portal, open: false }));
+  scene.sources = scene.sources.map((source) => source.id === "rain"
+    ? { ...source, position: { x: rainX, y: 1.5 } }
+    : source);
+  return scene;
+}
+
+function automationEventCount(context: FakeAudioContext): number {
+  const parameters: FakeParam[] = [
+    ...context.gains.map(({ gain }) => gain),
+    ...context.filters.map(({ frequency }) => frequency),
+    ...context.delays.map(({ delayTime }) => delayTime),
+    ...context.panners.flatMap(({ positionX, positionY, positionZ }) => [positionX, positionY, positionZ]),
+    ...Object.values(context.listener),
+  ];
+  return parameters.reduce(
+    (total, parameter) => total + parameter.targets.length + parameter.sets.length
+      + parameter.ramps.length + parameter.curves.length,
+    0,
+  );
+}
+
+describe("AudioEngine held acoustic state between frames (#19)", () => {
+  it("keeps a blocked source at its accepted occluded gain and position until the next frame", async () => {
+    const harness = makeHarness();
+    const first = closedDoorScene(1, 10);
+    const frame = computeAcousticFrame(first);
+    const rainFrame = frame.sources.find(({ sourceId }) => sourceId === "rain")!;
+    expect(rainFrame.routeType).toBe("blocked");
+    const occludedGain = dbToLinear(rainFrame.dryGainDb) * distanceAttenuation(rainFrame.effectiveDistanceM);
+    const freeFieldGain = distanceAttenuation(rainFrame.physicalDistanceM);
+    // The former between-frame fallback jumped by more than 20 dB in this scene.
+    expect(20 * Math.log10(freeFieldGain / occludedGain)).toBeGreaterThan(20);
+
+    await harness.engine.start(first);
+    harness.engine.applyAcousticFrame(frame);
+    const rain = sourceControls(harness.context, 1);
+    expect(rain.distance.gain.targets.at(-1)?.target).toBe(occludedGain);
+    const counts = [
+      rain.distance.gain.targets.length,
+      rain.lowPass.frequency.targets.length,
+      rain.panner.positionX.targets.length,
+      rain.panner.positionZ.targets.length,
+    ];
+
+    // One drag tick: the revision changes before its acoustic frame exists.
+    await harness.engine.applyScene(closedDoorScene(2, 10.01));
+
+    expect([
+      rain.distance.gain.targets.length,
+      rain.lowPass.frequency.targets.length,
+      rain.panner.positionX.targets.length,
+      rain.panner.positionZ.targets.length,
+    ]).toEqual(counts);
+    expect(rain.distance.gain.targets.at(-1)?.target).toBe(occludedGain);
+
+    const next = computeAcousticFrame(closedDoorScene(2, 10.01));
+    harness.engine.applyAcousticFrame(next);
+    const nextRain = next.sources.find(({ sourceId }) => sourceId === "rain")!;
+    expect(rain.distance.gain.targets.at(-1)?.target).toBe(
+      dbToLinear(nextRain.dryGainDb) * distanceAttenuation(nextRain.effectiveDistanceM),
+    );
+  });
+
+  it("keeps the Portal virtual direction between frames instead of the true source direction", async () => {
+    const harness = makeHarness();
+    const scene = cloneScene();
+    scene.revision = 1;
+    const frame = computeAcousticFrame(scene);
+    const rainFrame = frame.sources.find(({ sourceId }) => sourceId === "rain")!;
+    expect(rainFrame.routeType).toBe("portal");
+
+    await harness.engine.start(scene);
+    harness.engine.applyAcousticFrame(frame);
+    const moved = cloneScene();
+    moved.revision = 2;
+    moved.sources = moved.sources.map((source) => source.id === "rain"
+      ? { ...source, position: { x: 10.01, y: 1.5 } }
+      : source);
+    await harness.engine.applyScene(moved);
+
+    const rain = sourceControls(harness.context, 1);
+    expect(rain.panner.positionX.targets.at(-1)?.target).toBe(
+      rainFrame.virtualPosition.x - scene.listener.position.x,
+    );
+    expect(rain.panner.positionZ.targets.at(-1)?.target).toBe(
+      -(rainFrame.virtualPosition.y - scene.listener.position.y),
+    );
+  });
+
+  it("still applies authoring gain edits between frames", async () => {
+    const harness = makeHarness();
+    const scene = closedDoorScene(1, 10);
+    await harness.engine.start(scene);
+    harness.engine.applyAcousticFrame(computeAcousticFrame(scene));
+    const edited = closedDoorScene(2, 10);
+    edited.sources[0]!.gainDb = -20;
+
+    await harness.engine.applyScene(edited);
+
+    expect(sourceControls(harness.context, 0).sourceGain.gain.targets.at(-1)?.target).toBe(dbToLinear(-20));
+  });
+
+  it("gives a new source without acoustic data a free-field estimate", async () => {
+    const harness = makeHarness();
+    const scene = closedDoorScene(1, 10);
+    await harness.engine.start(scene);
+    harness.engine.applyAcousticFrame(computeAcousticFrame(scene));
+    const added = closedDoorScene(2, 10);
+    added.sources.push({ ...structuredClone(added.sources[0]!), id: "extra", name: "Extra", position: { x: 2, y: 4 } });
+
+    await harness.engine.applyScene(added);
+
+    const extra = sourceControls(harness.context, 2);
+    expect(extra.distance.gain.targets.at(-1)?.target).toBe(distanceAttenuation(1));
+    expect(extra.panner.positionX.targets.at(-1)?.target).toBe(-1);
+  });
+
+  it("gives a rebuilt graph the held accepted state instead of a free-field estimate", async () => {
+    const harness = makeHarness();
+    const scene = closedDoorScene(1, 10);
+    const frame = computeAcousticFrame(scene);
+    const rainFrame = frame.sources.find(({ sourceId }) => sourceId === "rain")!;
+    await harness.engine.start(scene);
+    harness.engine.applyAcousticFrame(frame);
+    const replaced = closedDoorScene(2, 10);
+    replaced.sources = replaced.sources.map((source) => source.id === "rain"
+      ? { ...source, clipId: "voice_loop" }
+      : source);
+
+    await harness.engine.applyScene(replaced);
+
+    const rebuilt = sourceControls(harness.context, 2);
+    expect(rebuilt.distance.gain.targets.at(-1)?.target).toBe(
+      dbToLinear(rainFrame.dryGainDb) * distanceAttenuation(rainFrame.effectiveDistanceM),
+    );
+    expect(rebuilt.lowPass.frequency.targets.at(-1)?.target).toBe(rainFrame.lowpassHz);
+  });
+});
+
+describe("AudioEngine Classic/Hybrid acoustic state ownership (#22)", () => {
+  const hybridState = {
+    listenerPosition: { x: 3, y: 1.5, z: 4 },
+    sourceStates: {
+      radio: { position: { x: 9, y: 1.5, z: 4 }, effectiveDistanceM: 6, dryGainDb: 0, lowpassHz: 20_000, routeType: "direct" as const },
+      rain: { position: { x: 10, y: 1.5, z: 1.5 }, effectiveDistanceM: 7.4, dryGainDb: -6, lowpassHz: 4_000, routeType: "blocked" as const },
+    },
+  };
+
+  it("applies source gain and HRTF edits while Hybrid acoustic state is held", async () => {
+    const harness = makeHarness();
+    const scene = cloneScene();
+    await harness.engine.start(scene);
+    harness.engine.applyHybridDirectState(hybridState);
+    const radio = sourceControls(harness.context, 0);
+    const before = radio.sourceGain.gain.targets.length;
+    const edited = cloneScene();
+    edited.revision = scene.revision + 1;
+    edited.sources[0]!.gainDb = -20;
+    edited.settings.hrtfEnabled = false;
+
+    await harness.engine.applyScene(edited);
+
+    expect(radio.sourceGain.gain.targets).toHaveLength(before + 1);
+    expect(radio.sourceGain.gain.targets.at(-1)?.target).toBe(dbToLinear(-20));
+    expect(harness.context.panners).toHaveLength(14);
+    expect(harness.context.panners.every((panner) => panner.panningModel === "equalpower")).toBe(true);
+  });
+
+  it("drops held Hybrid state once a Classic frame is accepted and never re-applies it", async () => {
+    const harness = makeHarness();
+    const scene = cloneScene();
+    await harness.engine.start(scene);
+    harness.engine.applyHybridDirectState(hybridState);
+    const frame = computeAcousticFrame(scene);
+    harness.engine.applyAcousticFrame(frame);
+    const radio = sourceControls(harness.context, 0);
+    const radioFrame = frame.sources[0]!;
+    const expectedX = radioFrame.virtualPosition.x - scene.listener.position.x;
+    expect(radio.panner.positionX.targets.at(-1)?.target).toBe(expectedX);
+    const count = radio.panner.positionY.targets.length;
+
+    const moved = cloneScene();
+    moved.revision = scene.revision + 1;
+    moved.sources[0]!.position.x += 0.5;
+    await harness.engine.applyScene(moved);
+
+    expect(radio.panner.positionX.targets.at(-1)?.target).toBe(expectedX);
+    expect(radio.panner.positionY.targets).toHaveLength(count);
+  });
+});
+
+describe("AudioEngine lifecycle envelopes (#20)", () => {
+  it("fades a new source graph in from silence", async () => {
+    const harness = makeHarness();
+    await harness.engine.start(cloneScene());
+
+    const { envelope } = sourceControls(harness.context, 0);
+    expect(envelope.gain.value).toBe(0);
+    expect(envelope.gain.sets).toEqual([{ value: 0, startTime: 4 }]);
+    expect(envelope.gain.ramps).toEqual([{ value: 1, endTime: 4.015 }]);
+  });
+
+  it("fades a removed source out, stops it at the fade end, and disconnects after the tap tail", async () => {
+    const harness = makeScheduledHarness();
+    const scene = cloneScene();
+    await harness.engine.start(scene);
+    const radio = sourceControls(harness.context, 0);
+    const removed = cloneScene();
+    removed.revision = scene.revision + 1;
+    removed.sources.splice(0, 1);
+
+    await harness.engine.applyScene(removed);
+
+    expect(harness.engine.getDiagnostics().graphCount).toBe(1);
+    expect(radio.envelope.gain.holds).toEqual([4]);
+    expect(radio.envelope.gain.ramps.at(-1)).toEqual({ value: 0, endTime: 4.025 });
+    expect(radio.source.stopTimes).toEqual([4.025]);
+    expect(radio.source.disconnectCalls).toBe(0);
+    expect(harness.tasks.at(-1)?.delayMs).toBeGreaterThanOrEqual(275);
+
+    harness.runScheduled();
+    expect(radio.source.disconnectCalls).toBe(1);
+    expect(radio.source.stopCalls).toBe(1);
+  });
+
+  it("fades the master output before suspending and after resuming", async () => {
+    const harness = makeScheduledHarness();
+    const scene = cloneScene();
+    await harness.engine.start(scene);
+    const master = masterGain(harness.context);
+
+    const stopping = harness.engine.stop();
+    await waitFor(() => harness.tasks.length > 0);
+    expect(master.gain.ramps.at(-1)).toEqual({ value: 0, endTime: 4.03 });
+    expect(harness.context.suspendCalls).toBe(0);
+    harness.runScheduled();
+    await stopping;
+    expect(harness.context.suspendCalls).toBe(1);
+    expect(harness.engine.getDiagnostics().status).toBe("suspended");
+
+    await harness.engine.start(scene);
+    expect(master.gain.ramps.at(-1)).toEqual({ value: 1, endTime: 4.03 });
+    expect(harness.engine.getDiagnostics().status).toBe("running");
+  });
+
+  it("keeps playing without suspending when Start arrives during the stop fade", async () => {
+    const harness = makeScheduledHarness();
+    const scene = cloneScene();
+    await harness.engine.start(scene);
+    const master = masterGain(harness.context);
+
+    const stopping = harness.engine.stop();
+    await waitFor(() => harness.tasks.length > 0);
+    const starting = harness.engine.start(scene);
+    harness.runScheduled();
+    await Promise.all([stopping, starting]);
+
+    expect(harness.context.suspendCalls).toBe(0);
+    expect(harness.engine.getDiagnostics().status).toBe("running");
+    expect(master.gain.ramps.at(-1)).toEqual({ value: 1, endTime: 4.03 });
+  });
+
+  it("disposes retiring graphs with the engine without stopping them twice", async () => {
+    const harness = makeScheduledHarness();
+    const scene = cloneScene();
+    await harness.engine.start(scene);
+    const radio = sourceControls(harness.context, 0);
+    const removed = cloneScene();
+    removed.revision = scene.revision + 1;
+    removed.sources.splice(0, 1);
+    await harness.engine.applyScene(removed);
+
+    const disposing = harness.engine.dispose();
+    await waitFor(() => harness.tasks.length > 1);
+    harness.runScheduled();
+    await disposing;
+
+    expect(radio.source.disconnectCalls).toBe(1);
+    expect(radio.source.stopCalls).toBe(1);
+    expect(harness.context.closeCalls).toBe(1);
+  });
+});
+
+describe("AudioEngine automation dedupe (#25)", () => {
+  it("does not re-schedule automation for an identical accepted frame or unchanged scene", async () => {
+    const harness = makeHarness();
+    const scene = cloneScene();
+    await harness.engine.start(scene);
+    const frame = computeAcousticFrame(scene);
+    harness.engine.applyAcousticFrame(frame);
+    const settled = automationEventCount(harness.context);
+
+    harness.engine.applyAcousticFrame({ ...frame, generatedAtMs: frame.generatedAtMs + 100 });
+    await harness.engine.applyScene(structuredClone(scene));
+
+    expect(automationEventCount(harness.context)).toBe(settled);
+  });
+
+  it("schedules only the listener forward vector when the heading changes", async () => {
+    const harness = makeHarness();
+    const scene = cloneScene();
+    await harness.engine.start(scene);
+    const listener = harness.context.listener;
+    const before = Object.fromEntries(Object.entries(listener).map(([key, parameter]) => [key, parameter.targets.length]));
+    const turned = cloneScene();
+    turned.revision = scene.revision + 1;
+    turned.listener.headingDeg = 90;
+
+    await harness.engine.applyScene(turned);
+
+    const added = Object.entries(listener)
+      .filter(([key, parameter]) => parameter.targets.length !== before[key])
+      .map(([key]) => key)
+      .sort();
+    expect(added).toEqual(["forwardX", "forwardZ"]);
   });
 });

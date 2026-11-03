@@ -14,6 +14,10 @@ type RenderValidation = Readonly<{
   transitionMaxStep: number;
   transitionPeak: number;
   transitionMaxStepRatio: number;
+  lifecycleMaxStep: number;
+  lifecyclePeak: number;
+  lifecycleMaxStepRatio: number;
+  lifecycleTailPeak: number;
 }>;
 
 declare global {
@@ -54,4 +58,12 @@ test("browser renders a finite, decay-controlled reverb and a continuous Raw/Sim
     result.transitionMaxStepRatio,
     `Raw/Simulated step ratio ${result.transitionMaxStepRatio} must stay within 1% of peak ${result.transitionPeak}.`,
   ).toBeLessThanOrEqual(0.01);
+  // Production SourceGraph start/retire on a constant 0.1 signal: without
+  // envelopes the first and last samples would step by 100% of the peak.
+  expect(result.lifecyclePeak).toBeCloseTo(0.1, 3);
+  expect(
+    result.lifecycleMaxStepRatio,
+    `Source start/retire step ratio ${result.lifecycleMaxStepRatio} must stay within 1% of peak ${result.lifecyclePeak}.`,
+  ).toBeLessThanOrEqual(0.01);
+  expect(result.lifecycleTailPeak).toBeLessThanOrEqual(1e-6);
 });

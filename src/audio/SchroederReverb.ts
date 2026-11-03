@@ -1,5 +1,5 @@
 import { clampFinite } from "@/audio/math";
-import { smoothParameter } from "@/audio/parameter-smoothing";
+import { SmoothedParam } from "@/audio/parameter-smoothing";
 import type {
   AudioContextLike,
   ChannelMergerNodeLike,
@@ -57,6 +57,9 @@ export class SchroederReverb {
   private readonly allPasses: readonly AllPassNodes[];
   private readonly wetReturn: GainNodeLike;
   private readonly nodes: readonly AudioNodeLike[];
+  private readonly preDelayTime: SmoothedParam;
+  private readonly combFeedback: readonly SmoothedParam[];
+  private readonly combDamping: readonly SmoothedParam[];
   private disposed = false;
 
   constructor(context: AudioContextLike, output: AudioNodeLike) {
@@ -148,6 +151,9 @@ export class SchroederReverb {
       this.combs = combs;
       this.allPasses = allPasses;
       this.wetReturn = wetReturn;
+      this.preDelayTime = new SmoothedParam(preDelay.delayTime);
+      this.combFeedback = combs.map((comb) => new SmoothedParam(comb.feedback.gain));
+      this.combDamping = combs.map((comb) => new SmoothedParam(comb.damping.frequency));
       this.nodes = [
         preDelay,
         splitter,
@@ -178,12 +184,11 @@ export class SchroederReverb {
   apply(room: RoomAcousticFrame, now: number): void {
     if (this.disposed) return;
     const rt60Mid = clampFinite(room.rt60S.mid, MIN_RT60_SECONDS, MAX_RT60_SECONDS, 0.8);
-    smoothParameter(this.preDelay.delayTime, clampPreDelay(room.preDelayMs), now);
+    this.preDelayTime.smooth(clampPreDelay(room.preDelayMs), now);
     const damping = dampingCutoffHz(room.rt60S);
     for (let index = 0; index < this.combs.length; index += 1) {
-      const comb = this.combs[index]!;
-      smoothParameter(comb.feedback.gain, feedbackGainForRt60(COMB_DELAYS_SECONDS[index]!, rt60Mid), now);
-      smoothParameter(comb.damping.frequency, damping, now);
+      this.combFeedback[index]!.smooth(feedbackGainForRt60(COMB_DELAYS_SECONDS[index]!, rt60Mid), now);
+      this.combDamping[index]!.smooth(damping, now);
     }
   }
 
