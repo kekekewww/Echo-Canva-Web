@@ -18,6 +18,7 @@ import {
 } from "@/components/lab/HybridSpatialViewport";
 import { deriveHybridPathDisplay } from "@/components/workspace/HybridPathOverlay";
 import { ViewportHelp, type ViewportHelpItem } from "@/components/workspace/ViewportHelp";
+import { useCameraTween } from "@/hooks/useCameraTween";
 import { DEFAULT_VIEWPORT_CAMERA, frameViewportPoints, type ViewportCamera } from "@/components/lab/viewport-math";
 import { constrainPortal3D, constrainWall3D } from "@/domain/workspace/geometry-constraints";
 import {
@@ -230,6 +231,12 @@ export function HybridViewportAdapter({ project, dispatch, audioEngine, wallPlac
     if (result.ok) dispatch({ type: "REPLACE_PROJECT", project: { ...result.project, selection: { type: "portal", id } } });
   }
 
+  const commitCamera = useCallback((camera: ViewportCamera) => {
+    dispatch({ type: "SET_VIEW_STATE", changes: { camera } });
+  }, [dispatch]);
+  // Camera presets animate locally and commit once; orbit/pan/zoom stay direct and interrupt a tween (#37).
+  const cameraTween = useCameraTween(project.view.camera, commitCamera);
+
   const selectViewportTarget = useCallback((target: NonNullable<HybridViewportSelection>) => {
     if (target.type === "object") {
       const type = project.listeners.some(({ id }) => id === target.id) ? "listener" : "source";
@@ -242,23 +249,20 @@ export function HybridViewportAdapter({ project, dispatch, audioEngine, wallPlac
     });
   }, [dispatch, project.listeners]);
 
-  function setCamera(camera: ViewportCamera): void {
-    dispatch({ type: "SET_VIEW_STATE", changes: { camera } });
-  }
 
   function setOverlays(changes: Partial<WorkspaceProject["view"]["overlays"]>): void {
     dispatch({ type: "SET_VIEW_STATE", changes: { overlays: { ...project.view.overlays, ...changes } } });
   }
 
   return (
-    <section className="workspace-viewport-panel" data-testid="hybrid-workspace-viewport">
+    <section className="workspace-viewport-panel" data-camera-animating={cameraTween.animating ? "true" : "false"} data-testid="hybrid-workspace-viewport">
       <header className="viewport-tools">
         <span>{project.scene.name}</span>
         <div aria-label="Camera views" className="viewport-tools-group" role="group">
-          <button onClick={() => setCamera(TOP_VIEW_CAMERA)} type="button">Top</button>
-          <button onClick={() => setCamera(FRONT_VIEW_CAMERA)} type="button">Front</button>
-          <button onClick={() => setCamera(DEFAULT_VIEWPORT_CAMERA)} type="button">Home</button>
-          <button onClick={() => setCamera(frameViewportPoints(hybridFramePoints({ room: project.room3d, objects, primitives: visiblePrimitives, walls }), project.view.camera))} type="button">Frame All</button>
+          <button onClick={() => cameraTween.animateTo(TOP_VIEW_CAMERA)} type="button">Top</button>
+          <button onClick={() => cameraTween.animateTo(FRONT_VIEW_CAMERA)} type="button">Front</button>
+          <button onClick={() => cameraTween.animateTo(DEFAULT_VIEWPORT_CAMERA)} type="button">Home</button>
+          <button onClick={() => cameraTween.animateTo(frameViewportPoints(hybridFramePoints({ room: project.room3d, objects, primitives: visiblePrimitives, walls }), cameraTween.camera))} type="button">Frame All</button>
         </div>
         <div aria-label="Overlays" className="viewport-tools-group" role="group">
           <button aria-pressed={pathsVisible} onClick={() => setOverlays({ pathsVisible: !pathsVisible })} type="button">Paths</button>
@@ -268,12 +272,12 @@ export function HybridViewportAdapter({ project, dispatch, audioEngine, wallPlac
         <ViewportHelp items={HYBRID_HELP} label="3D viewport help" />
       </header>
       <HybridSpatialViewport
-        camera={project.view.camera}
+        camera={cameraTween.camera}
         ceilingVisible={ceilingVisible && !disabled.has("ceiling")}
         objects={objects}
         onMoveObject={moveObject}
         onMovePrimitive={movePrimitive}
-        onCameraChange={setCamera}
+        onCameraChange={cameraTween.change}
         onMovePortalCenter={movePortal}
         onMoveWallEndpoint={moveWallEndpoint}
         onSelectTarget={selectViewportTarget}

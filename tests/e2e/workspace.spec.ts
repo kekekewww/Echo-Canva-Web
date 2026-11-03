@@ -148,6 +148,8 @@ test("Classic viewport supports pan navigation, Home and Frame All", async ({ pa
   await page.getByRole("button", { name: "Home", exact: true }).click();
   await expect(viewport).toHaveAttribute("data-camera", /,1\.00,0\.0,0\.0$/);
   await page.getByRole("button", { name: "Frame All", exact: true }).click();
+  // Camera presets tween (#37); read the committed camera once the tween ends.
+  await expect(page.getByTestId("classic-workspace-viewport")).toHaveAttribute("data-camera-animating", "false");
   await expect(viewport).not.toHaveAttribute("data-camera", initialCamera ?? "");
   const framedCamera = await viewport.getAttribute("data-camera");
   await page.waitForTimeout(180);

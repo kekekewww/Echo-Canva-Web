@@ -13,6 +13,7 @@ import { useAcousticFrame, type AcousticFrameResult } from "@/hooks/useAcousticF
 import type { AudioEngine } from "@/audio/AudioEngine";
 import type { WorkspaceAcousticStatus } from "@/components/workspace/WorkspaceStatusBar";
 import { ViewportHelp, type ViewportHelpItem } from "@/components/workspace/ViewportHelp";
+import { useCameraTween } from "@/hooks/useCameraTween";
 
 export function resolveClassicAcousticPresentation(acoustic: AcousticFrameResult): Readonly<{
   frame: AcousticFrameResult["frame"];
@@ -81,6 +82,8 @@ export function ClassicViewportAdapter({ project, dispatch, audioEngine, wallPla
   const onCameraChange = useCallback((camera: WorkspaceProject["view"]["camera"]) => {
     dispatch({ type: "SET_VIEW_STATE", changes: { camera } });
   }, [dispatch]);
+  // Home / Frame All animate locally and commit once; canvas pan/zoom stays direct (#37).
+  const cameraTween = useCameraTween(project.view.camera, onCameraChange);
 
   function frameAll(): void {
     const xs = scene.room.outerPolygon.map(({ x }) => x);
@@ -98,7 +101,7 @@ export function ClassicViewportAdapter({ project, dispatch, audioEngine, wallPla
       ...scene.sources.map(({ position }) => position),
       scene.listener.position,
     ];
-    onCameraChange(frameClassicBounds(points, worldBounds, CLASSIC_VIEWPORT, project.view.camera));
+    cameraTween.animateTo(frameClassicBounds(points, worldBounds, CLASSIC_VIEWPORT, cameraTween.camera));
   }
 
   function adapt(action: EditorAction): void {
@@ -140,20 +143,20 @@ export function ClassicViewportAdapter({ project, dispatch, audioEngine, wallPla
   }
 
   return (
-    <section className="workspace-viewport-panel" data-testid="classic-workspace-viewport">
+    <section className="workspace-viewport-panel" data-camera-animating={cameraTween.animating ? "true" : "false"} data-testid="classic-workspace-viewport">
       <header className="viewport-tools">
         <span>{scene.name}</span>
         <div aria-label="Camera views" className="viewport-tools-group" role="group">
-          <button onClick={() => onCameraChange({ ...project.view.camera, zoom: 1, panX: 0, panY: 0 })} type="button">Home</button>
+          <button onClick={() => cameraTween.animateTo({ ...cameraTween.camera, zoom: 1, panX: 0, panY: 0 })} type="button">Home</button>
           <button onClick={frameAll} type="button">Frame All</button>
         </div>
         <ViewportHelp items={CLASSIC_HELP} label="2.5D viewport help" />
       </header>
       <SceneEditor
         acousticFrame={acceptedFrame}
-        camera={project.view.camera}
+        camera={cameraTween.camera}
         dispatch={adapt}
-        onCameraChange={onCameraChange}
+        onCameraChange={cameraTween.change}
         onMovePrimitive={(id, position) => {
           const primitive = project.primitives.find((candidate) => candidate.id === id);
           if (primitive) dispatch({ type: "UPDATE_PRIMITIVE", id, changes: { position: { ...primitive.position, x: position.x, z: position.y } } });

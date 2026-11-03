@@ -62,6 +62,7 @@ test("keeps Hybrid viewport labels apart and shows coordinates only for the sele
 
   for (const view of ["Top", "Front", "Home"]) {
     await page.getByTestId("hybrid-workspace-viewport").getByRole("button", { name: view, exact: true }).click();
+    await expect(page.getByTestId("hybrid-workspace-viewport")).toHaveAttribute("data-camera-animating", "false");
     expect(await overlappingLabelPairs(page), view).toEqual([]);
   }
 });

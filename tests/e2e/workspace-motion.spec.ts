@@ -74,4 +74,49 @@ test.describe("with reduced motion", () => {
     });
     expect(popoverTransition).toContain("opacity");
   });
+
+  test("applies camera presets instantly", async ({ page }) => {
+    await page.goto("/lab");
+    const panel = page.getByTestId("hybrid-workspace-viewport");
+    await panel.getByRole("button", { name: "Top", exact: true }).click();
+    await expect(page.getByTestId("hybrid-spatial-viewport")).toHaveAttribute("data-camera", "0.0,78.0,1.00,0.0,0.0");
+    await expect(panel).toHaveAttribute("data-camera-animating", "false");
+  });
+});
+
+test("tweens camera presets and commits the exact target once", async ({ page }) => {
+  await page.goto("/lab");
+  const panel = page.getByTestId("hybrid-workspace-viewport");
+  const viewport = page.getByTestId("hybrid-spatial-viewport");
+  const seen = new Set<string>();
+  await page.exposeFunction("recordCamera", (value: string) => { seen.add(value); });
+  await viewport.evaluate((element) => {
+    new MutationObserver(() => (window as unknown as { recordCamera: (value: string) => void })
+      .recordCamera(element.getAttribute("data-camera") ?? "")).observe(element, { attributeFilter: ["data-camera"] });
+  });
+  await panel.getByRole("button", { name: "Top", exact: true }).click();
+  await expect(panel).toHaveAttribute("data-camera-animating", "true");
+  await expect(panel).toHaveAttribute("data-camera-animating", "false");
+  await expect(viewport).toHaveAttribute("data-camera", "0.0,78.0,1.00,0.0,0.0");
+  // Intermediate cameras were displayed on the way, not a single jump.
+  expect(seen.size).toBeGreaterThan(2);
+  await page.reload();
+  await expect(viewport).toHaveAttribute("data-camera", "0.0,78.0,1.00,0.0,0.0");
+});
+
+test("lets direct manipulation interrupt a camera tween", async ({ page }) => {
+  await page.goto("/lab");
+  const panel = page.getByTestId("hybrid-workspace-viewport");
+  const surface = page.getByTestId("hybrid-wall-placement-surface");
+  const box = await surface.boundingBox();
+  if (!box) throw new Error("Hybrid viewport is not visible.");
+  await page.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.5);
+  await panel.getByRole("button", { name: "Front", exact: true }).click();
+  await expect(panel).toHaveAttribute("data-camera-animating", "true");
+  await page.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.5);
+  await page.mouse.down({ button: "middle" });
+  await page.mouse.move(box.x + box.width * 0.6, box.y + box.height * 0.55, { steps: 3 });
+  await page.mouse.up({ button: "middle" });
+  await expect(panel).toHaveAttribute("data-camera-animating", "false");
+  await expect(page.getByTestId("hybrid-spatial-viewport")).not.toHaveAttribute("data-camera", "0.0,28.0,1.00,0.0,0.0");
 });
