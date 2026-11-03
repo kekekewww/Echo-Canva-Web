@@ -16,7 +16,7 @@ test("adds and activates listeners and enforces the source workflow", async ({ p
   await page.getByTestId("add-source").click();
   await expect(page.getByRole("dialog", { name: "Choose source audio" })).toBeVisible();
   await page.getByRole("button", { name: "Voice loop" }).click();
-  await expect(page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "Voice loop" })).toBeVisible();
+  await expect(page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "Voice loop", exact: true })).toBeVisible();
   await expect(page.locator('[data-testid^="hybrid-viewport-source-"]')).toHaveCount(3);
 });
 
@@ -25,7 +25,7 @@ test("edits a local source and relinks missing audio without moving it", async (
   await page.getByTestId("add-object").click();
   await page.getByTestId("add-source").click();
   await page.getByLabel("Import WAV / MP3 / Ogg").setInputFiles("public/audio/voice-loop.wav");
-  const sourceRow = page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "voice-loop" });
+  const sourceRow = page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "voice-loop", exact: true });
   await sourceRow.click();
   const xBefore = await page.getByRole("textbox", { name: "X position" }).inputValue();
   await page.getByRole("textbox", { name: "Source name" }).fill("Narration");
@@ -43,7 +43,7 @@ test("edits a local source and relinks missing audio without moving it", async (
   await expect(page.getByText("Relink required", { exact: true })).toHaveCount(0);
   await expect(page.getByRole("textbox", { name: "X position" })).toHaveValue(xBefore);
   await page.reload();
-  await expect(page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "Narration" })).toBeVisible();
+  await expect(page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "Narration", exact: true })).toBeVisible();
 });
 
 test("exports, imports, and safely rejects complete authoring JSON", async ({ page }) => {
@@ -120,7 +120,7 @@ test("applies a mode-aware AI candidate to Hybrid room and object heights", asyn
   await expect(page.getByRole("textbox", { name: "Width" })).toHaveValue("14");
   await expect(page.getByRole("textbox", { name: "Depth" })).toHaveValue("10");
   await expect(page.getByRole("textbox", { name: "Height" })).toHaveValue("4.5");
-  await page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "Radio" }).click();
+  await page.getByRole("complementary", { name: "Scene Outliner" }).getByRole("button", { name: "Radio", exact: true }).click();
   await expect(page.getByRole("textbox", { name: "Y position" })).toHaveValue("1.4");
 });
 

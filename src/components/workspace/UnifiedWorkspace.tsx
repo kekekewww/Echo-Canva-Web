@@ -2,21 +2,19 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 
-import { AddObjectMenu } from "@/components/workspace/AddObjectMenu";
+import { AddObjectMenu, type AddObjectKind } from "@/components/workspace/AddObjectMenu";
 import { AudioAssetPicker } from "@/components/workspace/AudioAssetPicker";
 import { ClassicViewportAdapter } from "@/components/workspace/ClassicViewportAdapter";
-import { ContextInspector, type InspectorAddKind } from "@/components/workspace/ContextInspector";
+import { ContextInspector } from "@/components/workspace/ContextInspector";
 import { HybridViewportAdapter } from "@/components/workspace/HybridViewportAdapter";
 import { SceneOutliner } from "@/components/workspace/SceneOutliner";
 import { WorkspaceStatusBar, type WorkspaceAcousticStatus } from "@/components/workspace/WorkspaceStatusBar";
 import { PROJECT_TRIGGER_ID, WorkspaceToolbar } from "@/components/workspace/WorkspaceToolbar";
 import { WorkspaceProjectTools } from "@/components/workspace/WorkspaceProjectTools";
 import type { WorkspaceMode } from "@/domain/workspace/types";
-import { cascadedPortalCount, deleteActionFor, describeEntity, entityExists } from "@/domain/workspace/entities";
+import { addAvailabilityFor, cascadedPortalCount, deleteActionFor, describeEntity, entityExists } from "@/domain/workspace/entities";
 import { createDefaultClassicProject, createDefaultHybridProject } from "@/domain/workspace/defaults";
 import type { EntityRef } from "@/domain/workspace/types";
-import type { PrimitiveKind } from "@/domain/workspace/types";
-import { MAX_PRIMITIVES } from "@/domain/workspace/primitives";
 import { useWorkspaceProjects } from "@/hooks/useWorkspaceProjects";
 import { useLocalAudioLibrary } from "@/hooks/useLocalAudioLibrary";
 import { installGateCAudioRenderValidation } from "@/audio/gate-c-render-validation";
@@ -175,10 +173,15 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
     });
   }, [showUndoToast, workspace]);
 
-  // Stable callback for the memoised Inspector; addObject itself reads the latest project on each call.
+  // Stable callback for the memoised Inspector and Outliner; addObject itself reads the latest project on each call.
   const addObjectRef = useRef(addObject);
   useEffect(() => { addObjectRef.current = addObject; });
-  const addFromInspector = useCallback((kind: InspectorAddKind) => addObjectRef.current(kind), []);
+  const addFromPanel = useCallback((kind: AddObjectKind) => addObjectRef.current(kind), []);
+  const toggleEntityEnabled = useCallback((entity: EntityRef, enabled: boolean) => {
+    dispatchWorkspace({ type: "SET_ENTITY_ENABLED", entity, enabled });
+  }, [dispatchWorkspace]);
+  // The same limits and Portal host rule apply to the toolbar Add menu and the Outliner's group buttons.
+  const addAvailability = useMemo(() => addAvailabilityFor(workspace.activeProject), [workspace.activeProject]);
 
   const toastVisible = undoToast !== null
     && undoToast.mode === workspace.activeMode
@@ -253,7 +256,7 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
     URL.revokeObjectURL(url);
   }
 
-  function addObject(kind: "listener" | "source" | "wall" | "portal" | PrimitiveKind): void {
+  function addObject(kind: AddObjectKind): void {
     const project = workspace.activeProject;
     const suffix = `${project.revision + 1}`;
     if (kind === "listener") {
@@ -439,22 +442,7 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
         addMenu={(
           <>
             {addOpen ? <AddObjectMenu
-              availability={{
-                listener: { enabled: workspace.activeProject.listeners.length < 8, reason: workspace.activeProject.listeners.length >= 8 ? "Limit: 8 listeners" : undefined },
-                source: { enabled: workspace.activeProject.scene.sources.length < 4, reason: workspace.activeProject.scene.sources.length >= 4 ? "Limit: 4 sources" : undefined },
-                wall: { enabled: workspace.activeProject.scene.walls.length < 100, reason: workspace.activeProject.scene.walls.length >= 100 ? "Limit: 100 walls" : undefined },
-                box: { enabled: workspace.activeProject.primitives.length < MAX_PRIMITIVES, reason: workspace.activeProject.primitives.length >= MAX_PRIMITIVES ? `Limit: ${MAX_PRIMITIVES} shapes` : undefined },
-                cylinder: { enabled: workspace.activeProject.primitives.length < MAX_PRIMITIVES, reason: workspace.activeProject.primitives.length >= MAX_PRIMITIVES ? `Limit: ${MAX_PRIMITIVES} shapes` : undefined },
-                sphere: { enabled: workspace.activeProject.primitives.length < MAX_PRIMITIVES, reason: workspace.activeProject.primitives.length >= MAX_PRIMITIVES ? `Limit: ${MAX_PRIMITIVES} shapes` : undefined },
-                portal: {
-                  enabled: workspace.activeProject.scene.portals.length < 8 && workspace.activeProject.selection?.type === "wall" && !workspace.activeProject.disabledEntityIds.includes(workspace.activeProject.selection.id),
-                  reason: workspace.activeProject.scene.portals.length >= 8
-                    ? "Limit: 8 Portals"
-                    : workspace.activeProject.selection?.type === "wall" && !workspace.activeProject.disabledEntityIds.includes(workspace.activeProject.selection.id)
-                      ? undefined
-                      : "Select an enabled Wall first",
-                },
-              }}
+              availability={addAvailability}
               onAdd={addObject}
               onClose={() => setAddOpen(false)}
             /> : null}
@@ -487,7 +475,14 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
       </div>
       {wallPlacement ? <div className="workspace-placement-card" role="status"><strong>Add Wall</strong><span>{wallPlacement.first ? "Choose endpoint B" : "Choose endpoint A"}</span><button onClick={() => setWallPlacement(null)} type="button">Cancel</button></div> : null}
       <div className="workspace-grid">
-        <SceneOutliner mobileOpen={mobilePanel === "outliner"} project={workspace.activeProject} onSelect={selectOutlinerEntity} />
+        <SceneOutliner
+          addAvailability={addAvailability}
+          mobileOpen={mobilePanel === "outliner"}
+          onAdd={addFromPanel}
+          onSelect={selectOutlinerEntity}
+          onToggleEnabled={toggleEntityEnabled}
+          project={workspace.activeProject}
+        />
         {workspace.activeMode === "classic-2d5d"
           ? <ClassicViewportAdapter
             audioEngine={audioEngine}
@@ -510,7 +505,7 @@ export function UnifiedWorkspace({ initialMode }: Readonly<{ initialMode?: Works
           localAssets={localAssets}
           onRelinkAudio={relinkAudio}
           onRemoveLocalAudio={removeAudio}
-          onAdd={addFromInspector}
+          onAdd={addFromPanel}
           onDelete={deleteSelection}
           rt60MidS={workspace.activeProject.selection ? null : acousticStatus?.rt60MidS ?? null}
           mobileOpen={mobilePanel === "inspector"}

@@ -1,4 +1,41 @@
-import type { EntityRef, ProjectAction, WorkspaceProject } from "@/domain/workspace/types";
+import { MAX_PRIMITIVES } from "@/domain/workspace/primitives";
+import type { EntityRef, PrimitiveKind, ProjectAction, WorkspaceProject } from "@/domain/workspace/types";
+
+/** Documented per-project limits, as the UI reports and enforces them before dispatching an add. */
+export const WORKSPACE_LIMITS = Object.freeze({
+  listeners: 8,
+  sources: 4,
+  walls: 100,
+  portals: 8,
+  primitives: MAX_PRIMITIVES,
+});
+
+export type AddableKind = "listener" | "source" | "wall" | "portal" | PrimitiveKind;
+export type AddAvailability = Partial<Record<AddableKind, Readonly<{ enabled: boolean; reason?: string }>>>;
+
+/**
+ * Whether each kind can be added now, with the reason when it cannot. Shared by the toolbar Add menu, the
+ * Outliner group buttons and the Inspector so they never disagree. Counts include disabled entities, because
+ * the limits do.
+ */
+export function addAvailabilityFor(project: WorkspaceProject): AddAvailability {
+  const limit = (count: number, max: number, reason: string) => count < max
+    ? { enabled: true }
+    : { enabled: false, reason };
+  const shape = limit(project.primitives.length, WORKSPACE_LIMITS.primitives, `Limit: ${WORKSPACE_LIMITS.primitives} shapes`);
+  const hostSelected = project.selection?.type === "wall" && !project.disabledEntityIds.includes(project.selection.id);
+  return {
+    listener: limit(project.listeners.length, WORKSPACE_LIMITS.listeners, `Limit: ${WORKSPACE_LIMITS.listeners} listeners`),
+    source: limit(project.scene.sources.length, WORKSPACE_LIMITS.sources, `Limit: ${WORKSPACE_LIMITS.sources} sources`),
+    wall: limit(project.scene.walls.length, WORKSPACE_LIMITS.walls, `Limit: ${WORKSPACE_LIMITS.walls} walls`),
+    portal: project.scene.portals.length >= WORKSPACE_LIMITS.portals
+      ? { enabled: false, reason: `Limit: ${WORKSPACE_LIMITS.portals} Portals` }
+      : hostSelected ? { enabled: true } : { enabled: false, reason: "Select an enabled Wall first" },
+    box: shape,
+    cylinder: shape,
+    sphere: shape,
+  };
+}
 
 /** Human-readable name of a project entity, as shown in the Outliner and Inspector header. */
 export function describeEntity(project: WorkspaceProject, entity: EntityRef): string {
