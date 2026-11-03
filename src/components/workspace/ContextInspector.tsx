@@ -5,7 +5,6 @@ import { memo, useState } from "react";
 import { MATERIALS } from "@/domain/materials/registry";
 import { NumericScrubField } from "@/components/workspace/NumericScrubField";
 import { HintCard } from "@/components/workspace/HintCard";
-import { WorkspaceProjectTools } from "@/components/workspace/WorkspaceProjectTools";
 import type { EntityRef, ProjectAction, WorkspaceProject } from "@/domain/workspace/types";
 import { constrainPortal3D, constrainWall3D, resizeRoomAndClamp } from "@/domain/workspace/geometry-constraints";
 import type { LocalAudioMetadata } from "@/domain/workspace/transfer";
@@ -71,7 +70,6 @@ export const ContextInspector = memo(function ContextInspector({ project, dispat
   return (
     <aside aria-label="Inspector" aria-modal={mobileOpen || undefined} className={`workspace-inspector${mobileOpen ? " is-mobile-open" : ""}`} role={mobileOpen ? "dialog" : undefined}>
       <header><span>Inspector</span><small>{selection ? selection.type : "No selection"}</small></header>
-      <WorkspaceProjectTools dispatch={dispatch} localAssets={localAssets} project={project} />
       {position ? (
         <section className="inspector-section">
           <h3>Transform</h3>

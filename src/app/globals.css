@@ -22,7 +22,7 @@
   border-bottom: 1px solid var(--border-strong);
   display: grid;
   gap: 1rem;
-  grid-template-columns: minmax(11rem, 1fr) auto minmax(11rem, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   padding: 0 0.75rem;
 }
 
@@ -45,16 +45,47 @@
 }
 .workspace-mode-switch button { font-weight: 600; min-width: 3rem; }
 .workspace-mode-switch button[aria-pressed="true"] { background: rgba(103,205,211,.14); border-color: var(--signal); color: var(--signal-bright); }
-.workspace-toolbar-actions { display: flex; gap: 0.25rem; justify-content: flex-end; }
-.workspace-toolbar-actions button[aria-label="Undo"],
-.workspace-toolbar-actions button[aria-label="Redo"],
-.workspace-toolbar-actions button[aria-label="Settings"] { font-size: var(--text-lg); line-height: 1; padding-inline: 0.5rem; }
+.workspace-toolbar-actions { align-items: center; display: flex; gap: 0.25rem; justify-content: flex-end; }
+.workspace-toolbar-actions .toolbar-icon { font-size: var(--text-lg); line-height: 1; padding-inline: 0.5rem; }
+.workspace-toolbar-start { align-items: center; display: flex; gap: 0.9rem; min-width: 0; }
+.workspace-project-anchor { min-width: 0; position: relative; }
+.workspace-project-trigger { align-items: center; background: transparent; border: 1px solid var(--border-strong); border-radius: var(--radius); color: var(--text-1); cursor: pointer; display: inline-flex; font: 600 var(--text-md) var(--grotesk); gap: 0.45rem; max-width: 15rem; min-width: 0; padding: 0.32rem 0.55rem; }
+.workspace-project-trigger span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.workspace-project-trigger span:last-child { color: var(--text-3); font-size: var(--text-xs); }
+.workspace-project-trigger:hover,
+.workspace-project-trigger[aria-expanded="true"] { border-color: var(--signal); }
+/* Project menu: anchored under its trigger, kept mounted (hidden) so AI drafts survive closing it. */
+.workspace-project-menu { background: var(--surface-2); border: 1px solid var(--border-popover); border-radius: var(--radius); box-shadow: 0 18px 60px rgba(0,0,0,.5); left: 0; max-height: calc(100dvh - 5rem); overflow: auto; position: absolute; top: calc(100% + 0.45rem); width: 22rem; z-index: 40; }
+.workspace-project-menu[hidden] { display: none; }
+.workspace-project-menu section { border-bottom: 1px solid var(--border-subtle); padding: 0.7rem 0.8rem; }
+.workspace-project-menu section:last-of-type { border-bottom: 0; }
+.workspace-project-menu h3 { color: var(--text-3); font: 600 var(--text-xs) var(--grotesk); letter-spacing: .06em; margin: 0 0 0.5rem; text-transform: uppercase; }
+.workspace-project-menu .workspace-project-tools { border: 0; padding: 0; }
+.workspace-project-menu .project-tools-row { align-items: center; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.workspace-project-menu .project-tools-row > * { margin: 0; }
+.workspace-project-menu .workspace-project-status { border-top: 1px solid var(--border-subtle); margin: 0; padding: 0.6rem 0.8rem; }
+.workspace-project-tools .workspace-button-primary { border-color: var(--signal); color: var(--signal-bright); }
+.workspace-project-menu .file-button { color: var(--text-2); font-weight: 500; padding: 0.4rem 0.55rem; }
+.workspace-project-menu .file-button:hover,
+.workspace-project-menu button:not(:disabled):hover { border-color: var(--signal); color: var(--text-1); }
+.workspace-project-tools .workspace-button-danger { border-color: var(--danger); color: var(--danger-ink); }
+.workspace-project-tools .workspace-button-danger:hover { background: rgba(231, 127, 113, 0.12); }
+.toolbar-group { align-items: center; display: flex; gap: 0.2rem; }
+.toolbar-group + .toolbar-group { border-left: 1px solid var(--border-subtle); margin-left: 0.4rem; padding-left: 0.6rem; }
+/* The one primary action in the toolbar. */
+.workspace-toolbar-actions .workspace-play { align-items: center; background: var(--signal); border-color: var(--signal); color: #04191b; display: inline-flex; font-weight: 600; gap: 0.4rem; justify-content: center; min-width: 6rem; }
+.workspace-toolbar-actions .workspace-play:hover { background: var(--signal-bright); border-color: var(--signal-bright); color: #04191b; }
+.workspace-toolbar-actions .workspace-play[aria-pressed="true"] { background: rgba(103,205,211,.14); color: var(--signal-bright); }
+.workspace-toolbar-actions .workspace-play[aria-busy="true"] { cursor: progress; opacity: 0.75; }
+.workspace-play span { font-size: var(--text-xs); }
+.workspace-segmented { background: var(--surface-0); border: 1px solid var(--border-strong); border-radius: var(--radius); display: flex; margin-left: 0.25rem; padding: 0.12rem; }
+.workspace-toolbar-actions .workspace-segmented button { padding: 0.28rem 0.55rem; }
+.workspace-toolbar-actions .workspace-segmented button[aria-pressed="true"] { background: rgba(103,205,211,.14); border-color: var(--signal); color: var(--signal-bright); }
 .mobile-panel-toggle { display: none; }
 .workspace-toolbar-actions button:hover,
 .viewport-tools button:hover,
 .inspector-actions button:hover { border-color: var(--border-strong); color: var(--text-1); }
 .workspace-toolbar-actions button:disabled { cursor: default; opacity: .4; }
-.workspace-toolbar-actions .danger-quiet:hover { border-color: var(--danger); color: var(--danger-ink); }
 
 .workspace-grid { display: grid; grid-template-columns: 14rem minmax(0, 1fr) 19rem; min-height: 0; }
 .workspace-outliner,
@@ -191,7 +222,12 @@
 
 @media (max-width: 850px) {
   .workspace-toolbar { gap: .35rem; grid-template-columns: auto auto minmax(0, 1fr); padding: 0 .35rem; }
-  .workspace-toolbar-actions { overflow-x: auto; }
+  /* Start-aligned so overflow goes right, where it can be scrolled to (flex-end overflow is unreachable). */
+  .workspace-toolbar-actions { justify-content: flex-start; overflow-x: auto; }
+  .workspace-brand { display: none; }
+  .workspace-project-trigger { max-width: 9rem; }
+  .toolbar-group + .toolbar-group { margin-left: .2rem; padding-left: .3rem; }
+  .workspace-toolbar-actions .workspace-play { min-width: 0; }
   .mobile-panel-toggle { display: inline-block; }
   .workspace-grid { grid-template-columns: minmax(0,1fr); }
   .workspace-outliner,
