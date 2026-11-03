@@ -27,7 +27,7 @@ import type {
   ClassicSourceWorkerRequest,
   ClassicSourceWorkerResponse,
 } from "@/workers/classic-source.worker";
-import { sameIdOrder } from "@/acoustics/frame-acceptance";
+import { sameClassicStaticStructure, sameIdOrder } from "@/acoustics/frame-acceptance";
 import { classicSourcePoolCapacity } from "@/workers/worker-pool-policy";
 
 export type ClassicSourcePoolWorkerLike = {
@@ -348,6 +348,16 @@ export function createClassicSourcePool(
   let lastFrameAtMs = Number.NEGATIVE_INFINITY;
   let latestRevision = 0;
   let stopped = false;
+  let cachedStatic: ClassicStaticContext | null = null;
+
+  // Reuse the static context (and its fingerprint) while the static structure
+  // is unchanged, instead of re-serializing and hashing it for every dispatch.
+  const staticContextFor = (scene: SceneSpec): ClassicStaticContext => {
+    if (!cachedStatic || !sameClassicStaticStructure(cachedStatic.scene, scene)) {
+      cachedStatic = createClassicStaticContext(scene);
+    }
+    return cachedStatic;
+  };
 
   const cancelJobWatchdog = (job: InFlightJob | null): void => {
     if (job?.watchdog !== null && job?.watchdog !== undefined) {
@@ -473,7 +483,7 @@ export function createClassicSourcePool(
 
   const differsOnlyInPose = (job: InFlightJob, scene: SceneSpec): boolean =>
     sameIdOrder(job.snapshot.sources, scene.sources)
-    && createClassicStaticContext(scene).fingerprint === job.snapshot.staticFingerprint;
+    && sameClassicStaticStructure(job.context.scene, scene);
 
   const sameSourceIds = (left: readonly string[], right: readonly string[]): boolean =>
     left.length === right.length && left.every((sourceId, index) => sourceId === right[index]);
@@ -549,7 +559,7 @@ export function createClassicSourcePool(
         workers.push(worker);
         installedFingerprints.push(null);
       }
-      const context = createClassicStaticContext(scene);
+      const context = staticContextFor(scene);
       const snapshot = createClassicPoseSnapshot(scene, context);
       const nextRequestId = ++requestId;
       const assignments = Array.from({ length: activeCount }, (_, index) => scene.sources

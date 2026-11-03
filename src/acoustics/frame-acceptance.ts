@@ -1,4 +1,8 @@
-import { createClassicStaticContext, type AcousticFrame } from "@/acoustics/compute-frame";
+import {
+  createClassicStaticContext,
+  type AcousticFrame,
+  type ClassicStaticContext,
+} from "@/acoustics/compute-frame";
 import type { SceneSpec } from "@/domain/scene/types";
 
 /**
@@ -48,9 +52,14 @@ export function jsonEqual(left: unknown, right: unknown): boolean {
   }
   const leftRecord = left as Record<string, unknown>;
   const rightRecord = right as Record<string, unknown>;
-  const keys = new Set([...Object.keys(leftRecord), ...Object.keys(rightRecord)]);
-  for (const key of keys) {
+  // Allocation-free: this runs on every pose update of a drag.
+  for (const key in leftRecord) {
+    if (!Object.hasOwn(leftRecord, key)) continue;
     if (!jsonEqual(leftRecord[key], rightRecord[key])) return false;
+  }
+  for (const key in rightRecord) {
+    if (!Object.hasOwn(rightRecord, key) || Object.hasOwn(leftRecord, key)) continue;
+    if (rightRecord[key] !== undefined) return false;
   }
   return true;
 }
@@ -61,7 +70,10 @@ export function jsonEqual(left: unknown, right: unknown): boolean {
  * comparison for hot render paths, where re-serializing and hashing the
  * static scene on every pose change would cost more.
  */
-export function sameClassicStaticStructure(left: SceneSpec, right: SceneSpec): boolean {
+export function sameClassicStaticStructure(
+  left: ClassicStaticContext["scene"],
+  right: ClassicStaticContext["scene"],
+): boolean {
   if (left === right) return true;
   return left.schemaVersion === right.schemaVersion
     && left.units === right.units
