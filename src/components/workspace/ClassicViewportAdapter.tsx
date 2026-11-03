@@ -41,9 +41,10 @@ export function ClassicViewportAdapter({ project, dispatch, audioEngine, wallPla
   const acoustic = useAcousticFrame(scene);
   const presentation = resolveClassicAcousticPresentation(acoustic);
   const acceptedFrame = presentation.frame;
+  const acceptedLagging = acoustic.lagging;
   useEffect(() => {
-    if (acceptedFrame) audioEngine.applyAcousticFrame(acceptedFrame);
-  }, [acceptedFrame, audioEngine]);
+    if (acceptedFrame) audioEngine.applyAcousticFrame(acceptedFrame, { lagging: acceptedLagging });
+  }, [acceptedFrame, acceptedLagging, audioEngine]);
   useEffect(() => {
     const active = project.listeners.find(({ id }) => id === project.activeListenerId);
     const sourceId = project.selection?.type === "source" ? project.selection.id : scene.sources[0]?.id;

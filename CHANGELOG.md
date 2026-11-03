@@ -44,6 +44,7 @@ Changes use Conventional Commit subjects. Releases should record compatibility c
   - source graphs fade in on start and out before stop/disconnect, and the master output fades around suspend, resume and disposal (#20). A production-Chromium `OfflineAudioContext` check renders the real SourceGraph start/retire;
   - reflection taps keep their path while it stays audible and retune silently when reassigned, so delay lines no longer glide between unrelated paths (#21).
 - Skipped re-scheduling identical automation targets, kept workspace projections stable across camera/selection/notice changes so they no longer re-run acoustic jobs or audio reconciles, and built the Classic static context once per Worker dispatch (#24, #25, partial). Frame delivery under continuous edits (#23), `latencyHint`, and Worker capacity are not changed.
+- Kept acoustic frames flowing during continuous drags (#23, [ADR 0007](docs/adr/0007-adopt-pose-lagging-frames.md)). A complete frame is now adopted as *pose-lagging* when the current scene differs from its input only in listener/source pose. Before this, the Worker pools discarded every in-flight frame that a newer pointer event overtook, so overlays and audio froze until the pointer paused (0 frames in 3 s at 20 ms jobs in a fake-clock simulation; now at least 20). Frames for a different static structure or source set are still never adopted.
 
 ## Source release — v1.0.0-build-week
 

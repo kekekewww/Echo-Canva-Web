@@ -27,6 +27,7 @@ import type {
   ClassicSourceWorkerRequest,
   ClassicSourceWorkerResponse,
 } from "@/workers/classic-source.worker";
+import { sameIdOrder } from "@/acoustics/frame-acceptance";
 import { classicSourcePoolCapacity } from "@/workers/worker-pool-policy";
 
 export type ClassicSourcePoolWorkerLike = {
@@ -446,6 +447,7 @@ export function createClassicSourcePool(
         type: "FRAME",
         revision: frame.revision,
         frame,
+        staticFingerprint: job.snapshot.staticFingerprint,
         metrics: {
           computeMs: completedAtMs - job.startedAtMs,
           completedAtMs,
@@ -455,7 +457,10 @@ export function createClassicSourcePool(
           requestSequence: job.requestId,
         },
       };
-      const obsolete = pendingScene !== null;
+      // A newer pending scene that differs only in pose does not invalidate this
+      // complete frame; publish it as pose-lagging (ADR 0007). A structural change
+      // (static fingerprint or source set) still discards it.
+      const obsolete = pendingScene !== null && !differsOnlyInPose(job, pendingScene);
       lastFrameAtMs = completedAtMs;
       cancelJobWatchdog(job);
       inFlight = null;
@@ -465,6 +470,10 @@ export function createClassicSourcePool(
       fail(error);
     }
   };
+
+  const differsOnlyInPose = (job: InFlightJob, scene: SceneSpec): boolean =>
+    sameIdOrder(job.snapshot.sources, scene.sources)
+    && createClassicStaticContext(scene).fingerprint === job.snapshot.staticFingerprint;
 
   const sameSourceIds = (left: readonly string[], right: readonly string[]): boolean =>
     left.length === right.length && left.every((sourceId, index) => sourceId === right[index]);

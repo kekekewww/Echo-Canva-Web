@@ -140,9 +140,14 @@ export class AudioEngine {
    * Accepts a Classic frame for the current revision. Accepted acoustic data
    * from one engine replaces the other's held state: only one adapter is
    * mounted at a time, so the latest accepted source of truth wins.
+   *
+   * `lagging: true` admits a frame for an older revision that the caller has
+   * verified differs from the current scene only in pose (ADR 0007). Its
+   * directions are applied relative to the current listener pose.
    */
-  applyAcousticFrame(frame: AcousticFrame): void {
-    if (this.disposed || frame.revision !== this.desiredScene?.revision) return;
+  applyAcousticFrame(frame: AcousticFrame, options: Readonly<{ lagging?: boolean }> = {}): void {
+    if (this.disposed || !this.desiredScene) return;
+    if (frame.revision !== this.desiredScene.revision && !options.lagging) return;
     this.latestAcousticFrame = frame;
     this.latestAcousticFrameListener = this.desiredScene.listener;
     this.hybridDirectState = null;

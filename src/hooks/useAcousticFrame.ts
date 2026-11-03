@@ -1,8 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { computeAcousticFrame, type AcousticFrame } from "@/acoustics/compute-frame";
+import {
+  isPoseLaggingClassicFrame,
+  sameClassicStaticStructure,
+  sameIdOrder,
+} from "@/acoustics/frame-acceptance";
 import { acousticUpdateIntervalMs } from "@/acoustics/update-rate";
 import type { SceneSpec } from "@/domain/scene/types";
 import type {
@@ -16,6 +21,8 @@ const FALLBACK_NOTICE = "Worker unavailable; using deterministic main-thread aco
 type FrameState = Readonly<{
   revision: number;
   current: AcousticFrame | null;
+  /** Scene whose static structure the held frame was verified against. */
+  structureScene: SceneSpec | null;
   fallbackNotice: string | null;
   metrics: AcousticFrameMetrics | null;
 }>;
@@ -30,7 +37,10 @@ export type AcousticFrameMetrics = Readonly<{
 }>;
 
 export type AcousticFrameResult = Readonly<{
+  /** Accepted frame: for the current revision, or pose-lagging (ADR 0007). */
   frame: AcousticFrame | null;
+  /** True when `frame` was computed for an older revision that differs only in pose. */
+  lagging: boolean;
   fallbackNotice: string | null;
   metrics: AcousticFrameMetrics | null;
 }>;
@@ -48,7 +58,7 @@ type AcousticFrameClientOptions = Readonly<{
   cancelFrame: (frame: unknown) => void;
   createWorker: () => AcousticWorkerLike;
   onFallback: (frame: AcousticFrame, metrics: AcousticFrameMetrics) => void;
-  onFrame: (frame: AcousticFrame, metrics: AcousticFrameMetrics) => void;
+  onFrame: (frame: AcousticFrame, metrics: AcousticFrameMetrics, staticFingerprint?: string) => void;
   now?: () => number;
   schedule: (callback: () => void, delayMs: number) => unknown;
   scheduleFrame: (callback: () => void) => unknown;
@@ -91,7 +101,7 @@ export class AcousticFrameClient {
             workerCount: event.data.metrics.workerCount,
             sourceComputeMsMax: event.data.metrics.sourceComputeMsMax,
             sourceComputeMsTotal: event.data.metrics.sourceComputeMsTotal,
-          });
+          }, event.data.staticFingerprint);
           return;
         }
         this.activateFallback();
@@ -214,12 +224,42 @@ function cancelBrowserFrame(frame: unknown): void {
   clearTimeout(frame as ReturnType<typeof setTimeout>);
 }
 
+/**
+ * Decides whether a Worker frame may replace the held frame for `latest`:
+ * either it is for the latest revision, or it is pose-lagging (ADR 0007).
+ */
+export function acceptsClassicWorkerFrame(
+  frame: AcousticFrame,
+  staticFingerprint: string | undefined,
+  latest: SceneSpec,
+): boolean {
+  return frame.revision === latest.revision
+    || isPoseLaggingClassicFrame(frame, staticFingerprint, latest);
+}
+
+/**
+ * True while a held frame may still be shown for `scene`: it is for this
+ * revision, or the scene still has the static structure and ordered sources
+ * the frame was verified against (only poses have moved on since).
+ */
+export function holdsClassicFrame(
+  frame: AcousticFrame,
+  structureScene: SceneSpec | null,
+  scene: SceneSpec,
+): boolean {
+  if (frame.revision === scene.revision) return true;
+  if (!structureScene) return false;
+  return sameIdOrder(frame.sources.map(({ sourceId }) => sourceId), scene.sources)
+    && sameClassicStaticStructure(structureScene, scene);
+}
+
 export function useAcousticFrame(scene: SceneSpec): AcousticFrameResult {
   const latestScene = useRef(scene);
   const client = useRef<AcousticFrameClient | null>(null);
   const [state, setState] = useState<FrameState>({
     revision: scene.revision,
     current: null,
+    structureScene: null,
     fallbackNotice: null,
     metrics: null,
   });
@@ -232,17 +272,20 @@ export function useAcousticFrame(scene: SceneSpec): AcousticFrameResult {
       onFallback: (frame, metrics) => setState({
         revision: frame.revision,
         current: frame,
+        structureScene: latestScene.current,
         fallbackNotice: FALLBACK_NOTICE,
         metrics,
       }),
-      onFrame: (frame, metrics) => {
-        if (frame.revision !== latestScene.current.revision) return;
+      onFrame: (frame, metrics, staticFingerprint) => {
+        const latest = latestScene.current;
+        if (!acceptsClassicWorkerFrame(frame, staticFingerprint, latest)) return;
         setState((current) => ({
           revision: frame.revision,
           current: acceptWorkerFrame(frame, {
             revision: frame.revision,
             current: current.current,
           }).current,
+          structureScene: latest,
           fallbackNotice: null,
           metrics,
         }));
@@ -264,9 +307,16 @@ export function useAcousticFrame(scene: SceneSpec): AcousticFrameResult {
     client.current?.updateScene(scene);
   }, [scene]);
 
+  const { current: heldFrame, structureScene } = state;
+  const held = useMemo(
+    () => heldFrame !== null && holdsClassicFrame(heldFrame, structureScene, scene),
+    [heldFrame, scene, structureScene],
+  );
+
   return {
-    frame: state.revision === scene.revision ? state.current : null,
+    frame: held ? heldFrame : null,
+    lagging: held && state.revision !== scene.revision,
     fallbackNotice: state.fallbackNotice,
-    metrics: state.revision === scene.revision ? state.metrics : null,
+    metrics: held ? state.metrics : null,
   };
 }
