@@ -13,3 +13,10 @@ export async function selectPreset(page: Page, presetId: string): Promise<void> 
   await openProjectMenu(page);
   await page.getByLabel("Scene preset").selectOption(presetId);
 }
+
+/** Deletes the Inspector selection through its "More actions" menu (immediate, with an Undo toast). */
+export async function deleteSelection(page: Page): Promise<void> {
+  const inspector = page.getByRole("complementary", { name: "Inspector" });
+  await inspector.getByRole("button", { name: "More actions" }).click();
+  await inspector.getByRole("button", { name: "Delete", exact: true }).click();
+}
