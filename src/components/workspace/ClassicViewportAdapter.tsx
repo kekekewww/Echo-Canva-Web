@@ -1,13 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { SceneEditor } from "@/components/workbench/SceneEditor";
 import { CLASSIC_VIEWPORT, frameClassicBounds } from "@/components/workspace/classic-viewport-math";
 import type { Rect } from "@/domain/editor/coordinates";
 import type { EditorAction } from "@/domain/editor/reducer";
 import type { EditorSelection } from "@/domain/editor/state";
-import { projectClassicScene } from "@/domain/workspace/projections";
+import { createProjectProjectionCache, projectClassicScene } from "@/domain/workspace/projections";
 import type { ProjectAction, WorkspaceProject } from "@/domain/workspace/types";
 import { useAcousticFrame, type AcousticFrameResult } from "@/hooks/useAcousticFrame";
 import type { AudioEngine } from "@/audio/AudioEngine";
@@ -36,7 +36,8 @@ export function ClassicViewportAdapter({ project, dispatch, audioEngine, wallPla
   onWallPlacementPoint?: (point: Readonly<{ x: number; y: number }>) => void;
   onAcousticStatus?: (status: WorkspaceAcousticStatus) => void;
 }>) {
-  const scene = useMemo(() => projectClassicScene(project), [project]);
+  const [projectScene] = useState(() => createProjectProjectionCache(projectClassicScene));
+  const scene = useMemo(() => projectScene(project), [project, projectScene]);
   const acoustic = useAcousticFrame(scene);
   const presentation = resolveClassicAcousticPresentation(acoustic);
   const acceptedFrame = presentation.frame;
