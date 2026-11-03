@@ -471,8 +471,9 @@ x[n-\operatorname{round}(f_s\Delta t_k)]
 Implementation:
 
 - fixed `DelayNode` + `GainNode` + `PannerNode` tap pool;
-- inactive taps ramp to zero;
-- changed delay/gain values are smoothed;
+- the acoustic model's ranking still selects the (at most six) audible paths; a separate slot allocator (`src/audio/reflection-slots.ts`) only decides which tap carries each path, keyed by path identity (Classic wall sequence `wallIds.join(">")`, Hybrid `tap.id`), so a path keeps its tap while it stays audible;
+- a tap's delay is smoothed only while it carries the same path. A tap that moves to a different path fades to silence over 20 ms, takes the new delay/filter/position exactly while silent, then fades in; a silent idle tap takes a new path directly and fades in. This avoids gliding a delay line between unrelated paths, which is heard as a Doppler-like chirp;
+- released taps ramp linearly to exact zero;
 - avoid reallocating tap nodes.
 
 ## 12. Schroeder late reverberation
@@ -595,6 +596,13 @@ Initial \(\tau\):
 - gain/filter/send: 0.06–0.10 s;
 - panner coordinate updates: tune for perceptual stability;
 - mode crossfade: approximately 0.05 s.
+
+Current implementation (`src/audio/parameter-smoothing.ts`; perceptual engineering choices, not physical relations):
+
+- `PARAMETER_SMOOTHING_SECONDS` = 0.08 s target smoothing; `MODE_CROSSFADE_SECONDS` = 0.08 s equal-power curve;
+- source fade-in on graph start 15 ms, fade-out before stop/disconnect 25 ms (disconnect waits a further 0.25 s for the up-to-0.2 s reflection-tap tail); master fade 30 ms before suspend/close and after resume; reflection-tap retune fade 20 ms;
+- a smoothed parameter is not re-scheduled when the requested target and time constant are identical (`Object.is`) to the last one it scheduled, because re-issuing `setTargetAtTime` then yields the same trajectory; no numerical tolerance is applied;
+- between accepted acoustic frames, simulation-owned parameters hold their last accepted targets instead of being re-derived from the scene pose. Only a graph that has never received acoustic data uses a free-field estimate of the pose; authoring parameters (`gainDb`, HRTF/equal-power) always follow the scene.
 
 ## 16. Binaural de-spatialization decision
 

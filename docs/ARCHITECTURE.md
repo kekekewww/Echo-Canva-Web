@@ -56,6 +56,8 @@ Hybrid workers cache cloned BVHs. Static fingerprints include room/wall/Portal/p
 
 One AudioEngine persists across workspace mode changes. A user gesture creates AudioContext and persistent source graphs. Each source has Raw/Simulated buses, manual distance gain, obstruction filtering, HRTF/equal-power panning, six ranked reflection taps, and a send to Schroeder late reverb. Automation smooths changes; mode transitions crossfade without graph reconstruction.
 
+Parameters have two owners. Authoring parameters (source `gainDb`, HRTF/equal-power) follow the scene on every reconcile in both modes. Simulation parameters (distance gain, obstruction filter, panner position, reverb send, reflection taps, late reverb) are written only from accepted Classic frames or Hybrid audio state, and hold their last accepted targets between frames; accepting data from one engine drops the other's held state. A graph that has never received acoustic data (for example a newly added source) follows a free-field estimate until its first accepted frame, and a rebuilt graph adopts the held state for its source. Reflection taps keep a path in the same tap while it stays audible (see [ACOUSTICS.md](ACOUSTICS.md) §11). Graph start and retirement, stop/resume, and engine disposal use short gain envelopes; a retired graph is disconnected only after its fade and reflection tail. Unchanged smoothing targets are not re-scheduled.
+
 First/second-order paths share six audible taps. HRTF uses browser `PannerNode`; no CIPIC/MIT/KEMAR/custom dataset is loaded. True diffraction, FDN rendering, and arbitrary binaural dry-source recovery are not implemented.
 
 ## Browser persistence
