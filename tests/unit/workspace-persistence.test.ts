@@ -176,4 +176,44 @@ describe("workspace persistence", () => {
     expect(result.recoveryRaw).toBe("{broken");
     expect(storage.getItem(CLASSIC_PROJECT_KEY)).toBe("{broken");
   });
+
+  it("rejects a cached project with invalid spatial geometry and keeps the raw record for recovery", () => {
+    const storage = new MemoryStorage();
+    const project = structuredClone(createDefaultHybridProject()) as unknown as { wall3dById: Record<string, unknown>; scene: { walls: { id: string }[] } };
+    project.wall3dById[project.scene.walls[0]!.id] = { bottomM: 5, topM: -1, thicknessM: -1 };
+    const raw = JSON.stringify({ cacheVersion: "3.0", mode: "hybrid-3d", present: project, past: [], future: [] });
+    storage.setItem(HYBRID_PROJECT_KEY, raw);
+
+    const restored = loadWorkspaceCache(storage, "hybrid-3d");
+
+    expect(restored.project).toEqual(createDefaultHybridProject());
+    expect(restored.recoveryRaw).toBe(raw);
+    expect(restored.warning).toContain("could not be restored");
+  });
+
+  it("rejects cached history whose patches reach an invalid spatial state", () => {
+    const storage = new MemoryStorage();
+    const present = createDefaultHybridProject();
+    const wallId = present.scene.walls[0]!.id;
+    storage.setItem(HYBRID_PROJECT_KEY, JSON.stringify({
+      cacheVersion: "3.0",
+      mode: "hybrid-3d",
+      present,
+      past: [{ operations: [{
+        kind: "value",
+        path: ["wall3dById", wallId, "thicknessM"],
+        beforeExists: true,
+        before: -1,
+        afterExists: true,
+        after: present.wall3dById[wallId]!.thicknessM,
+      }] }],
+      future: [],
+    }));
+
+    const restored = loadWorkspaceCache(storage, "hybrid-3d");
+
+    expect(restored.history.past).toHaveLength(0);
+    expect(restored.warning).toContain("could not be restored");
+  });
 });
+

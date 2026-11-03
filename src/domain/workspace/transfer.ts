@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { AUDIO_ASSETS } from "@/domain/audio-assets/registry";
-import { migrateWorkspaceCache } from "@/domain/workspace/persistence";
+import { migrateWorkspaceProject } from "@/domain/workspace/persistence";
 import type { LocalAudioAssetMetadata, WorkspaceMode, WorkspaceProject } from "@/domain/workspace/types";
 
 export type LocalAudioMetadata = LocalAudioAssetMetadata;
@@ -46,13 +46,17 @@ export function parseWorkspaceProject(
   }
   const parsed = transferSchema.safeParse(input);
   if (!parsed.success) throw new Error("This is not a supported Echo Canvas authoring project.");
-  const project = migrateWorkspaceCache(parsed.data.project, expectedMode);
-  if (!project) {
+  const migrated = migrateWorkspaceProject(parsed.data.project, expectedMode);
+  if (!migrated.ok && migrated.reason === "invalid_spatial_state") {
+    throw new Error(`This authoring project has invalid 3D geometry: ${migrated.message}`);
+  }
+  if (!migrated.ok) {
     const sourceMode = typeof parsed.data.project === "object" && parsed.data.project !== null && "mode" in parsed.data.project
       ? String(parsed.data.project.mode)
       : "another mode";
     throw new Error(`${sourceMode === "hybrid-3d" ? "3D" : "2.5D"} project cannot be imported into this mode.`);
   }
+  const { project } = migrated;
   const builtIn = new Set(AUDIO_ASSETS.map(({ id }) => id));
   const missing = project.scene.sources
     .map(({ clipId }) => clipId)
