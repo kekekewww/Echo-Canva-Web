@@ -33,28 +33,43 @@ import type { WorkspaceAcousticStatus } from "@/components/workspace/WorkspaceSt
 import { estimateRoomAcoustics } from "@/acoustics/room-acoustics";
 import type { SceneDocumentV2 } from "@/domain/scene-document/types";
 import type { HybridDirectPathsState } from "@/hooks/useHybridDirectPaths";
+import { sameIdOrder } from "@/acoustics/frame-acceptance";
 
+/**
+ * Accepts the frame for the current revision and projection, or a pose-lagging
+ * frame: one computed for an older revision against the same static geometry
+ * and the same ordered sources (ADR 0008). A frame for different geometry is
+ * never accepted.
+ */
 export function resolveHybridAcousticPresentation(
   direct: HybridDirectPathsState,
   document: SceneDocumentV2,
+  staticGeometryHash: string,
 ): Readonly<{
   accepted: boolean;
+  lagging: boolean;
   worker: WorkspaceAcousticStatus["worker"];
   headerStatus: string;
 }> {
-  const accepted = direct.frame.revision === document.baseScene.revision
+  const current = direct.frame.revision === document.baseScene.revision
     && direct.frame.classicProjectionHash === document.compatibility.classicProjectionHash;
-  if (!accepted) return {
+  const lagging = !current
+    && direct.frame.revision !== document.baseScene.revision
+    && direct.staticFingerprint === staticGeometryHash
+    && sameIdOrder(direct.frame.paths.map(({ sourceId }) => sourceId ?? ""), document.baseScene.sources);
+  if (!current && !lagging) return {
     accepted: false,
+    lagging: false,
     worker: "Stopped",
     headerStatus: "Stopped · Waiting for matching acoustic frame",
   };
   if (direct.source === "fallback") return {
     accepted: true,
+    lagging,
     worker: "Fallback",
     headerStatus: direct.notice ? `Fallback · ${direct.notice}` : "Fallback",
   };
-  return { accepted: true, worker: "Worker", headerStatus: "Worker" };
+  return { accepted: true, lagging, worker: "Worker", headerStatus: "Worker" };
 }
 
 const HYBRID_HELP: readonly ViewportHelpItem[] = [
@@ -82,7 +97,7 @@ export function HybridViewportAdapter({ project, dispatch, audioEngine, wallPlac
   const document = useMemo(() => projectDocument(project), [project, projectDocument]);
   const geometry = useMemo(() => geometryCompiler.compile(document), [document, geometryCompiler]);
   const direct = useHybridDirectPaths(document, geometry);
-  const presentation = resolveHybridAcousticPresentation(direct, document);
+  const presentation = resolveHybridAcousticPresentation(direct, document, geometry.staticGeometryHash);
   const accepted = presentation.accepted;
   const audible = useMemo(() => resolveHybridAudibleDirectState(geometry, direct.frame), [direct.frame, geometry]);
   const reflectionState = useMemo(() => ({

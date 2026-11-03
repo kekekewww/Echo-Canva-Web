@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
 
-import { computeAcousticFrame } from "@/acoustics/compute-frame";
-import { AcousticFrameClient } from "@/hooks/useAcousticFrame";
+import { computeAcousticFrame, createClassicStaticContext } from "@/acoustics/compute-frame";
+import {
+  AcousticFrameClient,
+  acceptsClassicWorkerFrame,
+  holdsClassicFrame,
+} from "@/hooks/useAcousticFrame";
 import type { AcousticWorkerRequest, AcousticWorkerResponse } from "@/workers/acoustics.worker";
 import { CONCRETE_PARTITION_PRESET } from "@/domain/presets/concrete-partition";
 import type { SceneSpec } from "@/domain/scene/types";
@@ -247,4 +251,65 @@ describe("AcousticFrameClient", () => {
       expect(worker.terminateCalls).toBe(failureMode === "unavailable" ? 0 : 1);
     },
   );
+});
+
+describe("Classic frame acceptance under continuous edits (ADR 0008)", () => {
+  it("forwards the Worker static fingerprint with the frame", () => {
+    const timers = new FakeTimers();
+    const worker = new FakeWorker();
+    const fingerprints: (string | undefined)[] = [];
+    const client = new AcousticFrameClient({
+      cancel: (timer) => timers.cancel(timer as number),
+      cancelFrame: (frame) => timers.cancel(frame as number),
+      createWorker: () => worker,
+      onFallback: () => undefined,
+      onFrame: (_, __, staticFingerprint) => fingerprints.push(staticFingerprint),
+      schedule: timers.schedule,
+      scheduleFrame: timers.schedule,
+    });
+    const scene = sceneAt(70);
+    client.start(scene);
+    worker.onmessage?.({
+      data: {
+        type: "FRAME",
+        revision: scene.revision,
+        frame: computeAcousticFrame(scene),
+        staticFingerprint: "abc123",
+        metrics: { computeMs: 1, completedAtMs: 1 },
+      },
+    } as MessageEvent<AcousticWorkerResponse>);
+
+    expect(fingerprints).toEqual(["abc123"]);
+  });
+
+  it("accepts a pose-lagging frame and rejects a structure-stale one", () => {
+    const frame = computeAcousticFrame(sceneAt(80));
+    const fingerprint = createClassicStaticContext(sceneAt(80)).fingerprint;
+    const moved = sceneAt(83);
+    moved.listener = { ...moved.listener, position: { x: 3.4, y: 4 } };
+    const closed = sceneAt(83);
+    closed.portals[0]!.open = false;
+
+    expect(acceptsClassicWorkerFrame(frame, fingerprint, sceneAt(80))).toBe(true);
+    expect(acceptsClassicWorkerFrame(frame, fingerprint, moved)).toBe(true);
+    expect(acceptsClassicWorkerFrame(frame, undefined, moved)).toBe(false);
+    expect(acceptsClassicWorkerFrame(frame, fingerprint, closed)).toBe(false);
+  });
+
+  it("holds a lagging frame only while the structure and sources are unchanged", () => {
+    const frame = computeAcousticFrame(sceneAt(90));
+    const verifiedAgainst = sceneAt(91);
+    const moved = sceneAt(95);
+    moved.sources[1]!.position = { x: 9.5, y: 2 };
+    const restructured = sceneAt(96);
+    restructured.walls[0] = { ...restructured.walls[0]!, materialId: "wood_medium" };
+    const fewer = sceneAt(96);
+    fewer.sources.splice(1, 1);
+
+    expect(holdsClassicFrame(frame, null, sceneAt(90))).toBe(true);
+    expect(holdsClassicFrame(frame, null, moved)).toBe(false);
+    expect(holdsClassicFrame(frame, verifiedAgainst, moved)).toBe(true);
+    expect(holdsClassicFrame(frame, verifiedAgainst, restructured)).toBe(false);
+    expect(holdsClassicFrame(frame, verifiedAgainst, fewer)).toBe(false);
+  });
 });

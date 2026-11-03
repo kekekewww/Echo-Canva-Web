@@ -279,6 +279,7 @@ describe("Hybrid direct Worker pool", () => {
 
     expect(results).toEqual([{
       frame: computeHybridDirectFrame(geometry, 20),
+      staticFingerprint: geometry.staticGeometryHash,
       source: "worker",
       notice: null,
       metrics: {
@@ -377,26 +378,48 @@ describe("Hybrid direct Worker pool", () => {
     }
   });
 
-  it("suppresses an obsolete in-flight frame and publishes only the newest pending identity", () => {
+  it("publishes an in-flight frame as pose-lagging and then only the newest pending identity", () => {
     const { pool, results, timers, workers } = createHarness();
     const first = pair(2, 40);
     const intermediate = pair(2, 41);
     const latest = pair(2, 42);
     pool.update(...first);
     timers.flush();
+    // Same static geometry and sources, newer revisions: pose-only updates.
     pool.update(...intermediate);
     pool.update(...latest);
     timers.flush();
 
     workers.forEach((worker) => worker.resolve());
-    expect(results).toEqual([]);
+    expect(results.map(({ frame }) => frame.revision)).toEqual([40]);
+    expect(results[0]!.staticFingerprint).toBe(latest[1].staticGeometryHash);
     timers.flush();
     workers.forEach((worker) => worker.resolve());
-    expect(results).toHaveLength(1);
-    expect(results[0]!.frame).toMatchObject({
+    expect(results).toHaveLength(2);
+    expect(results[1]!.frame).toMatchObject({
       revision: 42,
       classicProjectionHash: latest[0].compatibility.classicProjectionHash,
     });
+  });
+
+  it.each([
+    ["a closed Portal", (document: SceneDocumentV2) => {
+      document.baseScene.portals = document.baseScene.portals.map((portal) => ({ ...portal, open: false }));
+    }],
+    ["a removed source", (document: SceneDocumentV2) => { document.baseScene.sources.splice(1, 1); }],
+  ])("still discards the in-flight frame when the pending document has %s", (_, mutate) => {
+    const { pool, results, timers, workers } = createHarness();
+    pool.update(...pair(2, 40));
+    timers.flush();
+    const changed = structuredClone(pair(2, 41)[0]);
+    mutate(changed);
+    pool.update(changed, compileHybridGeometry(changed));
+
+    workers.forEach((worker) => worker.resolve());
+    expect(results).toEqual([]);
+    timers.flush();
+    workers.slice(0, changed.baseScene.sources.length).forEach((worker) => worker.resolve());
+    expect(results.map(({ frame }) => frame.revision)).toEqual([41]);
   });
 
   it("rejects a document paired with geometry compiled for a different document", () => {
@@ -897,6 +920,7 @@ describe("Hybrid direct Worker pool", () => {
 
     expect(results).toEqual([{
       frame: computeHybridDirectFrame(current[1], 125),
+      staticFingerprint: current[1].staticGeometryHash,
       source: "fallback",
       notice: "Hybrid Worker pool unavailable; using deterministic serial fallback.",
       metrics: {

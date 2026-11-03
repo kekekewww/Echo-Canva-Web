@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   computeAcousticFrame,
   computeClassicSourceResults,
+  createClassicStaticContext,
   type ClassicStaticContext,
 } from "@/acoustics/compute-frame";
 import { CONCRETE_PARTITION_PRESET } from "@/domain/presets/concrete-partition";
@@ -137,6 +138,10 @@ class FakeShardWorker {
   }
 }
 
+function computeClassicStaticFingerprint(scene: SceneSpec): string {
+  return createClassicStaticContext(scene).fingerprint;
+}
+
 function sceneWithSources(count: number, revision = 1): SceneSpec {
   const scene = structuredClone(CONCRETE_PARTITION_PRESET);
   scene.revision = revision;
@@ -224,6 +229,7 @@ describe("Classic source Worker pool", () => {
       type: "FRAME",
       revision: 12,
       frame: computeAcousticFrame(scene, 100),
+      staticFingerprint: computeClassicStaticFingerprint(scene),
       metrics: {
         computeMs: 20,
         completedAtMs: 120,
@@ -312,7 +318,7 @@ describe("Classic source Worker pool", () => {
     ]);
   });
 
-  it("keeps one job in flight, suppresses obsolete output, and computes only the newest pending scene", () => {
+  it("keeps one job in flight, publishes it as pose-lagging, and computes only the newest pending scene", () => {
     const timers = new FakeTimers();
     const workers: FakeShardWorker[] = [];
     const frames: AcousticWorkerResponse[] = [];
@@ -330,17 +336,102 @@ describe("Classic source Worker pool", () => {
 
     pool.postMessage({ type: "UPDATE_SCENE", scene: sceneWithSources(2, 40) });
     timers.flush();
+    // Newer revisions with the same static structure and sources: pose-only updates.
     pool.postMessage({ type: "UPDATE_SCENE", scene: sceneWithSources(2, 41) });
     pool.postMessage({ type: "UPDATE_SCENE", scene: sceneWithSources(2, 42) });
     timers.flush();
 
     expect(workers.map((worker) => worker.posted.filter(({ type }) => type === "COMPUTE_SHARD").length)).toEqual([1, 1]);
     workers.forEach((worker) => worker.resolve(1));
-    expect(frames).toEqual([]);
+    // The complete in-flight frame is published as pose-lagging (ADR 0008).
+    expect(frames.map((response) => response.revision)).toEqual([40]);
+    const fingerprint = (frames[0] as Extract<AcousticWorkerResponse, { type: "FRAME" }>).staticFingerprint;
+    expect(fingerprint).toBe(computeClassicStaticFingerprint(sceneWithSources(2, 42)));
 
     timers.flush();
+    expect(workers.map((worker) => worker.posted.filter(({ type }) => type === "COMPUTE_SHARD").length)).toEqual([2, 2]);
     workers.forEach((worker) => worker.resolve(1));
-    expect(frames.map((response) => response.revision)).toEqual([42]);
+    expect(frames.map((response) => response.revision)).toEqual([40, 42]);
+  });
+
+  it.each([
+    ["a wall material change", (scene: SceneSpec) => { scene.walls[0]!.materialId = "wood_medium"; }],
+    ["a Portal closing", (scene: SceneSpec) => { scene.portals[0]!.open = false; }],
+    ["a settings change", (scene: SceneSpec) => { scene.settings.maxEarlyReflections = 2; }],
+    ["a removed source", (scene: SceneSpec) => { scene.sources.splice(1, 1); }],
+    ["reordered sources", (scene: SceneSpec) => { scene.sources.reverse(); }],
+  ])("still discards the in-flight frame when the pending scene has %s", (_, mutate) => {
+    const timers = new FakeTimers();
+    const workers: FakeShardWorker[] = [];
+    const frames: AcousticWorkerResponse[] = [];
+    const pool = createClassicSourcePool({
+      cancel: (timer) => timers.cancel(timer as number),
+      createWorker: () => {
+        const worker = new FakeShardWorker();
+        workers.push(worker);
+        return worker;
+      },
+      hardwareConcurrency: 8,
+      schedule: timers.schedule,
+    });
+    pool.onmessage = (event) => frames.push(event.data);
+
+    pool.postMessage({ type: "UPDATE_SCENE", scene: sceneWithSources(2, 40) });
+    timers.flush();
+    const changed = sceneWithSources(2, 41);
+    mutate(changed);
+    pool.postMessage({ type: "UPDATE_SCENE", scene: changed });
+    workers.forEach((worker) => worker.resolve(1));
+
+    expect(frames).toEqual([]);
+    timers.flush();
+    workers.slice(0, changed.sources.length).forEach((worker) => worker.resolve(1));
+    expect(frames.map((response) => response.revision)).toEqual([41]);
+  });
+
+  it("keeps publishing pose-lagging frames during a continuous 62.5 Hz drag with 20 ms jobs", () => {
+    // Before ADR 0008 every frame was discarded here: a newer pose arrived during each 20 ms job.
+    const timeline = new FakeTimeline();
+    const frames: Extract<AcousticWorkerResponse, { type: "FRAME" }>[] = [];
+    let latestRevision = 0;
+    const lagsAtPublish: number[] = [];
+    const pool = createClassicSourcePool({
+      cancel: (timer) => timeline.cancel(timer as number),
+      createWorker: () => {
+        const worker = new FakeShardWorker();
+        const post = worker.postMessage.bind(worker);
+        worker.postMessage = (request) => {
+          post(request);
+          if (request.type === "COMPUTE_SHARD") timeline.schedule(() => worker.resolve(1), 20);
+        };
+        return worker;
+      },
+      hardwareConcurrency: 8,
+      jobTimeoutMs: 0,
+      now: () => timeline.nowMs,
+      schedule: timeline.schedule,
+    });
+    pool.onmessage = (event) => {
+      if (event.data.type !== "FRAME") return;
+      frames.push(event.data);
+      lagsAtPublish.push(latestRevision - event.data.revision);
+    };
+
+    const dragMs = 3_000;
+    for (let elapsedMs = 0; elapsedMs <= dragMs; elapsedMs += 16) {
+      latestRevision += 1;
+      const scene = sceneWithSources(2, latestRevision);
+      scene.sources[0]!.position = { x: 8 + elapsedMs / dragMs, y: 1 };
+      pool.postMessage({ type: "UPDATE_SCENE", scene });
+      timeline.advance(16);
+    }
+
+    // The fake clock advances in 16 ms pointer steps, so each 83.3 ms interval (12 Hz) and each
+    // 20 ms job round up to 96 ms + 32 ms: about 3000 / 128 = 23 frames (0 before ADR 0008).
+    expect(frames.length).toBeGreaterThanOrEqual(20);
+    expect(frames.every((frame) => frame.frame.sources.length === 2)).toBe(true);
+    // Each published frame trails the latest pose by at most a couple of pointer events.
+    expect(Math.max(...lagsAtPublish)).toBeLessThanOrEqual(2);
   });
 
   it("reschedules the 10-15 Hz cadence using the newest pending scene rate", () => {
