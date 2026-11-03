@@ -101,6 +101,22 @@ function requestResult<T>(request: IDBRequest<T>): Promise<T> {
   });
 }
 
+/**
+ * Settles a readwrite request only when its transaction outcome is known.
+ * IDBRequest success means the operation was queued in the transaction, not
+ * that the transaction committed; it can still abort (quota, I/O, explicit
+ * abort). Resolve on `complete`; reject on request `error`, transaction
+ * `error`, or `abort`.
+ */
+function transactionCommitted(transaction: IDBTransaction, request: IDBRequest): Promise<void> {
+  return new Promise((resolve, reject) => {
+    request.onerror = () => reject(request.error ?? new Error("IndexedDB request failed."));
+    transaction.oncomplete = () => resolve();
+    transaction.onerror = () => reject(transaction.error ?? new Error("IndexedDB transaction failed."));
+    transaction.onabort = () => reject(transaction.error ?? new Error("IndexedDB transaction aborted."));
+  });
+}
+
 export class IndexedDbAudioStore implements LocalAudioStore {
   private readonly database: Promise<IDBDatabase>;
 
@@ -124,12 +140,14 @@ export class IndexedDbAudioStore implements LocalAudioStore {
 
   async put(record: LocalAudioRecord): Promise<void> {
     const database = await this.database;
-    await requestResult(database.transaction("assets", "readwrite").objectStore("assets").put(record));
+    const transaction = database.transaction("assets", "readwrite");
+    await transactionCommitted(transaction, transaction.objectStore("assets").put(record));
   }
 
   async delete(id: string): Promise<void> {
     const database = await this.database;
-    await requestResult(database.transaction("assets", "readwrite").objectStore("assets").delete(id));
+    const transaction = database.transaction("assets", "readwrite");
+    await transactionCommitted(transaction, transaction.objectStore("assets").delete(id));
   }
 }
 
