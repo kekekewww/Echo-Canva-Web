@@ -18,11 +18,11 @@ Generated dependency/build/test directories are absent from that source tree.
 
 | Classification | Files | Disposition |
 | --- | ---: | --- |
-| Active | 220 | Retained runtime, domain, research helpers, tests, reviewed benchmark oracles, configuration and maintenance contracts. Original versions remain in extraction history. |
+| Active | 214 | Retained runtime, domain, research helpers, tests, reviewed benchmark oracles, configuration and maintenance contracts. Original versions remain in extraction history. |
 | Historical | 66 | Moved, byte for byte, into `docs/archive/build-week/` with original relative paths. |
 | Generated | 4 | Procedural WAVs can be reproduced with `scripts/generate-audio-assets.mjs`; retained because the browser and clean-checkout tests require them. |
 | Redundant | 0 | No removal justified. Text/source/JSON byte-hash comparison found no exact duplicates; older submission copies are historical variants. |
-| Unknown | 1 | `src/components/workbench/EchoWorkbench.tsx` has no static inbound source/test import. Retained pending a deliberate retirement analysis; shared workbench children are active. |
+| Retired | 7 | The unreachable legacy `EchoWorkbench` shell and the files only it reached (`AiScenePanel`, `Inspector`, `ReadoutStrip`, `Transport`, `SceneTransfer`, and `tests/unit/transport.test.ts`) were removed in [#11](https://github.com/kekekewww/Echo-Canva-Web/issues/11) after a consumer map showed no route, live component, hook or other test imported them. Original bytes remain in the immutable extraction commit. `SceneEditor` and `src/domain/editor` stay active. |
 
 Original tree counts: 119 source files, 78 test files (69 unit, eight Chromium
 E2E specifications, one AI fixture), 32 documentation files, 20 submission-pack
@@ -70,8 +70,9 @@ are evidence, not a formal proof of security or complete branch coverage.
 
 ## Remaining debt and verification limits
 
-- Resolve or safely retire the unreachable legacy workbench shell after its
-  consumers, types, CSS and tests are mapped explicitly.
+- CSS selectors used only by the retired legacy shell may remain in
+  `src/app/globals.css`; prune them in a separate, visually verified change
+  (follow-up to [#11](https://github.com/kekekewww/Echo-Canva-Web/issues/11)).
 - Revisit the original ESLint 9 support warning through an independent tooling
   change; this extraction does not change the linter's major version.
 - Track the development-only `braces` recursion advisory while the upstream
