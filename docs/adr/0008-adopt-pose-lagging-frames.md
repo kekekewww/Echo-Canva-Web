@@ -1,4 +1,4 @@
-# 0007 — Adopt pose-lagging complete frames during continuous edits
+# 0008 — Adopt pose-lagging complete frames during continuous edits
 
 - Date: 2026-11-03
 - Status: Proposed

@@ -6,7 +6,7 @@ import {
 import type { SceneSpec } from "@/domain/scene/types";
 
 /**
- * Frame acceptance under continuous edits (ADR 0007).
+ * Frame acceptance under continuous edits (ADR 0008).
  *
  * A complete frame computed for revision R may be adopted while the scene is
  * already at a newer revision R+k only when the newer scene differs in pose

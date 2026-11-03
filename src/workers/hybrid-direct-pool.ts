@@ -56,7 +56,7 @@ export type HybridDirectPoolMetrics = Readonly<{
 
 export type HybridDirectPoolResult = Readonly<{
   frame: HybridDirectFrame;
-  /** Static geometry hash the frame was computed against (ADR 0007). */
+  /** Static geometry hash the frame was computed against (ADR 0008). */
   staticFingerprint: string;
   source: "worker" | "fallback";
   metrics: HybridDirectPoolMetrics;
@@ -595,7 +595,7 @@ export function createHybridDirectPool(
         },
       };
       // Publish a complete frame as pose-lagging when the newer pending document
-      // differs only in pose; a structural change still discards it (ADR 0007).
+      // differs only in pose; a structural change still discards it (ADR 0008).
       const obsolete = pendingPair !== null && !(
         pendingPair.geometry.staticGeometryHash === job.snapshot.staticFingerprint
         && sameIdOrder(job.snapshot.sources, pendingPair.document.baseScene.sources)

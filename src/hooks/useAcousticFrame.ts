@@ -37,7 +37,7 @@ export type AcousticFrameMetrics = Readonly<{
 }>;
 
 export type AcousticFrameResult = Readonly<{
-  /** Accepted frame: for the current revision, or pose-lagging (ADR 0007). */
+  /** Accepted frame: for the current revision, or pose-lagging (ADR 0008). */
   frame: AcousticFrame | null;
   /** True when `frame` was computed for an older revision that differs only in pose. */
   lagging: boolean;
@@ -226,7 +226,7 @@ function cancelBrowserFrame(frame: unknown): void {
 
 /**
  * Decides whether a Worker frame may replace the held frame for `latest`:
- * either it is for the latest revision, or it is pose-lagging (ADR 0007).
+ * either it is for the latest revision, or it is pose-lagging (ADR 0008).
  */
 export function acceptsClassicWorkerFrame(
   frame: AcousticFrame,

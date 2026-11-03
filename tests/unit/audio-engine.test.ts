@@ -1422,7 +1422,7 @@ describe("AudioEngine automation dedupe (#25)", () => {
   });
 });
 
-describe("AudioEngine pose-lagging frames (#23, ADR 0007)", () => {
+describe("AudioEngine pose-lagging frames (#23, ADR 0008)", () => {
   it("rejects an older-revision frame by default and accepts it when the caller marks it lagging", async () => {
     const harness = makeHarness();
     const computed = closedDoorScene(1, 10);

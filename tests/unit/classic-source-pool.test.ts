@@ -343,7 +343,7 @@ describe("Classic source Worker pool", () => {
 
     expect(workers.map((worker) => worker.posted.filter(({ type }) => type === "COMPUTE_SHARD").length)).toEqual([1, 1]);
     workers.forEach((worker) => worker.resolve(1));
-    // The complete in-flight frame is published as pose-lagging (ADR 0007).
+    // The complete in-flight frame is published as pose-lagging (ADR 0008).
     expect(frames.map((response) => response.revision)).toEqual([40]);
     const fingerprint = (frames[0] as Extract<AcousticWorkerResponse, { type: "FRAME" }>).staticFingerprint;
     expect(fingerprint).toBe(computeClassicStaticFingerprint(sceneWithSources(2, 42)));
@@ -390,7 +390,7 @@ describe("Classic source Worker pool", () => {
   });
 
   it("keeps publishing pose-lagging frames during a continuous 62.5 Hz drag with 20 ms jobs", () => {
-    // Before ADR 0007 every frame was discarded here: a newer pose arrived during each 20 ms job.
+    // Before ADR 0008 every frame was discarded here: a newer pose arrived during each 20 ms job.
     const timeline = new FakeTimeline();
     const frames: Extract<AcousticWorkerResponse, { type: "FRAME" }>[] = [];
     let latestRevision = 0;
@@ -427,7 +427,7 @@ describe("Classic source Worker pool", () => {
     }
 
     // The fake clock advances in 16 ms pointer steps, so each 83.3 ms interval (12 Hz) and each
-    // 20 ms job round up to 96 ms + 32 ms: about 3000 / 128 = 23 frames (0 before ADR 0007).
+    // 20 ms job round up to 96 ms + 32 ms: about 3000 / 128 = 23 frames (0 before ADR 0008).
     expect(frames.length).toBeGreaterThanOrEqual(20);
     expect(frames.every((frame) => frame.frame.sources.length === 2)).toBe(true);
     // Each published frame trails the latest pose by at most a couple of pointer events.

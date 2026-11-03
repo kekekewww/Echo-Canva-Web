@@ -68,7 +68,7 @@ describe("Hybrid viewport acoustic presentation", () => {
     const staleProjection = structuredClone(document);
     (staleProjection.compatibility as { classicProjectionHash: string }).classicProjectionHash = "wrong";
 
-    // A newer revision with the same static geometry and sources is pose-lagging (ADR 0007);
+    // A newer revision with the same static geometry and sources is pose-lagging (ADR 0008);
     // a frame for different static geometry is never accepted.
     expect(resolveHybridAcousticPresentation(state, staleRevision, geometry.staticGeometryHash))
       .toMatchObject({ accepted: true, lagging: true, worker: "Fallback" });

@@ -468,7 +468,7 @@ export function createClassicSourcePool(
         },
       };
       // A newer pending scene that differs only in pose does not invalidate this
-      // complete frame; publish it as pose-lagging (ADR 0007). A structural change
+      // complete frame; publish it as pose-lagging (ADR 0008). A structural change
       // (static fingerprint or source set) still discards it.
       const obsolete = pendingScene !== null && !differsOnlyInPose(job, pendingScene);
       lastFrameAtMs = completedAtMs;

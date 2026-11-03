@@ -12,7 +12,7 @@ import {
 
 export type HybridDirectPathsState = Readonly<{
   frame: HybridDirectFrame;
-  /** Static geometry hash the frame was computed against (ADR 0007). */
+  /** Static geometry hash the frame was computed against (ADR 0008). */
   staticFingerprint: string;
   source: "worker" | "fallback";
   computeMs: number;

@@ -142,7 +142,7 @@ export class AudioEngine {
    * mounted at a time, so the latest accepted source of truth wins.
    *
    * `lagging: true` admits a frame for an older revision that the caller has
-   * verified differs from the current scene only in pose (ADR 0007). Its
+   * verified differs from the current scene only in pose (ADR 0008). Its
    * directions are applied relative to the current listener pose.
    */
   applyAcousticFrame(frame: AcousticFrame, options: Readonly<{ lagging?: boolean }> = {}): void {

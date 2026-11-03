@@ -253,7 +253,7 @@ describe("AcousticFrameClient", () => {
   );
 });
 
-describe("Classic frame acceptance under continuous edits (ADR 0007)", () => {
+describe("Classic frame acceptance under continuous edits (ADR 0008)", () => {
   it("forwards the Worker static fingerprint with the frame", () => {
     const timers = new FakeTimers();
     const worker = new FakeWorker();

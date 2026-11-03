@@ -32,7 +32,7 @@ import { sameIdOrder } from "@/acoustics/frame-acceptance";
 /**
  * Accepts the frame for the current revision and projection, or a pose-lagging
  * frame: one computed for an older revision against the same static geometry
- * and the same ordered sources (ADR 0007). A frame for different geometry is
+ * and the same ordered sources (ADR 0008). A frame for different geometry is
  * never accepted.
  */
 export function resolveHybridAcousticPresentation(

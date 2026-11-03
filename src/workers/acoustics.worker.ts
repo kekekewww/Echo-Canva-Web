@@ -25,7 +25,7 @@ export type AcousticWorkerResponse =
     metrics: WorkerMetrics;
     /**
      * Static-structure fingerprint the frame was computed against. Present for
-     * pooled frames, so a pose-lagging frame can be adopted (ADR 0007).
+     * pooled frames, so a pose-lagging frame can be adopted (ADR 0008).
      */
     staticFingerprint?: string;
   }
