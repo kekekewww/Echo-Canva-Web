@@ -1,0 +1,17 @@
+[WebServer] (node:39712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `pnpm --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:41292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `pnpm --trace-warnings ...` to show where the warning was created)
+[WebServer] $ next start "--hostname" "127.0.0.1" "--port" "3000"
+[WebServer] (node:14488) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+
+Running 1 test using 1 worker
+
+(node:42904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+audio-render-capacity {"environment":{"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36","hardwareConcurrency":32},"settings":{"dragMs":10000,"idleMs":2000,"sampleEveryMs":250,"pointerStepMs":16},"idleRenderCapacity":{"count":8,"mean":0.11894870449187356,"p50":0.09461762052721259,"p95":0.2973027783411073,"max":0.2973027783411073},"dragRenderCapacity":{"count":39,"mean":0.07491470262523511,"p50":0.06662646970153753,"p95":0.12506258135576248,"max":0.20482881456560456},"dragCallbackIntervalMeanMs":{"count":39,"mean":10.007508160375945,"p50":10.000898988342604,"p95":10.05211018922488,"max":10.064952531102714},"dragCallbackIntervalStdMs":{"count":39,"mean":0.4657565678047236,"p50":0.20457277041227656,"p95":1.8337948963124244,"max":2.056437935494159},"pointerMoves":273,"distinctAcceptedRevisionsSampledDuringDrag":39,"samplesDuringDrag":39}
+  ok 1 [chromium] › tests\e2e\audio-render-capacity.spec.ts:35:5 › records Web Audio render capacity and accepted frames during a continuous source drag (12.9s)
+
+  1 passed (16.9s)

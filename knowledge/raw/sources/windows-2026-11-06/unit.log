@@ -1,0 +1,8 @@
+
+ RUN  v4.1.11 D:/Developing/Echo Canvas Web/echo-canvas-research
+
+
+ Test Files  82 passed (82)
+      Tests  699 passed (699)
+   Start at  01:37:17
+   Duration  20.69s (transform 63.45s, setup 0ms, import 152.65s, tests 14.89s, environment 28ms)

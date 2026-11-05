@@ -2,6 +2,8 @@
 
 Start with [README](../README.md), [CONTRIBUTING](../CONTRIBUTING.md), and [onboarding](community/ONBOARDING.md).
 
+For ongoing engineering research and agent handoffs, use the [project memory index](../knowledge/wiki/index.md).
+
 ## Maintained references
 
 | Document | Purpose |

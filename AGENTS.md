@@ -58,6 +58,8 @@ Record actual pass/fail/unverified evidence and environment. Distinguish numeric
 
 ## Maintenance discipline
 
+For sustained work, start at the [project memory index](knowledge/wiki/index.md) and use the [shared knowledge schema](knowledge/schema.md) for evidence, task claims, and handoffs.
+
 Respect user edits; use an independent branch/directory for broad maintenance. Prefer minimal focused changes and Conventional Commit subjects. No automatic public repository creation, image publication, production deployment, upstream push, or PR merge without user authorization.
 
 Update docs and ADRs for consequential schema/model/security/dependency/deployment decisions. Archive only after verifying purpose, references, necessary bytes, and attribution. Names such as MVP, Experiment, Artifact, or Build Week alone never justify deletion.

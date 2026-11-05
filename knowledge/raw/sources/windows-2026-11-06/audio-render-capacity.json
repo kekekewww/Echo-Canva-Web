@@ -1,0 +1,43 @@
+{
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+    "hardwareConcurrency": 32
+  },
+  "settings": {
+    "dragMs": 10000,
+    "idleMs": 2000,
+    "sampleEveryMs": 250,
+    "pointerStepMs": 16
+  },
+  "idleRenderCapacity": {
+    "count": 8,
+    "mean": 0.11894870449187356,
+    "p50": 0.09461762052721259,
+    "p95": 0.2973027783411073,
+    "max": 0.2973027783411073
+  },
+  "dragRenderCapacity": {
+    "count": 39,
+    "mean": 0.07491470262523511,
+    "p50": 0.06662646970153753,
+    "p95": 0.12506258135576248,
+    "max": 0.20482881456560456
+  },
+  "dragCallbackIntervalMeanMs": {
+    "count": 39,
+    "mean": 10.007508160375945,
+    "p50": 10.000898988342604,
+    "p95": 10.05211018922488,
+    "max": 10.064952531102714
+  },
+  "dragCallbackIntervalStdMs": {
+    "count": 39,
+    "mean": 0.4657565678047236,
+    "p50": 0.20457277041227656,
+    "p95": 1.8337948963124244,
+    "max": 2.056437935494159
+  },
+  "pointerMoves": 273,
+  "distinctAcceptedRevisionsSampledDuringDrag": 39,
+  "samplesDuringDrag": 39
+}
