@@ -67,7 +67,6 @@ function runHybridVisibility(input: { patches: PatchSpec[]; queries: VisibilityQ
   return input.queries.map(({ start, end, allowedWallIds }) => {
     const result: Record<string, unknown> = {
       hits: intersectSegmentBvh(start, end, bvh),
-      reverseHits: intersectSegmentBvh(end, start, bvh),
       hasHit: hasSegmentBvhHit(start, end, bvh),
       reverseHasHit: hasSegmentBvhHit(end, start, bvh),
     };

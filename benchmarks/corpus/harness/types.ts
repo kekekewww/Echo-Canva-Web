@@ -13,6 +13,7 @@ export type CorpusCaseDefinition = {
   id: string;
   mode: "classic-2d5d" | "hybrid-3d";
   kind: CorpusCaseKind;
+  expectedOutcome: "ok" | "error";
   tags: string[];
   scenario: "S1" | "S2" | "S3" | "S4" | "S5" | "S6" | "S7" | null;
   source: {

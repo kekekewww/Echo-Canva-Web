@@ -9,7 +9,7 @@ import { projectHybridDocument } from "@/domain/workspace/projections";
 import type { AcousticPrimitive } from "@/domain/workspace/types";
 
 import type { CorpusCaseDefinition } from "../types";
-import { cloneScene, sceneCounts, STRESS_EXTRA_SOURCES_NOTE, stressScene } from "./classic";
+import { cloneScene, sceneCounts, stressScene, stressSource } from "./classic";
 
 const DIRECT_TEST = "tests/unit/hybrid3d-direct.test.ts";
 
@@ -106,6 +106,7 @@ function hybridFrameCase(
     id,
     mode: "hybrid-3d",
     kind: "hybrid-frame",
+    expectedOutcome: "ok",
     tags,
     scenario,
     source,
@@ -116,11 +117,6 @@ function hybridFrameCase(
 }
 
 export function hybridCaseDefinitions(): CorpusCaseDefinition[] {
-  const stressSource = (count: 1 | 2 | 4): CorpusCaseDefinition["source"] => ({
-    type: "derived",
-    refs: ["src/domain/presets/stress-100-walls.ts"],
-    ...(count > 1 ? { notes: STRESS_EXTRA_SOURCES_NOTE } : {}),
-  });
   return [
     hybridFrameCase(
       "H001_PARTITION_PORTAL_OPEN",

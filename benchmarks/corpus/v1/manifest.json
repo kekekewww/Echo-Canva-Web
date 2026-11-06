@@ -26,6 +26,7 @@
         "path": "benchmarks/corpus/v1/expected/C001_CONCRETE_DEFAULT.json",
         "sha256": "6381b2b799f92017f0c75013269219536b100c27125fe987cb01b87cad2744e4"
       },
+      "expectedOutcome": "ok",
       "id": "C001_CONCRETE_DEFAULT",
       "input": {
         "bytes": 2837,
@@ -62,6 +63,7 @@
         "path": "benchmarks/corpus/v1/expected/C002_CONCRETE_CLOSED_PORTAL.json",
         "sha256": "5864fcf38ba9bc9ca3d58e560c7270d4932f3b6093f1ce88cdadca9f1581902a"
       },
+      "expectedOutcome": "ok",
       "id": "C002_CONCRETE_CLOSED_PORTAL",
       "input": {
         "bytes": 2838,
@@ -97,6 +99,7 @@
         "path": "benchmarks/corpus/v1/expected/C003_CONCRETE_PORTAL_ROUTE.json",
         "sha256": "d77736d6aca1c97b82364b67a6ff7c30d53dda83d6ab5cba1814e078143ec26e"
       },
+      "expectedOutcome": "ok",
       "id": "C003_CONCRETE_PORTAL_ROUTE",
       "input": {
         "bytes": 2839,
@@ -132,6 +135,7 @@
         "path": "benchmarks/corpus/v1/expected/C004_CONCRETE_BLOCKED.json",
         "sha256": "47c56e5015c9642808bd24139b569e80e5820c7d4edcd2c187e5d70e12e628b8"
       },
+      "expectedOutcome": "ok",
       "id": "C004_CONCRETE_BLOCKED",
       "input": {
         "bytes": 2840,
@@ -167,6 +171,7 @@
         "path": "benchmarks/corpus/v1/expected/C005_CONCRETE_MOVED_LISTENER.json",
         "sha256": "9014159e229cde6dd95b7659aab754c84fe83a2ff61d85b28d82a8eb7b675623"
       },
+      "expectedOutcome": "ok",
       "id": "C005_CONCRETE_MOVED_LISTENER",
       "input": {
         "bytes": 2841,
@@ -202,6 +207,7 @@
         "path": "benchmarks/corpus/v1/expected/C006_HARD_ROOM.json",
         "sha256": "90164ee87777fcf218411a49abcfa1e69a1677cc890f15fb60216d28ad62a62e"
       },
+      "expectedOutcome": "ok",
       "id": "C006_HARD_ROOM",
       "input": {
         "bytes": 2067,
@@ -238,6 +244,7 @@
         "path": "benchmarks/corpus/v1/expected/C007_HARD_ROOM_MOVED_LISTENER.json",
         "sha256": "9a62d36d5239813be44f6d5c6efc629f7eb0be4eb090539ef52b93725d638335"
       },
+      "expectedOutcome": "ok",
       "id": "C007_HARD_ROOM_MOVED_LISTENER",
       "input": {
         "bytes": 2067,
@@ -273,6 +280,7 @@
         "path": "benchmarks/corpus/v1/expected/C008_TREATED_ROOM.json",
         "sha256": "f673b514c9c60616d9257cbfd7168f4eac340570d806b11c25fdb191a6babaff"
       },
+      "expectedOutcome": "ok",
       "id": "C008_TREATED_ROOM",
       "input": {
         "bytes": 2112,
@@ -309,6 +317,7 @@
         "path": "benchmarks/corpus/v1/expected/C009_TREATED_ROOM_MOVED_SOURCE.json",
         "sha256": "681a70abfbfa04065a2ce594426cdaf3f695481ffc413dc54fb90e7a04abed23"
       },
+      "expectedOutcome": "ok",
       "id": "C009_TREATED_ROOM_MOVED_SOURCE",
       "input": {
         "bytes": 2112,
@@ -344,6 +353,7 @@
         "path": "benchmarks/corpus/v1/expected/C010_STRESS_100_WALLS.json",
         "sha256": "2257ecbf9babb3a5def810625c1cec17acc8bd1f1131904515881ce4e6db5731"
       },
+      "expectedOutcome": "ok",
       "id": "C010_STRESS_100_WALLS",
       "input": {
         "bytes": 29994,
@@ -380,6 +390,7 @@
         "path": "benchmarks/corpus/v1/expected/C011_STRESS_1_SOURCE.json",
         "sha256": "406e1618d766e3ed1d426b491166bc7bea0b55074809e0ee68441d3341929f3c"
       },
+      "expectedOutcome": "ok",
       "id": "C011_STRESS_1_SOURCE",
       "input": {
         "bytes": 29994,
@@ -415,6 +426,7 @@
         "path": "benchmarks/corpus/v1/expected/C012_STRESS_2_SOURCES.json",
         "sha256": "0c2ec36fa18473ca6e322c01529675cc1ba1c667b7cc62673073dea439feb83d"
       },
+      "expectedOutcome": "ok",
       "id": "C012_STRESS_2_SOURCES",
       "input": {
         "bytes": 30249,
@@ -451,6 +463,7 @@
         "path": "benchmarks/corpus/v1/expected/C013_STRESS_4_SOURCES.json",
         "sha256": "39d5751bc60ab91196d6e536cb75b4a7c7df1c07045519b888b7b87a50b02eab"
       },
+      "expectedOutcome": "ok",
       "id": "C013_STRESS_4_SOURCES",
       "input": {
         "bytes": 30764,
@@ -487,6 +500,7 @@
         "path": "benchmarks/corpus/v1/expected/C014_REFLECTION_HEAVY.json",
         "sha256": "bf0e3483dab1fef34fa64e1436dd1f17387b0777a5ca39169ce3d2bb3a4cd88c"
       },
+      "expectedOutcome": "ok",
       "id": "C014_REFLECTION_HEAVY",
       "input": {
         "bytes": 2072,
@@ -524,6 +538,7 @@
         "path": "benchmarks/corpus/v1/expected/H001_PARTITION_PORTAL_OPEN.json",
         "sha256": "b007a132928f3f15616cc2ed1344c1bcbe625095b6c2dfef4e4522c3cb4c1504"
       },
+      "expectedOutcome": "ok",
       "id": "H001_PARTITION_PORTAL_OPEN",
       "input": {
         "bytes": 3552,
@@ -561,6 +576,7 @@
         "path": "benchmarks/corpus/v1/expected/H002_PARTITION_PORTAL_CLOSED.json",
         "sha256": "e2d8cb7c801f65198556fe291ceb1a0fceffe2722bc8cc24c50fe0e9fe2eb031"
       },
+      "expectedOutcome": "ok",
       "id": "H002_PARTITION_PORTAL_CLOSED",
       "input": {
         "bytes": 3553,
@@ -599,6 +615,7 @@
         "path": "benchmarks/corpus/v1/expected/H003_SECOND_ORDER_BLOCKED.json",
         "sha256": "cac78f7cdfd5f7fc4aff6b8fc526b479b039837fd582f50505a51e0c3114ea9f"
       },
+      "expectedOutcome": "ok",
       "id": "H003_SECOND_ORDER_BLOCKED",
       "input": {
         "bytes": 3148,
@@ -637,6 +654,7 @@
         "path": "benchmarks/corpus/v1/expected/H004_DEFAULT_PROJECT.json",
         "sha256": "ae40c99944a0a3e77d7b1cffcae429062c37dcad9f0624bb3549f861c816af9a"
       },
+      "expectedOutcome": "ok",
       "id": "H004_DEFAULT_PROJECT",
       "input": {
         "bytes": 4383,
@@ -672,6 +690,7 @@
         "path": "benchmarks/corpus/v1/expected/H005_HARD_ROOM.json",
         "sha256": "cdb15f9ae37704c401d7124ccb7b4e7b2d60cec3632aa4f26e7faa9a3f002436"
       },
+      "expectedOutcome": "ok",
       "id": "H005_HARD_ROOM",
       "input": {
         "bytes": 2686,
@@ -708,6 +727,7 @@
         "path": "benchmarks/corpus/v1/expected/H006_TREATED_ROOM.json",
         "sha256": "bd5cd5c197b543458ab4ab0ae97831d77faaa2361d1ee98484bf1ad096bec146"
       },
+      "expectedOutcome": "ok",
       "id": "H006_TREATED_ROOM",
       "input": {
         "bytes": 2734,
@@ -744,6 +764,7 @@
         "path": "benchmarks/corpus/v1/expected/H007_STRESS_8_PRIMITIVES.json",
         "sha256": "9e11fa160942486f893206b16ccfdad84f7a1301ba3e840d1bbb393567716db3"
       },
+      "expectedOutcome": "ok",
       "id": "H007_STRESS_8_PRIMITIVES",
       "input": {
         "bytes": 36733,
@@ -781,6 +802,7 @@
         "path": "benchmarks/corpus/v1/expected/H008_STRESS_1_SOURCE.json",
         "sha256": "14a6466166fb84dc057ae2d09edb94de274562fd8f8b7b39c24fda00247dc366"
       },
+      "expectedOutcome": "ok",
       "id": "H008_STRESS_1_SOURCE",
       "input": {
         "bytes": 33305,
@@ -816,6 +838,7 @@
         "path": "benchmarks/corpus/v1/expected/H009_STRESS_2_SOURCES.json",
         "sha256": "146d9dd1784bc4a3fbd8b7dd0ad243644f3a6d872e9c90827541cf6bcc71518f"
       },
+      "expectedOutcome": "ok",
       "id": "H009_STRESS_2_SOURCES",
       "input": {
         "bytes": 33614,
@@ -852,6 +875,7 @@
         "path": "benchmarks/corpus/v1/expected/H010_STRESS_4_SOURCES.json",
         "sha256": "aa0761af50e9509410a14064db75e7e3e8589b47f414f38444eea3572ad0e6a0"
       },
+      "expectedOutcome": "ok",
       "id": "H010_STRESS_4_SOURCES",
       "input": {
         "bytes": 34241,
@@ -878,10 +902,11 @@
     {
       "counts": null,
       "expected": {
-        "bytes": 2158,
+        "bytes": 1333,
         "path": "benchmarks/corpus/v1/expected/V001_PORTAL_APERTURE.json",
-        "sha256": "a3710f0aeb754efad89dca36ccd7c02764b5717d983b072c5a4808c192c109f7"
+        "sha256": "44f9ee4f815dc0909df23a2dd52998df17080ac408820627fe2cb9acfb6234c7"
       },
+      "expectedOutcome": "ok",
       "id": "V001_PORTAL_APERTURE",
       "input": {
         "bytes": 2036,
@@ -909,10 +934,11 @@
     {
       "counts": null,
       "expected": {
-        "bytes": 15341,
+        "bytes": 7837,
         "path": "benchmarks/corpus/v1/expected/V002_REFLECTOR_ALLOWANCE.json",
-        "sha256": "4116419381a525012e6bdf64cb27f51e93c9b40e72f568cb24874eea262d79d1"
+        "sha256": "73e87d3ad02b61b449caf28d1e319dafe3dfa4233b3bfa3d37eafc4bbf48eb1b"
       },
+      "expectedOutcome": "ok",
       "id": "V002_REFLECTOR_ALLOWANCE",
       "input": {
         "bytes": 6910,
@@ -939,10 +965,11 @@
     {
       "counts": null,
       "expected": {
-        "bytes": 7766025,
+        "bytes": 3999799,
         "path": "benchmarks/corpus/v1/expected/V003_SEEDED_2048.json",
-        "sha256": "bb5d5b513b9aad3b528a9d40caeb2b5e2a2f06c31b837419bc81e22651e2c432"
+        "sha256": "0701eab0d86aa655dc85ad32425e5a1716e3e22c5b7b46d6db818e30641c8d32"
       },
+      "expectedOutcome": "ok",
       "id": "V003_SEEDED_2048",
       "input": {
         "bytes": 729350,
@@ -979,6 +1006,7 @@
         "path": "benchmarks/corpus/v1/expected/SO001_FLOOR_CEILING.json",
         "sha256": "33dce482d04f0d8987e389968ddf3e3440d712257559f9f44c193b9d2dfb46f6"
       },
+      "expectedOutcome": "ok",
       "id": "SO001_FLOOR_CEILING",
       "input": {
         "bytes": 1078,
@@ -1009,6 +1037,7 @@
         "path": "benchmarks/corpus/v1/expected/SO002_PRUNE_ALL.json",
         "sha256": "20da261d6dd221554bd1386d45066d0045feb1e7b96398ceb9cd232b5dcc7dda"
       },
+      "expectedOutcome": "ok",
       "id": "SO002_PRUNE_ALL",
       "input": {
         "bytes": 1053,
@@ -1039,6 +1068,7 @@
         "path": "benchmarks/corpus/v1/expected/SO003_32_PATCH.json",
         "sha256": "2dac891d38b2891365d1e6223be2dc3b7a5ae29711538e3b069a46b9a7f8b1ab"
       },
+      "expectedOutcome": "ok",
       "id": "SO003_32_PATCH",
       "input": {
         "bytes": 13958,
@@ -1069,6 +1099,7 @@
         "path": "benchmarks/corpus/v1/expected/SO004_REPRESENTATIVE_BUDGET.json",
         "sha256": "855ec3cd8aec7afcccb081d02eed5e531250f199c4720b977659695a761864cb"
       },
+      "expectedOutcome": "ok",
       "id": "SO004_REPRESENTATIVE_BUDGET",
       "input": {
         "bytes": 13995,

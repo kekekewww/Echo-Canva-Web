@@ -15,6 +15,7 @@ const ROOT = resolve(process.cwd());
 type ManifestCase = {
   id: string;
   kind: CorpusCaseKind;
+  expectedOutcome: "ok" | "error";
   input: { path: string; sha256: string; bytes: number };
   expected: { path: string; sha256: string; bytes: number };
 };
@@ -98,6 +99,13 @@ describe("frozen corpus replay", () => {
       const output = expectedOf(scenario.id) as { outcome: string; value: ProjectedFrame };
       expect(output.outcome, scenario.id).toBe("ok");
       expect(projectLikeOracle(scenario.id, output.value), scenario.id).toEqual(scenario);
+    }
+  });
+
+  it("records the expected outcome for every case", () => {
+    for (const entry of manifest.cases) {
+      const output = expectedOf(entry.id) as { outcome: string };
+      expect(output.outcome, entry.id).toBe(entry.expectedOutcome);
     }
   });
 

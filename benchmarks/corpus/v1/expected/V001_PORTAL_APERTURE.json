@@ -6,8 +6,7 @@
     {
       "hasHit": false,
       "hits": [],
-      "reverseHasHit": false,
-      "reverseHits": []
+      "reverseHasHit": false
     },
     {
       "hasHit": true,
@@ -26,22 +25,7 @@
           "wallId": "door-wall"
         }
       ],
-      "reverseHasHit": true,
-      "reverseHits": [
-        {
-          "distanceM": 1,
-          "materialId": "concrete_hard",
-          "patchId": "door-wall:front",
-          "point": {
-            "x": 1,
-            "y": 2.5,
-            "z": 0
-          },
-          "surfaceId": "door-wall",
-          "thicknessM": 0.1,
-          "wallId": "door-wall"
-        }
-      ]
+      "reverseHasHit": true
     },
     {
       "hasHit": true,
@@ -60,46 +44,27 @@
           "wallId": "door-wall"
         }
       ],
-      "reverseHasHit": true,
-      "reverseHits": [
-        {
-          "distanceM": 1,
-          "materialId": "concrete_hard",
-          "patchId": "door-wall:front",
-          "point": {
-            "x": 1,
-            "y": 1,
-            "z": 2
-          },
-          "surfaceId": "door-wall",
-          "thicknessM": 0.1,
-          "wallId": "door-wall"
-        }
-      ]
+      "reverseHasHit": true
     },
     {
       "hasHit": false,
       "hits": [],
-      "reverseHasHit": false,
-      "reverseHits": []
+      "reverseHasHit": false
     },
     {
       "hasHit": false,
       "hits": [],
-      "reverseHasHit": false,
-      "reverseHits": []
+      "reverseHasHit": false
     },
     {
       "hasHit": false,
       "hits": [],
-      "reverseHasHit": false,
-      "reverseHits": []
+      "reverseHasHit": false
     },
     {
       "hasHit": false,
       "hits": [],
-      "reverseHasHit": false,
-      "reverseHits": []
+      "reverseHasHit": false
     }
   ]
 }

@@ -31,9 +31,8 @@ function assertValidInput(definition: CorpusCaseDefinition): void {
   }
 }
 
-function writeLf(path: string, text: string): { sha256: string; bytes: number } {
+function writeLf(path: string, text: string): void {
   writeFileSync(resolve(ROOT, path), text, { encoding: "utf8" });
-  return { sha256: sha256Hex(text), bytes: Buffer.byteLength(text, "utf8") };
 }
 
 describe("corpus generator", () => {
@@ -50,16 +49,31 @@ describe("corpus generator", () => {
     const definitions = corpusCaseDefinitions();
     expect(new Set(definitions.map(({ id }) => id)).size).toBe(definitions.length);
 
-    rmSync(resolve(ROOT, CORPUS_DIR, "inputs"), { recursive: true, force: true });
-    rmSync(resolve(ROOT, CORPUS_DIR, "expected"), { recursive: true, force: true });
-    mkdirSync(resolve(ROOT, CORPUS_DIR, "inputs"), { recursive: true });
-    mkdirSync(resolve(ROOT, CORPUS_DIR, "expected"), { recursive: true });
+    const nodeVersion = process.versions.node;
+    const pinnedNode = readFileSync(resolve(ROOT, ".nvmrc"), "utf8").trim().replace(/^v/, "");
+    if (nodeVersion !== pinnedNode) {
+      throw new Error(`Refusing to generate on Node ${nodeVersion}: .nvmrc pins ${pinnedNode}.`);
+    }
+    const packageManager = (JSON.parse(readFileSync(resolve(ROOT, "package.json"), "utf8")) as {
+      packageManager?: string;
+    }).packageManager ?? "";
+    const pnpmVersion = /^pnpm@(\d+\.\d+\.\d+)/.exec(packageManager)?.[1];
+    if (!pnpmVersion) throw new Error("package.json packageManager does not name a pnpm version.");
 
+    // Compute everything in memory first so a throw leaves the existing corpus untouched.
+    const pending: { inputPath: string; inputText: string; expectedPath: string; expectedText: string }[] = [];
     const cases = definitions.map((definition) => {
       assertValidInput(definition);
-      const inputText = `${JSON.stringify(definition.input, null, 2)}\n`;
+      const inputText = `${JSON.stringify(definition.input, null, 2)}
+`;
       const run = () => runCorpusCase(definition.id, definition.kind, JSON.parse(inputText));
       const output = run();
+      if (output.outcome !== definition.expectedOutcome) {
+        const detail = output.outcome === "error" ? `${output.error.name}: ${output.error.message}` : "ok";
+        throw new Error(
+          `${definition.id}: expected outcome ${definition.expectedOutcome} but got ${output.outcome} (${detail})`,
+        );
+      }
       const canonical = canonicalize(output);
       const again = canonicalize(run()).text;
       if (again !== canonical.text) {
@@ -68,23 +82,26 @@ describe("corpus generator", () => {
       if (canonical.negativeZeroPaths.length > 0) {
         console.info(`[corpus-generate] ${definition.id} negative zero at: ${canonical.negativeZeroPaths.join(", ")}`);
       }
-      if (output.outcome === "error") {
-        console.info(`[corpus-generate] ${definition.id} error outcome: ${output.error.name}: ${output.error.message}`);
-      }
       const inputPath = `${CORPUS_DIR}/inputs/${definition.id}.json`;
       const expectedPath = `${CORPUS_DIR}/expected/${definition.id}.json`;
+      pending.push({ inputPath, inputText, expectedPath, expectedText: canonical.text });
       return {
         id: definition.id,
         mode: definition.mode,
         kind: definition.kind,
+        expectedOutcome: definition.expectedOutcome,
         tags: definition.tags,
         scenario: definition.scenario,
         source: definition.source,
         seed: definition.seed,
         counts: definition.counts,
         license: "MIT (repository)",
-        input: { path: inputPath, ...writeLf(inputPath, inputText) },
-        expected: { path: expectedPath, ...writeLf(expectedPath, canonical.text) },
+        input: { path: inputPath, sha256: sha256Hex(inputText), bytes: Buffer.byteLength(inputText, "utf8") },
+        expected: {
+          path: expectedPath,
+          sha256: sha256Hex(canonical.text),
+          bytes: Buffer.byteLength(canonical.text, "utf8"),
+        },
       };
     });
 
@@ -102,7 +119,7 @@ describe("corpus generator", () => {
           patches: gitTreeHash("patches"),
         },
       },
-      runtime: { node: "22.23.3", pnpm: "11.7.0" },
+      runtime: { node: nodeVersion, pnpm: pnpmVersion },
       prng: {
         algorithm: "lcg32-v1",
         multiplier: 1664525,
@@ -113,6 +130,16 @@ describe("corpus generator", () => {
       rules: { path: "comparison-rules.json", sha256: null },
       cases,
     };
-    writeLf(`${CORPUS_DIR}/manifest.json`, canonicalize(manifest).text);
+    const manifestText = canonicalize(manifest).text;
+
+    rmSync(resolve(ROOT, CORPUS_DIR, "inputs"), { recursive: true, force: true });
+    rmSync(resolve(ROOT, CORPUS_DIR, "expected"), { recursive: true, force: true });
+    mkdirSync(resolve(ROOT, CORPUS_DIR, "inputs"), { recursive: true });
+    mkdirSync(resolve(ROOT, CORPUS_DIR, "expected"), { recursive: true });
+    for (const entry of pending) {
+      writeLf(entry.inputPath, entry.inputText);
+      writeLf(entry.expectedPath, entry.expectedText);
+    }
+    writeLf(`${CORPUS_DIR}/manifest.json`, manifestText);
   });
 });

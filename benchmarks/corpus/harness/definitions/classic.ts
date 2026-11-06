@@ -37,6 +37,14 @@ export function stressScene(sourceCount: 1 | 2 | 4, revision: number): SceneSpec
   return scene;
 }
 
+export function stressSource(count: 1 | 2 | 4): CorpusCaseDefinition["source"] {
+  return {
+    type: "derived",
+    refs: ["src/domain/presets/stress-100-walls.ts"],
+    ...(count > 1 ? { notes: STRESS_EXTRA_SOURCES_NOTE } : {}),
+  };
+}
+
 function reflectionHeavyScene(): SceneSpec {
   const scene = cloneScene(HARD_ROOM_PRESET, 113);
   scene.name = "Reflection Heavy";
@@ -57,6 +65,7 @@ function frameCase(
     id,
     mode: "classic-2d5d",
     kind: "classic-frame",
+    expectedOutcome: "ok",
     tags,
     scenario,
     source,
@@ -106,11 +115,6 @@ function oracleCases(): CorpusCaseDefinition[] {
 }
 
 export function classicCaseDefinitions(): CorpusCaseDefinition[] {
-  const stressSource = (count: 1 | 2 | 4): CorpusCaseDefinition["source"] => ({
-    type: "derived",
-    refs: ["src/domain/presets/stress-100-walls.ts"],
-    ...(count > 1 ? { notes: STRESS_EXTRA_SOURCES_NOTE } : {}),
-  });
   return [
     ...oracleCases(),
     frameCase("C011_STRESS_1_SOURCE", "S4", ["stress", "source-count"], stressSource(1), stressScene(1, 110)),
