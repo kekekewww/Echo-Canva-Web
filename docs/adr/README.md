@@ -25,3 +25,5 @@ Use an ADR for changes to scene/schema compatibility, acoustic formulas or inter
 | [0008](0008-adopt-pose-lagging-frames.md) | Proposed | Adopt complete frames that differ from the current scene only in pose during continuous edits |
 
 These initial records capture the authorized extraction scope and implemented maintenance choices. Historical decisions remain available in [the archived decision log](../archive/build-week/docs/DECISION_LOG.md).
+
+The [XR research proposals](../../knowledge/wiki/index.md#proposed-adrs) use a separate identifier namespace. A proposal can enter this register through the review process above.

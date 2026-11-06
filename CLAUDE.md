@@ -10,6 +10,8 @@ The reviewed maintainer rules in `AGENTS.md` apply in full. They are imported he
 
 `AGENTS.md` is versioned governance (ADR 0004): `next.config.ts` sets `agentRules: false` so Next.js never appends to it. Change it only deliberately.
 
+For sustained work, start at the [project memory index](knowledge/wiki/index.md) and follow the [shared schema](knowledge/schema.md) for task claims, evidence and handoffs. After changing anything under `knowledge/` or these entry links, run `node scripts/lint-knowledge.mjs`; CI does not run it.
+
 ## Commands
 
 The toolchain is pinned: Node 22.23.3 (`.nvmrc`) and pnpm 11.7.0 (`packageManager`). Install with `pnpm install --frozen-lockfile`.
