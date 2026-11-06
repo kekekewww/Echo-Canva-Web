@@ -102,7 +102,7 @@ Each class also has a `unit` (required unless `exact`), a `status` and a `source
 - `proposed`: the value is a proposal that still needs a maintainer decision.
 - `approved`: a maintainer decided. Only this status, `discrete` and `existing-test` can be frozen.
 
-The `passthrough` class is exact. It covers numbers that workspace migration copies from its input without calculating. It is applied with `**` to the project, scene, document and history parts of a migration output.
+The `passthrough` class is exact. It covers values that workspace migration copies from its input or fills with defaults, of any JSON type (numbers, strings, booleans, null and empty containers), including generated integer history-path indices. They are compared exactly because no acoustic calculation produces them. It is applied with `**` to the project, scene, document and history parts of a migration output.
 
 A structure change (a missing or extra leaf, an array that became an object, a number that became a string) is always a violation. A number that is `-0` on one side and `0` on the other compares as equal in a continuous class, is reported in the comparator report's `negativeZeroPaths`, and keeps the case from counting as bit-exact. Output files cannot hold `-0`, so this only arises when values are compared in memory; the `negativeZeroLeafCount` of a `compare` run reflects only the files it read, and `run.json`'s `negativeZeroPaths` is the authoritative record. An `exact` class treats `-0` and `0` as different.
 
@@ -145,6 +145,7 @@ A product change that alters outputs needs an ADR and a new corpus version. `v1`
 
 - Replay failing on a product pull request is the corpus doing its job. Read the violation, then decide whether the change is intended.
 - Do not flip `status` back to `draft` or regenerate a frozen version to make replay pass. That is what this section exists to prevent. `verify --require-frozen`, the evidence anchors in `tests/unit/corpus-integrity.test.ts` and the refusals in the generator and `refresh-rules-hash` all assume a frozen version never changes.
+- The approved tolerances are pinned a second time, independently of the corpus files: `tests/unit/corpus-integrity.test.ts` holds a hand-written table of every class and the SHA-256 of `comparison-rules.json`, approved by the maintainer on 2026-11-06. Editing and rehashing the rules, the manifest and the evidence together still fails that test. Changing those values needs the maintainer's approval and a new corpus version.
 - `AGENTS.md` already requires an ADR, a migration and regression evidence for intentional changes.
 - `v1` is hardcoded today in `scripts/corpus/lib.mjs` (the `CORPUS_PREFIX` constant), `scripts/corpus/cli.mjs` (the default corpus and `inCorpus`), `tests/corpus/run.corpus.ts`, `tests/corpus/generate.corpus.ts` and the tests. The first new version has to parameterise those paths.
 

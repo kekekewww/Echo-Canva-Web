@@ -220,6 +220,82 @@ describe("freeze anchors on the real corpus", () => {
     const hashes = Object.fromEntries(manifestOf(REAL).cases.map((entry) => [entry.id, entry.expected.sha256]));
     expect(aggregateSha256(hashes)).toBe(evidence("acceptance-rerun").runs.A.aggregateSha256);
   });
+
+  it("records a successful acceptance rerun against the baseline commit and the manifest aggregate", () => {
+    const manifest = manifestOf(REAL) as Manifest & { baseline: { commit: string } };
+    const acceptance = evidence("acceptance-rerun");
+    const aggregate = aggregateSha256(Object.fromEntries(manifest.cases.map((entry) => [entry.id, entry.expected.sha256])));
+    expect(acceptance.ok).toBe(true);
+    expect(acceptance.aggregatesIdentical).toBe(true);
+    expect(Object.keys(acceptance.runs).sort()).toEqual(["A", "B", "C"]);
+    expect(acceptance.runs.A.order).toBe("manifest");
+    expect(acceptance.runs.B.order).toBe("manifest");
+    expect(acceptance.runs.C.order).toBe("reverse");
+    for (const [name, run] of Object.entries(acceptance.runs as Record<string, Record<string, any>>)) { // eslint-disable-line @typescript-eslint/no-explicit-any
+      expect(run.gitHead, `run ${name} gitHead`).toBe(manifest.baseline.commit);
+      expect(run.productTreesMatchBaseline, `run ${name} trees`).toBe(true);
+      expect(run.productTreeDiffs, `run ${name} tree diffs`).toEqual([]);
+      expect(run.aggregateSha256, `run ${name} aggregate`).toBe(aggregate);
+    }
+    const comparisons = acceptance.comparisons as Array<Record<string, any>>; // eslint-disable-line @typescript-eslint/no-explicit-any
+    expect(comparisons).toHaveLength(4);
+    for (const comparison of comparisons) {
+      expect(comparison.ok, `${comparison.pair} ok`).toBe(true);
+      expect(comparison.violationCount, `${comparison.pair} violations`).toBe(0);
+      expect(comparison.caseCount, `${comparison.pair} cases`).toBe(manifest.cases.length);
+      expect(comparison.bitExactCases, `${comparison.pair} bit-exact`).toBe(manifest.cases.length);
+    }
+  });
+});
+
+// These values were approved by the maintainer on 2026-11-06. Changing them needs the
+// maintainer's approval and a new corpus version. See the README section "Changing the
+// product on purpose". They are written out here, not read from the files, so that editing
+// and rehashing the rules, the manifest and the evidence together still fails.
+const APPROVED_RULES_SHA256 = "ecd33cd6bb4010474a471dc2e937f302d14ec6d8aaffcd2b819ab8bb6cc6fa74";
+const exact = { compare: "exact", status: "discrete" };
+const decimal6 = (unit: string) => ({ unit, compare: "decimal", decimals: 6, status: "existing-test" });
+const tol = (unit: string, atol: number, status: string) => ({ unit, compare: "tolerance", atol, rtol: 0, status });
+const APPROVED_CLASSES: Record<string, Record<string, unknown>> = {
+  discrete: exact,
+  passthrough: exact,
+  "classic-length-m": decimal6("m"),
+  "classic-volume-m3": decimal6("m3"),
+  "classic-time-s": decimal6("s"),
+  "classic-delay-ms": decimal6("ms"),
+  "classic-gain-db": decimal6("dB"),
+  "classic-cutoff-hz": decimal6("Hz"),
+  "classic-new-length-m": tol("m", 1e-6, "approved"),
+  "classic-new-area-m2": tol("m2", 1e-6, "approved"),
+  "classic-new-gain-db": tol("dB", 1e-6, "approved"),
+  "classic-new-delay-ms": tol("ms", 1e-6, "approved"),
+  "classic-new-cutoff-hz": tol("Hz", 1e-6, "approved"),
+  "hybrid-length-m": tol("m", 1e-5, "existing-test"),
+  "hybrid-aux-length-m": tol("m", 1e-5, "approved"),
+  "hybrid-delay-ms": tol("ms", 1e-5, "existing-test"),
+  "hybrid-aux-delay-ms": tol("ms", 1e-5, "approved"),
+  "hybrid-point-m": tol("m", 1e-5, "approved"),
+  "hybrid-direction": tol("1", 1e-5, "approved"),
+  "hybrid-azimuth-deg": { unit: "deg", compare: "circular", atol: 1e-5, period: 360, status: "approved" },
+  "hybrid-elevation-deg": tol("deg", 1e-5, "existing-test"),
+  "hybrid-gain-db": tol("dB", 1e-5, "approved"),
+  "hybrid-cutoff-hz": tol("Hz", 1e-5, "approved"),
+  "hybrid-metric-ratio": tol("ratio", 1e-5, "approved"),
+  "hybrid-metric-ms": tol("ms", 1e-5, "approved"),
+};
+
+describe("approved tolerances", () => {
+  it("matches the class table the maintainer approved, ignoring source text", () => {
+    const rules = JSON.parse(read(REAL, "comparison-rules.json")) as { classes: Record<string, Record<string, unknown>> };
+    const classes = Object.fromEntries(
+      Object.entries(rules.classes).map(([name, entry]) => [name, Object.fromEntries(Object.entries(entry).filter(([key]) => key !== "source"))]),
+    );
+    expect(classes).toStrictEqual(APPROVED_CLASSES);
+  });
+
+  it("pins the rules file hash, which also catches a leaf moved to a looser class", () => {
+    expect(sha256Hex(readFileSync(path.join(REAL, "comparison-rules.json")))).toBe(APPROVED_RULES_SHA256);
+  });
 });
 
 function runCli(args: string[]) {
