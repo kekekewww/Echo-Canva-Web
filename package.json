@@ -19,7 +19,8 @@
     "corpus:verify": "node scripts/corpus/cli.mjs verify --require-frozen",
     "corpus:run": "node scripts/corpus/cli.mjs run",
     "corpus:compare": "node scripts/corpus/cli.mjs compare",
-    "corpus:rerun": "node scripts/corpus/cli.mjs rerun"
+    "corpus:rerun": "node scripts/corpus/cli.mjs rerun",
+    "perf": "node scripts/perf/cli.mjs"
   },
   "dependencies": {
     "next": "16.4.2",

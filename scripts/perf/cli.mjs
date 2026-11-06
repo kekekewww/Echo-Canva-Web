@@ -1,0 +1,612 @@
+#!/usr/bin/env node
+import { spawn, spawnSync } from "node:child_process";
+import { closeSync, existsSync, mkdirSync, openSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+import { collectGitInfo, verifyCorpus } from "../corpus/lib.mjs";
+import { buildBundle } from "./bundle.mjs";
+import { collectEnvironment, sampleOtherActivity } from "./env.mjs";
+import {
+  BOUNDARIES,
+  NOT_APPLICABLE,
+  PASSES,
+  RUN_ID_PATTERN,
+  UNAVAILABLE,
+  artifactsSha256,
+  buildGroups,
+  executeRun,
+  parseJsonl,
+  readJson,
+  readRunIndex,
+  renderTables,
+  sanitizeText,
+  scanPaths,
+  serializeJsonl,
+  sha256File,
+  summarizeSamples,
+  verifyWorkloads,
+  writeJson,
+} from "./lib.mjs";
+
+const REPO = fileURLToPath(new URL("../..", import.meta.url));
+const DEFAULT_CORPUS_MANIFEST = "benchmarks/corpus/v1/manifest.json";
+const WORKLOAD_DIR = "benchmarks/perf/workloads/v1";
+const DEFAULT_OUT = ".perf-runs/runs";
+const SMALL_ARTIFACT_BYTES = 512 * 1024;
+const TAPE_KINDS = { "classic-tape": "classic", "hybrid-tape": "hybrid" };
+const PHASES_BY_MODE = {
+  classic: ["static.build", "pose.snapshot", "room.estimate", "solve", "assemble", "job.total"],
+  hybrid: ["static.compile", "pose.snapshot", "solve", "assemble", "job.total"],
+};
+
+class UsageError extends Error {}
+
+const RUN_FLAGS = new Set([
+  "variant", "case", "corpus-manifest", "run-id", "repeat", "out", "boundary", "pass", "audio",
+  "samples", "hardware-concurrency", "build", "order-index", "plan", "ts-s-path", "max-duration-ms", "step-timeout-ms",
+]);
+const BOOLEAN_FLAGS = new Set(["parity", "check"]);
+const COMMAND_FLAGS = {
+  "verify-corpus": new Set(["corpus-manifest"]),
+  "generate-workloads": new Set(["check"]),
+  run: new Set([...RUN_FLAGS, ...BOOLEAN_FLAGS]),
+  summarize: new Set(["out", "to"]),
+  scan: new Set(),
+};
+
+function parseArgs(argv) {
+  const [command, ...rest] = argv;
+  const allowed = COMMAND_FLAGS[command];
+  if (!allowed) throw new UsageError(`Unknown command ${command ?? "(none)"}. Use verify-corpus, generate-workloads, run, summarize or scan.`);
+  const positional = [];
+  const flags = new Map();
+  for (let index = 0; index < rest.length; index += 1) {
+    const arg = rest[index];
+    if (!arg.startsWith("--")) {
+      positional.push(arg);
+      continue;
+    }
+    const name = arg.slice(2);
+    if (!allowed.has(name)) throw new UsageError(`Unknown option --${name} for ${command}`);
+    if (BOOLEAN_FLAGS.has(name)) {
+      flags.set(name, true);
+    } else {
+      const value = rest[index + 1];
+      if (value === undefined || value.startsWith("--")) throw new UsageError(`--${name} needs a value`);
+      flags.set(name, value);
+      index += 1;
+    }
+  }
+  return { command, positional, flags };
+}
+
+function repoRelative(file) {
+  return path.relative(REPO, file).replaceAll("\\", "/");
+}
+
+function corpusPaths(manifestFlag) {
+  const manifestFile = path.resolve(REPO, manifestFlag ?? DEFAULT_CORPUS_MANIFEST);
+  const corpusDir = path.dirname(manifestFile);
+  const inCorpus = (manifestPath) => path.join(corpusDir, manifestPath.replace(/^benchmarks\/corpus\/v1\//, ""));
+  return { manifestFile, corpusDir, inCorpus };
+}
+
+// ---------------------------------------------------------------------------
+// verify-corpus
+// ---------------------------------------------------------------------------
+
+function verifyAll(manifestFlag) {
+  const { corpusDir } = corpusPaths(manifestFlag);
+  const corpus = verifyCorpus(corpusDir, { requireFrozen: true });
+  const workloads = verifyWorkloads(path.join(REPO, WORKLOAD_DIR));
+  return { corpus, workloads };
+}
+
+function commandVerifyCorpus(flags) {
+  const { corpus, workloads } = verifyAll(flags.get("corpus-manifest"));
+  let failed = false;
+  if (corpus.ok) {
+    console.log(`corpus ok: ${corpus.caseCount} cases, manifest sha256 ${corpus.corpusSha256}`);
+  } else {
+    failed = true;
+    for (const problem of corpus.problems) console.error(`corpus problem: ${problem}`);
+  }
+  if (workloads.ok) {
+    console.log(`workloads ok: ${workloads.fileCount} files, manifest sha256 ${workloads.manifestSha256}`);
+  } else {
+    failed = true;
+    for (const problem of workloads.problems) console.error(`workloads problem: ${problem}`);
+  }
+  return failed ? 1 : 0;
+}
+
+// ---------------------------------------------------------------------------
+// generate-workloads
+// ---------------------------------------------------------------------------
+
+/** Regenerates into a scratch directory and compares bytes with workloads/v1. Writes nothing there. */
+function checkWorkloads(bundle) {
+  const committedDir = path.join(REPO, WORKLOAD_DIR);
+  const scratch = path.join(REPO, ".perf-runs", "workloads-check");
+  rmSync(scratch, { recursive: true, force: true });
+  try {
+    const committedManifest = readJson(path.join(committedDir, "manifest.json"));
+    const result = spawnSync(process.execPath, [path.join(bundle.dir, "generate-workloads.mjs")], {
+      cwd: REPO,
+      stdio: ["ignore", "ignore", "inherit"],
+      env: {
+        ...process.env,
+        ECHO_PERF_GENERATE: "1",
+        ECHO_PERF_OUT_DIR: repoRelative(scratch),
+        ECHO_PERF_SOURCE_COMMIT: committedManifest.sourceCommit,
+      },
+    });
+    if (result.status !== 0) return result.status ?? 1;
+    const names = new Set([...readdirSync(committedDir), ...readdirSync(scratch)]);
+    const differing = [...names].filter((name) => {
+      const left = existsSync(path.join(committedDir, name)) ? readFileSync(path.join(committedDir, name)) : null;
+      const right = existsSync(path.join(scratch, name)) ? readFileSync(path.join(scratch, name)) : null;
+      return left === null || right === null || !left.equals(right);
+    });
+    if (differing.length > 0) {
+      console.error(`workloads differ from a fresh generation: ${differing.sort().join(", ")}`);
+      return 1;
+    }
+    console.log(`workloads match a fresh generation: ${names.size} files byte for byte`);
+    return 0;
+  } finally {
+    rmSync(scratch, { recursive: true, force: true });
+  }
+}
+
+async function commandGenerateWorkloads(flags) {
+  const check = flags.has("check");
+  if (!check && process.env.ECHO_PERF_UPDATE !== "1") {
+    throw new UsageError("Refusing to write workloads: set ECHO_PERF_UPDATE=1.");
+  }
+  const bundle = await buildBundle(REPO, "generate-workloads");
+  if (check) return checkWorkloads(bundle);
+  const head = collectGitInfo(REPO, null).gitHead;
+  if (head === UNAVAILABLE) throw new Error("git HEAD is unavailable; the workload manifest records the source commit.");
+  const result = spawnSync(process.execPath, [path.join(bundle.dir, "generate-workloads.mjs")], {
+    cwd: REPO,
+    stdio: "inherit",
+    env: { ...process.env, ECHO_PERF_GENERATE: "1", ECHO_PERF_SOURCE_COMMIT: head },
+  });
+  return result.status ?? 1;
+}
+
+// ---------------------------------------------------------------------------
+// run
+// ---------------------------------------------------------------------------
+
+function positiveInteger(value, name) {
+  const number = Number(value);
+  if (!Number.isInteger(number) || number < 1) throw new UsageError(`${name} must be an integer >= 1`);
+  return number;
+}
+
+const POOL_PHASES = {
+  "TS-W-clean": ["pool.compute-metric", "job.submit-to-accepted", "queue.wait", "dispatch.prepare", "shard.compute", "shard.roundtrip", "merge.assemble", "job.phase-residual"],
+  "TS-W-bare": ["pool.compute-metric", "job.submit-to-accepted"],
+  "TS-S-fallback": ["pool.compute-metric", "job.submit-to-accepted", "queue.wait"],
+};
+
+function normalizeEntry(raw, globals) {
+  const get = (name) => raw[name] ?? globals.get(name);
+  const optionalNumber = (name, minimum) => {
+    const value = get(name);
+    if (value === undefined) return null;
+    const number = Number(value);
+    if (!Number.isFinite(number) || number < minimum) throw new UsageError(`--${name} must be a number >= ${minimum}`);
+    return number;
+  };
+  const entry = {
+    variant: get("variant"),
+    case: get("case"),
+    runId: get("run-id"),
+    repeat: positiveInteger(get("repeat") ?? 1, "--repeat"),
+    boundary: get("boundary") ?? "node-core",
+    pass: get("pass") ?? "clean",
+    audio: get("audio") ?? NOT_APPLICABLE,
+    parity: raw.parity === true || (globals.get("parity") === true && raw.parity !== false),
+    corpusManifest: get("corpus-manifest"),
+    orderIndex: get("order-index") === undefined ? undefined : Number(get("order-index")),
+    build: get("build") ?? NOT_APPLICABLE,
+    hardwareConcurrency: optionalNumber("hardware-concurrency", 1),
+    tsSPath: get("ts-s-path") ?? "decomposed",
+    maxDurationMs: optionalNumber("max-duration-ms", 1),
+    stepTimeoutMs: optionalNumber("step-timeout-ms", 3000) ?? 10_000,
+  };
+  if (!entry.variant || !entry.case || !entry.runId) throw new UsageError("run needs --variant, --case and --run-id");
+  if (!RUN_ID_PATTERN.test(entry.runId)) throw new UsageError("--run-id may contain letters, digits, '.', '_' and '-' only");
+  if (!BOUNDARIES.includes(entry.boundary)) throw new UsageError(`--boundary must be one of ${BOUNDARIES.join(", ")}`);
+  if (!PASSES.includes(entry.pass)) throw new UsageError(`--pass must be one of ${PASSES.join(", ")}`);
+  if (!["TS-S", "TS-W"].includes(entry.variant)) throw new UsageError("--variant must be TS-S or TS-W");
+  if (!["decomposed", "fallback"].includes(entry.tsSPath)) throw new UsageError("--ts-s-path must be decomposed or fallback");
+  if (entry.audio !== NOT_APPLICABLE) throw new UsageError("--audio does not apply at node-core or browser-pool");
+  if (entry.parity && entry.repeat !== 1) throw new UsageError("--parity is one replay with no timing; leave --repeat at 1");
+  const workload = /^W0\d_/.test(entry.case);
+  if (entry.boundary === "node-core") {
+    if (entry.variant !== "TS-S") throw new UsageError("TS-W needs workers; use --boundary browser-pool");
+    if (!["clean", "traced", "alloc"].includes(entry.pass)) throw new UsageError(`pass ${entry.pass} does not exist at node-core; use clean, traced or alloc`);
+    if (workload) throw new UsageError("the long workloads run at browser-pool only");
+  } else if (entry.boundary === "browser-pool") {
+    if (entry.variant === "TS-S" && entry.pass !== "clean") throw new UsageError("TS-S at browser-pool supports pass clean only");
+    if (entry.variant === "TS-W" && !["bare", "clean"].includes(entry.pass)) throw new UsageError("TS-W at browser-pool supports passes bare and clean; traced and alloc come with Milestone 3");
+    if (entry.variant === "TS-S" && workload) entry.tsSPath = "fallback";
+    if (entry.parity && workload) throw new UsageError("--parity needs a frozen corpus tape, not a long workload");
+    if (entry.variant === "TS-W" && entry.tsSPath === "fallback") throw new UsageError("--ts-s-path applies to TS-S only");
+  } else {
+    throw new UsageError("browser-app runs come with Milestone 3");
+  }
+  return entry;
+}
+
+function resolveCase(entry) {
+  if (/^W0\d_/.test(entry.case)) {
+    const dir = path.join(REPO, WORKLOAD_DIR);
+    const manifest = readJson(path.join(dir, "manifest.json"));
+    const found = manifest.cases.find((item) => item.id === entry.case);
+    if (!found) throw new UsageError(`Case ${entry.case} is not in the workloads manifest`);
+    return { workload: true, found, manifest, mode: found.mode, replay: "open", dir };
+  }
+  const paths = corpusPaths(entry.corpusManifest);
+  const manifest = readJson(paths.manifestFile);
+  const found = manifest.cases.find((item) => item.id === entry.case);
+  if (!found) throw new UsageError(`Case ${entry.case} is not in the corpus manifest`);
+  const mode = TAPE_KINDS[found.kind];
+  if (!mode) {
+    throw new UsageError(`Case ${entry.case} is a ${found.kind} case; runs use the four frozen tapes (TC01, TC02, TH01, TH02) and the W cases`);
+  }
+  return { workload: false, paths, manifest, found, mode, replay: "closed" };
+}
+
+function caseSpecFor(context, entry) {
+  if (context.workload) {
+    return {
+      caseId: entry.case,
+      kind: "workload",
+      mode: context.mode,
+      inputPath: repoRelative(path.join(context.dir, context.found.tape)),
+      scenePath: repoRelative(path.join(context.dir, context.found.scene)),
+    };
+  }
+  return {
+    caseId: entry.case,
+    kind: context.found.kind,
+    mode: context.mode,
+    inputPath: repoRelative(context.paths.inCorpus(context.found.input.path)),
+    expectedPath: repoRelative(context.paths.inCorpus(context.found.expected.path)),
+    rulesPath: repoRelative(path.join(context.paths.corpusDir, context.manifest.rules.path)),
+  };
+}
+
+function writeInputManifest(runDir, context, entry, bundle, workloads) {
+  let caseBlock;
+  let corpus;
+  let manifestForGit = null;
+  if (context.workload) {
+    const sceneFile = path.join(context.dir, context.found.scene);
+    const tapeFile = path.join(context.dir, context.found.tape);
+    caseBlock = {
+      id: context.found.id,
+      kind: "workload",
+      mode: context.mode,
+      replay: "open",
+      scenePath: repoRelative(sceneFile),
+      sceneSha256: sha256File(sceneFile),
+      tapePath: repoRelative(tapeFile),
+      tapeSha256: sha256File(tapeFile),
+      maxDurationMs: entry.maxDurationMs ?? NOT_APPLICABLE,
+    };
+    corpus = { note: "not used by this case" };
+  } else {
+    const { paths, manifest, found } = context;
+    const inputFile = paths.inCorpus(found.input.path);
+    const expectedFile = paths.inCorpus(found.expected.path);
+    manifestForGit = manifest.baseline;
+    corpus = {
+      manifestPath: repoRelative(paths.manifestFile),
+      manifestSha256: sha256File(paths.manifestFile),
+      rulesSha256: sha256File(path.join(paths.corpusDir, manifest.rules.path)),
+    };
+    caseBlock = {
+      id: found.id,
+      kind: found.kind,
+      mode: context.mode,
+      replay: "closed",
+      inputPath: repoRelative(inputFile),
+      inputSha256: sha256File(inputFile),
+      expectedPath: repoRelative(expectedFile),
+      expectedSha256: sha256File(expectedFile),
+    };
+  }
+  writeJson(path.join(runDir, "input-manifest.json"), {
+    schema: "ec102.input-manifest.v1",
+    corpus,
+    case: caseBlock,
+    workloads: { manifestSha256: workloads.manifestSha256, files: workloads.fileCount },
+    git: collectGitInfo(REPO, manifestForGit),
+    bundle: {
+      kind: bundle.kind,
+      sha256: bundle.sha256,
+      viteVersion: bundle.viteVersion,
+      workerChecks: bundle.workerChecks,
+    },
+    options: {
+      hardwareConcurrency: entry.hardwareConcurrency ?? NOT_APPLICABLE,
+      stepTimeoutMs: entry.stepTimeoutMs,
+      tsSPath: entry.variant === "TS-S" ? entry.tsSPath : NOT_APPLICABLE,
+    },
+  });
+}
+
+function spawnRunner(script, runDir, extraNodeArgs) {
+  const out = openSync(path.join(runDir, "stdout.log"), "w");
+  const err = openSync(path.join(runDir, "stderr.log"), "w");
+  return new Promise((resolve, reject) => {
+    const child = spawn(
+      process.execPath,
+      [...extraNodeArgs, path.join(REPO, "scripts/perf", script), "--config", path.join(runDir, "runner-config.json")],
+      { cwd: REPO, stdio: ["ignore", out, err], env: process.env, windowsHide: true },
+    );
+    child.on("error", reject);
+    child.on("close", (code, signal) => resolve({ code, signal }));
+  }).finally(() => {
+    closeSync(out);
+    closeSync(err);
+  });
+}
+
+function expectedPhases(entry, context) {
+  if (entry.boundary === "node-core" || (entry.variant === "TS-S" && entry.tsSPath === "decomposed")) return PHASES_BY_MODE[context.mode];
+  if (entry.variant === "TS-S") return POOL_PHASES["TS-S-fallback"];
+  return POOL_PHASES[entry.pass === "bare" ? "TS-W-bare" : "TS-W-clean"];
+}
+
+async function runEntry(entry, index, outDir, prep) {
+  const context = resolveCase(entry);
+  const pool = entry.boundary === "browser-pool";
+  const meta = {
+    runId: entry.runId,
+    variant: entry.variant,
+    case: entry.case,
+    pass: entry.pass,
+    boundary: entry.boundary,
+    workers: NOT_APPLICABLE,
+    audio: NOT_APPLICABLE,
+    build: entry.build,
+    parity: entry.parity,
+  };
+  const bundleKind = pool ? (entry.pass === "bare" ? "pool-bare" : "pool") : "node";
+  return executeRun({
+    outDir,
+    meta,
+    orderIndex: entry.orderIndex ?? index,
+    execute: async ({ runDir }) => {
+      const bundle = await prep.bundleFor(bundleKind);
+      writeInputManifest(runDir, context, entry, bundle, prep.workloads);
+      const environment = await collectEnvironment(REPO);
+      const before = entry.parity ? NOT_APPLICABLE : await sampleOtherActivity(3);
+
+      const caseSpec = caseSpecFor(context, entry);
+      const config = {
+        runId: entry.runId,
+        pass: entry.pass,
+        variant: entry.variant,
+        repeat: entry.repeat,
+        parity: entry.parity,
+        runDir: runDirFor(runDir),
+        replay: context.replay,
+        caseSpec,
+        ...(pool
+          ? {
+              bundleDir: repoRelative(bundle.dir),
+              pageFile: bundle.page,
+              hardwareConcurrency: entry.hardwareConcurrency,
+              tsSPath: entry.variant === "TS-S" ? entry.tsSPath : NOT_APPLICABLE,
+              maxDurationMs: entry.maxDurationMs,
+              stepTimeoutMs: entry.stepTimeoutMs,
+            }
+          : { bundlePath: repoRelative(path.join(bundle.dir, "node-entry.mjs")) }),
+      };
+      writeJson(path.join(runDir, "runner-config.json"), config);
+      const nodeArgs = [];
+      if (entry.pass === "traced") nodeArgs.push("--cpu-prof", `--cpu-prof-dir=${runDirFor(runDir)}`);
+      if (entry.pass === "alloc") nodeArgs.push("--heap-prof", `--heap-prof-dir=${runDirFor(runDir)}`);
+      const exit = await spawnRunner(pool ? "runner-pool.mjs" : "runner-node.mjs", runDir, nodeArgs);
+      const after = entry.parity ? NOT_APPLICABLE : await sampleOtherActivity(3);
+      const factsFile = path.join(runDir, "browser-facts.json");
+      writeJson(path.join(runDir, "environment.json"), {
+        ...environment,
+        browser: existsSync(factsFile) ? readJson(factsFile) : NOT_APPLICABLE,
+        otherActivity: { before, after },
+      });
+
+      const resultFile = path.join(runDir, "runner-result.json");
+      if (!existsSync(resultFile)) {
+        throw new Error(`runner produced no result (exit code ${exit.code}, signal ${exit.signal ?? "none"}); see stderr.log`);
+      }
+      const result = readJson(resultFile);
+      const samples = parseJsonl(readFileSync(path.join(runDir, "samples.jsonl"), "utf8"));
+      const summary = summarizeSamples(samples);
+      const observedWorkers = result.workers?.reportedByPool?.length === 1 ? result.workers.reportedByPool[0] : NOT_APPLICABLE;
+      if (entry.variant === "TS-W") {
+        meta.workers = observedWorkers === NOT_APPLICABLE ? (result.workers?.created || result.workers?.expected || NOT_APPLICABLE) : observedWorkers;
+      }
+      writeJson(path.join(runDir, "summary.json"), {
+        ...summary,
+        runId: entry.runId,
+        variant: entry.variant,
+        case: entry.case,
+        pass: entry.pass,
+        boundary: entry.boundary,
+        workers: meta.workers,
+        audio: NOT_APPLICABLE,
+        denominators: result.denominators,
+        jobs: result.jobs ?? UNAVAILABLE,
+        intervalMs: result.intervalMs ?? UNAVAILABLE,
+        clockResolutionMs: result.clockResolutionMs ?? UNAVAILABLE,
+        wallMs: result.wallMs ?? UNAVAILABLE,
+        parity: result.parity ?? NOT_APPLICABLE,
+        repeat: entry.repeat,
+        workerCounts: result.workers ?? NOT_APPLICABLE,
+        integrity: result.integrity ?? NOT_APPLICABLE,
+        shardCompute: result.shardCompute ?? NOT_APPLICABLE,
+        phaseSumConsistency: pool && entry.variant === "TS-W" && entry.pass !== "bare"
+          ? {
+              definition: "job.phase-residual = pool.compute-metric - (prepare + slowest worker path + merge tail); a signed value in ms, reported as measured and never forced to zero",
+              jobsWithResidual: result.phaseResidualCount ?? 0,
+              residual: summary.phases["job.phase-residual"] ?? NOT_APPLICABLE,
+            }
+          : NOT_APPLICABLE,
+        maxDurationMs: entry.maxDurationMs ?? NOT_APPLICABLE,
+      });
+      const seen = new Set(samples.map((sample) => sample.phase));
+      return {
+        status: result.status,
+        error: result.error,
+        sampleCount: samples.length,
+        phasesNotReached: entry.parity ? [] : expectedPhases(entry, context).filter((phase) => !seen.has(phase)),
+      };
+    },
+  });
+}
+
+function runDirFor(runDir) {
+  return path.isAbsolute(runDir) && runDir.startsWith(REPO) ? repoRelative(runDir) : runDir;
+}
+
+async function commandRun(flags) {
+  const outDir = path.resolve(REPO, flags.get("out") ?? DEFAULT_OUT);
+  let entries;
+  if (flags.has("plan")) {
+    const plan = readJson(path.resolve(REPO, flags.get("plan")));
+    if (!Array.isArray(plan) || plan.length === 0) throw new UsageError("--plan must be a JSON array with at least one entry");
+    entries = plan.map((raw) => normalizeEntry(raw, flags));
+  } else {
+    entries = [normalizeEntry({}, flags)];
+  }
+  const ids = new Set();
+  for (const entry of entries) {
+    if (ids.has(entry.runId)) throw new UsageError(`run id ${entry.runId} appears twice in the plan`);
+    ids.add(entry.runId);
+    if (existsSync(path.join(outDir, entry.runId))) throw new UsageError(`run directory ${entry.runId} already exists; runs are never overwritten`);
+  }
+
+  const { corpus, workloads } = verifyAll(flags.get("corpus-manifest"));
+  if (!corpus.ok || !workloads.ok) {
+    for (const problem of [...corpus.problems, ...workloads.problems]) console.error(`verification problem: ${problem}`);
+    console.error("Refusing to run: the corpus or the workloads do not verify.");
+    return 1;
+  }
+  const bundles = new Map();
+  const prep = {
+    workloads,
+    bundleFor: async (kind) => {
+      if (!bundles.has(kind)) bundles.set(kind, await buildBundle(REPO, kind));
+      return bundles.get(kind);
+    },
+  };
+  let failures = 0;
+  for (const [index, entry] of entries.entries()) {
+    const line = await runEntry(entry, index, outDir, prep);
+    console.log(`run ${line.runId}: ${line.status}, ${line.sampleCount} samples`);
+    if (line.status !== "passed") failures += 1;
+  }
+  return failures === 0 ? 0 : 3;
+}
+
+// ---------------------------------------------------------------------------
+// summarize
+// ---------------------------------------------------------------------------
+
+function copySanitised(source, target) {
+  mkdirSync(path.dirname(target), { recursive: true });
+  const text = readFileSync(source, "utf8");
+  writeFileSync(target, sanitizeText(text), "utf8");
+}
+
+function commandSummarize(flags) {
+  const outDir = path.resolve(REPO, flags.get("out") ?? DEFAULT_OUT);
+  const evidenceDir = path.resolve(REPO, flags.get("to") ?? "");
+  if (!flags.has("to")) throw new UsageError("summarize needs --to <evidenceDir>");
+  const index = readRunIndex(outDir);
+  if (index.length === 0) throw new UsageError(`${repoRelative(outDir)} has no runs-index.jsonl entries`);
+  mkdirSync(evidenceDir, { recursive: true });
+
+  const timingRuns = [];
+  const parityRuns = [];
+  const omitted = [];
+  for (const entry of index) {
+    const runDir = path.join(outDir, entry.runId);
+    if (!existsSync(runDir)) throw new Error(`${entry.runId} is in the index but its directory is missing`);
+    const summaryFile = path.join(runDir, "summary.json");
+    const summary = existsSync(summaryFile) ? readJson(summaryFile) : null;
+    const samplesFile = path.join(runDir, "samples.jsonl");
+    const samples = existsSync(samplesFile) ? parseJsonl(readFileSync(samplesFile, "utf8")) : [];
+    if (entry.parity === true) parityRuns.push({ runId: entry.runId, status: entry.status, case: entry.case, parity: summary?.parity ?? UNAVAILABLE });
+    else timingRuns.push({ entry, samples, denominators: summary?.denominators });
+
+    for (const name of ["run-status.json", "environment.json", "input-manifest.json", "summary.json", "samples.jsonl", "parity-diffs.jsonl", "process-cpu.json", "gc.jsonl", "stdout.log", "stderr.log"]) {
+      const source = path.join(runDir, name);
+      if (!existsSync(source)) continue;
+      if (statSync(source).size > SMALL_ARTIFACT_BYTES) {
+        omitted.push({ runId: entry.runId, file: name, reason: "larger than the small-artifact limit" });
+        continue;
+      }
+      copySanitised(source, path.join(evidenceDir, "runs", entry.runId, name));
+    }
+  }
+  const groups = buildGroups(timingRuns);
+  writeJson(path.join(evidenceDir, "groups.json"), { schema: "ec102.groups.v1", groups, parityRuns, omitted });
+  writeFileSync(path.join(evidenceDir, "tables.md"), renderTables(groups), "utf8");
+  writeFileSync(path.join(evidenceDir, "runs-index.jsonl"), serializeJsonl(index), "utf8");
+  writeFileSync(path.join(evidenceDir, "artifacts.sha256"), artifactsSha256(evidenceDir), "utf8");
+  console.log(`summarized ${index.length} run(s) into ${repoRelative(evidenceDir)}: ${groups.length} group(s), ${parityRuns.length} parity run(s)`);
+  return 0;
+}
+
+// ---------------------------------------------------------------------------
+// scan
+// ---------------------------------------------------------------------------
+
+async function commandScan(positional) {
+  if (positional.length === 0) throw new UsageError("scan needs at least one path");
+  const hits = await scanPaths(positional);
+  for (const hit of hits) console.log(hit);
+  if (hits.length > 0) {
+    console.error(`privacy scan: ${hits.length} hit(s)`);
+    return 1;
+  }
+  console.log("privacy scan: no hits");
+  return 0;
+}
+
+async function main() {
+  const { command, positional, flags } = parseArgs(process.argv.slice(2));
+  switch (command) {
+    case "verify-corpus":
+      return commandVerifyCorpus(flags);
+    case "generate-workloads":
+      return commandGenerateWorkloads(flags);
+    case "run":
+      return commandRun(flags);
+    case "summarize":
+      return commandSummarize(flags);
+    default:
+      return commandScan(positional);
+  }
+}
+
+main().then(
+  (code) => {
+    process.exitCode = code;
+  },
+  (error) => {
+    console.error(error instanceof UsageError ? `error: ${error.message}` : (error instanceof Error ? (error.stack ?? error.message) : String(error)));
+    process.exitCode = error instanceof UsageError ? 2 : 1;
+  },
+);
