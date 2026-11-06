@@ -325,21 +325,28 @@ describe("clamp, cap and locale pins", () => {
   });
 
   // MAX_SECOND_ORDER_PATH_M (50), MAX_EARLY_DELAY_MS (80) and MIN_SECOND_ORDER_GAIN_DB (-36) are not exported from image-source.ts.
-  it("CL06 has a valid second-order path of 52 m that only the 50 m limit rejects", () => {
+  it("CL06 has a valid second-order path of 52.95 m that only the 50 m limit rejects", () => {
     const { scene } = inputOf("CL06_SECOND_ORDER_PATH_LIMIT");
     const source = scene.sources[0].position as { x: number; y: number };
     const listener = scene.listener.position as { x: number; y: number };
     const west = scene.walls.find(({ id }: { id: string }) => id === "far_west").a.x as number;
     const east = scene.walls.find(({ id }: { id: string }) => id === "far_east").a.x as number;
-    const pathLengthM = source.x - west + (east - west) + (east - listener.x);
+    // Image of the source in the west wall, then in the east wall; both walls are vertical so y is unchanged.
+    const imageX = 2 * east - (2 * west - source.x);
+    const pathLengthM = Math.hypot(imageX - listener.x, source.y - listener.y);
+    expect(pathLengthM).toBeCloseTo(52.95, 2);
     expect(pathLengthM).toBeGreaterThan(50);
     const directM = Math.hypot(listener.x - source.x, listener.y - source.y);
-    expect(((pathLengthM - directM) / 343) * 1000).toBeLessThan(80);
+    const excessDelayMs = ((pathLengthM - directM) / 343) * 1000;
+    expect(excessDelayMs).toBeCloseTo(45.45, 2);
+    expect(excessDelayMs).toBeLessThan(80);
     const concrete = MATERIALS.find(({ id }) => id === "concrete_hard")!;
     const amplitude = Math.sqrt(
       Math.max(0, 1 - concrete.absorption.mid - 10 ** (-concrete.transmissionLossDb.mid / 10)) * (1 - concrete.scattering),
     );
-    expect(20 * Math.log10((amplitude * amplitude) / pathLengthM)).toBeGreaterThan(-36);
+    const gainDb = 20 * Math.log10((amplitude * amplitude) / pathLengthM);
+    expect(gainDb).toBeCloseTo(-35.56, 2);
+    expect(gainDb).toBeGreaterThan(-36);
     const value = classicValue("CL06_SECOND_ORDER_PATH_LIMIT").frame.sources[0] as Source & { routeType: string };
     expect(value.routeType).toBe("blocked");
     expect(value.earlyReflections.map(({ wallId }) => wallId)).toEqual(["far_west", "far_east"]);
@@ -436,10 +443,21 @@ describe("clamp, cap and locale pins", () => {
     expect(name).toContain("\u{1D11E}");
     expect(name).toMatch(/[^\u0000-\u007f]/u);
     expect(inputOf("LC04_UNICODE_NAME_HYBRID").document.baseScene.name).toBe(name);
+    const classic = inputOf("LC03_UNICODE_NAME_CLASSIC").scene;
+    const asciiClassic = { ...classic, name: "Ascii name" };
     expect(classicValue("LC03_UNICODE_NAME_CLASSIC").staticFingerprint).toMatch(/^[0-9a-f]{8}$/);
+    expect(classicValue("LC03_UNICODE_NAME_CLASSIC").staticFingerprint).toBe(createClassicStaticContext(classic).fingerprint);
+    expect(createClassicStaticContext(asciiClassic).fingerprint).not.toBe(createClassicStaticContext(classic).fingerprint);
     const hybrid = hybridValue("LC04_UNICODE_NAME_HYBRID");
     expect(hybrid.staticGeometryHash).toMatch(/^[0-9a-f]{8}$/);
     expect(hybrid.frame.classicProjectionHash).toMatch(/^[0-9a-f]{8}$/);
+    const document = inputOf("LC04_UNICODE_NAME_HYBRID").document;
+    const asciiDocument = { ...document, baseScene: { ...document.baseScene, name: "Ascii name" } };
+    expect(hybrid.staticGeometryHash).toBe(compileHybridGeometry(document).staticGeometryHash);
+    // The geometry hash does not read the scene name; only the classic projection hash does.
+    expect(compileHybridGeometry(asciiDocument).staticGeometryHash).toBe(hybrid.staticGeometryHash);
+    expect(classicProjectionHash(document.baseScene)).toBe(hybrid.frame.classicProjectionHash);
+    expect(classicProjectionHash(asciiDocument.baseScene)).not.toBe(classicProjectionHash(document.baseScene));
   });
 
   // fnv1a hashes charCodeAt(0) of each code point, which is only the high surrogate for U+1D11E and U+1D11F. This pins what
@@ -451,5 +469,6 @@ describe("clamp, cap and locale pins", () => {
     expect({ ...a, name: "" }).toEqual({ ...b, name: "" });
     expect(classicValue("LC05_NONBMP_SIBLING_CLASSIC").staticFingerprint)
       .toBe(classicValue("LC03_UNICODE_NAME_CLASSIC").staticFingerprint);
+    expect(classicProjectionHash(a)).toBe(classicProjectionHash(b));
   });
 });

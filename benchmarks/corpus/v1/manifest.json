@@ -2698,7 +2698,7 @@
       "scenario": null,
       "seed": null,
       "source": {
-        "notes": "Direct path blocked by a 0.6 m stop. The west-then-east second-order path is 52 m long with an excess delay and gain inside their limits, so only MAX_SECOND_ORDER_PATH_M (50 m) in image-source.ts rejects it. Not in the original brief; added because the constant of that name is the Classic one.",
+        "notes": "Direct path blocked by a 0.6 m stop. The west-then-east second-order path is 52.95 m long (excess delay 45.45 ms, gain -35.56 dB, both inside their limits), so only MAX_SECOND_ORDER_PATH_M (50 m) in image-source.ts rejects it. Not in the original brief; added because the constant of that name is the Classic one.",
         "refs": [
           "src/acoustics/image-source.ts"
         ],
@@ -3028,7 +3028,7 @@
       "scenario": null,
       "seed": null,
       "source": {
-        "notes": "The scene name holds é, Ü, two CJK characters and U+1D11E (outside the BMP). Pins staticGeometryHash and classicProjectionHash.",
+        "notes": "The scene name holds é, Ü, two CJK characters and U+1D11E (outside the BMP). Pins classicProjectionHash, which reads the name, and staticGeometryHash, which does not.",
         "refs": [
           "src/acoustics/hybrid3d/compile.ts",
           "src/domain/scene-document/validate.ts"

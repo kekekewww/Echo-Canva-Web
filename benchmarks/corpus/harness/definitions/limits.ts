@@ -190,7 +190,7 @@ function classicClampCases(): CorpusCaseDefinition[] {
   });
 
   // Walls only at x = 0 and x = 44 and a 0.6 m stop at x = 20, y 9.7 to 10.3, which blocks the direct line from (2, 5) to
-  // (38, 15) at y = 10. The west-then-east path is 2 + 44 + 6 = 52 m long (excess 16 m, 46.6 ms, gain about -35.4 dB), so
+  // (38, 15) at y = 10. The west-then-east path is hypot(52, 10) = 52.95 m long (the image of the source in both walls sits at x = 90; excess 15.59 m, 45.45 ms, gain about -35.56 dB), so
   // only the 50 m limit in solveSecondOrderReflectionPair2D rejects it. The stop does not touch that path, which crosses
   // x = 20 at y of about 9.2.
   const secondOrderLimit = scene({
@@ -233,7 +233,7 @@ function classicClampCases(): CorpusCaseDefinition[] {
     classicLimitCase(
       "CL06_SECOND_ORDER_PATH_LIMIT",
       [LIMIT, "second-order"],
-      "Direct path blocked by a 0.6 m stop. The west-then-east second-order path is 52 m long with an excess delay and gain inside their limits, so only MAX_SECOND_ORDER_PATH_M (50 m) in image-source.ts rejects it. Not in the original brief; added because the constant of that name is the Classic one.",
+      "Direct path blocked by a 0.6 m stop. The west-then-east second-order path is 52.95 m long (excess delay 45.45 ms, gain -35.56 dB, both inside their limits), so only MAX_SECOND_ORDER_PATH_M (50 m) in image-source.ts rejects it. Not in the original brief; added because the constant of that name is the Classic one.",
       [IMAGE_SOURCE],
       secondOrderLimit,
     ),
@@ -443,7 +443,7 @@ function localeCases(): CorpusCaseDefinition[] {
     hybridLimitCase(
       "LC04_UNICODE_NAME_HYBRID",
       [LOCALE, "unicode"],
-      `${unicodeNote} Pins staticGeometryHash and classicProjectionHash.`,
+      `${unicodeNote} Pins classicProjectionHash, which reads the name, and staticGeometryHash, which does not.`,
       ["src/acoustics/hybrid3d/compile.ts", "src/domain/scene-document/validate.ts"],
       hybridDocument(unicodeScene(UNICODE_NAME, 313), 1.5, { radio: 1.5 }),
     ),
