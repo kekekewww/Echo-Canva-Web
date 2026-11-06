@@ -37,6 +37,7 @@ benchmarks/results/**
 !benchmarks/results/mvp-baseline-audio.json
 !benchmarks/corpus/
 !benchmarks/corpus/**
+!vitest.corpus.config.ts
 
 # These exclusions also apply inside otherwise allowed source/asset trees.
 **/.env*

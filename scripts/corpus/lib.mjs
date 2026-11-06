@@ -423,13 +423,13 @@ const CORPUS_PREFIX = "benchmarks/corpus/v1/";
 const MAX_PROBLEMS_PER_CASE = 5;
 
 function describeText(text) {
-  if (text.startsWith("﻿")) return "a UTF-8 BOM";
+  if (text.startsWith("\uFEFF")) return "a UTF-8 BOM";
   if (text.includes("\r")) return "CRLF line endings";
   return null;
 }
 
 function stripBom(text) {
-  return text.replace(/^﻿/, "");
+  return text.replace(/^\uFEFF/, "");
 }
 
 function messageOf(error) {
@@ -494,6 +494,7 @@ export function verifyCorpus(rootDir, options = {}) {
     problems.push("manifest.json: needs a cases array");
     return { ok: false, problems, corpusSha256, caseCount: 0 };
   }
+  if (manifest.cases.length === 0) problems.push("manifest.json: cases is empty, a corpus with no cases verifies nothing");
 
   let rules = null;
   const rulesInfo = manifest.rules;

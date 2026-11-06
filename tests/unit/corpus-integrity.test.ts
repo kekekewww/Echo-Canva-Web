@@ -2,6 +2,7 @@ import { spawnSync } from "node:child_process";
 import {
   cpSync,
   existsSync,
+  mkdirSync,
   mkdtempSync,
   readdirSync,
   readFileSync,
@@ -15,8 +16,10 @@ import { fileURLToPath } from "node:url";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
+  aggregateSha256,
   canonicalize,
   collectGitInfo,
+  packageJsonNoScriptsSha256,
   parseGitStatusZ,
   sha256Hex,
   verifyCorpus,
@@ -31,7 +34,11 @@ type Entry = { id: string; input: { path: string; sha256: string; bytes: number 
 type Manifest = { rules: { path: string; sha256: string | null }; cases: Entry[] };
 
 // Each test verifies or copies a 7 MB corpus, which outlasts the 5 s default on a slow disk.
-vi.setConfig({ testTimeout: 60_000 });
+// beforeEach copies it too, and hooks have their own 10 s default.
+vi.setConfig({ testTimeout: 60_000, hookTimeout: 60_000 });
+
+// The dev container has neither git nor a .git directory.
+const HAS_GIT = spawnSync("git", ["rev-parse", "--git-dir"], { cwd: REPO, stdio: "ignore" }).status === 0;
 
 let temp: string;
 let copy: string;
@@ -92,6 +99,21 @@ describe("verifyCorpus", () => {
     expect(result.corpusSha256).toBe(sha256Hex(readFileSync(path.join(REAL, "manifest.json"))));
   });
 
+  it("accepts the real corpus as frozen", () => {
+    const result = verifyCorpus(REAL, { requireFrozen: true });
+    expect(result.problems).toEqual([]);
+    expect(result.ok).toBe(true);
+  });
+
+  it("reports a manifest without cases", () => {
+    const manifest = manifestOf(copy);
+    manifest.cases = [];
+    writeManifest(copy, manifest);
+    const result = verifyCorpus(copy);
+    expect(result.ok).toBe(false);
+    expect(result.problems.join(" ")).toMatch(/no cases|cases is empty/);
+  });
+
   it("names an input whose bytes changed", () => {
     const entry = firstCase(copy);
     const file = path.join(copy, local(entry.input.path));
@@ -113,7 +135,7 @@ describe("verifyCorpus", () => {
   it("names an expected file that gained a UTF-8 BOM", () => {
     const entry = firstCase(copy);
     const file = path.join(copy, local(entry.expected.path));
-    writeFileSync(file, `﻿${readFileSync(file, "utf8")}`);
+    writeFileSync(file, `\uFEFF${readFileSync(file, "utf8")}`);
     const result = verifyCorpus(copy);
     expect(result.ok).toBe(false);
     expect(result.problems.find((problem) => /BOM/.test(problem))).toContain(entry.expected.path);
@@ -176,6 +198,30 @@ describe("verifyCorpus", () => {
   });
 });
 
+describe("freeze anchors on the real corpus", () => {
+  const evidence = (name: string) =>
+    JSON.parse(read(REAL, `evidence/${name}.json`)) as Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+
+  it("pins the manifest hash in the acceptance rerun and the sensitivity run", () => {
+    const manifestSha = sha256Hex(readFileSync(path.join(REAL, "manifest.json")));
+    const acceptance = evidence("acceptance-rerun");
+    expect(acceptance.corpusSha256).toBe(manifestSha);
+    const runs = Object.entries(acceptance.runs as Record<string, { corpusSha256: string }>);
+    expect(runs.length).toBeGreaterThan(0);
+    for (const [name, run] of runs) expect(run.corpusSha256, `run ${name}`).toBe(manifestSha);
+    expect(evidence("sensitivity").corpusSha256).toBe(manifestSha);
+  });
+
+  it("pins the rules hash in the sensitivity evidence", () => {
+    expect(manifestOf(REAL).rules.sha256).toBe(evidence("sensitivity").rulesSha256);
+  });
+
+  it("pins the expected outputs to the accepted aggregate", () => {
+    const hashes = Object.fromEntries(manifestOf(REAL).cases.map((entry) => [entry.id, entry.expected.sha256]));
+    expect(aggregateSha256(hashes)).toBe(evidence("acceptance-rerun").runs.A.aggregateSha256);
+  });
+});
+
 function runCli(args: string[]) {
   return spawnSync(process.execPath, [CLI, ...args], { cwd: REPO, encoding: "utf8", timeout: 60_000 });
 }
@@ -186,6 +232,24 @@ describe("corpus CLI", () => {
     expect(result.status, result.stderr + result.stdout).toBe(0);
   });
 
+  it("verify --require-frozen passes on the real corpus", () => {
+    const result = runCli(["verify", "--require-frozen"]);
+    expect(result.status, result.stderr + result.stdout).toBe(0);
+  });
+
+  it("verify --require-frozen fails on a copy with a proposed class, plain verify passes", () => {
+    reopenAsDraft(copy);
+    expect(runCli(["verify", "--corpus", copy]).status).toBe(0);
+    const result = runCli(["verify", "--require-frozen", "--corpus", copy]);
+    expect(result.status).not.toBe(0);
+    expect(result.stderr).toMatch(/hybrid-gain-db|proposed|frozen/);
+  });
+
+  it("has corpus:verify require the freeze", () => {
+    const scripts = (JSON.parse(readFileSync(path.join(REPO, "package.json"), "utf8")) as { scripts: Record<string, string> }).scripts;
+    expect(scripts["corpus:verify"]).toBe("node scripts/corpus/cli.mjs verify --require-frozen");
+  });
+
   it("refuses to freeze while a class is proposed and leaves the files unchanged", () => {
     reopenAsDraft(copy);
     const before = [read(copy, "manifest.json"), read(copy, "comparison-rules.json")];
@@ -193,6 +257,26 @@ describe("corpus CLI", () => {
     expect(result.status).not.toBe(0);
     expect(result.stderr).toMatch(/proposed/);
     expect([read(copy, "manifest.json"), read(copy, "comparison-rules.json")]).toEqual(before);
+  });
+
+  it("compare flags an extra output in either directory", () => {
+    const manifest = manifestOf(copy);
+    for (const name of ["X", "Y"]) {
+      const outputs = path.join(temp, name, "outputs");
+      mkdirSync(outputs, { recursive: true });
+      for (const entry of manifest.cases) {
+        writeFileSync(path.join(outputs, `${entry.id}.json`), read(copy, local(entry.expected.path)));
+      }
+    }
+    const clean = runCli(["compare", path.join(temp, "X"), path.join(temp, "Y"), "--corpus", copy]);
+    expect(clean.status, clean.stderr + clean.stdout).toBe(0);
+    writeFileSync(path.join(temp, "Y", "outputs", "STALE_CASE.json"), "{}\n");
+    const second = runCli(["compare", path.join(temp, "X"), path.join(temp, "Y"), "--corpus", copy]);
+    expect(second.status, second.stdout).not.toBe(0);
+    expect(second.stdout).toMatch(/extra=1/);
+    const first = runCli(["compare", path.join(temp, "Y"), path.join(temp, "X"), "--corpus", copy]);
+    expect(first.status, first.stdout).not.toBe(0);
+    expect(first.stdout).toMatch(/extra=1/);
   });
 
   it("freezes once every class is decided and rewrites the rules hash", () => {
@@ -206,7 +290,18 @@ describe("corpus CLI", () => {
     expect(verifyCorpus(copy, { requireFrozen: true }).problems).toEqual([]);
   });
 
-  it("refresh-rules-hash rewrites only the rules hash", () => {
+  it("refresh-rules-hash refuses once the rules are frozen and leaves the files unchanged", () => {
+    const manifest = manifestOf(copy);
+    writeFileSync(path.join(copy, manifest.rules.path), `${read(copy, manifest.rules.path)}\n`);
+    const before = [read(copy, "manifest.json"), read(copy, manifest.rules.path)];
+    const result = runCli(["refresh-rules-hash", "--corpus", copy]);
+    expect(result.status).not.toBe(0);
+    expect(result.stderr).toMatch(/frozen/);
+    expect([read(copy, "manifest.json"), read(copy, manifest.rules.path)]).toEqual(before);
+  });
+
+  it("refresh-rules-hash rewrites only the rules hash while the rules are draft", () => {
+    reopenAsDraft(copy);
     const manifest = manifestOf(copy);
     writeFileSync(path.join(copy, manifest.rules.path), `${read(copy, manifest.rules.path)}\n`);
     expect(verifyCorpus(copy).ok).toBe(false);
@@ -220,7 +315,7 @@ describe("corpus CLI", () => {
 });
 
 describe("source hygiene and git facts", () => {
-  it("keeps raw NUL bytes out of the corpus sources", () => {
+  it.skipIf(!HAS_GIT)("keeps raw NUL bytes and UTF-8 BOMs out of the corpus sources", () => {
     const listed = spawnSync(
       "git",
       ["ls-files", "scripts/corpus", "benchmarks/corpus/harness", "tests/corpus", "tests/unit/corpus-comparator.test.ts",
@@ -230,7 +325,12 @@ describe("source hygiene and git facts", () => {
     expect(listed.status).toBe(0);
     const files = listed.stdout.split("\n").filter((name) => name.length > 0);
     expect(files.length).toBeGreaterThan(5);
-    for (const file of files) expect(readFileSync(path.join(REPO, file)).includes(0), file).toBe(false);
+    const bom = Buffer.from([0xef, 0xbb, 0xbf]);
+    for (const file of files) {
+      const bytes = readFileSync(path.join(REPO, file));
+      expect(bytes.includes(0), `${file} NUL`).toBe(false);
+      expect(bytes.includes(bom), `${file} BOM`).toBe(false);
+    }
   });
 
   it("parses NUL-separated git status into repo-relative paths", () => {
@@ -243,6 +343,31 @@ describe("source hygiene and git facts", () => {
       "renamed/new.ts",
     ]);
     expect(parseGitStatusZ("")).toEqual([]);
+  });
+
+  describe.skipIf(!HAS_GIT)("collectGitInfo against HEAD", () => {
+    const gitOut = (...args: string[]) =>
+      spawnSync("git", args, { cwd: REPO, encoding: "utf8" }).stdout.trim();
+    const headBaseline = () => ({
+      treeHashes: Object.fromEntries(
+        ["src", "pnpm-lock.yaml", "pnpm-workspace.yaml", "patches"].map((name) => [name, gitOut("rev-parse", `HEAD:${name}`)]),
+      ),
+      packageJsonNoScriptsSha256: packageJsonNoScriptsSha256(gitOut("show", "HEAD:package.json")),
+    });
+
+    it("matches a baseline built from the current HEAD trees", () => {
+      const info = collectGitInfo(REPO, headBaseline());
+      expect(info.productTreesMatchBaseline).toBe(true);
+      expect(info.productTreeDiffs).toEqual([]);
+    });
+
+    it("names the tree whose hash differs", () => {
+      const baseline = headBaseline();
+      baseline.treeHashes.src = "0".repeat(40);
+      const info = collectGitInfo(REPO, baseline);
+      expect(info.productTreesMatchBaseline).toBe(false);
+      expect(info.productTreeDiffs).toEqual(["src"]);
+    });
   });
 
   it("reports unknown product trees when git cannot answer", () => {
@@ -264,13 +389,27 @@ describe("source hygiene and git facts", () => {
 });
 
 describe("public files stay free of local identity", () => {
-  it("has no absolute path or email in the manifest, rules or evidence", () => {
-    const files = ["manifest.json", "comparison-rules.json"];
-    const evidence = path.join(REAL, "evidence");
-    if (existsSync(evidence)) {
-      for (const name of readdirSync(evidence)) if (name.endsWith(".json")) files.push(`evidence/${name}`);
+  it("has no absolute path or email in the corpus files, README or this work's knowledge pages", () => {
+    const files: string[] = ["benchmarks/corpus/README.md"];
+    // Pages written for this work only. Other knowledge pages have their own history.
+    files.push(
+      "knowledge/raw/sources/ec-101-corpus-baseline.md",
+      "knowledge/sessions/2026-11-06-claude-ec-101-corpus.md",
+      "knowledge/handoffs/2026-11-06-ec-101-claude.md",
+    );
+    for (const name of ["manifest.json", "comparison-rules.json"]) files.push(`benchmarks/corpus/v1/${name}`);
+    for (const dir of ["evidence", "inputs", "expected"]) {
+      const full = path.join(REAL, dir);
+      if (!existsSync(full)) continue;
+      for (const name of readdirSync(full)) if (name.endsWith(".json")) files.push(`benchmarks/corpus/v1/${dir}/${name}`);
     }
-    for (const file of files) expect(read(REAL, file), file).not.toMatch(PRIVACY);
+    expect(files.length).toBeGreaterThan(140);
+    for (const file of files) {
+      const full = path.join(REPO, file);
+      if (!existsSync(full)) continue; // a knowledge page may not be checked out
+      const match = PRIVACY.exec(readFileSync(full, "utf8"));
+      expect(match === null ? null : `${file}: ${match[0]}`).toBeNull();
+    }
   });
 
   it("writes a run.json without hostname, username or absolute paths", () => {
@@ -291,8 +430,8 @@ describe("public files stay free of local identity", () => {
     const user = userInfo().username;
     if (host.length > 3) expect(text.toLowerCase()).not.toContain(host.toLowerCase());
     if (user.length > 3) expect(text.toLowerCase()).not.toContain(user.toLowerCase());
-    // Committed trees only, so an uncommitted working tree does not matter.
-    expect(parsed).toMatchObject({ productTreesMatchBaseline: true, productTreeDiffs: [] });
+    // Whether the product trees match the baseline depends on the branch, so it is tested on collectGitInfo.
+    expect(parsed).toHaveProperty("productTreesMatchBaseline");
     expect(parsed).toMatchObject({
       runId: "privacy",
       order: "manifest",

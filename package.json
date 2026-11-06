@@ -16,7 +16,7 @@
     "test:watch": "vitest",
     "e2e": "pnpm build && playwright test",
     "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm e2e",
-    "corpus:verify": "node scripts/corpus/cli.mjs verify",
+    "corpus:verify": "node scripts/corpus/cli.mjs verify --require-frozen",
     "corpus:run": "node scripts/corpus/cli.mjs run",
     "corpus:compare": "node scripts/corpus/cli.mjs compare",
     "corpus:rerun": "node scripts/corpus/cli.mjs rerun"

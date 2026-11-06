@@ -167,7 +167,10 @@ function compareSets(actual, reference, manifest, rules) {
     );
   }
   const known = new Set(manifest.cases.map(({ id }) => id));
-  const extra = [...actual.outputs.keys()].filter((id) => !known.has(id)).sort();
+  // A stale output on either side is a problem, not only in the run under test.
+  const extra = [...new Set([...actual.outputs.keys(), ...reference.outputs.keys()])]
+    .filter((id) => !known.has(id))
+    .sort();
   const summary = summarizeReports(reports);
   return {
     actual: actual.label,
@@ -258,7 +261,7 @@ function commandRerun(flags) {
   const aggregates = Object.fromEntries(Object.entries(runs).map(([runId, { runJson }]) => [runId, runJson.aggregateSha256]));
   const aggregatesIdentical = new Set(Object.values(aggregates)).size === 1;
   console.log(`aggregateSha256 A=${aggregates.A} B=${aggregates.B} C=${aggregates.C} identical=${aggregatesIdentical}`);
-  const ok = comparisons.every((comparison) => comparison.ok);
+  const ok = comparisons.every((comparison) => comparison.ok) && aggregatesIdentical;
 
   if (flags.has("evidence")) {
     const evidence = {
@@ -297,7 +300,15 @@ function readCanonicalManifest(paths) {
 
 function commandRefreshRulesHash(flags) {
   const paths = corpusPaths(flags);
-  const hash = writeRulesHash(paths, readCanonicalManifest(paths));
+  const manifest = readCanonicalManifest(paths);
+  const rules = readJson(path.join(paths.corpusDir, manifest.rules.path));
+  if (rules.status === "frozen") {
+    console.error(
+      "rules are frozen; refusing to rehash them. A changed tolerance or a new case needs a new corpus version.",
+    );
+    return 1;
+  }
+  const hash = writeRulesHash(paths, manifest);
   console.log(`rules.sha256 ${hash}`);
   return 0;
 }

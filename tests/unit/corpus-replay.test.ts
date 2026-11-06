@@ -9,7 +9,7 @@ import { classicProjectionHash } from "@/domain/scene-document/validate";
 import { corpusCaseDefinitions } from "../../benchmarks/corpus/harness/definitions";
 import { runCorpusCase } from "../../benchmarks/corpus/harness/ts-serial-adapter";
 import type { CorpusCaseKind } from "../../benchmarks/corpus/harness/types";
-import { aggregateSha256, canonicalize, compareOutputs, sha256Hex } from "../../scripts/corpus/lib.mjs";
+import { aggregateSha256, canonicalize, collectGitInfo, compareOutputs, sha256Hex } from "../../scripts/corpus/lib.mjs";
 import type { CorpusRules } from "../../scripts/corpus/lib.mjs";
 
 const ROOT = resolve(process.cwd());
@@ -27,7 +27,10 @@ function readText(path: string): string {
   return readFileSync(resolve(ROOT, path), "utf8");
 }
 
-const manifest = JSON.parse(readText("benchmarks/corpus/v1/manifest.json")) as { cases: ManifestCase[] };
+const manifest = JSON.parse(readText("benchmarks/corpus/v1/manifest.json")) as {
+  baseline: Parameters<typeof collectGitInfo>[1];
+  cases: ManifestCase[];
+};
 const rules = JSON.parse(readText("benchmarks/corpus/v1/comparison-rules.json")) as CorpusRules;
 
 function round(value: number): number {
@@ -133,14 +136,18 @@ describe("frozen corpus replay", () => {
     expect(Math.abs((path?.pathLengthM ?? Number.NaN) - Math.sqrt(45))).toBeLessThanOrEqual(1e-5);
   });
 
-  it("rebuilds every frozen input byte-for-byte from the definitions", () => {
-    const definitions = corpusCaseDefinitions();
-    expect(definitions.map(({ id }) => id)).toEqual(manifest.cases.map(({ id }) => id));
-    for (const definition of definitions) {
-      const entry = manifest.cases.find(({ id }) => id === definition.id)!;
-      expect(`${JSON.stringify(definition.input, null, 2)}\n`, definition.id).toBe(readText(entry.input.path));
-    }
-  });
+  // Live presets feed the definitions, so a harmless preset edit would fail this; the evidence anchors still pin the input bytes.
+  it.skipIf(collectGitInfo(ROOT, manifest.baseline).productTreesMatchBaseline !== true)(
+    "rebuilds every frozen input byte-for-byte from the definitions",
+    () => {
+      const definitions = corpusCaseDefinitions();
+      expect(definitions.map(({ id }) => id)).toEqual(manifest.cases.map(({ id }) => id));
+      for (const definition of definitions) {
+        const entry = manifest.cases.find(({ id }) => id === definition.id)!;
+        expect(`${JSON.stringify(definition.input, null, 2)}\n`, definition.id).toBe(readText(entry.input.path));
+      }
+    },
+  );
 
   it("replays every case deterministically and within the comparison rules", () => {
     const hashes: Record<string, string> = {};
