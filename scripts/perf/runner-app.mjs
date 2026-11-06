@@ -384,7 +384,7 @@ async function main() {
 
     if (caseId === "APP_H100_SWITCH") await crossCheckFixture(page, config, runDir, result);
     const sampler = audioOn ? startAudioSampler(audioSession, () => contextIds.at(-1)) : null;
-    if (config.pass === "traced") tracing = await startTracing(browserSession);
+    if (config.pass === "traced") tracing = await startTracing(browserSession, config.traceExtraCategories ?? []);
     if (config.pass === "alloc") allocation = await startAllocation(browserSession, pageSession);
     const timeouts = [];
     let submitted = 0;

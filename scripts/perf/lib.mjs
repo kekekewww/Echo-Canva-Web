@@ -387,6 +387,11 @@ export function browserArgsOf(entry) {
   return entry.boundary === "browser-app" ? [] : NOT_APPLICABLE;
 }
 
+/** Extra Chromium tracing categories for a traced run; empty for every run that did not ask for any. */
+export function traceExtraCategoriesOf(entry) {
+  return Array.isArray(entry.traceExtraCategories) ? entry.traceExtraCategories : [];
+}
+
 /** "WxH" with both sides in 320..7680, or "default". Returns { width, height } or null for the default. */
 export function parseViewport(text) {
   if (text === "default") return null;
@@ -408,7 +413,17 @@ export function validateBrowserArgs(args) {
   return args;
 }
 
+/** Tracing categories to append to the base list: letters, digits, '_', '.', ',' and '-' only. */
+export function validateTraceExtraCategories(values) {
+  if (!Array.isArray(values)) throw new Error("--trace-extra-category values must be a list of strings");
+  for (const value of values) {
+    if (typeof value !== "string" || !/^[a-zA-Z0-9_.,-]+$/.test(value)) throw new Error(`--trace-extra-category may hold letters, digits, '_', '.', ',' and '-' only: ${JSON.stringify(value)}`);
+  }
+  return values;
+}
+
 export function groupKeyOf(entry) {
+  const extra = traceExtraCategoriesOf(entry);
   return JSON.stringify([
     entry.variant,
     entry.case,
@@ -421,6 +436,7 @@ export function groupKeyOf(entry) {
     browserChannelOf(entry),
     viewportOf(entry),
     browserArgsOf(entry),
+    ...(extra.length > 0 ? [extra] : []),
   ]);
 }
 
@@ -446,7 +462,7 @@ export function buildGroups(runs) {
   }
   const groups = [];
   for (const [key, members] of grouped) {
-    const [variant, caseId, pass, boundary, workers, audio, build, driver, browserChannel, viewport, browserArgs] = JSON.parse(key);
+    const [variant, caseId, pass, boundary, workers, audio, build, driver, browserChannel, viewport, browserArgs, traceExtraCategories] = JSON.parse(key);
     const pooledBuckets = new Map();
     const perRun = [];
     const excludedRuns = [];
@@ -505,7 +521,7 @@ export function buildGroups(runs) {
       exploratoryRuns[phase] = perRun.filter((run) => run.phases[phase]?.exploratory === true).length;
     }
     groups.push({
-      key: { variant, case: caseId, pass, boundary, workers, audio, build, driver, browserChannel, viewport, browserArgs },
+      key: { variant, case: caseId, pass, boundary, workers, audio, build, driver, browserChannel, viewport, browserArgs, ...(traceExtraCategories === undefined ? {} : { traceExtraCategories }) },
       runCount: perRun.length,
       runIds: perRun.map((run) => run.runId),
       excludedRuns,
@@ -527,8 +543,8 @@ function formatNumber(value) {
 export function renderTables(groups) {
   const lines = ["# EC-102 summary tables", "", "Values are display-rounded to 3 decimals. Raw numbers are in groups.json.", ""];
   for (const group of groups) {
-    const { variant, case: caseId, pass, boundary, workers, audio, build, driver, browserChannel, viewport, browserArgs } = group.key;
-    lines.push(`## ${variant} ${caseId} pass=${pass} boundary=${boundary} workers=${workers} audio=${audio} build=${build} driver=${driver} browser-channel=${browserChannel} viewport=${viewport} browser-args=${JSON.stringify(browserArgs)}`);
+    const { variant, case: caseId, pass, boundary, workers, audio, build, driver, browserChannel, viewport, browserArgs, traceExtraCategories } = group.key;
+    lines.push(`## ${variant} ${caseId} pass=${pass} boundary=${boundary} workers=${workers} audio=${audio} build=${build} driver=${driver} browser-channel=${browserChannel} viewport=${viewport} browser-args=${JSON.stringify(browserArgs)}${traceExtraCategories === undefined ? "" : ` trace-extra-categories=${JSON.stringify(traceExtraCategories)}`}`);
     lines.push("");
     lines.push(`Runs: ${group.runCount}`);
     lines.push(`Denominators: ${DENOMINATORS.map((name) => `${name}=${group.denominators[name]}`).join(" ")}`);
@@ -637,6 +653,7 @@ export async function executeRun({ outDir, meta, orderIndex, execute, clock = ()
     browserChannel: meta.browserChannel ?? NOT_APPLICABLE,
     viewport: meta.viewport ?? NOT_APPLICABLE,
     browserArgs: meta.browserArgs ?? NOT_APPLICABLE,
+    ...(traceExtraCategoriesOf(meta).length > 0 ? { traceExtraCategories: meta.traceExtraCategories } : {}),
     parity: meta.parity === true,
     status,
     start,

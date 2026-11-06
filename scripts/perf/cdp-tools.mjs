@@ -19,8 +19,9 @@ export const TRACE_CATEGORIES = [
 ].join(",");
 
 /** Starts tracing on the browser session. `stop(file)` streams the trace to `file`. */
-export async function startTracing(session) {
-  await session.send("Tracing.start", { categories: TRACE_CATEGORIES, transferMode: "ReturnAsStream" });
+export async function startTracing(session, extraCategories = []) {
+  const categories = extraCategories.length > 0 ? [TRACE_CATEGORIES, ...extraCategories].join(",") : TRACE_CATEGORIES;
+  await session.send("Tracing.start", { categories, transferMode: "ReturnAsStream" });
   return {
     async stop(file) {
       const completed = new Promise((resolve) => session.once("Tracing.tracingComplete", resolve));

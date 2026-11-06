@@ -144,7 +144,7 @@ async function main() {
     });
 
     const startDiagnostics = async () => {
-      if (config.pass === "traced") tracing = await startTracing(browserSession);
+      if (config.pass === "traced") tracing = await startTracing(browserSession, config.traceExtraCategories ?? []);
       if (config.pass === "alloc") {
         allocation = await startAllocation(browserSession, pageSession);
         await page.exposeFunction("__ec102BeforeDispose", () => allocation.stopWorkers(runDir));

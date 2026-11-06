@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { collectBrowserFacts, launchBrowser } from "../../scripts/perf/cdp-tools.mjs";
-import { browserArgsOf, groupKeyOf, parseViewport, validateBrowserArgs, viewportOf } from "../../scripts/perf/lib.mjs";
+import { browserArgsOf, groupKeyOf, parseViewport, validateBrowserArgs, viewportOf, traceExtraCategoriesOf, validateTraceExtraCategories } from "../../scripts/perf/lib.mjs";
 
 const ENTRY = { runId: "a", variant: "TS-W", case: "APP_H100_SWITCH", pass: "clean", boundary: "browser-app", workers: 4, audio: "on", build: "prod", driver: "poll", parity: false, status: "passed", start: "", end: "", orderIndex: 0, sampleCount: 1 };
 
@@ -28,6 +28,22 @@ describe("viewport and browser args", () => {
     expect(groupKeyOf(base)).toBe(groupKeyOf({ ...base, viewport: "default", browserArgs: [] }));
     expect(viewportOf({ boundary: "browser-pool" })).toBe("not-applicable");
     expect(browserArgsOf({ boundary: "browser-pool" })).toBe("not-applicable");
+  });
+
+  it("validates extra trace categories", () => {
+    expect(validateTraceExtraCategories(["disabled-by-default-cc.debug", "cc,gpu", "a_b.c-d"])).toEqual(["disabled-by-default-cc.debug", "cc,gpu", "a_b.c-d"]);
+    expect(validateTraceExtraCategories([])).toEqual([]);
+    for (const bad of ["", "has space", "a/b", "a\b", "x*", "a;b"]) expect(() => validateTraceExtraCategories([bad])).toThrow(/trace-extra-category/);
+    expect(() => validateTraceExtraCategories("cc" as unknown as string[])).toThrow();
+  });
+
+  it("changes the group key only when extra trace categories are present", () => {
+    const base = { ...ENTRY };
+    const key = groupKeyOf(base);
+    expect(groupKeyOf({ ...base, traceExtraCategories: [] })).toBe(key);
+    expect(traceExtraCategoriesOf(base)).toEqual([]);
+    expect(groupKeyOf({ ...base, traceExtraCategories: ["cc"] })).not.toBe(key);
+    expect(groupKeyOf({ ...base, traceExtraCategories: ["cc"] })).not.toBe(groupKeyOf({ ...base, traceExtraCategories: ["gpu"] }));
   });
 });
 

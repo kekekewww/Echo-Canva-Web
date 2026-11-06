@@ -22,6 +22,7 @@ import {
   assertInsideRepo,
   parseViewport,
   validateBrowserArgs,
+  validateTraceExtraCategories,
   buildGroups,
   executeRun,
   parseJsonl,
@@ -54,7 +55,7 @@ class UsageError extends Error {}
 
 const RUN_FLAGS = new Set([
   "variant", "case", "corpus-manifest", "run-id", "repeat", "out", "boundary", "pass", "audio",
-  "samples", "driver", "browser-channel", "viewport", "browser-arg", "hardware-concurrency", "build", "order-index", "plan", "ts-s-path", "max-duration-ms", "step-timeout-ms",
+  "samples", "driver", "browser-channel", "viewport", "browser-arg", "trace-extra-category", "hardware-concurrency", "build", "order-index", "plan", "ts-s-path", "max-duration-ms", "step-timeout-ms",
 ]);
 const BOOLEAN_FLAGS = new Set(["parity", "check", "with-slices"]);
 const COMMAND_FLAGS = {
@@ -95,7 +96,7 @@ function parseArgs(argv) {
       if (value === undefined || value.startsWith("--")) throw new UsageError(`--${name} needs a value`);
       index += 1;
     }
-    if (name === "browser-arg") flags.set(name, [...(flags.get(name) ?? []), value]);
+    if (name === "browser-arg" || name === "trace-extra-category") flags.set(name, [...(flags.get(name) ?? []), value]);
     else flags.set(name, value);
   }
   return { command, positional, flags };
@@ -252,6 +253,7 @@ function normalizeEntry(raw, globals) {
     browserChannel: get("browser-channel") ?? NOT_APPLICABLE,
     viewport: get("viewport") ?? NOT_APPLICABLE,
     browserArgs: raw["browser-args"] ?? globals.get("browser-arg"),
+    traceExtraCategories: raw["trace-extra-categories"] ?? globals.get("trace-extra-category"),
     parity: raw.parity === true || (globals.get("parity") === true && raw.parity !== false),
     corpusManifest: get("corpus-manifest"),
     orderIndex: get("order-index") === undefined ? undefined : Number(get("order-index")),
@@ -284,6 +286,16 @@ function normalizeEntry(raw, globals) {
     if (entry.viewport !== NOT_APPLICABLE) parseViewport(entry.viewport);
   } catch (error) {
     throw new UsageError(error.message);
+  }
+  if (entry.traceExtraCategories !== undefined) {
+    try {
+      validateTraceExtraCategories(entry.traceExtraCategories);
+    } catch (error) {
+      throw new UsageError(error.message);
+    }
+    if (entry.pass !== "traced") throw new UsageError("--trace-extra-category applies to --pass traced only");
+  } else {
+    delete entry.traceExtraCategories;
   }
   if (entry.viewport !== NOT_APPLICABLE || entry.browserArgs !== undefined) {
     if (entry.boundary !== "browser-app") throw new UsageError("--viewport and --browser-arg apply at browser-app only");
@@ -427,6 +439,7 @@ function writeInputManifest(runDir, context, entry, bundle, workloads) {
       hardwareConcurrency: entry.hardwareConcurrency ?? NOT_APPLICABLE,
       stepTimeoutMs: entry.stepTimeoutMs,
       tsSPath: entry.variant === "TS-S" ? entry.tsSPath : NOT_APPLICABLE,
+      ...(entry.traceExtraCategories === undefined ? {} : { traceExtraCategories: entry.traceExtraCategories }),
     },
   });
 }
@@ -489,6 +502,7 @@ async function runEntry(entry, index, outDir, prep) {
     browserChannel: entry.browserChannel,
     viewport: entry.viewport,
     browserArgs: entry.browserArgs,
+    ...(entry.traceExtraCategories === undefined ? {} : { traceExtraCategories: entry.traceExtraCategories }),
     build: app ? "prod" : entry.build,
     parity: entry.parity,
   };
@@ -518,6 +532,7 @@ async function runEntry(entry, index, outDir, prep) {
         browserChannel: entry.browserChannel,
         viewport: entry.viewport,
         browserArgs: entry.browserArgs ?? [],
+        traceExtraCategories: entry.traceExtraCategories ?? [],
         samples: entry.samples,
         maxDurationMs: entry.maxDurationMs,
         hardwareConcurrency: entry.hardwareConcurrency,
@@ -577,6 +592,7 @@ async function runEntry(entry, index, outDir, prep) {
         browserChannel: entry.browserChannel,
         viewport: entry.viewport ?? NOT_APPLICABLE,
         browserArgs: entry.browserArgs ?? NOT_APPLICABLE,
+        ...(entry.traceExtraCategories === undefined ? {} : { traceExtraCategories: entry.traceExtraCategories }),
         traced: result.traced ?? NOT_APPLICABLE,
         denominators: result.denominators,
         jobs: result.jobs ?? UNAVAILABLE,

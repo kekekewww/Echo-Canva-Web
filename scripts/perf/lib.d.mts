@@ -78,6 +78,7 @@ export type RunIndexLine = {
   browserChannel?: string;
   viewport?: string;
   browserArgs?: string[] | string;
+  traceExtraCategories?: string[];
   parity: boolean;
   status: string;
   start: string;
@@ -111,6 +112,8 @@ export function makeDenominators(counts: Record<string, number>): Record<string,
 export function latestRunIndex<T extends { runId: string }>(lines: T[]): T[];
 export function viewportOf(entry: { boundary?: string; viewport?: string }): string;
 export function browserArgsOf(entry: { boundary?: string; browserArgs?: string[] }): string[] | string;
+export function traceExtraCategoriesOf(entry: { traceExtraCategories?: string[]; [key: string]: unknown }): string[];
+export function validateTraceExtraCategories(values: unknown): string[];
 export function parseViewport(text: string): { width: number; height: number } | null;
 export function validateBrowserArgs(args: unknown): string[];
 export function browserChannelOf(entry: { boundary?: string; browserChannel?: string }): string;
@@ -133,7 +136,7 @@ export function appendRunIndex(outDir: string, line: RunIndexLine): void;
 export function readRunIndex(outDir: string): RunIndexLine[];
 export function executeRun(options: {
   outDir: string;
-  meta: { runId: string; variant: string; case: string; pass: string; boundary: string; workers?: number | string; audio?: string; build?: string; driver?: string; browserChannel?: string; viewport?: string; browserArgs?: string[]; parity?: boolean };
+  meta: { runId: string; variant: string; case: string; pass: string; boundary: string; workers?: number | string; audio?: string; build?: string; driver?: string; browserChannel?: string; viewport?: string; browserArgs?: string[]; traceExtraCategories?: string[]; parity?: boolean };
   orderIndex?: number;
   execute: (context: { runDir: string }) => Promise<{
     status?: "passed" | "failed";
