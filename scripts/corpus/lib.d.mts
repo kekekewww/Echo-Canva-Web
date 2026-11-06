@@ -40,15 +40,18 @@ export type CompareReport = {
   kind: string;
   ok: boolean;
   bitExact: boolean;
+  negativeZeroPaths: { expected: string[]; actual: string[] };
   leafCount: number;
   violations: Violation[];
   stats: Record<string, ClassStats>;
+  samples: Record<string, { abs: number[]; rel: number[] }>;
 };
 
 export type CompareSummary = {
   ok: boolean;
   caseCount: number;
   bitExactCases: number;
+  negativeZeroLeafCount: number;
   violationCount: number;
   firstViolations: (Violation & { caseId: string })[];
   stats: Record<string, ClassStats>;

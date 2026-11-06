@@ -2,10 +2,6 @@ import { createHash } from "node:crypto";
 
 const MAX_FIRST_VIOLATIONS = 20;
 
-// Raw absolute/relative errors per report and class. Percentiles cannot be
-// merged from summaries, so summarizeReports recomputes them from these.
-const rawErrors = new WeakMap();
-
 function escapePointerSegment(segment) {
   return segment.replaceAll("~", "~0").replaceAll("/", "~1");
 }
@@ -73,8 +69,34 @@ export function aggregateSha256(caseHashes) {
   return sha256Hex(lines.join(""));
 }
 
+function isFiniteNumber(value) {
+  return typeof value === "number" && Number.isFinite(value);
+}
+
+function validateParameters(name, fieldClass) {
+  const { compare } = fieldClass;
+  if (compare === "decimal") {
+    const d = fieldClass.decimals;
+    if (!Number.isInteger(d) || d < 0 || d > 100) {
+      throw new Error(`Class "${name}" needs an integer decimals in 0..100`);
+    }
+  }
+  if (compare === "tolerance" || compare === "circular") {
+    if (!isFiniteNumber(fieldClass.atol) || fieldClass.atol < 0) {
+      throw new Error(`Class "${name}" needs a finite atol >= 0`);
+    }
+  }
+  if (compare === "tolerance" && (!isFiniteNumber(fieldClass.rtol) || fieldClass.rtol < 0)) {
+    throw new Error(`Class "${name}" needs a finite rtol >= 0`);
+  }
+  if (compare === "circular" && (!isFiniteNumber(fieldClass.period) || fieldClass.period <= 0)) {
+    throw new Error(`Class "${name}" needs a finite period > 0`);
+  }
+}
+
 export function validateRules(rules) {
   for (const [name, fieldClass] of Object.entries(rules.classes)) {
+    validateParameters(name, fieldClass);
     if (fieldClass.compare !== "exact" && !(typeof fieldClass.unit === "string" && fieldClass.unit.length > 0)) {
       throw new Error(`Class "${name}" compares as ${fieldClass.compare} and needs a non-empty unit`);
     }
@@ -162,15 +184,18 @@ function percentile(sorted, fraction) {
   return sorted[Math.max(0, Math.ceil(fraction * sorted.length) - 1)];
 }
 
-function buildStats(errors, worst) {
-  const abs = errors.map((entry) => entry.abs).sort((a, b) => a - b);
-  const rels = errors.map((entry) => entry.rel).filter((rel) => rel !== null);
+function buildStats(samples, worst) {
+  const abs = Float64Array.from(samples.abs).sort();
+  let maxRel = null;
+  for (const rel of samples.rel) {
+    if (maxRel === null || rel > maxRel) maxRel = rel;
+  }
   return {
     count: abs.length,
     maxAbsError: abs.length === 0 ? 0 : abs[abs.length - 1],
     p50AbsError: percentile(abs, 0.5),
     p95AbsError: percentile(abs, 0.95),
-    maxRelError: rels.length === 0 ? null : Math.max(...rels),
+    maxRelError: maxRel,
     worst,
   };
 }
@@ -255,8 +280,10 @@ export function compareOutputs(expected, actual, rules, context) {
 
     const { pass, absError } = judgeNumber(fieldClass, expectedValue, actualValue);
     const scale = Math.max(Math.abs(actualValue), Math.abs(expectedValue));
-    if (!errorsByClass.has(className)) errorsByClass.set(className, []);
-    errorsByClass.get(className).push({ abs: absError, rel: scale === 0 ? null : absError / scale });
+    if (!errorsByClass.has(className)) errorsByClass.set(className, { abs: [], rel: [] });
+    const samples = errorsByClass.get(className);
+    samples.abs.push(absError);
+    if (scale !== 0) samples.rel.push(absError / scale);
     const worst = worstByClass.get(className);
     if (worst === undefined || absError > worst.abs) {
       worstByClass.set(className, {
@@ -277,23 +304,31 @@ export function compareOutputs(expected, actual, rules, context) {
   }
 
   const stats = {};
-  const raw = {};
-  for (const [className, errors] of errorsByClass) {
-    stats[className] = buildStats(errors, worstByClass.get(className).point);
-    raw[className] = errors;
+  const samples = {};
+  for (const [className, entry] of errorsByClass) {
+    stats[className] = buildStats(entry, worstByClass.get(className).point);
+    samples[className] = entry;
   }
 
-  const report = {
+  const expectedCanonical = canonicalize(expected);
+  const actualCanonical = canonicalize(actual);
+  const negativeZeroPaths = {
+    expected: expectedCanonical.negativeZeroPaths,
+    actual: actualCanonical.negativeZeroPaths,
+  };
+  return {
     caseId: context.caseId,
     kind: context.kind,
     ok: violations.length === 0,
-    bitExact: canonicalize(expected).text === canonicalize(actual).text,
+    bitExact:
+      expectedCanonical.text === actualCanonical.text &&
+      negativeZeroPaths.expected.join(",") === negativeZeroPaths.actual.join(","),
+    negativeZeroPaths,
     leafCount: paths.length,
     violations,
     stats,
+    samples,
   };
-  rawErrors.set(report, raw);
-  return report;
 }
 
 export function summarizeReports(reports) {
@@ -302,22 +337,23 @@ export function summarizeReports(reports) {
   const firstViolations = [];
   let violationCount = 0;
   let bitExactCases = 0;
+  let negativeZeroLeafCount = 0;
 
   for (const report of reports) {
-    const raw = rawErrors.get(report);
-    if (raw === undefined) {
-      throw new Error(`Report for case "${report.caseId}" was not produced by compareOutputs`);
-    }
     if (report.bitExact) bitExactCases += 1;
+    negativeZeroLeafCount +=
+      report.negativeZeroPaths.expected.length + report.negativeZeroPaths.actual.length;
     violationCount += report.violations.length;
     for (const violation of report.violations) {
       if (firstViolations.length < MAX_FIRST_VIOLATIONS) {
         firstViolations.push({ ...violation, caseId: report.caseId });
       }
     }
-    for (const [className, errors] of Object.entries(raw)) {
-      if (!merged.has(className)) merged.set(className, []);
-      merged.get(className).push(...errors);
+    for (const [className, samples] of Object.entries(report.samples)) {
+      if (!merged.has(className)) merged.set(className, { abs: [], rel: [] });
+      const target = merged.get(className);
+      for (const value of samples.abs) target.abs.push(value);
+      for (const value of samples.rel) target.rel.push(value);
       const stats = report.stats[className];
       const current = worstAbs.get(className);
       if (current === undefined || stats.maxAbsError > current.abs) {
@@ -327,13 +363,14 @@ export function summarizeReports(reports) {
   }
 
   const stats = {};
-  for (const [className, errors] of merged) {
-    stats[className] = buildStats(errors, worstAbs.get(className).point);
+  for (const [className, samples] of merged) {
+    stats[className] = buildStats(samples, worstAbs.get(className).point);
   }
   return {
     ok: reports.every((report) => report.ok),
     caseCount: reports.length,
     bitExactCases,
+    negativeZeroLeafCount,
     violationCount,
     firstViolations,
     stats,

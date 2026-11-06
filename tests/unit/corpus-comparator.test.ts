@@ -73,7 +73,7 @@ describe("hashing", () => {
 describe("validateRules", () => {
   it("throws when a non-exact class has no unit", () => {
     const rules = makeRules(
-      { c: cls({ compare: "tolerance", atol: 1, status: "proposed" }) },
+      { c: cls({ compare: "tolerance", atol: 1, rtol: 0, status: "proposed" }) },
       [{ path: "/v", class: "c" }],
     );
     expect(() => validateRules(rules)).toThrow(/unit/);
@@ -229,5 +229,90 @@ describe("summarizeReports", () => {
     // Samples are 1..30 plus a 1: nearest-rank p50 of 31 values is the 16th.
     expect(summary.stats.c?.p50AbsError).toBe(15);
     expect(summary.stats.c?.p95AbsError).toBe(29);
+  });
+});
+
+describe("validateRules numeric parameters", () => {
+  const check = (compare: FieldClass, pattern: RegExp) => {
+    expect(() => validateRules(makeRules({ bad: compare }, []))).toThrow(pattern);
+  };
+  const base = { unit: "u", status: "proposed" as const };
+
+  it("requires an integer decimals in 0..100 for decimal", () => {
+    check(cls({ ...base, compare: "decimal" }), /bad.*decimals/);
+    check(cls({ ...base, compare: "decimal", decimals: 1.5 }), /bad.*decimals/);
+    check(cls({ ...base, compare: "decimal", decimals: -1 }), /bad.*decimals/);
+    check(cls({ ...base, compare: "decimal", decimals: 101 }), /bad.*decimals/);
+  });
+
+  it("requires a finite non-negative atol for tolerance and circular", () => {
+    check(cls({ ...base, compare: "tolerance", rtol: 0 }), /bad.*atol/);
+    check(cls({ ...base, compare: "tolerance", atol: -1, rtol: 0 }), /bad.*atol/);
+    check(cls({ ...base, compare: "circular", atol: Number.NaN, period: 360 }), /bad.*atol/);
+  });
+
+  it("requires a finite non-negative rtol for tolerance", () => {
+    check(cls({ ...base, compare: "tolerance", atol: 0 }), /bad.*rtol/);
+    check(cls({ ...base, compare: "tolerance", atol: 0, rtol: Infinity }), /bad.*rtol/);
+    check(cls({ ...base, compare: "tolerance", atol: 0, rtol: -1 }), /bad.*rtol/);
+  });
+
+  it("requires a finite positive period for circular", () => {
+    check(cls({ ...base, compare: "circular", atol: 0 }), /bad.*period/);
+    check(cls({ ...base, compare: "circular", atol: 0, period: 0 }), /bad.*period/);
+  });
+});
+
+describe("negative zero", () => {
+  const exactRules = makeRules({ d: cls({}) }, [{ path: "/v", class: "d" }]);
+
+  it("keeps -0 versus 0 a discrete violation for exact classes", () => {
+    const report = compareOutputs({ v: 0 }, { v: -0 }, exactRules, context);
+    expect(report.violations).toMatchObject([{ type: "discrete", path: "/v" }]);
+    expect(report.negativeZeroPaths).toEqual({ expected: [], actual: ["/v"] });
+  });
+
+  it("lets a continuous class pass -0 but reports it and denies bit-exactness", () => {
+    const report = compareOutputs({ v: 0 }, { v: -0 }, tolRules(tolerance(1e-5)), context);
+    expect(report.ok).toBe(true);
+    expect(report.bitExact).toBe(false);
+    expect(report.negativeZeroPaths).toEqual({ expected: [], actual: ["/v"] });
+  });
+
+  it("stays bit-exact when both sides carry -0 at the same path", () => {
+    const report = compareOutputs({ v: -0 }, { v: -0 }, tolRules(tolerance(1e-5)), context);
+    expect(report.bitExact).toBe(true);
+  });
+
+  it("counts expected plus actual negative zeros in the summary", () => {
+    const rules = tolRules(tolerance(1e-5));
+    const a = compareOutputs({ v: -0 }, { v: 0 }, rules, context);
+    const b = compareOutputs({ v: -0 }, { v: -0 }, rules, context);
+    expect(summarizeReports([a, b]).negativeZeroLeafCount).toBe(3);
+  });
+});
+
+describe("large corpora and plain-data reports", () => {
+  const rules = makeRules({ c: tolerance(10) }, [{ path: "/v/*", class: "c" }]);
+  const length = 300_000;
+  const expected = { v: Array.from({ length }, () => 1) };
+  const actual = { v: Array.from({ length }, (_, i) => 1 + (i % 7) / 10) };
+
+  it("compares and summarizes 300k continuous leaves without overflowing", () => {
+    const report = compareOutputs(expected, actual, rules, context);
+    expect(report.stats.c?.count).toBe(length);
+    const summary = summarizeReports([report, report]);
+    expect(summary.stats.c?.count).toBe(length * 2);
+    expect(summary.stats.c?.maxAbsError).toBeCloseTo(0.6, 12);
+  });
+
+  it("summarizes identically after a JSON round trip", () => {
+    const small = makeRules({ c: tolerance(10) }, [{ path: "/v", class: "c" }]);
+    const reports = [
+      compareOutputs({ v: 1 }, { v: 2 }, small, { caseId: "one", kind: "demo" }),
+      compareOutputs({ v: 0 }, { v: 5 }, small, { caseId: "two", kind: "demo" }),
+    ];
+    const revived = JSON.parse(JSON.stringify(reports)) as typeof reports;
+    expect(summarizeReports(revived)).toEqual(summarizeReports(reports));
   });
 });
