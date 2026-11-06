@@ -52,7 +52,7 @@ class UsageError extends Error {}
 
 const RUN_FLAGS = new Set([
   "variant", "case", "corpus-manifest", "run-id", "repeat", "out", "boundary", "pass", "audio",
-  "samples", "driver", "hardware-concurrency", "build", "order-index", "plan", "ts-s-path", "max-duration-ms", "step-timeout-ms",
+  "samples", "driver", "browser-channel", "hardware-concurrency", "build", "order-index", "plan", "ts-s-path", "max-duration-ms", "step-timeout-ms",
 ]);
 const BOOLEAN_FLAGS = new Set(["parity", "check", "with-slices"]);
 const COMMAND_FLAGS = {
@@ -239,6 +239,7 @@ function normalizeEntry(raw, globals) {
     pass: get("pass") ?? "clean",
     audio: get("audio") ?? NOT_APPLICABLE,
     driver: get("driver") ?? NOT_APPLICABLE,
+    browserChannel: get("browser-channel") ?? NOT_APPLICABLE,
     parity: raw.parity === true || (globals.get("parity") === true && raw.parity !== false),
     corpusManifest: get("corpus-manifest"),
     orderIndex: get("order-index") === undefined ? undefined : Number(get("order-index")),
@@ -259,6 +260,13 @@ function normalizeEntry(raw, globals) {
   const workload = /^W0\d_/.test(entry.case);
   const appCase = /^APP_/.test(entry.case);
   const controls = entry.case === "CONTROLS";
+  if (entry.browserChannel !== NOT_APPLICABLE) {
+    if (entry.boundary !== "browser-app" && entry.boundary !== "browser-pool") throw new UsageError("--browser-channel applies at browser-app and browser-pool only");
+    if (entry.pass === "stock") throw new UsageError("--browser-channel does not apply to pass stock: the stock spec launches its own browser");
+    if (!["default", "chromium"].includes(entry.browserChannel)) throw new UsageError("--browser-channel must be default or chromium");
+  } else if ((entry.boundary === "browser-app" || entry.boundary === "browser-pool") && entry.pass !== "stock") {
+    entry.browserChannel = "default";
+  }
   if (entry.boundary !== "browser-app" && entry.driver !== NOT_APPLICABLE) throw new UsageError("--driver applies at browser-app only");
   if (entry.boundary !== "browser-app" && entry.audio !== NOT_APPLICABLE) throw new UsageError("--audio applies at browser-app only");
   if (entry.boundary === "node-core") {
@@ -450,6 +458,7 @@ async function runEntry(entry, index, outDir, prep) {
     workers: NOT_APPLICABLE,
     audio: app ? entry.audio : NOT_APPLICABLE,
     driver: app ? (entry.pass === "stock" ? "stock-poll" : entry.driver) : NOT_APPLICABLE,
+    browserChannel: entry.browserChannel,
     build: app ? "prod" : entry.build,
     parity: entry.parity,
   };
@@ -476,6 +485,7 @@ async function runEntry(entry, index, outDir, prep) {
         caseSpec,
         audio: app ? entry.audio : NOT_APPLICABLE,
         driver: app ? entry.driver : NOT_APPLICABLE,
+        browserChannel: entry.browserChannel,
         samples: entry.samples,
         maxDurationMs: entry.maxDurationMs,
         hardwareConcurrency: entry.hardwareConcurrency,
@@ -532,6 +542,7 @@ async function runEntry(entry, index, outDir, prep) {
         workers: meta.workers,
         audio: app ? entry.audio : NOT_APPLICABLE,
         driver: meta.driver,
+        browserChannel: entry.browserChannel,
         denominators: result.denominators,
         jobs: result.jobs ?? UNAVAILABLE,
         intervalMs: result.intervalMs ?? UNAVAILABLE,

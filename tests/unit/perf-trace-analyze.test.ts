@@ -428,6 +428,9 @@ describe("job-level decomposition", () => {
     const events: Loose[] = [
       { ph: "M", name: "thread_name", ...MAIN, args: { name: "CrRendererMain" } },
       { ph: "M", name: "thread_name", ...WORKER, args: { name: "DedicatedWorker thread" } },
+      { ph: "M", name: "thread_name", pid: 1, tid: 40, args: { name: "ThreadPoolForegroundWorker" } },
+      { ph: "M", name: "thread_name", pid: 1, tid: 41, args: { name: "ThreadPoolForegroundWorker" } },
+      { ph: "M", name: "thread_name", pid: 2, tid: 50, args: { name: "ThreadPoolForegroundWorker" } },
     ];
     for (let index = 0; index < 10; index += 1) {
       const now = 100 + index * 20;
@@ -440,6 +443,11 @@ describe("job-level decomposition", () => {
       { ph: "X", name: "RunTask", ...WORKER, ts: 6000, dur: 2000, tdur: 1500 },
       { ph: "X", name: "RunTask", ...MAIN, ts: 9000, dur: 3001, tdur: 1900 },
       { ph: "X", name: "Layout", ...MAIN, ts: 9100, dur: 1000 },
+      { ph: "X", name: "Paint", ...MAIN, ts: 15_500, dur: 400 },
+      // Raster work during job 1's wait: two renderer threads, and one in another process that is ignored.
+      { ph: "X", name: "RasterTask", pid: 1, tid: 40, ts: 10_000, dur: 2000 },
+      { ph: "X", name: "RasterTask", pid: 1, tid: 41, ts: 15_500, dur: 1000 },
+      { ph: "X", name: "RasterTask", pid: 2, tid: 50, ts: 10_000, dur: 2000 },
       { ph: "X", name: "RunTask", ...MAIN, ts: 15_000, dur: 2000, tdur: 1000 },
       // Job 2: a task that began before the first post (straddles it) and the slow worker task.
       { ph: "X", name: "RunTask", ...WORKER, ts: 30_500, dur: 700, tdur: 600 },
@@ -463,7 +471,11 @@ describe("job-level decomposition", () => {
       firstPostToFirstWorkerStartUs: 500, firstPostToLastWorkerEndUs: 2500,
       slowestWorkerWallUs: 2000, slowestWorkerCpuUs: 1500, slowestWorkerOffCpuUs: 500,
       lastWorkerEndToLastHandlerStartUs: 8000, mainBusyWallUs: 4001, mainBusyCpuUs: 2900, gcOnMainInWindowUs: 0,
+      rasterWallDuringWaitUs: 2500, rasterThreadsDuringWait: 2,
+      mainTaskHasFrameChildren: true, mainTaskFrameChildren: ["Paint"],
     });
+    // Task 1: 3001 of 3001 us overlap, 1900 us CPU -> 1101 off CPU. Task 2: 1000 of 2000 us overlap, 1000 us CPU scaled to 500 -> 500.
+    expect(lines[0]!.mainOffCpuDuringWaitUs as number).toBeCloseTo(1601, 6);
     expect(lines[0]!.lastHandlerUs as number).toBeCloseTo(400, 6);
     expect((lines[0]!.mainTasksDuringWait as Loose[]).map((task) => task.overlapUs)).toEqual([3001, 1000]);
     expect(lines[1]).toMatchObject({
@@ -471,11 +483,17 @@ describe("job-level decomposition", () => {
       firstPostToFirstWorkerStartUs: 200, firstPostToLastWorkerEndUs: 20_200,
       slowestWorkerWallUs: 20_000, slowestWorkerCpuUs: 19_000, slowestWorkerOffCpuUs: 1000,
       lastWorkerEndToLastHandlerStartUs: 1800, mainBusyWallUs: 0, gcOnWorkersInWindowUs: 700,
+      mainOffCpuDuringWaitUs: 0, rasterWallDuringWaitUs: 0, rasterThreadsDuringWait: 0, mainTaskHasFrameChildren: false,
     });
     const summary = JSON.parse(readFileSync(join(dir, "job-decomposition-jobs-summary.json"), "utf8")) as { jobs: number; all: { fields: Record<string, { n: number; max: number }> }; slowest10PercentByReportedMetric: { jobs: number; seqs: number[] }; byJobKind: Record<string, { jobs: number }> };
     expect(summary.jobs).toBe(2);
     expect(summary.all.fields.slowestWorkerWallUs).toMatchObject({ n: 2, max: 20_000 });
     expect(summary.slowest10PercentByReportedMetric).toMatchObject({ jobs: 1, seqs: [2] });
+    const counts = (summary as unknown as { counts: { all: { jobs: number; replyWaitExceedsSlowestWorker: number }; atOrAboveReportedMetricMs: Record<string, { jobs: number; replyWaitExceedsSlowestWorker: number }> } }).counts;
+    expect(counts.all).toMatchObject({ jobs: 2, replyWaitExceedsSlowestWorker: 1 });
+    expect(Object.keys(counts.atOrAboveReportedMetricMs)).toEqual(["8", "12", "25", "50"]);
+    expect(counts.atOrAboveReportedMetricMs["8"]).toMatchObject({ jobs: 1, replyWaitExceedsSlowestWorker: 0 });
+    expect(counts.atOrAboveReportedMetricMs["50"]).toMatchObject({ jobs: 0, replyWaitExceedsSlowestWorker: 0 });
     expect(Object.keys(summary.byJobKind).sort()).toEqual(["pose-only", "static-install"]);
   });
 });

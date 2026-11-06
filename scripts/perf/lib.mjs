@@ -371,6 +371,12 @@ export function makeDenominators(counts) {
   return Object.fromEntries(DENOMINATORS.map((name) => [name, counts[name] ?? NOT_APPLICABLE]));
 }
 
+/** Runs made before the option existed used the default launch; the other boundaries have no browser. */
+export function browserChannelOf(entry) {
+  if (entry.browserChannel !== undefined) return entry.browserChannel;
+  return typeof entry.boundary === "string" && entry.boundary.startsWith("browser-") ? "default" : NOT_APPLICABLE;
+}
+
 export function groupKeyOf(entry) {
   return JSON.stringify([
     entry.variant,
@@ -381,6 +387,7 @@ export function groupKeyOf(entry) {
     entry.audio,
     entry.build ?? NOT_APPLICABLE,
     entry.driver ?? NOT_APPLICABLE,
+    browserChannelOf(entry),
   ]);
 }
 
@@ -393,7 +400,7 @@ function spread(values) {
 }
 
 /**
- * Groups runs by (variant, case, pass, boundary, workers, audio, build, driver). `runs` is a list of
+ * Groups runs by (variant, case, pass, boundary, workers, audio, build, driver, browser channel). `runs` is a list of
  * `{ entry, samples, denominators }`. Pooled statistics concatenate all runs; per-run statistics
  * and the dispersion of their p50, p95 and p99 are kept beside them.
  */
@@ -406,7 +413,7 @@ export function buildGroups(runs) {
   }
   const groups = [];
   for (const [key, members] of grouped) {
-    const [variant, caseId, pass, boundary, workers, audio, build, driver] = JSON.parse(key);
+    const [variant, caseId, pass, boundary, workers, audio, build, driver, browserChannel] = JSON.parse(key);
     const pooledBuckets = new Map();
     const perRun = [];
     const excludedRuns = [];
@@ -465,7 +472,7 @@ export function buildGroups(runs) {
       exploratoryRuns[phase] = perRun.filter((run) => run.phases[phase]?.exploratory === true).length;
     }
     groups.push({
-      key: { variant, case: caseId, pass, boundary, workers, audio, build, driver },
+      key: { variant, case: caseId, pass, boundary, workers, audio, build, driver, browserChannel },
       runCount: perRun.length,
       runIds: perRun.map((run) => run.runId),
       excludedRuns,
@@ -487,8 +494,8 @@ function formatNumber(value) {
 export function renderTables(groups) {
   const lines = ["# EC-102 summary tables", "", "Values are display-rounded to 3 decimals. Raw numbers are in groups.json.", ""];
   for (const group of groups) {
-    const { variant, case: caseId, pass, boundary, workers, audio, build, driver } = group.key;
-    lines.push(`## ${variant} ${caseId} pass=${pass} boundary=${boundary} workers=${workers} audio=${audio} build=${build} driver=${driver}`);
+    const { variant, case: caseId, pass, boundary, workers, audio, build, driver, browserChannel } = group.key;
+    lines.push(`## ${variant} ${caseId} pass=${pass} boundary=${boundary} workers=${workers} audio=${audio} build=${build} driver=${driver} browser-channel=${browserChannel}`);
     lines.push("");
     lines.push(`Runs: ${group.runCount}`);
     lines.push(`Denominators: ${DENOMINATORS.map((name) => `${name}=${group.denominators[name]}`).join(" ")}`);
@@ -594,6 +601,7 @@ export async function executeRun({ outDir, meta, orderIndex, execute, clock = ()
     audio: meta.audio ?? NOT_APPLICABLE,
     build: meta.build ?? NOT_APPLICABLE,
     driver: meta.driver ?? NOT_APPLICABLE,
+    browserChannel: meta.browserChannel ?? NOT_APPLICABLE,
     parity: meta.parity === true,
     status,
     start,

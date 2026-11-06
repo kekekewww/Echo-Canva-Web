@@ -1,7 +1,7 @@
 // Cross-run comparisons for `summarize`: paired TS-S and TS-W differences by order index,
 // traced against clean and clean against bare, and parity per path. Pure functions; every number
 // is reported as computed and none is compared with a limit.
-import { NOT_APPLICABLE, UNAVAILABLE, computeStats } from "./lib.mjs";
+import { NOT_APPLICABLE, UNAVAILABLE, browserChannelOf, computeStats } from "./lib.mjs";
 
 /** [TS-S phase, TS-W phase] pairs that measure the same step of the pipeline. */
 export const PAIR_PHASES = [
@@ -28,7 +28,7 @@ export function pairedDifferences(runs) {
   const buckets = new Map();
   for (const run of runs) {
     const { entry } = run;
-    const key = JSON.stringify([entry.case, entry.pass, entry.boundary, entry.audio, entry.build, entry.orderIndex, entry.driver ?? "not-applicable"]);
+    const key = JSON.stringify([entry.case, entry.pass, entry.boundary, entry.audio, entry.build, entry.orderIndex, entry.driver ?? "not-applicable", browserChannelOf(entry)]);
     if (!buckets.has(key)) buckets.set(key, { TS_S: null, TS_W: null });
     const slot = entry.variant === "TS-S" ? "TS_S" : "TS_W";
     buckets.get(key)[slot] ??= run;
@@ -36,7 +36,7 @@ export function pairedDifferences(runs) {
   const pairs = [];
   for (const [key, slot] of buckets) {
     if (!slot.TS_S || !slot.TS_W) continue;
-    const [caseId, pass, boundary, audio, build, orderIndex, driver] = JSON.parse(key);
+    const [caseId, pass, boundary, audio, build, orderIndex, driver, browserChannel] = JSON.parse(key);
     const phases = {};
     for (const [serialPhase, poolPhase] of PAIR_PHASES) {
       const label = serialPhase === poolPhase ? serialPhase : `${serialPhase} (TS-S) against ${poolPhase} (TS-W)`;
@@ -49,7 +49,7 @@ export function pairedDifferences(runs) {
       }
       if (Object.keys(block).length > 0) phases[label] = block;
     }
-    pairs.push({ case: caseId, pass, boundary, audio, build, driver, orderIndex, tsS: slot.TS_S.entry.runId, tsW: slot.TS_W.entry.runId, phases });
+    pairs.push({ case: caseId, pass, boundary, audio, build, driver, browserChannel, orderIndex, tsS: slot.TS_S.entry.runId, tsW: slot.TS_W.entry.runId, phases });
   }
   return pairs.sort((a, b) => (JSON.stringify([a.case, a.orderIndex]) < JSON.stringify([b.case, b.orderIndex]) ? -1 : 1));
 }

@@ -124,6 +124,7 @@ async function collect(file) {
   const marks = [];
   const tasks = new Map();
   const events = new Map();
+  const rasters = [];
   const gc = [];
   const concurrent = [];
   const profiles = new Map();
@@ -149,6 +150,7 @@ async function collect(file) {
       if ((event.dur ?? 0) > 0) {
         if (!events.has(key)) events.set(key, []);
         events.get(key).push({ name: event.name, ts: event.ts, dur: event.dur });
+        if (event.name === "RasterTask") rasters.push({ key, pid: event.pid, ts: event.ts, dur: event.dur });
       }
       const kind = PRIMARY_GC.get(event.name);
       if (kind) {
@@ -195,7 +197,7 @@ async function collect(file) {
       }
     }
   });
-  return { names, processNames, marks, tasks, events, gc, concurrent, profiles, nodeNames };
+  return { names, processNames, marks, tasks, events, rasters, gc, concurrent, profiles, nodeNames };
 }
 
 function buildClockAlignment(marks, names, calibration) {
@@ -471,7 +473,14 @@ const JOB_FIELDS = [
   "gcOnMainInWindowUs",
   "gcOnWorkersInWindowUs",
   "lateStartWorkers",
+  "mainOffCpuDuringWaitUs",
+  "rasterWallDuringWaitUs",
+  "rasterThreadsDuringWait",
 ];
+
+// Report levels: rows of the count table, in milliseconds of the job's reported metric. They are not budgets.
+export const REPORT_LEVELS_MS = [8, 12, 25, 50];
+const FRAME_CHILD_NAMES = ["Commit", "PrePaint", "Layerize", "Paint"];
 
 /**
  * One line per job, needing no worker pairing. The window runs from the job's first post to the start
@@ -480,7 +489,9 @@ const JOB_FIELDS = [
  * lateStartWorkers. Main busy time is main's top-level task time overlapping the wait from the latest
  * worker task end to the last handler start; mainBusyCpuUs adds the thread CPU time of those whole tasks.
  */
-function jobLevelDecomposition({ computeCheck, marks, tasks, eventsOf, mainKey, alignment, gc, names, boundary }) {
+function jobLevelDecomposition({ computeCheck, marks, tasks, eventsOf, mainKey, alignment, gc, names, rasters, boundary, reportLevelsMs = REPORT_LEVELS_MS }) {
+  const mainPid = mainKey ? Number(mainKey.split(":")[0]) : null;
+  const rasterEvents = rasters.filter((event) => event.pid === mainPid && /ThreadPoolForegroundWorker/.test(names.get(event.key) ?? ""));
   const model = alignment.threads.main?.perfNowFit?.model;
   const fitted = model && typeof model.b === "number" && typeof model.meanX === "number";
   const toTrace = (ms) => (fitted && typeof ms === "number" && Number.isFinite(ms) ? model.meanY + model.b * (ms * 1000 - model.meanX) : null);
@@ -503,6 +514,7 @@ function jobLevelDecomposition({ computeCheck, marks, tasks, eventsOf, mainKey, 
     };
     if (firstPost === null || lastHandlerStart === null) {
       for (const name of JOB_FIELDS) if (!(name in line)) line[name] = UNAVAILABLE;
+      line.mainTaskHasFrameChildren = UNAVAILABLE;
       line.note = "job stamps or the main clock fit are missing";
       lines.push(line);
       continue;
@@ -528,6 +540,7 @@ function jobLevelDecomposition({ computeCheck, marks, tasks, eventsOf, mainKey, 
     line.gcOnWorkersInWindowUs = gcIn((key) => workerKeys.includes(key));
     if (inJob.length === 0) {
       for (const name of JOB_FIELDS) if (!(name in line)) line[name] = UNAVAILABLE;
+      line.mainTaskHasFrameChildren = UNAVAILABLE;
       line.note = "no worker task started inside the job window";
       lines.push(line);
       continue;
@@ -546,6 +559,35 @@ function jobLevelDecomposition({ computeCheck, marks, tasks, eventsOf, mainKey, 
       : [];
     line.mainBusyWallUs = waiting.reduce((sum, { shared }) => sum + shared, 0);
     line.mainBusyCpuUs = waiting.length === 0 ? 0 : (waiting.every(({ task }) => typeof task.tdur === "number") ? waiting.reduce((sum, { task }) => sum + task.tdur, 0) : UNAVAILABLE);
+    // Estimate: CPU inside a task is not uniform, so the CPU of the overlap is the task's tdur scaled by overlap / wall.
+    line.mainOffCpuDuringWaitUs = waiting.length === 0
+      ? 0
+      : (waiting.every(({ task }) => typeof task.tdur === "number" && task.dur > 0)
+        ? waiting.reduce((sum, { task, shared }) => sum + (shared - task.tdur * (shared / task.dur)), 0)
+        : UNAVAILABLE);
+    const waitStart = lastEnd;
+    const waitEnd = lastHandlerStart;
+    const rasterThreads = new Set();
+    let rasterWall = 0;
+    if (waitEnd > waitStart) {
+      for (const event of rasterEvents) {
+        const shared = overlap(event.ts, event.ts + event.dur, waitStart, waitEnd);
+        if (shared > 0) {
+          rasterWall += shared;
+          rasterThreads.add(event.key);
+        }
+      }
+    }
+    line.rasterWallDuringWaitUs = rasterWall;
+    line.rasterThreadsDuringWait = rasterThreads.size;
+    const frameChildren = new Set();
+    for (const { task } of waiting) {
+      for (let index = lowerBound(mainEvents, task.ts); index < mainEvents.length && mainEvents[index].ts < task.ts + task.dur; index += 1) {
+        if (FRAME_CHILD_NAMES.includes(mainEvents[index].name)) frameChildren.add(mainEvents[index].name);
+      }
+    }
+    line.mainTaskHasFrameChildren = frameChildren.size > 0;
+    line.mainTaskFrameChildren = [...frameChildren].sort();
     line.mainTasksDuringWait = [...waiting]
       .sort((a, b) => b.shared - a.shared)
       .slice(0, 3)
@@ -557,8 +599,18 @@ function jobLevelDecomposition({ computeCheck, marks, tasks, eventsOf, mainKey, 
   const slow = new Set(rankedJobs.slice(0, slowCount).map((line) => line.requestSeq));
   const summarise = (subset) => ({ jobs: subset.length, fields: Object.fromEntries(JOB_FIELDS.map((name) => [name, fieldStats(subset.map((line) => line[name]))])) });
   const kinds = [...new Set(lines.map((line) => line.jobKind))];
+  const waitExceeds = (subset) => ({
+    jobs: subset.length,
+    replyWaitExceedsSlowestWorker: subset.filter((line) => typeof line.lastWorkerEndToLastHandlerStartUs === "number" && typeof line.slowestWorkerWallUs === "number" && line.lastWorkerEndToLastHandlerStartUs > line.slowestWorkerWallUs).length,
+    withFrameChildrenInWait: subset.filter((line) => line.mainTaskHasFrameChildren === true).length,
+  });
   const summary = {
     schema: "ec102.job-decomposition-jobs-summary.v1",
+    counts: {
+      note: "counts only; the levels are rows of a report table (reported metric at or above the level, in ms), not budgets or thresholds",
+      all: waitExceeds(lines),
+      atOrAboveReportedMetricMs: Object.fromEntries(reportLevelsMs.map((level) => [String(level), waitExceeds(lines.filter((line) => typeof line.reportedMetric === "number" && line.reportedMetric >= level))])),
+    },
     boundary,
     clock: "trace-ts-us",
     units: "microseconds, except reportedMetric (milliseconds) and the count lateStartWorkers",
@@ -681,7 +733,7 @@ function jobDecomposition({ computeCheck, matches, tasks, events, mainKey, align
 
 export async function analyzeTrace({ file, outDir, calibrationFile, exemplars, computeCheck }) {
   const data = await collect(file);
-  const { names, processNames, marks, tasks, events, gc: gcAll, concurrent, profiles, nodeNames } = data;
+  const { names, processNames, marks, tasks, events, rasters, gc: gcAll, concurrent, profiles, nodeNames } = data;
   const sortedCache = new Map();
   const eventsOf = (key) => {
     if (!sortedCache.has(key)) sortedCache.set(key, sortEvents(events.get(key)));
@@ -810,7 +862,7 @@ export async function analyzeTrace({ file, outDir, calibrationFile, exemplars, c
     writeFileSync(join(outDir, "job-decomposition.jsonl"), serializeJsonl(decomposition.lines), "utf8");
     writeJson(join(outDir, "job-decomposition-summary.json"), decomposition.summary);
     decompositionSummary = decomposition.summary;
-    const jobLevel = jobLevelDecomposition({ computeCheck, marks, tasks, eventsOf, mainKey, alignment, gc, names, boundary: decomposition.summary.boundary });
+    const jobLevel = jobLevelDecomposition({ computeCheck, marks, tasks, eventsOf, mainKey, alignment, gc, names, rasters, boundary: decomposition.summary.boundary });
     writeFileSync(join(outDir, "job-decomposition-jobs.jsonl"), serializeJsonl(jobLevel.lines), "utf8");
     writeJson(join(outDir, "job-decomposition-jobs-summary.json"), jobLevel.summary);
     jobLevelSummary = jobLevel.summary;

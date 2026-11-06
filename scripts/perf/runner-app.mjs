@@ -10,9 +10,9 @@ import { pathToFileURL } from "node:url";
 
 import { chromium } from "@playwright/test";
 
-import { startAllocation, startTracing } from "./cdp-tools.mjs";
+import { startAllocation, startTracing, collectBrowserFacts, launchBrowser } from "./cdp-tools.mjs";
 import { AUDIO_SAMPLE_INTERVAL_MS, assertSources, computeCheckFromDump, deriveAppSamples } from "./derive-app.mjs";
-import { UNAVAILABLE, NOT_APPLICABLE, serializeJsonl, sha256File, tempEnvironment, writeJson } from "./lib.mjs";
+import { UNAVAILABLE, NOT_APPLICABLE, serializeJsonl, tempEnvironment, writeJson } from "./lib.mjs";
 import { analyzeTrace, rankJobs } from "./trace-analyze.mjs";
 
 const require = createRequire(import.meta.url);
@@ -265,7 +265,21 @@ async function main() {
 
   const port = await freePort();
   const { child: server, base } = await startServer(port);
-  const browser = await chromium.launch();
+  const browserChannel = config.browserChannel === "chromium" ? "chromium" : "default";
+  let browser;
+  try {
+    browser = await launchBrowser(chromium, browserChannel);
+  } catch (error) {
+    // The run fails and says why; the result is written so the parent reports it.
+    stopServer(server);
+    result.errors.push(error instanceof Error ? error.message : String(error));
+    result.status = "failed";
+    result.error = result.errors.join(" | ");
+    result.sampleCount = 0;
+    writeFileSync(join(runDir, "samples.jsonl"), "", "utf8");
+    writeJson(join(runDir, "runner-result.json"), result);
+    process.exit(2);
+  }
   let samples = [];
   let traceInfo = null;
   let computeCheck = null;
@@ -293,6 +307,9 @@ async function main() {
     audioSession.on("WebAudio.contextCreated", (event) => contextIds.push(event.context.contextId));
     await audioSession.send("WebAudio.enable");
     const cpuBefore = await processSnapshot(browserSession);
+    // Outside the measured window: the throwaway WebGL canvas and the GPU feature query.
+    const earlyFacts = await collectBrowserFacts({ browser, chromium, channel: browserChannel, page, browserSession });
+    writeJson(join(runDir, "browser-facts.json"), earlyFacts);
 
     const caseId = config.caseSpec.caseId;
     const statusbar = page.locator(".workspace-statusbar");
@@ -480,9 +497,7 @@ async function main() {
       after: cpuAfter,
     });
     writeJson(join(runDir, "browser-facts.json"), {
-      version: browser.version(),
-      executableSha256: sha256File(chromium.executablePath()),
-      launchArgs: "playwright default launch options, none added",
+      ...earlyFacts,
       userAgent: await page.evaluate(() => navigator.userAgent),
       hardwareConcurrency,
       crossOriginIsolated: await page.evaluate(() => self.crossOriginIsolated),

@@ -7,12 +7,12 @@ import { extname, join, normalize, resolve } from "node:path";
 
 import { chromium } from "@playwright/test";
 
-import { startAllocation, startTracing } from "./cdp-tools.mjs";
+import { startAllocation, startTracing, collectBrowserFacts, launchBrowser } from "./cdp-tools.mjs";
 import { deriveSamples, poolComputeCheck } from "./derive-pool.mjs";
 import { analyzeTrace, rankJobs } from "./trace-analyze.mjs";
 import { evaluateControls } from "./controls-check.mjs";
 import { serialSamples } from "./derive-serial.mjs";
-import { NOT_APPLICABLE, UNAVAILABLE, computeStats, tempEnvironment, makeDenominators, serializeJsonl, sha256File, writeJson } from "./lib.mjs";
+import { NOT_APPLICABLE, UNAVAILABLE, computeStats, tempEnvironment, makeDenominators, serializeJsonl, writeJson } from "./lib.mjs";
 import { compareTapeParity } from "./parity.mjs";
 
 const TYPES = { ".html": "text/html", ".js": "text/javascript", ".json": "application/json", ".css": "text/css", ".map": "application/json" };
@@ -100,7 +100,21 @@ async function main() {
   const runDir = resolve(config.runDir);
   const result = { status: "failed", startedAt: new Date().toISOString(), errors: [] };
   const { server, port } = await serve(resolve(config.bundleDir));
-  const browser = await chromium.launch();
+  const browserChannel = config.browserChannel === "chromium" ? "chromium" : "default";
+  let browser;
+  try {
+    browser = await launchBrowser(chromium, browserChannel);
+  } catch (error) {
+    server.closeAllConnections();
+    server.close();
+    result.errors.push(error instanceof Error ? error.message : String(error));
+    result.status = "failed";
+    result.error = result.errors.join(" | ");
+    result.sampleCount = 0;
+    writeFileSync(join(runDir, "samples.jsonl"), "", "utf8");
+    writeJson(join(runDir, "runner-result.json"), result);
+    process.exit(2);
+  }
   let page = null;
   let samples = [];
   let tracing = null;
@@ -122,9 +136,7 @@ async function main() {
     const metricsBefore = await pageMetrics(pageSession);
 
     writeJson(join(runDir, "browser-facts.json"), {
-      version: browser.version(),
-      executableSha256: sha256File(chromium.executablePath()),
-      launchArgs: "playwright default launch options, none added",
+      ...(await collectBrowserFacts({ browser, chromium, channel: browserChannel, page, browserSession })),
       userAgent: info.userAgent,
       hardwareConcurrency: info.hardwareConcurrency,
       crossOriginIsolated: info.crossOriginIsolated,

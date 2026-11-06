@@ -1,7 +1,10 @@
 // Chrome DevTools Protocol helpers shared by the browser runners: tracing to a file, and the
 // V8 sampling heap profiler on the page and on every worker.
+import { existsSync, readdirSync } from "node:fs";
 import { open, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+
+import { sanitizeText, sha256File } from "./lib.mjs";
 
 export const TRACE_CATEGORIES = [
   "toplevel",
@@ -131,4 +134,85 @@ export async function startAllocation(browserSession, pageSession) {
       return { files, workersAttached: [...workers.values()].filter((entry) => entry.started).length, notes };
     },
   };
+}
+
+/**
+ * Launches the browser for a run. "default" is Playwright's default launch (the headless shell);
+ * "chromium" passes channel "chromium": the new headless mode of the full build that is already
+ * installed. Nothing is installed and no GPU flag is passed; a missing full build fails the run.
+ */
+export async function launchBrowser(chromium, channel) {
+  if (channel === "chromium") {
+    if (!existsSync(chromium.executablePath())) {
+      throw new Error("--browser-channel chromium needs the full Chromium build, which is not installed; nothing was installed");
+    }
+    return chromium.launch({ channel: "chromium" });
+  }
+  return chromium.launch();
+}
+
+/** The executable that launchBrowser starts: the full build for "chromium", else the sibling headless shell. */
+export function launchedExecutable(chromium, channel) {
+  const full = chromium.executablePath();
+  if (channel === "chromium") return { path: full, kind: "chromium-full" };
+  const dir = dirname(dirname(dirname(full)));
+  const revision = /chromium-(\d+)/.exec(full)?.[1];
+  if (!revision) return { path: null, kind: "unavailable" };
+  const shellRoot = join(dir, `chromium_headless_shell-${revision}`);
+  if (!existsSync(shellRoot)) return { path: null, kind: "unavailable" };
+  for (const entry of readdirSync(shellRoot, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    for (const name of ["chrome-headless-shell.exe", "chrome-headless-shell"]) {
+      const candidate = join(shellRoot, entry.name, name);
+      if (existsSync(candidate)) return { path: candidate, kind: "headless-shell" };
+    }
+  }
+  return { path: null, kind: "unavailable" };
+}
+
+/**
+ * Facts about the browser that was launched: version, which build and its SHA-256, the WebGL unmasked
+ * vendor and renderer (from a throwaway canvas, so call this outside the measured window) and the GPU
+ * rasterization feature status from SystemInfo.getInfo. Missing values are "unavailable". Never throws.
+ */
+export async function collectBrowserFacts({ browser, chromium, channel, page, browserSession }) {
+  const executable = launchedExecutable(chromium, channel);
+  const facts = {
+    version: browser.version(),
+    browserChannel: channel,
+    executableKind: executable.kind,
+    executableSha256: executable.path && existsSync(executable.path) ? sha256File(executable.path) : "unavailable",
+    launchArgs: channel === "chromium" ? "channel chromium, no other options" : "playwright default launch options, none added",
+    webglVendor: "unavailable",
+    webglRenderer: "unavailable",
+    gpuRasterization: "unavailable",
+    gpuFeatureStatus: "unavailable",
+  };
+  try {
+    const webgl = await page.evaluate(() => {
+      const canvas = document.createElement("canvas");
+      const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+      if (!gl) return null;
+      const info = gl.getExtension("WEBGL_debug_renderer_info");
+      if (!info) return null;
+      return { vendor: String(gl.getParameter(info.UNMASKED_VENDOR_WEBGL)), renderer: String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) };
+    });
+    if (webgl) {
+      facts.webglVendor = sanitizeText(webgl.vendor);
+      facts.webglRenderer = sanitizeText(webgl.renderer);
+    }
+  } catch {
+    // Stays "unavailable".
+  }
+  try {
+    const info = await browserSession.send("SystemInfo.getInfo");
+    const status = info?.gpu?.featureStatus;
+    if (status && typeof status === "object") {
+      facts.gpuFeatureStatus = status;
+      if (typeof status.rasterization === "string") facts.gpuRasterization = status.rasterization;
+    }
+  } catch {
+    // Stays "unavailable".
+  }
+  return facts;
 }
