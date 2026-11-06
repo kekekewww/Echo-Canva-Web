@@ -240,3 +240,74 @@ describe("job kind in pool derivations", () => {
     expect([kindOf(1), kindOf(2), kindOf(3)]).toEqual(["static-install", "pose-only", "static-install"]);
   });
 });
+
+/** An open-loop TS-W log: `steps` input events 25 ms apart, `jobs` one-worker jobs `spacing` ms apart. */
+function openLoopLog(steps: number, jobs: number, spacing: number): Loose {
+  const log = syntheticLog();
+  const first = 100;
+  log.config = { kind: "probe", variant: "TS-W", replay: "open", mode: "classic", parity: false };
+  log.originAt = first;
+  log.endAt = first + 25 * steps + spacing * jobs + 1000;
+  log.steps = Array.from({ length: steps }, (_, i) => ({
+    index: i, replay: 0, tapeStep: i, revision: i + 1, plannedMs: 25 * i, tickAt: first + 25 * i, submitAt: first + 25 * i, poolSubmitAt: first + 25 * i + 0.1, projectMs: 0.1, outcome: "ok",
+  }));
+  const fire = (k: number): number => first + spacing * k;
+  log.timers = Array.from({ length: jobs }, (_, k) => ({ idx: k, scheduledAt: fire(k) - 80, delayMs: 80, firedAt: fire(k) }));
+  log.posts = Array.from({ length: jobs }, (_, k) => ({ worker: 0, type: "COMPUTE_SHARD", requestId: k + 1, revision: k + 1, t0: fire(k) + 0.5, t1: fire(k) + 0.6, timerIdx: k }));
+  log.handlers = Array.from({ length: jobs }, (_, k) => ({ worker: 0, type: "SHARD_RESULT", requestId: k + 1, h0: fire(k) + 3, h1: fire(k) + 3.2, h2: fire(k) + 3.4, computeMs: 2 }));
+  log.assembles = Array.from({ length: jobs }, (_, k) => ({ t0: fire(k) + 3.25, t1: fire(k) + 3.3, completedAt: fire(k) + 3.3 }));
+  log.results = Array.from({ length: jobs }, (_, k) => ({
+    t0: fire(k) + 3.5, t1: fire(k) + 3.6, tEnd: fire(k) + 3.7, staticFingerprint: "abcd1234", requestSeq: k + 1, revision: k + 1, source: "worker",
+    computeMs: 4, shardMax: 2, shardTotal: 2, workerCount: 1, accepted: true, acceptedAt: fire(k) + 4, decideMs: 0.1, deriveMs: "not-applicable",
+  }));
+  log.clientPosts = [];
+  log.flushes = [];
+  return log;
+}
+
+type Warmable = { phase: string; warm: boolean; requestSeq?: number; tapeStep?: number };
+
+describe("open-loop warm labels count dispatched jobs", () => {
+  it("keeps everything cold when the 100th input arrives long before the 100th job", () => {
+    const derived = deriveSamples(openLoopLog(300, 30, 300), context);
+    const samples = derived.samples as unknown as Warmable[];
+    // Inputs 200..299 are past 100 events and 5 s, but only 30 jobs were ever dispatched.
+    const waits = samples.filter((sample) => sample.phase === "pose.latest-wait");
+    expect(waits.length).toBe(300);
+    expect(waits.some((sample) => sample.warm)).toBe(false);
+    expect(samples.filter((sample) => sample.phase === "input.lateness").some((sample) => sample.warm)).toBe(false);
+    expect(samples.filter((sample) => sample.phase === "pool.compute-metric").some((sample) => sample.warm)).toBe(false);
+  });
+
+  it("turns warm with the 100th job ordinal for job and result samples, and by dispatch count for inputs", () => {
+    const derived = deriveSamples(openLoopLog(300, 120, 60), context);
+    const samples = derived.samples as unknown as Warmable[];
+    const metric = (seq: number) => samples.find((sample) => sample.phase === "pool.compute-metric" && sample.requestSeq === seq)!.warm;
+    const queue = (seq: number) => samples.find((sample) => sample.phase === "queue.rate-limit" && sample.requestSeq === seq)!.warm;
+    expect(metric(100)).toBe(false); // ordinal 99
+    expect(metric(101)).toBe(true); // ordinal 100, fired 6 s into the process
+    expect(queue(100)).toBe(false);
+    expect(queue(101)).toBe(true);
+    const wait = (step: number) => samples.find((sample) => sample.phase === "pose.latest-wait" && sample.tapeStep === step)!.warm;
+    // Step 200 is at 5.1 s, old rule: warm. Only 84 jobs are dispatched by then.
+    expect(wait(200)).toBe(false);
+    // Step 250 is at 6.35 s, by when 105 jobs were dispatched.
+    expect(wait(250)).toBe(true);
+  });
+});
+
+describe("last handler of a job", () => {
+  it("takes the later logged handler when two handlers share one h0, so merge.assemble is kept", () => {
+    const log = syntheticLog();
+    const handlers = log.handlers as Loose[];
+    // Both replies stamped 186 by a coarse clock. The assembly sits inside the second handler's window.
+    handlers[1] = { worker: 0, type: "SHARD_RESULT", requestId: 1, h0: 186, h1: 186.0, h2: 186.0, computeMs: 2.5 };
+    handlers[3] = { worker: 1, type: "SHARD_RESULT", requestId: 1, h0: 186, h1: 186.0, h2: 187.9, computeMs: 3.25 };
+    (log.assembles as Loose[])[0] = { t0: 187.2, t1: 187.5, completedAt: 187.1 };
+    const jobs = buildJobs(log as never);
+    expect(jobs[0]!.lastHandler).toBe(handlers[3]);
+    expect(jobs[0]!.assemble).not.toBeNull();
+    const derived = deriveSamples(log, context);
+    expect(phaseValues(derived.samples, "merge.assemble")).toHaveLength(1);
+  });
+});

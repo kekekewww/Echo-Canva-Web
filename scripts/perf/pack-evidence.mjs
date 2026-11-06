@@ -5,6 +5,7 @@
 //
 //   node scripts/perf/pack-evidence.mjs --out <rawRunsDir> --evidence <evidenceDir> [--pilot <rawDir>]
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { gzipSync } from "node:zlib";
@@ -16,6 +17,8 @@ const SELECTED = [
   "sched-app-w", "r1-traced-app-w-1", "r1-traced-app-w-2", "ct-shell", "ct-vp1080", "ct-full", "ct-fullgpu",
   "attr-app-w", "attr-app-s", "inv-app-w", "r1-traced-w-w01", "r1-traced-w-w02", "r1-traced-w-w03", "r1-traced-w-w04",
   "r1-traced-s-th01", "r1-alloc-app-w",
+  // The pool allocation runs: their heap profiles are what the published allocation figures are derived from.
+  "r1-alloc-w-th01", "r1-alloc-w-tc01", "r1-alloc-w-w01", "r1-alloc-w-w03",
 ];
 const SUMMARY_FILES = [
   "run-status.json", "environment.json", "summary.json", "clock-alignment.json", "compute-vs-trace.json",
@@ -115,6 +118,21 @@ writeFileSync(path.join(evidence, "groups.json.gz"), gzipSync(readFileSync(path.
 rmSync(runsDir, { recursive: true, force: true });
 rmSync(path.join(evidence, "groups.json"));
 rmSync(work, { recursive: true, force: true });
+
+// artifacts.sha256 catalogs the run directories before packing, so the packed archives and the selected
+// summaries get their own checksum file. Lines are sha256sum style, paths relative to the evidence directory.
+function filesUnder(dir, prefix) {
+  const files = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : 1))) {
+    const relative = `${prefix}/${entry.name}`;
+    if (entry.isDirectory()) files.push(...filesUnder(path.join(dir, entry.name), relative));
+    else files.push(relative);
+  }
+  return files;
+}
+const hashed = ["runs.tar.gz", "exemplar-slices.tar.gz", "raw-cpu-alloc-gc.tar.gz", ...filesUnder(selectedDir, "selected")];
+const archiveLines = hashed.map((relative) => createHash("sha256").update(readFileSync(path.join(evidence, relative))).digest("hex") + "  " + relative);
+writeFileSync(path.join(evidence, "archives.sha256"), archiveLines.join("\n") + "\n");
 
 for (const name of readdirSync(evidence).sort()) {
   console.log(name);

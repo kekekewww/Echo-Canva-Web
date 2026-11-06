@@ -9,7 +9,7 @@ import { buildBundle } from "./bundle.mjs";
 import { overheadComparisons, pairedDifferences, parityRows, renderComparisons } from "./compare.mjs";
 import { computeCheckFromDump } from "./derive-app.mjs";
 import { poolComputeCheck } from "./derive-pool.mjs";
-import { rederiveRun } from "./rederive.mjs";
+import { rederiveAll, rederiveRun } from "./rederive.mjs";
 import { collectEnvironment, sampleOtherActivity } from "./env.mjs";
 import { analyzeTrace, rankJobs } from "./trace-analyze.mjs";
 import {
@@ -57,14 +57,14 @@ const RUN_FLAGS = new Set([
   "variant", "case", "corpus-manifest", "run-id", "repeat", "out", "boundary", "pass", "audio",
   "samples", "driver", "browser-channel", "viewport", "browser-arg", "trace-extra-category", "hardware-concurrency", "build", "order-index", "plan", "ts-s-path", "max-duration-ms", "step-timeout-ms",
 ]);
-const BOOLEAN_FLAGS = new Set(["parity", "check", "with-slices"]);
+const BOOLEAN_FLAGS = new Set(["parity", "check", "with-slices", "dry-run"]);
 const COMMAND_FLAGS = {
   "verify-corpus": new Set(["corpus-manifest"]),
   "generate-workloads": new Set(["check"]),
-  run: new Set([...RUN_FLAGS, ...BOOLEAN_FLAGS]),
+  run: new Set([...RUN_FLAGS, ...[...BOOLEAN_FLAGS].filter((name) => name !== "dry-run")]),
   summarize: new Set(["out", "to", "with-slices"]),
   analyze: new Set(["out", "top"]),
-  rederive: new Set(),
+  rederive: new Set(["all", "dry-run"]),
   scan: new Set(),
 };
 
@@ -829,7 +829,18 @@ async function commandAnalyze(positional, flags) {
   return 0;
 }
 
-async function commandRederive(positional) {
+async function commandRederive(positional, flags = new Map()) {
+  if (flags.has("all")) {
+    if (positional.length !== 0) throw new UsageError("rederive --all takes a directory and no run directory");
+    const outDir = assertInsideRepo(path.resolve(flags.get("all")), "output directory");
+    const report = await rederiveAll({ outDir, dryRun: flags.has("dry-run") });
+    for (const line of report.rederived) console.log(JSON.stringify(line));
+    for (const line of report.skipped) console.log(JSON.stringify({ ...line, outcome: "skipped" }));
+    for (const line of report.failed) console.log(JSON.stringify({ ...line, outcome: "could-not-rederive" }));
+    console.log(JSON.stringify({ summary: { rederived: report.rederived.length, skipped: report.skipped.length, couldNot: report.failed.length, dryRun: flags.has("dry-run") } }));
+    return report.failed.length === 0 ? 0 : 2;
+  }
+  if (flags.has("dry-run")) throw new UsageError("--dry-run goes with --all");
   if (positional.length !== 1) throw new UsageError("rederive needs one run directory");
   const runDir = assertInsideRepo(path.resolve(positional[0]), "run directory");
   const outcome = await rederiveRun({ runDir });
@@ -861,7 +872,7 @@ async function main() {
     case "summarize":
       return commandSummarize(flags);
     case "rederive":
-      return commandRederive(positional);
+      return commandRederive(positional, flags);
     case "analyze":
       return commandAnalyze(positional, flags);
     default:

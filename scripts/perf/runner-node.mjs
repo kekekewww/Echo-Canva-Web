@@ -76,6 +76,7 @@ async function main() {
   observer.takeRecords?.();
   observer.disconnect();
 
+  writeFileSync(join(runDir, "raw-records.json"), JSON.stringify({ records, jobs: result.jobs ?? 0, intervalMs: result.intervalMs ?? null }), "utf8");
   const { caseId, mode } = config.caseSpec;
   const samples = serialSamples(records, { runId: config.runId, caseId, mode, boundary: "node-core", pass: config.pass });
   writeFileSync(join(runDir, "samples.jsonl"), serializeJsonl(samples), "utf8");

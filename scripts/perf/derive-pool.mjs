@@ -10,6 +10,23 @@ export function warmAt(ordinal, elapsedMs) {
   return ordinal >= WARM_JOBS && elapsedMs >= WARM_MS;
 }
 
+/**
+ * The handler that ran last for a job: the largest h0, and on a tie (coarse clocks) the one logged last,
+ * because log.handlers is in the order the main thread handled them.
+ */
+export function lastShardResultOf(handlers) {
+  let best = null;
+  let bestIndex = -1;
+  handlers.forEach((handler, index) => {
+    if (handler.type !== "SHARD_RESULT") return;
+    if (best === null || handler.h0 >= best.h0) {
+      best = handler;
+      bestIndex = index;
+    }
+  });
+  return bestIndex >= 0 ? best : null;
+}
+
 const SHARD_TYPES = new Set(["INSTALL_STATIC", "COMPUTE_SHARD"]);
 
 function groupBy(items, keyOf) {
@@ -40,8 +57,8 @@ export function poolComputeCheck(log, wholeMilliseconds, metricByJob = new Map()
           return starts.length > 0 ? Math.max(...starts) : null;
         })(),
         lastHandlerEndMs: (() => {
-          const last = job.perWorker.filter((entry) => entry.result).sort((a, b) => b.result.h0 - a.result.h0)[0];
-          return last ? last.result.h2 : null;
+          const last = job.lastHandler;
+          return last ? last.h2 : null;
         })(),
         metricMs: metricByJob.get(job.requestId) ?? null,
         entries: job.perWorker
@@ -79,7 +96,7 @@ export function buildJobs(log) {
       return { worker, install, shard, ack, result, installRecord: record("INSTALL_STATIC"), shardRecord: record("COMPUTE_SHARD") };
     });
     const resultLog = log.results.find((entry) => entry.source === "worker" && entry.requestSeq === requestId) ?? null;
-    const lastHandler = handlers.filter((handler) => handler.type === "SHARD_RESULT").sort((a, b) => b.h0 - a.h0)[0] ?? null;
+    const lastHandler = lastShardResultOf(handlers);
     const assemble = lastHandler
       ? log.assembles.find((entry) => entry.t0 >= lastHandler.h1 && entry.t0 <= lastHandler.h2) ?? null
       : null;
@@ -137,6 +154,37 @@ export function checkIntegrity(log, jobs) {
   return { ok: anomalies.length === 0, installPosts, installAcks, shardPosts, shardResults, workerRecords, anomalies };
 }
 
+/** Errors that follow from the derivation of a pool log (not the log's own errors, not a step timeout, not parity). */
+export const POOL_DERIVATION_ERRORS = [
+  /^the production pool fell back/,
+  /^worker count mismatch/,
+  /^message integrity/,
+  /^every shard.compute value is an integer/,
+  /^production fallback did not activate cleanly/,
+  /^trace analysis failed:/,
+];
+
+export function poolDerivationErrors(log, derived, { pass, variant }) {
+  const errors = [];
+  if (variant === "TS-W") {
+    if (log.results.some((entry) => entry.source === "fallback")) errors.push("the production pool fell back to the serial path during a TS-W run");
+    if (pass !== "bare" && (derived.workerCounts.length !== 1 || derived.workerCounts[0] !== log.expectedWorkers || log.workersCreated !== log.expectedWorkers)) {
+      errors.push(`worker count mismatch: expected ${log.expectedWorkers}, created ${log.workersCreated}, pool reported ${JSON.stringify(derived.workerCounts)}`);
+    }
+    if (pass === "bare" && (derived.workerCounts.length !== 1 || derived.workerCounts[0] !== log.expectedWorkers)) {
+      errors.push(`worker count mismatch: expected ${log.expectedWorkers}, pool reported ${JSON.stringify(derived.workerCounts)}`);
+    }
+    if (derived.integrity !== NOT_APPLICABLE && !derived.integrity.ok) errors.push(`message integrity: ${derived.integrity.anomalies.slice(0, 5).join("; ")}`);
+    if (pass !== "bare" && derived.shardCompute.count > 0 && derived.shardCompute.nonInteger === 0) {
+      errors.push("every shard.compute value is an integer: the preamble clock is not in effect");
+    }
+  } else {
+    const fallback = log.results.filter((entry) => entry.source === "fallback").length;
+    if (fallback === 0 || fallback !== log.results.length) errors.push(`production fallback did not activate cleanly (${fallback} of ${log.results.length} results were fallback)`);
+  }
+  return errors;
+}
+
 export function deriveSamples(log, context) {
   const samples = [];
   const probe = log.config.kind === "probe";
@@ -188,10 +236,33 @@ export function deriveSamples(log, context) {
     warm: warmAt(jobOrdinal, (job.timer?.firedAt ?? job.firstPostAt) - firstJobAt),
     ...extra,
   });
+  // Open loop: an input event is not a job. A sample made at time t is warm once 100 jobs have been
+  // dispatched by t and 5 s have passed. Dispatch times come from the jobs, or from the computed
+  // results when the pass has no post records.
+  const dispatchTimes = open
+    ? (jobs.length > 0 ? jobs.map((job) => job.timer?.firedAt ?? job.firstPostAt) : log.results.map((result) => result.t0)).sort((a, b) => a - b)
+    : [];
+  const jobsDispatchedBy = (time) => {
+    let count = 0;
+    while (count < dispatchTimes.length && dispatchTimes[count] <= time) count += 1;
+    return count;
+  };
+  const stepWarm = (step) => (open ? warmAt(jobsDispatchedBy(step.submitAt), step.submitAt - firstSubmit) : warmAt(step.index, step.submitAt - firstSubmit));
+  const jobOrdinalByRequest = new Map(jobs.map((job, ordinal) => [job.requestId, ordinal]));
+  const resultWarm = (result, step) => {
+    if (!open) return step ? warmAt(step.index, step.submitAt - firstSubmit) : false;
+    const ordinal = result.source === "worker" ? jobOrdinalByRequest.get(result.requestSeq) : undefined;
+    if (ordinal !== undefined) {
+      const job = jobs[ordinal];
+      return warmAt(ordinal, (job.timer?.firedAt ?? job.firstPostAt) - firstJobAt);
+    }
+    if (!step) return false;
+    return stepWarm(step);
+  };
   const stepFields = (step, extra) => ({
     sceneRevision: step.revision,
     tapeStep: step.tapeStep,
-    warm: warmAt(step.index, step.submitAt - firstSubmit),
+    warm: stepWarm(step),
     ...extra,
   });
   const resultFields = (result, extra) => {
@@ -202,7 +273,7 @@ export function deriveSamples(log, context) {
       sceneRevision: result.revision,
       staticFingerprint: result.staticFingerprint !== NOT_APPLICABLE ? result.staticFingerprint : undefined,
       tapeStep: step?.tapeStep,
-      warm: step ? warmAt(step.index, step.submitAt - firstSubmit) : false,
+      warm: resultWarm(result, step),
       ...extra,
     };
   };

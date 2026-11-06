@@ -8,7 +8,7 @@ import { extname, join, normalize, resolve } from "node:path";
 import { chromium } from "@playwright/test";
 
 import { startAllocation, startTracing, collectBrowserFacts, launchBrowser } from "./cdp-tools.mjs";
-import { deriveSamples, poolComputeCheck } from "./derive-pool.mjs";
+import { deriveSamples, poolComputeCheck, poolDerivationErrors } from "./derive-pool.mjs";
 import { analyzeTrace, rankJobs } from "./trace-analyze.mjs";
 import { evaluateControls } from "./controls-check.mjs";
 import { serialSamples } from "./derive-serial.mjs";
@@ -204,6 +204,7 @@ async function main() {
         }),
         deadline,
       ]);
+      writeFileSync(join(runDir, "raw-records.json"), JSON.stringify({ records: serial.records, jobs: serial.jobs, intervalMs: serial.intervalMs }), "utf8");
       result.jobs = serial.jobs;
       result.intervalMs = serial.intervalMs;
       result.wallMs = serial.endedAtMs - serial.startedAtMs;
@@ -245,22 +246,7 @@ async function main() {
       calibration.endRaw = log.endCalibration;
       if (log.errors.length > 0) result.errors.push(...log.errors);
       if (timedOut) result.errors.push("a step timed out; the run stopped and kept what it had collected");
-      if (tsW) {
-        if (log.results.some((entry) => entry.source === "fallback")) result.errors.push("the production pool fell back to the serial path during a TS-W run");
-        if (config.pass !== "bare" && (derived.workerCounts.length !== 1 || derived.workerCounts[0] !== log.expectedWorkers || log.workersCreated !== log.expectedWorkers)) {
-          result.errors.push(`worker count mismatch: expected ${log.expectedWorkers}, created ${log.workersCreated}, pool reported ${JSON.stringify(derived.workerCounts)}`);
-        }
-        if (config.pass === "bare" && (derived.workerCounts.length !== 1 || derived.workerCounts[0] !== log.expectedWorkers)) {
-          result.errors.push(`worker count mismatch: expected ${log.expectedWorkers}, pool reported ${JSON.stringify(derived.workerCounts)}`);
-        }
-        if (derived.integrity !== NOT_APPLICABLE && !derived.integrity.ok) result.errors.push(`message integrity: ${derived.integrity.anomalies.slice(0, 5).join("; ")}`);
-        if (config.pass !== "bare" && derived.shardCompute.count > 0 && derived.shardCompute.nonInteger === 0) {
-          result.errors.push("every shard.compute value is an integer: the preamble clock is not in effect");
-        }
-      } else {
-        const fallback = log.results.filter((entry) => entry.source === "fallback").length;
-        if (fallback === 0 || fallback !== log.results.length) result.errors.push(`production fallback did not activate cleanly (${fallback} of ${log.results.length} results were fallback)`);
-      }
+      result.errors.push(...poolDerivationErrors(log, derived, { pass: config.pass, variant: config.variant }));
       if (config.parity) {
         if (log.parity.length === 0) result.errors.push("parity run collected no frames");
         else parityResult = compareTapeParity(config.caseSpec, log.parity);

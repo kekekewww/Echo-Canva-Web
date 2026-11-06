@@ -11,7 +11,7 @@ function readIfPresent(runDir, name) {
 }
 
 function hasFunction(cpuTop, label, functionName) {
-  const thread = cpuTop?.[label];
+  const thread = cpuTop?.[`aggregate:${label}`];
   const row = thread?.functions.find((entry) => entry.functionName === functionName);
   return row ? { listed: true, selfMs: row.selfMs, fraction: row.fraction } : { listed: false };
 }
@@ -31,8 +31,8 @@ export function evaluateControls(runDir, observations) {
       pageMeasuredMs: observations.mainBlockMs,
       longTaskObserverSupported: observations.longTaskSupport,
       longTasksSeen: observations.longTasksSeen,
-      traceMainMaxTaskUs: busy.main?.maxTaskUs ?? UNAVAILABLE,
-      traceMainTopTasksUs: busy.main?.topTasksUs ?? UNAVAILABLE,
+      traceMainMaxTaskUs: busy["aggregate:main"]?.maxTaskUs ?? UNAVAILABLE,
+      traceMainTopTasksUs: busy["aggregate:main"]?.topTasksUs ?? UNAVAILABLE,
       cpuTop: hasFunction(cpuTop, "main", "ec102MainBusy"),
     },
     workerBlock: observations.workerBlock === "not-applicable"
@@ -40,8 +40,8 @@ export function evaluateControls(runDir, observations) {
       : {
           requestedMs: 40,
           workerMeasuredMs: observations.workerBlock.endedMs - observations.workerBlock.startedMs,
-          traceWorkerMaxTaskUs: busy.w0?.maxTaskUs ?? UNAVAILABLE,
-          traceWorkerTopTasksUs: busy.w0?.topTasksUs ?? UNAVAILABLE,
+          traceWorkerMaxTaskUs: busy["aggregate:w0"]?.maxTaskUs ?? UNAVAILABLE,
+          traceWorkerTopTasksUs: busy["aggregate:w0"]?.topTasksUs ?? UNAVAILABLE,
           cpuTop: hasFunction(cpuTop, "w0", "ec102ControlBusy"),
         },
     clock: alignment

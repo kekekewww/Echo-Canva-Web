@@ -5,7 +5,7 @@ import { afterAll, describe, expect, it } from "vitest";
 
 import { deriveAppSamples } from "../../scripts/perf/derive-app.mjs";
 import { SIGNED_PHASES, latestRunIndex, validateSample } from "../../scripts/perf/lib.mjs";
-import { rederiveRun } from "../../scripts/perf/rederive.mjs";
+import { rederiveAll, rederiveRun } from "../../scripts/perf/rederive.mjs";
 
 const SCRATCH = resolve(process.cwd(), ".perf-runs", `unit-rederive-${process.pid}`);
 
@@ -120,5 +120,80 @@ describe("rederive", () => {
     expect(outcome.status).toBe("failed");
     expect(outcome.errors).toEqual(["switch 3 timed out after 10000 ms"]);
     expect((JSON.parse(readFileSync(join(runDir, "run-status.json"), "utf8")) as Loose).originalStatus).toBe("failed");
+  });
+});
+
+/** One TS-W job on one worker; the two handlers share one h0 only when `tie` is set. */
+function poolLog(errors: string[], tie: boolean): Loose {
+  return {
+    config: { kind: "probe", variant: "TS-W", replay: "closed", mode: "classic", parity: false },
+    timeOrigin: 0, startAt: 90, originAt: "not-applicable", endAt: 200,
+    steps: [{ index: 0, replay: 0, tapeStep: 0, revision: 301, plannedMs: null, tickAt: 100, submitAt: 100, poolSubmitAt: 100.5, projectMs: "not-applicable", outcome: "ok" }],
+    timers: [{ idx: 0, scheduledAt: 100.6, delayMs: 80, firedAt: 180.9 }],
+    posts: [{ worker: 0, type: "COMPUTE_SHARD", requestId: 1, revision: 301, t0: 181.5, t1: 181.7, timerIdx: 0 }, { worker: 1, type: "COMPUTE_SHARD", requestId: 1, revision: 301, t0: 182.2, t1: 182.4, timerIdx: 0 }],
+    handlers: [
+      { worker: 0, type: "SHARD_RESULT", requestId: 1, h0: 186, h1: 186, h2: 186, computeMs: 2.5 },
+      { worker: 1, type: "SHARD_RESULT", requestId: 1, h0: tie ? 186 : 187, h1: tie ? 186 : 187, h2: 187.9, computeMs: 3.25 },
+    ],
+    assembles: [{ t0: 187.2, t1: 187.5, completedAt: 187.1 }],
+    results: [{ t0: 187.6, t1: 187.7, tEnd: 187.8, staticFingerprint: "abcd1234", requestSeq: 1, revision: 301, source: "worker", computeMs: 6.2, shardMax: 3.25, shardTotal: 5.75, workerCount: 2, accepted: true, acceptedAt: 187.7, decideMs: 0.1, deriveMs: "not-applicable" }],
+    clientPosts: [], workersCreated: 2, expectedWorkers: 2, flushes: [], endCalibration: [], errors, parity: [],
+  };
+}
+
+describe("rederive of pool runs", () => {
+  function writePoolRun(name: string, resultErrors: string[], logErrors: string[], tie: boolean) {
+    const runDir = join(SCRATCH, name);
+    mkdirSync(runDir, { recursive: true });
+    const json = (file: string, value: unknown) => writeFileSync(join(runDir, file), JSON.stringify(value), "utf8");
+    json("raw-log.json", poolLog(logErrors, tie));
+    json("runner-config.json", { runId: name, pass: "clean", variant: "TS-W", parity: false, caseSpec: { caseId: "TC01_LISTENER_TAPE_SEEDED", kind: "tape", mode: "classic" }, pageFile: "pool-page.html" });
+    json("runner-result.json", { status: "failed", errors: resultErrors, error: resultErrors.join(" | ") });
+    json("run-status.json", { status: "failed", runId: name, error: resultErrors.join(" | ") });
+    json("summary.json", { schema: "ec102.summary.v1", sampleCount: 0, phases: {}, runId: name });
+    writeFileSync(join(runDir, "samples.jsonl"), "", "utf8");
+    writeFileSync(join(SCRATCH, "runs-index.jsonl"), `${JSON.stringify({ runId: name, status: "failed", sampleCount: 0 })}\n`, { flag: "a" });
+    return runDir;
+  }
+
+  it("rebuilds a pool run, restores merge.assemble lost to a handler tie, and keeps the history", async () => {
+    const runDir = writePoolRun("p-tie", ["message integrity: stale"], [], true);
+    const outcome = await rederiveRun({ runDir, commit: "abc123", now: () => new Date("2026-01-02T03:04:05.000Z") });
+    // Integrity cannot be checked without worker flushes, so only the stale message goes; the pool log has none of its own.
+    expect(outcome.originalStatus).toBe("failed");
+    const samples = readFileSync(join(runDir, "samples.jsonl"), "utf8").trim().split("\n").map((line) => JSON.parse(line) as { phase: string });
+    expect(samples.filter((sample) => sample.phase === "merge.assemble")).toHaveLength(1);
+    const status = JSON.parse(readFileSync(join(runDir, "run-status.json"), "utf8")) as Loose;
+    expect(status).toMatchObject({ originalStatus: "failed", rederivedAt: "2026-01-02T03:04:05.000Z", rederivedByCommit: "abc123" });
+    expect(String(status.originalError)).toContain("message integrity: stale");
+    const lines = readFileSync(join(SCRATCH, "runs-index.jsonl"), "utf8").trim().split("\n").map((line) => JSON.parse(line) as { runId: string });
+    expect(lines.filter((line) => line.runId === "p-tie")).toHaveLength(2);
+  });
+
+  it("leaves a run with a real logged error failed", async () => {
+    const runDir = writePoolRun("p-real", ["worker error: boom"], ["worker error: boom"], false);
+    const outcome = await rederiveRun({ runDir, commit: "abc123" });
+    expect(outcome.status).toBe("failed");
+    expect(outcome.errors).toContain("worker error: boom");
+  });
+
+  it("re-derives all runs with raw files and reports the ones it skipped", async () => {
+    const dir = join(SCRATCH, "all");
+    mkdirSync(join(dir, "stock-run"), { recursive: true });
+    writeFileSync(join(dir, "stock-run", "run-status.json"), "{}", "utf8");
+    const base = SCRATCH;
+    const runDir = writePoolRun("a-pool", [], [], false);
+    // writePoolRun writes under SCRATCH; copy the layout the batch command expects.
+    const batchDir = join(dir, "a-pool");
+    mkdirSync(batchDir, { recursive: true });
+    for (const file of ["raw-log.json", "runner-config.json", "runner-result.json", "run-status.json", "summary.json", "samples.jsonl"]) writeFileSync(join(batchDir, file), readFileSync(join(runDir, file)));
+    expect(base).toBe(SCRATCH);
+    const dry = await rederiveAll({ outDir: dir, dryRun: true });
+    expect(dry.rederived.map((entry: { runId: string }) => entry.runId)).toEqual(["a-pool"]);
+    expect(dry.skipped).toEqual([{ runId: "stock-run", reason: "no raw file kept" }]);
+    const real = await rederiveAll({ outDir: dir, commit: "abc123" });
+    expect(real.rederived).toHaveLength(1);
+    expect(real.failed).toEqual([]);
+    expect(real.skipped).toHaveLength(1);
   });
 });

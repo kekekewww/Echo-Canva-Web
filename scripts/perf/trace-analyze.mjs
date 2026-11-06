@@ -731,6 +731,64 @@ function jobDecomposition({ computeCheck, matches, tasks, events, mainKey, align
   return { lines, summary };
 }
 
+const sumOrUnavailable = (rows, field) => (rows.some((row) => row[field] === UNAVAILABLE) ? UNAVAILABLE : rows.reduce((sum, row) => sum + row[field], 0));
+
+/** One row for all threads that share a label, so same-named workers add up instead of overwriting each other. */
+function mergeBusyRows(label, rows) {
+  const topTasks = rows.flatMap((row) => row.topTasks).sort((a, b) => (b.wallUs ?? b.durUs ?? 0) - (a.wallUs ?? a.durUs ?? 0)).slice(0, 5);
+  return {
+    label,
+    aggregate: true,
+    threads: rows.length,
+    members: rows.map((row) => `${row.pid}:${row.tid}`),
+    thread: rows[0].thread,
+    windowUs: rows[0].windowUs,
+    busyUs: sumOrUnavailable(rows, "busyUs"),
+    wallUs: sumOrUnavailable(rows, "wallUs"),
+    cpuUs: sumOrUnavailable(rows, "cpuUs"),
+    offCpuUs: sumOrUnavailable(rows, "offCpuUs"),
+    tasksWithoutCpuTime: sumOrUnavailable(rows, "tasksWithoutCpuTime"),
+    tasks: sumOrUnavailable(rows, "tasks"),
+    maxTaskUs: Math.max(...rows.map((row) => row.maxTaskUs)),
+    topTasksUs: rows.flatMap((row) => row.topTasksUs).sort((a, b) => b - a).slice(0, 5),
+    topTasks,
+    longTasks: rows.flatMap((row) => row.longTasks).sort((a, b) => a.ts - b.ts),
+  };
+}
+
+function mergeCpuRows(label, rows) {
+  const merged = new Map();
+  for (const row of rows) {
+    for (const fn of row.functions) {
+      const id = `${fn.functionName}${fn.url}${fn.lineNumber}`;
+      const entry = merged.get(id) ?? { functionName: fn.functionName, url: fn.url, lineNumber: fn.lineNumber, selfMs: 0 };
+      entry.selfMs += fn.selfMs;
+      merged.set(id, entry);
+    }
+  }
+  const totalSelfUs = rows.reduce((sum, row) => sum + row.totalSelfUs, 0);
+  return {
+    label,
+    aggregate: true,
+    threads: rows.length,
+    members: rows.map((row) => `${row.pid}:${row.tid}`),
+    thread: rows[0].thread,
+    totalSelfUs,
+    note: "functions lists only each thread's top 40, so a function outside every thread's top 40 is missing from this sum",
+    functions: [...merged.values()].sort((a, b) => b.selfMs - a.selfMs).slice(0, 40).map((entry) => ({ ...entry, fraction: totalSelfUs === 0 ? 0 : (entry.selfMs * 1000) / totalSelfUs })),
+  };
+}
+
+/** Adds one row per label next to the per-thread rows (keys pid:tid). */
+function addAggregates(table, prefix, merge) {
+  const byLabel = new Map();
+  for (const row of Object.values(table)) {
+    if (!byLabel.has(row.label)) byLabel.set(row.label, []);
+    byLabel.get(row.label).push(row);
+  }
+  for (const [label, rows] of byLabel) table[prefix + label] = merge(label, rows);
+}
+
 export async function analyzeTrace({ file, outDir, calibrationFile, exemplars, computeCheck }) {
   const data = await collect(file);
   const { names, processNames, marks, tasks, events, rasters, gc: gcAll, concurrent, profiles, nodeNames } = data;
@@ -764,22 +822,37 @@ export async function analyzeTrace({ file, outDir, calibrationFile, exemplars, c
   const alignment = buildClockAlignment(marks, names, calibration);
   writeJson(join(outDir, "clock-alignment.json"), alignment);
 
+  const identityOf = (key) => {
+    const [pid, tid] = key.split(":").map(Number);
+    return { pid, tid, threadName: names.get(key) ?? "" };
+  };
   const label = (key) => workerLabels.get(key) ?? (key === mainKey ? "main" : names.get(key) ?? key);
   writeFileSync(
     join(outDir, "gc.jsonl"),
-    serializeJsonl([...gc].sort((a, b) => a.ts - b.ts).map(({ key, ...rest }) => ({ thread: label(key), ...rest }))),
+    serializeJsonl([...gc].sort((a, b) => a.ts - b.ts).map(({ key, ...rest }) => ({ thread: label(key), ...identityOf(key), ...rest }))),
     "utf8",
   );
-  const gcSummary = {};
-  for (const event of gc) {
-    const thread = (gcSummary[label(event.key)] ??= {});
-    const row = (thread[event.kind] ??= { count: 0, durUs: 0 });
-    row.count += 1;
-    row.durUs += event.dur;
-  }
+  const windowStart = marks.find((mark) => mark.name === "ec102:window:start")?.ts ?? -Infinity;
+  const windowEnd = marks.find((mark) => mark.name === "ec102:window:end")?.ts ?? Infinity;
+  const summariseGc = (events) => {
+    const perThread = {};
+    const perName = {};
+    for (const event of events) {
+      const entry = (perThread[event.key] ??= { label: label(event.key), ...identityOf(event.key), kinds: {} });
+      const named = (perName[label(event.key)] ??= {});
+      for (const kinds of [entry.kinds, named]) {
+        const row = (kinds[event.kind] ??= { count: 0, durUs: 0 });
+        row.count += 1;
+        row.durUs += event.dur;
+      }
+    }
+    return { events: events.length, perThread, perName };
+  };
   writeJson(join(outDir, "gc-summary.json"), {
-    note: "Real collections only. minor and major durUs are pause time on that thread; incremental-marking-step durUs is time spent in steps, not a pause of the whole collection.",
-    perThread: gcSummary,
+    note: "Real collections only, in the measured window (collections starting between ec102:window:start and ec102:window:end, the same rule as busy.json). minor and major durUs are pause time on that thread; incremental-marking-step durUs is time spent in steps, not a pause of the whole collection. perThread is keyed by pid:tid; perName adds the threads that share a name or label.",
+    window: { measured: Number.isFinite(windowEnd - windowStart), startUs: Number.isFinite(windowStart) ? windowStart : UNAVAILABLE, endUs: Number.isFinite(windowEnd) ? windowEnd : UNAVAILABLE },
+    ...summariseGc(gc.filter((event) => event.ts >= windowStart && event.ts <= windowEnd)),
+    wholeTraceTotal: summariseGc(gc),
   });
   const concurrentByName = {};
   let concurrentTotalUs = 0;
@@ -798,8 +871,6 @@ export async function analyzeTrace({ file, outDir, calibrationFile, exemplars, c
     byName: concurrentByName,
   });
 
-  const windowStart = marks.find((mark) => mark.name === "ec102:window:start")?.ts ?? -Infinity;
-  const windowEnd = marks.find((mark) => mark.name === "ec102:window:end")?.ts ?? Infinity;
   const busy = {};
   for (const [key, list] of tasks) {
     // Outermost tasks are found first and then selected by start time, so a nested task whose parent
@@ -808,7 +879,9 @@ export async function analyzeTrace({ file, outDir, calibrationFile, exemplars, c
     const withCpu = inside.filter((task) => typeof task.tdur === "number");
     const cpuTotal = withCpu.reduce((sum, task) => sum + task.tdur, 0);
     const wallTotal = inside.reduce((sum, task) => sum + task.dur, 0);
-    busy[label(key)] = {
+    busy[key] = {
+      label: label(key),
+      ...identityOf(key),
       thread: names.get(key) ?? key,
       windowUs: Number.isFinite(windowEnd - windowStart) ? windowEnd - windowStart : UNAVAILABLE,
       busyUs: wallTotal,
@@ -823,6 +896,7 @@ export async function analyzeTrace({ file, outDir, calibrationFile, exemplars, c
       longTasks: inside.filter((task) => task.dur >= LONG_TASK_US).map((task) => ({ ts: task.ts, durUs: task.dur })),
     };
   }
+  addAggregates(busy, "aggregate:", mergeBusyRows);
   writeJson(join(outDir, "busy.json"), busy);
 
   // RasterTask work per renderer process over the measured window (tasks starting inside it), so a reader can
@@ -841,7 +915,9 @@ export async function analyzeTrace({ file, outDir, calibrationFile, exemplars, c
   const cpuTop = {};
   for (const [key, table] of selfTimes) {
     const total = [...table.values()].reduce((sum, value) => sum + value, 0);
-    cpuTop[label(key)] = {
+    cpuTop[key] = {
+      label: label(key),
+      ...identityOf(key),
       thread: names.get(key) ?? key,
       totalSelfUs: total,
       functions: [...table]
@@ -853,6 +929,7 @@ export async function analyzeTrace({ file, outDir, calibrationFile, exemplars, c
         }),
     };
   }
+  addAggregates(cpuTop, "aggregate:", mergeCpuRows);
   writeJson(join(outDir, "cpu-top.json"), cpuTop);
 
   let computeSummary = UNAVAILABLE;

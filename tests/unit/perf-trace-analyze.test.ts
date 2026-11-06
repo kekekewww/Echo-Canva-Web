@@ -138,22 +138,22 @@ describe("analyzeTrace", () => {
     expect(gc.map(({ thread, kind }) => `${thread}:${kind}`).sort()).toEqual(["main:minor", "w0:incremental-marking-step", "w0:major"]);
     expect(gc.find(({ kind }) => kind === "minor")).toMatchObject({ heapBefore: 9000, heapAfter: 4000, dur: 500, name: "MinorGC" });
     expect(gc.every(({ name }) => !String(name).startsWith("V8.GC_"))).toBe(true);
-    const gcSummary = read("gc-summary.json") as { perThread: Record<string, Record<string, { count: number; durUs: number }>> };
-    expect(gcSummary.perThread.main).toEqual({ minor: { count: 1, durUs: 500 } });
-    expect(gcSummary.perThread.w0).toEqual({ major: { count: 1, durUs: 900 }, "incremental-marking-step": { count: 1, durUs: 100 } });
+    const gcSummary = read("gc-summary.json") as { perName: Record<string, Record<string, { count: number; durUs: number }>> };
+    expect(gcSummary.perName.main).toEqual({ minor: { count: 1, durUs: 500 } });
+    expect(gcSummary.perName.w0).toEqual({ major: { count: 1, durUs: 900 }, "incremental-marking-step": { count: 1, durUs: 100 } });
     const concurrent = read("gc-concurrent.json") as { concurrent: boolean; pause: boolean; totalThreadUs: number; byName: Record<string, { count: number; durUs: number }> };
     expect(concurrent).toMatchObject({ concurrent: true, pause: false, totalThreadUs: 1300 });
     expect(concurrent.byName["V8.GC_SCAVENGER_BACKGROUND_SCAVENGE_PARALLEL"]).toEqual({ count: 2, durUs: 1300 });
 
     const busy = read("busy.json") as Record<string, { busyUs: number; tasks: number; maxTaskUs: number; longTasks: { durUs: number }[] }>;
-    expect(busy.main!.tasks).toBe(2);
-    expect(busy.main!.busyUs).toBe(61_000);
-    expect(busy.main!.maxTaskUs).toBe(60_000);
-    expect(busy.main!.longTasks.map(({ durUs }) => durUs)).toEqual([60_000]);
+    expect(busy["aggregate:main"]!.tasks).toBe(2);
+    expect(busy["aggregate:main"]!.busyUs).toBe(61_000);
+    expect(busy["aggregate:main"]!.maxTaskUs).toBe(60_000);
+    expect(busy["aggregate:main"]!.longTasks.map(({ durUs }) => durUs)).toEqual([60_000]);
 
     const cpuTop = read("cpu-top.json") as Record<string, { functions: { functionName: string; selfMs: number; url: string; lineNumber: number }[] }>;
-    expect(cpuTop.w0!.functions[0]).toMatchObject({ functionName: "ec102ControlBusy", url: "worker.js", lineNumber: 10 });
-    expect(cpuTop.w0!.functions[0]!.selfMs).toBeCloseTo(3, 9);
+    expect(cpuTop["aggregate:w0"]!.functions[0]).toMatchObject({ functionName: "ec102ControlBusy", url: "worker.js", lineNumber: 10 });
+    expect(cpuTop["aggregate:w0"]!.functions[0]!.selfMs).toBeCloseTo(3, 9);
 
     const compute = read("compute-vs-trace.json") as { summary: Loose; entries: Loose[]; reportedValues: string };
     expect(compute.summary).toMatchObject({ jobs: 2, jobsWithoutMarks: 1, entries: 2, matched: 1, unmatched: 1 });
@@ -385,8 +385,8 @@ describe("busy time and task breakdown", () => {
     const read = (name: string) => JSON.parse(readFileSync(join(dir, name), "utf8")) as Loose;
 
     const busy = read("busy.json") as Record<string, { busyUs: number; wallUs: number; cpuUs: number; offCpuUs: number; tasks: number; topTasks: { wallUs: number; cpuUs: number; offCpuUs: number; breakdown: { name: string; us: number }[] }[] }>;
-    expect(busy.main).toMatchObject({ tasks: 2, busyUs: 5001, wallUs: 5001, cpuUs: 2900, offCpuUs: 2101 });
-    const first = busy.main!.topTasks[0]!;
+    expect(busy["aggregate:main"]).toMatchObject({ tasks: 2, busyUs: 5001, wallUs: 5001, cpuUs: 2900, offCpuUs: 2101 });
+    const first = busy["aggregate:main"]!.topTasks[0]!;
     expect(first).toMatchObject({ wallUs: 3001, cpuUs: 1900, offCpuUs: 1101 });
     expect(Object.fromEntries(first.breakdown.map(({ name, us }) => [name, us]))).toEqual({ FunctionCall: 700, Layout: 300, HitTest: 200, "(no child event)": 1801 });
     expect(first.breakdown.reduce((sum, part) => sum + part.us, 0)).toBe(3001);
@@ -497,5 +497,45 @@ describe("job-level decomposition", () => {
     expect(counts.atOrAboveReportedMetricMs["8"]).toMatchObject({ jobs: 1, replyWaitExceedsSlowestWorker: 0 });
     expect(counts.atOrAboveReportedMetricMs["50"]).toMatchObject({ jobs: 0, replyWaitExceedsSlowestWorker: 0 });
     expect(Object.keys(summary.byJobKind).sort()).toEqual(["pose-only", "static-install"]);
+  });
+});
+
+describe("threads that share a name", () => {
+  it("keeps every thread by pid and tid, adds a row per name, and filters GC to the measured window", async () => {
+    mkdirSync(SCRATCH, { recursive: true });
+    const dir = join(SCRATCH, "same-name");
+    mkdirSync(dir, { recursive: true });
+    const file = join(SCRATCH, "same-name-trace.json");
+    const workerA = { pid: 1, tid: 21 };
+    const workerB = { pid: 2, tid: 21 };
+    const events: Loose[] = [
+      { ph: "M", name: "process_name", pid: 1, tid: 0, args: { name: "Renderer" } },
+      { ph: "M", name: "thread_name", ...MAIN, args: { name: "CrRendererMain" } },
+      { ph: "M", name: "thread_name", ...workerA, args: { name: "DedicatedWorker thread" } },
+      { ph: "M", name: "thread_name", ...workerB, args: { name: "DedicatedWorker thread" } },
+      { ph: "R", name: "ec102:window:start", ...MAIN, ts: 1000 },
+      { ph: "R", name: "ec102:window:end", ...MAIN, ts: 100_000 },
+      { ph: "X", name: "RunTask", ...workerA, ts: 2000, dur: 11_000 },
+      { ph: "X", name: "RunTask", ...workerB, ts: 2000, dur: 7000 },
+      { ph: "X", name: "MajorGC", ...workerA, ts: 3000, dur: 900 },
+      { ph: "X", name: "MajorGC", ...workerB, ts: 3000, dur: 400 },
+      { ph: "X", name: "MajorGC", ...workerB, ts: 500_000, dur: 5000 },
+    ];
+    writeFileSync(file, JSON.stringify({ traceEvents: events, metadata: {} }));
+    await analyzeTrace({ file, outDir: dir });
+    const read = <T,>(name: string) => JSON.parse(readFileSync(join(dir, name), "utf8")) as T;
+
+    const busy = read<Record<string, Record<string, unknown>>>("busy.json");
+    expect(busy["1:21"]).toMatchObject({ busyUs: 11_000, pid: 1, tid: 21, thread: "DedicatedWorker thread" });
+    expect(busy["2:21"]).toMatchObject({ busyUs: 7000, pid: 2, tid: 21 });
+    expect(busy["aggregate:DedicatedWorker thread"]).toMatchObject({ busyUs: 18_000, tasks: 2, threads: 2, maxTaskUs: 11_000 });
+
+    type Kinds = Record<string, { count: number; durUs: number }>;
+    const gc = read<{ perThread: Record<string, { kinds: Kinds }>; perName: Record<string, Kinds>; wholeTraceTotal: { perName: Record<string, Kinds> } }>("gc-summary.json");
+    expect(gc.perThread["1:21"].kinds.major).toEqual({ count: 1, durUs: 900 });
+    expect(gc.perThread["2:21"].kinds.major).toEqual({ count: 1, durUs: 400 });
+    expect(gc.perName["DedicatedWorker thread"].major).toEqual({ count: 2, durUs: 1300 });
+    // The collection after the window is only in the whole-trace total.
+    expect(gc.wholeTraceTotal.perName["DedicatedWorker thread"].major).toEqual({ count: 3, durUs: 6300 });
   });
 });
