@@ -14,7 +14,13 @@ import { fileURLToPath } from "node:url";
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { canonicalize, sha256Hex, verifyCorpus } from "../../scripts/corpus/lib.mjs";
+import {
+  canonicalize,
+  collectGitInfo,
+  parseGitStatusZ,
+  sha256Hex,
+  verifyCorpus,
+} from "../../scripts/corpus/lib.mjs";
 
 const REPO = fileURLToPath(new URL("../..", import.meta.url));
 const REAL = path.join(REPO, "benchmarks/corpus/v1");
@@ -198,6 +204,50 @@ describe("corpus CLI", () => {
     expect(after.rules.sha256).toBe(sha256Hex(read(copy, manifest.rules.path)));
     expect({ ...after, rules: manifest.rules }).toEqual(manifest);
     expect(verifyCorpus(copy).problems).toEqual([]);
+  });
+});
+
+describe("source hygiene and git facts", () => {
+  it("keeps raw NUL bytes out of the corpus sources", () => {
+    const listed = spawnSync(
+      "git",
+      ["ls-files", "scripts/corpus", "benchmarks/corpus/harness", "tests/corpus", "tests/unit/corpus-comparator.test.ts",
+        "tests/unit/corpus-integrity.test.ts", "tests/unit/corpus-replay.test.ts"],
+      { cwd: REPO, encoding: "utf8" },
+    );
+    expect(listed.status).toBe(0);
+    const files = listed.stdout.split("\n").filter((name) => name.length > 0);
+    expect(files.length).toBeGreaterThan(5);
+    for (const file of files) expect(readFileSync(path.join(REPO, file)).includes(0), file).toBe(false);
+  });
+
+  it("parses NUL-separated git status into repo-relative paths", () => {
+    const nul = "\u0000";
+    const status = [" M docs/with space/a b.md", "?? new-file.txt", "R  renamed/new.ts", "old/name.ts", "A  added.ts", ""].join(nul);
+    expect(parseGitStatusZ(status)).toEqual([
+      "added.ts",
+      "docs/with space/a b.md",
+      "new-file.txt",
+      "renamed/new.ts",
+    ]);
+    expect(parseGitStatusZ("")).toEqual([]);
+  });
+
+  it("reports unknown product trees when git cannot answer", () => {
+    const outside = mkdtempSync(path.join(temp, "no-repo-"));
+    const previous = process.env.GIT_CEILING_DIRECTORIES;
+    process.env.GIT_CEILING_DIRECTORIES = temp;
+    try {
+      const info = collectGitInfo(outside, { treeHashes: {}, packageJsonNoScriptsSha256: "x" });
+      expect(info.gitHead).toBe("unavailable");
+      expect(info.gitDirty).toBe("unavailable");
+      expect(info.productTreesMatchBaseline).toBe("unavailable");
+      expect(info.productTreeDiffs).toBe("unavailable");
+      expect(info.packageJsonNoScriptsSha256).toBe("unavailable");
+    } finally {
+      if (previous === undefined) delete process.env.GIT_CEILING_DIRECTORIES;
+      else process.env.GIT_CEILING_DIRECTORIES = previous;
+    }
   });
 });
 

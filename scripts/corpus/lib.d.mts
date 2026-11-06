@@ -76,7 +76,7 @@ export type GitInfo = {
   gitHead: string;
   gitDirty: string[] | "unavailable";
   productTrees: { src: string; "package.json": string; "pnpm-lock.yaml": string };
-  productTreesMatchBaseline: boolean;
+  productTreesMatchBaseline: boolean | "unavailable";
   productTreeDiffs: string[] | "unavailable";
   packageJsonNoScriptsSha256: string;
 };
@@ -93,3 +93,4 @@ export function collectEnvironment(): {
   cpuModel: string;
   logicalCpus: number | "unavailable";
 };
+export function parseGitStatusZ(status: string): string[];

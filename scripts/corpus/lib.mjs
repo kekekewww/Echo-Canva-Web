@@ -607,6 +607,18 @@ function git(repoRoot, args) {
   }
 }
 
+/** Parses `git status --porcelain -z` output into sorted repo-relative paths (a rename yields its new path). */
+export function parseGitStatusZ(status) {
+  const paths = [];
+  const records = status.split("\u0000").filter((record) => record.length > 0);
+  for (let index = 0; index < records.length; index++) {
+    const record = records[index];
+    paths.push(record.slice(3));
+    if (record[0] === "R" || record[0] === "C") index += 1;
+  }
+  return paths.sort();
+}
+
 /** SHA-256 of a package.json text with its scripts field removed, in canonical form. */
 export function packageJsonNoScriptsSha256(text) {
   const parsed = JSON.parse(text);
@@ -623,17 +635,7 @@ const COMPARED_TREES = ["src", "pnpm-lock.yaml", "pnpm-workspace.yaml", "patches
 export function collectGitInfo(repoRoot, baseline) {
   const head = git(repoRoot, ["rev-parse", "HEAD"]);
   const status = git(repoRoot, ["status", "--porcelain", "-z", "--untracked-files=all"]);
-  let gitDirty = "unavailable";
-  if (status !== null) {
-    gitDirty = [];
-    const records = status.split(" ").filter((record) => record.length > 0);
-    for (let index = 0; index < records.length; index++) {
-      const record = records[index];
-      gitDirty.push(record.slice(3));
-      if (record[0] === "R" || record[0] === "C") index += 1;
-    }
-    gitDirty.sort();
-  }
+  const gitDirty = status === null ? "unavailable" : parseGitStatusZ(status);
   const productTrees = {};
   for (const name of ["src", "package.json", "pnpm-lock.yaml"]) {
     const hash = git(repoRoot, ["rev-parse", `HEAD:${name}`]);
@@ -650,7 +652,7 @@ export function collectGitInfo(repoRoot, baseline) {
     }
   }
   let productTreeDiffs = "unavailable";
-  let productTreesMatchBaseline = false;
+  let productTreesMatchBaseline = "unavailable";
   if (treeHashes !== null && packageHash !== "unavailable" && head !== null) {
     productTreeDiffs = [];
     for (const name of COMPARED_TREES) {
