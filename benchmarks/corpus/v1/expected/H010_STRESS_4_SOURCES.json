@@ -1,0 +1,561 @@
+{
+  "caseId": "H010_STRESS_4_SOURCES",
+  "kind": "hybrid-frame",
+  "outcome": "ok",
+  "value": {
+    "audible": {
+      "audioState": {
+        "listenerPosition": {
+          "x": 1.2,
+          "y": 1.5,
+          "z": 0.8
+        },
+        "sourceStates": {
+          "stress_radio": {
+            "dryGainDb": -30.490224995673064,
+            "effectiveDistanceM": 11.537764081484768,
+            "lowpassHz": 805.6700095095889,
+            "position": {
+              "x": 10.8,
+              "y": 1.5,
+              "z": 7.2
+            },
+            "routeType": "blocked"
+          },
+          "stress_radio_2": {
+            "dryGainDb": -36,
+            "effectiveDistanceM": 10.499523798725349,
+            "lowpassHz": 700,
+            "position": {
+              "x": 11.2,
+              "y": 1.5,
+              "z": 4
+            },
+            "routeType": "blocked"
+          },
+          "stress_rain": {
+            "dryGainDb": 0,
+            "effectiveDistanceM": 9.30859817588019,
+            "lowpassHz": 20000,
+            "position": {
+              "x": 10.5,
+              "y": 1.5,
+              "z": 1.2
+            },
+            "routeType": "direct"
+          },
+          "stress_voice": {
+            "dryGainDb": -36,
+            "effectiveDistanceM": 8,
+            "lowpassHz": 700,
+            "position": {
+              "x": 6,
+              "y": 1.5,
+              "z": 7.2
+            },
+            "routeType": "blocked"
+          }
+        }
+      },
+      "paths": [
+        {
+          "dryGainDb": -30.490224995673064,
+          "effectiveDistanceM": 11.537764081484768,
+          "lowpassHz": 805.6700095095889,
+          "occluderWallIds": [
+            "stress_81"
+          ],
+          "portalIds": [],
+          "routeType": "blocked",
+          "sourceId": "stress_radio",
+          "virtualPosition": {
+            "x": 10.8,
+            "y": 1.5,
+            "z": 7.2
+          }
+        },
+        {
+          "dryGainDb": 0,
+          "effectiveDistanceM": 9.30859817588019,
+          "lowpassHz": 20000,
+          "occluderWallIds": [],
+          "portalIds": [],
+          "routeType": "direct",
+          "sourceId": "stress_rain",
+          "virtualPosition": {
+            "x": 10.5,
+            "y": 1.5,
+            "z": 1.2
+          }
+        },
+        {
+          "dryGainDb": -36,
+          "effectiveDistanceM": 8,
+          "lowpassHz": 700,
+          "occluderWallIds": [
+            "stress_77",
+            "stress_64",
+            "stress_26",
+            "stress_13"
+          ],
+          "portalIds": [],
+          "routeType": "blocked",
+          "sourceId": "stress_voice",
+          "virtualPosition": {
+            "x": 6,
+            "y": 1.5,
+            "z": 7.2
+          }
+        },
+        {
+          "dryGainDb": -36,
+          "effectiveDistanceM": 10.499523798725349,
+          "lowpassHz": 700,
+          "occluderWallIds": [
+            "stress_30",
+            "stress_15"
+          ],
+          "portalIds": [],
+          "routeType": "blocked",
+          "sourceId": "stress_radio_2",
+          "virtualPosition": {
+            "x": 11.2,
+            "y": 1.5,
+            "z": 4
+          }
+        }
+      ]
+    },
+    "earlyTapsBySource": {
+      "stress_radio": [],
+      "stress_radio_2": [],
+      "stress_rain": [
+        {
+          "delayMs": 28.51335801530297,
+          "gainDb": -20.34806051068597,
+          "id": "first:floor",
+          "lowpassHz": 20000,
+          "order": 1,
+          "position": {
+            "x": 5.85,
+            "y": 0,
+            "z": 1
+          }
+        },
+        {
+          "delayMs": 33.547972066935856,
+          "gainDb": -21.760418622683204,
+          "id": "first:stress_boundary_west",
+          "lowpassHz": 20000,
+          "order": 1,
+          "position": {
+            "x": 0.09999999999999964,
+            "y": 1.5,
+            "z": 0.8382608695652174
+          }
+        },
+        {
+          "delayMs": 35.296238381684184,
+          "gainDb": -22.20166164556508,
+          "id": "first:stress_boundary_east",
+          "lowpassHz": 20000,
+          "order": 1,
+          "position": {
+            "x": 11.9,
+            "y": 1.5,
+            "z": 1.1537190082644628
+          }
+        },
+        {
+          "delayMs": 28.51335801530297,
+          "gainDb": -32.93399195212274,
+          "id": "first:ceiling",
+          "lowpassHz": 12659.146089970773,
+          "order": 1,
+          "position": {
+            "x": 5.85,
+            "y": 3,
+            "z": 1
+          }
+        }
+      ],
+      "stress_voice": []
+    },
+    "frame": {
+      "classicProjectionHash": "e8eb92bc",
+      "computedAtMs": 0,
+      "firstOrderReflectionsBySource": {
+        "stress_radio": [],
+        "stress_radio_2": [],
+        "stress_rain": [
+          {
+            "arrivalDirection": {
+              "x": 0.9509122920336118,
+              "y": 0.3067459006560038,
+              "z": 0.0408994534208005
+            },
+            "delayMs": 28.51335801530297,
+            "excessDelayMs": 1.374587823232444,
+            "id": "first:ceiling",
+            "materialId": "acoustic_treatment",
+            "patchId": "ceiling",
+            "pathLengthM": 9.780081799248919,
+            "reflectionPoint": {
+              "x": 5.85,
+              "y": 3,
+              "z": 1
+            },
+            "surfaceId": "ceiling"
+          },
+          {
+            "arrivalDirection": {
+              "x": 0.9509122920336118,
+              "y": -0.3067459006560038,
+              "z": 0.0408994534208005
+            },
+            "delayMs": 28.51335801530297,
+            "excessDelayMs": 1.374587823232444,
+            "id": "first:floor",
+            "materialId": "concrete_hard",
+            "patchId": "floor",
+            "pathLengthM": 9.780081799248919,
+            "reflectionPoint": {
+              "x": 5.85,
+              "y": 0,
+              "z": 1
+            },
+            "surfaceId": "floor"
+          },
+          {
+            "arrivalDirection": {
+              "x": -0.9993956333964842,
+              "y": 0,
+              "z": 0.03476158724857332
+            },
+            "delayMs": 33.547972066935856,
+            "excessDelayMs": 6.409201874865327,
+            "id": "first:stress_boundary_west",
+            "materialId": "concrete_hard",
+            "patchId": "stress_boundary_west:front",
+            "pathLengthM": 11.506954418958998,
+            "reflectionPoint": {
+              "x": 0.09999999999999964,
+              "y": 1.5,
+              "z": 0.8382608695652174
+            },
+            "surfaceId": "stress_boundary_west"
+          },
+          {
+            "arrivalDirection": {
+              "x": 0.9994540366753352,
+              "y": 0,
+              "z": 0.03303980286530033
+            },
+            "delayMs": 35.296238381684184,
+            "excessDelayMs": 8.157468189613658,
+            "id": "first:stress_boundary_east",
+            "materialId": "concrete_hard",
+            "patchId": "stress_boundary_east:front",
+            "pathLengthM": 12.106609764917675,
+            "reflectionPoint": {
+              "x": 11.9,
+              "y": 1.5,
+              "z": 1.1537190082644628
+            },
+            "surfaceId": "stress_boundary_east"
+          }
+        ],
+        "stress_voice": []
+      },
+      "paths": [
+        {
+          "azimuthDeg": 56.309932474020215,
+          "delayMs": 33.63779615593227,
+          "directVisible": false,
+          "directionToSource": {
+            "x": 0.8320502943378436,
+            "y": 0,
+            "z": 0.554700196225229
+          },
+          "distanceM": 11.537764081484768,
+          "elevationDeg": 0,
+          "hits": [
+            {
+              "distanceM": 1.7547016207258106,
+              "materialId": "wood_medium",
+              "patchId": "stress_81:end-b",
+              "point": {
+                "x": 9.339999999999998,
+                "y": 1.5,
+                "z": 6.226666666666666
+              },
+              "surfaceId": "stress_81",
+              "thicknessM": 0.1,
+              "wallId": "stress_81"
+            },
+            {
+              "distanceM": 1.8349594548918002,
+              "materialId": "wood_medium",
+              "patchId": "stress_81:back",
+              "point": {
+                "x": 9.273221445459269,
+                "y": 1.5,
+                "z": 6.182147630306179
+              },
+              "surfaceId": "stress_81",
+              "thicknessM": 0.1,
+              "wallId": "stress_81"
+            }
+          ],
+          "occluderWallIds": [
+            "stress_81"
+          ],
+          "propagationDirection": {
+            "x": -0.8320502943378436,
+            "y": 0,
+            "z": -0.554700196225229
+          },
+          "routeType": "blocked",
+          "sourceId": "stress_radio"
+        },
+        {
+          "azimuthDeg": 87.53718332408317,
+          "delayMs": 27.138770192070524,
+          "directVisible": true,
+          "directionToSource": {
+            "x": 0.9990763189346309,
+            "y": 0,
+            "z": 0.04297102447030669
+          },
+          "distanceM": 9.30859817588019,
+          "elevationDeg": 0,
+          "hits": [],
+          "occluderWallIds": [],
+          "propagationDirection": {
+            "x": -0.9990763189346309,
+            "y": 0,
+            "z": -0.04297102447030669
+          },
+          "routeType": "direct",
+          "sourceId": "stress_rain"
+        },
+        {
+          "azimuthDeg": 36.86989764584401,
+          "delayMs": 23.323615160349853,
+          "directVisible": false,
+          "directionToSource": {
+            "x": 0.6,
+            "y": 0,
+            "z": 0.8
+          },
+          "distanceM": 8,
+          "elevationDeg": 0,
+          "hits": [
+            {
+              "distanceM": 1.3303602830961683,
+              "materialId": "concrete_hard",
+              "patchId": "stress_77:front",
+              "point": {
+                "x": 5.201783830142299,
+                "y": 1.5,
+                "z": 6.135711773523066
+              },
+              "surfaceId": "stress_77",
+              "thicknessM": 0.1,
+              "wallId": "stress_77"
+            },
+            {
+              "distanceM": 1.415151515151516,
+              "materialId": "concrete_hard",
+              "patchId": "stress_77:end-a",
+              "point": {
+                "x": 5.15090909090909,
+                "y": 1.5,
+                "z": 6.067878787878787
+              },
+              "surfaceId": "stress_77",
+              "thicknessM": 0.1,
+              "wallId": "stress_77"
+            },
+            {
+              "distanceM": 2.303030303030303,
+              "materialId": "concrete_hard",
+              "patchId": "stress_64:end-b",
+              "point": {
+                "x": 4.618181818181818,
+                "y": 1.5,
+                "z": 5.357575757575757
+              },
+              "surfaceId": "stress_64",
+              "thicknessM": 0.1,
+              "wallId": "stress_64"
+            },
+            {
+              "distanceM": 2.4433239274301464,
+              "materialId": "concrete_hard",
+              "patchId": "stress_64:back",
+              "point": {
+                "x": 4.534005643541912,
+                "y": 1.5,
+                "z": 5.245340858055883
+              },
+              "surfaceId": "stress_64",
+              "thicknessM": 0.1,
+              "wallId": "stress_64"
+            },
+            {
+              "distanceM": 5.882991862043538,
+              "materialId": "concrete_hard",
+              "patchId": "stress_26:front",
+              "point": {
+                "x": 2.470204882773877,
+                "y": 1.5,
+                "z": 2.4936065103651694
+              },
+              "surfaceId": "stress_26",
+              "thicknessM": 0.1,
+              "wallId": "stress_26"
+            },
+            {
+              "distanceM": 6.043323927430145,
+              "materialId": "concrete_hard",
+              "patchId": "stress_26:back",
+              "point": {
+                "x": 2.374005643541913,
+                "y": 1.5,
+                "z": 2.365340858055884
+              },
+              "surfaceId": "stress_26",
+              "thicknessM": 0.1,
+              "wallId": "stress_26"
+            },
+            {
+              "distanceM": 6.966666666666667,
+              "materialId": "concrete_hard",
+              "patchId": "stress_13:end-b",
+              "point": {
+                "x": 1.8200000000000003,
+                "y": 1.5,
+                "z": 1.626666666666666
+              },
+              "surfaceId": "stress_13",
+              "thicknessM": 0.1,
+              "wallId": "stress_13"
+            },
+            {
+              "distanceM": 6.995955506377513,
+              "materialId": "concrete_hard",
+              "patchId": "stress_13:back",
+              "point": {
+                "x": 1.8024266961734927,
+                "y": 1.5,
+                "z": 1.6032355948979893
+              },
+              "surfaceId": "stress_13",
+              "thicknessM": 0.1,
+              "wallId": "stress_13"
+            }
+          ],
+          "occluderWallIds": [
+            "stress_77",
+            "stress_64",
+            "stress_26",
+            "stress_13"
+          ],
+          "propagationDirection": {
+            "x": -0.6,
+            "y": 0,
+            "z": -0.8
+          },
+          "routeType": "blocked",
+          "sourceId": "stress_voice"
+        },
+        {
+          "azimuthDeg": 72.25532837494306,
+          "delayMs": 30.610856556050578,
+          "directVisible": false,
+          "directionToSource": {
+            "x": 0.9524241471993243,
+            "y": 0,
+            "z": 0.3047757271037838
+          },
+          "distanceM": 10.499523798725349,
+          "elevationDeg": 0,
+          "hits": [
+            {
+              "distanceM": 5.188103550525857,
+              "materialId": "wood_medium",
+              "patchId": "stress_30:back",
+              "point": {
+                "x": 6.258724900308623,
+                "y": 1.5,
+                "z": 2.41879196809876
+              },
+              "surfaceId": "stress_30",
+              "thicknessM": 0.1,
+              "wallId": "stress_30"
+            },
+            {
+              "distanceM": 5.355284751611171,
+              "materialId": "wood_medium",
+              "patchId": "stress_30:end-a",
+              "point": {
+                "x": 6.099497487437185,
+                "y": 1.5,
+                "z": 2.367839195979899
+              },
+              "surfaceId": "stress_30",
+              "thicknessM": 0.1,
+              "wallId": "stress_30"
+            },
+            {
+              "distanceM": 7.978766454923909,
+              "materialId": "wood_medium",
+              "patchId": "stress_15:back",
+              "point": {
+                "x": 3.6008301634665205,
+                "y": 1.5,
+                "z": 1.5682656523092864
+              },
+              "surfaceId": "stress_15",
+              "thicknessM": 0.1,
+              "wallId": "stress_15"
+            },
+            {
+              "distanceM": 8.323114971100118,
+              "materialId": "wood_medium",
+              "patchId": "stress_15:end-a",
+              "point": {
+                "x": 3.27286432160804,
+                "y": 1.5,
+                "z": 1.463316582914573
+              },
+              "surfaceId": "stress_15",
+              "thicknessM": 0.1,
+              "wallId": "stress_15"
+            }
+          ],
+          "occluderWallIds": [
+            "stress_30",
+            "stress_15"
+          ],
+          "propagationDirection": {
+            "x": -0.9524241471993243,
+            "y": 0,
+            "z": -0.3047757271037838
+          },
+          "routeType": "blocked",
+          "sourceId": "stress_radio_2"
+        }
+      ],
+      "revision": 112,
+      "secondOrderReflectionsBySource": {
+        "stress_radio": [],
+        "stress_radio_2": [],
+        "stress_rain": [],
+        "stress_voice": []
+      }
+    },
+    "staticGeometryHash": "45ad266d"
+  }
+}

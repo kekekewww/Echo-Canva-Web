@@ -1,0 +1,194 @@
+{
+  "caseId": "H002_PARTITION_PORTAL_CLOSED",
+  "kind": "hybrid-frame",
+  "outcome": "ok",
+  "value": {
+    "audible": {
+      "audioState": {
+        "listenerPosition": {
+          "x": 3,
+          "y": 1.5,
+          "z": 4
+        },
+        "sourceStates": {
+          "radio": {
+            "dryGainDb": -34.0048063137895,
+            "effectiveDistanceM": 6.003332407921453,
+            "lowpassHz": 700,
+            "position": {
+              "x": 9,
+              "y": 1.3,
+              "z": 4
+            },
+            "routeType": "blocked"
+          },
+          "rain": {
+            "dryGainDb": -34.51957814582867,
+            "effectiveDistanceM": 7.433034373659253,
+            "lowpassHz": 700,
+            "position": {
+              "x": 10,
+              "y": 1.5,
+              "z": 1.5
+            },
+            "routeType": "blocked"
+          }
+        }
+      },
+      "paths": [
+        {
+          "dryGainDb": -34.0048063137895,
+          "effectiveDistanceM": 6.003332407921453,
+          "lowpassHz": 700,
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "portalIds": [],
+          "routeType": "blocked",
+          "sourceId": "radio",
+          "virtualPosition": {
+            "x": 9,
+            "y": 1.3,
+            "z": 4
+          }
+        },
+        {
+          "dryGainDb": -34.51957814582867,
+          "effectiveDistanceM": 7.433034373659253,
+          "lowpassHz": 700,
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "portalIds": [],
+          "routeType": "blocked",
+          "sourceId": "rain",
+          "virtualPosition": {
+            "x": 10,
+            "y": 1.5,
+            "z": 1.5
+          }
+        }
+      ]
+    },
+    "earlyTapsBySource": {
+      "radio": [],
+      "rain": []
+    },
+    "frame": {
+      "classicProjectionHash": "ac38bcc2",
+      "computedAtMs": 0,
+      "firstOrderReflectionsBySource": {
+        "radio": [],
+        "rain": []
+      },
+      "paths": [
+        {
+          "azimuthDeg": 90,
+          "delayMs": 17.50242684525205,
+          "directVisible": false,
+          "directionToSource": {
+            "x": 0.9994449069791544,
+            "y": -0.033314830232638475,
+            "z": 0
+          },
+          "distanceM": 6.003332407921453,
+          "elevationDeg": -1.9091524329963763,
+          "hits": [
+            {
+              "distanceM": 2.901610663828703,
+              "materialId": "concrete_hard",
+              "patchId": "partition_door:slab-face-back",
+              "point": {
+                "x": 6.1,
+                "y": 1.3966666666666667,
+                "z": 4
+              },
+              "surfaceId": "partition_center",
+              "thicknessM": 0.1,
+              "wallId": "partition_center"
+            },
+            {
+              "distanceM": 3.1017217440927505,
+              "materialId": "concrete_hard",
+              "patchId": "partition_door:slab-face-front",
+              "point": {
+                "x": 5.9,
+                "y": 1.4033333333333333,
+                "z": 4
+              },
+              "surfaceId": "partition_center",
+              "thicknessM": 0.1,
+              "wallId": "partition_center"
+            }
+          ],
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "propagationDirection": {
+            "x": -0.9994449069791544,
+            "y": 0.033314830232638475,
+            "z": 0
+          },
+          "routeType": "blocked",
+          "sourceId": "radio"
+        },
+        {
+          "azimuthDeg": 109.65382405805332,
+          "delayMs": 21.670654150610066,
+          "directVisible": false,
+          "directionToSource": {
+            "x": 0.9417419115948374,
+            "y": 0,
+            "z": -0.3363363969981562
+          },
+          "distanceM": 7.433034373659253,
+          "elevationDeg": 0,
+          "hits": [
+            {
+              "distanceM": 4.141262008181584,
+              "materialId": "concrete_hard",
+              "patchId": "partition_center:back",
+              "point": {
+                "x": 6.1,
+                "y": 1.5,
+                "z": 2.892857142857143
+              },
+              "surfaceId": "partition_center",
+              "thicknessM": 0.1,
+              "wallId": "partition_center"
+            },
+            {
+              "distanceM": 4.3536344188575615,
+              "materialId": "concrete_hard",
+              "patchId": "partition_center:front",
+              "point": {
+                "x": 5.9,
+                "y": 1.5,
+                "z": 2.964285714285714
+              },
+              "surfaceId": "partition_center",
+              "thicknessM": 0.1,
+              "wallId": "partition_center"
+            }
+          ],
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "propagationDirection": {
+            "x": -0.9417419115948374,
+            "y": 0,
+            "z": 0.3363363969981562
+          },
+          "routeType": "blocked",
+          "sourceId": "rain"
+        }
+      ],
+      "revision": 0,
+      "secondOrderReflectionsBySource": {
+        "radio": [],
+        "rain": []
+      }
+    },
+    "staticGeometryHash": "833de07b"
+  }
+}

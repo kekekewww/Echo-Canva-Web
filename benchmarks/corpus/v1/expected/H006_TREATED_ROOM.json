@@ -1,0 +1,271 @@
+{
+  "caseId": "H006_TREATED_ROOM",
+  "kind": "hybrid-frame",
+  "outcome": "ok",
+  "value": {
+    "audible": {
+      "audioState": {
+        "listenerPosition": {
+          "x": 3,
+          "y": 1.5,
+          "z": 4
+        },
+        "sourceStates": {
+          "treated_voice": {
+            "dryGainDb": 0,
+            "effectiveDistanceM": 4.5,
+            "lowpassHz": 20000,
+            "position": {
+              "x": 7.5,
+              "y": 1.5,
+              "z": 4
+            },
+            "routeType": "direct"
+          }
+        }
+      },
+      "paths": [
+        {
+          "dryGainDb": 0,
+          "effectiveDistanceM": 4.5,
+          "lowpassHz": 20000,
+          "occluderWallIds": [],
+          "portalIds": [],
+          "routeType": "direct",
+          "sourceId": "treated_voice",
+          "virtualPosition": {
+            "x": 7.5,
+            "y": 1.5,
+            "z": 4
+          }
+        }
+      ]
+    },
+    "earlyTapsBySource": {
+      "treated_voice": [
+        {
+          "delayMs": 15.767716948093247,
+          "gainDb": -16.525766770763454,
+          "id": "first:floor",
+          "lowpassHz": 19296.933652904387,
+          "order": 1,
+          "position": {
+            "x": 5.25,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "delayMs": 15.767716948093247,
+          "gainDb": -27.78840091267159,
+          "id": "first:ceiling",
+          "lowpassHz": 12659.146089970773,
+          "order": 1,
+          "position": {
+            "x": 5.25,
+            "y": 3,
+            "z": 4
+          }
+        },
+        {
+          "delayMs": 26.455922803569944,
+          "gainDb": -32.28348290271005,
+          "id": "first:treated_north",
+          "lowpassHz": 12659.146089970773,
+          "order": 1,
+          "position": {
+            "x": 5.25,
+            "y": 1.5,
+            "z": 0.06000000000000005
+          }
+        },
+        {
+          "delayMs": 26.455922803569944,
+          "gainDb": -32.28348290271005,
+          "id": "first:treated_south",
+          "lowpassHz": 12659.146089970773,
+          "order": 1,
+          "position": {
+            "x": 5.25,
+            "y": 1.5,
+            "z": 7.94
+          }
+        },
+        {
+          "delayMs": 27.346938775510203,
+          "gainDb": -32.57119897607089,
+          "id": "first:treated_east",
+          "lowpassHz": 12659.146089970773,
+          "order": 1,
+          "position": {
+            "x": 9.94,
+            "y": 1.5,
+            "z": 4
+          }
+        },
+        {
+          "delayMs": 30.262390670553938,
+          "gainDb": -33.45108927873837,
+          "id": "first:treated_west",
+          "lowpassHz": 12659.146089970773,
+          "order": 1,
+          "position": {
+            "x": 0.05999999999999961,
+            "y": 1.5,
+            "z": 4
+          }
+        }
+      ]
+    },
+    "frame": {
+      "classicProjectionHash": "c0f6d1d1",
+      "computedAtMs": 0,
+      "firstOrderReflectionsBySource": {
+        "treated_voice": [
+          {
+            "arrivalDirection": {
+              "x": 0.8320502943378436,
+              "y": 0.5547001962252291,
+              "z": 0
+            },
+            "delayMs": 15.767716948093247,
+            "excessDelayMs": 2.648183420396456,
+            "id": "first:ceiling",
+            "materialId": "acoustic_treatment",
+            "patchId": "ceiling",
+            "pathLengthM": 5.408326913195984,
+            "reflectionPoint": {
+              "x": 5.25,
+              "y": 3,
+              "z": 4
+            },
+            "surfaceId": "ceiling"
+          },
+          {
+            "arrivalDirection": {
+              "x": 0.8320502943378436,
+              "y": -0.5547001962252291,
+              "z": 0
+            },
+            "delayMs": 15.767716948093247,
+            "excessDelayMs": 2.648183420396456,
+            "id": "first:floor",
+            "materialId": "wood_medium",
+            "patchId": "floor",
+            "pathLengthM": 5.408326913195984,
+            "reflectionPoint": {
+              "x": 5.25,
+              "y": 0,
+              "z": 4
+            },
+            "surfaceId": "floor"
+          },
+          {
+            "arrivalDirection": {
+              "x": 0.4959015652225313,
+              "y": 0,
+              "z": -0.8683787408785659
+            },
+            "delayMs": 26.455922803569944,
+            "excessDelayMs": 13.336389275873149,
+            "id": "first:treated_north",
+            "materialId": "acoustic_treatment",
+            "patchId": "treated_north:front",
+            "pathLengthM": 9.07438152162449,
+            "reflectionPoint": {
+              "x": 5.25,
+              "y": 1.5,
+              "z": 0.06000000000000005
+            },
+            "surfaceId": "treated_north"
+          },
+          {
+            "arrivalDirection": {
+              "x": 0.4959015652225313,
+              "y": 0,
+              "z": 0.868378740878566
+            },
+            "delayMs": 26.455922803569944,
+            "excessDelayMs": 13.336389275873149,
+            "id": "first:treated_south",
+            "materialId": "acoustic_treatment",
+            "patchId": "treated_south:front",
+            "pathLengthM": 9.07438152162449,
+            "reflectionPoint": {
+              "x": 5.25,
+              "y": 1.5,
+              "z": 7.94
+            },
+            "surfaceId": "treated_south"
+          },
+          {
+            "arrivalDirection": {
+              "x": 0.9999999999999999,
+              "y": 0,
+              "z": 0
+            },
+            "delayMs": 27.346938775510203,
+            "excessDelayMs": 14.227405247813408,
+            "id": "first:treated_east",
+            "materialId": "acoustic_treatment",
+            "patchId": "treated_east:front",
+            "pathLengthM": 9.379999999999999,
+            "reflectionPoint": {
+              "x": 9.94,
+              "y": 1.5,
+              "z": 4
+            },
+            "surfaceId": "treated_east"
+          },
+          {
+            "arrivalDirection": {
+              "x": -0.9999999999999999,
+              "y": 0,
+              "z": 0
+            },
+            "delayMs": 30.262390670553938,
+            "excessDelayMs": 17.142857142857142,
+            "id": "first:treated_west",
+            "materialId": "acoustic_treatment",
+            "patchId": "treated_west:front",
+            "pathLengthM": 10.38,
+            "reflectionPoint": {
+              "x": 0.05999999999999961,
+              "y": 1.5,
+              "z": 4
+            },
+            "surfaceId": "treated_west"
+          }
+        ]
+      },
+      "paths": [
+        {
+          "azimuthDeg": 90,
+          "delayMs": 13.119533527696793,
+          "directVisible": true,
+          "directionToSource": {
+            "x": 1,
+            "y": 0,
+            "z": 0
+          },
+          "distanceM": 4.5,
+          "elevationDeg": 0,
+          "hits": [],
+          "occluderWallIds": [],
+          "propagationDirection": {
+            "x": -1,
+            "y": 0,
+            "z": 0
+          },
+          "routeType": "direct",
+          "sourceId": "treated_voice"
+        }
+      ],
+      "revision": 0,
+      "secondOrderReflectionsBySource": {
+        "treated_voice": []
+      }
+    },
+    "staticGeometryHash": "438b0add"
+  }
+}

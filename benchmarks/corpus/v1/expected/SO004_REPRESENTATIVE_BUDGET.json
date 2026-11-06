@@ -1,0 +1,176 @@
+{
+  "caseId": "SO004_REPRESENTATIVE_BUDGET",
+  "kind": "hybrid-second-order",
+  "outcome": "ok",
+  "value": {
+    "evaluation": {
+      "candidatePathCount": 2,
+      "delayRmseMs": 0,
+      "precision": 1,
+      "recall": 1,
+      "referencePathCount": 2,
+      "retainedMidEnergyRatio": 1,
+      "truePositiveCount": 2
+    },
+    "exhaustive": [
+      {
+        "arrivalDirection": {
+          "x": -0.4472135954999579,
+          "y": -0.8944271909999159,
+          "z": 0
+        },
+        "delayMs": 19.557445867345102,
+        "estimatedMidGainDb": -17.614546671859088,
+        "excessDelayMs": 10.811090182213904,
+        "id": "second:ceiling>floor",
+        "materialIds": [
+          "concrete_hard",
+          "concrete_hard"
+        ],
+        "patchIds": [
+          "ceiling",
+          "floor"
+        ],
+        "pathLengthM": 6.708203932499369,
+        "reflectionPoints": [
+          {
+            "x": 2,
+            "y": 3,
+            "z": 0
+          },
+          {
+            "x": 3.5,
+            "y": 0,
+            "z": 0
+          }
+        ],
+        "surfaceIds": [
+          "ceiling",
+          "floor"
+        ]
+      },
+      {
+        "arrivalDirection": {
+          "x": -0.4472135954999579,
+          "y": 0.8944271909999159,
+          "z": 0
+        },
+        "delayMs": 19.557445867345102,
+        "estimatedMidGainDb": -17.614546671859088,
+        "excessDelayMs": 10.811090182213904,
+        "id": "second:floor>ceiling",
+        "materialIds": [
+          "concrete_hard",
+          "concrete_hard"
+        ],
+        "patchIds": [
+          "floor",
+          "ceiling"
+        ],
+        "pathLengthM": 6.708203932499369,
+        "reflectionPoints": [
+          {
+            "x": 1.5,
+            "y": 0,
+            "z": 0
+          },
+          {
+            "x": 3,
+            "y": 3,
+            "z": 0
+          }
+        ],
+        "surfaceIds": [
+          "floor",
+          "ceiling"
+        ]
+      }
+    ],
+    "pruned": {
+      "paths": [
+        {
+          "arrivalDirection": {
+            "x": -0.4472135954999579,
+            "y": -0.8944271909999159,
+            "z": 0
+          },
+          "delayMs": 19.557445867345102,
+          "estimatedMidGainDb": -17.614546671859088,
+          "excessDelayMs": 10.811090182213904,
+          "id": "second:ceiling>floor",
+          "materialIds": [
+            "concrete_hard",
+            "concrete_hard"
+          ],
+          "patchIds": [
+            "ceiling",
+            "floor"
+          ],
+          "pathLengthM": 6.708203932499369,
+          "reflectionPoints": [
+            {
+              "x": 2,
+              "y": 3,
+              "z": 0
+            },
+            {
+              "x": 3.5,
+              "y": 0,
+              "z": 0
+            }
+          ],
+          "surfaceIds": [
+            "ceiling",
+            "floor"
+          ]
+        },
+        {
+          "arrivalDirection": {
+            "x": -0.4472135954999579,
+            "y": 0.8944271909999159,
+            "z": 0
+          },
+          "delayMs": 19.557445867345102,
+          "estimatedMidGainDb": -17.614546671859088,
+          "excessDelayMs": 10.811090182213904,
+          "id": "second:floor>ceiling",
+          "materialIds": [
+            "concrete_hard",
+            "concrete_hard"
+          ],
+          "patchIds": [
+            "floor",
+            "ceiling"
+          ],
+          "pathLengthM": 6.708203932499369,
+          "reflectionPoints": [
+            {
+              "x": 1.5,
+              "y": 0,
+              "z": 0
+            },
+            {
+              "x": 3,
+              "y": 3,
+              "z": 0
+            }
+          ],
+          "surfaceIds": [
+            "floor",
+            "ceiling"
+          ]
+        }
+      ],
+      "stats": {
+        "availablePatches": 32,
+        "consideredPatches": 8,
+        "energyPruned": 0,
+        "evaluatedPairs": 56,
+        "orderedPairs": 56,
+        "pathLengthPruned": 0,
+        "topKPruned": 0,
+        "validPaths": 2
+      }
+    }
+  }
+}

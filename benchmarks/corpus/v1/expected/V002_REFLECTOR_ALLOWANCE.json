@@ -1,0 +1,651 @@
+{
+  "caseId": "V002_REFLECTOR_ALLOWANCE",
+  "kind": "hybrid-visibility",
+  "outcome": "ok",
+  "value": [
+    {
+      "hasHit": true,
+      "hasHitAccepted": true,
+      "hits": [
+        {
+          "distanceM": 1,
+          "materialId": "concrete_hard",
+          "patchId": "wall-0:front",
+          "point": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-0",
+          "thicknessM": 0.1,
+          "wallId": "wall-0"
+        },
+        {
+          "distanceM": 2,
+          "materialId": "concrete_hard",
+          "patchId": "wall-1:front",
+          "point": {
+            "x": 2,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-1",
+          "thicknessM": 0.1,
+          "wallId": "wall-1"
+        },
+        {
+          "distanceM": 3,
+          "materialId": "concrete_hard",
+          "patchId": "wall-2:front",
+          "point": {
+            "x": 3,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-2",
+          "thicknessM": 0.1,
+          "wallId": "wall-2"
+        },
+        {
+          "distanceM": 4,
+          "materialId": "concrete_hard",
+          "patchId": "wall-3:front",
+          "point": {
+            "x": 4,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-3",
+          "thicknessM": 0.1,
+          "wallId": "wall-3"
+        },
+        {
+          "distanceM": 5,
+          "materialId": "concrete_hard",
+          "patchId": "wall-4:front",
+          "point": {
+            "x": 5,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-4",
+          "thicknessM": 0.1,
+          "wallId": "wall-4"
+        },
+        {
+          "distanceM": 6,
+          "materialId": "concrete_hard",
+          "patchId": "wall-5:front",
+          "point": {
+            "x": 6,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-5",
+          "thicknessM": 0.1,
+          "wallId": "wall-5"
+        },
+        {
+          "distanceM": 7,
+          "materialId": "concrete_hard",
+          "patchId": "wall-6:front",
+          "point": {
+            "x": 7,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-6",
+          "thicknessM": 0.1,
+          "wallId": "wall-6"
+        },
+        {
+          "distanceM": 8,
+          "materialId": "concrete_hard",
+          "patchId": "wall-7:front",
+          "point": {
+            "x": 8,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-7",
+          "thicknessM": 0.1,
+          "wallId": "wall-7"
+        },
+        {
+          "distanceM": 9,
+          "materialId": "concrete_hard",
+          "patchId": "wall-8:front",
+          "point": {
+            "x": 9,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-8",
+          "thicknessM": 0.1,
+          "wallId": "wall-8"
+        },
+        {
+          "distanceM": 10,
+          "materialId": "concrete_hard",
+          "patchId": "wall-9:front",
+          "point": {
+            "x": 10,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-9",
+          "thicknessM": 0.1,
+          "wallId": "wall-9"
+        },
+        {
+          "distanceM": 11,
+          "materialId": "concrete_hard",
+          "patchId": "wall-10:front",
+          "point": {
+            "x": 11,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-10",
+          "thicknessM": 0.1,
+          "wallId": "wall-10"
+        },
+        {
+          "distanceM": 12,
+          "materialId": "concrete_hard",
+          "patchId": "wall-11:front",
+          "point": {
+            "x": 12,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-11",
+          "thicknessM": 0.1,
+          "wallId": "wall-11"
+        }
+      ],
+      "legVisible": false,
+      "reverseHasHit": true,
+      "reverseHits": [
+        {
+          "distanceM": 2,
+          "materialId": "concrete_hard",
+          "patchId": "wall-11:front",
+          "point": {
+            "x": 12,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-11",
+          "thicknessM": 0.1,
+          "wallId": "wall-11"
+        },
+        {
+          "distanceM": 3,
+          "materialId": "concrete_hard",
+          "patchId": "wall-10:front",
+          "point": {
+            "x": 11,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-10",
+          "thicknessM": 0.1,
+          "wallId": "wall-10"
+        },
+        {
+          "distanceM": 4,
+          "materialId": "concrete_hard",
+          "patchId": "wall-9:front",
+          "point": {
+            "x": 10,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-9",
+          "thicknessM": 0.1,
+          "wallId": "wall-9"
+        },
+        {
+          "distanceM": 5,
+          "materialId": "concrete_hard",
+          "patchId": "wall-8:front",
+          "point": {
+            "x": 9,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-8",
+          "thicknessM": 0.1,
+          "wallId": "wall-8"
+        },
+        {
+          "distanceM": 6,
+          "materialId": "concrete_hard",
+          "patchId": "wall-7:front",
+          "point": {
+            "x": 8,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-7",
+          "thicknessM": 0.1,
+          "wallId": "wall-7"
+        },
+        {
+          "distanceM": 7,
+          "materialId": "concrete_hard",
+          "patchId": "wall-6:front",
+          "point": {
+            "x": 7,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-6",
+          "thicknessM": 0.1,
+          "wallId": "wall-6"
+        },
+        {
+          "distanceM": 8,
+          "materialId": "concrete_hard",
+          "patchId": "wall-5:front",
+          "point": {
+            "x": 6,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-5",
+          "thicknessM": 0.1,
+          "wallId": "wall-5"
+        },
+        {
+          "distanceM": 9,
+          "materialId": "concrete_hard",
+          "patchId": "wall-4:front",
+          "point": {
+            "x": 5,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-4",
+          "thicknessM": 0.1,
+          "wallId": "wall-4"
+        },
+        {
+          "distanceM": 10,
+          "materialId": "concrete_hard",
+          "patchId": "wall-3:front",
+          "point": {
+            "x": 4,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-3",
+          "thicknessM": 0.1,
+          "wallId": "wall-3"
+        },
+        {
+          "distanceM": 11,
+          "materialId": "concrete_hard",
+          "patchId": "wall-2:front",
+          "point": {
+            "x": 3,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-2",
+          "thicknessM": 0.1,
+          "wallId": "wall-2"
+        },
+        {
+          "distanceM": 12,
+          "materialId": "concrete_hard",
+          "patchId": "wall-1:front",
+          "point": {
+            "x": 2,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-1",
+          "thicknessM": 0.1,
+          "wallId": "wall-1"
+        },
+        {
+          "distanceM": 13,
+          "materialId": "concrete_hard",
+          "patchId": "wall-0:front",
+          "point": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-0",
+          "thicknessM": 0.1,
+          "wallId": "wall-0"
+        }
+      ]
+    },
+    {
+      "hasHit": true,
+      "hasHitAccepted": true,
+      "hits": [
+        {
+          "distanceM": 1,
+          "materialId": "concrete_hard",
+          "patchId": "wall-0:front",
+          "point": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-0",
+          "thicknessM": 0.1,
+          "wallId": "wall-0"
+        },
+        {
+          "distanceM": 2,
+          "materialId": "concrete_hard",
+          "patchId": "wall-1:front",
+          "point": {
+            "x": 2,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-1",
+          "thicknessM": 0.1,
+          "wallId": "wall-1"
+        },
+        {
+          "distanceM": 3,
+          "materialId": "concrete_hard",
+          "patchId": "wall-2:front",
+          "point": {
+            "x": 3,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-2",
+          "thicknessM": 0.1,
+          "wallId": "wall-2"
+        },
+        {
+          "distanceM": 4,
+          "materialId": "concrete_hard",
+          "patchId": "wall-3:front",
+          "point": {
+            "x": 4,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-3",
+          "thicknessM": 0.1,
+          "wallId": "wall-3"
+        },
+        {
+          "distanceM": 5,
+          "materialId": "concrete_hard",
+          "patchId": "wall-4:front",
+          "point": {
+            "x": 5,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-4",
+          "thicknessM": 0.1,
+          "wallId": "wall-4"
+        },
+        {
+          "distanceM": 6,
+          "materialId": "concrete_hard",
+          "patchId": "wall-5:front",
+          "point": {
+            "x": 6,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-5",
+          "thicknessM": 0.1,
+          "wallId": "wall-5"
+        },
+        {
+          "distanceM": 7,
+          "materialId": "concrete_hard",
+          "patchId": "wall-6:front",
+          "point": {
+            "x": 7,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-6",
+          "thicknessM": 0.1,
+          "wallId": "wall-6"
+        },
+        {
+          "distanceM": 8,
+          "materialId": "concrete_hard",
+          "patchId": "wall-7:front",
+          "point": {
+            "x": 8,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-7",
+          "thicknessM": 0.1,
+          "wallId": "wall-7"
+        },
+        {
+          "distanceM": 9,
+          "materialId": "concrete_hard",
+          "patchId": "wall-8:front",
+          "point": {
+            "x": 9,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-8",
+          "thicknessM": 0.1,
+          "wallId": "wall-8"
+        },
+        {
+          "distanceM": 10,
+          "materialId": "concrete_hard",
+          "patchId": "wall-9:front",
+          "point": {
+            "x": 10,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-9",
+          "thicknessM": 0.1,
+          "wallId": "wall-9"
+        },
+        {
+          "distanceM": 11,
+          "materialId": "concrete_hard",
+          "patchId": "wall-10:front",
+          "point": {
+            "x": 11,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-10",
+          "thicknessM": 0.1,
+          "wallId": "wall-10"
+        },
+        {
+          "distanceM": 12,
+          "materialId": "concrete_hard",
+          "patchId": "wall-11:front",
+          "point": {
+            "x": 12,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-11",
+          "thicknessM": 0.1,
+          "wallId": "wall-11"
+        }
+      ],
+      "legVisible": true,
+      "reverseHasHit": true,
+      "reverseHits": [
+        {
+          "distanceM": 2,
+          "materialId": "concrete_hard",
+          "patchId": "wall-11:front",
+          "point": {
+            "x": 12,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-11",
+          "thicknessM": 0.1,
+          "wallId": "wall-11"
+        },
+        {
+          "distanceM": 3,
+          "materialId": "concrete_hard",
+          "patchId": "wall-10:front",
+          "point": {
+            "x": 11,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-10",
+          "thicknessM": 0.1,
+          "wallId": "wall-10"
+        },
+        {
+          "distanceM": 4,
+          "materialId": "concrete_hard",
+          "patchId": "wall-9:front",
+          "point": {
+            "x": 10,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-9",
+          "thicknessM": 0.1,
+          "wallId": "wall-9"
+        },
+        {
+          "distanceM": 5,
+          "materialId": "concrete_hard",
+          "patchId": "wall-8:front",
+          "point": {
+            "x": 9,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-8",
+          "thicknessM": 0.1,
+          "wallId": "wall-8"
+        },
+        {
+          "distanceM": 6,
+          "materialId": "concrete_hard",
+          "patchId": "wall-7:front",
+          "point": {
+            "x": 8,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-7",
+          "thicknessM": 0.1,
+          "wallId": "wall-7"
+        },
+        {
+          "distanceM": 7,
+          "materialId": "concrete_hard",
+          "patchId": "wall-6:front",
+          "point": {
+            "x": 7,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-6",
+          "thicknessM": 0.1,
+          "wallId": "wall-6"
+        },
+        {
+          "distanceM": 8,
+          "materialId": "concrete_hard",
+          "patchId": "wall-5:front",
+          "point": {
+            "x": 6,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-5",
+          "thicknessM": 0.1,
+          "wallId": "wall-5"
+        },
+        {
+          "distanceM": 9,
+          "materialId": "concrete_hard",
+          "patchId": "wall-4:front",
+          "point": {
+            "x": 5,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-4",
+          "thicknessM": 0.1,
+          "wallId": "wall-4"
+        },
+        {
+          "distanceM": 10,
+          "materialId": "concrete_hard",
+          "patchId": "wall-3:front",
+          "point": {
+            "x": 4,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-3",
+          "thicknessM": 0.1,
+          "wallId": "wall-3"
+        },
+        {
+          "distanceM": 11,
+          "materialId": "concrete_hard",
+          "patchId": "wall-2:front",
+          "point": {
+            "x": 3,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-2",
+          "thicknessM": 0.1,
+          "wallId": "wall-2"
+        },
+        {
+          "distanceM": 12,
+          "materialId": "concrete_hard",
+          "patchId": "wall-1:front",
+          "point": {
+            "x": 2,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-1",
+          "thicknessM": 0.1,
+          "wallId": "wall-1"
+        },
+        {
+          "distanceM": 13,
+          "materialId": "concrete_hard",
+          "patchId": "wall-0:front",
+          "point": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "surfaceId": "wall-0",
+          "thicknessM": 0.1,
+          "wallId": "wall-0"
+        }
+      ]
+    }
+  ]
+}

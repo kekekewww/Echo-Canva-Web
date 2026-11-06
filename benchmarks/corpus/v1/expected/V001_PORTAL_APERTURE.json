@@ -1,0 +1,105 @@
+{
+  "caseId": "V001_PORTAL_APERTURE",
+  "kind": "hybrid-visibility",
+  "outcome": "ok",
+  "value": [
+    {
+      "hasHit": false,
+      "hits": [],
+      "reverseHasHit": false,
+      "reverseHits": []
+    },
+    {
+      "hasHit": true,
+      "hits": [
+        {
+          "distanceM": 1,
+          "materialId": "concrete_hard",
+          "patchId": "door-wall:front",
+          "point": {
+            "x": 1,
+            "y": 2.5,
+            "z": 0
+          },
+          "surfaceId": "door-wall",
+          "thicknessM": 0.1,
+          "wallId": "door-wall"
+        }
+      ],
+      "reverseHasHit": true,
+      "reverseHits": [
+        {
+          "distanceM": 1,
+          "materialId": "concrete_hard",
+          "patchId": "door-wall:front",
+          "point": {
+            "x": 1,
+            "y": 2.5,
+            "z": 0
+          },
+          "surfaceId": "door-wall",
+          "thicknessM": 0.1,
+          "wallId": "door-wall"
+        }
+      ]
+    },
+    {
+      "hasHit": true,
+      "hits": [
+        {
+          "distanceM": 1,
+          "materialId": "concrete_hard",
+          "patchId": "door-wall:front",
+          "point": {
+            "x": 1,
+            "y": 1,
+            "z": 2
+          },
+          "surfaceId": "door-wall",
+          "thicknessM": 0.1,
+          "wallId": "door-wall"
+        }
+      ],
+      "reverseHasHit": true,
+      "reverseHits": [
+        {
+          "distanceM": 1,
+          "materialId": "concrete_hard",
+          "patchId": "door-wall:front",
+          "point": {
+            "x": 1,
+            "y": 1,
+            "z": 2
+          },
+          "surfaceId": "door-wall",
+          "thicknessM": 0.1,
+          "wallId": "door-wall"
+        }
+      ]
+    },
+    {
+      "hasHit": false,
+      "hits": [],
+      "reverseHasHit": false,
+      "reverseHits": []
+    },
+    {
+      "hasHit": false,
+      "hits": [],
+      "reverseHasHit": false,
+      "reverseHits": []
+    },
+    {
+      "hasHit": false,
+      "hits": [],
+      "reverseHasHit": false,
+      "reverseHits": []
+    },
+    {
+      "hasHit": false,
+      "hits": [],
+      "reverseHasHit": false,
+      "reverseHits": []
+    }
+  ]
+}

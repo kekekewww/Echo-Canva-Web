@@ -1,0 +1,90 @@
+{
+  "caseId": "C004_CONCRETE_BLOCKED",
+  "kind": "classic-frame",
+  "outcome": "ok",
+  "value": {
+    "frame": {
+      "generatedAtMs": 0,
+      "revision": 103,
+      "room": {
+        "preDelayMs": 28.565478049949593,
+        "rt60S": {
+          "high": 4,
+          "low": 2.511049476113609,
+          "mid": 3.155161856094309
+        },
+        "totalSurfaceM2": 360,
+        "volumeM3": 288
+      },
+      "sources": [
+        {
+          "directVisible": false,
+          "dryGainDb": -24,
+          "earlyReflections": [],
+          "effectiveDistanceM": 6.5,
+          "lowpassHz": 700,
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "physicalDistanceM": 6.5,
+          "portalIds": [],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 9,
+              "y": 4
+            },
+            {
+              "x": 6,
+              "y": 2.75
+            },
+            {
+              "x": 3,
+              "y": 1.5
+            }
+          ],
+          "routeType": "blocked",
+          "sourceId": "radio",
+          "virtualPosition": {
+            "x": 9,
+            "y": 4
+          }
+        },
+        {
+          "directVisible": false,
+          "dryGainDb": -24,
+          "earlyReflections": [],
+          "effectiveDistanceM": 7,
+          "lowpassHz": 700,
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "physicalDistanceM": 7,
+          "portalIds": [],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 10,
+              "y": 1.5
+            },
+            {
+              "x": 6,
+              "y": 1.5
+            },
+            {
+              "x": 3,
+              "y": 1.5
+            }
+          ],
+          "routeType": "blocked",
+          "sourceId": "rain",
+          "virtualPosition": {
+            "x": 10,
+            "y": 1.5
+          }
+        }
+      ]
+    },
+    "staticFingerprint": "f53d1738"
+  }
+}

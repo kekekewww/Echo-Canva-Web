@@ -1,0 +1,429 @@
+{
+  "patches": [
+    {
+      "id": "wall-0:front",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 1,
+          "y": 0,
+          "z": -2
+        },
+        {
+          "x": 1,
+          "y": 3,
+          "z": -2
+        },
+        {
+          "x": 1,
+          "y": 3,
+          "z": 2
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "z": 2
+        }
+      ],
+      "options": {
+        "wallId": "wall-0",
+        "openings": []
+      }
+    },
+    {
+      "id": "wall-1:front",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 2,
+          "y": 0,
+          "z": -2
+        },
+        {
+          "x": 2,
+          "y": 3,
+          "z": -2
+        },
+        {
+          "x": 2,
+          "y": 3,
+          "z": 2
+        },
+        {
+          "x": 2,
+          "y": 0,
+          "z": 2
+        }
+      ],
+      "options": {
+        "wallId": "wall-1",
+        "openings": []
+      }
+    },
+    {
+      "id": "wall-2:front",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 3,
+          "y": 0,
+          "z": -2
+        },
+        {
+          "x": 3,
+          "y": 3,
+          "z": -2
+        },
+        {
+          "x": 3,
+          "y": 3,
+          "z": 2
+        },
+        {
+          "x": 3,
+          "y": 0,
+          "z": 2
+        }
+      ],
+      "options": {
+        "wallId": "wall-2",
+        "openings": []
+      }
+    },
+    {
+      "id": "wall-3:front",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 4,
+          "y": 0,
+          "z": -2
+        },
+        {
+          "x": 4,
+          "y": 3,
+          "z": -2
+        },
+        {
+          "x": 4,
+          "y": 3,
+          "z": 2
+        },
+        {
+          "x": 4,
+          "y": 0,
+          "z": 2
+        }
+      ],
+      "options": {
+        "wallId": "wall-3",
+        "openings": []
+      }
+    },
+    {
+      "id": "wall-4:front",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 5,
+          "y": 0,
+          "z": -2
+        },
+        {
+          "x": 5,
+          "y": 3,
+          "z": -2
+        },
+        {
+          "x": 5,
+          "y": 3,
+          "z": 2
+        },
+        {
+          "x": 5,
+          "y": 0,
+          "z": 2
+        }
+      ],
+      "options": {
+        "wallId": "wall-4",
+        "openings": []
+      }
+    },
+    {
+      "id": "wall-5:front",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 6,
+          "y": 0,
+          "z": -2
+        },
+        {
+          "x": 6,
+          "y": 3,
+          "z": -2
+        },
+        {
+          "x": 6,
+          "y": 3,
+          "z": 2
+        },
+        {
+          "x": 6,
+          "y": 0,
+          "z": 2
+        }
+      ],
+      "options": {
+        "wallId": "wall-5",
+        "openings": []
+      }
+    },
+    {
+      "id": "wall-6:front",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 7,
+          "y": 0,
+          "z": -2
+        },
+        {
+          "x": 7,
+          "y": 3,
+          "z": -2
+        },
+        {
+          "x": 7,
+          "y": 3,
+          "z": 2
+        },
+        {
+          "x": 7,
+          "y": 0,
+          "z": 2
+        }
+      ],
+      "options": {
+        "wallId": "wall-6",
+        "openings": []
+      }
+    },
+    {
+      "id": "wall-7:front",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 8,
+          "y": 0,
+          "z": -2
+        },
+        {
+          "x": 8,
+          "y": 3,
+          "z": -2
+        },
+        {
+          "x": 8,
+          "y": 3,
+          "z": 2
+        },
+        {
+          "x": 8,
+          "y": 0,
+          "z": 2
+        }
+      ],
+      "options": {
+        "wallId": "wall-7",
+        "openings": []
+      }
+    },
+    {
+      "id": "wall-8:front",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 9,
+          "y": 0,
+          "z": -2
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "z": -2
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "z": 2
+        },
+        {
+          "x": 9,
+          "y": 0,
+          "z": 2
+        }
+      ],
+      "options": {
+        "wallId": "wall-8",
+        "openings": []
+      }
+    },
+    {
+      "id": "wall-9:front",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 10,
+          "y": 0,
+          "z": -2
+        },
+        {
+          "x": 10,
+          "y": 3,
+          "z": -2
+        },
+        {
+          "x": 10,
+          "y": 3,
+          "z": 2
+        },
+        {
+          "x": 10,
+          "y": 0,
+          "z": 2
+        }
+      ],
+      "options": {
+        "wallId": "wall-9",
+        "openings": []
+      }
+    },
+    {
+      "id": "wall-10:front",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 11,
+          "y": 0,
+          "z": -2
+        },
+        {
+          "x": 11,
+          "y": 3,
+          "z": -2
+        },
+        {
+          "x": 11,
+          "y": 3,
+          "z": 2
+        },
+        {
+          "x": 11,
+          "y": 0,
+          "z": 2
+        }
+      ],
+      "options": {
+        "wallId": "wall-10",
+        "openings": []
+      }
+    },
+    {
+      "id": "wall-11:front",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 12,
+          "y": 0,
+          "z": -2
+        },
+        {
+          "x": 12,
+          "y": 3,
+          "z": -2
+        },
+        {
+          "x": 12,
+          "y": 3,
+          "z": 2
+        },
+        {
+          "x": 12,
+          "y": 0,
+          "z": 2
+        }
+      ],
+      "options": {
+        "wallId": "wall-11",
+        "openings": []
+      }
+    }
+  ],
+  "queries": [
+    {
+      "start": {
+        "x": 0,
+        "y": 1,
+        "z": 1
+      },
+      "end": {
+        "x": 14,
+        "y": 1,
+        "z": 1
+      },
+      "allowedWallIds": [
+        "wall-0",
+        "wall-1",
+        "wall-2",
+        "wall-3",
+        "wall-4",
+        "wall-5",
+        "wall-6",
+        "wall-7",
+        "wall-8",
+        "wall-9",
+        "wall-10"
+      ]
+    },
+    {
+      "start": {
+        "x": 0,
+        "y": 1,
+        "z": 1
+      },
+      "end": {
+        "x": 14,
+        "y": 1,
+        "z": 1
+      },
+      "allowedWallIds": [
+        "wall-0",
+        "wall-1",
+        "wall-2",
+        "wall-3",
+        "wall-4",
+        "wall-5",
+        "wall-6",
+        "wall-7",
+        "wall-8",
+        "wall-9",
+        "wall-10",
+        "wall-11:front"
+      ]
+    }
+  ]
+}

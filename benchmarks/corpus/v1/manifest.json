@@ -1,0 +1,1112 @@
+{
+  "baseline": {
+    "commit": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+    "equivalentCommits": [
+      "dd57934c31915c64c0c505face8cdb7534a24346"
+    ],
+    "treeHashes": {
+      "package.json": "96f306bf0a1489c8566d46e5caa2fedd3dbb256d",
+      "patches": "75200ad43d03478993f32d3dacac0ce6976d687b",
+      "pnpm-lock.yaml": "572834c945b6b40b3b043430eac085edaa42510b",
+      "pnpm-workspace.yaml": "506215c1e18210443ecdc81a094cfa3d7650bc38",
+      "src": "8550eb37f1486053b86bcfbefd15f6156e2e02ab"
+    }
+  },
+  "cases": [
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 4617,
+        "path": "benchmarks/corpus/v1/expected/C001_CONCRETE_DEFAULT.json",
+        "sha256": "6381b2b799f92017f0c75013269219536b100c27125fe987cb01b87cad2744e4"
+      },
+      "id": "C001_CONCRETE_DEFAULT",
+      "input": {
+        "bytes": 2837,
+        "path": "benchmarks/corpus/v1/inputs/C001_CONCRETE_DEFAULT.json",
+        "sha256": "645d8bf865f7d53ad04ff9180cbab58654a69f93fddd84bad1cb8ba0c0786402"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S2",
+      "seed": null,
+      "source": {
+        "refs": [
+          "src/benchmarks/classic-baseline.ts",
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "preset"
+      },
+      "tags": [
+        "oracle",
+        "preset"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 2039,
+        "path": "benchmarks/corpus/v1/expected/C002_CONCRETE_CLOSED_PORTAL.json",
+        "sha256": "5864fcf38ba9bc9ca3d58e560c7270d4932f3b6093f1ce88cdadca9f1581902a"
+      },
+      "id": "C002_CONCRETE_CLOSED_PORTAL",
+      "input": {
+        "bytes": 2838,
+        "path": "benchmarks/corpus/v1/inputs/C002_CONCRETE_CLOSED_PORTAL.json",
+        "sha256": "38a72619f148139a48c11e10219aa32d910ccc669aed8c63977e20efb3563dcc"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S2",
+      "seed": null,
+      "source": {
+        "refs": [
+          "src/benchmarks/classic-baseline.ts"
+        ],
+        "type": "derived"
+      },
+      "tags": [
+        "oracle",
+        "portal-closed"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 3622,
+        "path": "benchmarks/corpus/v1/expected/C003_CONCRETE_PORTAL_ROUTE.json",
+        "sha256": "d77736d6aca1c97b82364b67a6ff7c30d53dda83d6ab5cba1814e078143ec26e"
+      },
+      "id": "C003_CONCRETE_PORTAL_ROUTE",
+      "input": {
+        "bytes": 2839,
+        "path": "benchmarks/corpus/v1/inputs/C003_CONCRETE_PORTAL_ROUTE.json",
+        "sha256": "fbf562f32c96d3afb3d9940372a8b4f783ade02824da292fb4a0d712e32106d5"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S2",
+      "seed": null,
+      "source": {
+        "refs": [
+          "src/benchmarks/classic-baseline.ts"
+        ],
+        "type": "derived"
+      },
+      "tags": [
+        "oracle",
+        "portal-route"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 1997,
+        "path": "benchmarks/corpus/v1/expected/C004_CONCRETE_BLOCKED.json",
+        "sha256": "47c56e5015c9642808bd24139b569e80e5820c7d4edcd2c187e5d70e12e628b8"
+      },
+      "id": "C004_CONCRETE_BLOCKED",
+      "input": {
+        "bytes": 2840,
+        "path": "benchmarks/corpus/v1/inputs/C004_CONCRETE_BLOCKED.json",
+        "sha256": "b1302e1ef5f2b5d0c484cfa46143de8204d4e7e3a60dbb56c9728bd616ba188c"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S2",
+      "seed": null,
+      "source": {
+        "refs": [
+          "src/benchmarks/classic-baseline.ts"
+        ],
+        "type": "derived"
+      },
+      "tags": [
+        "oracle",
+        "blocked"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 4285,
+        "path": "benchmarks/corpus/v1/expected/C005_CONCRETE_MOVED_LISTENER.json",
+        "sha256": "9014159e229cde6dd95b7659aab754c84fe83a2ff61d85b28d82a8eb7b675623"
+      },
+      "id": "C005_CONCRETE_MOVED_LISTENER",
+      "input": {
+        "bytes": 2841,
+        "path": "benchmarks/corpus/v1/inputs/C005_CONCRETE_MOVED_LISTENER.json",
+        "sha256": "b4ab656b14162ddfc251eedaf1c56f1181829abe2ce6c93bf0d6382205d6b0ec"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S2",
+      "seed": null,
+      "source": {
+        "refs": [
+          "src/benchmarks/classic-baseline.ts"
+        ],
+        "type": "derived"
+      },
+      "tags": [
+        "oracle",
+        "moved-listener"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 3407,
+        "path": "benchmarks/corpus/v1/expected/C006_HARD_ROOM.json",
+        "sha256": "90164ee87777fcf218411a49abcfa1e69a1677cc890f15fb60216d28ad62a62e"
+      },
+      "id": "C006_HARD_ROOM",
+      "input": {
+        "bytes": 2067,
+        "path": "benchmarks/corpus/v1/inputs/C006_HARD_ROOM.json",
+        "sha256": "e8d67bae23a65a71a14c5c57b369360dc2d7a68b1bc6a049c046dd81a9f92bb3"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S1",
+      "seed": null,
+      "source": {
+        "refs": [
+          "src/benchmarks/classic-baseline.ts",
+          "src/domain/presets/hard-room.ts"
+        ],
+        "type": "preset"
+      },
+      "tags": [
+        "oracle",
+        "preset"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 3577,
+        "path": "benchmarks/corpus/v1/expected/C007_HARD_ROOM_MOVED_LISTENER.json",
+        "sha256": "9a62d36d5239813be44f6d5c6efc629f7eb0be4eb090539ef52b93725d638335"
+      },
+      "id": "C007_HARD_ROOM_MOVED_LISTENER",
+      "input": {
+        "bytes": 2067,
+        "path": "benchmarks/corpus/v1/inputs/C007_HARD_ROOM_MOVED_LISTENER.json",
+        "sha256": "04775accfcee17cff97a3f74aca5e3292c4d3c65b39a7eea0d3c0ad81f3c7104"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S1",
+      "seed": null,
+      "source": {
+        "refs": [
+          "src/benchmarks/classic-baseline.ts"
+        ],
+        "type": "derived"
+      },
+      "tags": [
+        "oracle",
+        "moved-listener"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 3494,
+        "path": "benchmarks/corpus/v1/expected/C008_TREATED_ROOM.json",
+        "sha256": "f673b514c9c60616d9257cbfd7168f4eac340570d806b11c25fdb191a6babaff"
+      },
+      "id": "C008_TREATED_ROOM",
+      "input": {
+        "bytes": 2112,
+        "path": "benchmarks/corpus/v1/inputs/C008_TREATED_ROOM.json",
+        "sha256": "ec3e3efcdcedef4e89f9e2954afa254a4705100540f9dfcf47601cae59d02cb1"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S1",
+      "seed": null,
+      "source": {
+        "refs": [
+          "src/benchmarks/classic-baseline.ts",
+          "src/domain/presets/treated-room.ts"
+        ],
+        "type": "preset"
+      },
+      "tags": [
+        "oracle",
+        "preset"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 3684,
+        "path": "benchmarks/corpus/v1/expected/C009_TREATED_ROOM_MOVED_SOURCE.json",
+        "sha256": "681a70abfbfa04065a2ce594426cdaf3f695481ffc413dc54fb90e7a04abed23"
+      },
+      "id": "C009_TREATED_ROOM_MOVED_SOURCE",
+      "input": {
+        "bytes": 2112,
+        "path": "benchmarks/corpus/v1/inputs/C009_TREATED_ROOM_MOVED_SOURCE.json",
+        "sha256": "4a331d90dc9fbebc9230856a688f5a769f0bbe88e62f306469f4c3512dc89d44"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S1",
+      "seed": null,
+      "source": {
+        "refs": [
+          "src/benchmarks/classic-baseline.ts"
+        ],
+        "type": "derived"
+      },
+      "tags": [
+        "oracle",
+        "moved-source"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 100
+      },
+      "expected": {
+        "bytes": 1202,
+        "path": "benchmarks/corpus/v1/expected/C010_STRESS_100_WALLS.json",
+        "sha256": "2257ecbf9babb3a5def810625c1cec17acc8bd1f1131904515881ce4e6db5731"
+      },
+      "id": "C010_STRESS_100_WALLS",
+      "input": {
+        "bytes": 29994,
+        "path": "benchmarks/corpus/v1/inputs/C010_STRESS_100_WALLS.json",
+        "sha256": "67fcb7a1221eb021a76ffb3429eef3ad0667655e9ec8640a5be5a3f56031d042"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S3",
+      "seed": null,
+      "source": {
+        "refs": [
+          "src/benchmarks/classic-baseline.ts",
+          "src/domain/presets/stress-100-walls.ts"
+        ],
+        "type": "preset"
+      },
+      "tags": [
+        "oracle",
+        "stress"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 100
+      },
+      "expected": {
+        "bytes": 1201,
+        "path": "benchmarks/corpus/v1/expected/C011_STRESS_1_SOURCE.json",
+        "sha256": "406e1618d766e3ed1d426b491166bc7bea0b55074809e0ee68441d3341929f3c"
+      },
+      "id": "C011_STRESS_1_SOURCE",
+      "input": {
+        "bytes": 29994,
+        "path": "benchmarks/corpus/v1/inputs/C011_STRESS_1_SOURCE.json",
+        "sha256": "28b401b2a8d8ee1c1750243f855d389fa7fee2d1db1a8c31922b3deb57296269"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S4",
+      "seed": null,
+      "source": {
+        "refs": [
+          "src/domain/presets/stress-100-walls.ts"
+        ],
+        "type": "derived"
+      },
+      "tags": [
+        "stress",
+        "source-count"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 100
+      },
+      "expected": {
+        "bytes": 3155,
+        "path": "benchmarks/corpus/v1/expected/C012_STRESS_2_SOURCES.json",
+        "sha256": "0c2ec36fa18473ca6e322c01529675cc1ba1c667b7cc62673073dea439feb83d"
+      },
+      "id": "C012_STRESS_2_SOURCES",
+      "input": {
+        "bytes": 30249,
+        "path": "benchmarks/corpus/v1/inputs/C012_STRESS_2_SOURCES.json",
+        "sha256": "bcc74b714dd62b0fc1d10f999d7c281abd19c89844b91aa98f4dd1b346b218dc"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S4",
+      "seed": null,
+      "source": {
+        "notes": "The Stress preset has one source; sources beyond the first are added at fixed in-room positions (stress_rain, stress_voice, stress_radio_2).",
+        "refs": [
+          "src/domain/presets/stress-100-walls.ts"
+        ],
+        "type": "derived"
+      },
+      "tags": [
+        "stress",
+        "source-count"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 4,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 100
+      },
+      "expected": {
+        "bytes": 4890,
+        "path": "benchmarks/corpus/v1/expected/C013_STRESS_4_SOURCES.json",
+        "sha256": "39d5751bc60ab91196d6e536cb75b4a7c7df1c07045519b888b7b87a50b02eab"
+      },
+      "id": "C013_STRESS_4_SOURCES",
+      "input": {
+        "bytes": 30764,
+        "path": "benchmarks/corpus/v1/inputs/C013_STRESS_4_SOURCES.json",
+        "sha256": "bdd1bc729605e31604c4f141c2a042665e7b5ac2880d2a00ff6a40b8f86410ff"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S4",
+      "seed": null,
+      "source": {
+        "notes": "The Stress preset has one source; sources beyond the first are added at fixed in-room positions (stress_rain, stress_voice, stress_radio_2).",
+        "refs": [
+          "src/domain/presets/stress-100-walls.ts"
+        ],
+        "type": "derived"
+      },
+      "tags": [
+        "stress",
+        "source-count"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 2278,
+        "path": "benchmarks/corpus/v1/expected/C014_REFLECTION_HEAVY.json",
+        "sha256": "bf0e3483dab1fef34fa64e1436dd1f17387b0777a5ca39169ce3d2bb3a4cd88c"
+      },
+      "id": "C014_REFLECTION_HEAVY",
+      "input": {
+        "bytes": 2072,
+        "path": "benchmarks/corpus/v1/inputs/C014_REFLECTION_HEAVY.json",
+        "sha256": "3dfb45e60d71984f33f1b55c548c74f95833d9db161b362d0825584f073b6ee3"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S7",
+      "seed": null,
+      "source": {
+        "notes": "Hard 10 by 8 m room; source (4,4) and listener (6,4) mirror each other so opposite walls tie in gain; maxEarlyReflections is 2 so the cap is reached.",
+        "refs": [
+          "src/domain/presets/hard-room.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "reflection-cap",
+        "symmetric",
+        "tie"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 9818,
+        "path": "benchmarks/corpus/v1/expected/H001_PARTITION_PORTAL_OPEN.json",
+        "sha256": "b007a132928f3f15616cc2ed1344c1bcbe625095b6c2dfef4e4522c3cb4c1504"
+      },
+      "id": "H001_PARTITION_PORTAL_OPEN",
+      "input": {
+        "bytes": 3552,
+        "path": "benchmarks/corpus/v1/inputs/H001_PARTITION_PORTAL_OPEN.json",
+        "sha256": "d2b0e01522e6ed1129734d375f2c0e776a770db44e539e59161df3ae546d8548"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S2",
+      "seed": null,
+      "source": {
+        "notes": "hybridDocument(true)",
+        "refs": [
+          "tests/unit/hybrid3d-direct.test.ts",
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "portal-open",
+        "partition"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 5239,
+        "path": "benchmarks/corpus/v1/expected/H002_PARTITION_PORTAL_CLOSED.json",
+        "sha256": "e2d8cb7c801f65198556fe291ceb1a0fceffe2722bc8cc24c50fe0e9fe2eb031"
+      },
+      "id": "H002_PARTITION_PORTAL_CLOSED",
+      "input": {
+        "bytes": 3553,
+        "path": "benchmarks/corpus/v1/inputs/H002_PARTITION_PORTAL_CLOSED.json",
+        "sha256": "bd0cc2f026b7e6e73a38a6ca647c7f064a5b47396d468c41edffa03891ada567"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S2",
+      "seed": null,
+      "source": {
+        "notes": "hybridDocument(false)",
+        "refs": [
+          "tests/unit/hybrid3d-direct.test.ts",
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "portal-closed",
+        "partition",
+        "blocked"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 1,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 12759,
+        "path": "benchmarks/corpus/v1/expected/H003_SECOND_ORDER_BLOCKED.json",
+        "sha256": "cac78f7cdfd5f7fc4aff6b8fc526b479b039837fd582f50505a51e0c3114ea9f"
+      },
+      "id": "H003_SECOND_ORDER_BLOCKED",
+      "input": {
+        "bytes": 3148,
+        "path": "benchmarks/corpus/v1/inputs/H003_SECOND_ORDER_BLOCKED.json",
+        "sha256": "8a1726858c01df77f1b57b7ae6be3d73967f95dbd96c9995fb0030d6d2141a37"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S7",
+      "seed": null,
+      "source": {
+        "notes": "The direct_blocker document.",
+        "refs": [
+          "tests/unit/hybrid3d-direct.test.ts",
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "second-order",
+        "primitive-blocker",
+        "blocked"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 9474,
+        "path": "benchmarks/corpus/v1/expected/H004_DEFAULT_PROJECT.json",
+        "sha256": "ae40c99944a0a3e77d7b1cffcae429062c37dcad9f0624bb3549f861c816af9a"
+      },
+      "id": "H004_DEFAULT_PROJECT",
+      "input": {
+        "bytes": 4383,
+        "path": "benchmarks/corpus/v1/inputs/H004_DEFAULT_PROJECT.json",
+        "sha256": "55c767bc943f2178bb58b4d50a30ec5990ed8b83b5ffd585ea198c55240a21ec"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S2",
+      "seed": null,
+      "source": {
+        "refs": [
+          "src/domain/workspace/defaults.ts",
+          "src/domain/workspace/projections.ts"
+        ],
+        "type": "derived"
+      },
+      "tags": [
+        "default-project"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 7049,
+        "path": "benchmarks/corpus/v1/expected/H005_HARD_ROOM.json",
+        "sha256": "cdb15f9ae37704c401d7124ccb7b4e7b2d60cec3632aa4f26e7faa9a3f002436"
+      },
+      "id": "H005_HARD_ROOM",
+      "input": {
+        "bytes": 2686,
+        "path": "benchmarks/corpus/v1/inputs/H005_HARD_ROOM.json",
+        "sha256": "4004e2e04695ff7e69609156de548e9621e91e862aa31642a54fc1042a8e5165"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S1",
+      "seed": null,
+      "source": {
+        "notes": "Listener 1.5 m, source 1.5 m.",
+        "refs": [
+          "src/domain/presets/hard-room.ts"
+        ],
+        "type": "preset"
+      },
+      "tags": [
+        "hard-room",
+        "preset"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 7269,
+        "path": "benchmarks/corpus/v1/expected/H006_TREATED_ROOM.json",
+        "sha256": "bd5cd5c197b543458ab4ab0ae97831d77faaa2361d1ee98484bf1ad096bec146"
+      },
+      "id": "H006_TREATED_ROOM",
+      "input": {
+        "bytes": 2734,
+        "path": "benchmarks/corpus/v1/inputs/H006_TREATED_ROOM.json",
+        "sha256": "3c06e855603e35130cc8bf62dfac6ffd4b673424b1707552ae4823a94ee7ed84"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S1",
+      "seed": null,
+      "source": {
+        "notes": "Listener 1.5 m, source 1.5 m.",
+        "refs": [
+          "src/domain/presets/treated-room.ts"
+        ],
+        "type": "preset"
+      },
+      "tags": [
+        "treated-room",
+        "preset"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 8,
+        "walls": 100
+      },
+      "expected": {
+        "bytes": 3750,
+        "path": "benchmarks/corpus/v1/expected/H007_STRESS_8_PRIMITIVES.json",
+        "sha256": "9e11fa160942486f893206b16ccfdad84f7a1301ba3e840d1bbb393567716db3"
+      },
+      "id": "H007_STRESS_8_PRIMITIVES",
+      "input": {
+        "bytes": 36733,
+        "path": "benchmarks/corpus/v1/inputs/H007_STRESS_8_PRIMITIVES.json",
+        "sha256": "dabfd3a6595fad951329ae5a6f21153dba2b3fc490979bfc52405f3d02b67c4d"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S3",
+      "seed": null,
+      "source": {
+        "notes": "Stress preset plus 8 rotated Box, Cylinder and Sphere primitives inside the room.",
+        "refs": [
+          "src/domain/presets/stress-100-walls.ts"
+        ],
+        "type": "derived"
+      },
+      "tags": [
+        "stress",
+        "primitives",
+        "rotated"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 100
+      },
+      "expected": {
+        "bytes": 2972,
+        "path": "benchmarks/corpus/v1/expected/H008_STRESS_1_SOURCE.json",
+        "sha256": "14a6466166fb84dc057ae2d09edb94de274562fd8f8b7b39c24fda00247dc366"
+      },
+      "id": "H008_STRESS_1_SOURCE",
+      "input": {
+        "bytes": 33305,
+        "path": "benchmarks/corpus/v1/inputs/H008_STRESS_1_SOURCE.json",
+        "sha256": "195bd775b4ad0a4457d50e6d9ff23e3b10cb35ea936d4dc8b27f5ea79e91891c"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S4",
+      "seed": null,
+      "source": {
+        "refs": [
+          "src/domain/presets/stress-100-walls.ts"
+        ],
+        "type": "derived"
+      },
+      "tags": [
+        "stress",
+        "source-count"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 100
+      },
+      "expected": {
+        "bytes": 8049,
+        "path": "benchmarks/corpus/v1/expected/H009_STRESS_2_SOURCES.json",
+        "sha256": "146d9dd1784bc4a3fbd8b7dd0ad243644f3a6d872e9c90827541cf6bcc71518f"
+      },
+      "id": "H009_STRESS_2_SOURCES",
+      "input": {
+        "bytes": 33614,
+        "path": "benchmarks/corpus/v1/inputs/H009_STRESS_2_SOURCES.json",
+        "sha256": "510eac07eaf4426145a91eacacd43b2df735d7b3ef4acc1882b34d81780ed23f"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S4",
+      "seed": null,
+      "source": {
+        "notes": "The Stress preset has one source; sources beyond the first are added at fixed in-room positions (stress_rain, stress_voice, stress_radio_2).",
+        "refs": [
+          "src/domain/presets/stress-100-walls.ts"
+        ],
+        "type": "derived"
+      },
+      "tags": [
+        "stress",
+        "source-count"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 4,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 100
+      },
+      "expected": {
+        "bytes": 16082,
+        "path": "benchmarks/corpus/v1/expected/H010_STRESS_4_SOURCES.json",
+        "sha256": "aa0761af50e9509410a14064db75e7e3e8589b47f414f38444eea3572ad0e6a0"
+      },
+      "id": "H010_STRESS_4_SOURCES",
+      "input": {
+        "bytes": 34241,
+        "path": "benchmarks/corpus/v1/inputs/H010_STRESS_4_SOURCES.json",
+        "sha256": "53cac28adf8681295f98543d9a5ae2f0f9f0933e31596995e42df86c5e44979f"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S4",
+      "seed": null,
+      "source": {
+        "notes": "The Stress preset has one source; sources beyond the first are added at fixed in-room positions (stress_rain, stress_voice, stress_radio_2).",
+        "refs": [
+          "src/domain/presets/stress-100-walls.ts"
+        ],
+        "type": "derived"
+      },
+      "tags": [
+        "stress",
+        "source-count"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 2158,
+        "path": "benchmarks/corpus/v1/expected/V001_PORTAL_APERTURE.json",
+        "sha256": "a3710f0aeb754efad89dca36ccd7c02764b5717d983b072c5a4808c192c109f7"
+      },
+      "id": "V001_PORTAL_APERTURE",
+      "input": {
+        "bytes": 2036,
+        "path": "benchmarks/corpus/v1/inputs/V001_PORTAL_APERTURE.json",
+        "sha256": "f7e851bb6b8333b26cb594319aef724af20f4d11a6c5ee931f7a96ed0d03570a"
+      },
+      "kind": "hybrid-visibility",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Seven segments through one partition at x=1 with a door opening.",
+        "refs": [
+          "tests/unit/hybrid3d-visibility.test.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "portal-aperture",
+        "finite-edge",
+        "endpoint"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 15341,
+        "path": "benchmarks/corpus/v1/expected/V002_REFLECTOR_ALLOWANCE.json",
+        "sha256": "4116419381a525012e6bdf64cb27f51e93c9b40e72f568cb24874eea262d79d1"
+      },
+      "id": "V002_REFLECTOR_ALLOWANCE",
+      "input": {
+        "bytes": 6910,
+        "path": "benchmarks/corpus/v1/inputs/V002_REFLECTOR_ALLOWANCE.json",
+        "sha256": "a26bef7b5a4697b02efe7187185ee9eb19c30ccc49103ad19082883dfa943e5f"
+      },
+      "kind": "hybrid-visibility",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Twelve partitions. The first query allows the first 11 wall ids in BVH order; the second appends the patch id wall-11:front, which is not a wall id.",
+        "refs": [
+          "tests/unit/hybrid3d-visibility.test.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "reflector-allowance",
+        "later-wall-blocks"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 7766025,
+        "path": "benchmarks/corpus/v1/expected/V003_SEEDED_2048.json",
+        "sha256": "bb5d5b513b9aad3b528a9d40caeb2b5e2a2f06c31b837419bc81e22651e2c432"
+      },
+      "id": "V003_SEEDED_2048",
+      "input": {
+        "bytes": 729350,
+        "path": "benchmarks/corpus/v1/inputs/V003_SEEDED_2048.json",
+        "sha256": "5bc596af0bdddc05f2f8f1163b6b872e5bd138f4dd777836e6076c38cee85111"
+      },
+      "kind": "hybrid-visibility",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": {
+        "algorithm": "lcg32-v1",
+        "consumers": "start and end points of the 2048 visibility queries",
+        "value": 20261013
+      },
+      "source": {
+        "notes": "32 partitions and 2048 materialized queries; every 7th is zero-length and every 5th (not 7th) is parallel to the walls.",
+        "refs": [
+          "tests/unit/hybrid3d-visibility.test.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "seeded",
+        "zero-length",
+        "parallel",
+        "oblique"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 4016,
+        "path": "benchmarks/corpus/v1/expected/SO001_FLOOR_CEILING.json",
+        "sha256": "33dce482d04f0d8987e389968ddf3e3440d712257559f9f44c193b9d2dfb46f6"
+      },
+      "id": "SO001_FLOOR_CEILING",
+      "input": {
+        "bytes": 1078,
+        "path": "benchmarks/corpus/v1/inputs/SO001_FLOOR_CEILING.json",
+        "sha256": "ca1ac8b627227cb1eb6a6ec5c7049125119b1021958138b39670ecf66719508a"
+      },
+      "kind": "hybrid-second-order",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S7",
+      "seed": null,
+      "source": {
+        "notes": "Floor and ceiling fixture with retain-all pruning options.",
+        "refs": [
+          "tests/unit/hybrid3d-second-order.test.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "floor-ceiling",
+        "analytic"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 2251,
+        "path": "benchmarks/corpus/v1/expected/SO002_PRUNE_ALL.json",
+        "sha256": "20da261d6dd221554bd1386d45066d0045feb1e7b96398ceb9cd232b5dcc7dda"
+      },
+      "id": "SO002_PRUNE_ALL",
+      "input": {
+        "bytes": 1053,
+        "path": "benchmarks/corpus/v1/inputs/SO002_PRUNE_ALL.json",
+        "sha256": "7c6784830738c5c8f631be67762026a5635e9e802b6a37988e7beb71dde75df6"
+      },
+      "kind": "hybrid-second-order",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S7",
+      "seed": null,
+      "source": {
+        "notes": "Floor and ceiling fixture with a 5 m path-length bound that prunes every pair.",
+        "refs": [
+          "tests/unit/hybrid3d-second-order.test.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "prune-all",
+        "path-length"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 4018,
+        "path": "benchmarks/corpus/v1/expected/SO003_32_PATCH.json",
+        "sha256": "2dac891d38b2891365d1e6223be2dc3b7a5ae29711538e3b069a46b9a7f8b1ab"
+      },
+      "id": "SO003_32_PATCH",
+      "input": {
+        "bytes": 13958,
+        "path": "benchmarks/corpus/v1/inputs/SO003_32_PATCH.json",
+        "sha256": "1fbe2be8963591089a7ff64f6e74d2fcb212f2c36fa39e222055c152b27abf67"
+      },
+      "kind": "hybrid-second-order",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S7",
+      "seed": null,
+      "source": {
+        "notes": "Floor, ceiling and 30 distant walls.",
+        "refs": [
+          "tests/unit/hybrid3d-second-order.test.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "pruning",
+        "32-patch"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 4027,
+        "path": "benchmarks/corpus/v1/expected/SO004_REPRESENTATIVE_BUDGET.json",
+        "sha256": "855ec3cd8aec7afcccb081d02eed5e531250f199c4720b977659695a761864cb"
+      },
+      "id": "SO004_REPRESENTATIVE_BUDGET",
+      "input": {
+        "bytes": 13995,
+        "path": "benchmarks/corpus/v1/inputs/SO004_REPRESENTATIVE_BUDGET.json",
+        "sha256": "95729f82940a5dda45d7f3daa265f545ec8f33fb47cda204ae312b67761d8c91"
+      },
+      "kind": "hybrid-second-order",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S7",
+      "seed": null,
+      "source": {
+        "notes": "Medium fixture with a representative-surface budget of 8 patches.",
+        "refs": [
+          "tests/unit/hybrid3d-second-order.test.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "representative-budget"
+      ]
+    }
+  ],
+  "corpusId": "echo-canvas-common",
+  "corpusVersion": "1",
+  "prng": {
+    "algorithm": "lcg32-v1",
+    "increment": 1013904223,
+    "modulus": "2^32",
+    "multiplier": 1664525,
+    "output": "state / 2^32"
+  },
+  "rules": {
+    "path": "comparison-rules.json",
+    "sha256": null
+  },
+  "runtime": {
+    "node": "22.23.3",
+    "pnpm": "11.7.0"
+  }
+}
