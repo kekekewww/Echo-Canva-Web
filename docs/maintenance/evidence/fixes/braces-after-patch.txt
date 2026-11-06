@@ -1,5 +1,5 @@
 
- RUN  v4.1.11 D:/Developing/Echo Canvas Web/Echo-Canva-Web
+ RUN  v4.1.11 <local-checkout>
 
 
  Test Files  1 passed (1)

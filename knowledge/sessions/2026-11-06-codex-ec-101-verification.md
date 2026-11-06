@@ -14,7 +14,7 @@
 2. 第一次完整驗證，`cd0d6ab`：結論 `NOT_VERIFIED`。所有數值與驗收檢查通過。阻擋項是 F01：`knowledge/raw/sources/windows-2026-11-06/` 下兩個既有紀錄的第 2 行含本機絕對 checkout 路徑（不含使用者名稱）。它們來自提交 `2a68438`，經 PR #59 進入 `main`，本分支沒有修改。控制者的 brief 把隱私檢查範圍定為 `98a4374` 之後的所有變更，範圍過寬：`2a68438` 在 `98a4374` 之後，使 brief 涵蓋了本分支未修改的檔案。驗證者照 brief 判定 `NOT_VERIFIED`。維護者隨後把範圍收窄為本分支自 `dd57934` 起的變更。錯在 brief，不在驗證者。同次執行的其他發現：F02（驗收證據檢查沒有驗證記錄的成功與基準身分）、F03（凍結檢查沒有獨立釘住核准的容差值）、F04（Minor，`passthrough` 描述過窄）。皆於 `b0807ae` 修正：結果斷言、手寫的 approved class 表、字面的 rules hash 釘選、README 措辭。竄改測試確認兩種攻擊現在都會失敗。
 3. 第二次完整驗證，`b0807ae`：`VERIFIED`。
 
-維護者決定：隱私準則以本分支自 `dd57934` 以來的變更為準，驗證時這兩個紀錄未在本分支修改。維護者後來決定移除這兩個紀錄第 2 行的本機路徑，此變更發生在已驗證的 `b0807ae` 之後，驗證報告描述的是移除之前的狀態。本分支以外仍有其他已追蹤檔案含本機磁碟路徑（`docs/maintenance/evidence/` 與 `docs/archive/`），它們在驗證的隱私掃描與維護者的決定之外，未被更動。此頁不引用該路徑。
+維護者決定：隱私準則以本分支自 `dd57934` 以來的變更為準，驗證時這兩個紀錄未在本分支修改。維護者後來決定移除這兩個紀錄第 2 行的本機路徑，此變更發生在已驗證的 `b0807ae` 之後，驗證報告描述的是移除之前的狀態。驗證當時，本分支以外仍有其他已追蹤檔案含本機磁碟路徑（`docs/maintenance/evidence/` 與 `docs/archive/`），它們在驗證的隱私掃描與維護者的決定之外，未被更動。`docs/maintenance/evidence/` 之後已另行更正；`docs/archive/` 依政策保持不變。此頁不引用該路徑。
 
 ## 驗證者的實測
 
@@ -42,7 +42,7 @@
 - I3（Important）：反轉 `src/acoustics/room-acoustics.ts:62` 的邊界牆 ID 排序不改變任何輸出。已在八處之列。
 - I4（Important）：基準的邊界行為依產生結果記錄：垂直方向的 azimuth 奇異、依模式不同的來源重合處理、牆命中的預設厚度、接受非平面與重複頂點的 patch。
 - M1（Minor）：交接頁曾寫 `cb2ef6d` 之後只改知識頁與 `CLAUDE.md`，但 `b0807ae` 也改了 `benchmarks/corpus/README.md` 與 `tests/unit/corpus-integrity.test.ts`（新增三個測試）。已更正。
-- M2（Minor）：上述兩個既有紀錄含本機路徑，見「兩次嘗試」。維護者後來移除了該路徑，發生在 `b0807ae` 之後，驗證報告描述的是移除之前的狀態。本分支以外仍有其他已追蹤檔案含本機磁碟路徑（`docs/maintenance/evidence/` 與 `docs/archive/`），它們在隱私掃描與維護者的決定之外，未被更動。
+- M2（Minor）：上述兩個既有紀錄含本機路徑，見「兩次嘗試」。維護者後來移除了該路徑，發生在 `b0807ae` 之後，驗證報告描述的是移除之前的狀態。驗證當時，本分支以外仍有其他已追蹤檔案含本機磁碟路徑（`docs/maintenance/evidence/` 與 `docs/archive/`），它們在隱私掃描與維護者的決定之外，未被更動。`docs/maintenance/evidence/` 之後已另行更正；`docs/archive/` 依政策保持不變。
 
 ## CI
 

@@ -1,9 +1,9 @@
 {
   "stage": "projection-green",
   "startedAt": "2026-10-13T06:31:16.094Z",
-  "cwd": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web",
+  "cwd": "<local-checkout>",
   "command": [
-    "C:\\Program Files\\nodejs\\node.exe",
+    "<local-path>",
     "node_modules/vitest/vitest.mjs",
     "run",
     "tests/unit/hybrid-viewport-wall.test.ts",

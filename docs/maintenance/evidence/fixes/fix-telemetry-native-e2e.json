@@ -1,9 +1,9 @@
 {
   "stage": "e2e",
   "startedAt": "2026-10-13T07:37:58.848Z",
-  "cwd": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web",
+  "cwd": "<local-checkout>",
   "command": [
-    "C:\\Program Files\\nodejs\\node.exe",
+    "<local-path>",
     "node_modules/@playwright/test/cli.js",
     "test",
     "--config",

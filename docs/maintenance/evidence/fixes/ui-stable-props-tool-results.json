@@ -1,6 +1,6 @@
 {
   "recordType": "Retrospective metadata from retained tool execution results; not a raw stdout log",
-  "cwd": "D:/Developing/Echo Canvas Web/Echo-Canva-Web",
+  "cwd": "<local-checkout>",
   "checks": [
     {
       "command": "node node_modules/eslint/bin/eslint.js src/components/workspace/UnifiedWorkspace.tsx src/components/workspace/ContextInspector.tsx src/components/workspace/SceneOutliner.tsx 2>&1 | Tee-Object -FilePath '../verification-logs/ui-stable-props-lint.txt'; exit $LASTEXITCODE",

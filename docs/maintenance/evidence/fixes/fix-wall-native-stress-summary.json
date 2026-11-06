@@ -1,6 +1,6 @@
 [
   {
-    "file": "D:\\Developing\\Echo Canvas Web\\verification-logs\\fix-wall-native-stress-results\\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium\\worker-stress-metrics.json",
+    "file": "<local-path>",
     "browser": {
       "hardwareConcurrency": 32,
       "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.7827.55 Safari/537.36"
@@ -88,7 +88,7 @@
     ]
   },
   {
-    "file": "D:\\Developing\\Echo Canvas Web\\verification-logs\\fix-wall-native-stress-results\\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium-repeat1\\worker-stress-metrics.json",
+    "file": "<local-path>",
     "browser": {
       "hardwareConcurrency": 32,
       "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.7827.55 Safari/537.36"
@@ -176,7 +176,7 @@
     ]
   },
   {
-    "file": "D:\\Developing\\Echo Canvas Web\\verification-logs\\fix-wall-native-stress-results\\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium-repeat2\\worker-stress-metrics.json",
+    "file": "<local-path>",
     "browser": {
       "hardwareConcurrency": 32,
       "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.7827.55 Safari/537.36"

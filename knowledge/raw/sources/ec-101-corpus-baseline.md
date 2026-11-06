@@ -77,7 +77,7 @@ node scripts/corpus/cli.mjs rerun --out .corpus-runs/acceptance --evidence evide
 
 證據：[報告](../../../benchmarks/corpus/v1/evidence/verification-b0807ae.md)、[資料](../../../benchmarks/corpus/v1/evidence/verification-b0807ae.json)，完整內容與限制見 [驗證工作階段](../../sessions/2026-11-06-codex-ec-101-verification.md)。
 
-兩項發現記於此處，皆為未決：I1，`DC05_WALL_EXACTLY_MIN_LENGTH` 沒有呼叫 `validateScene`，只加倍 validator 的最小牆長門檻，86 個輸出仍 bit-exact；M2，兩個既有的 Windows 基準紀錄含本機路徑，來自 `2a68438` 與 PR #59，不是本分支所改。維護者後來決定移除這兩個紀錄第 2 行的本機路徑，此變更發生在已驗證的 `b0807ae` 之後，驗證報告描述的是移除之前的狀態。本分支以外仍有其他已追蹤檔案含本機磁碟路徑（`docs/maintenance/evidence/` 與 `docs/archive/`），它們在驗證的隱私掃描與維護者的決定之外，未被更動。驗證者未能確認外部 CI 與跨 OS 紀錄、72 個 case 時代的雜訊統計、不可達 guard 的普遍結論與過去的本機事件，這些依賴先前的審查與 CI。
+兩項發現記於此處，皆為未決：I1，`DC05_WALL_EXACTLY_MIN_LENGTH` 沒有呼叫 `validateScene`，只加倍 validator 的最小牆長門檻，86 個輸出仍 bit-exact；M2，兩個既有的 Windows 基準紀錄含本機路徑，來自 `2a68438` 與 PR #59，不是本分支所改。維護者後來決定移除這兩個紀錄第 2 行的本機路徑，此變更發生在已驗證的 `b0807ae` 之後，驗證報告描述的是移除之前的狀態。驗證當時，本分支以外仍有其他已追蹤檔案含本機磁碟路徑（`docs/maintenance/evidence/` 與 `docs/archive/`），它們在驗證的隱私掃描與維護者的決定之外，未被更動。`docs/maintenance/evidence/` 之後已另行更正；`docs/archive/` 依政策保持不變。驗證者未能確認外部 CI 與跨 OS 紀錄、72 個 case 時代的雜訊統計、不可達 guard 的普遍結論與過去的本機事件，這些依賴先前的審查與 CI。
 
 ## 未執行
 

@@ -29,3 +29,7 @@ GPT-Sol 對 `b0807ae` 的結論為 `VERIFIED`，EC-101 轉為 Verified。第一�
 ## [2026-11-06] Correction | 移除兩個基準紀錄的本機路徑
 
 維護者決定移除 `windows-2026-11-06/unit.log` 與 `targeted-unit.log` 第 2 行的本機 checkout 路徑，發生在已驗證的 `b0807ae` 之後，見 [更正記錄](../raw/sources/windows-baseline.md#corrections)。測試結果不受影響，原始位元組保留在提交 `2a68438`。EC-101 仍為 Verified，EC-102 可從凍結語料開始。
+
+## [2026-11-06] Correction | 移除證據紀錄中的本機路徑與使用者名稱
+
+維護者決定，因儲存庫公開，移除 `docs/maintenance/evidence/` 下紀錄中的本機絕對路徑與本機使用者名稱，改為 `<local-checkout>`、`<user-home>`、`<local-path>` 等佔位文字。測試結果、時間與錯誤訊息不受影響，原始位元組保留在 git 歷史，歷史未被改寫。`evidence/` 內各 `MANIFEST.json` 記錄的 SHA-256 描述的是更正前的位元組，未被編輯，因此與更正後的檔案不再相符。GitHub 託管 runner 的路徑不屬於本機路徑，未更動；`docs/archive/` 依政策保持不變。見 [維護紀錄](../../docs/maintenance/README.md#corrections)。

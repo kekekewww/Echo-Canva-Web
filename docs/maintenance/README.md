@@ -25,3 +25,7 @@ below retain their original failures and scope; consult the follow-up for curren
 [REMOTE_HANDOFF.md](REMOTE_HANDOFF.md) records the initial push and subsequent user-authorized PR integration. [PR #1](https://github.com/kekekewww/Echo-Canva-Web/pull/1) is merged; its main CI passed. The original source repository remains unchanged.
 
 Current command evidence is in `evidence/`; full local diagnostic logs and browser profiles are retained in the sibling `verification-logs/` directory and are excluded from containers. No paid API requests or subjective headphone evaluation were performed.
+
+## Corrections
+
+**2026-11-06 correction.** Because the repository is public, absolute local paths and the local username were removed from logs under `docs/maintenance/evidence/`. Results, timings and error messages are otherwise unchanged. The SHA-256 values recorded in the `MANIFEST.json` files under `evidence/` still describe the original bytes and were not edited, so they no longer match the corrected files. The original bytes remain in git history, which is not rewritten. `docs/archive/` is unchanged by policy.

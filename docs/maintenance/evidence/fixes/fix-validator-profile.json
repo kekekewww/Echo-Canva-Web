@@ -2,7 +2,7 @@
   "startedAt": "2026-10-13T07:00:13.440Z",
   "buildId": "2ny829QrRqlazPRczRblE",
   "command": [
-    "C:\\Program Files\\nodejs\\node.exe",
+    "<local-path>",
     "node_modules/@playwright/test/cli.js",
     "test",
     "--config",

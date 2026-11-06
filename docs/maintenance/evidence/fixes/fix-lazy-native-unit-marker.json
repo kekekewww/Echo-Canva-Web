@@ -1,9 +1,9 @@
 {
   "stage": "unit-marker",
   "startedAt": "2026-10-13T07:09:52.373Z",
-  "cwd": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web",
+  "cwd": "<local-checkout>",
   "command": [
-    "C:\\Program Files\\nodejs\\node.exe",
+    "<local-path>",
     "node_modules/vitest/vitest.mjs",
     "run",
     "tests/unit/client-only-marker.test.ts"

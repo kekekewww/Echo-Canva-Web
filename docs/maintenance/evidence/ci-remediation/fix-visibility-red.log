@@ -1,5 +1,5 @@
 
- RUN  v4.1.11 D:/Developing/Echo Canvas Web/Echo-Canva-Web
+ RUN  v4.1.11 <local-checkout>
 
  ❯ tests/unit/hybrid3d-visibility.test.ts (3 tests | 3 failed) 10ms
      × keeps portal apertures, finite edges and segment endpoints identical to full intersections 7ms

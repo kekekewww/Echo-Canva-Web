@@ -12,10 +12,10 @@ Call log:
     10 × locator resolved to <input value="4.5" inputmode="decimal" aria-invalid="false" aria-label="X position"/>
        - unexpected value "4.5"
 
-    at captureRawStack (D:\Developing\Echo Canvas Web\Echo-Canva-Web\node_modules\.pnpm\playwright-core@1.61.1\node_modules\playwright-core\lib\coreBundle.js:3172:17)
-    at callMatcherAsStep (D:\Developing\Echo Canvas Web\Echo-Canva-Web\node_modules\.pnpm\playwright@1.61.1\node_modules\playwright\lib\matchers\expect.js:12877:57)
-    at Object.toHaveValue (D:\Developing\Echo Canvas Web\Echo-Canva-Web\node_modules\.pnpm\playwright@1.61.1\node_modules\playwright\lib\matchers\expect.js:12867:23)
-    at D:\Developing\Echo Canvas Web\verification-logs\fix-dev-browser-verification.cjs:124:86 {
+    at captureRawStack (<local-checkout>\node_modules\.pnpm\playwright-core@1.61.1\node_modules\playwright-core\lib\coreBundle.js:3172:17)
+    at callMatcherAsStep (<local-checkout>\node_modules\.pnpm\playwright@1.61.1\node_modules\playwright\lib\matchers\expect.js:12877:57)
+    at Object.toHaveValue (<local-checkout>\node_modules\.pnpm\playwright@1.61.1\node_modules\playwright\lib\matchers\expect.js:12867:23)
+    at <local-path>:124:86 {
   matcherResult: {
     name: 'toHaveValue',
     expected: '2.25',

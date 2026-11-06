@@ -2,7 +2,7 @@
 Running 45 tests using 1 worker
 
 pnpm.exe : (node:22480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-位於 C:\Users\kevin\AppData\Local\pnpm\bin\pnpm.ps1:14 字元:3
+位於 <user-home>\AppData\Local\pnpm\bin\pnpm.ps1:14 字元:3
 +   & "$basedir/../global/v11/e9b8-19fbe146e2d-68c1886746feab5d/node_mo ...
 +   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     + CategoryInfo          : NotSpecified: ((node:22480) Wa... env being set.:String) [], RemoteException
@@ -70,7 +70,7 @@ pnpm.exe : (node:22480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE
       477 |   expect(
       478 |     longTasks.every((duration) => duration <= 50),
       479 |     `Observed long tasks: ${JSON.stringify(longTasks)}`,
-        at D:\Developing\Echo Canvas Web\Echo-Canva-Web\tests\e2e\workspace.spec.ts:476:55
+        at <local-checkout>\tests\e2e\workspace.spec.ts:476:55
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     test-results\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium\test-failed-1.png

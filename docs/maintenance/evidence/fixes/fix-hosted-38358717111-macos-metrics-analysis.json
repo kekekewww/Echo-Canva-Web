@@ -1,6 +1,6 @@
 [
   {
-    "path": "D:\\Developing\\Echo Canvas Web\\verification-logs\\fix-hosted-38358717111-macos-artifact\\test-results\\macos-repeat\\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium\\worker-stress-metrics.json",
+    "path": "<local-path>",
     "hardwareConcurrency": 3,
     "expectedWorkerCount": 1,
     "p95Ms": 7,
@@ -231,7 +231,7 @@
     ]
   },
   {
-    "path": "D:\\Developing\\Echo Canvas Web\\verification-logs\\fix-hosted-38358717111-macos-artifact\\test-results\\macos-repeat\\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium-repeat1\\worker-stress-metrics.json",
+    "path": "<local-path>",
     "hardwareConcurrency": 3,
     "expectedWorkerCount": 1,
     "p95Ms": 10,
@@ -462,7 +462,7 @@
     ]
   },
   {
-    "path": "D:\\Developing\\Echo Canvas Web\\verification-logs\\fix-hosted-38358717111-macos-artifact\\test-results\\macos-repeat\\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium-repeat2\\worker-stress-metrics.json",
+    "path": "<local-path>",
     "hardwareConcurrency": 3,
     "expectedWorkerCount": 1,
     "p95Ms": 16,
@@ -712,7 +712,7 @@
     ]
   },
   {
-    "path": "D:\\Developing\\Echo Canvas Web\\verification-logs\\fix-hosted-38358717111-macos-artifact\\test-results\\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium\\worker-stress-metrics.json",
+    "path": "<local-path>",
     "hardwareConcurrency": 3,
     "expectedWorkerCount": 1,
     "p95Ms": 7,
