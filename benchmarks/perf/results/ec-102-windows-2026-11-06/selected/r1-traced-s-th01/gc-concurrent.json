@@ -1,0 +1,20 @@
+{
+  "concurrent": true,
+  "pause": false,
+  "note": "Background and parallel scavenge work on thread-pool threads. It runs beside JavaScript and is not a pause; the durations overlap each other across threads and are summed here as thread time only.",
+  "totalThreadUs": 6597,
+  "byName": {
+    "V8.GC_BACKGROUND_SAFEPOINT": {
+      "count": 14,
+      "durUs": 4202
+    },
+    "V8.GC_SCAVENGER_BACKGROUND_SCAVENGE_PARALLEL": {
+      "count": 67,
+      "durUs": 2394
+    },
+    "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_RESET_PARALLEL": {
+      "count": 1,
+      "durUs": 1
+    }
+  }
+}

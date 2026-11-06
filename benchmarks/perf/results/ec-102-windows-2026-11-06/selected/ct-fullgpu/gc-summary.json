@@ -1,0 +1,25 @@
+{
+  "note": "Real collections only. minor and major durUs are pause time on that thread; incremental-marking-step durUs is time spent in steps, not a pause of the whole collection.",
+  "perThread": {
+    "DedicatedWorker thread": {
+      "minor": {
+        "count": 179,
+        "durUs": 85053
+      }
+    },
+    "main": {
+      "minor": {
+        "count": 27,
+        "durUs": 36389
+      },
+      "incremental-marking-step": {
+        "count": 362,
+        "durUs": 20858
+      },
+      "major": {
+        "count": 6,
+        "durUs": 24063
+      }
+    }
+  }
+}

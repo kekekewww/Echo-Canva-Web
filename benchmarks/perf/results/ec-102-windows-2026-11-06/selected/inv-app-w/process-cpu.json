@@ -1,0 +1,58 @@
+{
+  "unit": "core-seconds",
+  "note": "cpuTime per browser process from CDP SystemInfo.getProcessInfo before and after the window.",
+  "before": [
+    {
+      "type": "browser",
+      "id": 54436,
+      "cpuTime": 0.105113
+    },
+    {
+      "type": "renderer",
+      "id": 24420,
+      "cpuTime": 0.031503
+    },
+    {
+      "type": "GPU",
+      "id": 59384,
+      "cpuTime": 0.062204
+    },
+    {
+      "type": "network.mojom.NetworkService",
+      "id": 51132,
+      "cpuTime": 0.035982
+    }
+  ],
+  "after": [
+    {
+      "type": "browser",
+      "id": 54436,
+      "cpuTime": 1.85131
+    },
+    {
+      "type": "renderer",
+      "id": 24420,
+      "cpuTime": 18.195002
+    },
+    {
+      "type": "GPU",
+      "id": 59384,
+      "cpuTime": 0.4761
+    },
+    {
+      "type": "network.mojom.NetworkService",
+      "id": 51132,
+      "cpuTime": 0.073005
+    },
+    {
+      "type": "audio.mojom.AudioService",
+      "id": 46836,
+      "cpuTime": 0.116426
+    },
+    {
+      "type": "tracing.mojom.TracingService",
+      "id": 43452,
+      "cpuTime": 12.27177
+    }
+  ]
+}

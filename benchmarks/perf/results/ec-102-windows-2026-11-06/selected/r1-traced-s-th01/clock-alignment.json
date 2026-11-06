@@ -1,0 +1,10 @@
+{
+  "schema": "ec102.clock-alignment.v1",
+  "model": "traceTsUs = offsetUs + (1 + driftPpm / 1e6) * (clockMs * 1000)",
+  "threads": {},
+  "crossThread": {},
+  "pingUncertainty": {
+    "source": "clock-calibration.json",
+    "halfRttMs": []
+  }
+}

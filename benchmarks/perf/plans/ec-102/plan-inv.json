@@ -1,0 +1,18 @@
+[
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "inv-app-w",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "traced",
+  "audio": "on",
+  "samples": 50,
+  "driver": "poll",
+  "build": "prod",
+  "trace-extra-categories": [
+   "disabled-by-default-devtools.timeline.invalidationTracking",
+   "disabled-by-default-blink.invalidation"
+  ]
+ }
+]

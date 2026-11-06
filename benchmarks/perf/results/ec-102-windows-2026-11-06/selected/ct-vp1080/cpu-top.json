@@ -1,0 +1,413 @@
+{
+  "main": {
+    "thread": "CrRendererMain",
+    "totalSelfUs": 16394789,
+    "functions": [
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 8145.958,
+        "fraction": 0.49686263116896473
+      },
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 6967.005,
+        "fraction": 0.424952404084005
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 117.615,
+        "fraction": 0.0071739258126469335
+      },
+      {
+        "functionName": "query",
+        "url": "undefined",
+        "lineNumber": 5815,
+        "selfMs": 92.343,
+        "fraction": 0.005632460411658851
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/1ez7aphkfb6j3.js",
+        "lineNumber": 54,
+        "selfMs": 67.491,
+        "fraction": 0.0041166129066985855
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 66.552,
+        "fraction": 0.004059338610579252
+      },
+      {
+        "functionName": "a8",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/1ez7aphkfb6j3.js",
+        "lineNumber": 54,
+        "selfMs": 64.488,
+        "fraction": 0.003933444950099693
+      },
+      {
+        "functionName": "query",
+        "url": "undefined",
+        "lineNumber": 5509,
+        "selfMs": 49.251,
+        "fraction": 0.003004064279204813
+      },
+      {
+        "functionName": "mark",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 43.122,
+        "fraction": 0.0026302259821703103
+      },
+      {
+        "functionName": "elementsFromPoint",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 42.097,
+        "fraction": 0.002567706116864328
+      },
+      {
+        "functionName": "getBoundingClientRect",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 41.152,
+        "fraction": 0.0025100658508017395
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2w5zffk6mbtem.js",
+        "lineNumber": 0,
+        "selfMs": 28.934,
+        "fraction": 0.0017648290563544308
+      },
+      {
+        "functionName": "elementSafeTagName",
+        "url": "undefined",
+        "lineNumber": 3214,
+        "selfMs": 24.765,
+        "fraction": 0.0015105409407830744
+      },
+      {
+        "functionName": "e",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/1ez7aphkfb6j3.js",
+        "lineNumber": 54,
+        "selfMs": 23.55,
+        "fraction": 0.001436432027274032
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "undefined",
+        "lineNumber": 0,
+        "selfMs": 21.002,
+        "fraction": 0.0012810167913719413
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "undefined",
+        "lineNumber": 3537,
+        "selfMs": 19.719,
+        "fraction": 0.0012027602185060143
+      },
+      {
+        "functionName": "getImplicitAriaRole",
+        "url": "undefined",
+        "lineNumber": 3432,
+        "selfMs": 19.067,
+        "fraction": 0.0011629914846723554
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/3roogf9bzmzc5.js",
+        "lineNumber": 0,
+        "selfMs": 16.799,
+        "fraction": 0.001024654846122143
+      },
+      {
+        "functionName": "querySelectorAll",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 16.412,
+        "fraction": 0.0010010497847822257
+      },
+      {
+        "functionName": "computeBox",
+        "url": "undefined",
+        "lineNumber": 3180,
+        "selfMs": 15.344,
+        "fraction": 0.0009359071348829192
+      },
+      {
+        "functionName": "getAttribute",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 14.381,
+        "fraction": 0.0008771689589905671
+      },
+      {
+        "functionName": "elementFromPoint",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 13.799,
+        "fraction": 0.0008416698744948776
+      },
+      {
+        "functionName": "getAriaRole",
+        "url": "undefined",
+        "lineNumber": 3542,
+        "selfMs": 12.963,
+        "fraction": 0.000790678062401413
+      },
+      {
+        "functionName": "ax",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2w5zffk6mbtem.js",
+        "lineNumber": 0,
+        "selfMs": 12.358,
+        "fraction": 0.0007537760931232479
+      },
+      {
+        "functionName": "a7",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/1ez7aphkfb6j3.js",
+        "lineNumber": 54,
+        "selfMs": 11.937,
+        "fraction": 0.0007280972021048883
+      },
+      {
+        "functionName": "k",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/3roogf9bzmzc5.js",
+        "lineNumber": 0,
+        "selfMs": 11.834,
+        "fraction": 0.0007218147180790189
+      },
+      {
+        "functionName": "getExplicitAriaRole",
+        "url": "undefined",
+        "lineNumber": 3535,
+        "selfMs": 11.384,
+        "fraction": 0.0006943669723349291
+      },
+      {
+        "functionName": "r",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/3roogf9bzmzc5.js",
+        "lineNumber": 0,
+        "selfMs": 11.265,
+        "fraction": 0.000687108568460381
+      },
+      {
+        "functionName": "removeChild",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 9.778,
+        "fraction": 0.0005964090175237998
+      },
+      {
+        "functionName": "innerSerialize",
+        "url": "undefined",
+        "lineNumber": 213,
+        "selfMs": 9.74,
+        "fraction": 0.0005940912078831878
+      },
+      {
+        "functionName": "previewNode",
+        "url": "undefined",
+        "lineNumber": 7985,
+        "selfMs": 9.467,
+        "fraction": 0.0005774395754651067
+      },
+      {
+        "functionName": "ih",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2w5zffk6mbtem.js",
+        "lineNumber": 0,
+        "selfMs": 8.88,
+        "fraction": 0.0005416355160167051
+      },
+      {
+        "functionName": "serialize",
+        "url": "undefined",
+        "lineNumber": 202,
+        "selfMs": 8.821,
+        "fraction": 0.0005380368115747022
+      },
+      {
+        "functionName": "oi",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/1ez7aphkfb6j3.js",
+        "lineNumber": 54,
+        "selfMs": 8.084,
+        "fraction": 0.0004930835035449374
+      },
+      {
+        "functionName": "isTypedArray",
+        "url": "undefined",
+        "lineNumber": 64,
+        "selfMs": 7.888,
+        "fraction": 0.0004811284853986227
+      },
+      {
+        "functionName": "la",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2w5zffk6mbtem.js",
+        "lineNumber": 0,
+        "selfMs": 7.784,
+        "fraction": 0.0004747850063822108
+      },
+      {
+        "functionName": "isElementHiddenForAria",
+        "url": "undefined",
+        "lineNumber": 3567,
+        "selfMs": 7.142,
+        "fraction": 0.0004356262224539761
+      },
+      {
+        "functionName": "o",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/0zh2ijed9x24n.js",
+        "lineNumber": 30,
+        "selfMs": 7.019,
+        "fraction": 0.0004281238386172582
+      },
+      {
+        "functionName": "lT",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/1ez7aphkfb6j3.js",
+        "lineNumber": 54,
+        "selfMs": 6.712,
+        "fraction": 0.00040939837652073473
+      },
+      {
+        "functionName": "sb",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2w5zffk6mbtem.js",
+        "lineNumber": 0,
+        "selfMs": 6.291,
+        "fraction": 0.00038371948550237515
+      }
+    ]
+  },
+  "DedicatedWorker thread": {
+    "thread": "DedicatedWorker thread",
+    "totalSelfUs": 16131390,
+    "functions": [
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 15985.932,
+        "fraction": 0.990982922116445
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 25.351,
+        "fraction": 0.0015715322734122727
+      },
+      {
+        "functionName": "i",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2i0_6mgs_4mcd.js",
+        "lineNumber": 0,
+        "selfMs": 17.514,
+        "fraction": 0.0010857092910158393
+      },
+      {
+        "functionName": "u",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2i0_6mgs_4mcd.js",
+        "lineNumber": 0,
+        "selfMs": 17.151,
+        "fraction": 0.001063206580462068
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2i0_6mgs_4mcd.js",
+        "lineNumber": 0,
+        "selfMs": 16.941,
+        "fraction": 0.0010501884834474896
+      },
+      {
+        "functionName": "postMessage",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 15.424,
+        "fraction": 0.0009561482302517018
+      },
+      {
+        "functionName": "handle",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2i0_6mgs_4mcd.js",
+        "lineNumber": 0,
+        "selfMs": 10.981,
+        "fraction": 0.0006807224919861215
+      },
+      {
+        "functionName": "s",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2i0_6mgs_4mcd.js",
+        "lineNumber": 0,
+        "selfMs": 9.241,
+        "fraction": 0.0005728582595796146
+      },
+      {
+        "functionName": "r",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2i0_6mgs_4mcd.js",
+        "lineNumber": 0,
+        "selfMs": 6.438,
+        "fraction": 0.00039909765990407524
+      },
+      {
+        "functionName": "d",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2i0_6mgs_4mcd.js",
+        "lineNumber": 0,
+        "selfMs": 5.282,
+        "fraction": 0.00032743613538572933
+      },
+      {
+        "functionName": "e.s.r",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2i0_6mgs_4mcd.js",
+        "lineNumber": 0,
+        "selfMs": 4.967,
+        "fraction": 0.0003079089898638617
+      },
+      {
+        "functionName": "o",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2i0_6mgs_4mcd.js",
+        "lineNumber": 0,
+        "selfMs": 4.536,
+        "fraction": 0.00028119089551489364
+      },
+      {
+        "functionName": "h",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2i0_6mgs_4mcd.js",
+        "lineNumber": 0,
+        "selfMs": 3.952,
+        "fraction": 0.00024498818762673275
+      },
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 3.878,
+        "fraction": 0.00024040085820254794
+      },
+      {
+        "functionName": "f",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2i0_6mgs_4mcd.js",
+        "lineNumber": 0,
+        "selfMs": 2.075,
+        "fraction": 0.0001286311966916676
+      },
+      {
+        "functionName": "l",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2i0_6mgs_4mcd.js",
+        "lineNumber": 0,
+        "selfMs": 1.297,
+        "fraction": 0.00008040224679956284
+      },
+      {
+        "functionName": "a",
+        "url": "http://127.0.0.1:54084/_next/static/chunks/2i0_6mgs_4mcd.js",
+        "lineNumber": 0,
+        "selfMs": 0.43,
+        "fraction": 0.00002665610341080341
+      }
+    ]
+  }
+}

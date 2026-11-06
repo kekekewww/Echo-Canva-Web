@@ -1,0 +1,2922 @@
+{
+  "schema": "ec102.comparisons.v1",
+  "paired": [
+    {
+      "case": "TC01_LISTENER_TAPE_SEEDED",
+      "pass": "clean",
+      "boundary": "browser-pool",
+      "audio": "not-applicable",
+      "build": "not-applicable",
+      "driver": "not-applicable",
+      "browserChannel": "default",
+      "viewport": "not-applicable",
+      "browserArgs": "not-applicable",
+      "orderIndex": 108,
+      "tsS": "r1-s-tc01",
+      "tsW": "r1-w-tc01",
+      "phases": {
+        "job.total (TS-S) against pool.compute-metric (TS-W)": {
+          "warm": {
+            "tsS": {
+              "N": 1052,
+              "p50": 0.29999999701976776,
+              "p95": 0.5999999940395355,
+              "p99": 2.1000000089406967,
+              "max": 4.600000008940697,
+              "mean": 0.31330798458690423
+            },
+            "tsW": {
+              "N": 1052,
+              "p50": 0.5999999940395355,
+              "p95": 1.7999999970197678,
+              "p99": 7.800000011920929,
+              "max": 20.099999994039536,
+              "mean": 0.8555133080839431
+            },
+            "tsWMinusTsS": {
+              "p50": 0.29999999701976776,
+              "p95": 1.2000000029802322,
+              "p99": 5.700000002980232
+            }
+          },
+          "cold": {
+            "tsS": {
+              "N": 100,
+              "p50": 0.30000001192092896,
+              "p95": 1,
+              "p99": 1.6000000089406967,
+              "max": 4.100000008940697,
+              "mean": 0.43900000020861624
+            },
+            "tsW": {
+              "N": 100,
+              "p50": 0.5,
+              "p95": 0.9000000059604645,
+              "p99": 1.7000000029802322,
+              "max": 10.599999994039536,
+              "mean": 0.6439999993145465
+            },
+            "tsWMinusTsS": {
+              "p50": 0.19999998807907104,
+              "p95": -0.09999999403953552,
+              "p99": 0.09999999403953552
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "TC02_STATIC_EDIT_TAPE",
+      "pass": "clean",
+      "boundary": "browser-pool",
+      "audio": "not-applicable",
+      "build": "not-applicable",
+      "driver": "not-applicable",
+      "browserChannel": "default",
+      "viewport": "not-applicable",
+      "browserArgs": "not-applicable",
+      "orderIndex": 109,
+      "tsS": "r1-s-tc02",
+      "tsW": "r1-w-tc02",
+      "phases": {
+        "job.total (TS-S) against pool.compute-metric (TS-W)": {
+          "warm": {
+            "tsS": {
+              "N": 1004,
+              "p50": 0.29999999701976776,
+              "p95": 0.5,
+              "p99": 0.7000000029802322,
+              "max": 7.299999997019768,
+              "mean": 0.29990039857853934
+            },
+            "tsW": {
+              "N": 1004,
+              "p50": 0.5999999940395355,
+              "p95": 1,
+              "p99": 1.8999999910593033,
+              "max": 12.799999997019768,
+              "mean": 0.6634462152077145
+            },
+            "tsWMinusTsS": {
+              "p50": 0.29999999701976776,
+              "p95": 0.5,
+              "p99": 1.199999988079071
+            }
+          },
+          "cold": {
+            "tsS": {
+              "N": 100,
+              "p50": 0.3999999910593033,
+              "p95": 0.7000000029802322,
+              "p99": 2,
+              "max": 12,
+              "mean": 0.5029999993741512
+            },
+            "tsW": {
+              "N": 100,
+              "p50": 0.5999999940395355,
+              "p95": 1.9000000059604645,
+              "p99": 9.899999991059303,
+              "max": 16.200000002980232,
+              "mean": 0.9770000012218952
+            },
+            "tsWMinusTsS": {
+              "p50": 0.20000000298023224,
+              "p95": 1.2000000029802322,
+              "p99": 7.899999991059303
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "TH01_LISTENER_TAPE_SEEDED",
+      "pass": "clean",
+      "boundary": "browser-pool",
+      "audio": "not-applicable",
+      "build": "not-applicable",
+      "driver": "not-applicable",
+      "browserChannel": "default",
+      "viewport": "not-applicable",
+      "browserArgs": "not-applicable",
+      "orderIndex": 110,
+      "tsS": "r1-s-th01",
+      "tsW": "r1-w-th01",
+      "phases": {
+        "job.total (TS-S) against pool.compute-metric (TS-W)": {
+          "warm": {
+            "tsS": {
+              "N": 1052,
+              "p50": 0.4000000059604645,
+              "p95": 0.9000000059604645,
+              "p99": 1,
+              "max": 4.200000002980232,
+              "mean": 0.49676806104330506
+            },
+            "tsW": {
+              "N": 1052,
+              "p50": 0.6000000089406967,
+              "p95": 1.2999999970197678,
+              "p99": 2.7999999970197678,
+              "max": 11.099999994039536,
+              "mean": 0.7820342205634815
+            },
+            "tsWMinusTsS": {
+              "p50": 0.20000000298023224,
+              "p95": 0.3999999910593033,
+              "p99": 1.7999999970197678
+            }
+          },
+          "cold": {
+            "tsS": {
+              "N": 100,
+              "p50": 0.5999999940395355,
+              "p95": 2.800000011920929,
+              "p99": 8.799999997019768,
+              "max": 9.400000005960464,
+              "mean": 0.938999999910593
+            },
+            "tsW": {
+              "N": 100,
+              "p50": 0.7999999970197678,
+              "p95": 2,
+              "p99": 3.2999999970197678,
+              "max": 34.1000000089407,
+              "mean": 1.2349999989569187
+            },
+            "tsWMinusTsS": {
+              "p50": 0.20000000298023224,
+              "p95": -0.800000011920929,
+              "p99": -5.5
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "TH02_STATIC_EDIT_TAPE",
+      "pass": "clean",
+      "boundary": "browser-pool",
+      "audio": "not-applicable",
+      "build": "not-applicable",
+      "driver": "not-applicable",
+      "browserChannel": "default",
+      "viewport": "not-applicable",
+      "browserArgs": "not-applicable",
+      "orderIndex": 111,
+      "tsS": "r1-s-th02",
+      "tsW": "r1-w-th02",
+      "phases": {
+        "job.total (TS-S) against pool.compute-metric (TS-W)": {
+          "warm": {
+            "tsS": {
+              "N": 1004,
+              "p50": 1.1000000089406967,
+              "p95": 3.2999999970197678,
+              "p99": 3.9000000059604645,
+              "max": 24.200000002980232,
+              "mean": 1.39033864523132
+            },
+            "tsW": {
+              "N": 1004,
+              "p50": 1.2000000029802322,
+              "p95": 3.7000000029802322,
+              "p99": 9.300000011920929,
+              "max": 37.20000000298023,
+              "mean": 1.6689243029461676
+            },
+            "tsWMinusTsS": {
+              "p50": 0.09999999403953552,
+              "p95": 0.4000000059604645,
+              "p99": 5.4000000059604645
+            }
+          },
+          "cold": {
+            "tsS": {
+              "N": 100,
+              "p50": 1.2000000029802322,
+              "p95": 3.5,
+              "p99": 4.700000002980232,
+              "max": 12.5,
+              "mean": 1.6729999992251396
+            },
+            "tsW": {
+              "N": 100,
+              "p50": 1.6000000089406967,
+              "p95": 6,
+              "p99": 23.799999997019768,
+              "max": 28.399999991059303,
+              "mean": 2.5869999998807907
+            },
+            "tsWMinusTsS": {
+              "p50": 0.4000000059604645,
+              "p95": 2.5,
+              "p99": 19.099999994039536
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "W01_H100_POSE_60HZ_60S",
+      "pass": "clean",
+      "boundary": "browser-pool",
+      "audio": "not-applicable",
+      "build": "not-applicable",
+      "driver": "not-applicable",
+      "browserChannel": "default",
+      "viewport": "not-applicable",
+      "browserArgs": "not-applicable",
+      "orderIndex": 112,
+      "tsS": "r1-s-w01",
+      "tsW": "r1-w-w01",
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "tsS": {
+              "N": 624,
+              "p50": 2.2000000029802322,
+              "p95": 7.200000002980232,
+              "p99": 23.30000001192093,
+              "max": 58.20000000298023,
+              "mean": 3.0919871794967313
+            },
+            "tsW": {
+              "N": 622,
+              "p50": 1.9000000059604645,
+              "p95": 10.900000005960464,
+              "p99": 40,
+              "max": 60.20000000298023,
+              "mean": 3.536495176302658
+            },
+            "tsWMinusTsS": {
+              "p50": -0.29999999701976776,
+              "p95": 3.7000000029802322,
+              "p99": 16.69999998807907
+            }
+          },
+          "cold": {
+            "tsS": {
+              "N": 57,
+              "p50": 2.7999999970197678,
+              "p95": 10,
+              "p99": 54.29999999701977,
+              "max": 54.29999999701977,
+              "mean": 4.292982457499755
+            },
+            "tsW": {
+              "N": 58,
+              "p50": 1.7000000029802322,
+              "p95": 6.100000008940697,
+              "p99": 23.399999991059303,
+              "max": 23.399999991059303,
+              "mean": 2.5086206896551726
+            },
+            "tsWMinusTsS": {
+              "p50": -1.0999999940395355,
+              "p95": -3.8999999910593033,
+              "p99": -30.900000005960464
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "tsS": {
+              "N": 624,
+              "p50": 13.5,
+              "p95": 21.700000002980232,
+              "p99": 53.099999994039536,
+              "max": 100.29999999701977,
+              "mean": 14.587019230501774
+            },
+            "tsW": {
+              "N": 622,
+              "p50": 13.400000005960464,
+              "p95": 25.099999994039536,
+              "p99": 79.30000001192093,
+              "max": 97.80000001192093,
+              "mean": 15.431028938945083
+            },
+            "tsWMinusTsS": {
+              "p50": -0.09999999403953552,
+              "p95": 3.3999999910593033,
+              "p99": 26.200000017881393
+            }
+          },
+          "cold": {
+            "tsS": {
+              "N": 57,
+              "p50": 13.799999997019768,
+              "p95": 25.399999991059303,
+              "p99": 84.80000001192093,
+              "max": 84.80000001192093,
+              "mean": 15.680701755902223
+            },
+            "tsW": {
+              "N": 58,
+              "p50": 12.599999994039536,
+              "p95": 20.5,
+              "p99": 41.3999999910593,
+              "max": 41.3999999910593,
+              "mean": 13.298275861503749
+            },
+            "tsWMinusTsS": {
+              "p50": -1.2000000029802322,
+              "p95": -4.899999991059303,
+              "p99": -43.400000020861626
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "W02_H100_STATIC_5HZ_30S",
+      "pass": "clean",
+      "boundary": "browser-pool",
+      "audio": "not-applicable",
+      "build": "not-applicable",
+      "driver": "not-applicable",
+      "browserChannel": "default",
+      "viewport": "not-applicable",
+      "browserArgs": "not-applicable",
+      "orderIndex": 113,
+      "tsS": "r1-s-w02",
+      "tsW": "r1-w-w02",
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "tsS": {
+              "N": 288,
+              "p50": 1.7999999970197678,
+              "p95": 4.299999997019768,
+              "p99": 7.0999999940395355,
+              "max": 8.599999994039536,
+              "mean": 2.185416666480402
+            },
+            "tsW": {
+              "N": 233,
+              "p50": 9.200000002980232,
+              "p95": 21.899999991059303,
+              "p99": 37.80000001192093,
+              "max": 214.70000000298023,
+              "mean": 10.488412017410406
+            },
+            "tsWMinusTsS": {
+              "p50": 7.4000000059604645,
+              "p95": 17.599999994039536,
+              "p99": 30.700000017881393
+            }
+          },
+          "cold": {
+            "tsS": {
+              "N": 58,
+              "p50": 1.7000000029802322,
+              "p95": 4.100000008940697,
+              "p99": 4.899999991059303,
+              "max": 4.899999991059303,
+              "mean": 1.9775862072048516
+            },
+            "tsW": {
+              "N": 48,
+              "p50": 5.199999988079071,
+              "p95": 17.200000002980232,
+              "p99": 103.5,
+              "max": 103.5,
+              "mean": 8.412499999937912
+            },
+            "tsWMinusTsS": {
+              "p50": 3.499999985098839,
+              "p95": 13.099999994039536,
+              "p99": 98.6000000089407
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "tsS": {
+              "N": 288,
+              "p50": 12.5,
+              "p95": 19.100000008940697,
+              "p99": 21.099999994039536,
+              "max": 89.20000000298023,
+              "mean": 12.99722222202561
+            },
+            "tsW": {
+              "N": 233,
+              "p50": 19.5,
+              "p95": 37.599999994039536,
+              "p99": 54,
+              "max": 262,
+              "mean": 21.59957081501576
+            },
+            "tsWMinusTsS": {
+              "p50": 7,
+              "p95": 18.49999998509884,
+              "p99": 32.900000005960464
+            }
+          },
+          "cold": {
+            "tsS": {
+              "N": 58,
+              "p50": 11.100000008940697,
+              "p95": 17.900000005960464,
+              "p99": 19.299999997019768,
+              "max": 19.299999997019768,
+              "mean": 12.177586206588252
+            },
+            "tsW": {
+              "N": 48,
+              "p50": 15.300000011920929,
+              "p95": 29.799999997019768,
+              "p99": 218,
+              "max": 218,
+              "mean": 20.595833333519597
+            },
+            "tsWMinusTsS": {
+              "p50": 4.200000002980232,
+              "p95": 11.899999991059303,
+              "p99": 198.70000000298023
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "W03_C100_POSE_60HZ_60S",
+      "pass": "clean",
+      "boundary": "browser-pool",
+      "audio": "not-applicable",
+      "build": "not-applicable",
+      "driver": "not-applicable",
+      "browserChannel": "default",
+      "viewport": "not-applicable",
+      "browserArgs": "not-applicable",
+      "orderIndex": 114,
+      "tsS": "r1-s-w03",
+      "tsW": "r1-w-w03",
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "tsS": {
+              "N": 552,
+              "p50": 3.1000000089406967,
+              "p95": 4.9000000059604645,
+              "p99": 6.5,
+              "max": 10,
+              "mean": 3.1882246382048596
+            },
+            "tsW": {
+              "N": 646,
+              "p50": 1.2000000029802322,
+              "p95": 2.5,
+              "p99": 9.099999994039536,
+              "max": 33.599999994039536,
+              "mean": 1.5063467493551803
+            },
+            "tsWMinusTsS": {
+              "p50": -1.9000000059604645,
+              "p95": -2.4000000059604645,
+              "p99": 2.5999999940395355
+            }
+          },
+          "cold": {
+            "tsS": {
+              "N": 50,
+              "p50": 2.4000000059604645,
+              "p95": 7.399999991059303,
+              "p99": 40.70000000298023,
+              "max": 40.70000000298023,
+              "mean": 3.5459999999403955
+            },
+            "tsW": {
+              "N": 59,
+              "p50": 1.7000000029802322,
+              "p95": 6.699999988079071,
+              "p99": 25.900000005960464,
+              "max": 25.900000005960464,
+              "mean": 2.413559321629799
+            },
+            "tsWMinusTsS": {
+              "p50": -0.7000000029802322,
+              "p95": -0.7000000029802322,
+              "p99": -14.799999997019768
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "tsS": {
+              "N": 552,
+              "p50": 3.2000000029802322,
+              "p95": 5,
+              "p99": 7.4000000059604645,
+              "max": 36.099999994039536,
+              "mean": 3.3166666668232367
+            },
+            "tsW": {
+              "N": 646,
+              "p50": 18.399999991059303,
+              "p95": 27.299999997019768,
+              "p99": 29.5,
+              "max": 57.5,
+              "mean": 18.392414860888717
+            },
+            "tsWMinusTsS": {
+              "p50": 15.199999988079071,
+              "p95": 22.299999997019768,
+              "p99": 22.099999994039536
+            }
+          },
+          "cold": {
+            "tsS": {
+              "N": 50,
+              "p50": 2.5,
+              "p95": 8.599999994039536,
+              "p99": 41.099999994039536,
+              "max": 41.099999994039536,
+              "mean": 3.66999999910593
+            },
+            "tsW": {
+              "N": 59,
+              "p50": 15.200000002980232,
+              "p95": 25.299999997019768,
+              "p99": 29.5,
+              "max": 29.5,
+              "mean": 15.399999999898975
+            },
+            "tsWMinusTsS": {
+              "p50": 12.700000002980232,
+              "p95": 16.700000002980232,
+              "p99": -11.599999994039536
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "W04_C100_STATIC_5HZ_30S",
+      "pass": "clean",
+      "boundary": "browser-pool",
+      "audio": "not-applicable",
+      "build": "not-applicable",
+      "driver": "not-applicable",
+      "browserChannel": "default",
+      "viewport": "not-applicable",
+      "browserArgs": "not-applicable",
+      "orderIndex": 115,
+      "tsS": "r1-s-w04",
+      "tsW": "r1-w-w04",
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "tsS": {
+              "N": 252,
+              "p50": 3.2999999970197678,
+              "p95": 5.899999991059303,
+              "p99": 14.399999991059303,
+              "max": 21.600000008940697,
+              "mean": 3.663492063326495
+            },
+            "tsW": {
+              "N": 290,
+              "p50": 1.4000000059604645,
+              "p95": 3.2000000029802322,
+              "p99": 12.099999994039536,
+              "max": 28.200000002980232,
+              "mean": 1.787586206762955
+            },
+            "tsWMinusTsS": {
+              "p50": -1.8999999910593033,
+              "p95": -2.699999988079071,
+              "p99": -2.2999999970197678
+            }
+          },
+          "cold": {
+            "tsS": {
+              "N": 51,
+              "p50": 2.7000000029802322,
+              "p95": 5,
+              "p99": 7.700000002980232,
+              "max": 7.700000002980232,
+              "mean": 2.9254901952603283
+            },
+            "tsW": {
+              "N": 58,
+              "p50": 1.699999988079071,
+              "p95": 3.2999999970197678,
+              "p99": 15,
+              "max": 15,
+              "mean": 2.0379310347910584
+            },
+            "tsWMinusTsS": {
+              "p50": -1.0000000149011612,
+              "p95": -1.7000000029802322,
+              "p99": 7.299999997019768
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "tsS": {
+              "N": 252,
+              "p50": 3.300000011920929,
+              "p95": 6.299999997019768,
+              "p99": 18.5,
+              "max": 77,
+              "mean": 4.038888888877063
+            },
+            "tsW": {
+              "N": 275,
+              "p50": 15.399999991059303,
+              "p95": 23.5,
+              "p99": 32.70000000298023,
+              "max": 49.900000005960464,
+              "mean": 15.391272726980123
+            },
+            "tsWMinusTsS": {
+              "p50": 12.099999979138374,
+              "p95": 17.200000002980232,
+              "p99": 14.200000002980232
+            }
+          },
+          "cold": {
+            "tsS": {
+              "N": 51,
+              "p50": 2.7999999970197678,
+              "p95": 5,
+              "p99": 8.399999991059303,
+              "max": 8.399999991059303,
+              "mean": 2.994117645364182
+            },
+            "tsW": {
+              "N": 53,
+              "p50": 14.399999991059303,
+              "p95": 22.200000002980232,
+              "p99": 23.599999994039536,
+              "max": 23.599999994039536,
+              "mean": 14.279245282962638
+            },
+            "tsWMinusTsS": {
+              "p50": 11.599999994039536,
+              "p95": 17.200000002980232,
+              "p99": 15.200000002980232
+            }
+          }
+        }
+      }
+    }
+  ],
+  "overhead": [
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-S",
+        "case": "APP_H100_SWITCH",
+        "boundary": "browser-app",
+        "workers": "not-applicable",
+        "audio": "on",
+        "build": "prod",
+        "driver": "poll",
+        "browserChannel": "default",
+        "viewport": "default",
+        "browserArgs": []
+      },
+      "phases": {
+        "app.worker-compute-metric": {
+          "cold": {
+            "traced": {
+              "N": 200,
+              "p50": 2,
+              "p95": 7,
+              "p99": 14,
+              "max": 41,
+              "mean": 3.165
+            },
+            "clean": {
+              "N": 200,
+              "p50": 3,
+              "p95": 8,
+              "p99": 11,
+              "max": 37,
+              "mean": 3.83
+            },
+            "difference": {
+              "p50": -1,
+              "p95": -1,
+              "p99": 3
+            }
+          }
+        },
+        "app.input-to-commit": {
+          "cold": {
+            "traced": {
+              "N": 200,
+              "p50": 22.400000005960464,
+              "p95": 82.40000000596046,
+              "p99": 233.3999999910593,
+              "max": 296.80000001192093,
+              "mean": 34.15200000025332
+            },
+            "clean": {
+              "N": 200,
+              "p50": 25.700000002980232,
+              "p95": 53.900000005960464,
+              "p99": 158.1000000089407,
+              "max": 261.20000000298023,
+              "mean": 33.59150000028312
+            },
+            "difference": {
+              "p50": -3.2999999970197678,
+              "p95": 28.5,
+              "p99": 75.2999999821186
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "r1-traced-app-s",
+          "attr-app-s"
+        ],
+        "clean": [
+          "r1-app-s-audioon",
+          "r2-app-s-audioon"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-S",
+        "case": "TC01_LISTENER_TAPE_SEEDED",
+        "boundary": "browser-pool",
+        "workers": "not-applicable",
+        "audio": "not-applicable",
+        "build": "not-applicable",
+        "driver": "not-applicable",
+        "browserChannel": "default",
+        "viewport": "not-applicable",
+        "browserArgs": "not-applicable"
+      },
+      "phases": {},
+      "runs": {
+        "traced": [
+          "r1-traced-s-tc01"
+        ],
+        "clean": [
+          "r1-s-tc01"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-S",
+        "case": "TH01_LISTENER_TAPE_SEEDED",
+        "boundary": "node-core",
+        "workers": "not-applicable",
+        "audio": "not-applicable",
+        "build": "not-applicable",
+        "driver": "not-applicable",
+        "browserChannel": "not-applicable",
+        "viewport": "not-applicable",
+        "browserArgs": "not-applicable"
+      },
+      "phases": {},
+      "runs": {
+        "traced": [
+          "r1b-node-traced-th01"
+        ],
+        "clean": [
+          "r1b-node-th01"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-S",
+        "case": "TH01_LISTENER_TAPE_SEEDED",
+        "boundary": "browser-pool",
+        "workers": "not-applicable",
+        "audio": "not-applicable",
+        "build": "not-applicable",
+        "driver": "not-applicable",
+        "browserChannel": "default",
+        "viewport": "not-applicable",
+        "browserArgs": "not-applicable"
+      },
+      "phases": {},
+      "runs": {
+        "traced": [
+          "r1-traced-s-th01"
+        ],
+        "clean": [
+          "r1-s-th01"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-W",
+        "case": "APP_C_DRAG",
+        "boundary": "browser-app",
+        "workers": 2,
+        "audio": "on",
+        "build": "prod",
+        "driver": "poll",
+        "browserChannel": "default",
+        "viewport": "default",
+        "browserArgs": []
+      },
+      "phases": {
+        "app.worker-compute-metric": {
+          "warm": {
+            "traced": {
+              "N": 5,
+              "p50": 0,
+              "p95": 1,
+              "p99": 1,
+              "max": 1,
+              "mean": 0.2
+            },
+            "clean": {
+              "N": 17,
+              "p50": 0,
+              "p95": 18,
+              "p99": 18,
+              "max": 18,
+              "mean": 2
+            },
+            "difference": {
+              "p50": 0,
+              "p95": -17,
+              "p99": -17
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 1,
+              "p95": 5,
+              "p99": 54,
+              "max": 77,
+              "mean": 2.58
+            },
+            "clean": {
+              "N": 100,
+              "p50": 1,
+              "p95": 4,
+              "p99": 9,
+              "max": 9,
+              "mean": 1.22
+            },
+            "difference": {
+              "p50": 0,
+              "p95": 1,
+              "p99": 45
+            }
+          }
+        },
+        "app.input-to-commit": {
+          "warm": {
+            "traced": {
+              "N": 1,
+              "p50": 47.900000005960464,
+              "p95": 47.900000005960464,
+              "p99": 47.900000005960464,
+              "max": 47.900000005960464,
+              "mean": 47.900000005960464
+            },
+            "clean": {
+              "N": 1,
+              "p50": 90.69999998807907,
+              "p95": 90.69999998807907,
+              "p99": 90.69999998807907,
+              "max": 90.69999998807907,
+              "mean": 90.69999998807907
+            },
+            "difference": {
+              "p50": -42.79999998211861,
+              "p95": -42.79999998211861,
+              "p99": -42.79999998211861
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "r1-drag-traced"
+        ],
+        "clean": [
+          "r1-drag-clean"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-W",
+        "case": "APP_H100_SWITCH",
+        "boundary": "browser-app",
+        "workers": "not-applicable",
+        "audio": "on",
+        "build": "prod",
+        "driver": "poll",
+        "browserChannel": "default",
+        "viewport": "default",
+        "browserArgs": []
+      },
+      "phases": {
+        "app.worker-compute-metric": {
+          "warm": {
+            "traced": {
+              "N": 200,
+              "p50": 2,
+              "p95": 6,
+              "p99": 44,
+              "max": 273,
+              "mean": 4.005
+            },
+            "clean": {
+              "N": 900,
+              "p50": 2,
+              "p95": 4,
+              "p99": 9,
+              "max": 128,
+              "mean": 2.7455555555555557
+            },
+            "difference": {
+              "p50": 0,
+              "p95": 2,
+              "p99": 35
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 200,
+              "p50": 2,
+              "p95": 7,
+              "p99": 67,
+              "max": 104,
+              "mean": 4.695
+            },
+            "clean": {
+              "N": 100,
+              "p50": 2,
+              "p95": 5,
+              "p99": 7,
+              "max": 8,
+              "mean": 2.38
+            },
+            "difference": {
+              "p50": 0,
+              "p95": 2,
+              "p99": 60
+            }
+          }
+        },
+        "app.input-to-commit": {
+          "warm": {
+            "traced": {
+              "N": 200,
+              "p50": 21.900000005960464,
+              "p95": 101.79999999701977,
+              "p99": 265.6000000089407,
+              "max": 343.3999999910593,
+              "mean": 37.1860000000149
+            },
+            "clean": {
+              "N": 900,
+              "p50": 21.200000002980232,
+              "p95": 49.400000005960464,
+              "p99": 112.6000000089407,
+              "max": 306.5,
+              "mean": 28.381222222348054
+            },
+            "difference": {
+              "p50": 0.7000000029802322,
+              "p95": 52.3999999910593,
+              "p99": 153
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 200,
+              "p50": 23.30000001192093,
+              "p95": 114,
+              "p99": 202.29999999701977,
+              "max": 340.29999999701977,
+              "mean": 36.2795000000298
+            },
+            "clean": {
+              "N": 100,
+              "p50": 20.400000005960464,
+              "p95": 42,
+              "p99": 53.29999999701977,
+              "max": 75,
+              "mean": 24.839000000655652
+            },
+            "difference": {
+              "p50": 2.9000000059604645,
+              "p95": 72,
+              "p99": 149
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "r1-traced-app-w-1",
+          "r1-traced-app-w-2"
+        ],
+        "clean": [
+          "r1-app-w-audioon"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-W",
+        "case": "APP_H100_SWITCH",
+        "boundary": "browser-app",
+        "workers": 4,
+        "audio": "on",
+        "build": "prod",
+        "driver": "poll",
+        "browserChannel": "chromium",
+        "viewport": "default",
+        "browserArgs": [
+          "--use-angle=d3d11",
+          "--enable-gpu-rasterization",
+          "--ignore-gpu-blocklist"
+        ]
+      },
+      "phases": {
+        "app.worker-compute-metric": {
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 2,
+              "p95": 5,
+              "p99": 62,
+              "max": 81,
+              "mean": 3.41
+            },
+            "clean": {
+              "N": 200,
+              "p50": 2,
+              "p95": 4,
+              "p99": 6,
+              "max": 12,
+              "mean": 2.675
+            },
+            "difference": {
+              "p50": 0,
+              "p95": 1,
+              "p99": 56
+            }
+          }
+        },
+        "app.input-to-commit": {
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 19.5,
+              "p95": 42.70000000298023,
+              "p99": 138.20000000298023,
+              "max": 155.1000000089407,
+              "mean": 26.616999999582767
+            },
+            "clean": {
+              "N": 200,
+              "p50": 25.599999994039536,
+              "p95": 45.69999998807907,
+              "p99": 72.6000000089407,
+              "max": 221,
+              "mean": 30.30600000038743
+            },
+            "difference": {
+              "p50": -6.0999999940395355,
+              "p95": -2.999999985098839,
+              "p99": 65.59999999403954
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "ct-fullgpu"
+        ],
+        "clean": [
+          "c1-fullgpu",
+          "c2-fullgpu"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-W",
+        "case": "APP_H100_SWITCH",
+        "boundary": "browser-app",
+        "workers": 4,
+        "audio": "on",
+        "build": "prod",
+        "driver": "poll",
+        "browserChannel": "chromium",
+        "viewport": "default",
+        "browserArgs": []
+      },
+      "phases": {
+        "app.worker-compute-metric": {
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 2,
+              "p95": 5,
+              "p99": 51,
+              "max": 56,
+              "mean": 3.39
+            },
+            "clean": {
+              "N": 200,
+              "p50": 2,
+              "p95": 4,
+              "p99": 5,
+              "max": 44,
+              "mean": 2.8
+            },
+            "difference": {
+              "p50": 0,
+              "p95": 1,
+              "p99": 46
+            }
+          }
+        },
+        "app.input-to-commit": {
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 20.099999994039536,
+              "p95": 42.5,
+              "p99": 117.79999999701977,
+              "max": 126.90000000596046,
+              "mean": 27.017999998927117
+            },
+            "clean": {
+              "N": 200,
+              "p50": 23.299999997019768,
+              "p95": 55,
+              "p99": 68.20000000298023,
+              "max": 102.59999999403954,
+              "mean": 28.94300000011921
+            },
+            "difference": {
+              "p50": -3.2000000029802322,
+              "p95": -12.5,
+              "p99": 49.599999994039536
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "ct-full"
+        ],
+        "clean": [
+          "c1-full",
+          "c2-full"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-W",
+        "case": "APP_H100_SWITCH",
+        "boundary": "browser-app",
+        "workers": 4,
+        "audio": "on",
+        "build": "prod",
+        "driver": "poll",
+        "browserChannel": "default",
+        "viewport": "1920x1080",
+        "browserArgs": []
+      },
+      "phases": {
+        "app.worker-compute-metric": {
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 2,
+              "p95": 6,
+              "p99": 7,
+              "max": 9,
+              "mean": 2.64
+            },
+            "clean": {
+              "N": 200,
+              "p50": 3,
+              "p95": 6,
+              "p99": 112,
+              "max": 286,
+              "mean": 6.66
+            },
+            "difference": {
+              "p50": -1,
+              "p95": 0,
+              "p99": -105
+            }
+          }
+        },
+        "app.input-to-commit": {
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 20.600000008940697,
+              "p95": 57.3999999910593,
+              "p99": 119.6000000089407,
+              "max": 157.79999999701977,
+              "mean": 29.56999999985099
+            },
+            "clean": {
+              "N": 200,
+              "p50": 21.5,
+              "p95": 127.59999999403954,
+              "p99": 318.6000000089407,
+              "max": 378.40000000596046,
+              "mean": 41.60350000075996
+            },
+            "difference": {
+              "p50": -0.8999999910593033,
+              "p95": -70.20000000298023,
+              "p99": -199
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "ct-vp1080"
+        ],
+        "clean": [
+          "c1-vp1080",
+          "c2-vp1080"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-W",
+        "case": "APP_H100_SWITCH",
+        "boundary": "browser-app",
+        "workers": 4,
+        "audio": "on",
+        "build": "prod",
+        "driver": "poll",
+        "browserChannel": "default",
+        "viewport": "default",
+        "browserArgs": []
+      },
+      "phases": {
+        "app.worker-compute-metric": {
+          "cold": {
+            "traced": {
+              "N": 200,
+              "p50": 2,
+              "p95": 4,
+              "p99": 7,
+              "max": 30,
+              "mean": 2.095
+            },
+            "clean": {
+              "N": 300,
+              "p50": 2,
+              "p95": 4,
+              "p99": 6,
+              "max": 85,
+              "mean": 2.9066666666666667
+            },
+            "difference": {
+              "p50": 0,
+              "p95": 0,
+              "p99": 1
+            }
+          }
+        },
+        "app.input-to-commit": {
+          "cold": {
+            "traced": {
+              "N": 200,
+              "p50": 19.5,
+              "p95": 40.6000000089407,
+              "p99": 78.09999999403954,
+              "max": 106.5,
+              "mean": 24.091500000357627
+            },
+            "clean": {
+              "N": 300,
+              "p50": 23.900000005960464,
+              "p95": 56.20000000298023,
+              "p99": 144.5,
+              "max": 291.59999999403954,
+              "mean": 31.365666666428247
+            },
+            "difference": {
+              "p50": -4.4000000059604645,
+              "p95": -15.599999994039536,
+              "p99": -66.40000000596046
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "ct-shell",
+          "attr-app-w"
+        ],
+        "clean": [
+          "c1-shell",
+          "c2-shell",
+          "r2-app-w-audioon"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-W",
+        "case": "TC01_LISTENER_TAPE_SEEDED",
+        "boundary": "browser-pool",
+        "workers": 2,
+        "audio": "not-applicable",
+        "build": "not-applicable",
+        "driver": "not-applicable",
+        "browserChannel": "default",
+        "viewport": "not-applicable",
+        "browserArgs": "not-applicable"
+      },
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "traced": {
+              "N": 92,
+              "p50": 0.5,
+              "p95": 2.5,
+              "p99": 37.79999999701977,
+              "max": 37.79999999701977,
+              "mean": 1.4217391300784505
+            },
+            "clean": {
+              "N": 1052,
+              "p50": 0.5999999940395355,
+              "p95": 1.7999999970197678,
+              "p99": 7.800000011920929,
+              "max": 20.099999994039536,
+              "mean": 0.8555133080839431
+            },
+            "difference": {
+              "p50": -0.09999999403953552,
+              "p95": 0.7000000029802322,
+              "p99": 29.99999998509884
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 0.5,
+              "p95": 6.700000002980232,
+              "p99": 49.29999999701977,
+              "max": 54.70000000298023,
+              "mean": 2.729999999552965
+            },
+            "clean": {
+              "N": 100,
+              "p50": 0.5,
+              "p95": 0.9000000059604645,
+              "p99": 1.7000000029802322,
+              "max": 10.599999994039536,
+              "mean": 0.6439999993145465
+            },
+            "difference": {
+              "p50": 0,
+              "p95": 5.799999997019768,
+              "p99": 47.599999994039536
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "traced": {
+              "N": 92,
+              "p50": 84,
+              "p95": 86,
+              "p99": 119,
+              "max": 119,
+              "mean": 84.6880434780665
+            },
+            "clean": {
+              "N": 1052,
+              "p50": 92.90000000596046,
+              "p95": 95.40000000596046,
+              "p99": 100.40000000596046,
+              "max": 113.09999999403954,
+              "mean": 91.48811787075076
+            },
+            "difference": {
+              "p50": -8.900000005960464,
+              "p95": -9.400000005960464,
+              "p99": 18.599999994039536
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 84,
+              "p95": 90.1000000089407,
+              "p99": 124.6000000089407,
+              "max": 143,
+              "mean": 85.3640000012517
+            },
+            "clean": {
+              "N": 100,
+              "p50": 92.90000000596046,
+              "p95": 95.20000000298023,
+              "p99": 98.1000000089407,
+              "max": 99.8999999910593,
+              "mean": 90.34300000041723
+            },
+            "difference": {
+              "p50": -8.900000005960464,
+              "p95": -5.0999999940395355,
+              "p99": 26.5
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "r1-traced-w-tc01"
+        ],
+        "clean": [
+          "r1-w-tc01"
+        ]
+      }
+    },
+    {
+      "comparison": "clean minus bare",
+      "group": {
+        "variant": "TS-W",
+        "case": "TC01_LISTENER_TAPE_SEEDED",
+        "boundary": "browser-pool",
+        "workers": 2,
+        "audio": "not-applicable",
+        "build": "not-applicable",
+        "driver": "not-applicable",
+        "browserChannel": "default",
+        "viewport": "not-applicable",
+        "browserArgs": "not-applicable"
+      },
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "clean": {
+              "N": 1052,
+              "p50": 0.5999999940395355,
+              "p95": 1.7999999970197678,
+              "p99": 7.800000011920929,
+              "max": 20.099999994039536,
+              "mean": 0.8555133080839431
+            },
+            "bare": {
+              "N": 1052,
+              "p50": 0.5,
+              "p95": 1.2999999970197678,
+              "p99": 6.299999997019768,
+              "max": 8.099999994039536,
+              "mean": 0.6833650191587187
+            },
+            "difference": {
+              "p50": 0.09999999403953552,
+              "p95": 0.5,
+              "p99": 1.5000000149011612
+            }
+          },
+          "cold": {
+            "clean": {
+              "N": 100,
+              "p50": 0.5,
+              "p95": 0.9000000059604645,
+              "p99": 1.7000000029802322,
+              "max": 10.599999994039536,
+              "mean": 0.6439999993145465
+            },
+            "bare": {
+              "N": 100,
+              "p50": 0.5999999940395355,
+              "p95": 1.5999999940395355,
+              "p99": 2.8999999910593033,
+              "max": 43.6000000089407,
+              "mean": 1.1139999997615815
+            },
+            "difference": {
+              "p50": -0.09999999403953552,
+              "p95": -0.699999988079071,
+              "p99": -1.199999988079071
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "clean": {
+              "N": 1052,
+              "p50": 92.90000000596046,
+              "p95": 95.40000000596046,
+              "p99": 100.40000000596046,
+              "max": 113.09999999403954,
+              "mean": 91.48811787075076
+            },
+            "bare": {
+              "N": 1052,
+              "p50": 92.79999999701977,
+              "p95": 95.20000000298023,
+              "p99": 98.90000000596046,
+              "max": 104.19999998807907,
+              "mean": 91.58906844118079
+            },
+            "difference": {
+              "p50": 0.10000000894069672,
+              "p95": 0.20000000298023224,
+              "p99": 1.5
+            }
+          },
+          "cold": {
+            "clean": {
+              "N": 100,
+              "p50": 92.90000000596046,
+              "p95": 95.20000000298023,
+              "p99": 98.1000000089407,
+              "max": 99.8999999910593,
+              "mean": 90.34300000041723
+            },
+            "bare": {
+              "N": 100,
+              "p50": 93,
+              "p95": 94.80000001192093,
+              "p99": 95.79999999701977,
+              "max": 99.3999999910593,
+              "mean": 91.5490000000596
+            },
+            "difference": {
+              "p50": -0.09999999403953552,
+              "p95": 0.3999999910593033,
+              "p99": 2.300000011920929
+            }
+          }
+        }
+      },
+      "runs": {
+        "clean": [
+          "r1-w-tc01"
+        ],
+        "bare": [
+          "r1-bare-w-tc01"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-W",
+        "case": "TC02_STATIC_EDIT_TAPE",
+        "boundary": "browser-pool",
+        "workers": 2,
+        "audio": "not-applicable",
+        "build": "not-applicable",
+        "driver": "not-applicable",
+        "browserChannel": "default",
+        "viewport": "not-applicable",
+        "browserArgs": "not-applicable"
+      },
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "traced": {
+              "N": 44,
+              "p50": 0.5,
+              "p95": 1,
+              "p99": 1.6000000089406967,
+              "max": 1.6000000089406967,
+              "mean": 0.5681818188591437
+            },
+            "clean": {
+              "N": 1004,
+              "p50": 0.5999999940395355,
+              "p95": 1,
+              "p99": 1.8999999910593033,
+              "max": 12.799999997019768,
+              "mean": 0.6634462152077145
+            },
+            "difference": {
+              "p50": -0.09999999403953552,
+              "p95": 0,
+              "p99": -0.29999998211860657
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 0.5,
+              "p95": 1.7000000029802322,
+              "p99": 2.199999988079071,
+              "max": 21.399999991059303,
+              "mean": 0.8920000007748604
+            },
+            "clean": {
+              "N": 100,
+              "p50": 0.5999999940395355,
+              "p95": 1.9000000059604645,
+              "p99": 9.899999991059303,
+              "max": 16.200000002980232,
+              "mean": 0.9770000012218952
+            },
+            "difference": {
+              "p50": -0.09999999403953552,
+              "p95": -0.20000000298023224,
+              "p99": -7.700000002980232
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "traced": {
+              "N": 44,
+              "p50": 83.8999999910593,
+              "p95": 84.8999999910593,
+              "p99": 85,
+              "max": 85,
+              "mean": 83.82045454565774
+            },
+            "clean": {
+              "N": 1004,
+              "p50": 92.70000000298023,
+              "p95": 95.1000000089407,
+              "p99": 97.30000001192093,
+              "max": 99.59999999403954,
+              "mean": 90.92440239037295
+            },
+            "difference": {
+              "p50": -8.800000011920929,
+              "p95": -10.200000017881393,
+              "p99": -12.300000011920929
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 84.20000000298023,
+              "p95": 85.29999999701977,
+              "p99": 85.59999999403954,
+              "max": 86.1000000089407,
+              "mean": 83.66199999973178
+            },
+            "clean": {
+              "N": 100,
+              "p50": 92.90000000596046,
+              "p95": 95.59999999403954,
+              "p99": 99.29999999701977,
+              "max": 100.09999999403954,
+              "mean": 90.56199999973178
+            },
+            "difference": {
+              "p50": -8.700000002980232,
+              "p95": -10.299999997019768,
+              "p99": -13.700000002980232
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "r1-traced-w-tc02"
+        ],
+        "clean": [
+          "r1-w-tc02"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-W",
+        "case": "TH01_LISTENER_TAPE_SEEDED",
+        "boundary": "browser-pool",
+        "workers": 2,
+        "audio": "not-applicable",
+        "build": "not-applicable",
+        "driver": "not-applicable",
+        "browserChannel": "default",
+        "viewport": "not-applicable",
+        "browserArgs": "not-applicable"
+      },
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "traced": {
+              "N": 92,
+              "p50": 0.6000000089406967,
+              "p95": 3.800000011920929,
+              "p99": 5.0999999940395355,
+              "max": 5.0999999940395355,
+              "mean": 1.0076086966563826
+            },
+            "clean": {
+              "N": 1052,
+              "p50": 0.6000000089406967,
+              "p95": 1.2999999970197678,
+              "p99": 2.7999999970197678,
+              "max": 11.099999994039536,
+              "mean": 0.7820342205634815
+            },
+            "difference": {
+              "p50": 0,
+              "p95": 2.500000014901161,
+              "p99": 2.2999999970197678
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 0.7999999970197678,
+              "p95": 3.5999999940395355,
+              "p99": 5.700000002980232,
+              "max": 11.300000011920929,
+              "mean": 1.1909999996423721
+            },
+            "clean": {
+              "N": 100,
+              "p50": 0.7999999970197678,
+              "p95": 2,
+              "p99": 3.2999999970197678,
+              "max": 34.1000000089407,
+              "mean": 1.2349999989569187
+            },
+            "difference": {
+              "p50": 0,
+              "p95": 1.5999999940395355,
+              "p99": 2.4000000059604645
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "traced": {
+              "N": 92,
+              "p50": 84,
+              "p95": 87.69999998807907,
+              "p99": 89,
+              "max": 89,
+              "mean": 84.30869565207674
+            },
+            "clean": {
+              "N": 1052,
+              "p50": 93.29999999701977,
+              "p95": 95.09999999403954,
+              "p99": 96.19999998807907,
+              "max": 109,
+              "mean": 93.33574144523803
+            },
+            "difference": {
+              "p50": -9.299999997019768,
+              "p95": -7.4000000059604645,
+              "p99": -7.199999988079071
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 84.09999999403954,
+              "p95": 85.80000001192093,
+              "p99": 86.8999999910593,
+              "max": 87.20000000298023,
+              "mean": 83.63900000020861
+            },
+            "clean": {
+              "N": 100,
+              "p50": 93.20000000298023,
+              "p95": 95.19999998807907,
+              "p99": 96.09999999403954,
+              "max": 96.09999999403954,
+              "mean": 92.99299999922513
+            },
+            "difference": {
+              "p50": -9.100000008940697,
+              "p95": -9.399999976158142,
+              "p99": -9.200000002980232
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "r1-traced-w-th01"
+        ],
+        "clean": [
+          "r1-w-th01"
+        ]
+      }
+    },
+    {
+      "comparison": "clean minus bare",
+      "group": {
+        "variant": "TS-W",
+        "case": "TH01_LISTENER_TAPE_SEEDED",
+        "boundary": "browser-pool",
+        "workers": 2,
+        "audio": "not-applicable",
+        "build": "not-applicable",
+        "driver": "not-applicable",
+        "browserChannel": "default",
+        "viewport": "not-applicable",
+        "browserArgs": "not-applicable"
+      },
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "clean": {
+              "N": 1052,
+              "p50": 0.6000000089406967,
+              "p95": 1.2999999970197678,
+              "p99": 2.7999999970197678,
+              "max": 11.099999994039536,
+              "mean": 0.7820342205634815
+            },
+            "bare": {
+              "N": 1052,
+              "p50": 0.7000000029802322,
+              "p95": 1.300000011920929,
+              "p99": 2.3999999910593033,
+              "max": 12,
+              "mean": 0.8138783268290554
+            },
+            "difference": {
+              "p50": -0.09999999403953552,
+              "p95": -1.4901161193847656e-8,
+              "p99": 0.4000000059604645
+            }
+          },
+          "cold": {
+            "clean": {
+              "N": 100,
+              "p50": 0.7999999970197678,
+              "p95": 2,
+              "p99": 3.2999999970197678,
+              "max": 34.1000000089407,
+              "mean": 1.2349999989569187
+            },
+            "bare": {
+              "N": 100,
+              "p50": 1,
+              "p95": 3.300000011920929,
+              "p99": 11.400000005960464,
+              "max": 16.799999997019768,
+              "mean": 1.4919999998807907
+            },
+            "difference": {
+              "p50": -0.20000000298023224,
+              "p95": -1.300000011920929,
+              "p99": -8.100000008940697
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "clean": {
+              "N": 1052,
+              "p50": 93.29999999701977,
+              "p95": 95.09999999403954,
+              "p99": 96.19999998807907,
+              "max": 109,
+              "mean": 93.33574144523803
+            },
+            "bare": {
+              "N": 1052,
+              "p50": 93.20000000298023,
+              "p95": 94.80000001192093,
+              "p99": 96.29999999701977,
+              "max": 108.79999999701977,
+              "mean": 93.21673003789533
+            },
+            "difference": {
+              "p50": 0.09999999403953552,
+              "p95": 0.29999998211860657,
+              "p99": -0.10000000894069672
+            }
+          },
+          "cold": {
+            "clean": {
+              "N": 100,
+              "p50": 93.20000000298023,
+              "p95": 95.19999998807907,
+              "p99": 96.09999999403954,
+              "max": 96.09999999403954,
+              "mean": 92.99299999922513
+            },
+            "bare": {
+              "N": 100,
+              "p50": 93,
+              "p95": 95.20000000298023,
+              "p99": 96.70000000298023,
+              "max": 101.90000000596046,
+              "mean": 92.50299999967217
+            },
+            "difference": {
+              "p50": 0.20000000298023224,
+              "p95": -1.4901161193847656e-8,
+              "p99": -0.6000000089406967
+            }
+          }
+        }
+      },
+      "runs": {
+        "clean": [
+          "r1-w-th01"
+        ],
+        "bare": [
+          "r1-bare-w-th01"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-W",
+        "case": "TH02_STATIC_EDIT_TAPE",
+        "boundary": "browser-pool",
+        "workers": 2,
+        "audio": "not-applicable",
+        "build": "not-applicable",
+        "driver": "not-applicable",
+        "browserChannel": "default",
+        "viewport": "not-applicable",
+        "browserArgs": "not-applicable"
+      },
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "traced": {
+              "N": 44,
+              "p50": 0.8999999910593033,
+              "p95": 1.5,
+              "p99": 1.7000000029802322,
+              "max": 1.7000000029802322,
+              "mean": 0.9295454546809196
+            },
+            "clean": {
+              "N": 1004,
+              "p50": 1.2000000029802322,
+              "p95": 3.7000000029802322,
+              "p99": 9.300000011920929,
+              "max": 37.20000000298023,
+              "mean": 1.6689243029461676
+            },
+            "difference": {
+              "p50": -0.30000001192092896,
+              "p95": -2.2000000029802322,
+              "p99": -7.600000008940697
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 1.1000000089406967,
+              "p95": 4,
+              "p99": 7.200000002980232,
+              "max": 17.599999994039536,
+              "mean": 1.6319999988377094
+            },
+            "clean": {
+              "N": 100,
+              "p50": 1.6000000089406967,
+              "p95": 6,
+              "p99": 23.799999997019768,
+              "max": 28.399999991059303,
+              "mean": 2.5869999998807907
+            },
+            "difference": {
+              "p50": -0.5,
+              "p95": -2,
+              "p99": -16.599999994039536
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "traced": {
+              "N": 44,
+              "p50": 84,
+              "p95": 85.09999999403954,
+              "p99": 85.40000000596046,
+              "max": 85.40000000596046,
+              "mean": 84.06363636424595
+            },
+            "clean": {
+              "N": 1004,
+              "p50": 93.20000000298023,
+              "p95": 96.40000000596046,
+              "p99": 100.29999999701977,
+              "max": 131.8999999910593,
+              "mean": 93.34930278905537
+            },
+            "difference": {
+              "p50": -9.200000002980232,
+              "p95": -11.300000011920929,
+              "p99": -14.899999991059303
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 100,
+              "p50": 84.29999999701977,
+              "p95": 86.79999999701977,
+              "p99": 89.5,
+              "max": 91.1000000089407,
+              "mean": 84.14099999889731
+            },
+            "clean": {
+              "N": 100,
+              "p50": 93,
+              "p95": 96.69999998807907,
+              "p99": 112.90000000596046,
+              "max": 117.29999999701977,
+              "mean": 92.87599999949336
+            },
+            "difference": {
+              "p50": -8.700000002980232,
+              "p95": -9.899999991059303,
+              "p99": -23.400000005960464
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "r1-traced-w-th02"
+        ],
+        "clean": [
+          "r1-w-th02"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-W",
+        "case": "W01_H100_POSE_60HZ_60S",
+        "boundary": "browser-pool",
+        "workers": 4,
+        "audio": "not-applicable",
+        "build": "not-applicable",
+        "driver": "not-applicable",
+        "browserChannel": "default",
+        "viewport": "not-applicable",
+        "browserArgs": "not-applicable"
+      },
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "traced": {
+              "N": 173,
+              "p50": 1.2999999970197678,
+              "p95": 4.799999997019768,
+              "p99": 11,
+              "max": 123.5,
+              "mean": 2.3936416182042546
+            },
+            "clean": {
+              "N": 1871,
+              "p50": 2.2999999970197678,
+              "p95": 6.5,
+              "p99": 35.3999999910593,
+              "max": 60.20000000298023,
+              "mean": 3.277124532072828
+            },
+            "difference": {
+              "p50": -1,
+              "p95": -1.7000000029802322,
+              "p99": -24.399999991059303
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 59,
+              "p50": 1.4000000059604645,
+              "p95": 3.0999999940395355,
+              "p99": 29.700000002980232,
+              "max": 29.700000002980232,
+              "mean": 2.0016949154057744
+            },
+            "clean": {
+              "N": 171,
+              "p50": 2.2999999970197678,
+              "p95": 7.5,
+              "p99": 37.80000001192093,
+              "max": 41,
+              "mean": 3.4947368421575478
+            },
+            "difference": {
+              "p50": -0.8999999910593033,
+              "p95": -4.4000000059604645,
+              "p99": -8.100000008940697
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "traced": {
+              "N": 173,
+              "p50": 12.099999994039536,
+              "p95": 19.799999997019768,
+              "p99": 69.19999998807907,
+              "max": 232.40000000596046,
+              "mean": 14.187283236770272
+            },
+            "clean": {
+              "N": 1871,
+              "p50": 13.899999991059303,
+              "p95": 22.200000002980232,
+              "p99": 67,
+              "max": 97.80000001192093,
+              "mean": 15.183057188605448
+            },
+            "difference": {
+              "p50": -1.7999999970197678,
+              "p95": -2.4000000059604645,
+              "p99": 2.199999988079071
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 59,
+              "p50": 12.200000002980232,
+              "p95": 18.5,
+              "p99": 54.79999999701977,
+              "max": 54.79999999701977,
+              "mean": 12.799999998787703
+            },
+            "clean": {
+              "N": 171,
+              "p50": 13.600000008940697,
+              "p95": 24.599999994039536,
+              "p99": 76.90000000596046,
+              "max": 79.79999999701977,
+              "mean": 15.002339180711417
+            },
+            "difference": {
+              "p50": -1.4000000059604645,
+              "p95": -6.0999999940395355,
+              "p99": -22.100000008940697
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "r1-traced-w-w01"
+        ],
+        "clean": [
+          "r1-w-w01",
+          "r2-w-w01",
+          "r2-hc6-w01"
+        ]
+      }
+    },
+    {
+      "comparison": "clean minus bare",
+      "group": {
+        "variant": "TS-W",
+        "case": "W01_H100_POSE_60HZ_60S",
+        "boundary": "browser-pool",
+        "workers": 4,
+        "audio": "not-applicable",
+        "build": "not-applicable",
+        "driver": "not-applicable",
+        "browserChannel": "default",
+        "viewport": "not-applicable",
+        "browserArgs": "not-applicable"
+      },
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "clean": {
+              "N": 1871,
+              "p50": 2.2999999970197678,
+              "p95": 6.5,
+              "p99": 35.3999999910593,
+              "max": 60.20000000298023,
+              "mean": 3.277124532072828
+            },
+            "bare": {
+              "N": 631,
+              "p50": 1.9000000059604645,
+              "p95": 4.9000000059604645,
+              "p99": 12,
+              "max": 45.5,
+              "mean": 2.4877971470025377
+            },
+            "difference": {
+              "p50": 0.3999999910593033,
+              "p95": 1.5999999940395355,
+              "p99": 23.399999991059303
+            }
+          },
+          "cold": {
+            "clean": {
+              "N": 171,
+              "p50": 2.2999999970197678,
+              "p95": 7.5,
+              "p99": 37.80000001192093,
+              "max": 41,
+              "mean": 3.4947368421575478
+            },
+            "bare": {
+              "N": 58,
+              "p50": 1.7000000029802322,
+              "p95": 3.7000000029802322,
+              "p99": 27.400000005960464,
+              "max": 27.400000005960464,
+              "mean": 2.322413792384082
+            },
+            "difference": {
+              "p50": 0.5999999940395355,
+              "p95": 3.7999999970197678,
+              "p99": 10.400000005960464
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "clean": {
+              "N": 1871,
+              "p50": 13.899999991059303,
+              "p95": 22.200000002980232,
+              "p99": 67,
+              "max": 97.80000001192093,
+              "mean": 15.183057188605448
+            },
+            "bare": {
+              "N": 631,
+              "p50": 13.599999994039536,
+              "p95": 20.700000002980232,
+              "p99": 26.200000002980232,
+              "max": 88.59999999403954,
+              "mean": 14.22408874760339
+            },
+            "difference": {
+              "p50": 0.29999999701976776,
+              "p95": 1.5,
+              "p99": 40.79999999701977
+            }
+          },
+          "cold": {
+            "clean": {
+              "N": 171,
+              "p50": 13.600000008940697,
+              "p95": 24.599999994039536,
+              "p99": 76.90000000596046,
+              "max": 79.79999999701977,
+              "mean": 15.002339180711417
+            },
+            "bare": {
+              "N": 58,
+              "p50": 12.400000005960464,
+              "p95": 19.100000008940697,
+              "p99": 43.5,
+              "max": 43.5,
+              "mean": 12.88103448291277
+            },
+            "difference": {
+              "p50": 1.2000000029802322,
+              "p95": 5.499999985098839,
+              "p99": 33.400000005960464
+            }
+          }
+        }
+      },
+      "runs": {
+        "clean": [
+          "r1-w-w01",
+          "r2-w-w01",
+          "r2-hc6-w01"
+        ],
+        "bare": [
+          "r1-bare-w-w01"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-W",
+        "case": "W02_H100_STATIC_5HZ_30S",
+        "boundary": "browser-pool",
+        "workers": 4,
+        "audio": "not-applicable",
+        "build": "not-applicable",
+        "driver": "not-applicable",
+        "browserChannel": "default",
+        "viewport": "not-applicable",
+        "browserArgs": "not-applicable"
+      },
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "traced": {
+              "N": 153,
+              "p50": 5.700000002980232,
+              "p95": 30.400000005960464,
+              "p99": 123,
+              "max": 138.09999999403954,
+              "mean": 8.590849673144179
+            },
+            "clean": {
+              "N": 481,
+              "p50": 9.400000005960464,
+              "p95": 22.700000002980232,
+              "p99": 37.80000001192093,
+              "max": 214.70000000298023,
+              "mean": 11.177338877146804
+            },
+            "difference": {
+              "p50": -3.7000000029802322,
+              "p95": 7.700000002980232,
+              "p99": 85.19999998807907
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 51,
+              "p50": 5.399999991059303,
+              "p95": 15.200000002980232,
+              "p99": 23.600000008940697,
+              "max": 23.600000008940697,
+              "mean": 6.580392156453693
+            },
+            "clean": {
+              "N": 100,
+              "p50": 5,
+              "p95": 20.799999997019768,
+              "p99": 21.700000002980232,
+              "max": 103.5,
+              "mean": 8.158999999463559
+            },
+            "difference": {
+              "p50": 0.3999999910593033,
+              "p95": -5.5999999940395355,
+              "p99": 1.9000000059604645
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "traced": {
+              "N": 153,
+              "p50": 15.900000005960464,
+              "p95": 57.29999999701977,
+              "p99": 235.79999999701977,
+              "max": 253.30000001192093,
+              "mean": 22.11895424741156
+            },
+            "clean": {
+              "N": 481,
+              "p50": 20.799999997019768,
+              "p95": 38,
+              "p99": 63.1000000089407,
+              "max": 262,
+              "mean": 23.16881496838745
+            },
+            "difference": {
+              "p50": -4.899999991059303,
+              "p95": 19.299999997019768,
+              "p99": 172.69999998807907
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 51,
+              "p50": 14.899999991059303,
+              "p95": 26.600000008940697,
+              "p99": 31.100000008940697,
+              "max": 31.100000008940697,
+              "mean": 15.599999999883128
+            },
+            "clean": {
+              "N": 100,
+              "p50": 15.099999994039536,
+              "p95": 32.099999994039536,
+              "p99": 36.5,
+              "max": 218,
+              "mean": 19.31599999949336
+            },
+            "difference": {
+              "p50": -0.20000000298023224,
+              "p95": -5.499999985098839,
+              "p99": -5.399999991059303
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "r1-traced-w-w02"
+        ],
+        "clean": [
+          "r1-w-w02",
+          "r2-w-w02"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-W",
+        "case": "W03_C100_POSE_60HZ_60S",
+        "boundary": "browser-pool",
+        "workers": 4,
+        "audio": "not-applicable",
+        "build": "not-applicable",
+        "driver": "not-applicable",
+        "browserChannel": "default",
+        "viewport": "not-applicable",
+        "browserArgs": "not-applicable"
+      },
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "traced": {
+              "N": 175,
+              "p50": 1.3999999910593033,
+              "p95": 8.199999988079071,
+              "p99": 72.5,
+              "max": 74.29999999701977,
+              "mean": 3.1868571428741728
+            },
+            "clean": {
+              "N": 1288,
+              "p50": 1.5,
+              "p95": 3.2000000029802322,
+              "p99": 13,
+              "max": 33.599999994039536,
+              "mean": 1.815295031201673
+            },
+            "difference": {
+              "p50": -0.10000000894069672,
+              "p95": 4.999999985098839,
+              "p99": 59.5
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 56,
+              "p50": 1.8999999910593033,
+              "p95": 42,
+              "p99": 62.30000001192093,
+              "max": 62.30000001192093,
+              "mean": 5.703571427879589
+            },
+            "clean": {
+              "N": 117,
+              "p50": 1.7999999970197678,
+              "p95": 6.899999991059303,
+              "p99": 25.900000005960464,
+              "max": 30.900000005960464,
+              "mean": 2.8205128203854604
+            },
+            "difference": {
+              "p50": 0.09999999403953552,
+              "p95": 35.1000000089407,
+              "p99": 36.400000005960464
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "traced": {
+              "N": 175,
+              "p50": 15.600000008940697,
+              "p95": 26.899999991059303,
+              "p99": 96.09999999403954,
+              "max": 118.09999999403954,
+              "mean": 17.093714285833496
+            },
+            "clean": {
+              "N": 1288,
+              "p50": 17,
+              "p95": 26.299999997019768,
+              "p99": 31.299999997019768,
+              "max": 57.5,
+              "mean": 17.212810559117276
+            },
+            "difference": {
+              "p50": -1.3999999910593033,
+              "p95": 0.5999999940395355,
+              "p99": 64.79999999701977
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 56,
+              "p50": 15,
+              "p95": 53.5,
+              "p99": 94.8999999910593,
+              "max": 94.8999999910593,
+              "mean": 19.6875
+            },
+            "clean": {
+              "N": 117,
+              "p50": 15.799999997019768,
+              "p95": 26.200000002980232,
+              "p99": 32.900000005960464,
+              "max": 49.900000005960464,
+              "mean": 16.270940170456203
+            },
+            "difference": {
+              "p50": -0.7999999970197678,
+              "p95": 27.299999997019768,
+              "p99": 61.99999998509884
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "r1-traced-w-w03"
+        ],
+        "clean": [
+          "r1-w-w03",
+          "r2-w-w03"
+        ]
+      }
+    },
+    {
+      "comparison": "traced minus clean",
+      "group": {
+        "variant": "TS-W",
+        "case": "W04_C100_STATIC_5HZ_30S",
+        "boundary": "browser-pool",
+        "workers": 4,
+        "audio": "not-applicable",
+        "build": "not-applicable",
+        "driver": "not-applicable",
+        "browserChannel": "default",
+        "viewport": "not-applicable",
+        "browserArgs": "not-applicable"
+      },
+      "phases": {
+        "pool.compute-metric": {
+          "warm": {
+            "traced": {
+              "N": 169,
+              "p50": 1.5,
+              "p95": 10.799999997019768,
+              "p99": 131.70000000298023,
+              "max": 155.09999999403954,
+              "mean": 5.610059171209674
+            },
+            "clean": {
+              "N": 579,
+              "p50": 1.5999999940395355,
+              "p95": 3.6000000089406967,
+              "p99": 11.5,
+              "max": 28.200000002980232,
+              "mean": 1.9965457684378138
+            },
+            "difference": {
+              "p50": -0.09999999403953552,
+              "p95": 7.199999988079071,
+              "p99": 120.20000000298023
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 56,
+              "p50": 1.8999999910593033,
+              "p95": 8.900000005960464,
+              "p99": 10.399999991059303,
+              "max": 10.399999991059303,
+              "mean": 2.848214286512562
+            },
+            "clean": {
+              "N": 115,
+              "p50": 1.800000011920929,
+              "p95": 5.5,
+              "p99": 9.700000002980232,
+              "max": 15,
+              "mean": 2.339999999559444
+            },
+            "difference": {
+              "p50": 0.09999997913837433,
+              "p95": 3.4000000059604645,
+              "p99": 0.699999988079071
+            }
+          }
+        },
+        "job.submit-to-accepted": {
+          "warm": {
+            "traced": {
+              "N": 160,
+              "p50": 18.799999997019768,
+              "p95": 28.5,
+              "p99": 196.40000000596046,
+              "max": 200.30000001192093,
+              "mean": 22.48562499983236
+            },
+            "clean": {
+              "N": 559,
+              "p50": 17.5,
+              "p95": 27.799999997019768,
+              "p99": 33.79999999701977,
+              "max": 49.900000005960464,
+              "mean": 17.570304114378203
+            },
+            "difference": {
+              "p50": 1.2999999970197678,
+              "p95": 0.7000000029802322,
+              "p99": 162.6000000089407
+            }
+          },
+          "cold": {
+            "traced": {
+              "N": 52,
+              "p50": 18,
+              "p95": 29.5,
+              "p99": 31.599999994039536,
+              "max": 31.599999994039536,
+              "mean": 18.834615383870325
+            },
+            "clean": {
+              "N": 110,
+              "p50": 17.299999997019768,
+              "p95": 28.799999997019768,
+              "p99": 30.299999997019768,
+              "max": 30.700000002980232,
+              "mean": 17.799090908603233
+            },
+            "difference": {
+              "p50": 0.7000000029802322,
+              "p95": 0.7000000029802322,
+              "p99": 1.2999999970197678
+            }
+          }
+        }
+      },
+      "runs": {
+        "traced": [
+          "r1-traced-w-w04"
+        ],
+        "clean": [
+          "r1-w-w04",
+          "r2-w-w04"
+        ]
+      }
+    }
+  ],
+  "parity": [
+    {
+      "runId": "par-w-tc01",
+      "case": "TC01_LISTENER_TAPE_SEEDED",
+      "path": "browser-pool TS-W (real pools)",
+      "status": "passed",
+      "steps": "64 of 64",
+      "bitExact": false,
+      "differingLeaves": 29,
+      "leavesCompared": 7145,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-fb-tc01",
+      "case": "TC01_LISTENER_TAPE_SEEDED",
+      "path": "browser-pool production fallback",
+      "status": "passed",
+      "steps": "64 of 64",
+      "bitExact": false,
+      "differingLeaves": 29,
+      "leavesCompared": 7145,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-s-tc01",
+      "case": "TC01_LISTENER_TAPE_SEEDED",
+      "path": "browser-pool serial",
+      "status": "passed",
+      "steps": "64 of 64",
+      "bitExact": false,
+      "differingLeaves": 29,
+      "leavesCompared": 7145,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-node-tc01",
+      "case": "TC01_LISTENER_TAPE_SEEDED",
+      "path": "node-core serial",
+      "status": "passed",
+      "steps": "64 of 64",
+      "bitExact": true,
+      "differingLeaves": 0,
+      "leavesCompared": 7145,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-w-tc02",
+      "case": "TC02_STATIC_EDIT_TAPE",
+      "path": "browser-pool TS-W (real pools)",
+      "status": "passed",
+      "steps": "24 of 24",
+      "bitExact": false,
+      "differingLeaves": 19,
+      "leavesCompared": 2357,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-fb-tc02",
+      "case": "TC02_STATIC_EDIT_TAPE",
+      "path": "browser-pool production fallback",
+      "status": "passed",
+      "steps": "24 of 24",
+      "bitExact": false,
+      "differingLeaves": 19,
+      "leavesCompared": 2357,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-s-tc02",
+      "case": "TC02_STATIC_EDIT_TAPE",
+      "path": "browser-pool serial",
+      "status": "passed",
+      "steps": "24 of 24",
+      "bitExact": false,
+      "differingLeaves": 19,
+      "leavesCompared": 2357,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-node-tc02",
+      "case": "TC02_STATIC_EDIT_TAPE",
+      "path": "node-core serial",
+      "status": "passed",
+      "steps": "24 of 24",
+      "bitExact": true,
+      "differingLeaves": 0,
+      "leavesCompared": 2357,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-w-th01",
+      "case": "TH01_LISTENER_TAPE_SEEDED",
+      "path": "browser-pool TS-W (real pools)",
+      "status": "passed",
+      "steps": "64 of 64",
+      "bitExact": false,
+      "differingLeaves": 21,
+      "leavesCompared": 10472,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-fb-th01",
+      "case": "TH01_LISTENER_TAPE_SEEDED",
+      "path": "browser-pool production fallback",
+      "status": "passed",
+      "steps": "64 of 64",
+      "bitExact": false,
+      "differingLeaves": 21,
+      "leavesCompared": 10472,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-s-th01",
+      "case": "TH01_LISTENER_TAPE_SEEDED",
+      "path": "browser-pool serial",
+      "status": "passed",
+      "steps": "64 of 64",
+      "bitExact": false,
+      "differingLeaves": 21,
+      "leavesCompared": 10472,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-node-th01",
+      "case": "TH01_LISTENER_TAPE_SEEDED",
+      "path": "node-core serial",
+      "status": "passed",
+      "steps": "64 of 64",
+      "bitExact": true,
+      "differingLeaves": 0,
+      "leavesCompared": 10472,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-w-th02",
+      "case": "TH02_STATIC_EDIT_TAPE",
+      "path": "browser-pool TS-W (real pools)",
+      "status": "passed",
+      "steps": "24 of 24",
+      "bitExact": false,
+      "differingLeaves": 4,
+      "leavesCompared": 3443,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-fb-th02",
+      "case": "TH02_STATIC_EDIT_TAPE",
+      "path": "browser-pool production fallback",
+      "status": "passed",
+      "steps": "24 of 24",
+      "bitExact": false,
+      "differingLeaves": 4,
+      "leavesCompared": 3443,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-s-th02",
+      "case": "TH02_STATIC_EDIT_TAPE",
+      "path": "browser-pool serial",
+      "status": "passed",
+      "steps": "24 of 24",
+      "bitExact": false,
+      "differingLeaves": 4,
+      "leavesCompared": 3443,
+      "ruleViolations": 0,
+      "rulesOk": true
+    },
+    {
+      "runId": "par-node-th02",
+      "case": "TH02_STATIC_EDIT_TAPE",
+      "path": "node-core serial",
+      "status": "passed",
+      "steps": "24 of 24",
+      "bitExact": true,
+      "differingLeaves": 0,
+      "leavesCompared": 3443,
+      "ruleViolations": 0,
+      "rulesOk": true
+    }
+  ]
+}

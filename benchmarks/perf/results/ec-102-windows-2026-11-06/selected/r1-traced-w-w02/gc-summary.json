@@ -1,0 +1,75 @@
+{
+  "note": "Real collections only. minor and major durUs are pause time on that thread; incremental-marking-step durUs is time spent in steps, not a pause of the whole collection.",
+  "perThread": {
+    "main": {
+      "minor": {
+        "count": 175,
+        "durUs": 139237
+      },
+      "incremental-marking-step": {
+        "count": 144,
+        "durUs": 17750
+      },
+      "major": {
+        "count": 5,
+        "durUs": 21715
+      }
+    },
+    "w1": {
+      "minor": {
+        "count": 25,
+        "durUs": 49221
+      },
+      "incremental-marking-step": {
+        "count": 19,
+        "durUs": 1033
+      },
+      "major": {
+        "count": 3,
+        "durUs": 4494
+      }
+    },
+    "w2": {
+      "minor": {
+        "count": 28,
+        "durUs": 53901
+      },
+      "incremental-marking-step": {
+        "count": 18,
+        "durUs": 1716
+      },
+      "major": {
+        "count": 4,
+        "durUs": 7721
+      }
+    },
+    "w3": {
+      "minor": {
+        "count": 28,
+        "durUs": 48760
+      },
+      "incremental-marking-step": {
+        "count": 19,
+        "durUs": 1431
+      },
+      "major": {
+        "count": 4,
+        "durUs": 9749
+      }
+    },
+    "w0": {
+      "minor": {
+        "count": 26,
+        "durUs": 62144
+      },
+      "incremental-marking-step": {
+        "count": 13,
+        "durUs": 2463
+      },
+      "major": {
+        "count": 4,
+        "durUs": 16311
+      }
+    }
+  }
+}

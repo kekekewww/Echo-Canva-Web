@@ -1,0 +1,1820 @@
+{
+  "schema": "ec102.compute-vs-trace.v1",
+  "reportedValues": "whole milliseconds: the production workers read Date.now(), so reported values are integers",
+  "traceTask": "duration of the top-level task on the worker thread; it also contains the message deserialize and the reply post, so it is expected to be at least the reported value",
+  "summary": {
+    "jobs": 50,
+    "jobsWithoutMarks": 0,
+    "entries": 200,
+    "matched": 200,
+    "unmatched": 0,
+    "differenceMs": {
+      "min": -0.855,
+      "median": 0.20500000000000007,
+      "max": 2.059,
+      "mean": 0.20408999999999988
+    }
+  },
+  "entries": [
+    {
+      "seq": 4,
+      "worker": 0,
+      "reportedMs": 2,
+      "traceTaskMs": 2.177,
+      "differenceMs": 0.17700000000000005,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 4,
+      "worker": 3,
+      "reportedMs": 2,
+      "traceTaskMs": 1.897,
+      "differenceMs": -0.10299999999999998,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 4,
+      "worker": 1,
+      "reportedMs": 2,
+      "traceTaskMs": 1.833,
+      "differenceMs": -0.16700000000000004,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 4,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.542,
+      "differenceMs": 0.542,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 5,
+      "worker": 0,
+      "reportedMs": 2,
+      "traceTaskMs": 2.631,
+      "differenceMs": 0.6309999999999998,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 5,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.527,
+      "differenceMs": 0.5269999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 5,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.384,
+      "differenceMs": 0.3839999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 5,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.877,
+      "differenceMs": 0.877,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 6,
+      "worker": 2,
+      "reportedMs": 3,
+      "traceTaskMs": 2.386,
+      "differenceMs": -0.6139999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 6,
+      "worker": 3,
+      "reportedMs": 2,
+      "traceTaskMs": 2.376,
+      "differenceMs": 0.3759999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 6,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 1.914,
+      "differenceMs": 0.9139999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 6,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 1.331,
+      "differenceMs": 0.33099999999999996,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 7,
+      "worker": 0,
+      "reportedMs": 0,
+      "traceTaskMs": 0.925,
+      "differenceMs": 0.925,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 7,
+      "worker": 3,
+      "reportedMs": 0,
+      "traceTaskMs": 0.754,
+      "differenceMs": 0.754,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 7,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.602,
+      "differenceMs": 0.602,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 7,
+      "worker": 2,
+      "reportedMs": 0,
+      "traceTaskMs": 0.413,
+      "differenceMs": 0.413,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 8,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.593,
+      "differenceMs": 0.593,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 8,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 1.526,
+      "differenceMs": 0.526,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 8,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 1.514,
+      "differenceMs": 0.514,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 8,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.464,
+      "differenceMs": 0.46399999999999997,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 9,
+      "worker": 0,
+      "reportedMs": 3,
+      "traceTaskMs": 3.348,
+      "differenceMs": 0.34799999999999986,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 9,
+      "worker": 1,
+      "reportedMs": 2,
+      "traceTaskMs": 1.997,
+      "differenceMs": -0.0029999999999998916,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 9,
+      "worker": 2,
+      "reportedMs": 2,
+      "traceTaskMs": 1.836,
+      "differenceMs": -0.16399999999999992,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 9,
+      "worker": 3,
+      "reportedMs": 2,
+      "traceTaskMs": 1.823,
+      "differenceMs": -0.17700000000000005,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 10,
+      "worker": 0,
+      "reportedMs": 2,
+      "traceTaskMs": 2.315,
+      "differenceMs": 0.31499999999999995,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 10,
+      "worker": 1,
+      "reportedMs": 2,
+      "traceTaskMs": 2.235,
+      "differenceMs": 0.23499999999999988,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 10,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.301,
+      "differenceMs": 0.30099999999999993,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 10,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.143,
+      "differenceMs": 0.14300000000000002,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 11,
+      "worker": 0,
+      "reportedMs": 2,
+      "traceTaskMs": 2.635,
+      "differenceMs": 0.6349999999999998,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 11,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.444,
+      "differenceMs": 0.44399999999999995,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 11,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 1.234,
+      "differenceMs": 0.23399999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 11,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.023,
+      "differenceMs": 0.02299999999999991,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 12,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 1.943,
+      "differenceMs": 0.9430000000000001,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 12,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.072,
+      "differenceMs": 0.07200000000000006,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 12,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 0.909,
+      "differenceMs": -0.09099999999999997,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 12,
+      "worker": 3,
+      "reportedMs": 0,
+      "traceTaskMs": 0.762,
+      "differenceMs": 0.762,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 13,
+      "worker": 0,
+      "reportedMs": 2,
+      "traceTaskMs": 2.295,
+      "differenceMs": 0.29499999999999993,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 13,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 0.932,
+      "differenceMs": -0.06799999999999995,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 13,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.578,
+      "differenceMs": 0.578,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 13,
+      "worker": 2,
+      "reportedMs": 0,
+      "traceTaskMs": 0.482,
+      "differenceMs": 0.482,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 14,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 0.819,
+      "differenceMs": -0.18100000000000005,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 14,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 0.716,
+      "differenceMs": -0.28400000000000003,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 14,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.615,
+      "differenceMs": -0.385,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 14,
+      "worker": 0,
+      "reportedMs": 0,
+      "traceTaskMs": 0.332,
+      "differenceMs": 0.332,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 15,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 2.044,
+      "differenceMs": 1.044,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 15,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 1.444,
+      "differenceMs": 0.44399999999999995,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 15,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.175,
+      "differenceMs": 0.17500000000000004,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 15,
+      "worker": 2,
+      "reportedMs": 0,
+      "traceTaskMs": 0.824,
+      "differenceMs": 0.824,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 16,
+      "worker": 2,
+      "reportedMs": 2,
+      "traceTaskMs": 3.084,
+      "differenceMs": 1.084,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 16,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 3.059,
+      "differenceMs": 2.059,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 16,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.74,
+      "differenceMs": 0.74,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 16,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 1.638,
+      "differenceMs": 0.6379999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 17,
+      "worker": 1,
+      "reportedMs": 2,
+      "traceTaskMs": 2.295,
+      "differenceMs": 0.29499999999999993,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 17,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.352,
+      "differenceMs": 0.3520000000000001,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 17,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 1.271,
+      "differenceMs": 0.2709999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 17,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.128,
+      "differenceMs": 0.1279999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 18,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 1.554,
+      "differenceMs": 0.554,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 18,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 1.544,
+      "differenceMs": 0.544,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 18,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.255,
+      "differenceMs": 0.2549999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 18,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.875,
+      "differenceMs": -0.125,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 19,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.817,
+      "differenceMs": -0.18300000000000005,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 19,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 0.652,
+      "differenceMs": -0.348,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 19,
+      "worker": 2,
+      "reportedMs": 0,
+      "traceTaskMs": 0.589,
+      "differenceMs": 0.589,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 19,
+      "worker": 3,
+      "reportedMs": 0,
+      "traceTaskMs": 0.584,
+      "differenceMs": 0.584,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 20,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.751,
+      "differenceMs": -0.249,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 20,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 0.738,
+      "differenceMs": -0.262,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 20,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.714,
+      "differenceMs": -0.28600000000000003,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 20,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 0.7,
+      "differenceMs": -0.30000000000000004,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 21,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.135,
+      "differenceMs": 0.135,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 21,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 0.563,
+      "differenceMs": -0.43700000000000006,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 21,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.544,
+      "differenceMs": -0.45599999999999996,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 21,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.347,
+      "differenceMs": 0.347,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 22,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 1.014,
+      "differenceMs": 0.014000000000000012,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 22,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.895,
+      "differenceMs": -0.10499999999999998,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 22,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 0.89,
+      "differenceMs": -0.10999999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 22,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 0.416,
+      "differenceMs": -0.5840000000000001,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 23,
+      "worker": 0,
+      "reportedMs": 3,
+      "traceTaskMs": 3.359,
+      "differenceMs": 0.359,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 23,
+      "worker": 1,
+      "reportedMs": 2,
+      "traceTaskMs": 2.183,
+      "differenceMs": 0.18299999999999983,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 23,
+      "worker": 3,
+      "reportedMs": 2,
+      "traceTaskMs": 2.004,
+      "differenceMs": 0.0040000000000000036,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 23,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.53,
+      "differenceMs": 0.53,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 24,
+      "worker": 3,
+      "reportedMs": 2,
+      "traceTaskMs": 1.919,
+      "differenceMs": -0.08099999999999996,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 24,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.698,
+      "differenceMs": 0.698,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 24,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 1.199,
+      "differenceMs": 0.19900000000000007,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 24,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 1.027,
+      "differenceMs": 0.026999999999999913,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 25,
+      "worker": 1,
+      "reportedMs": 2,
+      "traceTaskMs": 1.81,
+      "differenceMs": -0.18999999999999995,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 25,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 1.139,
+      "differenceMs": 0.139,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 25,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.801,
+      "differenceMs": -0.19899999999999995,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 25,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 0.769,
+      "differenceMs": -0.23099999999999998,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 26,
+      "worker": 2,
+      "reportedMs": 2,
+      "traceTaskMs": 1.423,
+      "differenceMs": -0.577,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 26,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.887,
+      "differenceMs": -0.11299999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 26,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.716,
+      "differenceMs": 0.716,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 26,
+      "worker": 3,
+      "reportedMs": 0,
+      "traceTaskMs": 0.537,
+      "differenceMs": 0.537,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 27,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.725,
+      "differenceMs": -0.275,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 27,
+      "worker": 2,
+      "reportedMs": 0,
+      "traceTaskMs": 0.604,
+      "differenceMs": 0.604,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 27,
+      "worker": 3,
+      "reportedMs": 0,
+      "traceTaskMs": 0.56,
+      "differenceMs": 0.56,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 27,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.491,
+      "differenceMs": 0.491,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 28,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.517,
+      "differenceMs": 0.5169999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 28,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.001,
+      "differenceMs": 0.0009999999999998899,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 28,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.928,
+      "differenceMs": 0.928,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 28,
+      "worker": 0,
+      "reportedMs": 0,
+      "traceTaskMs": 0.649,
+      "differenceMs": 0.649,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 29,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.976,
+      "differenceMs": -0.02400000000000002,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 29,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.701,
+      "differenceMs": -0.29900000000000004,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 29,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 0.659,
+      "differenceMs": -0.34099999999999997,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 29,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 0.657,
+      "differenceMs": -0.34299999999999997,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 30,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.103,
+      "differenceMs": 0.10299999999999998,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 30,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.927,
+      "differenceMs": -0.07299999999999995,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 30,
+      "worker": 0,
+      "reportedMs": 0,
+      "traceTaskMs": 0.873,
+      "differenceMs": 0.873,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 30,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.516,
+      "differenceMs": 0.516,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 31,
+      "worker": 3,
+      "reportedMs": 0,
+      "traceTaskMs": 0.408,
+      "differenceMs": 0.408,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 31,
+      "worker": 0,
+      "reportedMs": 0,
+      "traceTaskMs": 0.397,
+      "differenceMs": 0.397,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 31,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.352,
+      "differenceMs": 0.352,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 31,
+      "worker": 2,
+      "reportedMs": 0,
+      "traceTaskMs": 0.327,
+      "differenceMs": 0.327,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 32,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.073,
+      "differenceMs": 0.07299999999999995,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 32,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.961,
+      "differenceMs": -0.039000000000000035,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 32,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 0.925,
+      "differenceMs": -0.07499999999999996,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 32,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.837,
+      "differenceMs": -0.16300000000000003,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 33,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.181,
+      "differenceMs": 0.18100000000000005,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 33,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.951,
+      "differenceMs": -0.049000000000000044,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 33,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 0.866,
+      "differenceMs": -0.134,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 33,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 0.788,
+      "differenceMs": -0.21199999999999997,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 34,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.776,
+      "differenceMs": -0.22399999999999998,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 34,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 0.615,
+      "differenceMs": -0.385,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 34,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.58,
+      "differenceMs": -0.42000000000000004,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 34,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.574,
+      "differenceMs": 0.574,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 35,
+      "worker": 0,
+      "reportedMs": 0,
+      "traceTaskMs": 0.621,
+      "differenceMs": 0.621,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 35,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.53,
+      "differenceMs": 0.53,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 35,
+      "worker": 3,
+      "reportedMs": 0,
+      "traceTaskMs": 0.498,
+      "differenceMs": 0.498,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 35,
+      "worker": 2,
+      "reportedMs": 0,
+      "traceTaskMs": 0.464,
+      "differenceMs": 0.464,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 36,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 1.89,
+      "differenceMs": 0.8899999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 36,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 1.278,
+      "differenceMs": 0.278,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 36,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.171,
+      "differenceMs": 0.17100000000000004,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 36,
+      "worker": 3,
+      "reportedMs": 0,
+      "traceTaskMs": 0.949,
+      "differenceMs": 0.949,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 37,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 1.504,
+      "differenceMs": 0.504,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 37,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.294,
+      "differenceMs": 0.29400000000000004,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 37,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.026,
+      "differenceMs": 0.026000000000000023,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 37,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.755,
+      "differenceMs": -0.245,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 38,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 2.042,
+      "differenceMs": 1.0419999999999998,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 38,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.239,
+      "differenceMs": 0.2390000000000001,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 38,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 1.205,
+      "differenceMs": 0.20500000000000007,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 38,
+      "worker": 0,
+      "reportedMs": 0,
+      "traceTaskMs": 1.096,
+      "differenceMs": 1.096,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 39,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.447,
+      "differenceMs": -0.5529999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 39,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 0.409,
+      "differenceMs": -0.591,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 39,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 0.396,
+      "differenceMs": -0.604,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 39,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.366,
+      "differenceMs": -0.634,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 40,
+      "worker": 3,
+      "reportedMs": 2,
+      "traceTaskMs": 1.833,
+      "differenceMs": -0.16700000000000004,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 40,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.699,
+      "differenceMs": 0.699,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 40,
+      "worker": 0,
+      "reportedMs": 0,
+      "traceTaskMs": 0.67,
+      "differenceMs": 0.67,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 40,
+      "worker": 2,
+      "reportedMs": 0,
+      "traceTaskMs": 0.666,
+      "differenceMs": 0.666,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 41,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 1.132,
+      "differenceMs": 0.1319999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 41,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 0.781,
+      "differenceMs": -0.21899999999999997,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 41,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.646,
+      "differenceMs": -0.354,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 41,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 0.626,
+      "differenceMs": -0.374,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 42,
+      "worker": 1,
+      "reportedMs": 2,
+      "traceTaskMs": 1.779,
+      "differenceMs": -0.22100000000000009,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 42,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.309,
+      "differenceMs": 0.30899999999999994,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 42,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.886,
+      "differenceMs": -0.11399999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 42,
+      "worker": 0,
+      "reportedMs": 0,
+      "traceTaskMs": 0.754,
+      "differenceMs": 0.754,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 43,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.137,
+      "differenceMs": 0.137,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 43,
+      "worker": 2,
+      "reportedMs": 0,
+      "traceTaskMs": 1.018,
+      "differenceMs": 1.018,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 43,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.946,
+      "differenceMs": 0.946,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 43,
+      "worker": 0,
+      "reportedMs": 0,
+      "traceTaskMs": 0.697,
+      "differenceMs": 0.697,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 44,
+      "worker": 1,
+      "reportedMs": 2,
+      "traceTaskMs": 2.226,
+      "differenceMs": 0.22599999999999998,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 44,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.88,
+      "differenceMs": 0.8799999999999999,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 44,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.004,
+      "differenceMs": 0.0040000000000000036,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 44,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.962,
+      "differenceMs": -0.038000000000000034,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 45,
+      "worker": 2,
+      "reportedMs": 2,
+      "traceTaskMs": 1.68,
+      "differenceMs": -0.32000000000000006,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 45,
+      "worker": 3,
+      "reportedMs": 2,
+      "traceTaskMs": 1.621,
+      "differenceMs": -0.379,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 45,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 0.918,
+      "differenceMs": -0.08199999999999996,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 45,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.784,
+      "differenceMs": -0.21599999999999997,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 46,
+      "worker": 3,
+      "reportedMs": 2,
+      "traceTaskMs": 1.22,
+      "differenceMs": -0.78,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 46,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.796,
+      "differenceMs": -0.20399999999999996,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 46,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 0.778,
+      "differenceMs": -0.22199999999999998,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 46,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.383,
+      "differenceMs": -0.617,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 47,
+      "worker": 0,
+      "reportedMs": 0,
+      "traceTaskMs": 1.047,
+      "differenceMs": 1.047,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 47,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.473,
+      "differenceMs": 0.473,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 47,
+      "worker": 3,
+      "reportedMs": 0,
+      "traceTaskMs": 0.434,
+      "differenceMs": 0.434,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 47,
+      "worker": 2,
+      "reportedMs": 0,
+      "traceTaskMs": 0.418,
+      "differenceMs": 0.418,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 48,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 1.449,
+      "differenceMs": 0.44900000000000007,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 48,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.797,
+      "differenceMs": -0.20299999999999996,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 48,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.546,
+      "differenceMs": 0.546,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 48,
+      "worker": 0,
+      "reportedMs": 0,
+      "traceTaskMs": 0.515,
+      "differenceMs": 0.515,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 49,
+      "worker": 1,
+      "reportedMs": 2,
+      "traceTaskMs": 1.145,
+      "differenceMs": -0.855,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 49,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 1.114,
+      "differenceMs": 0.1140000000000001,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 49,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.553,
+      "differenceMs": -0.44699999999999995,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 49,
+      "worker": 3,
+      "reportedMs": 0,
+      "traceTaskMs": 0.543,
+      "differenceMs": 0.543,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 50,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.039,
+      "differenceMs": 0.038999999999999924,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 50,
+      "worker": 0,
+      "reportedMs": 0,
+      "traceTaskMs": 0.783,
+      "differenceMs": 0.783,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 50,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.722,
+      "differenceMs": 0.722,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 50,
+      "worker": 3,
+      "reportedMs": 0,
+      "traceTaskMs": 0.605,
+      "differenceMs": 0.605,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 51,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.989,
+      "differenceMs": -0.01100000000000001,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 51,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 0.645,
+      "differenceMs": -0.355,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 51,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 0.601,
+      "differenceMs": -0.399,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 51,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.553,
+      "differenceMs": -0.44699999999999995,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 52,
+      "worker": 1,
+      "reportedMs": 1,
+      "traceTaskMs": 1.342,
+      "differenceMs": 0.3420000000000001,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 52,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 0.877,
+      "differenceMs": -0.123,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 52,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 0.82,
+      "differenceMs": -0.18000000000000005,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 52,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 0.811,
+      "differenceMs": -0.18899999999999995,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 53,
+      "worker": 0,
+      "reportedMs": 1,
+      "traceTaskMs": 1.619,
+      "differenceMs": 0.619,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 53,
+      "worker": 2,
+      "reportedMs": 1,
+      "traceTaskMs": 1.411,
+      "differenceMs": 0.41100000000000003,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 53,
+      "worker": 3,
+      "reportedMs": 1,
+      "traceTaskMs": 0.861,
+      "differenceMs": -0.139,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    },
+    {
+      "seq": 53,
+      "worker": 1,
+      "reportedMs": 0,
+      "traceTaskMs": 0.51,
+      "differenceMs": 0.51,
+      "matchedBy": "rank within the job (worker threads are not individually identifiable)",
+      "reason": ""
+    }
+  ]
+}

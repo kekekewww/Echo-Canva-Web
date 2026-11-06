@@ -1,0 +1,37 @@
+{
+  "schema": "ec102.clock-alignment.v1",
+  "model": "traceTsUs = offsetUs + (1 + driftPpm / 1e6) * (clockMs * 1000)",
+  "threads": {
+    "main": {
+      "thread": "CrRendererMain",
+      "marks": 540,
+      "baselineMs": 16347.199999988079,
+      "perfNowFit": {
+        "n": 540,
+        "offsetUs": 98616594506.17604,
+        "driftPpm": -0.032156581730724554,
+        "maxResidualUs": 163.14022827148438,
+        "model": {
+          "a": 98616594506.17604,
+          "b": 0.9999999678434183,
+          "meanX": 9160029.259259664,
+          "meanY": 98625754535.14075
+        }
+      },
+      "epochFit": {
+        "n": 540,
+        "offsetUs": -1793882986559574.8,
+        "driftPpm": -0.032156637685964995,
+        "maxResidualUs": 162.25,
+        "model": {
+          "a": -1793882986559574.8,
+          "b": 0.9999999678433623,
+          "meanX": 1793981670002528.5,
+          "meanY": 98625754535.14075
+        }
+      }
+    }
+  },
+  "crossThread": {},
+  "pingUncertainty": "unavailable"
+}

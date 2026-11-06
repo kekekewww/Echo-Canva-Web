@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "runId": "r1-traced-app-w-2",
+  "start": "2026-11-06T14:29:08.975Z",
+  "end": "2026-11-06T14:30:26.312Z",
+  "sampleCount": 6652,
+  "originalStatus": "failed",
+  "originalError": "Error: invalid sample (app.input-to-dispatch-minus-rate-limit): duration must be a finite number >= 0 (a missing duration is not a sample); only the computed or timer-difference phases in SIGNED_PHASES may be negative\n    at createSample (<file-url>\n    at add (<file-url>\n    at <file-url>\n    at Array.forEach (<anonymous>)\n    at deriveAppSamples (<file-url>\n    at main (<file-url>",
+  "rederivedAt": "2026-11-06T14:59:14.599Z",
+  "rederivedByCommit": "973eddc0d1c50d1f18f5e9803d9c2fb5a529fc8f",
+  "rederivedAudio": "not kept by this run",
+  "originalPhasesNotReached": [
+    "app.worker-compute-metric",
+    "app.input-to-commit"
+  ]
+}

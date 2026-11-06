@@ -1,0 +1,1600 @@
+{
+  "schema": "ec102.summary.v1",
+  "sampleCount": 3432,
+  "phases": {
+    "accept.to-first-param": {
+      "units": "ms",
+      "count": 100,
+      "outcomes": {
+        "ok": 100
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 100,
+        "p50": 0.8999999910593033,
+        "p95": 2,
+        "p99": 4,
+        "max": 6.9000000059604645,
+        "mean": 1.1370000003278256
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 100,
+            "p50": 0.8999999910593033,
+            "p95": 2,
+            "p99": 4,
+            "max": 6.9000000059604645,
+            "mean": 1.1370000003278256
+          }
+        }
+      }
+    },
+    "accept.to-overlay-commit": {
+      "units": "ms",
+      "count": 100,
+      "outcomes": {
+        "ok": 100
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 100,
+        "p50": 0.7999999970197678,
+        "p95": 1.7000000029802322,
+        "p99": 2.2999999970197678,
+        "max": 3.7999999970197678,
+        "mean": 0.9599999997019768
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 100,
+            "p50": 0.7999999970197678,
+            "p95": 1.7000000029802322,
+            "p99": 2.2999999970197678,
+            "max": 3.7999999970197678,
+            "mean": 0.9599999997019768
+          }
+        }
+      }
+    },
+    "accept.to-status-commit": {
+      "units": "ms",
+      "count": 100,
+      "outcomes": {
+        "ok": 100
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 100,
+        "p50": 1.5,
+        "p95": 3.7000000029802322,
+        "p99": 8.700000002980232,
+        "max": 27.599999994039536,
+        "mean": 2.1680000004172326
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 100,
+            "p50": 1.5,
+            "p95": 3.7000000029802322,
+            "p99": 8.700000002980232,
+            "max": 27.599999994039536,
+            "mean": 2.1680000004172326
+          }
+        }
+      }
+    },
+    "app.input-to-commit": {
+      "units": "ms",
+      "count": 100,
+      "outcomes": {
+        "ok": 100
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 100,
+        "p50": 19.200000002980232,
+        "p95": 39.79999999701977,
+        "p99": 41.599999994039536,
+        "max": 64.5,
+        "mean": 22.147000000327825
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 100,
+            "p50": 19.200000002980232,
+            "p95": 39.79999999701977,
+            "p99": 41.599999994039536,
+            "max": 64.5,
+            "mean": 22.147000000327825
+          }
+        }
+      }
+    },
+    "app.input-to-dispatch": {
+      "units": "ms",
+      "count": 100,
+      "outcomes": {
+        "ok": 100
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 100,
+        "p50": 16.099999994039536,
+        "p95": 34,
+        "p99": 36.29999999701977,
+        "max": 36.29999999701977,
+        "mean": 18.16199999958277
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 100,
+            "p50": 16.099999994039536,
+            "p95": 34,
+            "p99": 36.29999999701977,
+            "max": 36.29999999701977,
+            "mean": 18.16199999958277
+          }
+        }
+      }
+    },
+    "app.input-to-dispatch-minus-rate-limit": {
+      "units": "ms",
+      "count": 99,
+      "outcomes": {
+        "ok": 99
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 99,
+        "p50": 15.799999997019768,
+        "p95": 17.299999997019768,
+        "p99": 29.900000005960464,
+        "max": 29.900000005960464,
+        "mean": 14.355555555134078
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 99,
+            "p50": 15.799999997019768,
+            "p95": 17.299999997019768,
+            "p99": 29.900000005960464,
+            "max": 29.900000005960464,
+            "mean": 14.355555555134078
+          }
+        }
+      }
+    },
+    "app.long-animation-frame.blocking.out-of-window": {
+      "units": "ms",
+      "count": 2,
+      "outcomes": {
+        "ok": 2
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 2,
+        "p50": 12.8,
+        "p95": 195.4,
+        "p99": 195.4,
+        "max": 195.4,
+        "mean": 104.10000000000001
+      },
+      "exploratory": true
+    },
+    "app.long-animation-frame.out-of-window": {
+      "units": "ms",
+      "count": 2,
+      "outcomes": {
+        "ok": 2
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 2,
+        "p50": 64,
+        "p95": 260.6000000089407,
+        "p99": 260.6000000089407,
+        "max": 260.6000000089407,
+        "mean": 162.30000000447035
+      },
+      "exploratory": true
+    },
+    "app.long-task.out-of-window": {
+      "units": "ms",
+      "count": 2,
+      "outcomes": {
+        "ok": 2
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 2,
+        "p50": 62,
+        "p95": 246,
+        "p99": 246,
+        "max": 246,
+        "mean": 154
+      },
+      "exploratory": true
+    },
+    "app.worker-compute-metric": {
+      "units": "ms",
+      "count": 100,
+      "outcomes": {
+        "ok": 100
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 100,
+        "p50": 2,
+        "p95": 3,
+        "p99": 4,
+        "max": 7,
+        "mean": 1.79
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 100,
+            "p50": 2,
+            "p95": 3,
+            "p99": 4,
+            "max": 7,
+            "mean": 1.79
+          }
+        }
+      }
+    },
+    "audio.apply-window": {
+      "units": "ms",
+      "count": 100,
+      "outcomes": {
+        "ok": 100
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 100,
+        "p50": 0.09999999403953552,
+        "p95": 0.20000000298023224,
+        "p99": 0.4000000059604645,
+        "max": 0.5999999940395355,
+        "mean": 0.07699999958276749
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 100,
+            "p50": 0.09999999403953552,
+            "p95": 0.20000000298023224,
+            "p99": 0.4000000059604645,
+            "max": 0.5999999940395355,
+            "mean": 0.07699999958276749
+          }
+        }
+      }
+    },
+    "audio.callback-interval-mean": {
+      "units": "s",
+      "count": 64,
+      "outcomes": {
+        "ok": 64
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 64,
+        "p50": 0.009999436410500695,
+        "p95": 0.010000609030488224,
+        "p99": 0.010002434400800184,
+        "max": 0.010002434400800184,
+        "mean": 0.009993498794738643
+      },
+      "exploratory": true
+    },
+    "audio.param-call-total-ms": {
+      "units": "ms",
+      "count": 100,
+      "outcomes": {
+        "ok": 100
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 100,
+        "p50": 0,
+        "p95": 0.19999998807907104,
+        "p99": 0.29999999701976776,
+        "max": 0.4000000059604645,
+        "mean": 0.03800000041723251
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 100,
+            "p50": 0,
+            "p95": 0.19999998807907104,
+            "p99": 0.29999999701976776,
+            "max": 0.4000000059604645,
+            "mean": 0.03800000041723251
+          }
+        }
+      }
+    },
+    "audio.param-ops": {
+      "units": "count",
+      "count": 100,
+      "outcomes": {
+        "ok": 100
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 100,
+        "p50": 26,
+        "p95": 139,
+        "p99": 139,
+        "max": 139,
+        "mean": 37.19
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 100,
+            "p50": 26,
+            "p95": 139,
+            "p99": 139,
+            "max": 139,
+            "mean": 37.19
+          }
+        }
+      }
+    },
+    "audio.render-capacity": {
+      "units": "ratio",
+      "count": 64,
+      "outcomes": {
+        "ok": 64
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 64,
+        "p50": 0.09758541228333835,
+        "p95": 0.254249150169966,
+        "p99": 0.8016923842707814,
+        "max": 0.8016923842707814,
+        "mean": 0.129013185004297
+      },
+      "exploratory": true
+    },
+    "display.overlay-commit-to-frame-end": {
+      "units": "ms",
+      "count": 100,
+      "outcomes": {
+        "ok": 100
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 100,
+        "p50": 13.900000005960464,
+        "p95": 15.300000011920929,
+        "p99": 25.5,
+        "max": 31.5,
+        "mean": 13.487000000029802
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 100,
+            "p50": 13.900000005960464,
+            "p95": 15.300000011920929,
+            "p99": 25.5,
+            "max": 31.5,
+            "mean": 13.487000000029802
+          }
+        }
+      }
+    },
+    "display.status-commit-to-frame-end": {
+      "units": "ms",
+      "count": 100,
+      "outcomes": {
+        "ok": 100
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 100,
+        "p50": 13.100000008940697,
+        "p95": 14.699999988079071,
+        "p99": 15.599999994039536,
+        "max": 26.599999994039536,
+        "mean": 12.37799999937415
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 100,
+            "p50": 13.100000008940697,
+            "p95": 14.699999988079071,
+            "p99": 15.599999994039536,
+            "max": 26.599999994039536,
+            "mean": 12.37799999937415
+          }
+        }
+      }
+    },
+    "merge.handler": {
+      "units": "ms",
+      "count": 400,
+      "outcomes": {
+        "ok": 400
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 400,
+        "p50": 0.09999999403953552,
+        "p95": 0.29999999701976776,
+        "p99": 0.4000000059604645,
+        "max": 0.5,
+        "mean": 0.10475000023841857
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 400,
+            "p50": 0.09999999403953552,
+            "p95": 0.29999999701976776,
+            "p99": 0.4000000059604645,
+            "max": 0.5,
+            "mean": 0.10475000023841857
+          }
+        }
+      }
+    },
+    "merge.reply-deserialize": {
+      "units": "ms",
+      "count": 400,
+      "outcomes": {
+        "ok": 400
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 400,
+        "p50": 0,
+        "p95": 0.10000000894069672,
+        "p99": 0.10000000894069672,
+        "max": 0.20000000298023224,
+        "mean": 0.01824999999254942
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 400,
+            "p50": 0,
+            "p95": 0.10000000894069672,
+            "p99": 0.10000000894069672,
+            "max": 0.20000000298023224,
+            "mean": 0.01824999999254942
+          }
+        }
+      }
+    },
+    "queue.rate-limit-estimate": {
+      "units": "ms",
+      "count": 99,
+      "outcomes": {
+        "ok": 99
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 99,
+        "p50": 0,
+        "p95": 34.433333327372566,
+        "p99": 35.933333327372566,
+        "max": 35.933333327372566,
+        "mean": 3.829292929232752
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 99,
+            "p50": 0,
+            "p95": 34.433333327372566,
+            "p99": 35.933333327372566,
+            "max": 35.933333327372566,
+            "mean": 3.829292929232752
+          }
+        }
+      }
+    },
+    "shard.compute-reported": {
+      "units": "ms",
+      "count": 400,
+      "outcomes": {
+        "ok": 400
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 400,
+        "p50": 1,
+        "p95": 2,
+        "p99": 3,
+        "max": 3,
+        "mean": 0.8025
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 400,
+            "p50": 1,
+            "p95": 2,
+            "p99": 3,
+            "max": 3,
+            "mean": 0.8025
+          }
+        }
+      }
+    },
+    "shard.post": {
+      "units": "ms",
+      "count": 400,
+      "outcomes": {
+        "ok": 400
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 400,
+        "p50": 0,
+        "p95": 0.10000000894069672,
+        "p99": 0.10000000894069672,
+        "max": 0.29999999701976776,
+        "mean": 0.014500000104308129
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 400,
+            "p50": 0,
+            "p95": 0.10000000894069672,
+            "p99": 0.10000000894069672,
+            "max": 0.29999999701976776,
+            "mean": 0.014500000104308129
+          }
+        }
+      }
+    },
+    "shard.roundtrip": {
+      "units": "ms",
+      "count": 400,
+      "outcomes": {
+        "ok": 400
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 400,
+        "p50": 1.0999999940395355,
+        "p95": 2.2999999970197678,
+        "p99": 3.7000000029802322,
+        "max": 6.299999997019768,
+        "mean": 1.2145000004768371
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 0,
+            "p50": "unavailable",
+            "p95": "unavailable",
+            "p99": "unavailable",
+            "max": "unavailable",
+            "mean": "unavailable"
+          },
+          "cold": {
+            "N": 400,
+            "p50": 1.0999999940395355,
+            "p95": 2.2999999970197678,
+            "p99": 3.7000000029802322,
+            "max": 6.299999997019768,
+            "mean": 1.2145000004768371
+          }
+        }
+      }
+    }
+  },
+  "runId": "ct-shell",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "pass": "traced",
+  "boundary": "browser-app",
+  "workers": 4,
+  "audio": "on",
+  "driver": "poll",
+  "browserChannel": "default",
+  "viewport": "default",
+  "browserArgs": [],
+  "traced": {
+    "measuredWindow": true,
+    "renderers": {
+      "44128": {
+        "rasterTasks": 3696,
+        "rasterTotalWallUs": 14027387,
+        "rasterTaskWallUs": {
+          "n": 3696,
+          "p50": 1550,
+          "p95": 14097,
+          "p99": 16205,
+          "max": 21841
+        }
+      }
+    }
+  },
+  "denominators": {
+    "submitted": 100,
+    "coalesced": "not-applicable",
+    "dispatched": 100,
+    "completed": 100,
+    "accepted": 100,
+    "stale": "not-applicable",
+    "fallback": 0,
+    "error": 0,
+    "timeout": 0
+  },
+  "jobs": "unavailable",
+  "intervalMs": "unavailable",
+  "clockResolutionMs": "unavailable",
+  "wallMs": "unavailable",
+  "parity": "not-applicable",
+  "repeat": 1,
+  "workerCounts": "not-applicable",
+  "integrity": "not-applicable",
+  "shardCompute": "not-applicable",
+  "phaseSumConsistency": "not-applicable",
+  "maxDurationMs": "not-applicable",
+  "observed": {
+    "workerSources": [
+      "Worker"
+    ],
+    "workerCounts": [
+      "4"
+    ],
+    "jobs": 100,
+    "commits": 100,
+    "workersCreated": 4,
+    "support": {
+      "longtask": true,
+      "longAnimationFrame": true
+    },
+    "contexts": [
+      {
+        "sampleRate": 48000,
+        "baseLatency": 0.01,
+        "outputLatency": 0.04,
+        "state": "running"
+      }
+    ],
+    "chain": {
+      "jobsWithChain": 100,
+      "jobsWithoutOverlayMutation": 0,
+      "jobsWithoutParamCalls": 0,
+      "order": {
+        "jobsWithOverlayAndParam": 100,
+        "overlayBeforeFirstParam": 67,
+        "firstParamBeforeStatus": 100,
+        "fullOrder": 67
+      },
+      "overlayRoot": {
+        "selector": ".workspace-viewport-panel",
+        "found": true,
+        "containsCanvas": false,
+        "mutationsObserved": 200,
+        "note": "accept.to-overlay-commit is the first viewport mutation after the job's last handler"
+      },
+      "updateHz": 12,
+      "updateIntervalMs": 83.33333333333333
+    },
+    "measuredWindow": {
+      "start": 1100.5999999940395,
+      "end": 16548.09999999404
+    },
+    "longTasks": {
+      "inWindow": 0,
+      "outsideWindow": 2
+    },
+    "longAnimationFrames": {
+      "inWindow": 0,
+      "outsideWindow": 2
+    },
+    "expectedWorkerCount": 4,
+    "hardwareConcurrency": 32,
+    "workerSourceAttribute": [
+      "Worker"
+    ],
+    "workerCountAttribute": [
+      "4"
+    ]
+  },
+  "trace": {
+    "computeVsTrace": {
+      "jobs": 100,
+      "jobsWithoutMarks": 0,
+      "entries": 400,
+      "matched": 400,
+      "unmatched": 0,
+      "differenceMs": {
+        "min": -0.8740000000000001,
+        "median": 0.18999999999999995,
+        "max": 1.5659999999999998,
+        "mean": 0.18521500000000019
+      }
+    },
+    "jobDecomposition": {
+      "schema": "ec102.job-decomposition-summary.v1",
+      "boundary": "browser-app",
+      "clock": "trace-ts-us",
+      "units": "microseconds, except reportedMetric which is in the job's own unit (milliseconds)",
+      "lines": 400,
+      "jobs": 100,
+      "workerMatching": {
+        "methods": [
+          "rank within the job (worker threads are not individually identifiable)"
+        ],
+        "approximate": true,
+        "note": "approximate: in-app the worker threads cannot be told apart, so each job's reported shard values are paired with its largest worker tasks by rank; the task paired with a line may belong to another worker"
+      },
+      "mainClockFit": {
+        "baselineMs": 16525.29999999702,
+        "driftPpm": 0.24269944187693682,
+        "maxResidualUs": 102.03959655761719
+      },
+      "all": {
+        "dispatchToWorkerStartUs": {
+          "n": 400,
+          "p50": 15.170654296875,
+          "p95": 105.85270690917969,
+          "p99": 169.25161743164062,
+          "max": 614.5601043701172
+        },
+        "workerTaskWallUs": {
+          "n": 400,
+          "p50": 821,
+          "p95": 2198,
+          "p99": 3382,
+          "max": 4566
+        },
+        "workerTaskCpuUs": {
+          "n": 400,
+          "p50": 661,
+          "p95": 1838,
+          "p99": 2782,
+          "max": 4012
+        },
+        "workerEndToMainHandlerUs": {
+          "n": 400,
+          "p50": 154.21063232421875,
+          "p95": 950.9096221923828,
+          "p99": 1532.2459716796875,
+          "max": 2644.4414672851562
+        },
+        "mainBusyDuringReplyWaitUs": {
+          "n": 400,
+          "p50": 139.4893341064453,
+          "p95": 874.1611175537109,
+          "p99": 1522.2459716796875,
+          "max": 2355.4414672851562
+        },
+        "reportedMetric": {
+          "n": 400,
+          "p50": 2,
+          "p95": 3,
+          "p99": 4,
+          "max": 7
+        }
+      },
+      "slowest10PercentByReportedMetric": {
+        "jobs": 10,
+        "seqs": [
+          4,
+          5,
+          6,
+          8,
+          9,
+          10,
+          15,
+          16,
+          28,
+          72
+        ],
+        "fields": {
+          "dispatchToWorkerStartUs": {
+            "n": 40,
+            "p50": -9.2449951171875,
+            "p95": 186.19912719726562,
+            "p99": 614.5601043701172,
+            "max": 614.5601043701172
+          },
+          "workerTaskWallUs": {
+            "n": 40,
+            "p50": 1875,
+            "p95": 3876,
+            "p99": 4566,
+            "max": 4566
+          },
+          "workerTaskCpuUs": {
+            "n": 40,
+            "p50": 1633,
+            "p95": 3439,
+            "p99": 4012,
+            "max": 4012
+          },
+          "workerEndToMainHandlerUs": {
+            "n": 40,
+            "p50": 179.670654296875,
+            "p95": 1532.2459716796875,
+            "p99": 2644.4414672851562,
+            "max": 2644.4414672851562
+          },
+          "mainBusyDuringReplyWaitUs": {
+            "n": 40,
+            "p50": 132.649658203125,
+            "p95": 1522.2459716796875,
+            "p99": 2355.4414672851562,
+            "max": 2355.4414672851562
+          },
+          "reportedMetric": {
+            "n": 40,
+            "p50": 3,
+            "p95": 7,
+            "p99": 7,
+            "max": 7
+          }
+        }
+      }
+    },
+    "jobLevelDecomposition": {
+      "schema": "ec102.job-decomposition-jobs-summary.v1",
+      "counts": {
+        "note": "counts only; the levels are rows of a report table (reported metric at or above the level, in ms), not budgets or thresholds",
+        "all": {
+          "jobs": 100,
+          "replyWaitExceedsSlowestWorker": 4,
+          "withFrameChildrenInWait": 0
+        },
+        "atOrAboveReportedMetricMs": {
+          "8": {
+            "jobs": 0,
+            "replyWaitExceedsSlowestWorker": 0,
+            "withFrameChildrenInWait": 0
+          },
+          "12": {
+            "jobs": 0,
+            "replyWaitExceedsSlowestWorker": 0,
+            "withFrameChildrenInWait": 0
+          },
+          "25": {
+            "jobs": 0,
+            "replyWaitExceedsSlowestWorker": 0,
+            "withFrameChildrenInWait": 0
+          },
+          "50": {
+            "jobs": 0,
+            "replyWaitExceedsSlowestWorker": 0,
+            "withFrameChildrenInWait": 0
+          }
+        }
+      },
+      "boundary": "browser-app",
+      "clock": "trace-ts-us",
+      "units": "microseconds, except reportedMetric (milliseconds) and the count lateStartWorkers",
+      "window": "first post to the start of the last reply handler on main; worker tasks are top-level tasks on DedicatedWorker threads that start at or after the first post",
+      "jobs": 100,
+      "all": {
+        "jobs": 100,
+        "fields": {
+          "reportedMetric": {
+            "n": 100,
+            "p50": 2,
+            "p95": 3,
+            "p99": 4,
+            "max": 7
+          },
+          "firstPostToFirstWorkerStartUs": {
+            "n": 100,
+            "p50": 38.67256164550781,
+            "p95": 109.63667297363281,
+            "p99": 363.4813537597656,
+            "max": 503.4725036621094
+          },
+          "firstPostToLastWorkerEndUs": {
+            "n": 100,
+            "p50": 1331.6725616455078,
+            "p95": 2788.329635620117,
+            "p99": 3457.5323181152344,
+            "max": 5724.560119628906
+          },
+          "slowestWorkerWallUs": {
+            "n": 100,
+            "p50": 1138,
+            "p95": 2776,
+            "p99": 3382,
+            "max": 4566
+          },
+          "slowestWorkerCpuUs": {
+            "n": 100,
+            "p50": 959,
+            "p95": 2494,
+            "p99": 2782,
+            "max": 4012
+          },
+          "slowestWorkerOffCpuUs": {
+            "n": 100,
+            "p50": 179,
+            "p95": 491,
+            "p99": 785,
+            "max": 866
+          },
+          "lastWorkerEndToLastHandlerStartUs": {
+            "n": 100,
+            "p50": 73.82734680175781,
+            "p95": 700.4008483886719,
+            "p99": 909.3639678955078,
+            "max": 1228.2459716796875
+          },
+          "mainBusyWallUs": {
+            "n": 100,
+            "p50": 73.80165100097656,
+            "p95": 614.1976318359375,
+            "p99": 899.3639678955078,
+            "max": 1224.2459716796875
+          },
+          "mainBusyCpuUs": {
+            "n": 100,
+            "p50": 210,
+            "p95": 1069,
+            "p99": 1620,
+            "max": 1846
+          },
+          "lastHandlerUs": {
+            "n": 100,
+            "p50": 100.00000894069672,
+            "p95": 299.99999701976776,
+            "p99": 400.0000059604645,
+            "max": 500
+          },
+          "gcOnMainInWindowUs": {
+            "n": 100,
+            "p50": 0,
+            "p95": 1153,
+            "p99": 1317,
+            "max": 1415
+          },
+          "gcOnWorkersInWindowUs": {
+            "n": 100,
+            "p50": 445,
+            "p95": 1522,
+            "p99": 2062,
+            "max": 2581
+          },
+          "lateStartWorkers": {
+            "n": 100,
+            "p50": 0,
+            "p95": 3,
+            "p99": 4,
+            "max": 4
+          },
+          "mainOffCpuDuringWaitUs": {
+            "n": 100,
+            "p50": 8.692587261550997,
+            "p95": 101.83493533280256,
+            "p99": 135.2014840802678,
+            "max": 308.11687435091204
+          },
+          "rasterWallDuringWaitUs": {
+            "n": 100,
+            "p50": 266.45635986328125,
+            "p95": 2801.6033935546875,
+            "p99": 3637.4558715820312,
+            "max": 4912.98388671875
+          },
+          "rasterThreadsDuringWait": {
+            "n": 100,
+            "p50": 4,
+            "p95": 4,
+            "p99": 4,
+            "max": 4
+          }
+        }
+      },
+      "slowest10PercentByReportedMetric": {
+        "jobs": 10,
+        "fields": {
+          "reportedMetric": {
+            "n": 10,
+            "p50": 3,
+            "p95": 7,
+            "p99": 7,
+            "max": 7
+          },
+          "firstPostToFirstWorkerStartUs": {
+            "n": 10,
+            "p50": 27.532318115234375,
+            "p95": 179.56011962890625,
+            "p99": 179.56011962890625,
+            "max": 179.56011962890625
+          },
+          "firstPostToLastWorkerEndUs": {
+            "n": 10,
+            "p50": 2788.329635620117,
+            "p95": 5724.560119628906,
+            "p99": 5724.560119628906,
+            "max": 5724.560119628906
+          },
+          "slowestWorkerWallUs": {
+            "n": 10,
+            "p50": 2776,
+            "p95": 4566,
+            "p99": 4566,
+            "max": 4566
+          },
+          "slowestWorkerCpuUs": {
+            "n": 10,
+            "p50": 2494,
+            "p95": 4012,
+            "p99": 4012,
+            "max": 4012
+          },
+          "slowestWorkerOffCpuUs": {
+            "n": 10,
+            "p50": 364,
+            "p95": 866,
+            "p99": 866,
+            "max": 866
+          },
+          "lastWorkerEndToLastHandlerStartUs": {
+            "n": 10,
+            "p50": 73.80165100097656,
+            "p95": 1228.2459716796875,
+            "p99": 1228.2459716796875,
+            "max": 1228.2459716796875
+          },
+          "mainBusyWallUs": {
+            "n": 10,
+            "p50": 73.80165100097656,
+            "p95": 1224.2459716796875,
+            "p99": 1224.2459716796875,
+            "max": 1224.2459716796875
+          },
+          "mainBusyCpuUs": {
+            "n": 10,
+            "p50": 280,
+            "p95": 1846,
+            "p99": 1846,
+            "max": 1846
+          },
+          "lastHandlerUs": {
+            "n": 10,
+            "p50": 200.00000298023224,
+            "p95": 400.0000059604645,
+            "p99": 400.0000059604645,
+            "max": 400.0000059604645
+          },
+          "gcOnMainInWindowUs": {
+            "n": 10,
+            "p50": 0,
+            "p95": 1102,
+            "p99": 1102,
+            "max": 1102
+          },
+          "gcOnWorkersInWindowUs": {
+            "n": 10,
+            "p50": 1338,
+            "p95": 2581,
+            "p99": 2581,
+            "max": 2581
+          },
+          "lateStartWorkers": {
+            "n": 10,
+            "p50": 0,
+            "p95": 1,
+            "p99": 1,
+            "max": 1
+          },
+          "mainOffCpuDuringWaitUs": {
+            "n": 10,
+            "p50": 17.186685849542485,
+            "p95": 101.83493533280256,
+            "p99": 101.83493533280256,
+            "max": 101.83493533280256
+          },
+          "rasterWallDuringWaitUs": {
+            "n": 10,
+            "p50": 295.20660400390625,
+            "p95": 4912.98388671875,
+            "p99": 4912.98388671875,
+            "max": 4912.98388671875
+          },
+          "rasterThreadsDuringWait": {
+            "n": 10,
+            "p50": 4,
+            "p95": 4,
+            "p99": 4,
+            "max": 4
+          }
+        },
+        "seqs": [
+          4,
+          5,
+          6,
+          8,
+          9,
+          10,
+          15,
+          16,
+          28,
+          72
+        ]
+      },
+      "byJobKind": {
+        "pose-only": {
+          "jobs": 100,
+          "fields": {
+            "reportedMetric": {
+              "n": 100,
+              "p50": 2,
+              "p95": 3,
+              "p99": 4,
+              "max": 7
+            },
+            "firstPostToFirstWorkerStartUs": {
+              "n": 100,
+              "p50": 38.67256164550781,
+              "p95": 109.63667297363281,
+              "p99": 363.4813537597656,
+              "max": 503.4725036621094
+            },
+            "firstPostToLastWorkerEndUs": {
+              "n": 100,
+              "p50": 1331.6725616455078,
+              "p95": 2788.329635620117,
+              "p99": 3457.5323181152344,
+              "max": 5724.560119628906
+            },
+            "slowestWorkerWallUs": {
+              "n": 100,
+              "p50": 1138,
+              "p95": 2776,
+              "p99": 3382,
+              "max": 4566
+            },
+            "slowestWorkerCpuUs": {
+              "n": 100,
+              "p50": 959,
+              "p95": 2494,
+              "p99": 2782,
+              "max": 4012
+            },
+            "slowestWorkerOffCpuUs": {
+              "n": 100,
+              "p50": 179,
+              "p95": 491,
+              "p99": 785,
+              "max": 866
+            },
+            "lastWorkerEndToLastHandlerStartUs": {
+              "n": 100,
+              "p50": 73.82734680175781,
+              "p95": 700.4008483886719,
+              "p99": 909.3639678955078,
+              "max": 1228.2459716796875
+            },
+            "mainBusyWallUs": {
+              "n": 100,
+              "p50": 73.80165100097656,
+              "p95": 614.1976318359375,
+              "p99": 899.3639678955078,
+              "max": 1224.2459716796875
+            },
+            "mainBusyCpuUs": {
+              "n": 100,
+              "p50": 210,
+              "p95": 1069,
+              "p99": 1620,
+              "max": 1846
+            },
+            "lastHandlerUs": {
+              "n": 100,
+              "p50": 100.00000894069672,
+              "p95": 299.99999701976776,
+              "p99": 400.0000059604645,
+              "max": 500
+            },
+            "gcOnMainInWindowUs": {
+              "n": 100,
+              "p50": 0,
+              "p95": 1153,
+              "p99": 1317,
+              "max": 1415
+            },
+            "gcOnWorkersInWindowUs": {
+              "n": 100,
+              "p50": 445,
+              "p95": 1522,
+              "p99": 2062,
+              "max": 2581
+            },
+            "lateStartWorkers": {
+              "n": 100,
+              "p50": 0,
+              "p95": 3,
+              "p99": 4,
+              "max": 4
+            },
+            "mainOffCpuDuringWaitUs": {
+              "n": 100,
+              "p50": 8.692587261550997,
+              "p95": 101.83493533280256,
+              "p99": 135.2014840802678,
+              "max": 308.11687435091204
+            },
+            "rasterWallDuringWaitUs": {
+              "n": 100,
+              "p50": 266.45635986328125,
+              "p95": 2801.6033935546875,
+              "p99": 3637.4558715820312,
+              "max": 4912.98388671875
+            },
+            "rasterThreadsDuringWait": {
+              "n": 100,
+              "p50": 4,
+              "p95": 4,
+              "p99": 4,
+              "max": 4
+            }
+          }
+        }
+      }
+    },
+    "bytes": 92734441,
+    "threads": 54,
+    "marks": 848,
+    "gcEvents": 560,
+    "cpuThreads": 2,
+    "exemplars": [
+      {
+        "file": "exemplar-9.trace.json",
+        "bytes": 244912,
+        "events": 1101,
+        "droppedForSize": true
+      },
+      {
+        "file": "exemplar-4.trace.json",
+        "bytes": 286347,
+        "events": 1289,
+        "droppedForSize": true
+      },
+      {
+        "file": "exemplar-72.trace.json",
+        "bytes": 298160,
+        "events": 1346,
+        "droppedForSize": true
+      }
+    ]
+  },
+  "alloc": "not-applicable",
+  "controls": "not-applicable",
+  "stock": "not-applicable",
+  "build": "6clNDW1jsebGMFdZcnh9p"
+}

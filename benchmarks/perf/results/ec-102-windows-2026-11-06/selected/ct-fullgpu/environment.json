@@ -1,0 +1,177 @@
+{
+  "schema": "ec102.environment.v1",
+  "date": "2026-11-06T15:33:02.482Z",
+  "timezoneOffsetMinutes": 480,
+  "cpuModel": "13th Gen Intel(R) Core(TM) i9-13980HX",
+  "physicalCores": 24,
+  "logicalCores": 32,
+  "ramGB": 31.63,
+  "os": {
+    "name": "Microsoft Windows 11 家用版",
+    "build": "26200",
+    "arch": "x64"
+  },
+  "power": {
+    "scheme": "Turbo",
+    "line": "Online",
+    "batteryChargeStatus": "High",
+    "batteryPercent": 80
+  },
+  "acpiThermalZoneC": 27.9,
+  "versions": {
+    "node": "v22.23.3",
+    "pnpm": "11.7.0",
+    "playwright": "1.64.1"
+  },
+  "git": {
+    "sha": "bac507a4861121e667fa372b6a9865d265f6a443",
+    "dirty": true
+  },
+  "browser": {
+    "version": "156.0.8078.4",
+    "browserChannel": "chromium",
+    "executableKind": "chromium-full",
+    "executableSha256": "7f08161bbeb2853ffe1780a9ded4985087f52efb9725d7d8207aabdd42f7cfb9",
+    "launchArgs": "channel chromium, no other options",
+    "extraLaunchArgs": [
+      "--use-angle=d3d11",
+      "--enable-gpu-rasterization",
+      "--ignore-gpu-blocklist"
+    ],
+    "webglVendor": "unavailable",
+    "webglRenderer": "unavailable",
+    "gpuRasterization": "enabled_force",
+    "gpuCompositing": "disabled_software",
+    "gpuFeatureStatus": {
+      "2d_canvas": "enabled",
+      "direct_rendering_display_compositor": "disabled_off_ok",
+      "gpu_compositing": "disabled_software",
+      "multiple_raster_threads": "enabled_on",
+      "opengl": "enabled_on",
+      "rasterization": "enabled_force",
+      "raw_draw": "disabled_off_ok",
+      "skia_graphite": "disabled_off",
+      "trees_in_viz": "disabled_off",
+      "video_decode": "enabled",
+      "video_encode": "enabled",
+      "webgl": "enabled_readback",
+      "webgpu": "enabled_readback",
+      "webnn": "disabled_off"
+    },
+    "viewport": {
+      "requested": "default",
+      "innerWidth": 1280,
+      "innerHeight": 720,
+      "devicePixelRatio": 1
+    },
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "hardwareConcurrency": 32,
+    "crossOriginIsolated": false
+  },
+  "otherActivity": {
+    "before": {
+      "seconds": 3,
+      "method": "get-counter",
+      "machineCpuPercent": 5.563,
+      "topProcesses": [
+        {
+          "name": "brave",
+          "cpuPercentOfMachine": 0.944,
+          "writeMBps": 0.097
+        },
+        {
+          "name": "audacity4",
+          "cpuPercentOfMachine": 0.673,
+          "writeMBps": 0
+        },
+        {
+          "name": "svchost",
+          "cpuPercentOfMachine": 0.668,
+          "writeMBps": 0
+        },
+        {
+          "name": "claude",
+          "cpuPercentOfMachine": 0.368,
+          "writeMBps": 0
+        },
+        {
+          "name": "discord",
+          "cpuPercentOfMachine": 0.368,
+          "writeMBps": 0.058
+        },
+        {
+          "name": "system",
+          "cpuPercentOfMachine": 0.319,
+          "writeMBps": 0.051
+        },
+        {
+          "name": "crossdeviceservice",
+          "cpuPercentOfMachine": 0.225,
+          "writeMBps": 0
+        },
+        {
+          "name": "nvdisplay.container",
+          "cpuPercentOfMachine": 0.16,
+          "writeMBps": 0
+        }
+      ],
+      "driveFreeGB": {
+        "C": 0.39,
+        "D": 4.3,
+        "F": 55.32
+      }
+    },
+    "after": {
+      "seconds": 3,
+      "method": "get-counter",
+      "machineCpuPercent": 9.925,
+      "topProcesses": [
+        {
+          "name": "wmiprvse",
+          "cpuPercentOfMachine": 1.58,
+          "writeMBps": 0
+        },
+        {
+          "name": "brave",
+          "cpuPercentOfMachine": 1.562,
+          "writeMBps": 2.562
+        },
+        {
+          "name": "svchost",
+          "cpuPercentOfMachine": 0.783,
+          "writeMBps": 0.001
+        },
+        {
+          "name": "system",
+          "cpuPercentOfMachine": 0.686,
+          "writeMBps": 0.128
+        },
+        {
+          "name": "discord",
+          "cpuPercentOfMachine": 0.542,
+          "writeMBps": 0.02
+        },
+        {
+          "name": "dwm",
+          "cpuPercentOfMachine": 0.35,
+          "writeMBps": 0
+        },
+        {
+          "name": "msmpeng",
+          "cpuPercentOfMachine": 0.27,
+          "writeMBps": 0
+        },
+        {
+          "name": "audiodg",
+          "cpuPercentOfMachine": 0.239,
+          "writeMBps": 0
+        }
+      ],
+      "driveFreeGB": {
+        "C": 0.39,
+        "D": 4.21,
+        "F": 55.32
+      }
+    }
+  }
+}

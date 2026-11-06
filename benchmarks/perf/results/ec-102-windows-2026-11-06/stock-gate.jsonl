@@ -1,0 +1,12 @@
+{"batch":"pilot","runId":"p01-stock-h100","status":"passed","p95Ms":5,"timings":[5,4,3,2,3,5,4,3,3,2,1,2,69,3,3,2,3,3,3,2,2,2,2,3],"longTasks":[],"workers":4,"startedAt":"2026-11-06T13:18:24.630Z"}
+{"batch":"pilot","runId":"p21-stock-h100","status":"failed","p95Ms":29,"timings":[4,3,4,3,3,3,3,3,4,3,3,2,2,2,3,29,2,2,3,3,59,3,2,2],"longTasks":[],"workers":4,"startedAt":"2026-11-06T13:24:11.761Z"}
+{"batch":"measurement","runId":"r1-stock-1","status":"passed","p95Ms":7,"timings":[4,3,5,3,4,5,3,3,2,101,4,3,2,3,3,3,2,1,3,2,2,3,7,2],"longTasks":[],"workers":4,"startedAt":"2026-11-06T13:52:54.675Z"}
+{"batch":"measurement","runId":"r1-stock-2","status":"failed","p95Ms":6,"timings":[3,3,5,6,3,4,2,2,2,4,3,2,2,2,2,3,6,2,3,2,1,2,8,2],"longTasks":[114],"workers":4,"startedAt":"2026-11-06T13:53:23.960Z"}
+{"batch":"measurement","runId":"r1-stock-3","status":"passed","p95Ms":4,"timings":[5,3,3,2,3,4,3,4,3,2,3,1,3,3,3,2,3,3,2,3,3,3,2,2],"longTasks":[],"workers":4,"startedAt":"2026-11-06T14:02:08.644Z"}
+{"batch":"measurement","runId":"r1-stock-4","status":"failed","p95Ms":49,"timings":[54,6,4,3,3,7,3,4,3,3,3,2,49,3,3,2,2,3,3,1,4,3,3,4],"longTasks":[],"workers":4,"startedAt":"2026-11-06T14:02:35.642Z"}
+{"batch":"measurement","runId":"r1-stock-5","status":"passed","p95Ms":4,"timings":[4,4,4,2,4,4,3,4,3,3,3,2,2,3,3,3,2,2,2,3,3,3,2,3],"longTasks":[],"workers":4,"startedAt":"2026-11-06T14:03:01.668Z"}
+{"batch":"measurement","runId":"r2-stock-1","status":"passed","p95Ms":5,"timings":[3,3,5,3,3,4,3,3,2,3,4,3,3,3,3,5,4,3,2,2,2,3,2,3],"longTasks":[],"workers":4,"startedAt":"2026-11-06T15:33:55.283Z"}
+{"batch":"measurement","runId":"r2-stock-2","status":"passed","p95Ms":5,"timings":[4,4,5,5,3,3,3,4,3,2,3,2,3,3,2,2,3,2,3,2,2,3,2,3],"longTasks":[],"workers":4,"startedAt":"2026-11-06T15:34:21.140Z"}
+{"batch":"measurement","runId":"r2-stock-3","status":"passed","p95Ms":5,"timings":[4,3,5,3,4,4,3,4,3,3,3,2,3,4,3,3,3,3,3,3,3,6,2,3],"longTasks":[],"workers":4,"startedAt":"2026-11-06T15:34:47.514Z"}
+{"batch":"measurement","runId":"r2-stock-4","status":"passed","p95Ms":4,"timings":[4,4,4,3,4,4,2,3,3,3,3,2,2,3,3,5,2,2,3,2,2,3,2,2],"longTasks":[],"workers":4,"startedAt":"2026-11-06T15:43:19.487Z"}
+{"batch":"measurement","runId":"r2-stock-5","status":"passed","p95Ms":4,"timings":[4,5,4,4,3,4,3,3,3,3,4,2,3,3,4,3,3,2,2,2,3,2,2,3],"longTasks":[],"workers":4,"startedAt":"2026-11-06T15:43:45.710Z"}

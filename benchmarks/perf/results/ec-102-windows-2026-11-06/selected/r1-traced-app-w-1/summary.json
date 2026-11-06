@@ -1,0 +1,1532 @@
+{
+  "schema": "ec102.summary.v1",
+  "sampleCount": 6651,
+  "phases": {
+    "accept.to-first-param": {
+      "units": "ms",
+      "count": 200,
+      "outcomes": {
+        "ok": 200
+      },
+      "warm": {
+        "N": 100,
+        "p50": 1.2999999970197678,
+        "p95": 7.799999997019768,
+        "p99": 62.69999998807907,
+        "max": 125.09999999403954,
+        "mean": 4.032999999225139
+      },
+      "cold": {
+        "N": 100,
+        "p50": 1.5,
+        "p95": 42.900000005960464,
+        "p99": 52.900000005960464,
+        "max": 66,
+        "mean": 6.047000000625848
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 100,
+            "p50": 1.2999999970197678,
+            "p95": 7.799999997019768,
+            "p99": 62.69999998807907,
+            "max": 125.09999999403954,
+            "mean": 4.032999999225139
+          },
+          "cold": {
+            "N": 100,
+            "p50": 1.5,
+            "p95": 42.900000005960464,
+            "p99": 52.900000005960464,
+            "max": 66,
+            "mean": 6.047000000625848
+          }
+        }
+      }
+    },
+    "accept.to-overlay-commit": {
+      "units": "ms",
+      "count": 200,
+      "outcomes": {
+        "ok": 200
+      },
+      "warm": {
+        "N": 100,
+        "p50": 1.199999988079071,
+        "p95": 3.2000000029802322,
+        "p99": 4.199999988079071,
+        "max": 6.299999997019768,
+        "mean": 1.4279999992251395
+      },
+      "cold": {
+        "N": 100,
+        "p50": 1.2000000029802322,
+        "p95": 4,
+        "p99": 7.200000002980232,
+        "max": 19.099999994039536,
+        "mean": 1.841999999731779
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 100,
+            "p50": 1.199999988079071,
+            "p95": 3.2000000029802322,
+            "p99": 4.199999988079071,
+            "max": 6.299999997019768,
+            "mean": 1.4279999992251395
+          },
+          "cold": {
+            "N": 100,
+            "p50": 1.2000000029802322,
+            "p95": 4,
+            "p99": 7.200000002980232,
+            "max": 19.099999994039536,
+            "mean": 1.841999999731779
+          }
+        }
+      }
+    },
+    "accept.to-status-commit": {
+      "units": "ms",
+      "count": 200,
+      "outcomes": {
+        "ok": 200
+      },
+      "warm": {
+        "N": 100,
+        "p50": 2.2999999970197678,
+        "p95": 14,
+        "p99": 68.69999998807907,
+        "max": 171.19999998807907,
+        "mean": 6.510999998599291
+      },
+      "cold": {
+        "N": 100,
+        "p50": 2.6000000089406967,
+        "p95": 47.5,
+        "p99": 65.79999999701977,
+        "max": 71.79999999701977,
+        "mean": 8.397000001221896
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 100,
+            "p50": 2.2999999970197678,
+            "p95": 14,
+            "p99": 68.69999998807907,
+            "max": 171.19999998807907,
+            "mean": 6.510999998599291
+          },
+          "cold": {
+            "N": 100,
+            "p50": 2.6000000089406967,
+            "p95": 47.5,
+            "p99": 65.79999999701977,
+            "max": 71.79999999701977,
+            "mean": 8.397000001221896
+          }
+        }
+      }
+    },
+    "app.input-to-commit": {
+      "units": "ms",
+      "count": 200,
+      "outcomes": {
+        "ok": 200
+      },
+      "warm": {
+        "N": 100,
+        "p50": 21.900000005960464,
+        "p95": 96.6000000089407,
+        "p99": 224.59999999403954,
+        "max": 273.3999999910593,
+        "mean": 34.02499999910593
+      },
+      "cold": {
+        "N": 100,
+        "p50": 23.799999997019768,
+        "p95": 114,
+        "p99": 192,
+        "max": 234.20000000298023,
+        "mean": 37.06000000059605
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 100,
+            "p50": 21.900000005960464,
+            "p95": 96.6000000089407,
+            "p99": 224.59999999403954,
+            "max": 273.3999999910593,
+            "mean": 34.02499999910593
+          },
+          "cold": {
+            "N": 100,
+            "p50": 23.799999997019768,
+            "p95": 114,
+            "p99": 192,
+            "max": 234.20000000298023,
+            "mean": 37.06000000059605
+          }
+        }
+      }
+    },
+    "app.input-to-dispatch": {
+      "units": "ms",
+      "count": 200,
+      "outcomes": {
+        "ok": 200
+      },
+      "warm": {
+        "N": 100,
+        "p50": 16.900000005960464,
+        "p95": 38.900000005960464,
+        "p99": 126,
+        "max": 208.69999998807907,
+        "mean": 24.531999999582766
+      },
+      "cold": {
+        "N": 100,
+        "p50": 17,
+        "p95": 46.099999994039536,
+        "p99": 136,
+        "max": 138.1000000089407,
+        "mean": 24.340000000596046
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 100,
+            "p50": 16.900000005960464,
+            "p95": 38.900000005960464,
+            "p99": 126,
+            "max": 208.69999998807907,
+            "mean": 24.531999999582766
+          },
+          "cold": {
+            "N": 100,
+            "p50": 17,
+            "p95": 46.099999994039536,
+            "p99": 136,
+            "max": 138.1000000089407,
+            "mean": 24.340000000596046
+          }
+        }
+      }
+    },
+    "app.input-to-dispatch-minus-rate-limit": {
+      "units": "ms",
+      "count": 199,
+      "outcomes": {
+        "ok": 199
+      },
+      "warm": {
+        "N": 100,
+        "p50": 16.100000008940697,
+        "p95": 37.29999999701977,
+        "p99": 126,
+        "max": 208.69999998807907,
+        "mean": 17.0759999991957
+      },
+      "cold": {
+        "N": 99,
+        "p50": 16.100000008940697,
+        "p95": 51.400000005960464,
+        "p99": 138.1000000089407,
+        "max": 138.1000000089407,
+        "mean": 18.446464647247293
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 100,
+            "p50": 16.100000008940697,
+            "p95": 37.29999999701977,
+            "p99": 126,
+            "max": 208.69999998807907,
+            "mean": 17.0759999991957
+          },
+          "cold": {
+            "N": 99,
+            "p50": 16.100000008940697,
+            "p95": 51.400000005960464,
+            "p99": 138.1000000089407,
+            "max": 138.1000000089407,
+            "mean": 18.446464647247293
+          }
+        }
+      }
+    },
+    "app.long-animation-frame": {
+      "units": "ms",
+      "count": 19,
+      "outcomes": {
+        "ok": 19
+      },
+      "warm": {
+        "N": 8,
+        "p50": 58.80000001192093,
+        "p95": 197.59999999403954,
+        "p99": 197.59999999403954,
+        "max": 197.59999999403954,
+        "mean": 81.23749999888241
+      },
+      "cold": {
+        "N": 11,
+        "p50": 61.70000000298023,
+        "p95": 118.70000000298023,
+        "p99": 118.70000000298023,
+        "max": 118.70000000298023,
+        "mean": 67.0090909099037
+      },
+      "exploratory": true
+    },
+    "app.long-animation-frame.blocking": {
+      "units": "ms",
+      "count": 19,
+      "outcomes": {
+        "ok": 19
+      },
+      "warm": {
+        "N": 8,
+        "p50": 3.2,
+        "p95": 145,
+        "p99": 145,
+        "max": 145,
+        "mean": 26.5
+      },
+      "cold": {
+        "N": 11,
+        "p50": 0,
+        "p95": 64.7,
+        "p99": 64.7,
+        "max": 64.7,
+        "mean": 11
+      },
+      "exploratory": true
+    },
+    "app.long-animation-frame.blocking.out-of-window": {
+      "units": "ms",
+      "count": 3,
+      "outcomes": {
+        "ok": 3
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 3,
+        "p50": 0,
+        "p95": 49.6,
+        "p99": 49.6,
+        "max": 49.6,
+        "mean": 16.533333333333335
+      },
+      "exploratory": true
+    },
+    "app.long-animation-frame.out-of-window": {
+      "units": "ms",
+      "count": 3,
+      "outcomes": {
+        "ok": 3
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 3,
+        "p50": 103.79999999701977,
+        "p95": 228.40000000596046,
+        "p99": 228.40000000596046,
+        "max": 228.40000000596046,
+        "mean": 128.33333333333334
+      },
+      "exploratory": true
+    },
+    "app.long-task": {
+      "units": "ms",
+      "count": 8,
+      "outcomes": {
+        "ok": 8
+      },
+      "warm": {
+        "N": 4,
+        "p50": 51,
+        "p95": 189,
+        "p99": 189,
+        "max": 189,
+        "mean": 98
+      },
+      "cold": {
+        "N": 4,
+        "p50": 57,
+        "p95": 109,
+        "p99": 109,
+        "max": 109,
+        "mean": 71.25
+      },
+      "exploratory": true
+    },
+    "app.long-task.out-of-window": {
+      "units": "ms",
+      "count": 1,
+      "outcomes": {
+        "ok": 1
+      },
+      "warm": {
+        "N": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable",
+        "mean": "unavailable"
+      },
+      "cold": {
+        "N": 1,
+        "p50": 98,
+        "p95": 98,
+        "p99": 98,
+        "max": 98,
+        "mean": 98
+      },
+      "exploratory": true
+    },
+    "app.worker-compute-metric": {
+      "units": "ms",
+      "count": 200,
+      "outcomes": {
+        "ok": 200
+      },
+      "warm": {
+        "N": 100,
+        "p50": 2,
+        "p95": 6,
+        "p99": 44,
+        "max": 54,
+        "mean": 2.96
+      },
+      "cold": {
+        "N": 100,
+        "p50": 2,
+        "p95": 7,
+        "p99": 45,
+        "max": 104,
+        "mean": 4.22
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 100,
+            "p50": 2,
+            "p95": 6,
+            "p99": 44,
+            "max": 54,
+            "mean": 2.96
+          },
+          "cold": {
+            "N": 100,
+            "p50": 2,
+            "p95": 7,
+            "p99": 45,
+            "max": 104,
+            "mean": 4.22
+          }
+        }
+      }
+    },
+    "audio.apply-window": {
+      "units": "ms",
+      "count": 200,
+      "outcomes": {
+        "ok": 200
+      },
+      "warm": {
+        "N": 100,
+        "p50": 0.09999999403953552,
+        "p95": 0.29999999701976776,
+        "p99": 0.7999999970197678,
+        "max": 9.200000002980232,
+        "mean": 0.1860000003874302
+      },
+      "cold": {
+        "N": 100,
+        "p50": 0.09999999403953552,
+        "p95": 0.5,
+        "p99": 1.1000000089406967,
+        "max": 2.2000000029802322,
+        "mean": 0.15700000032782555
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 100,
+            "p50": 0.09999999403953552,
+            "p95": 0.29999999701976776,
+            "p99": 0.7999999970197678,
+            "max": 9.200000002980232,
+            "mean": 0.1860000003874302
+          },
+          "cold": {
+            "N": 100,
+            "p50": 0.09999999403953552,
+            "p95": 0.5,
+            "p99": 1.1000000089406967,
+            "max": 2.2000000029802322,
+            "mean": 0.15700000032782555
+          }
+        }
+      }
+    },
+    "audio.param-call-total-ms": {
+      "units": "ms",
+      "count": 200,
+      "outcomes": {
+        "ok": 200
+      },
+      "warm": {
+        "N": 100,
+        "p50": 0,
+        "p95": 0.20000000298023224,
+        "p99": 0.5,
+        "max": 6.000000029802322,
+        "mean": 0.0990000006556511
+      },
+      "cold": {
+        "N": 100,
+        "p50": 0,
+        "p95": 0.29999999701976776,
+        "p99": 0.5000000149011612,
+        "max": 1.0000000149011612,
+        "mean": 0.06300000056624412
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 100,
+            "p50": 0,
+            "p95": 0.20000000298023224,
+            "p99": 0.5,
+            "max": 6.000000029802322,
+            "mean": 0.0990000006556511
+          },
+          "cold": {
+            "N": 100,
+            "p50": 0,
+            "p95": 0.29999999701976776,
+            "p99": 0.5000000149011612,
+            "max": 1.0000000149011612,
+            "mean": 0.06300000056624412
+          }
+        }
+      }
+    },
+    "audio.param-ops": {
+      "units": "count",
+      "count": 200,
+      "outcomes": {
+        "ok": 200
+      },
+      "warm": {
+        "N": 100,
+        "p50": 21,
+        "p95": 139,
+        "p99": 139,
+        "max": 139,
+        "mean": 35.35
+      },
+      "cold": {
+        "N": 100,
+        "p50": 26,
+        "p95": 139,
+        "p99": 139,
+        "max": 139,
+        "mean": 37.19
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 100,
+            "p50": 21,
+            "p95": 139,
+            "p99": 139,
+            "max": 139,
+            "mean": 35.35
+          },
+          "cold": {
+            "N": 100,
+            "p50": 26,
+            "p95": 139,
+            "p99": 139,
+            "max": 139,
+            "mean": 37.19
+          }
+        }
+      }
+    },
+    "display.overlay-commit-to-frame-end": {
+      "units": "ms",
+      "count": 200,
+      "outcomes": {
+        "ok": 200
+      },
+      "warm": {
+        "N": 100,
+        "p50": 13.5,
+        "p95": 19.700000002980232,
+        "p99": 60.6000000089407,
+        "max": 135.79999999701977,
+        "mean": 15.18100000038743
+      },
+      "cold": {
+        "N": 100,
+        "p50": 13.799999997019768,
+        "p95": 39.69999998807907,
+        "p99": 52.8999999910593,
+        "max": 63.8999999910593,
+        "mean": 15.902000000625849
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 100,
+            "p50": 13.5,
+            "p95": 19.700000002980232,
+            "p99": 60.6000000089407,
+            "max": 135.79999999701977,
+            "mean": 15.18100000038743
+          },
+          "cold": {
+            "N": 100,
+            "p50": 13.799999997019768,
+            "p95": 39.69999998807907,
+            "p99": 52.8999999910593,
+            "max": 63.8999999910593,
+            "mean": 15.902000000625849
+          }
+        }
+      }
+    },
+    "display.status-commit-to-frame-end": {
+      "units": "ms",
+      "count": 200,
+      "outcomes": {
+        "ok": 200
+      },
+      "warm": {
+        "N": 100,
+        "p50": 11.5,
+        "p95": 15.100000008940697,
+        "p99": 38.30000001192093,
+        "max": 38.400000005960464,
+        "mean": 11.477000001072884
+      },
+      "cold": {
+        "N": 100,
+        "p50": 12.700000002980232,
+        "p95": 28.400000005960464,
+        "p99": 34.8999999910593,
+        "max": 59.5,
+        "mean": 12.831999999433755
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 100,
+            "p50": 11.5,
+            "p95": 15.100000008940697,
+            "p99": 38.30000001192093,
+            "max": 38.400000005960464,
+            "mean": 11.477000001072884
+          },
+          "cold": {
+            "N": 100,
+            "p50": 12.700000002980232,
+            "p95": 28.400000005960464,
+            "p99": 34.8999999910593,
+            "max": 59.5,
+            "mean": 12.831999999433755
+          }
+        }
+      }
+    },
+    "merge.handler": {
+      "units": "ms",
+      "count": 800,
+      "outcomes": {
+        "ok": 800
+      },
+      "warm": {
+        "N": 400,
+        "p50": 0.10000000894069672,
+        "p95": 0.3999999910593033,
+        "p99": 1,
+        "max": 1.5,
+        "mean": 0.14250000022351741
+      },
+      "cold": {
+        "N": 400,
+        "p50": 0.10000000894069672,
+        "p95": 0.5999999940395355,
+        "p99": 1,
+        "max": 1.800000011920929,
+        "mean": 0.17049999970942736
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 400,
+            "p50": 0.10000000894069672,
+            "p95": 0.3999999910593033,
+            "p99": 1,
+            "max": 1.5,
+            "mean": 0.14250000022351741
+          },
+          "cold": {
+            "N": 400,
+            "p50": 0.10000000894069672,
+            "p95": 0.5999999940395355,
+            "p99": 1,
+            "max": 1.800000011920929,
+            "mean": 0.17049999970942736
+          }
+        }
+      }
+    },
+    "merge.reply-deserialize": {
+      "units": "ms",
+      "count": 800,
+      "outcomes": {
+        "ok": 800
+      },
+      "warm": {
+        "N": 400,
+        "p50": 0,
+        "p95": 0.10000000894069672,
+        "p99": 0.20000000298023224,
+        "max": 0.20000000298023224,
+        "mean": 0.024999999925494194
+      },
+      "cold": {
+        "N": 400,
+        "p50": 0,
+        "p95": 0.10000000894069672,
+        "p99": 0.20000000298023224,
+        "max": 1,
+        "mean": 0.03500000011175871
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 400,
+            "p50": 0,
+            "p95": 0.10000000894069672,
+            "p99": 0.20000000298023224,
+            "max": 0.20000000298023224,
+            "mean": 0.024999999925494194
+          },
+          "cold": {
+            "N": 400,
+            "p50": 0,
+            "p95": 0.10000000894069672,
+            "p99": 0.20000000298023224,
+            "max": 1,
+            "mean": 0.03500000011175871
+          }
+        }
+      }
+    },
+    "queue.rate-limit-estimate": {
+      "units": "ms",
+      "count": 199,
+      "outcomes": {
+        "ok": 199
+      },
+      "warm": {
+        "N": 100,
+        "p50": 0,
+        "p95": 35.13333333035189,
+        "p99": 36.13333333035189,
+        "max": 37.13333333035189,
+        "mean": 7.456000000387067
+      },
+      "cold": {
+        "N": 99,
+        "p50": 0,
+        "p95": 33.13333333035371,
+        "p99": 35.03333333631417,
+        "max": 35.03333333631417,
+        "mean": 5.804040403829722
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 100,
+            "p50": 0,
+            "p95": 35.13333333035189,
+            "p99": 36.13333333035189,
+            "max": 37.13333333035189,
+            "mean": 7.456000000387067
+          },
+          "cold": {
+            "N": 99,
+            "p50": 0,
+            "p95": 33.13333333035371,
+            "p99": 35.03333333631417,
+            "max": 35.03333333631417,
+            "mean": 5.804040403829722
+          }
+        }
+      }
+    },
+    "shard.compute-reported": {
+      "units": "ms",
+      "count": 800,
+      "outcomes": {
+        "ok": 800
+      },
+      "warm": {
+        "N": 400,
+        "p50": 1,
+        "p95": 3,
+        "p99": 4,
+        "max": 5,
+        "mean": 0.9775
+      },
+      "cold": {
+        "N": 400,
+        "p50": 1,
+        "p95": 3,
+        "p99": 5,
+        "max": 11,
+        "mean": 1.3175
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 400,
+            "p50": 1,
+            "p95": 3,
+            "p99": 4,
+            "max": 5,
+            "mean": 0.9775
+          },
+          "cold": {
+            "N": 400,
+            "p50": 1,
+            "p95": 3,
+            "p99": 5,
+            "max": 11,
+            "mean": 1.3175
+          }
+        }
+      }
+    },
+    "shard.post": {
+      "units": "ms",
+      "count": 800,
+      "outcomes": {
+        "ok": 800
+      },
+      "warm": {
+        "N": 400,
+        "p50": 0,
+        "p95": 0.10000000894069672,
+        "p99": 0.20000000298023224,
+        "max": 0.29999999701976776,
+        "mean": 0.023499999977648258
+      },
+      "cold": {
+        "N": 400,
+        "p50": 0,
+        "p95": 0.10000000894069672,
+        "p99": 0.4000000059604645,
+        "max": 0.9000000059604645,
+        "mean": 0.03149999987334013
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 400,
+            "p50": 0,
+            "p95": 0.10000000894069672,
+            "p99": 0.20000000298023224,
+            "max": 0.29999999701976776,
+            "mean": 0.023499999977648258
+          },
+          "cold": {
+            "N": 400,
+            "p50": 0,
+            "p95": 0.10000000894069672,
+            "p99": 0.4000000059604645,
+            "max": 0.9000000059604645,
+            "mean": 0.03149999987334013
+          }
+        }
+      }
+    },
+    "shard.roundtrip": {
+      "units": "ms",
+      "count": 800,
+      "outcomes": {
+        "ok": 800
+      },
+      "warm": {
+        "N": 400,
+        "p50": 1.2000000029802322,
+        "p95": 3.9000000059604645,
+        "p99": 43.400000005960464,
+        "max": 53.70000000298023,
+        "mean": 2.3195000002905726
+      },
+      "cold": {
+        "N": 400,
+        "p50": 1.3999999910593033,
+        "p95": 5,
+        "p99": 44.80000001192093,
+        "max": 102.09999999403954,
+        "mean": 3.430499999597669
+      },
+      "exploratory": true,
+      "byJobKind": {
+        "pose-only": {
+          "warm": {
+            "N": 400,
+            "p50": 1.2000000029802322,
+            "p95": 3.9000000059604645,
+            "p99": 43.400000005960464,
+            "max": 53.70000000298023,
+            "mean": 2.3195000002905726
+          },
+          "cold": {
+            "N": 400,
+            "p50": 1.3999999910593033,
+            "p95": 5,
+            "p99": 44.80000001192093,
+            "max": 102.09999999403954,
+            "mean": 3.430499999597669
+          }
+        }
+      }
+    }
+  },
+  "runId": "r1-traced-app-w-1",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "pass": "traced",
+  "boundary": "browser-app",
+  "workers": "not-applicable",
+  "audio": "on",
+  "driver": "poll",
+  "jobs": "unavailable",
+  "intervalMs": "unavailable",
+  "clockResolutionMs": "unavailable",
+  "wallMs": "unavailable",
+  "parity": "not-applicable",
+  "repeat": 1,
+  "workerCounts": "not-applicable",
+  "integrity": "not-applicable",
+  "shardCompute": "not-applicable",
+  "phaseSumConsistency": "not-applicable",
+  "maxDurationMs": "not-applicable",
+  "observed": {
+    "workerSources": [
+      "Worker"
+    ],
+    "workerCounts": [
+      "4"
+    ],
+    "jobs": 200,
+    "commits": 200,
+    "workersCreated": 4,
+    "support": {
+      "longtask": true,
+      "longAnimationFrame": true
+    },
+    "contexts": [
+      {
+        "sampleRate": 48000,
+        "baseLatency": 0.01,
+        "outputLatency": 0.04,
+        "state": "running"
+      }
+    ],
+    "chain": {
+      "jobsWithChain": 200,
+      "jobsWithoutOverlayMutation": 0,
+      "jobsWithoutParamCalls": 0,
+      "order": {
+        "jobsWithOverlayAndParam": 200,
+        "overlayBeforeFirstParam": 147,
+        "firstParamBeforeStatus": 200,
+        "fullOrder": 147
+      },
+      "overlayRoot": {
+        "selector": ".workspace-viewport-panel",
+        "found": true,
+        "containsCanvas": false,
+        "mutationsObserved": 400,
+        "note": "accept.to-overlay-commit is the first viewport mutation after the job's last handler"
+      },
+      "updateHz": 12,
+      "updateIntervalMs": 83.33333333333333
+    },
+    "measuredWindow": {
+      "start": 1374.300000011921,
+      "end": 31366
+    },
+    "longTasks": {
+      "inWindow": 8,
+      "outsideWindow": 1
+    },
+    "longAnimationFrames": {
+      "inWindow": 19,
+      "outsideWindow": 3
+    },
+    "expectedWorkerCount": 4,
+    "hardwareConcurrency": 32,
+    "workerSourceAttribute": [
+      "Worker"
+    ],
+    "workerCountAttribute": [
+      "4"
+    ]
+  },
+  "trace": {
+    "computeVsTrace": {
+      "jobs": 200,
+      "jobsWithoutMarks": 0,
+      "entries": 800,
+      "matched": 800,
+      "unmatched": 0,
+      "differenceMs": {
+        "min": -0.8280000000000001,
+        "median": 0.23399999999999999,
+        "max": 2.269,
+        "mean": 0.22687000000000015
+      }
+    },
+    "jobDecomposition": {
+      "schema": "ec102.job-decomposition-summary.v1",
+      "boundary": "browser-app",
+      "clock": "trace-ts-us",
+      "units": "microseconds, except reportedMetric which is in the job's own unit (milliseconds)",
+      "lines": 800,
+      "jobs": 200,
+      "workerMatching": {
+        "methods": [
+          "rank within the job (worker threads are not individually identifiable)"
+        ],
+        "approximate": true,
+        "note": "approximate: in-app the worker threads cannot be told apart, so each job's reported shard values are paired with its largest worker tasks by rank; the task paired with a line may belong to another worker"
+      },
+      "mainClockFit": {
+        "baselineMs": 31215.70000000298,
+        "driftPpm": 0.04180832502420628,
+        "maxResidualUs": 223.46250915527344
+      },
+      "all": {
+        "dispatchToWorkerStartUs": {
+          "n": 800,
+          "p50": 6.9914703369140625,
+          "p95": 151.1396484375,
+          "p99": 403.19227600097656,
+          "max": 857.3062591552734
+        },
+        "workerTaskWallUs": {
+          "n": 800,
+          "p50": 1053,
+          "p95": 3496,
+          "p99": 5349,
+          "max": 11557
+        },
+        "workerTaskCpuUs": {
+          "n": 800,
+          "p50": 921,
+          "p95": 3007,
+          "p99": 4405,
+          "max": 8572
+        },
+        "workerEndToMainHandlerUs": {
+          "n": 800,
+          "p50": 160.27870178222656,
+          "p95": 1519.5040893554688,
+          "p99": 41771.82116699219,
+          "max": 90950.44787597656
+        },
+        "mainBusyDuringReplyWaitUs": {
+          "n": 800,
+          "p50": 145.24171447753906,
+          "p95": 1484.167984008789,
+          "p99": 41711.82116699219,
+          "max": 90814.44787597656
+        },
+        "reportedMetric": {
+          "n": 800,
+          "p50": 2,
+          "p95": 6,
+          "p99": 45,
+          "max": 104
+        }
+      },
+      "slowest10PercentByReportedMetric": {
+        "jobs": 20,
+        "seqs": [
+          4,
+          10,
+          11,
+          17,
+          25,
+          31,
+          32,
+          47,
+          55,
+          61,
+          69,
+          74,
+          75,
+          97,
+          134,
+          147,
+          153,
+          186,
+          191,
+          198
+        ],
+        "fields": {
+          "dispatchToWorkerStartUs": {
+            "n": 80,
+            "p50": 13.180679321289062,
+            "p95": 403.19227600097656,
+            "p99": 730.4759063720703,
+            "max": 730.4759063720703
+          },
+          "workerTaskWallUs": {
+            "n": 80,
+            "p50": 3242,
+            "p95": 6052,
+            "p99": 11557,
+            "max": 11557
+          },
+          "workerTaskCpuUs": {
+            "n": 80,
+            "p50": 2813,
+            "p95": 5322,
+            "p99": 8572,
+            "max": 8572
+          },
+          "workerEndToMainHandlerUs": {
+            "n": 80,
+            "p50": 701.5376129150391,
+            "p95": 50190.303787231445,
+            "p99": 90950.44787597656,
+            "max": 90950.44787597656
+          },
+          "mainBusyDuringReplyWaitUs": {
+            "n": 80,
+            "p50": 687.5473327636719,
+            "p95": 50093.303787231445,
+            "p99": 90814.44787597656,
+            "max": 90814.44787597656
+          },
+          "reportedMetric": {
+            "n": 80,
+            "p50": 6,
+            "p95": 54,
+            "p99": 104,
+            "max": 104
+          }
+        }
+      }
+    },
+    "jobLevelDecomposition": {
+      "schema": "ec102.job-decomposition-jobs-summary.v1",
+      "boundary": "browser-app",
+      "clock": "trace-ts-us",
+      "units": "microseconds, except reportedMetric (milliseconds) and the count lateStartWorkers",
+      "window": "first post to the start of the last reply handler on main; worker tasks are top-level tasks on DedicatedWorker threads that start at or after the first post",
+      "jobs": 200,
+      "all": {
+        "jobs": 200,
+        "fields": {
+          "reportedMetric": {
+            "n": 200,
+            "p50": 2,
+            "p95": 6,
+            "p99": 45,
+            "max": 104
+          },
+          "firstPostToFirstWorkerStartUs": {
+            "n": 198,
+            "p50": 43.52410888671875,
+            "p95": 150.45291137695312,
+            "p99": 251.5564422607422,
+            "max": 478.8036193847656
+          },
+          "firstPostToLastWorkerEndUs": {
+            "n": 198,
+            "p50": 1610.7973175048828,
+            "p95": 5119.452911376953,
+            "p99": 6983.042541503906,
+            "max": 12640.556442260742
+          },
+          "slowestWorkerWallUs": {
+            "n": 198,
+            "p50": 1391,
+            "p95": 4356,
+            "p99": 6052,
+            "max": 11557
+          },
+          "slowestWorkerCpuUs": {
+            "n": 198,
+            "p50": 1208,
+            "p95": 3737,
+            "p99": 5322,
+            "max": 8572
+          },
+          "slowestWorkerOffCpuUs": {
+            "n": 198,
+            "p50": 196,
+            "p95": 768,
+            "p99": 1309,
+            "max": 2985
+          },
+          "lastWorkerEndToLastHandlerStartUs": {
+            "n": 198,
+            "p50": 69.27870178222656,
+            "p95": 1573.129135131836,
+            "p99": 48216.303787231445,
+            "max": 90859.44787597656
+          },
+          "mainBusyWallUs": {
+            "n": 198,
+            "p50": 64.90817260742188,
+            "p95": 1551.129135131836,
+            "p99": 48119.303787231445,
+            "max": 90723.44787597656
+          },
+          "mainBusyCpuUs": {
+            "n": 198,
+            "p50": 236,
+            "p95": 2406,
+            "p99": 5588,
+            "max": 13401
+          },
+          "lastHandlerUs": {
+            "n": 200,
+            "p50": 100.00000894069672,
+            "p95": 599.9999940395355,
+            "p99": 1099.9999940395355,
+            "max": 1500
+          },
+          "gcOnMainInWindowUs": {
+            "n": 200,
+            "p50": 0,
+            "p95": 1047,
+            "p99": 1617,
+            "max": 2141
+          },
+          "gcOnWorkersInWindowUs": {
+            "n": 200,
+            "p50": 455,
+            "p95": 1739.642318725586,
+            "p99": 3216,
+            "max": 6278
+          },
+          "lateStartWorkers": {
+            "n": 200,
+            "p50": 0,
+            "p95": 2,
+            "p99": 4,
+            "max": 4
+          }
+        }
+      },
+      "slowest10PercentByReportedMetric": {
+        "jobs": 20,
+        "fields": {
+          "reportedMetric": {
+            "n": 20,
+            "p50": 6,
+            "p95": 54,
+            "p99": 104,
+            "max": 104
+          },
+          "firstPostToFirstWorkerStartUs": {
+            "n": 20,
+            "p50": 84.81991577148438,
+            "p95": 223.4261932373047,
+            "p99": 251.5564422607422,
+            "max": 251.5564422607422
+          },
+          "firstPostToLastWorkerEndUs": {
+            "n": 20,
+            "p50": 5014.192291259766,
+            "p95": 6983.042541503906,
+            "p99": 12640.556442260742,
+            "max": 12640.556442260742
+          },
+          "slowestWorkerWallUs": {
+            "n": 20,
+            "p50": 4291,
+            "p95": 6052,
+            "p99": 11557,
+            "max": 11557
+          },
+          "slowestWorkerCpuUs": {
+            "n": 20,
+            "p50": 3431,
+            "p95": 5322,
+            "p99": 8572,
+            "max": 8572
+          },
+          "slowestWorkerOffCpuUs": {
+            "n": 20,
+            "p50": 749,
+            "p95": 1309,
+            "p99": 2985,
+            "max": 2985
+          },
+          "lastWorkerEndToLastHandlerStartUs": {
+            "n": 20,
+            "p50": 904.5376586914062,
+            "p95": 48216.303787231445,
+            "p99": 90859.44787597656,
+            "max": 90859.44787597656
+          },
+          "mainBusyWallUs": {
+            "n": 20,
+            "p50": 897.5376586914062,
+            "p95": 48119.303787231445,
+            "p99": 90723.44787597656,
+            "max": 90723.44787597656
+          },
+          "mainBusyCpuUs": {
+            "n": 20,
+            "p50": 1812,
+            "p95": 5588,
+            "p99": 13401,
+            "max": 13401
+          },
+          "lastHandlerUs": {
+            "n": 20,
+            "p50": 500,
+            "p95": 1400.0000059604645,
+            "p99": 1500,
+            "max": 1500
+          },
+          "gcOnMainInWindowUs": {
+            "n": 20,
+            "p50": 0,
+            "p95": 0,
+            "p99": 0,
+            "max": 0
+          },
+          "gcOnWorkersInWindowUs": {
+            "n": 20,
+            "p50": 1541,
+            "p95": 3219,
+            "p99": 6278,
+            "max": 6278
+          },
+          "lateStartWorkers": {
+            "n": 20,
+            "p50": 0,
+            "p95": 0,
+            "p99": 1,
+            "max": 1
+          }
+        },
+        "seqs": [
+          4,
+          10,
+          11,
+          17,
+          25,
+          31,
+          32,
+          47,
+          55,
+          61,
+          69,
+          74,
+          75,
+          97,
+          134,
+          147,
+          153,
+          186,
+          191,
+          198
+        ]
+      },
+      "byJobKind": {
+        "pose-only": {
+          "jobs": 200,
+          "fields": {
+            "reportedMetric": {
+              "n": 200,
+              "p50": 2,
+              "p95": 6,
+              "p99": 45,
+              "max": 104
+            },
+            "firstPostToFirstWorkerStartUs": {
+              "n": 198,
+              "p50": 43.52410888671875,
+              "p95": 150.45291137695312,
+              "p99": 251.5564422607422,
+              "max": 478.8036193847656
+            },
+            "firstPostToLastWorkerEndUs": {
+              "n": 198,
+              "p50": 1610.7973175048828,
+              "p95": 5119.452911376953,
+              "p99": 6983.042541503906,
+              "max": 12640.556442260742
+            },
+            "slowestWorkerWallUs": {
+              "n": 198,
+              "p50": 1391,
+              "p95": 4356,
+              "p99": 6052,
+              "max": 11557
+            },
+            "slowestWorkerCpuUs": {
+              "n": 198,
+              "p50": 1208,
+              "p95": 3737,
+              "p99": 5322,
+              "max": 8572
+            },
+            "slowestWorkerOffCpuUs": {
+              "n": 198,
+              "p50": 196,
+              "p95": 768,
+              "p99": 1309,
+              "max": 2985
+            },
+            "lastWorkerEndToLastHandlerStartUs": {
+              "n": 198,
+              "p50": 69.27870178222656,
+              "p95": 1573.129135131836,
+              "p99": 48216.303787231445,
+              "max": 90859.44787597656
+            },
+            "mainBusyWallUs": {
+              "n": 198,
+              "p50": 64.90817260742188,
+              "p95": 1551.129135131836,
+              "p99": 48119.303787231445,
+              "max": 90723.44787597656
+            },
+            "mainBusyCpuUs": {
+              "n": 198,
+              "p50": 236,
+              "p95": 2406,
+              "p99": 5588,
+              "max": 13401
+            },
+            "lastHandlerUs": {
+              "n": 200,
+              "p50": 100.00000894069672,
+              "p95": 599.9999940395355,
+              "p99": 1099.9999940395355,
+              "max": 1500
+            },
+            "gcOnMainInWindowUs": {
+              "n": 200,
+              "p50": 0,
+              "p95": 1047,
+              "p99": 1617,
+              "max": 2141
+            },
+            "gcOnWorkersInWindowUs": {
+              "n": 200,
+              "p50": 455,
+              "p95": 1739.642318725586,
+              "p99": 3216,
+              "max": 6278
+            },
+            "lateStartWorkers": {
+              "n": 200,
+              "p50": 0,
+              "p95": 2,
+              "p99": 4,
+              "max": 4
+            }
+          }
+        }
+      }
+    },
+    "bytes": 163037007,
+    "threads": 55,
+    "marks": 1648,
+    "gcEvents": 437,
+    "cpuThreads": 2,
+    "exemplars": [
+      {
+        "file": "exemplar-17.trace.json",
+        "bytes": 271278,
+        "events": 1204,
+        "droppedForSize": true
+      },
+      {
+        "file": "exemplar-153.trace.json",
+        "bytes": 255125,
+        "events": 1143,
+        "droppedForSize": true
+      },
+      {
+        "file": "exemplar-75.trace.json",
+        "bytes": 260713,
+        "events": 1168,
+        "droppedForSize": true
+      }
+    ]
+  },
+  "alloc": "not-applicable",
+  "controls": "not-applicable",
+  "stock": "not-applicable",
+  "build": "6clNDW1jsebGMFdZcnh9p",
+  "denominators": {
+    "submitted": 200,
+    "coalesced": "not-applicable",
+    "dispatched": 200,
+    "completed": 200,
+    "accepted": 200,
+    "stale": "not-applicable",
+    "fallback": 0,
+    "error": 0,
+    "timeout": 0
+  }
+}

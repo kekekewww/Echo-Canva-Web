@@ -1,0 +1,504 @@
+{
+  "main": {
+    "thread": "CrRendererMain",
+    "totalSelfUs": 16568143,
+    "functions": [
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 12445.718,
+        "fraction": 0.7511836420050213
+      },
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 2784.149,
+        "fraction": 0.1680423086642842
+      },
+      {
+        "functionName": "query",
+        "url": "undefined",
+        "lineNumber": 5815,
+        "selfMs": 143.874,
+        "fraction": 0.008683773431941044
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 117.586,
+        "fraction": 0.007097114021770575
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 82.722,
+        "fraction": 0.004992834743157396
+      },
+      {
+        "functionName": "projectClassicScene",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2pyc1x7bsah70.js",
+        "lineNumber": 54,
+        "selfMs": 64.49,
+        "fraction": 0.003892409668361747
+      },
+      {
+        "functionName": "query",
+        "url": "undefined",
+        "lineNumber": 5509,
+        "selfMs": 53.276,
+        "fraction": 0.003215568576393866
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2pyc1x7bsah70.js",
+        "lineNumber": 54,
+        "selfMs": 41.671,
+        "fraction": 0.002515127977830708
+      },
+      {
+        "functionName": "mark",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 39.574,
+        "fraction": 0.002388559780055013
+      },
+      {
+        "functionName": "elementsFromPoint",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 37.517,
+        "fraction": 0.0022644058540537706
+      },
+      {
+        "functionName": "getBoundingClientRect",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 37.232,
+        "fraction": 0.0022472041676607933
+      },
+      {
+        "functionName": "elementSafeTagName",
+        "url": "undefined",
+        "lineNumber": 3214,
+        "selfMs": 25.292,
+        "fraction": 0.0015265440429865918
+      },
+      {
+        "functionName": "querySelectorAll",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 22.741,
+        "fraction": 0.0013725738605708559
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "undefined",
+        "lineNumber": 3537,
+        "selfMs": 22.357,
+        "fraction": 0.0013493968515361076
+      },
+      {
+        "functionName": "stableJson",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2pyc1x7bsah70.js",
+        "lineNumber": 54,
+        "selfMs": 21.324,
+        "fraction": 0.0012870482829608605
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "undefined",
+        "lineNumber": 0,
+        "selfMs": 20.348,
+        "fraction": 0.001228140051664209
+      },
+      {
+        "functionName": "previewNode",
+        "url": "undefined",
+        "lineNumber": 7985,
+        "selfMs": 17.311,
+        "fraction": 0.0010448364671888696
+      },
+      {
+        "functionName": "getImplicitAriaRole",
+        "url": "undefined",
+        "lineNumber": 3432,
+        "selfMs": 16.285,
+        "fraction": 0.000982910396174152
+      },
+      {
+        "functionName": "getAriaRole",
+        "url": "undefined",
+        "lineNumber": 3542,
+        "selfMs": 16.015,
+        "fraction": 0.0009666140616965945
+      },
+      {
+        "functionName": "projectHybridDocument",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2pyc1x7bsah70.js",
+        "lineNumber": 54,
+        "selfMs": 15.808,
+        "fraction": 0.0009541202052638006
+      },
+      {
+        "functionName": "elementFromPoint",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 14.342,
+        "fraction": 0.0008656371447301005
+      },
+      {
+        "functionName": "updateProperties",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/3zth8ahicx4p4.js",
+        "lineNumber": 0,
+        "selfMs": 13.802,
+        "fraction": 0.0008330444757749857
+      },
+      {
+        "functionName": "getExplicitAriaRole",
+        "url": "undefined",
+        "lineNumber": 3535,
+        "selfMs": 13.783,
+        "fraction": 0.0008318976966821206
+      },
+      {
+        "functionName": "innerSerialize",
+        "url": "undefined",
+        "lineNumber": 213,
+        "selfMs": 11.535,
+        "fraction": 0.0006962156229578656
+      },
+      {
+        "functionName": "createWorkInProgress",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/3zth8ahicx4p4.js",
+        "lineNumber": 0,
+        "selfMs": 11.056,
+        "fraction": 0.0006673047184587917
+      },
+      {
+        "functionName": "isPointOnWall",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/3c9l1533tgtg0.js",
+        "lineNumber": 0,
+        "selfMs": 10.853,
+        "fraction": 0.000655052289203443
+      },
+      {
+        "functionName": "jsxProd",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/01_k_36dur-hs.js",
+        "lineNumber": 30,
+        "selfMs": 10.604,
+        "fraction": 0.0006400234474074735
+      },
+      {
+        "functionName": "jsonEqual",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2pyc1x7bsah70.js",
+        "lineNumber": 54,
+        "selfMs": 10.105,
+        "fraction": 0.0006099054070211731
+      },
+      {
+        "functionName": "subtract",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/3c9l1533tgtg0.js",
+        "lineNumber": 0,
+        "selfMs": 10.083,
+        "fraction": 0.000608577557545224
+      },
+      {
+        "functionName": "commitHostUpdate",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/3zth8ahicx4p4.js",
+        "lineNumber": 0,
+        "selfMs": 10.021,
+        "fraction": 0.000604835436294822
+      },
+      {
+        "functionName": "removeChild",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 9.167,
+        "fraction": 0.0005532907339102517
+      },
+      {
+        "functionName": "renderWithHooks",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/3zth8ahicx4p4.js",
+        "lineNumber": 0,
+        "selfMs": 8.506,
+        "fraction": 0.000513394892837417
+      },
+      {
+        "functionName": "computeBox",
+        "url": "undefined",
+        "lineNumber": 3180,
+        "selfMs": 8.506,
+        "fraction": 0.000513394892837417
+      },
+      {
+        "functionName": "setAttribute",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 8.409,
+        "fraction": 0.0005075402837843686
+      },
+      {
+        "functionName": "reconcileChildrenArray",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/3zth8ahicx4p4.js",
+        "lineNumber": 0,
+        "selfMs": 8.026,
+        "fraction": 0.0004844236315439817
+      },
+      {
+        "functionName": "HybridSpatialViewport",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2pyc1x7bsah70.js",
+        "lineNumber": 54,
+        "selfMs": 7.714,
+        "fraction": 0.0004655923117032488
+      },
+      {
+        "functionName": "propagateParentContextChanges",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/3zth8ahicx4p4.js",
+        "lineNumber": 0,
+        "selfMs": 7.619,
+        "fraction": 0.0004598584162389231
+      },
+      {
+        "functionName": "isElementHiddenForAria",
+        "url": "undefined",
+        "lineNumber": 3567,
+        "selfMs": 7.026,
+        "fraction": 0.00042406683718265834
+      },
+      {
+        "functionName": "evaluate",
+        "url": "undefined",
+        "lineNumber": 363,
+        "selfMs": 6.928,
+        "fraction": 0.0004181518713352486
+      },
+      {
+        "functionName": "classicProjectionHash",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2pyc1x7bsah70.js",
+        "lineNumber": 54,
+        "selfMs": 6.814,
+        "fraction": 0.00041127119677805777
+      }
+    ]
+  },
+  "DedicatedWorker thread": {
+    "thread": "DedicatedWorker thread",
+    "totalSelfUs": 16299399,
+    "functions": [
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 16172.383,
+        "fraction": 0.9922073200367695
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 16.937,
+        "fraction": 0.0010391180680956397
+      },
+      {
+        "functionName": "visit",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 15.296,
+        "fraction": 0.0009384395093340558
+      },
+      {
+        "functionName": "materialForHybridReflection",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 10.018,
+        "fraction": 0.0006146238888930812
+      },
+      {
+        "functionName": "segmentIntersectsAabb3",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 9.97,
+        "fraction": 0.0006116789950353385
+      },
+      {
+        "functionName": "subtract3",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 9.01,
+        "fraction": 0.0005527811178804813
+      },
+      {
+        "functionName": "length3",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 7.454,
+        "fraction": 0.0004573174753253172
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 5.082,
+        "fraction": 0.00031179063718852454
+      },
+      {
+        "functionName": "pointInPatch3",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 5.075,
+        "fraction": 0.00031136117350093705
+      },
+      {
+        "functionName": "dot3",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 4.602,
+        "fraction": 0.00028234169861109603
+      },
+      {
+        "functionName": "reflectionAmplitude",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 4.454,
+        "fraction": 0.0002732616092163889
+      },
+      {
+        "functionName": "projectToDominantPlane",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 3.962,
+        "fraction": 0.00024307644717452465
+      },
+      {
+        "functionName": "handle",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 3.877,
+        "fraction": 0.00023786153096810503
+      },
+      {
+        "functionName": "intersectSegmentPatch",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 3.338,
+        "fraction": 0.00020479282702386757
+      },
+      {
+        "functionName": "reflectedPoint",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 2.915,
+        "fraction": 0.00017884094990250866
+      },
+      {
+        "functionName": "scale3",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 2.85,
+        "fraction": 0.0001748530728034819
+      },
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 2.835,
+        "fraction": 0.00017393279347293724
+      },
+      {
+        "functionName": "imageRayIntersection",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 2.411,
+        "fraction": 0.00014791956439620871
+      },
+      {
+        "functionName": "findPrunedSecondOrderReflections3D",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 2.197,
+        "fraction": 0.00013479024594710516
+      },
+      {
+        "functionName": "midReflectionAmplitude",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 2.09,
+        "fraction": 0.0001282255867225534
+      },
+      {
+        "functionName": "intersectSegmentBvh",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 2.076,
+        "fraction": 0.00012736665934737839
+      },
+      {
+        "functionName": "estimatedMidGainDb",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 2.041,
+        "fraction": 0.0001252193409094409
+      },
+      {
+        "functionName": "representativePatches",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 1.911,
+        "fraction": 0.00011724358671138733
+      },
+      {
+        "functionName": "linearToDb",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 1.828,
+        "fraction": 0.00011215137441570698
+      },
+      {
+        "functionName": "add3",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 1.306,
+        "fraction": 0.00008012565371275345
+      },
+      {
+        "functionName": "boundedRepresentativePatches",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 1.254,
+        "fraction": 0.00007693535203353204
+      },
+      {
+        "functionName": "postMessage",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 0.962,
+        "fraction": 0.00005902058106559634
+      },
+      {
+        "functionName": "findFirstOrderReflections3D",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 0.548,
+        "fraction": 0.00003362087154256424
+      },
+      {
+        "functionName": "physicalSurfaceId",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 0.51,
+        "fraction": 0.000031289497238517814
+      },
+      {
+        "functionName": "pointOnSegment2",
+        "url": "http://127.0.0.1:62147/_next/static/chunks/2uhskrag44mqk.js",
+        "lineNumber": 0,
+        "selfMs": 0.207,
+        "fraction": 0.000012699854761516053
+      }
+    ]
+  }
+}

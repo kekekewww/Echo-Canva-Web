@@ -1,0 +1,274 @@
+{
+  "schema": "ec102.job-decomposition-jobs-summary.v1",
+  "counts": {
+    "note": "counts only; the levels are rows of a report table (reported metric at or above the level, in ms), not budgets or thresholds",
+    "all": {
+      "jobs": 0,
+      "replyWaitExceedsSlowestWorker": 0,
+      "withFrameChildrenInWait": 0
+    },
+    "atOrAboveReportedMetricMs": {
+      "8": {
+        "jobs": 0,
+        "replyWaitExceedsSlowestWorker": 0,
+        "withFrameChildrenInWait": 0
+      },
+      "12": {
+        "jobs": 0,
+        "replyWaitExceedsSlowestWorker": 0,
+        "withFrameChildrenInWait": 0
+      },
+      "25": {
+        "jobs": 0,
+        "replyWaitExceedsSlowestWorker": 0,
+        "withFrameChildrenInWait": 0
+      },
+      "50": {
+        "jobs": 0,
+        "replyWaitExceedsSlowestWorker": 0,
+        "withFrameChildrenInWait": 0
+      }
+    }
+  },
+  "boundary": "browser-app",
+  "clock": "trace-ts-us",
+  "units": "microseconds, except reportedMetric (milliseconds) and the count lateStartWorkers",
+  "window": "first post to the start of the last reply handler on main; worker tasks are top-level tasks on DedicatedWorker threads that start at or after the first post",
+  "jobs": 0,
+  "all": {
+    "jobs": 0,
+    "fields": {
+      "reportedMetric": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "firstPostToFirstWorkerStartUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "firstPostToLastWorkerEndUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "slowestWorkerWallUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "slowestWorkerCpuUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "slowestWorkerOffCpuUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "lastWorkerEndToLastHandlerStartUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "mainBusyWallUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "mainBusyCpuUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "lastHandlerUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "gcOnMainInWindowUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "gcOnWorkersInWindowUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "lateStartWorkers": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "mainOffCpuDuringWaitUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "rasterWallDuringWaitUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "rasterThreadsDuringWait": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      }
+    }
+  },
+  "slowest10PercentByReportedMetric": {
+    "jobs": 0,
+    "fields": {
+      "reportedMetric": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "firstPostToFirstWorkerStartUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "firstPostToLastWorkerEndUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "slowestWorkerWallUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "slowestWorkerCpuUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "slowestWorkerOffCpuUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "lastWorkerEndToLastHandlerStartUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "mainBusyWallUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "mainBusyCpuUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "lastHandlerUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "gcOnMainInWindowUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "gcOnWorkersInWindowUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "lateStartWorkers": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "mainOffCpuDuringWaitUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "rasterWallDuringWaitUs": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      },
+      "rasterThreadsDuringWait": {
+        "n": 0,
+        "p50": "unavailable",
+        "p95": "unavailable",
+        "p99": "unavailable",
+        "max": "unavailable"
+      }
+    },
+    "seqs": []
+  },
+  "byJobKind": {}
+}

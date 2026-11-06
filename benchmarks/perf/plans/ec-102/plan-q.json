@@ -1,0 +1,565 @@
+[
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "c1-shell",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "clean",
+  "samples": 500
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "c1-vp1080",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "clean",
+  "samples": 500,
+  "viewport": "1920x1080"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "c1-full",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "clean",
+  "samples": 500,
+  "browser-channel": "chromium"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "c1-fullgpu",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "clean",
+  "samples": 500,
+  "browser-channel": "chromium",
+  "browser-args": [
+   "--use-angle=d3d11",
+   "--enable-gpu-rasterization",
+   "--ignore-gpu-blocklist"
+  ]
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "c2-fullgpu",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "clean",
+  "samples": 500,
+  "browser-channel": "chromium",
+  "browser-args": [
+   "--use-angle=d3d11",
+   "--enable-gpu-rasterization",
+   "--ignore-gpu-blocklist"
+  ]
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "c2-full",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "clean",
+  "samples": 500,
+  "browser-channel": "chromium"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "c2-vp1080",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "clean",
+  "samples": 500,
+  "viewport": "1920x1080"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "c2-shell",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "clean",
+  "samples": 500
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "ct-shell",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "traced",
+  "samples": 100
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "ct-vp1080",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "traced",
+  "samples": 100,
+  "viewport": "1920x1080"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "ct-full",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "traced",
+  "samples": 100,
+  "browser-channel": "chromium"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "ct-fullgpu",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "traced",
+  "samples": 100,
+  "browser-channel": "chromium",
+  "browser-args": [
+   "--use-angle=d3d11",
+   "--enable-gpu-rasterization",
+   "--ignore-gpu-blocklist"
+  ]
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-stock-1",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "stock",
+  "build": "prod"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-stock-2",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "stock",
+  "build": "prod"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-stock-3",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "stock",
+  "build": "prod"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-app-w-audiooff",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "off",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "clean",
+  "samples": 1000
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-app-s-audioon",
+  "variant": "TS-S",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "clean",
+  "samples": 1000
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-app-w-audioon",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "clean",
+  "samples": 1000
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-stock-4",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "stock",
+  "build": "prod"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-stock-5",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "stock",
+  "build": "prod"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-hc3-app-w",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll",
+  "pass": "clean",
+  "samples": 500,
+  "hardware-concurrency": 3
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1b-node-th01",
+  "variant": "TS-S",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "node-core",
+  "pass": "clean",
+  "repeat": 18
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1b-node-th02",
+  "variant": "TS-S",
+  "case": "TH02_STATIC_EDIT_TAPE",
+  "boundary": "node-core",
+  "pass": "clean",
+  "repeat": 46
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1b-node-traced-th01",
+  "variant": "TS-S",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "node-core",
+  "pass": "traced",
+  "repeat": 3
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1b-node-alloc-th01",
+  "variant": "TS-S",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "node-core",
+  "pass": "alloc",
+  "repeat": 3
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-node-tc01",
+  "variant": "TS-S",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "node-core",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-s-tc01",
+  "variant": "TS-S",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "decomposed",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-fb-tc01",
+  "variant": "TS-S",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-w-tc01",
+  "variant": "TS-W",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-node-tc02",
+  "variant": "TS-S",
+  "case": "TC02_STATIC_EDIT_TAPE",
+  "boundary": "node-core",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-s-tc02",
+  "variant": "TS-S",
+  "case": "TC02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "decomposed",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-fb-tc02",
+  "variant": "TS-S",
+  "case": "TC02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-w-tc02",
+  "variant": "TS-W",
+  "case": "TC02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-node-th01",
+  "variant": "TS-S",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "node-core",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-s-th01",
+  "variant": "TS-S",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "decomposed",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-fb-th01",
+  "variant": "TS-S",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-w-th01",
+  "variant": "TS-W",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-node-th02",
+  "variant": "TS-S",
+  "case": "TH02_STATIC_EDIT_TAPE",
+  "boundary": "node-core",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-s-th02",
+  "variant": "TS-S",
+  "case": "TH02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "decomposed",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-fb-th02",
+  "variant": "TS-S",
+  "case": "TH02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "par-w-th02",
+  "variant": "TS-W",
+  "case": "TH02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "ctl-pool",
+  "variant": "TS-W",
+  "case": "CONTROLS",
+  "boundary": "browser-pool",
+  "pass": "traced"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "ctl-app",
+  "variant": "TS-W",
+  "case": "CONTROLS",
+  "boundary": "browser-app",
+  "pass": "traced",
+  "audio": "on",
+  "build": "prod"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-s-w01",
+  "variant": "TS-S",
+  "case": "W01_H100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-w-w01",
+  "variant": "TS-W",
+  "case": "W01_H100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "clean"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-w-w02",
+  "variant": "TS-W",
+  "case": "W02_H100_STATIC_5HZ_30S",
+  "boundary": "browser-pool",
+  "pass": "clean"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-s-w02",
+  "variant": "TS-S",
+  "case": "W02_H100_STATIC_5HZ_30S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-s-w03",
+  "variant": "TS-S",
+  "case": "W03_C100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-w-w03",
+  "variant": "TS-W",
+  "case": "W03_C100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "clean"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-w-w04",
+  "variant": "TS-W",
+  "case": "W04_C100_STATIC_5HZ_30S",
+  "boundary": "browser-pool",
+  "pass": "clean"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-s-w04",
+  "variant": "TS-S",
+  "case": "W04_C100_STATIC_5HZ_30S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-hc3-w01",
+  "variant": "TS-W",
+  "case": "W01_H100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "hardware-concurrency": 3
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-hc4-w01",
+  "variant": "TS-W",
+  "case": "W01_H100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "hardware-concurrency": 4
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r2-hc6-w01",
+  "variant": "TS-W",
+  "case": "W01_H100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "hardware-concurrency": 6
+ }
+]

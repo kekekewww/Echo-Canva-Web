@@ -67,7 +67,7 @@ try {
 | S9 Playback Under Load | 固定 clip/hash、兩種 sample rate/device profile、idle vs. S3/S5，校準 loopback、拖曳、切換播放模式。另做 device-loss/recovery。 | audio deadline、缺樣、latency、CPU 競爭 |
 | S10 Fault / Backpressure | 注入 delayed/missing/duplicate shard、Worker deny、stale fingerprint、native cancel/restart、malformed frame。相同輸入序列。 | 原子採納、queue bound、fallback 與 recovery time |
 
-實作狀態：語料含標記 S1–S7 的 TypeScript 正確性輸入 case（見 [EC-101 固定語料](../../raw/sources/ec-101-corpus-baseline.md)）；S5、S6 的完整長度 tape、計時與剖析屬 EC-102 及後續，S8–S10 尚未實作。已獨立驗證於 `b0807ae`。
+實作狀態：語料含標記 S1–S7 的 TypeScript 正確性輸入 case（見 [EC-101 固定語料](../../raw/sources/ec-101-corpus-baseline.md)）；S5、S6 的完整長度 tape、計時與剖析屬 EC-102 及後續，S8–S10 尚未實作。已獨立驗證於 `b0807ae`。EC-102 在 Windows 上以 `benchmarks/perf/` 實作了 TS-S 與 TS-W 的計時，新增 W01 至 W04 長工作負載與 `APP_H100_SWITCH`，S8 至 S10 沒有嘗試，見 [EC-102 Windows 剖析來源](../../raw/sources/ec-102-windows-profiling.md)。
 
 S1–S7 適用 7 個 variants 的共同 workload，能測哪些層由各 variant 能力決定。S8 追加 TS-W／WA-W／IPC 壓力。S9 僅在連接真實 renderer 的完整路徑執行，必要時含 TS-S fallback。S10 依各 adapter 支援的邊界執行，純 core 僅測輸入錯誤及取消合作點。Audio opt-in 10 秒輸出保留為現行短測，額外長時驗證另用此規格。
 
@@ -97,6 +97,8 @@ S1–S7 適用 7 個 variants 的共同 workload，能測哪些層由各 variant
 Trace 技術參考於 2026-11-06 檢閱。CDP WebAudio/Tracing 為 Chromium Tip-of-tree 診斷介面，使用固定 Chromium build 並記錄可用欄位。Long Tasks Level 1 的 W3C 文件目前為 Discontinued Draft，現有 Chromium gate 繼續使用，其他引擎需記能力與 trace 方法。Windows 可用 WPR/WPA ETW。macOS 可用 Instruments 的 CPU/Allocations 觀測並記錄 Xcode 版本。[CDP WebAudio](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio/) · [CDP Tracing](https://chromedevtools.github.io/devtools-protocol/tot/Tracing/) · [W3C Long Tasks 2026-10-20](https://www.w3.org/TR/2026/DISC-longtasks-1-20261020/) · [Microsoft WPT](https://learn.microsoft.com/en-us/windows-hardware/test/wpt/) · [Apple Instruments](https://developer.apple.com/tutorials/instruments)
 
 Phase 1 harness 的介面需可輸入 `variant`、`case`、`corpus manifest`、`run ID`、`repeat count`、`output directory`，並有 `verify-corpus`、`run`、`summarize` 三個入口，實作後將精確命令與工具鎖定寫入任務紀錄。每 run 保留 `environment.json`、`input-manifest.json`、`samples.jsonl`、`summary.json`、`parity-diffs.jsonl`、logs、適用的 profile/trace/artifact SHA-256。每筆 sample 至少有 `runId, variant, caseId, requestSeq, mode, sceneRevision, staticFingerprint, phase, duration, units, outcome`。Encode/dispatch/accepted counters 與上述 percentile 的邊界在 machine-readable schema 標版本。缺值標 `not-applicable` 或 `unavailable`，不可填 0。大型 trace 保留 artifact URI、checksum、保留期限與必要重跑指令。循 [知識規則](../../schema.md) 註冊證據及來源。
+
+實作狀態（EC-102，Windows）：`verify-corpus`、`run`、`summarize` 與 `rederive`、`analyze`、`scan` 已在 `scripts/perf/cli.mjs`，見 [perf README](../../../benchmarks/perf/README.md)。只有 TS-S 與 TS-W 有實作，其他 variant 未實作。未達成的計畫目標：每組至少 5 個獨立程序（主要群組為 2 至 3 個，數個診斷群組為 1 個）；10 次冷啟動（沒有當成一個群組執行）；硬體音訊；熱穩定起訖（只有 ACPI thermal zone 讀值）；ETW／WPR 未使用；有頭瀏覽器未執行；S8 至 S10 未嘗試；macOS 未執行。見 [EC-102 Windows 剖析來源](../../raw/sources/ec-102-windows-profiling.md)。
 
 ## 6. 數值和協定等價
 

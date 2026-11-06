@@ -1,0 +1,14 @@
+{
+  "schema": "ec102.compute-vs-trace.v1",
+  "reportedValues": "whole milliseconds: the production workers read Date.now(), so reported values are integers",
+  "traceTask": "duration of the top-level task on the worker thread; it also contains the message deserialize and the reply post, so it is expected to be at least the reported value",
+  "summary": {
+    "jobs": 0,
+    "jobsWithoutMarks": 0,
+    "entries": 0,
+    "matched": 0,
+    "unmatched": 0,
+    "differenceMs": "unavailable"
+  },
+  "entries": []
+}

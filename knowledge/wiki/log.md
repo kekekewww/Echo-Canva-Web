@@ -29,3 +29,7 @@ GPT-Sol 對 `b0807ae` 的結論為 `VERIFIED`，EC-101 轉為 Verified。第一�
 ## [2026-11-06] Correction | 移除兩個基準紀錄的本機路徑
 
 維護者決定移除 `windows-2026-11-06/unit.log` 與 `targeted-unit.log` 第 2 行的本機 checkout 路徑，發生在已驗證的 `b0807ae` 之後，見 [更正記錄](../raw/sources/windows-baseline.md#corrections)。測試結果不受影響，原始位元組保留在提交 `2a68438`。EC-101 仍為 Verified，EC-102 可從凍結語料開始。
+
+## [2026-11-07] Implement | EC-102 Windows 剖析
+
+[來源登錄](../raw/sources/ec-102-windows-profiling.md) 記錄 Windows 上 109 次已索引執行、八項發現、未達成的計畫目標與更正。[工作階段](../sessions/2026-11-07-claude-ec-102-profiling.md) 與 [交接](../handoffs/2026-11-07-ec-102-claude.md) 保存過程。EC-102 轉為 Implemented，獨立驗證待進行，macOS 沒有執行。產品、門檻與依賴未更動。
