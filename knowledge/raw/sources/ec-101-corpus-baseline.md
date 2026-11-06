@@ -71,7 +71,11 @@ node scripts/corpus/cli.mjs rerun --out .corpus-runs/acceptance --evidence evide
 
 ## 獨立驗證
 
-**Measured Result**：GPT-Sol 對 `b0807ae` 的結論為 `VERIFIED`（第一次在 `cd0d6ab` 為 `NOT_VERIFIED`）。驗證者以自己的比較器對 135,147 個葉節點零 violation，172 個輸入與預期檔雜湊相符，基準重跑與候選執行的 aggregate 皆為 `76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6`，86/86 bit-exact。候選版本的單元測試為 85 個檔案、797 個測試。目前的 CI 參考：GitHub Actions run 42176534040 於 `b0807ae`，三個 job 通過，`linux` 與 `win32` 的 aggregate 相同，`bitExact=86/86`。證據：[報告](../../../benchmarks/corpus/v1/evidence/verification-b0807ae.md)、[資料](../../../benchmarks/corpus/v1/evidence/verification-b0807ae.json)，完整內容與限制見 [驗證工作階段](../../sessions/2026-11-06-codex-ec-101-verification.md)。
+**Measured Result**：GPT-Sol 對 `b0807ae` 的結論為 `VERIFIED`（第一次在 `cd0d6ab` 為 `NOT_VERIFIED`）。驗證者以自己的比較器對 135,147 個葉節點零 violation，172 個輸入與預期檔雜湊相符，基準重跑與候選執行的 aggregate 皆為 `76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6`，86/86 bit-exact。候選版本的單元測試為 85 個檔案、797 個測試。
+
+控制者的 CI 參考（不是驗證者的實測）：GitHub Actions run 42176534040 於 `b0807ae`，三個 job 通過，`linux` 與 `win32` 的 aggregate 相同，`bitExact=86/86`。
+
+證據：[報告](../../../benchmarks/corpus/v1/evidence/verification-b0807ae.md)、[資料](../../../benchmarks/corpus/v1/evidence/verification-b0807ae.json)，完整內容與限制見 [驗證工作階段](../../sessions/2026-11-06-codex-ec-101-verification.md)。
 
 兩項發現記於此處，皆為未決：I1，`DC05_WALL_EXACTLY_MIN_LENGTH` 沒有呼叫 `validateScene`，只加倍 validator 的最小牆長門檻，86 個輸出仍 bit-exact；M2，兩個既有的 Windows 基準紀錄含本機路徑，來自 `2a68438` 與 PR #59，不是本分支所改，維護者另行處理。驗證者未能確認外部 CI 與跨 OS 紀錄、72 個 case 時代的雜訊統計、不可達 guard 的普遍結論與過去的本機事件，這些依賴先前的審查與 CI。
 
