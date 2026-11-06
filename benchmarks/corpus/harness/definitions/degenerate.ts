@@ -160,7 +160,8 @@ function hybridCases(): CorpusCaseDefinition[] {
   const onPlane = partitionScene(213);
   onPlane.sources[0]!.position = { x: 6.1, y: 6.5 };
 
-  // Listener at 1.5 m, radio at 2.7 m: the route crosses the partition at x = 6, y = 4, z = 2.1, the top edge of the 2.1 m door.
+  // The door is 2.1 m tall. Listener and radio both sit at exactly 2.1 m, so the horizontal route through the door
+  // at plan y = 4 lies on the opening's top edge on both wall faces.
   const grazing = partitionScene(214);
 
   return [
@@ -192,8 +193,8 @@ function hybridCases(): CorpusCaseDefinition[] {
     hybridCase(
       "DH05_ROUTE_GRAZES_PORTAL_EDGE",
       ["portal-edge", "grazing"],
-      "The route to the radio crosses the door plane at exactly the 2.1 m door top.",
-      hybridDocument(grazing, 1.5, { radio: 2.7, rain: 1.5 }),
+      "Listener and radio at exactly the 2.1 m door height; the horizontal route through the door lies on the opening top edge.",
+      hybridDocument(grazing, grazing.portals[0]!.heightM, { radio: grazing.portals[0]!.heightM, rain: 1.5 }),
     ),
   ];
 }

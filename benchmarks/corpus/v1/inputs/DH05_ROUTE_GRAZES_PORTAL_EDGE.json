@@ -158,9 +158,9 @@
       "spatial3d": {
         "coordinateSystem": "x-right-y-up-z-forward",
         "floorElevationM": 0,
-        "listenerHeightM": 1.5,
+        "listenerHeightM": 2.1,
         "sourceHeightsM": {
-          "radio": 2.7,
+          "radio": 2.1,
           "rain": 1.5
         }
       }

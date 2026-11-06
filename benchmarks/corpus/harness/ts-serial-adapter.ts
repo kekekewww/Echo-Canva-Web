@@ -199,6 +199,7 @@ function runWorkspaceMigration(input: MigrationInput): unknown {
         result: "ok",
         project: loaded.project,
         warning: loaded.warning,
+        history: loaded.history,
         ...describeProject(loaded.project, mode),
       };
     }

@@ -13,7 +13,7 @@ const TAPE_SEED = 20261106;
 const SEED = {
   value: TAPE_SEED,
   algorithm: "lcg32-v1" as const,
-  consumers: "x then y jitter of each of the 64 listener poses, two draws per step in step order",
+  consumers: "x then y jitter of the 56 approach and exit poses, two draws per pose in step order; the 8 jamb poses use none",
 };
 
 function round(value: number, places: number): number {
@@ -21,48 +21,79 @@ function round(value: number, places: number): number {
   return Math.round(value * factor) / factor;
 }
 
-/**
- * A 64-step walk through the partition door: from the far corner of the left room to the door, across the
- * door line, and out to the right room. Each pose carries up to 0.1 m of seeded jitter on both axes.
- */
-function listenerWalk(): TapeEvent[] {
-  const waypoints = [
-    { x: 1.5, y: 6.5 },
-    { x: 5, y: 4 },
-    { x: 7, y: 4 },
-    { x: 10.5, y: 6.5 },
-  ];
-  const lengths = waypoints.slice(1).map((end, index) => {
-    const start = waypoints[index]!;
+/** Steps of the walk, split into an approach, a jamb-straddling leg and an exit. */
+const APPROACH_STEPS = 28;
+const JAMB_STEPS = 8;
+const EXIT_STEPS = 28;
+
+/** x of the jamb leg: 0.3 m in front of the partition face at x = 5.9. */
+const JAMB_X = 5.6;
+/** The door spans y 3.4 to 4.6, so the lower jamb line is y = 3.4; the leg runs y 3.35 to 3.45 across it. */
+const JAMB_Y_FROM = 3.35;
+const JAMB_Y_TO = 3.45;
+
+type Point = { x: number; y: number };
+
+function heading(start: Point, end: Point): number {
+  const degrees = (Math.atan2(end.x - start.x, end.y - start.y) * 180) / Math.PI;
+  return round((degrees + 360) % 360, 1);
+}
+
+/** Samples `count` jittered poses along a polyline, starting at `offset` of a step past its first point. */
+function jitteredLeg(points: Point[], count: number, offset: number, random: () => number): TapeEvent[] {
+  const lengths = points.slice(1).map((end, index) => {
+    const start = points[index]!;
     return Math.hypot(end.x - start.x, end.y - start.y);
   });
   const total = lengths.reduce((sum, length) => sum + length, 0);
-  const random = lcg32(TAPE_SEED);
-  const steps = 64;
   const events: TapeEvent[] = [];
-  for (let step = 0; step < steps; step++) {
-    let remaining = (step / (steps - 1)) * total;
+  for (let step = 0; step < count; step++) {
+    let remaining = ((step + offset) / count) * total;
     let segment = 0;
     while (segment < lengths.length - 1 && remaining > lengths[segment]!) {
       remaining -= lengths[segment]!;
       segment += 1;
     }
-    const start = waypoints[segment]!;
-    const end = waypoints[segment + 1]!;
+    const start = points[segment]!;
+    const end = points[segment + 1]!;
     const fraction = remaining / lengths[segment]!;
     const jitterX = (random() - 0.5) * 0.2;
     const jitterY = (random() - 0.5) * 0.2;
-    const heading = (Math.atan2(end.x - start.x, end.y - start.y) * 180) / Math.PI;
     events.push({
       type: "listener-pose",
       position: {
         x: round(start.x + (end.x - start.x) * fraction + jitterX, 4),
         y: round(start.y + (end.y - start.y) * fraction + jitterY, 4),
       },
-      headingDeg: round((heading + 360) % 360, 1),
+      headingDeg: heading(start, end),
     });
   }
   return events;
+}
+
+/**
+ * A 64-step walk: from the left room to the lower door jamb, 8 unjittered steps straddling the jamb line
+ * y = 3.4 at x = 5.6, then through the door and out to the right room. The other 56 poses carry up to 0.1 m of
+ * seeded jitter on both axes.
+ */
+function listenerWalk(): TapeEvent[] {
+  const random = lcg32(TAPE_SEED);
+  const approach = jitteredLeg([{ x: 1.5, y: 6.5 }, { x: JAMB_X, y: JAMB_Y_FROM }], APPROACH_STEPS, 0, random);
+  const jamb: TapeEvent[] = Array.from({ length: JAMB_STEPS }, (_, step) => ({
+    type: "listener-pose",
+    position: {
+      x: JAMB_X,
+      y: round(JAMB_Y_FROM + ((JAMB_Y_TO - JAMB_Y_FROM) * step) / (JAMB_STEPS - 1), 4),
+    },
+    headingDeg: 0,
+  }));
+  const exit = jitteredLeg(
+    [{ x: JAMB_X, y: JAMB_Y_TO }, { x: 7, y: 4 }, { x: 10.5, y: 6.5 }],
+    EXIT_STEPS,
+    1,
+    random,
+  );
+  return [...approach, ...jamb, ...exit];
 }
 
 const POSES: [number, number][] = [
@@ -168,7 +199,7 @@ export function tapeCaseDefinitions(): CorpusCaseDefinition[] {
       source: {
         type: "handwritten",
         refs: [PARTITION_REF],
-        notes: "64 listener poses along a jittered walk from the left room through the door to the right room.",
+        notes: "64 listener poses: a jittered approach, 8 steps straddling the lower door jamb line y = 3.4 at x = 5.6, then a jittered exit through the door.",
       },
       seed: SEED,
       counts: sceneCounts(classicWalk),

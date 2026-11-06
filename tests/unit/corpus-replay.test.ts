@@ -206,6 +206,12 @@ describe("migration, degenerate and tape pins", () => {
     expect(m012.error.message).toMatch(/invalid 3D geometry/);
   });
 
+  it("freezes the migrated M004 history as compact patches", () => {
+    const m004 = expectedOf("M004_LEGACY_CACHE_2_0") as { value: { history: { past: { operations: unknown[] }[] } } };
+    expect(m004.value.history.past.length).toBeGreaterThan(0);
+    for (const patch of m004.value.history.past) expect(Array.isArray(patch.operations)).toBe(true);
+  });
+
   it.each([
     ["TC02_STATIC_EDIT_TAPE", "staticFingerprint", 24],
     ["TH02_STATIC_EDIT_TAPE", "staticGeometryHash", 24],

@@ -1226,9 +1226,9 @@
     {
       "counts": null,
       "expected": {
-        "bytes": 15231,
+        "bytes": 22264,
         "path": "benchmarks/corpus/v1/expected/M004_LEGACY_CACHE_2_0.json",
-        "sha256": "b592c0cba6fe73f2933ca703793ea979869d8bffde5a9d6666af871f57ebc05f"
+        "sha256": "ec1afce99606f0a71722193ce1534adfa20c040e850af49d9f3faa4f9ddf6b73"
       },
       "expectedOutcome": "ok",
       "id": "M004_LEGACY_CACHE_2_0",
@@ -1260,9 +1260,9 @@
     {
       "counts": null,
       "expected": {
-        "bytes": 16671,
+        "bytes": 22746,
         "path": "benchmarks/corpus/v1/expected/M005_CACHE_BEFORE_PANNING.json",
-        "sha256": "0ac3d3d5f1d4b377445764c7554520c4342fe95af9016b4bc144574a3a49067c"
+        "sha256": "7637cd99eb4686791c0c5bdd6bd7fa13ee2b9b7a170cee8e5e20ad669eda89f7"
       },
       "expectedOutcome": "ok",
       "id": "M005_CACHE_BEFORE_PANNING",
@@ -1294,9 +1294,9 @@
     {
       "counts": null,
       "expected": {
-        "bytes": 16674,
+        "bytes": 22749,
         "path": "benchmarks/corpus/v1/expected/M006_CACHE_BEFORE_PRIMITIVES.json",
-        "sha256": "dc63c612f0556817998853633cf88a4499b90c807ec35f2fb9f1a47cce150a9e"
+        "sha256": "ccfd9772b52d09a318ed7265307ed807842094485087ce5396226b3dc8924c50"
       },
       "expectedOutcome": "ok",
       "id": "M006_CACHE_BEFORE_PRIMITIVES",
@@ -1946,16 +1946,16 @@
         "walls": 5
       },
       "expected": {
-        "bytes": 17010,
+        "bytes": 9701,
         "path": "benchmarks/corpus/v1/expected/DH05_ROUTE_GRAZES_PORTAL_EDGE.json",
-        "sha256": "83f6a2e3c5f53e22159170664f73bc8b6739530143f6a14ead2dccb889605541"
+        "sha256": "f7d4aa6845c918c12bc69709f6c1f63319c5822df59061f2f3b643dd86d1557b"
       },
       "expectedOutcome": "ok",
       "id": "DH05_ROUTE_GRAZES_PORTAL_EDGE",
       "input": {
         "bytes": 3554,
         "path": "benchmarks/corpus/v1/inputs/DH05_ROUTE_GRAZES_PORTAL_EDGE.json",
-        "sha256": "107f0d2742c55bec7b6e23249e2adafeb4f0dbf4b43209fe9d57f4f44452b243"
+        "sha256": "852e9d50282b0da620b495daf68dbfddab2e33957f2d33155e5d2cb1cc1af58b"
       },
       "kind": "hybrid-frame",
       "license": "MIT (repository)",
@@ -1963,7 +1963,7 @@
       "scenario": null,
       "seed": null,
       "source": {
-        "notes": "The route to the radio crosses the door plane at exactly the 2.1 m door top.",
+        "notes": "Listener and radio at exactly the 2.1 m door height; the horizontal route through the door lies on the opening top edge.",
         "refs": [
           "src/domain/presets/concrete-partition.ts"
         ],
@@ -2404,16 +2404,16 @@
         "walls": 5
       },
       "expected": {
-        "bytes": 407257,
+        "bytes": 416505,
         "path": "benchmarks/corpus/v1/expected/TC01_LISTENER_TAPE_SEEDED.json",
-        "sha256": "5e0aead4b7f9468e009cb22efbb1d8965c94c0aa49dd98f9e50b10bfb8df1688"
+        "sha256": "ff0cb7c811ce1d4fbe8dfa380537a2c5bd295906f516048f951efa34a5081e53"
       },
       "expectedOutcome": "ok",
       "id": "TC01_LISTENER_TAPE_SEEDED",
       "input": {
-        "bytes": 11742,
+        "bytes": 11718,
         "path": "benchmarks/corpus/v1/inputs/TC01_LISTENER_TAPE_SEEDED.json",
-        "sha256": "f12fe88db7a407a50654e8caf84398ae8af1fdd635619c4910153fffcb1f18a8"
+        "sha256": "129eb93a453e609e9b94d292e4a25329335a74193ea598de4a88e7f65864d89a"
       },
       "kind": "classic-tape",
       "license": "MIT (repository)",
@@ -2421,11 +2421,11 @@
       "scenario": "S5",
       "seed": {
         "algorithm": "lcg32-v1",
-        "consumers": "x then y jitter of each of the 64 listener poses, two draws per step in step order",
+        "consumers": "x then y jitter of the 56 approach and exit poses, two draws per pose in step order; the 8 jamb poses use none",
         "value": 20261106
       },
       "source": {
-        "notes": "64 listener poses along a jittered walk from the left room through the door to the right room.",
+        "notes": "64 listener poses: a jittered approach, 8 steps straddling the lower door jamb line y = 3.4 at x = 5.6, then a jittered exit through the door.",
         "refs": [
           "src/domain/presets/concrete-partition.ts"
         ],
@@ -2448,16 +2448,16 @@
         "walls": 5
       },
       "expected": {
-        "bytes": 562337,
+        "bytes": 575197,
         "path": "benchmarks/corpus/v1/expected/TH01_LISTENER_TAPE_SEEDED.json",
-        "sha256": "52da4fc980ff5bc863dd9081caef6a83bbd622f5f80deadd13c42aff83385125"
+        "sha256": "d38187d22fc8ee9226f25fbe25b19e78da1084f85d8fab6acf55da605d75e061"
       },
       "expectedOutcome": "ok",
       "id": "TH01_LISTENER_TAPE_SEEDED",
       "input": {
-        "bytes": 12459,
+        "bytes": 12435,
         "path": "benchmarks/corpus/v1/inputs/TH01_LISTENER_TAPE_SEEDED.json",
-        "sha256": "1fc690eed4817eed538743d0c8e82e35f9683bc4b2d03b827484742310555f2d"
+        "sha256": "67517bb1f0b993efeb0e9a258adf9fcdc5f9cbe801a7a4780e99e62fb18bfce9"
       },
       "kind": "hybrid-tape",
       "license": "MIT (repository)",
@@ -2465,7 +2465,7 @@
       "scenario": "S5",
       "seed": {
         "algorithm": "lcg32-v1",
-        "consumers": "x then y jitter of each of the 64 listener poses, two draws per step in step order",
+        "consumers": "x then y jitter of the 56 approach and exit poses, two draws per pose in step order; the 8 jamb poses use none",
         "value": 20261106
       },
       "source": {
