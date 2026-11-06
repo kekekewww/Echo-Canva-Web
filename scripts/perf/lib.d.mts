@@ -105,6 +105,7 @@ export function summarizeSamples(samples: Sample[]): {
 export const CENSORED_PHASE: string;
 export function censoredBlock(censoredCount: number, warm: number[], cold: number[]): unknown;
 export function makeDenominators(counts: Record<string, number>): Record<string, number | string>;
+export function latestRunIndex<T extends { runId: string }>(lines: T[]): T[];
 export function groupKeyOf(entry: RunIndexLine): string;
 export function buildGroups(
   runs: { entry: RunIndexLine; samples: Sample[]; denominators?: Record<string, number | string> }[],

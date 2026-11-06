@@ -94,7 +94,7 @@ export const DENOMINATORS = [
 ];
 export const EXPLORATORY_BELOW = 1000;
 // Differences of two coarsened clock readings, or remainders: a small negative value is real data.
-export const SIGNED_PHASES = ["job.phase-residual", "shard.transport", "merge.validate", "queue.timer-lateness", "input.lateness", "queue.wait"];
+export const SIGNED_PHASES = ["job.phase-residual", "shard.transport", "merge.validate", "queue.timer-lateness", "input.lateness", "queue.wait", "app.input-to-dispatch-minus-rate-limit"];
 
 const SAMPLE_KEYS = [
   "schema",
@@ -536,6 +536,16 @@ export const RUN_ID_PATTERN = /^[A-Za-z0-9._-]+$/;
 export function appendRunIndex(outDir, line) {
   mkdirSync(outDir, { recursive: true });
   appendFileSync(join(outDir, "runs-index.jsonl"), `${JSON.stringify(line)}\n`, "utf8");
+}
+
+/**
+ * The index keeps every line, including the ones a re-derivation appends. This returns one line per run
+ * id: the last one, in the position of the first. rederivedFrom marks a line that replaced an earlier one.
+ */
+export function latestRunIndex(lines) {
+  const byId = new Map();
+  for (const line of lines) byId.set(line.runId, line);
+  return [...byId.values()];
 }
 
 export function readRunIndex(outDir) {

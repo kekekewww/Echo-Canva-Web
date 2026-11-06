@@ -11,7 +11,7 @@ import { pathToFileURL } from "node:url";
 import { chromium } from "@playwright/test";
 
 import { startAllocation, startTracing } from "./cdp-tools.mjs";
-import { computeCheckFromDump, deriveAppSamples } from "./derive-app.mjs";
+import { AUDIO_SAMPLE_INTERVAL_MS, assertSources, computeCheckFromDump, deriveAppSamples } from "./derive-app.mjs";
 import { UNAVAILABLE, NOT_APPLICABLE, serializeJsonl, sha256File, tempEnvironment, writeJson } from "./lib.mjs";
 import { analyzeTrace, rankJobs } from "./trace-analyze.mjs";
 
@@ -55,7 +55,7 @@ async function startServer(port) {
     } catch {
       // Not listening yet.
     }
-    await new Promise((resolveWait) => setTimeout(resolveWait, 250));
+    await new Promise((resolveWait) => setTimeout(resolveWait, AUDIO_SAMPLE_INTERVAL_MS));
   }
   child.kill();
   throw new Error("next start did not answer within 90 s");
@@ -76,7 +76,7 @@ function startAudioSampler(cdp, getContextId) {
       if (contextId) {
         try {
           const { realtimeData } = await cdp.send("WebAudio.getRealtimeData", { contextId });
-          samples.push(realtimeData);
+          samples.push({ ...realtimeData, atMs: Date.now() });
         } catch {
           // The context may be gone; the next tick tries again.
         }
@@ -356,6 +356,7 @@ async function main() {
     if (config.pass === "alloc") allocation = await startAllocation(browserSession, pageSession);
     const timeouts = [];
     let submitted = 0;
+    let windowWallMs = null;
 
     if (caseId === "APP_H100_SWITCH") {
       for (let index = 0; index < 3; index += 1) {
@@ -366,6 +367,7 @@ async function main() {
         window.__ec102.reset();
         window.__ec102.windowStart();
       });
+      windowWallMs = Date.now();
       const start = await readStatus(statusbar);
       let previous = start.sequence;
       let previousRevision = Number(start.revision);
@@ -397,6 +399,7 @@ async function main() {
         window.__ec102.reset();
         window.__ec102.windowStart();
       });
+      windowWallMs = Date.now();
       const startedAt = Date.now();
       while (Date.now() - startedAt < dragMs) {
         const phase = ((Date.now() - startedAt) / 2000) * Math.PI * 2;
@@ -410,7 +413,8 @@ async function main() {
       await runInAppControls(page, result, audioOn);
     }
     await page.evaluate(() => window.__ec102.windowEnd());
-    const audioSamples = sampler ? (await sampler.stop(), sampler.samples) : [];
+    const audioSamples = sampler ? (await sampler.stop(), sampler.samples.map((sample) => ({ ...sample, elapsedMs: windowWallMs === null ? undefined : sample.atMs - windowWallMs }))) : [];
+    if (audioSamples.length > 0) writeJson(join(runDir, "audio-samples.json"), { intervalMs: AUDIO_SAMPLE_INTERVAL_MS, note: "elapsedMs is the sample time since the window start, on the harness clock", samples: audioSamples });
     if (result.controls?.audio) {
       const capacities = audioSamples.map((sample) => sample.renderCapacity);
       result.controls.audio.realtime = {
@@ -524,26 +528,6 @@ async function main() {
   result.endedAt = new Date().toISOString();
   writeJson(join(runDir, "runner-result.json"), result);
   process.exit(result.status === "passed" ? 0 : 2);
-}
-
-function assertSources(result, config, observed, expectedCount) {
-  if (observed.commits === 0) {
-    result.errors.push("no accepted frame was observed during the window");
-    return;
-  }
-  if (config.variant === "TS-S") {
-    if (observed.workerSources.length !== 1 || observed.workerSources[0] !== "Fallback") {
-      result.errors.push(`fallback did not activate cleanly: data-worker-source values ${JSON.stringify(observed.workerSources)}`);
-    }
-    if (observed.workersCreated !== 0) result.errors.push(`a worker was created during a forced-serial run (${observed.workersCreated})`);
-  } else {
-    if (observed.workerSources.length !== 1 || observed.workerSources[0] !== "Worker") {
-      result.errors.push(`data-worker-source values ${JSON.stringify(observed.workerSources)}, expected Worker only`);
-    }
-    if (observed.workerCounts.length !== 1 || observed.workerCounts[0] !== String(expectedCount)) {
-      result.errors.push(`data-worker-count values ${JSON.stringify(observed.workerCounts)}, expected ${expectedCount}`);
-    }
-  }
 }
 
 /**

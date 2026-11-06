@@ -2,8 +2,8 @@
 // into samples. Pure: no I/O, so it is unit tested with a synthetic log.
 import { NOT_APPLICABLE, createSample } from "./lib.mjs";
 
-const WARM_JOBS = 100;
-const WARM_MS = 5000;
+export const WARM_JOBS = 100;
+export const WARM_MS = 5000;
 
 /** Same rule as isWarm in replay-serial.ts: both 100 units and 5 s into the process. */
 export function warmAt(ordinal, elapsedMs) {

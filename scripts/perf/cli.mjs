@@ -9,6 +9,7 @@ import { buildBundle } from "./bundle.mjs";
 import { overheadComparisons, pairedDifferences, parityRows, renderComparisons } from "./compare.mjs";
 import { computeCheckFromDump } from "./derive-app.mjs";
 import { poolComputeCheck } from "./derive-pool.mjs";
+import { rederiveRun } from "./rederive.mjs";
 import { collectEnvironment, sampleOtherActivity } from "./env.mjs";
 import { analyzeTrace, rankJobs } from "./trace-analyze.mjs";
 import {
@@ -23,6 +24,7 @@ import {
   executeRun,
   parseJsonl,
   readJson,
+  latestRunIndex,
   readRunIndex,
   renderTables,
   sanitizeText,
@@ -59,13 +61,14 @@ const COMMAND_FLAGS = {
   run: new Set([...RUN_FLAGS, ...BOOLEAN_FLAGS]),
   summarize: new Set(["out", "to", "with-slices"]),
   analyze: new Set(["out", "top"]),
+  rederive: new Set(),
   scan: new Set(),
 };
 
 function parseArgs(argv) {
   const [command, ...rest] = argv;
   const allowed = COMMAND_FLAGS[command];
-  if (!allowed) throw new UsageError(`Unknown command ${command ?? "(none)"}. Use verify-corpus, generate-workloads, run, summarize, analyze or scan.`);
+  if (!allowed) throw new UsageError(`Unknown command ${command ?? "(none)"}. Use verify-corpus, generate-workloads, run, summarize, analyze, rederive or scan.`);
   const positional = [];
   const flags = new Map();
   for (let index = 0; index < rest.length; index += 1) {
@@ -656,7 +659,9 @@ function commandSummarize(flags) {
   const outDir = insideRepo(flags.get("out") ?? DEFAULT_OUT, "--out");
   if (!flags.has("to")) throw new UsageError("summarize needs --to <evidenceDir>");
   const evidenceDir = insideRepo(flags.get("to"), "--to");
-  const index = readRunIndex(outDir);
+  const history = readRunIndex(outDir);
+  // The last line per run id wins; a re-derivation appends a line and the earlier ones stay in the file.
+  const index = latestRunIndex(history);
   if (index.length === 0) throw new UsageError(`${repoRelative(outDir)} has no runs-index.jsonl entries`);
   mkdirSync(evidenceDir, { recursive: true });
   const withSlices = flags.has("with-slices");
@@ -702,13 +707,20 @@ function commandSummarize(flags) {
   const parity = parityRows(parityRuns);
   writeJson(path.join(evidenceDir, "groups.json"), { schema: "ec102.groups.v1", groups, parityRuns });
   writeJson(path.join(evidenceDir, "comparisons.json"), { schema: "ec102.comparisons.v1", paired, overhead, parity });
-  writeFileSync(path.join(evidenceDir, "tables.md"), renderTables(groups) + renderComparisons({ paired, overhead, parity }), "utf8");
-  writeFileSync(path.join(evidenceDir, "runs-index.jsonl"), serializeJsonl(index), "utf8");
+  const rederived = index.filter((entry) => entry.rederivedFrom !== undefined);
+  let rederivedSection = "";
+  if (rederived.length > 0) {
+    const rows = rederived.map((entry) => "- " + entry.runId + ": " + entry.status + ", " + entry.sampleCount + " samples (rederived " + entry.rederivedAt + ")");
+    rederivedSection = "\n## Rederived runs\n\nThese runs were rebuilt from their kept raw files with rederive; nothing was re-measured. The original status and error are in each run-status.json.\n\n" + rows.join("\n") + "\n";
+  }
+  writeFileSync(path.join(evidenceDir, "tables.md"), renderTables(groups) + renderComparisons({ paired, overhead, parity }) + rederivedSection, "utf8");
+  writeFileSync(path.join(evidenceDir, "runs-index.jsonl"), serializeJsonl(history), "utf8");
   writeFileSync(path.join(evidenceDir, "large-artifacts.sha256"), `${largeLines.sort().join("\n")}\n`, "utf8");
   writeFileSync(path.join(evidenceDir, "artifacts.sha256"), artifactsSha256(evidenceDir), "utf8");
   const total = Object.values(perRunBytes).reduce((sum, value) => sum + value, 0);
   const largest = Math.max(0, ...Object.values(perRunBytes));
   console.log(`summarized ${index.length} run(s) into ${repoRelative(evidenceDir)}: ${groups.length} group(s), ${parityRuns.length} parity run(s), ${paired.length} pair(s)`);
+  if (rederived.length > 0) console.log("rederived runs: " + rederived.map((entry) => entry.runId + " (" + entry.status + ")").join(", "));
   console.log(`evidence per run: largest ${largest} bytes, total ${total} bytes (run files only)`);
   return 0;
 }
@@ -755,6 +767,14 @@ async function commandAnalyze(positional, flags) {
   return 0;
 }
 
+async function commandRederive(positional) {
+  if (positional.length !== 1) throw new UsageError("rederive needs one run directory");
+  const runDir = assertInsideRepo(path.resolve(positional[0]), "run directory");
+  const outcome = await rederiveRun({ runDir });
+  console.log(JSON.stringify({ runId: outcome.runId, originalStatus: outcome.originalStatus, status: outcome.status, sampleCount: outcome.sampleCount, errors: outcome.errors, audio: outcome.audio }));
+  return outcome.status === "passed" ? 0 : 2;
+}
+
 async function commandScan(positional) {
   if (positional.length === 0) throw new UsageError("scan needs at least one path");
   const hits = await scanPaths(positional);
@@ -778,6 +798,8 @@ async function main() {
       return commandRun(flags);
     case "summarize":
       return commandSummarize(flags);
+    case "rederive":
+      return commandRederive(positional);
     case "analyze":
       return commandAnalyze(positional, flags);
     default:

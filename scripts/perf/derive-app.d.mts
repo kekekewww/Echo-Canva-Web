@@ -1,6 +1,8 @@
 import type { Sample } from "./lib.mjs";
 
 type Loose = Record<string, unknown>;
+export const AUDIO_SAMPLE_INTERVAL_MS: number;
+export function assertSources(result: { errors: string[] }, config: Record<string, unknown>, observed: Record<string, unknown>, expectedCount: number): void;
 export function computeCheckFromDump(dump: Loose): {
   wholeMilliseconds: boolean;
   metricName: string;

@@ -30,3 +30,5 @@ export function poolComputeCheck(
   metricName: string;
   jobs: { seq: number; jobKind: string; firstPostStartMs: number; lastHandlerStartMs: number | null; lastHandlerEndMs: number | null; metricMs: number | null; entries: { worker: number; reportedMs: number; recvEpochMs: number | null; postEndMs: number | null; handlerStartMs: number | null }[] }[];
 };
+export const WARM_JOBS: number;
+export const WARM_MS: number;

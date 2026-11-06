@@ -6,8 +6,9 @@
 // setState commits the status bar attributes (commit 2). So the chain measured per job is
 //   last handler end -> first viewport mutation -> AudioParam calls -> status bar mutation.
 import { NOT_APPLICABLE, createSample, makeDenominators } from "./lib.mjs";
-import { warmAt } from "./derive-pool.mjs";
+import { WARM_JOBS, WARM_MS, warmAt } from "./derive-pool.mjs";
 
+export const AUDIO_SAMPLE_INTERVAL_MS = 250;
 const INPUT_TYPES = new Set(["pointerdown", "click", "input", "keydown"]);
 const MIN_UPDATE_HZ = 10;
 const MAX_UPDATE_HZ = 15;
@@ -61,6 +62,27 @@ export function computeCheckFromDump(dump) {
   return { wholeMilliseconds: true, metricName: "app.worker-compute-metric", jobs };
 }
 
+/** What the runner checks after deriving: the worker source and count the status bar showed. Pushes to result.errors. */
+export function assertSources(result, config, observed, expectedCount) {
+  if (observed.commits === 0) {
+    result.errors.push("no accepted frame was observed during the window");
+    return;
+  }
+  if (config.variant === "TS-S") {
+    if (observed.workerSources.length !== 1 || observed.workerSources[0] !== "Fallback") {
+      result.errors.push(`fallback did not activate cleanly: data-worker-source values ${JSON.stringify(observed.workerSources)}`);
+    }
+    if (observed.workersCreated !== 0) result.errors.push(`a worker was created during a forced-serial run (${observed.workersCreated})`);
+  } else {
+    if (observed.workerSources.length !== 1 || observed.workerSources[0] !== "Worker") {
+      result.errors.push(`data-worker-source values ${JSON.stringify(observed.workerSources)}, expected Worker only`);
+    }
+    if (observed.workerCounts.length !== 1 || observed.workerCounts[0] !== String(expectedCount)) {
+      result.errors.push(`data-worker-count values ${JSON.stringify(observed.workerCounts)}, expected ${expectedCount}`);
+    }
+  }
+}
+
 export function deriveAppSamples(dump, context) {
   const samples = [];
   const jobs = groupJobs(dump);
@@ -68,6 +90,11 @@ export function deriveAppSamples(dump, context) {
   const inputs = dump.inputs.filter((input) => INPUT_TYPES.has(input.type));
   const overlay = dump.overlay ?? { found: false, hasCanvas: false, mutations: [] };
   const firstCommitAt = commits.length > 0 ? commits[0].t : 0;
+  // Events with no job ordinal (long tasks, frames, audio samples) are warm once the run is past the
+  // job-count threshold and the time threshold together: the time of the WARM_JOBS-th commit, or
+  // WARM_MS after the first commit if that is later. A run with no more than WARM_JOBS commits has none.
+  const warmFromMs = commits.length > WARM_JOBS ? Math.max(WARM_MS, commits[WARM_JOBS].t - firstCommitAt) : Number.POSITIVE_INFINITY;
+  const warmByTime = (elapsedMs) => elapsedMs >= warmFromMs;
   const intervalMs = context.updateHz ? 1000 / Math.min(Math.max(context.updateHz, MIN_UPDATE_HZ), MAX_UPDATE_HZ) : null;
 
   const add = (fields) =>
@@ -191,20 +218,25 @@ export function deriveAppSamples(dump, context) {
   const inWindow = (start) => window !== null && start >= window.start && start <= window.end;
   const counts = { longTasks: { inWindow: 0, outsideWindow: 0 }, longAnimationFrames: { inWindow: 0, outsideWindow: 0 } };
   const suffix = (flag) => (flag ? "" : ".out-of-window");
-  dump.longTasks.forEach((task, index) => {
+  dump.longTasks.forEach((task) => {
     const flag = inWindow(task.start);
     counts.longTasks[flag ? "inWindow" : "outsideWindow"] += 1;
-    add({ phase: `app.long-task${suffix(flag)}`, duration: task.duration, warm: warmAt(index, task.start - firstCommitAt) });
+    add({ phase: `app.long-task${suffix(flag)}`, duration: task.duration, warm: flag && warmByTime(task.start - firstCommitAt) });
   });
-  (dump.loafs ?? []).forEach((frame, index) => {
+  (dump.loafs ?? []).forEach((frame) => {
     const flag = inWindow(frame.start);
     counts.longAnimationFrames[flag ? "inWindow" : "outsideWindow"] += 1;
-    add({ phase: `app.long-animation-frame${suffix(flag)}`, duration: frame.duration, warm: warmAt(index, frame.start - firstCommitAt) });
-    add({ phase: `app.long-animation-frame.blocking${suffix(flag)}`, duration: frame.blocking, warm: warmAt(index, frame.start - firstCommitAt) });
+    add({ phase: `app.long-animation-frame${suffix(flag)}`, duration: frame.duration, warm: flag && warmByTime(frame.start - firstCommitAt) });
+    add({ phase: `app.long-animation-frame.blocking${suffix(flag)}`, duration: frame.blocking, warm: flag && warmByTime(frame.start - firstCommitAt) });
   });
+  // Audio samples are taken every AUDIO_SAMPLE_INTERVAL_MS by the runner. elapsedMs is the sample's time
+  // since the window start; samples kept without it (older runs) are placed at index * interval, an estimate.
+  const audioOffset = window !== null && commits.length > 0 ? commits[0].t - window.start : 0;
   for (const [index, sample] of (context.audioSamples ?? []).entries()) {
-    add({ phase: "audio.render-capacity", duration: sample.renderCapacity, units: "ratio", clock: "cdp", warm: warmAt(index, 0) });
-    add({ phase: "audio.callback-interval-mean", duration: sample.callbackIntervalMean, units: "s", clock: "cdp", warm: warmAt(index, 0) });
+    const elapsed = (typeof sample.elapsedMs === "number" ? sample.elapsedMs : index * AUDIO_SAMPLE_INTERVAL_MS) - audioOffset;
+    const warm = warmByTime(elapsed);
+    add({ phase: "audio.render-capacity", duration: sample.renderCapacity, units: "ratio", clock: "cdp", warm });
+    add({ phase: "audio.callback-interval-mean", duration: sample.callbackIntervalMean, units: "s", clock: "cdp", warm });
   }
 
   const sources = commits.map((commit) => commit.source);
