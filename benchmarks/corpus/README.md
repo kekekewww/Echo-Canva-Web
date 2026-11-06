@@ -148,3 +148,6 @@ While the rules are draft, add the definition under `harness/definitions/`, rege
 - `-0` is reported, not preserved. Files hold `0`, so an adapter that produces `-0` is compared as `0` and flagged in `negativeZeroPaths`.
 - Arrays are compared by index. A different but valid ordering of ties is a violation, and the sensitivity evidence shows that tied reflections can swap order under noise as small as 1e-12 m.
 - `existing-test` is a claim about where a precision is already asserted. It is not a claim that the precision is the right one.
+- `azimuthDeg` is undefined when the source is directly above or below the listener. `DH02` is compared at its exact input, where it is bit-identical on Windows and Linux. A small coordinate shift moves it by 135 degrees, so a future port must handle this deliberately.
+- Tied reflections are ordered by exact gain equality (`src/acoustics/image-source.ts:151`). Array order is part of the contract, so a port with different float noise in symmetric scenes can fail on order.
+- The six Classic oracle classes use six-decimal rounding to match the existing test, which can fail on noise when a value sits at a rounding boundary.

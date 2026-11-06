@@ -71,6 +71,16 @@ function rewriteRules(root: string, change: (text: string) => string): void {
   writeManifest(root, manifest);
 }
 
+// The real rules are frozen. Freeze tests start from a draft copy with one undecided class.
+function reopenAsDraft(root: string): void {
+  rewriteRules(root, (text) =>
+    text
+      .replace('"status": "frozen"', '"status": "draft"')
+      .replace(/"frozenOn": "[^"]*"/, '"frozenOn": null')
+      .replace(/("hybrid-gain-db": {[^}]*"status":)"approved"/, '$1"proposed"'),
+  );
+}
+
 const firstCase = (root: string) => manifestOf(root).cases[0]!;
 
 describe("verifyCorpus", () => {
@@ -177,6 +187,7 @@ describe("corpus CLI", () => {
   });
 
   it("refuses to freeze while a class is proposed and leaves the files unchanged", () => {
+    reopenAsDraft(copy);
     const before = [read(copy, "manifest.json"), read(copy, "comparison-rules.json")];
     const result = runCli(["freeze", "--frozen-on", "2026-11-06", "--corpus", copy]);
     expect(result.status).not.toBe(0);
@@ -185,6 +196,7 @@ describe("corpus CLI", () => {
   });
 
   it("freezes once every class is decided and rewrites the rules hash", () => {
+    reopenAsDraft(copy);
     rewriteRules(copy, (text) => text.replaceAll('"status":"proposed"', '"status":"approved"'));
     const result = runCli(["freeze", "--frozen-on", "2026-11-06", "--corpus", copy]);
     expect(result.status, result.stderr).toBe(0);

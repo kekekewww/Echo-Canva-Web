@@ -41,12 +41,12 @@
     "TH01_LISTENER_TAPE_SEEDED": 154,
     "TH02_STATIC_EDIT_TAPE": 77
   },
-  "corpusSha256": "1b11f24016e3aa67addcae1d637db9d7b008239654269d354e917aa95895b9a5",
+  "corpusSha256": "0d0d268b9af6da26192aae12fee97c219bc3834787ddcd3222cc554a26c65eb4",
   "deltasM": [
     1e-12,
     1e-9
   ],
-  "gitHead": "6e6c45488050d6ddd6ff2965f68ce6792b7cfeaf",
+  "gitHead": "e8a1024fb8c41a64e2ae23e7dbd99a233b3e36d8",
   "hashChanges": {
     "1e-12": 328,
     "1e-9": 328
@@ -250,8 +250,8 @@
         "maxAbsDelta": 8.350912139576394e-8,
         "maxAbsDeltaIncludingFlippedUnits": 8.350912139576394e-8,
         "sampleCount": 108,
-        "toleranceViolations": 4,
-        "toleranceViolationsIncludingFlippedUnits": 4,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
         "worst": {
           "caseId": "C010_STRESS_100_WALLS",
           "path": "/value/frame/room/totalSurfaceM2"
@@ -1101,7 +1101,7 @@
       }
     }
   },
-  "rulesSha256": "7151c5dc59c7311efcb7f8f69851951a44b04ae1883009912437bbf7e5d53851",
+  "rulesSha256": "ecd33cd6bb4010474a471dc2e937f302d14ec6d8aaffcd2b819ab8bb6cc6fa74",
   "seed": 20261106,
   "unitsWithFlips": {
     "1e-12": {
