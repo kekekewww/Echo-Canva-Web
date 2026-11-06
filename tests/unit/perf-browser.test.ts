@@ -1,9 +1,35 @@
 import { describe, expect, it } from "vitest";
 
 import { collectBrowserFacts, launchBrowser } from "../../scripts/perf/cdp-tools.mjs";
-import { groupKeyOf } from "../../scripts/perf/lib.mjs";
+import { browserArgsOf, groupKeyOf, parseViewport, validateBrowserArgs, viewportOf } from "../../scripts/perf/lib.mjs";
 
 const ENTRY = { runId: "a", variant: "TS-W", case: "APP_H100_SWITCH", pass: "clean", boundary: "browser-app", workers: 4, audio: "on", build: "prod", driver: "poll", parity: false, status: "passed", start: "", end: "", orderIndex: 0, sampleCount: 1 };
+
+describe("viewport and browser args", () => {
+  it("parses a viewport and rejects anything else", () => {
+    expect(parseViewport("1920x1080")).toEqual({ width: 1920, height: 1080 });
+    expect(parseViewport("default")).toBeNull();
+    for (const bad of ["1920", "1920*1080", "100x100", "9000x1080", "axb", "1920x1080x2"]) expect(() => parseViewport(bad)).toThrow();
+  });
+
+  it("accepts Chromium switches and rejects path separators and non-switches", () => {
+    expect(validateBrowserArgs(["--use-angle=d3d11", "--enable-gpu-rasterization"])).toEqual(["--use-angle=d3d11", "--enable-gpu-rasterization"]);
+    expect(() => validateBrowserArgs(["--data-dir=" + ["a", "b"].join(String.fromCharCode(92))])).toThrow(/path separator/);
+    expect(() => validateBrowserArgs(["--data-dir=" + ["a", "b"].join("/")])).toThrow(/path separator/);
+    expect(() => validateBrowserArgs(["use-angle"])).toThrow(/starting with/);
+    expect(() => validateBrowserArgs("--x" as unknown as string[])).toThrow();
+  });
+
+  it("puts the viewport and the arguments in the group key; older in-app runs count as the default", () => {
+    const base = { ...ENTRY };
+    expect(groupKeyOf({ ...base, viewport: "1920x1080" })).not.toBe(groupKeyOf({ ...base, viewport: "default" }));
+    expect(groupKeyOf({ ...base, browserArgs: ["--enable-gpu-rasterization"] })).not.toBe(groupKeyOf({ ...base, browserArgs: [] }));
+    expect(groupKeyOf({ ...base, browserArgs: ["--a", "--b"] })).not.toBe(groupKeyOf({ ...base, browserArgs: ["--a"] }));
+    expect(groupKeyOf(base)).toBe(groupKeyOf({ ...base, viewport: "default", browserArgs: [] }));
+    expect(viewportOf({ boundary: "browser-pool" })).toBe("not-applicable");
+    expect(browserArgsOf({ boundary: "browser-pool" })).toBe("not-applicable");
+  });
+});
 
 describe("browser channel", () => {
   it("is part of the group key, and runs from before the option count as the default launch", () => {
@@ -27,14 +53,14 @@ describe("browser channel", () => {
     const full = await collectBrowserFacts({
       browser, chromium, channel: "chromium",
       page: { evaluate: async () => ({ vendor: "Vendor X", renderer: "ANGLE (Renderer Y)" }) },
-      browserSession: { send: async () => ({ gpu: { featureStatus: { rasterization: "enabled_on", webgl: "enabled" } } }) },
+      browserSession: { send: async () => ({ gpu: { featureStatus: { rasterization: "enabled_on", gpu_compositing: "disabled_software", webgl: "enabled" } } }) },
     });
-    expect(full).toMatchObject({ version: "1.2.3", browserChannel: "chromium", executableKind: "chromium-full", webglVendor: "Vendor X", webglRenderer: "ANGLE (Renderer Y)", gpuRasterization: "enabled_on" });
+    expect(full).toMatchObject({ version: "1.2.3", browserChannel: "chromium", executableKind: "chromium-full", webglVendor: "Vendor X", webglRenderer: "ANGLE (Renderer Y)", gpuRasterization: "enabled_on", gpuCompositing: "disabled_software" });
     const none = await collectBrowserFacts({
       browser, chromium, channel: "default",
       page: { evaluate: async () => null },
       browserSession: { send: async () => { throw new Error("no"); } },
     });
-    expect(none).toMatchObject({ webglVendor: "unavailable", webglRenderer: "unavailable", gpuRasterization: "unavailable", executableSha256: "unavailable" });
+    expect(none).toMatchObject({ webglVendor: "unavailable", webglRenderer: "unavailable", gpuRasterization: "unavailable", gpuCompositing: "unavailable", executableSha256: "unavailable" });
   });
 });

@@ -464,7 +464,9 @@ describe("job-level decomposition", () => {
         { seq: 2, jobKind: "pose-only", firstPostStartMs: 30, lastHandlerStartMs: 52, lastHandlerEndMs: 52.1, metricMs: 30, entries: [{ worker: 0, reportedMs: 20, recvEpochMs: null, postEndMs: 30.1, handlerStartMs: 52 }] },
       ],
     };
-    await analyzeTrace({ file, outDir: dir, computeCheck });
+    const analysis = await analyzeTrace({ file, outDir: dir, computeCheck });
+    // RasterTask work per renderer process: the other process's raster task is not counted.
+    expect((analysis.raster as { renderers: Record<string, { rasterTasks: number; rasterTotalWallUs: number; rasterTaskWallUs: { n: number; max: number } }> }).renderers["1"]).toMatchObject({ rasterTasks: 2, rasterTotalWallUs: 3000, rasterTaskWallUs: { n: 2, max: 2000 } });
     const lines = readFileSync(join(dir, "job-decomposition-jobs.jsonl"), "utf8").trim().split("\n").map((line) => JSON.parse(line) as Loose);
     expect(lines[0]).toMatchObject({
       requestSeq: 1, jobKind: "static-install", reportedMetric: 5, lateStartWorkers: 0,

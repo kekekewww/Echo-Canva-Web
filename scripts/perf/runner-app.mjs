@@ -12,7 +12,7 @@ import { chromium } from "@playwright/test";
 
 import { startAllocation, startTracing, collectBrowserFacts, launchBrowser } from "./cdp-tools.mjs";
 import { AUDIO_SAMPLE_INTERVAL_MS, assertSources, computeCheckFromDump, deriveAppSamples } from "./derive-app.mjs";
-import { UNAVAILABLE, NOT_APPLICABLE, serializeJsonl, tempEnvironment, writeJson } from "./lib.mjs";
+import { UNAVAILABLE, NOT_APPLICABLE, parseViewport, serializeJsonl, tempEnvironment, writeJson } from "./lib.mjs";
 import { analyzeTrace, rankJobs } from "./trace-analyze.mjs";
 
 const require = createRequire(import.meta.url);
@@ -268,7 +268,7 @@ async function main() {
   const browserChannel = config.browserChannel === "chromium" ? "chromium" : "default";
   let browser;
   try {
-    browser = await launchBrowser(chromium, browserChannel);
+    browser = await launchBrowser(chromium, browserChannel, config.browserArgs ?? []);
   } catch (error) {
     // The run fails and says why; the result is written so the parent reports it.
     stopServer(server);
@@ -287,7 +287,10 @@ async function main() {
   let allocation = null;
   const forceSerial = config.variant === "TS-S";
   try {
-    const context = await browser.newContext();
+    // The default is the Desktop Chrome device value the stock config uses: viewport 1280x720, device scale factor 1,
+    // not mobile, no touch. Only the viewport is replaced when one is requested; every other field stays as it is.
+    const requestedViewport = config.viewport && config.viewport !== "default" ? parseViewport(config.viewport) : null;
+    const context = requestedViewport ? await browser.newContext({ viewport: requestedViewport }) : await browser.newContext();
     const page = await context.newPage();
     page.on("console", (message) => console.log(`[page] ${message.text()}`));
     page.on("pageerror", (error) => console.error(`[pageerror] ${error.message}`));
@@ -308,7 +311,11 @@ async function main() {
     await audioSession.send("WebAudio.enable");
     const cpuBefore = await processSnapshot(browserSession);
     // Outside the measured window: the throwaway WebGL canvas and the GPU feature query.
-    const earlyFacts = await collectBrowserFacts({ browser, chromium, channel: browserChannel, page, browserSession });
+    const earlyFacts = await collectBrowserFacts({ browser, chromium, channel: browserChannel, page, browserSession, extraArgs: config.browserArgs ?? [] });
+    earlyFacts.viewport = {
+      requested: config.viewport ?? "default",
+      ...(await page.evaluate(() => ({ innerWidth: window.innerWidth, innerHeight: window.innerHeight, devicePixelRatio: window.devicePixelRatio }))),
+    };
     writeJson(join(runDir, "browser-facts.json"), earlyFacts);
 
     const caseId = config.caseSpec.caseId;
@@ -328,6 +335,14 @@ async function main() {
         listeners: await outliner.locator(".kind-listener").count(),
       };
       result.fixtureCounts = counts;
+      if (requestedViewport) {
+        // A different size can change the layout, and a changed layout is a different workload.
+        const visible = [];
+        for (let index = 0; index < counts.listeners; index += 1) visible.push(await outliner.locator(".kind-listener").nth(index).isVisible());
+        if (counts.listeners !== 8 || !visible.every(Boolean)) {
+          throw new Error(`viewport ${config.viewport}: the Outliner listener controls are not usable (${visible.filter(Boolean).length} of ${counts.listeners} visible, 8 expected); a changed layout is a different workload`);
+        }
+      }
       if (counts.walls !== 100 || counts.portals !== 8 || counts.sources !== 4 || counts.listeners !== 8) {
         result.errors.push(`fixture counts differ: ${JSON.stringify(counts)}`);
       }
@@ -528,6 +543,7 @@ async function main() {
       const phase = "app.worker-compute-metric";
       const jobs = config.caseSpec.caseId === "CONTROLS" ? [] : rankJobs(join(runDir, "samples.jsonl"), phase, 3);
       const analysis = await analyzeTrace({ file: traceInfo.file, outDir: runDir, exemplars: { phase, jobs }, computeCheck });
+      result.traced = analysis.raster;
       result.trace = { computeVsTrace: analysis.computeVsTrace, jobDecomposition: analysis.jobDecomposition, jobLevelDecomposition: analysis.jobLevelDecomposition, bytes: traceInfo.bytes, threads: analysis.threads, marks: analysis.marks, gcEvents: analysis.gcEvents, cpuThreads: analysis.cpuThreads, exemplars: analysis.exemplars };
       if (result.controls) {
         const { evaluateControls } = await import("./controls-check.mjs");

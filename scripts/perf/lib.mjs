@@ -377,6 +377,37 @@ export function browserChannelOf(entry) {
   return typeof entry.boundary === "string" && entry.boundary.startsWith("browser-") ? "default" : NOT_APPLICABLE;
 }
 
+export function viewportOf(entry) {
+  if (entry.viewport !== undefined) return entry.viewport;
+  return entry.boundary === "browser-app" ? "default" : NOT_APPLICABLE;
+}
+
+export function browserArgsOf(entry) {
+  if (entry.browserArgs !== undefined) return entry.browserArgs;
+  return entry.boundary === "browser-app" ? [] : NOT_APPLICABLE;
+}
+
+/** "WxH" with both sides in 320..7680, or "default". Returns { width, height } or null for the default. */
+export function parseViewport(text) {
+  if (text === "default") return null;
+  const match = /^(\d{3,4})x(\d{3,4})$/.exec(String(text));
+  if (!match) throw new Error("--viewport must be <width>x<height>, for example 1920x1080");
+  const width = Number(match[1]);
+  const height = Number(match[2]);
+  if (width < 320 || height < 320 || width > 7680 || height > 7680) throw new Error("--viewport sides must be between 320 and 7680");
+  return { width, height };
+}
+
+/** Extra Chromium arguments: strings that start with "--" and hold no path separator, so no local path reaches evidence. */
+export function validateBrowserArgs(args) {
+  if (!Array.isArray(args)) throw new Error("--browser-arg values must be a list of strings");
+  for (const arg of args) {
+    if (typeof arg !== "string" || !arg.startsWith("--") || arg.length < 3) throw new Error(`--browser-arg must be a Chromium switch starting with "--": ${JSON.stringify(arg)}`);
+    if (/[\\/]/.test(arg)) throw new Error("--browser-arg may not contain a path separator, so that no local path can land in evidence");
+  }
+  return args;
+}
+
 export function groupKeyOf(entry) {
   return JSON.stringify([
     entry.variant,
@@ -388,6 +419,8 @@ export function groupKeyOf(entry) {
     entry.build ?? NOT_APPLICABLE,
     entry.driver ?? NOT_APPLICABLE,
     browserChannelOf(entry),
+    viewportOf(entry),
+    browserArgsOf(entry),
   ]);
 }
 
@@ -413,7 +446,7 @@ export function buildGroups(runs) {
   }
   const groups = [];
   for (const [key, members] of grouped) {
-    const [variant, caseId, pass, boundary, workers, audio, build, driver, browserChannel] = JSON.parse(key);
+    const [variant, caseId, pass, boundary, workers, audio, build, driver, browserChannel, viewport, browserArgs] = JSON.parse(key);
     const pooledBuckets = new Map();
     const perRun = [];
     const excludedRuns = [];
@@ -472,7 +505,7 @@ export function buildGroups(runs) {
       exploratoryRuns[phase] = perRun.filter((run) => run.phases[phase]?.exploratory === true).length;
     }
     groups.push({
-      key: { variant, case: caseId, pass, boundary, workers, audio, build, driver, browserChannel },
+      key: { variant, case: caseId, pass, boundary, workers, audio, build, driver, browserChannel, viewport, browserArgs },
       runCount: perRun.length,
       runIds: perRun.map((run) => run.runId),
       excludedRuns,
@@ -494,8 +527,8 @@ function formatNumber(value) {
 export function renderTables(groups) {
   const lines = ["# EC-102 summary tables", "", "Values are display-rounded to 3 decimals. Raw numbers are in groups.json.", ""];
   for (const group of groups) {
-    const { variant, case: caseId, pass, boundary, workers, audio, build, driver, browserChannel } = group.key;
-    lines.push(`## ${variant} ${caseId} pass=${pass} boundary=${boundary} workers=${workers} audio=${audio} build=${build} driver=${driver} browser-channel=${browserChannel}`);
+    const { variant, case: caseId, pass, boundary, workers, audio, build, driver, browserChannel, viewport, browserArgs } = group.key;
+    lines.push(`## ${variant} ${caseId} pass=${pass} boundary=${boundary} workers=${workers} audio=${audio} build=${build} driver=${driver} browser-channel=${browserChannel} viewport=${viewport} browser-args=${JSON.stringify(browserArgs)}`);
     lines.push("");
     lines.push(`Runs: ${group.runCount}`);
     lines.push(`Denominators: ${DENOMINATORS.map((name) => `${name}=${group.denominators[name]}`).join(" ")}`);
@@ -602,6 +635,8 @@ export async function executeRun({ outDir, meta, orderIndex, execute, clock = ()
     build: meta.build ?? NOT_APPLICABLE,
     driver: meta.driver ?? NOT_APPLICABLE,
     browserChannel: meta.browserChannel ?? NOT_APPLICABLE,
+    viewport: meta.viewport ?? NOT_APPLICABLE,
+    browserArgs: meta.browserArgs ?? NOT_APPLICABLE,
     parity: meta.parity === true,
     status,
     start,

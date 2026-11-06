@@ -18,6 +18,7 @@ export function analyzeTrace(options: {
   computeVsTrace: Loose | string;
   jobDecomposition: Loose | string;
   jobLevelDecomposition: Loose | string;
+  raster: Loose;
   threads: number;
   marks: number;
   gcEvents: number;

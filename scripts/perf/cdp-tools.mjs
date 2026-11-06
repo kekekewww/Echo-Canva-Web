@@ -141,14 +141,16 @@ export async function startAllocation(browserSession, pageSession) {
  * "chromium" passes channel "chromium": the new headless mode of the full build that is already
  * installed. Nothing is installed and no GPU flag is passed; a missing full build fails the run.
  */
-export async function launchBrowser(chromium, channel) {
+export async function launchBrowser(chromium, channel, args = []) {
+  const options = {};
   if (channel === "chromium") {
     if (!existsSync(chromium.executablePath())) {
       throw new Error("--browser-channel chromium needs the full Chromium build, which is not installed; nothing was installed");
     }
-    return chromium.launch({ channel: "chromium" });
+    options.channel = "chromium";
   }
-  return chromium.launch();
+  if (args.length > 0) options.args = args;
+  return Object.keys(options).length === 0 ? chromium.launch() : chromium.launch(options);
 }
 
 /** The executable that launchBrowser starts: the full build for "chromium", else the sibling headless shell. */
@@ -175,7 +177,7 @@ export function launchedExecutable(chromium, channel) {
  * vendor and renderer (from a throwaway canvas, so call this outside the measured window) and the GPU
  * rasterization feature status from SystemInfo.getInfo. Missing values are "unavailable". Never throws.
  */
-export async function collectBrowserFacts({ browser, chromium, channel, page, browserSession }) {
+export async function collectBrowserFacts({ browser, chromium, channel, page, browserSession, extraArgs = [] }) {
   const executable = launchedExecutable(chromium, channel);
   const facts = {
     version: browser.version(),
@@ -183,9 +185,11 @@ export async function collectBrowserFacts({ browser, chromium, channel, page, br
     executableKind: executable.kind,
     executableSha256: executable.path && existsSync(executable.path) ? sha256File(executable.path) : "unavailable",
     launchArgs: channel === "chromium" ? "channel chromium, no other options" : "playwright default launch options, none added",
+    extraLaunchArgs: extraArgs,
     webglVendor: "unavailable",
     webglRenderer: "unavailable",
     gpuRasterization: "unavailable",
+    gpuCompositing: "unavailable",
     gpuFeatureStatus: "unavailable",
   };
   try {
@@ -210,6 +214,7 @@ export async function collectBrowserFacts({ browser, chromium, channel, page, br
     if (status && typeof status === "object") {
       facts.gpuFeatureStatus = status;
       if (typeof status.rasterization === "string") facts.gpuRasterization = status.rasterization;
+      if (typeof status.gpu_compositing === "string") facts.gpuCompositing = status.gpu_compositing;
     }
   } catch {
     // Stays "unavailable".

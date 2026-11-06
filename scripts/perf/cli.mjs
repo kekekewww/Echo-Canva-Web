@@ -20,6 +20,8 @@ import {
   UNAVAILABLE,
   artifactsSha256,
   assertInsideRepo,
+  parseViewport,
+  validateBrowserArgs,
   buildGroups,
   executeRun,
   parseJsonl,
@@ -52,7 +54,7 @@ class UsageError extends Error {}
 
 const RUN_FLAGS = new Set([
   "variant", "case", "corpus-manifest", "run-id", "repeat", "out", "boundary", "pass", "audio",
-  "samples", "driver", "browser-channel", "hardware-concurrency", "build", "order-index", "plan", "ts-s-path", "max-duration-ms", "step-timeout-ms",
+  "samples", "driver", "browser-channel", "viewport", "browser-arg", "hardware-concurrency", "build", "order-index", "plan", "ts-s-path", "max-duration-ms", "step-timeout-ms",
 ]);
 const BOOLEAN_FLAGS = new Set(["parity", "check", "with-slices"]);
 const COMMAND_FLAGS = {
@@ -77,16 +79,24 @@ function parseArgs(argv) {
       positional.push(arg);
       continue;
     }
-    const name = arg.slice(2);
+    // --name=value is accepted for every option; it is the only way to pass a value that starts with "--".
+    const equals = arg.indexOf("=");
+    const name = equals < 0 ? arg.slice(2) : arg.slice(2, equals);
     if (!allowed.has(name)) throw new UsageError(`Unknown option --${name} for ${command}`);
+    let value;
     if (BOOLEAN_FLAGS.has(name)) {
       flags.set(name, true);
+      continue;
+    }
+    if (equals >= 0) {
+      value = arg.slice(equals + 1);
     } else {
-      const value = rest[index + 1];
+      value = rest[index + 1];
       if (value === undefined || value.startsWith("--")) throw new UsageError(`--${name} needs a value`);
-      flags.set(name, value);
       index += 1;
     }
+    if (name === "browser-arg") flags.set(name, [...(flags.get(name) ?? []), value]);
+    else flags.set(name, value);
   }
   return { command, positional, flags };
 }
@@ -240,6 +250,8 @@ function normalizeEntry(raw, globals) {
     audio: get("audio") ?? NOT_APPLICABLE,
     driver: get("driver") ?? NOT_APPLICABLE,
     browserChannel: get("browser-channel") ?? NOT_APPLICABLE,
+    viewport: get("viewport") ?? NOT_APPLICABLE,
+    browserArgs: raw["browser-args"] ?? globals.get("browser-arg"),
     parity: raw.parity === true || (globals.get("parity") === true && raw.parity !== false),
     corpusManifest: get("corpus-manifest"),
     orderIndex: get("order-index") === undefined ? undefined : Number(get("order-index")),
@@ -266,6 +278,22 @@ function normalizeEntry(raw, globals) {
     if (!["default", "chromium"].includes(entry.browserChannel)) throw new UsageError("--browser-channel must be default or chromium");
   } else if ((entry.boundary === "browser-app" || entry.boundary === "browser-pool") && entry.pass !== "stock") {
     entry.browserChannel = "default";
+  }
+  try {
+    if (entry.browserArgs !== undefined) validateBrowserArgs(entry.browserArgs);
+    if (entry.viewport !== NOT_APPLICABLE) parseViewport(entry.viewport);
+  } catch (error) {
+    throw new UsageError(error.message);
+  }
+  if (entry.viewport !== NOT_APPLICABLE || entry.browserArgs !== undefined) {
+    if (entry.boundary !== "browser-app") throw new UsageError("--viewport and --browser-arg apply at browser-app only");
+    if (entry.pass === "stock") throw new UsageError("--viewport and --browser-arg do not apply to pass stock: the stock spec launches its own browser");
+  }
+  if (entry.boundary === "browser-app" && entry.pass !== "stock") {
+    if (entry.viewport === NOT_APPLICABLE) entry.viewport = "default";
+    if (entry.browserArgs === undefined) entry.browserArgs = [];
+  } else if (entry.browserArgs === undefined) {
+    delete entry.browserArgs;
   }
   if (entry.boundary !== "browser-app" && entry.driver !== NOT_APPLICABLE) throw new UsageError("--driver applies at browser-app only");
   if (entry.boundary !== "browser-app" && entry.audio !== NOT_APPLICABLE) throw new UsageError("--audio applies at browser-app only");
@@ -348,7 +376,7 @@ function writeInputManifest(runDir, context, entry, bundle, workloads) {
   let corpus;
   let manifestForGit = null;
   if (context.app) {
-    caseBlock = { id: entry.case, kind: context.controls ? "controls" : "app", mode: context.mode, audio: entry.audio, samples: entry.samples, maxDurationMs: entry.maxDurationMs ?? NOT_APPLICABLE };
+    caseBlock = { id: entry.case, kind: context.controls ? "controls" : "app", mode: context.mode, audio: entry.audio, viewport: entry.viewport, browserArgs: entry.browserArgs ?? [], samples: entry.samples, maxDurationMs: entry.maxDurationMs ?? NOT_APPLICABLE };
     corpus = { note: "not used by this case" };
   } else if (context.workload) {
     const sceneFile = path.join(context.dir, context.found.scene);
@@ -459,6 +487,8 @@ async function runEntry(entry, index, outDir, prep) {
     audio: app ? entry.audio : NOT_APPLICABLE,
     driver: app ? (entry.pass === "stock" ? "stock-poll" : entry.driver) : NOT_APPLICABLE,
     browserChannel: entry.browserChannel,
+    viewport: entry.viewport,
+    browserArgs: entry.browserArgs,
     build: app ? "prod" : entry.build,
     parity: entry.parity,
   };
@@ -486,6 +516,8 @@ async function runEntry(entry, index, outDir, prep) {
         audio: app ? entry.audio : NOT_APPLICABLE,
         driver: app ? entry.driver : NOT_APPLICABLE,
         browserChannel: entry.browserChannel,
+        viewport: entry.viewport,
+        browserArgs: entry.browserArgs ?? [],
         samples: entry.samples,
         maxDurationMs: entry.maxDurationMs,
         hardwareConcurrency: entry.hardwareConcurrency,
@@ -543,6 +575,9 @@ async function runEntry(entry, index, outDir, prep) {
         audio: app ? entry.audio : NOT_APPLICABLE,
         driver: meta.driver,
         browserChannel: entry.browserChannel,
+        viewport: entry.viewport ?? NOT_APPLICABLE,
+        browserArgs: entry.browserArgs ?? NOT_APPLICABLE,
+        traced: result.traced ?? NOT_APPLICABLE,
         denominators: result.denominators,
         jobs: result.jobs ?? UNAVAILABLE,
         intervalMs: result.intervalMs ?? UNAVAILABLE,

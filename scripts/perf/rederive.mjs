@@ -95,6 +95,7 @@ export async function rederiveRun({ runDir, commit = gitCommit(), now = () => ne
         exemplars: { phase, jobs: rankJobs(join(runDir, "samples.jsonl"), phase, 3) },
         computeCheck: computeCheckFromDump(dump),
       });
+      result.traced = analysis.raster;
       result.trace = {
         computeVsTrace: analysis.computeVsTrace,
         jobDecomposition: analysis.jobDecomposition,
@@ -123,6 +124,7 @@ export async function rederiveRun({ runDir, commit = gitCommit(), now = () => ne
     denominators: result.denominators,
     observed: result.observed,
     trace: result.trace ?? previousSummary.trace ?? NOT_APPLICABLE,
+    traced: result.traced ?? previousSummary.traced ?? NOT_APPLICABLE,
   };
   writeJson(join(runDir, "summary.json"), summary);
 

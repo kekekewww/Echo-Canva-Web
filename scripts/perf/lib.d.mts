@@ -76,6 +76,8 @@ export type RunIndexLine = {
   build: string;
   driver?: string;
   browserChannel?: string;
+  viewport?: string;
+  browserArgs?: string[] | string;
   parity: boolean;
   status: string;
   start: string;
@@ -107,6 +109,10 @@ export const CENSORED_PHASE: string;
 export function censoredBlock(censoredCount: number, warm: number[], cold: number[]): unknown;
 export function makeDenominators(counts: Record<string, number>): Record<string, number | string>;
 export function latestRunIndex<T extends { runId: string }>(lines: T[]): T[];
+export function viewportOf(entry: { boundary?: string; viewport?: string }): string;
+export function browserArgsOf(entry: { boundary?: string; browserArgs?: string[] }): string[] | string;
+export function parseViewport(text: string): { width: number; height: number } | null;
+export function validateBrowserArgs(args: unknown): string[];
 export function browserChannelOf(entry: { boundary?: string; browserChannel?: string }): string;
 export function groupKeyOf(entry: RunIndexLine): string;
 export function buildGroups(
@@ -127,7 +133,7 @@ export function appendRunIndex(outDir: string, line: RunIndexLine): void;
 export function readRunIndex(outDir: string): RunIndexLine[];
 export function executeRun(options: {
   outDir: string;
-  meta: { runId: string; variant: string; case: string; pass: string; boundary: string; workers?: number | string; audio?: string; build?: string; driver?: string; browserChannel?: string; parity?: boolean };
+  meta: { runId: string; variant: string; case: string; pass: string; boundary: string; workers?: number | string; audio?: string; build?: string; driver?: string; browserChannel?: string; viewport?: string; browserArgs?: string[]; parity?: boolean };
   orderIndex?: number;
   execute: (context: { runDir: string }) => Promise<{
     status?: "passed" | "failed";

@@ -340,6 +340,7 @@ async function main() {
         exemplars: { phase: "pool.compute-metric", jobs },
         computeCheck,
       });
+      result.traced = analysis.raster;
       result.trace = { computeVsTrace: analysis.computeVsTrace, jobDecomposition: analysis.jobDecomposition, jobLevelDecomposition: analysis.jobLevelDecomposition, bytes: traceInfo.bytes, threads: analysis.threads, marks: analysis.marks, gcEvents: analysis.gcEvents, cpuThreads: analysis.cpuThreads, exemplars: analysis.exemplars };
       if (result.controls) {
         result.controls.evaluation = evaluateControls(runDir, result.controls.observations);

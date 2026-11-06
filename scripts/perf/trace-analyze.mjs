@@ -825,6 +825,18 @@ export async function analyzeTrace({ file, outDir, calibrationFile, exemplars, c
   }
   writeJson(join(outDir, "busy.json"), busy);
 
+  // RasterTask work per renderer process over the measured window (tasks starting inside it), so a reader can
+  // see whether a control changed raster work at all.
+  const raster = { measuredWindow: Number.isFinite(windowEnd - windowStart), renderers: {} };
+  for (const pid of new Set([...names].filter(([, name]) => /CrRendererMain/.test(name)).map(([key]) => Number(key.split(":")[0])))) {
+    const inside = rasters.filter((event) => event.pid === pid && event.ts >= windowStart && event.ts <= windowEnd);
+    raster.renderers[String(pid)] = {
+      rasterTasks: inside.length,
+      rasterTotalWallUs: inside.reduce((sum, event) => sum + event.dur, 0),
+      rasterTaskWallUs: fieldStats(inside.map((event) => event.dur)),
+    };
+  }
+
   const selfTimes = selfTimeByFunction(profiles, nodeNames);
   const cpuTop = {};
   for (const [key, table] of selfTimes) {
@@ -875,6 +887,7 @@ export async function analyzeTrace({ file, outDir, calibrationFile, exemplars, c
     computeVsTrace: computeSummary,
     jobDecomposition: decompositionSummary,
     jobLevelDecomposition: jobLevelSummary,
+    raster,
     cpuThreads: Object.keys(cpuTop).length,
     alignment,
     exemplars: exemplarOutput,
