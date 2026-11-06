@@ -68,3 +68,22 @@ export function compareOutputs(
   context: { caseId: string; kind: string },
 ): CompareReport;
 export function summarizeReports(reports: CompareReport[]): CompareSummary;
+
+export type VerifyResult = { ok: boolean; problems: string[]; corpusSha256: string; caseCount: number };
+export function verifyCorpus(rootDir: string, options?: { requireFrozen?: boolean }): VerifyResult;
+
+export type GitInfo = {
+  gitHead: string;
+  gitDirty: string[] | "unavailable";
+  productTrees: { src: string; "package.json": string; "pnpm-lock.yaml": string };
+  productTreesMatchBaseline: boolean;
+};
+export function collectGitInfo(repoRoot: string, baselineTreeHashes: Record<string, string>): GitInfo;
+export function collectEnvironment(): {
+  node: string;
+  v8: string;
+  platform: string;
+  arch: string;
+  cpuModel: string;
+  logicalCpus: number | "unavailable";
+};

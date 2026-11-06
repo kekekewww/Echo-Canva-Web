@@ -1,0 +1,1127 @@
+{
+  "algorithm": "Per case and delta the lcg32 generator is restarted from the seed. Walking the input depth-first in authored key order, every numeric x, y and z of an object stored under the key position, a or b (listener, sources, wall endpoints, primitives and tape events) takes one draw u; the coordinate moves by -delta when u < 0.5 and by +delta otherwise. Room, portal and height fields are not touched. Hybrid documents get their classic projection hash recomputed. The perturbed output is compared with the unperturbed output of the same code under comparison-rules.json.",
+  "coordinatesPerturbed": {
+    "C001_CONCRETE_DEFAULT": 26,
+    "C002_CONCRETE_CLOSED_PORTAL": 26,
+    "C003_CONCRETE_PORTAL_ROUTE": 26,
+    "C004_CONCRETE_BLOCKED": 26,
+    "C005_CONCRETE_MOVED_LISTENER": 26,
+    "C006_HARD_ROOM": 20,
+    "C007_HARD_ROOM_MOVED_LISTENER": 20,
+    "C008_TREATED_ROOM": 20,
+    "C009_TREATED_ROOM_MOVED_SOURCE": 20,
+    "C010_STRESS_100_WALLS": 404,
+    "C011_STRESS_1_SOURCE": 404,
+    "C012_STRESS_2_SOURCES": 406,
+    "C013_STRESS_4_SOURCES": 410,
+    "C014_REFLECTION_HEAVY": 20,
+    "DC01_SOURCE_ON_LISTENER": 26,
+    "DC02_ROUTE_COLLINEAR_WITH_WALL": 30,
+    "DC03_LISTENER_ON_WALL_ENDPOINT": 30,
+    "DC04_ROUTE_GRAZES_PORTAL_EDGE": 26,
+    "DC05_WALL_EXACTLY_MIN_LENGTH": 30,
+    "DC06_REFLECTIONS_LIMIT_ZERO": 26,
+    "DH01_SOURCE_ON_LISTENER": 26,
+    "DH02_SOURCE_DIRECTLY_ABOVE": 26,
+    "DH03_AZIMUTH_WRAP_180": 26,
+    "DH04_SOURCE_ON_PATCH_PLANE": 26,
+    "DH05_ROUTE_GRAZES_PORTAL_EDGE": 26,
+    "H001_PARTITION_PORTAL_OPEN": 26,
+    "H002_PARTITION_PORTAL_CLOSED": 26,
+    "H003_SECOND_ORDER_BLOCKED": 23,
+    "H004_DEFAULT_PROJECT": 26,
+    "H005_HARD_ROOM": 20,
+    "H006_TREATED_ROOM": 20,
+    "H007_STRESS_8_PRIMITIVES": 428,
+    "H008_STRESS_1_SOURCE": 404,
+    "H009_STRESS_2_SOURCES": 406,
+    "H010_STRESS_4_SOURCES": 410,
+    "TC01_LISTENER_TAPE_SEEDED": 154,
+    "TC02_STATIC_EDIT_TAPE": 66,
+    "TH01_LISTENER_TAPE_SEEDED": 154,
+    "TH02_STATIC_EDIT_TAPE": 77
+  },
+  "deltasM": [
+    1e-12,
+    1e-9
+  ],
+  "gitHead": "aa5b985b98e0273be6158372b694f7f86504e678",
+  "hashChanges": {
+    "1e-12": 328,
+    "1e-9": 328
+  },
+  "perClass": {
+    "classic-cutoff-hz": {
+      "1e-12": {
+        "cleanSampleCount": 203,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 2.5352164811920375e-10,
+        "maxAbsDeltaIncludingFlippedUnits": 2.5352164811920375e-10,
+        "sampleCount": 211,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TC02_STATIC_EDIT_TAPE",
+          "path": "/value/steps/6/frame/sources/1/lowpassHz"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TC02_STATIC_EDIT_TAPE",
+          "path": "/value/steps/6/frame/sources/1/lowpassHz"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 203,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 2.532326561777154e-7,
+        "maxAbsDeltaIncludingFlippedUnits": 2.532326561777154e-7,
+        "sampleCount": 211,
+        "toleranceViolations": 3,
+        "toleranceViolationsIncludingFlippedUnits": 3,
+        "worst": {
+          "caseId": "TC02_STATIC_EDIT_TAPE",
+          "path": "/value/steps/6/frame/sources/1/lowpassHz"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TC02_STATIC_EDIT_TAPE",
+          "path": "/value/steps/6/frame/sources/1/lowpassHz"
+        }
+      }
+    },
+    "classic-delay-ms": {
+      "1e-12": {
+        "cleanSampleCount": 522,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 1.5759837879159022e-11,
+        "maxAbsDeltaIncludingFlippedUnits": 1.5759837879159022e-11,
+        "sampleCount": 536,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TC02_STATIC_EDIT_TAPE",
+          "path": "/value/steps/14/frame/sources/1/earlyReflections/2/delayMs"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TC02_STATIC_EDIT_TAPE",
+          "path": "/value/steps/14/frame/sources/1/earlyReflections/2/delayMs"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 522,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 1.5759859195441095e-8,
+        "maxAbsDeltaIncludingFlippedUnits": 1.5759859195441095e-8,
+        "sampleCount": 536,
+        "toleranceViolations": 4,
+        "toleranceViolationsIncludingFlippedUnits": 4,
+        "worst": {
+          "caseId": "TC02_STATIC_EDIT_TAPE",
+          "path": "/value/steps/14/frame/sources/1/earlyReflections/2/delayMs"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TC02_STATIC_EDIT_TAPE",
+          "path": "/value/steps/14/frame/sources/1/earlyReflections/2/delayMs"
+        }
+      }
+    },
+    "classic-gain-db": {
+      "1e-12": {
+        "cleanSampleCount": 725,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 6.517453243759519e-12,
+        "maxAbsDeltaIncludingFlippedUnits": 6.517453243759519e-12,
+        "sampleCount": 747,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TC01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/61/frame/sources/0/earlyReflections/1/gainDb"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TC01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/61/frame/sources/0/earlyReflections/1/gainDb"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 725,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 6.5157337303389795e-9,
+        "maxAbsDeltaIncludingFlippedUnits": 6.5157337303389795e-9,
+        "sampleCount": 747,
+        "toleranceViolations": 2,
+        "toleranceViolationsIncludingFlippedUnits": 2,
+        "worst": {
+          "caseId": "TC01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/61/frame/sources/0/earlyReflections/1/gainDb"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TC01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/61/frame/sources/0/earlyReflections/1/gainDb"
+        }
+      }
+    },
+    "classic-length-m": {
+      "1e-12": {
+        "cleanSampleCount": 1334,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 4.355626970209414e-12,
+        "maxAbsDeltaIncludingFlippedUnits": 4.355626970209414e-12,
+        "sampleCount": 1380,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TC01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/34/frame/sources/1/earlyReflections/1/pathLengthM"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TC01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/34/frame/sources/1/earlyReflections/1/pathLengthM"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 1334,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 4.354614446810956e-9,
+        "maxAbsDeltaIncludingFlippedUnits": 4.354614446810956e-9,
+        "sampleCount": 1380,
+        "toleranceViolations": 2,
+        "toleranceViolationsIncludingFlippedUnits": 2,
+        "worst": {
+          "caseId": "TC01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/34/frame/sources/1/earlyReflections/1/pathLengthM"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TC01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/34/frame/sources/1/earlyReflections/1/pathLengthM"
+        }
+      }
+    },
+    "classic-new-area-m2": {
+      "1e-12": {
+        "cleanSampleCount": 104,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 8.162714948412031e-11,
+        "maxAbsDeltaIncludingFlippedUnits": 8.162714948412031e-11,
+        "sampleCount": 108,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "C010_STRESS_100_WALLS",
+          "path": "/value/frame/room/totalSurfaceM2"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "C010_STRESS_100_WALLS",
+          "path": "/value/frame/room/totalSurfaceM2"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 104,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 8.350912139576394e-8,
+        "maxAbsDeltaIncludingFlippedUnits": 8.350912139576394e-8,
+        "sampleCount": 108,
+        "toleranceViolations": 4,
+        "toleranceViolationsIncludingFlippedUnits": 4,
+        "worst": {
+          "caseId": "C010_STRESS_100_WALLS",
+          "path": "/value/frame/room/totalSurfaceM2"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "C010_STRESS_100_WALLS",
+          "path": "/value/frame/room/totalSurfaceM2"
+        }
+      }
+    },
+    "classic-new-cutoff-hz": {
+      "1e-12": {
+        "cleanSampleCount": 522,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 536,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      },
+      "1e-9": {
+        "cleanSampleCount": 522,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 536,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      }
+    },
+    "classic-new-delay-ms": {
+      "1e-12": {
+        "cleanSampleCount": 104,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 108,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      },
+      "1e-9": {
+        "cleanSampleCount": 104,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 108,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      }
+    },
+    "classic-new-gain-db": {
+      "1e-12": {
+        "cleanSampleCount": 203,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 211,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      },
+      "1e-9": {
+        "cleanSampleCount": 203,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 211,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      }
+    },
+    "classic-new-length-m": {
+      "1e-12": {
+        "cleanSampleCount": 3198,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 4.976463685579802e-12,
+        "maxAbsDeltaIncludingFlippedUnits": 12.000000000001,
+        "sampleCount": 3316,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 26,
+        "worst": {
+          "caseId": "TC01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/28/frame/sources/1/earlyReflections/2/reflectionPoint/y"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TC02_STATIC_EDIT_TAPE",
+          "path": "/value/steps/23/frame/sources/0/earlyReflections/1/reflectionPoint/x"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 3198,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 4.975527545525438e-9,
+        "maxAbsDeltaIncludingFlippedUnits": 12.000000001,
+        "sampleCount": 3316,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 26,
+        "worst": {
+          "caseId": "TC01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/28/frame/sources/1/earlyReflections/2/reflectionPoint/y"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TC02_STATIC_EDIT_TAPE",
+          "path": "/value/steps/23/frame/sources/0/earlyReflections/1/reflectionPoint/x"
+        }
+      }
+    },
+    "classic-time-s": {
+      "1e-12": {
+        "cleanSampleCount": 312,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 3.2374103398069565e-13,
+        "maxAbsDeltaIncludingFlippedUnits": 3.2374103398069565e-13,
+        "sampleCount": 324,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TC02_STATIC_EDIT_TAPE",
+          "path": "/value/steps/5/frame/room/rt60S/high"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TC02_STATIC_EDIT_TAPE",
+          "path": "/value/steps/5/frame/room/rt60S/high"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 312,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 3.2643843184132493e-10,
+        "maxAbsDeltaIncludingFlippedUnits": 3.2643843184132493e-10,
+        "sampleCount": 324,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TC02_STATIC_EDIT_TAPE",
+          "path": "/value/steps/5/frame/room/rt60S/high"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TC02_STATIC_EDIT_TAPE",
+          "path": "/value/steps/5/frame/room/rt60S/high"
+        }
+      }
+    },
+    "classic-volume-m3": {
+      "1e-12": {
+        "cleanSampleCount": 104,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 108,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      },
+      "1e-9": {
+        "cleanSampleCount": 104,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 108,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      }
+    },
+    "discrete": {
+      "1e-12": {
+        "cleanSampleCount": 0,
+        "discreteFlips": {
+          "count": 36,
+          "examples": [
+            {
+              "actual": "boundary_west",
+              "caseId": "C001_CONCRETE_DEFAULT",
+              "expected": "boundary_east",
+              "path": "/value/frame/sources/0/earlyReflections/0/wallId"
+            },
+            {
+              "actual": "boundary_west",
+              "caseId": "C001_CONCRETE_DEFAULT",
+              "expected": "boundary_east",
+              "path": "/value/frame/sources/0/earlyReflections/0/wallIds/0"
+            },
+            {
+              "actual": "boundary_east",
+              "caseId": "C001_CONCRETE_DEFAULT",
+              "expected": "boundary_west",
+              "path": "/value/frame/sources/0/earlyReflections/1/wallId"
+            }
+          ]
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 0,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      },
+      "1e-9": {
+        "cleanSampleCount": 0,
+        "discreteFlips": {
+          "count": 46,
+          "examples": [
+            {
+              "actual": "boundary_west",
+              "caseId": "C001_CONCRETE_DEFAULT",
+              "expected": "boundary_east",
+              "path": "/value/frame/sources/0/earlyReflections/0/wallId"
+            },
+            {
+              "actual": "boundary_west",
+              "caseId": "C001_CONCRETE_DEFAULT",
+              "expected": "boundary_east",
+              "path": "/value/frame/sources/0/earlyReflections/0/wallIds/0"
+            },
+            {
+              "actual": "boundary_east",
+              "caseId": "C001_CONCRETE_DEFAULT",
+              "expected": "boundary_west",
+              "path": "/value/frame/sources/0/earlyReflections/1/wallId"
+            }
+          ]
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 0,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      }
+    },
+    "hybrid-aux-delay-ms": {
+      "1e-12": {
+        "cleanSampleCount": 140,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 1.4665602066088468e-11,
+        "maxAbsDeltaIncludingFlippedUnits": 1.4665602066088468e-11,
+        "sampleCount": 156,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/30/frame/secondOrderReflectionsBySource/rain/0/excessDelayMs"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/30/frame/secondOrderReflectionsBySource/rain/0/excessDelayMs"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 128,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 1.4661608815913496e-8,
+        "maxAbsDeltaIncludingFlippedUnits": 1.4661608815913496e-8,
+        "sampleCount": 156,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/30/frame/secondOrderReflectionsBySource/rain/0/excessDelayMs"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/30/frame/secondOrderReflectionsBySource/rain/0/excessDelayMs"
+        }
+      }
+    },
+    "hybrid-aux-length-m": {
+      "1e-12": {
+        "cleanSampleCount": 232,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 1.9341861445809627e-11,
+        "maxAbsDeltaIncludingFlippedUnits": 1.9341861445809627e-11,
+        "sampleCount": 240,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "H010_STRESS_4_SOURCES",
+          "path": "/value/frame/paths/3/hits/0/distanceM"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "H010_STRESS_4_SOURCES",
+          "path": "/value/frame/paths/3/hits/0/distanceM"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 226,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 1.934122728641796e-8,
+        "maxAbsDeltaIncludingFlippedUnits": 1.934122728641796e-8,
+        "sampleCount": 240,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "H010_STRESS_4_SOURCES",
+          "path": "/value/frame/paths/3/hits/0/distanceM"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "H010_STRESS_4_SOURCES",
+          "path": "/value/frame/paths/3/hits/0/distanceM"
+        }
+      }
+    },
+    "hybrid-azimuth-deg": {
+      "1e-12": {
+        "cleanSampleCount": 149,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 135,
+        "maxAbsDeltaIncludingFlippedUnits": 135,
+        "sampleCount": 153,
+        "toleranceViolations": 1,
+        "toleranceViolationsIncludingFlippedUnits": 1,
+        "worst": {
+          "caseId": "DH02_SOURCE_DIRECTLY_ABOVE",
+          "path": "/value/frame/paths/0/azimuthDeg"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "DH02_SOURCE_DIRECTLY_ABOVE",
+          "path": "/value/frame/paths/0/azimuthDeg"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 148,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 135,
+        "maxAbsDeltaIncludingFlippedUnits": 135,
+        "sampleCount": 153,
+        "toleranceViolations": 1,
+        "toleranceViolationsIncludingFlippedUnits": 1,
+        "worst": {
+          "caseId": "DH02_SOURCE_DIRECTLY_ABOVE",
+          "path": "/value/frame/paths/0/azimuthDeg"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "DH02_SOURCE_DIRECTLY_ABOVE",
+          "path": "/value/frame/paths/0/azimuthDeg"
+        }
+      }
+    },
+    "hybrid-cutoff-hz": {
+      "1e-12": {
+        "cleanSampleCount": 100,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 116,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      },
+      "1e-9": {
+        "cleanSampleCount": 92,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 116,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      }
+    },
+    "hybrid-delay-ms": {
+      "1e-12": {
+        "cleanSampleCount": 1241,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 1.5564438626824995e-11,
+        "maxAbsDeltaIncludingFlippedUnits": 1.5564438626824995e-11,
+        "sampleCount": 1281,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/48/frame/firstOrderReflectionsBySource/radio/4/excessDelayMs"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/48/frame/firstOrderReflectionsBySource/radio/4/excessDelayMs"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 1226,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 1.5562093835796986e-8,
+        "maxAbsDeltaIncludingFlippedUnits": 1.5562093835796986e-8,
+        "sampleCount": 1281,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/48/frame/firstOrderReflectionsBySource/radio/4/excessDelayMs"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/48/frame/firstOrderReflectionsBySource/radio/4/excessDelayMs"
+        }
+      }
+    },
+    "hybrid-direction": {
+      "1e-12": {
+        "cleanSampleCount": 2661,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 1.7367218774211324e-12,
+        "maxAbsDeltaIncludingFlippedUnits": 1.8907459632525336,
+        "sampleCount": 2745,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 4,
+        "worst": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/50/frame/paths/0/directionToSource/x"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "DH03_AZIMUTH_WRAP_180",
+          "path": "/value/frame/firstOrderReflectionsBySource/radio/4/arrivalDirection/x"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 2625,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 1.7364707449729622e-9,
+        "maxAbsDeltaIncludingFlippedUnits": 1.8907459632422379,
+        "sampleCount": 2745,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 6,
+        "worst": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/50/frame/paths/0/directionToSource/x"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "DH03_AZIMUTH_WRAP_180",
+          "path": "/value/frame/firstOrderReflectionsBySource/radio/4/arrivalDirection/x"
+        }
+      }
+    },
+    "hybrid-elevation-deg": {
+      "1e-12": {
+        "cleanSampleCount": 149,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 1.375610736431554e-11,
+        "maxAbsDeltaIncludingFlippedUnits": 1.375610736431554e-11,
+        "sampleCount": 153,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/48/frame/paths/0/elevationDeg"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/48/frame/paths/0/elevationDeg"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 148,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 1.3756649153151557e-8,
+        "maxAbsDeltaIncludingFlippedUnits": 1.3756649153151557e-8,
+        "sampleCount": 153,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/48/frame/paths/0/elevationDeg"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/48/frame/paths/0/elevationDeg"
+        }
+      }
+    },
+    "hybrid-gain-db": {
+      "1e-12": {
+        "cleanSampleCount": 186,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 4.0110137433657655e-12,
+        "maxAbsDeltaIncludingFlippedUnits": 4.0110137433657655e-12,
+        "sampleCount": 206,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "H003_SECOND_ORDER_BLOCKED",
+          "path": "/value/earlyTapsBySource/radio/0/gainDb"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "H003_SECOND_ORDER_BLOCKED",
+          "path": "/value/earlyTapsBySource/radio/0/gainDb"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 172,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 2.802867271611831e-9,
+        "maxAbsDeltaIncludingFlippedUnits": 4.008873233374288e-9,
+        "sampleCount": 206,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/34/frame/secondOrderReflectionsBySource/rain/0/estimatedMidGainDb"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "H003_SECOND_ORDER_BLOCKED",
+          "path": "/value/earlyTapsBySource/radio/0/gainDb"
+        }
+      }
+    },
+    "hybrid-length-m": {
+      "1e-12": {
+        "cleanSampleCount": 738,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 4.391154106997419e-12,
+        "maxAbsDeltaIncludingFlippedUnits": 4.391154106997419e-12,
+        "sampleCount": 762,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/34/frame/secondOrderReflectionsBySource/rain/0/pathLengthM"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/34/frame/secondOrderReflectionsBySource/rain/0/pathLengthM"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 727,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 4.3923229497977445e-9,
+        "maxAbsDeltaIncludingFlippedUnits": 4.3923229497977445e-9,
+        "sampleCount": 762,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/34/frame/secondOrderReflectionsBySource/rain/0/pathLengthM"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "TH01_LISTENER_TAPE_SEEDED",
+          "path": "/value/steps/34/frame/secondOrderReflectionsBySource/rain/0/pathLengthM"
+        }
+      }
+    },
+    "hybrid-metric-ms": {
+      "1e-12": {
+        "cleanSampleCount": 0,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 0,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      },
+      "1e-9": {
+        "cleanSampleCount": 0,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 0,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      }
+    },
+    "hybrid-metric-ratio": {
+      "1e-12": {
+        "cleanSampleCount": 0,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 0,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      },
+      "1e-9": {
+        "cleanSampleCount": 0,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 0,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      }
+    },
+    "hybrid-point-m": {
+      "1e-12": {
+        "cleanSampleCount": 2643,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 1.7420731523998256e-11,
+        "maxAbsDeltaIncludingFlippedUnits": 5.80000000000025,
+        "sampleCount": 2772,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 8,
+        "worst": {
+          "caseId": "H010_STRESS_4_SOURCES",
+          "path": "/value/frame/paths/3/hits/0/point/x"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "DH03_AZIMUTH_WRAP_180",
+          "path": "/value/earlyTapsBySource/radio/4/position/x"
+        }
+      },
+      "1e-9": {
+        "cleanSampleCount": 2562,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 1.742105126822935e-8,
+        "maxAbsDeltaIncludingFlippedUnits": 5.80000000025,
+        "sampleCount": 2772,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 16,
+        "worst": {
+          "caseId": "H010_STRESS_4_SOURCES",
+          "path": "/value/frame/paths/3/hits/0/point/x"
+        },
+        "worstIncludingFlippedUnits": {
+          "caseId": "DH03_AZIMUTH_WRAP_180",
+          "path": "/value/earlyTapsBySource/radio/4/position/x"
+        }
+      }
+    },
+    "passthrough": {
+      "1e-12": {
+        "cleanSampleCount": 0,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 0,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      },
+      "1e-9": {
+        "cleanSampleCount": 0,
+        "discreteFlips": {
+          "count": 0,
+          "examples": []
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 0,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      }
+    },
+    "structure": {
+      "1e-12": {
+        "cleanSampleCount": 0,
+        "discreteFlips": {
+          "count": 14,
+          "examples": [
+            {
+              "actual": 34.59323241153414,
+              "caseId": "DC04_ROUTE_GRAZES_PORTAL_EDGE",
+              "detail": "missing from expected",
+              "path": "/value/frame/sources/0/earlyReflections/3/delayMs"
+            },
+            {
+              "actual": -26.201255143895544,
+              "caseId": "DC04_ROUTE_GRAZES_PORTAL_EDGE",
+              "detail": "missing from expected",
+              "path": "/value/frame/sources/0/earlyReflections/3/gainDb"
+            },
+            {
+              "actual": 20000,
+              "caseId": "DC04_ROUTE_GRAZES_PORTAL_EDGE",
+              "detail": "missing from expected",
+              "path": "/value/frame/sources/0/earlyReflections/3/lowpassHz"
+            }
+          ]
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 0,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      },
+      "1e-9": {
+        "cleanSampleCount": 0,
+        "discreteFlips": {
+          "count": 14,
+          "examples": [
+            {
+              "actual": 34.59323242507782,
+              "caseId": "DC04_ROUTE_GRAZES_PORTAL_EDGE",
+              "detail": "missing from expected",
+              "path": "/value/frame/sources/0/earlyReflections/3/delayMs"
+            },
+            {
+              "actual": -26.201255145043607,
+              "caseId": "DC04_ROUTE_GRAZES_PORTAL_EDGE",
+              "detail": "missing from expected",
+              "path": "/value/frame/sources/0/earlyReflections/3/gainDb"
+            },
+            {
+              "actual": 20000,
+              "caseId": "DC04_ROUTE_GRAZES_PORTAL_EDGE",
+              "detail": "missing from expected",
+              "path": "/value/frame/sources/0/earlyReflections/3/lowpassHz"
+            }
+          ]
+        },
+        "maxAbsDelta": 0,
+        "maxAbsDeltaIncludingFlippedUnits": 0,
+        "sampleCount": 0,
+        "toleranceViolations": 0,
+        "toleranceViolationsIncludingFlippedUnits": 0,
+        "worst": null,
+        "worstIncludingFlippedUnits": null
+      }
+    }
+  },
+  "seed": 20261106,
+  "unitsWithFlips": {
+    "1e-12": {
+      "C001_CONCRETE_DEFAULT": 1,
+      "DC02_ROUTE_COLLINEAR_WITH_WALL": 1,
+      "DC04_ROUTE_GRAZES_PORTAL_EDGE": 1,
+      "DH01_SOURCE_ON_LISTENER": 1,
+      "DH03_AZIMUTH_WRAP_180": 1,
+      "TC02_STATIC_EDIT_TAPE": 1,
+      "TH01_LISTENER_TAPE_SEEDED": 1,
+      "TH02_STATIC_EDIT_TAPE": 1
+    },
+    "1e-9": {
+      "C001_CONCRETE_DEFAULT": 1,
+      "DC02_ROUTE_COLLINEAR_WITH_WALL": 1,
+      "DC04_ROUTE_GRAZES_PORTAL_EDGE": 1,
+      "DH01_SOURCE_ON_LISTENER": 1,
+      "DH03_AZIMUTH_WRAP_180": 1,
+      "H003_SECOND_ORDER_BLOCKED": 1,
+      "TC02_STATIC_EDIT_TAPE": 1,
+      "TH01_LISTENER_TAPE_SEEDED": 1,
+      "TH02_STATIC_EDIT_TAPE": 1
+    }
+  }
+}

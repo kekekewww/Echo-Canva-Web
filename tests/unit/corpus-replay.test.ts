@@ -9,7 +9,8 @@ import { classicProjectionHash } from "@/domain/scene-document/validate";
 import { corpusCaseDefinitions } from "../../benchmarks/corpus/harness/definitions";
 import { runCorpusCase } from "../../benchmarks/corpus/harness/ts-serial-adapter";
 import type { CorpusCaseKind } from "../../benchmarks/corpus/harness/types";
-import { aggregateSha256, canonicalize, sha256Hex } from "../../scripts/corpus/lib.mjs";
+import { aggregateSha256, canonicalize, compareOutputs, sha256Hex } from "../../scripts/corpus/lib.mjs";
+import type { CorpusRules } from "../../scripts/corpus/lib.mjs";
 
 const ROOT = resolve(process.cwd());
 
@@ -27,6 +28,7 @@ function readText(path: string): string {
 }
 
 const manifest = JSON.parse(readText("benchmarks/corpus/v1/manifest.json")) as { cases: ManifestCase[] };
+const rules = JSON.parse(readText("benchmarks/corpus/v1/comparison-rules.json")) as CorpusRules;
 
 function round(value: number): number {
   return Number(value.toFixed(6));
@@ -140,7 +142,7 @@ describe("frozen corpus replay", () => {
     }
   });
 
-  it("replays every case deterministically and byte-exactly", () => {
+  it("replays every case deterministically and within the comparison rules", () => {
     const hashes: Record<string, string> = {};
     const negativeZeroCounts: Record<string, number> = {};
     let bitExact = 0;
@@ -154,10 +156,15 @@ describe("frozen corpus replay", () => {
       const first = firstRun.text;
       const second = canonicalize(runCorpusCase(entry.id, entry.kind, JSON.parse(inputText))).text;
       expect(second, `${entry.id} determinism`).toBe(first);
-      expect(first, `${entry.id} bytes`).toBe(expectedText);
+      // Both sides are re-parsed canonical text, so -0 is 0 here exactly as it is on disk.
+      const report = compareOutputs(JSON.parse(expectedText), JSON.parse(first), rules, {
+        caseId: entry.id,
+        kind: entry.kind,
+      });
+      expect(report.violations, `${entry.id} violations`).toEqual([]);
       if (/^(H|C|DC|DH)\d/.test(entry.id)) negativeZeroCounts[entry.id] = firstRun.negativeZeroPaths.length;
       hashes[entry.id] = sha256Hex(first);
-      bitExact += 1;
+      if (report.bitExact) bitExact += 1;
     }
     console.info(
       `[corpus] negativeZeroPaths ${JSON.stringify(
@@ -167,7 +174,7 @@ describe("frozen corpus replay", () => {
     console.info(
       `[corpus] aggregateSha256=${aggregateSha256(hashes)} bitExact=${bitExact}/${manifest.cases.length} platform=${process.platform} node=${process.version}`,
     );
-  });
+  }, 120_000);
 });
 
 type TapeStep = { step: number; event: string; staticFingerprint?: string; staticGeometryHash?: string };

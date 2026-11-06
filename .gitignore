@@ -24,3 +24,4 @@ third-party-licenses/
 !docs/archive/build-week/.superpowers/
 !docs/archive/build-week/.superpowers/**
 .vercel/
+.corpus-runs/

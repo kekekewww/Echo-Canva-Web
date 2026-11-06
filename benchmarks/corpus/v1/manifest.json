@@ -2572,7 +2572,7 @@
   },
   "rules": {
     "path": "comparison-rules.json",
-    "sha256": null
+    "sha256": "99767341118469770596f7917ccdc287ee864c8bae8831e568277237f6e7274f"
   },
   "runtime": {
     "node": "22.23.3",

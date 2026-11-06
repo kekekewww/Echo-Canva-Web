@@ -1,4 +1,8 @@
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { cpus } from "node:os";
+import { join } from "node:path";
 
 const MAX_FIRST_VIOLATIONS = 20;
 
@@ -105,6 +109,12 @@ export function validateRules(rules) {
     if (!Object.hasOwn(rules.classes, rule.class)) {
       throw new Error(`Rule "${rule.path}" names unknown class "${rule.class}"`);
     }
+    const segments = rule.path.split("/");
+    segments.forEach((segment, index) => {
+      if (segment.includes("**") && !(segment === "**" && index === segments.length - 1)) {
+        throw new Error(`Rule "${rule.path}" uses ** outside the final segment`);
+      }
+    });
   }
 }
 
@@ -142,13 +152,41 @@ function collect(value, path, leaves, containers) {
   leaves.set(path, value);
 }
 
-function pathMatches(pattern, path) {
-  const patternSegments = pattern.split("/");
-  const pathSegments = path.split("/");
-  return (
-    patternSegments.length === pathSegments.length &&
-    patternSegments.every((segment, index) => segment === "*" || segment === pathSegments[index])
-  );
+function segmentsMatch(prefix, pathSegments) {
+  return prefix.every((segment, index) => segment === "*" || segment === pathSegments[index]);
+}
+
+// Splits every pattern once and buckets fixed-length patterns by segment count, so
+// each leaf is only tested against rules that can match its depth. A trailing "**"
+// matches one or more remaining segments.
+function indexRules(rules) {
+  const fixed = new Map();
+  const open = [];
+  for (const rule of rules) {
+    const segments = rule.path.split("/");
+    if (segments[segments.length - 1] === "**") {
+      open.push({ rule, prefix: segments.slice(0, -1) });
+    } else {
+      const bucket = fixed.get(segments.length) ?? [];
+      bucket.push({ rule, prefix: segments });
+      fixed.set(segments.length, bucket);
+    }
+  }
+  return {
+    match(path) {
+      const pathSegments = path.split("/");
+      const matches = [];
+      for (const entry of fixed.get(pathSegments.length) ?? []) {
+        if (segmentsMatch(entry.prefix, pathSegments)) matches.push(entry.rule);
+      }
+      for (const entry of open) {
+        if (pathSegments.length > entry.prefix.length && segmentsMatch(entry.prefix, pathSegments)) {
+          matches.push(entry.rule);
+        }
+      }
+      return matches;
+    },
+  };
 }
 
 function wrapDifference(difference, period) {
@@ -212,7 +250,7 @@ export function compareOutputs(expected, actual, rules, context) {
   const violations = [];
   const errorsByClass = new Map();
   const worstByClass = new Map();
-  const applicable = rules.rules.filter((rule) => rule.kinds.includes(context.kind));
+  const ruleIndex = indexRules(rules.rules.filter((rule) => rule.kinds.includes(context.kind)));
 
   for (const [path, expectedKind] of expectedContainers) {
     const actualKind = actualContainers.get(path);
@@ -248,7 +286,7 @@ export function compareOutputs(expected, actual, rules, context) {
       continue;
     }
 
-    const matches = applicable.filter((rule) => pathMatches(rule.path, path));
+    const matches = ruleIndex.match(path);
     if (matches.length !== 1) {
       violations.push({
         type: matches.length === 0 ? "unclassified" : "ambiguous",
@@ -374,5 +412,248 @@ export function summarizeReports(reports) {
     violationCount,
     firstViolations,
     stats,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Corpus integrity
+// ---------------------------------------------------------------------------
+
+const CORPUS_PREFIX = "benchmarks/corpus/v1/";
+const MAX_PROBLEMS_PER_CASE = 5;
+
+function describeText(text) {
+  if (text.startsWith("﻿")) return "a UTF-8 BOM";
+  if (text.includes("\r")) return "CRLF line endings";
+  return null;
+}
+
+function stripBom(text) {
+  return text.replace(/^﻿/, "");
+}
+
+function messageOf(error) {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function localPath(manifestPath) {
+  return typeof manifestPath === "string" && manifestPath.startsWith(CORPUS_PREFIX)
+    ? manifestPath.slice(CORPUS_PREFIX.length)
+    : null;
+}
+
+function checkEntryFile(rootDir, entry, key, problems) {
+  const info = entry[key];
+  if (!isPlainObject(info) || typeof info.path !== "string") {
+    problems.push(`${entry.id}: ${key} entry needs a path`);
+    return null;
+  }
+  const relative = localPath(info.path);
+  if (relative === null || relative.split("/").includes("..")) {
+    problems.push(`${entry.id}: ${key} path ${JSON.stringify(info.path)} is not under ${CORPUS_PREFIX}`);
+    return null;
+  }
+  const file = join(rootDir, relative);
+  if (!existsSync(file)) {
+    problems.push(`${info.path}: file is missing`);
+    return null;
+  }
+  const bytes = readFileSync(file);
+  const text = bytes.toString("utf8");
+  const damage = describeText(text);
+  if (damage !== null) problems.push(`${info.path}: contains ${damage}`);
+  if (sha256Hex(bytes) !== info.sha256) problems.push(`${info.path}: sha256 does not match the manifest`);
+  if (bytes.length !== info.bytes) problems.push(`${info.path}: ${bytes.length} bytes, manifest says ${info.bytes}`);
+  return { text, relative };
+}
+
+/**
+ * Checks the committed corpus without throwing: hashes, line endings, orphans,
+ * expected outcomes, rule coverage and (optionally) that the rules are frozen.
+ */
+export function verifyCorpus(rootDir, options = {}) {
+  const problems = [];
+  const manifestFile = join(rootDir, "manifest.json");
+  if (!existsSync(manifestFile)) {
+    return { ok: false, problems: ["manifest.json is missing"], corpusSha256: "unavailable", caseCount: 0 };
+  }
+  const manifestBytes = readFileSync(manifestFile);
+  const corpusSha256 = sha256Hex(manifestBytes);
+  const manifestText = manifestBytes.toString("utf8");
+  const manifestDamage = describeText(manifestText);
+  if (manifestDamage !== null) problems.push(`manifest.json: contains ${manifestDamage}`);
+
+  let manifest;
+  try {
+    manifest = JSON.parse(stripBom(manifestText));
+  } catch (error) {
+    problems.push(`manifest.json: not valid JSON (${messageOf(error)})`);
+    return { ok: false, problems, corpusSha256, caseCount: 0 };
+  }
+  if (!isPlainObject(manifest) || !Array.isArray(manifest.cases)) {
+    problems.push("manifest.json: needs a cases array");
+    return { ok: false, problems, corpusSha256, caseCount: 0 };
+  }
+
+  let rules = null;
+  const rulesInfo = manifest.rules;
+  if (!isPlainObject(rulesInfo) || typeof rulesInfo.path !== "string") {
+    problems.push("manifest.json: rules.path is missing");
+  } else {
+    const rulesFile = join(rootDir, rulesInfo.path);
+    if (!existsSync(rulesFile)) {
+      problems.push(`${rulesInfo.path}: rules file is missing`);
+    } else {
+      const rulesBytes = readFileSync(rulesFile);
+      const rulesText = rulesBytes.toString("utf8");
+      const damage = describeText(rulesText);
+      if (damage !== null) problems.push(`${rulesInfo.path}: contains ${damage}`);
+      if (sha256Hex(rulesBytes) !== rulesInfo.sha256) {
+        problems.push(`${rulesInfo.path}: sha256 does not match manifest rules.sha256 (run refresh-rules-hash while draft)`);
+      }
+      try {
+        rules = JSON.parse(stripBom(rulesText));
+        validateRules(rules);
+      } catch (error) {
+        problems.push(`${rulesInfo.path}: invalid rules (${messageOf(error)})`);
+        rules = null;
+      }
+    }
+  }
+
+  if (rules !== null && options.requireFrozen) {
+    if (rules.status !== "frozen") problems.push(`rules status is "${rules.status}", expected "frozen"`);
+    if (typeof rules.frozenOn !== "string" || rules.frozenOn.length === 0) problems.push("rules frozenOn is not set");
+    for (const [name, fieldClass] of Object.entries(rules.classes)) {
+      if (!["discrete", "existing-test", "approved"].includes(fieldClass.status)) {
+        problems.push(`class "${name}" is still ${fieldClass.status}`);
+      }
+    }
+  }
+
+  const listedInputs = new Set();
+  const listedExpected = new Set();
+  const seenIds = new Set();
+  manifest.cases.forEach((entry, index) => {
+    if (!isPlainObject(entry) || typeof entry.id !== "string" || entry.id.length === 0) {
+      problems.push(`manifest.json: cases[${index}] needs a string id`);
+      return;
+    }
+    if (seenIds.has(entry.id)) problems.push(`manifest.json: duplicate case id ${entry.id}`);
+    seenIds.add(entry.id);
+
+    const input = checkEntryFile(rootDir, entry, "input", problems);
+    if (input !== null) listedInputs.add(input.relative);
+    const expected = checkEntryFile(rootDir, entry, "expected", problems);
+    if (expected === null) return;
+    listedExpected.add(expected.relative);
+
+    let output;
+    try {
+      output = JSON.parse(stripBom(expected.text));
+    } catch (error) {
+      problems.push(`${entry.expected.path}: not valid JSON (${messageOf(error)})`);
+      return;
+    }
+    if (!isPlainObject(output)) {
+      problems.push(`${entry.expected.path}: top level must be an object`);
+      return;
+    }
+    if (canonicalize(output).text !== expected.text) {
+      problems.push(`${entry.expected.path}: is not in canonical form`);
+    }
+    if (output.caseId !== entry.id) {
+      problems.push(`${entry.expected.path}: caseId is ${JSON.stringify(output.caseId)}, expected ${entry.id}`);
+    }
+    if (output.kind !== entry.kind) {
+      problems.push(`${entry.expected.path}: kind is ${JSON.stringify(output.kind)}, manifest says ${JSON.stringify(entry.kind)}`);
+    }
+    if (output.outcome !== entry.expectedOutcome) {
+      problems.push(
+        `${entry.id}: outcome is ${JSON.stringify(output.outcome)} but the manifest expects ${JSON.stringify(entry.expectedOutcome)}`,
+      );
+    }
+    if (rules !== null && typeof entry.kind === "string") {
+      const report = compareOutputs(output, output, rules, { caseId: entry.id, kind: entry.kind });
+      const bad = report.violations;
+      for (const violation of bad.slice(0, MAX_PROBLEMS_PER_CASE)) {
+        problems.push(`${entry.id}: ${violation.type} leaf ${violation.path} (${violation.detail ?? "rule problem"})`);
+      }
+      if (bad.length > MAX_PROBLEMS_PER_CASE) {
+        problems.push(`${entry.id}: ${bad.length - MAX_PROBLEMS_PER_CASE} more rule problems`);
+      }
+    }
+  });
+
+  for (const [directory, listed] of [["inputs", listedInputs], ["expected", listedExpected]]) {
+    const folder = join(rootDir, directory);
+    for (const name of existsSync(folder) ? readdirSync(folder).sort() : []) {
+      if (!listed.has(`${directory}/${name}`)) problems.push(`${directory}/${name}: orphan file not listed in the manifest`);
+    }
+  }
+
+  return { ok: problems.length === 0, problems, corpusSha256, caseCount: manifest.cases.length };
+}
+
+// ---------------------------------------------------------------------------
+// Run metadata
+// ---------------------------------------------------------------------------
+
+function git(repoRoot, args) {
+  try {
+    return execFileSync("git", args, { cwd: repoRoot, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
+  } catch {
+    return null;
+  }
+}
+
+/** Repo-relative git facts for run.json. Anything git cannot answer is the string "unavailable". */
+export function collectGitInfo(repoRoot, baselineTreeHashes) {
+  const head = git(repoRoot, ["rev-parse", "HEAD"]);
+  const status = git(repoRoot, ["status", "--porcelain", "-z", "--untracked-files=all"]);
+  let gitDirty = "unavailable";
+  if (status !== null) {
+    gitDirty = [];
+    const records = status.split("\0").filter((record) => record.length > 0);
+    for (let index = 0; index < records.length; index++) {
+      const record = records[index];
+      gitDirty.push(record.slice(3));
+      if (record[0] === "R" || record[0] === "C") index += 1;
+    }
+    gitDirty.sort();
+  }
+  const productTrees = {};
+  for (const name of ["src", "package.json", "pnpm-lock.yaml"]) {
+    const hash = git(repoRoot, ["rev-parse", `HEAD:${name}`]);
+    productTrees[name] = hash === null ? "unavailable" : hash.trim();
+  }
+  let productTreesMatchBaseline = false;
+  if (isPlainObject(baselineTreeHashes) && gitDirty !== "unavailable") {
+    const untouched = !gitDirty.some((file) => file === "package.json" || file === "pnpm-lock.yaml" || file.startsWith("src/"));
+    productTreesMatchBaseline =
+      untouched && Object.keys(productTrees).every((name) => productTrees[name] === baselineTreeHashes[name]);
+  }
+  return {
+    gitHead: head === null ? "unavailable" : head.trim(),
+    gitDirty,
+    productTrees,
+    productTreesMatchBaseline,
+  };
+}
+
+export function collectEnvironment() {
+  let processors = [];
+  try {
+    processors = cpus();
+  } catch {
+    processors = [];
+  }
+  return {
+    node: process.version,
+    v8: process.versions.v8,
+    platform: process.platform,
+    arch: process.arch,
+    cpuModel: processors.length > 0 ? processors[0].model.trim() : "unavailable",
+    logicalCpus: processors.length > 0 ? processors.length : "unavailable",
   };
 }

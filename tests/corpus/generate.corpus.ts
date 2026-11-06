@@ -127,7 +127,10 @@ describe("corpus generator", () => {
         modulus: "2^32",
         output: "state / 2^32",
       },
-      rules: { path: "comparison-rules.json", sha256: null },
+      rules: {
+        path: "comparison-rules.json",
+        sha256: existsSync(rulesPath) ? sha256Hex(readFileSync(rulesPath)) : null,
+      },
       cases,
     };
     const manifestText = canonicalize(manifest).text;

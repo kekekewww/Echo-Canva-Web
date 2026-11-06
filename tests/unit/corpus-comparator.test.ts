@@ -316,3 +316,32 @@ describe("large corpora and plain-data reports", () => {
     expect(summarizeReports(revived)).toEqual(summarizeReports(reports));
   });
 });
+
+describe("trailing ** rule paths", () => {
+  const rules = (path: string, extra: { path: string; class: string }[] = []) =>
+    makeRules({ d: cls({}) }, [{ path, class: "d" }, ...extra]);
+
+  it("matches one or more remaining segments", () => {
+    const value = { p: { a: 1, b: { c: [1, 2] } }, q: 1 };
+    const report = compareOutputs(value, value, rules("/p/**", [{ path: "/q", class: "d" }]), context);
+    expect(report.violations).toEqual([]);
+    expect(report.leafCount).toBe(4);
+  });
+
+  it("does not match the prefix itself", () => {
+    const report = compareOutputs({ p: 1 }, { p: 1 }, rules("/p/**"), context);
+    expect(report.violations).toMatchObject([{ type: "unclassified", path: "/p" }]);
+  });
+
+  it("is ambiguous with a specific rule over the same leaf", () => {
+    const report = compareOutputs({ p: { a: 1 } }, { p: { a: 1 } }, rules("/p/**", [{ path: "/p/a", class: "d" }]), context);
+    expect(report.violations).toMatchObject([{ type: "ambiguous", path: "/p/a" }]);
+  });
+
+  it("rejects ** anywhere but the final segment", () => {
+    expect(() => validateRules(rules("/p/**/a"))).toThrow(/\*\*/);
+    expect(() => validateRules(rules("/**/a"))).toThrow(/\*\*/);
+    expect(() => validateRules(rules("/p/**x"))).toThrow(/\*\*/);
+    expect(() => validateRules(rules("/p/**"))).not.toThrow();
+  });
+});

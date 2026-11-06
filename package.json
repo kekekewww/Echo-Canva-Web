@@ -15,7 +15,11 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "e2e": "pnpm build && playwright test",
-    "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm e2e"
+    "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm e2e",
+    "corpus:verify": "node scripts/corpus/cli.mjs verify",
+    "corpus:run": "node scripts/corpus/cli.mjs run",
+    "corpus:compare": "node scripts/corpus/cli.mjs compare",
+    "corpus:rerun": "node scripts/corpus/cli.mjs rerun"
   },
   "dependencies": {
     "next": "16.4.2",
