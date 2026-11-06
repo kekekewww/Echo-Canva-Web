@@ -67,6 +67,8 @@ try {
 | S9 Playback Under Load | 固定 clip/hash、兩種 sample rate/device profile、idle vs. S3/S5，校準 loopback、拖曳、切換播放模式。另做 device-loss/recovery。 | audio deadline、缺樣、latency、CPU 競爭 |
 | S10 Fault / Backpressure | 注入 delayed/missing/duplicate shard、Worker deny、stale fingerprint、native cancel/restart、malformed frame。相同輸入序列。 | 原子採納、queue bound、fallback 與 recovery time |
 
+實作狀態：S1–S7 的 TypeScript 部分已由 [EC-101 固定語料](../../raw/sources/ec-101-corpus-baseline.md) 實作，待獨立驗證。S8–S10 尚未實作。
+
 S1–S7 適用 7 個 variants 的共同 workload，能測哪些層由各 variant 能力決定。S8 追加 TS-W／WA-W／IPC 壓力。S9 僅在連接真實 renderer 的完整路徑執行，必要時含 TS-S fallback。S10 依各 adapter 支援的邊界執行，純 core 僅測輸入錯誤及取消合作點。Audio opt-in 10 秒輸出保留為現行短測，額外長時驗證另用此規格。
 
 ## 4. 計時、採樣與環境
@@ -110,6 +112,8 @@ Phase 1 harness 的介面需可輸入 `variant`、`case`、`corpus manifest`、`
 | Atomic Frame / adapters | Exact mode、request/revision/static identity、source set/order、shape/bounds。Pose lag 需同一 static identity 與 ordered source IDs，驗證可採納的完整 frame 及 overlay/audio 一致。注入舊 generation、取消重試、遺漏/重複/錯派 shards 和 malformed payload。合成只出完整 frame 或整個 serial fallback。 | [Frame acceptance](../../../tests/unit/frame-acceptance.test.ts) · [Classic pool](../../../tests/unit/classic-source-pool.test.ts) · [Hybrid pool](../../../tests/unit/hybrid-direct-pool.test.ts) · [ADR 0008](../../../docs/adr/0008-adopt-pose-lagging-frames.md) |
 
 補測結構 fingerprint 在 static edit／pose edit 的契約、Classic 的 JS JSON 欄位順序與字串 FNV 行為，以及 Hybrid 的 geometry hash。第一版保留 TS 端作 compatibility authority，收集合法 ASCII ID（大小寫、數字、底線與連字號）的 locale tie fixture，並以合法 Unicode scene name 確認 fingerprint 位元相容，含非 BMP 字元。跨平台 locale、負零、科學記數法或 JSON escaping 差異需要追查原語意；變更 canonicalization、tie-break 或 identity 的提案另走 ADR。Corpus SHA-256 用於重現測試素材，與產品 static identity 分開。
+
+實作狀態：TypeScript 比較器與凍結規則見 [EC-101 固定語料](../../raw/sources/ec-101-corpus-baseline.md) 與 [語料 README](../../../benchmarks/corpus/README.md)。跨語言容差尚未決定。
 
 新 parity 比較器的初始容差以同單位的欄位表呈現，先把現有測試各自的 precision 保留下來。對新增的連續數值欄位，先將 `abs(actual-expected) ≤ max(atol, rtol × max(abs(actual), abs(expected)))` 當候選比較式，再依解析解、原有精度、條件數與允許感知差異設定欄位值並送審。現行 pool validator 某些數值使用 `atol = 1e-5`、`rtol = 1e-6`，它們適合作為研究上界的起點，現行幾何分支使用自己的 epsilon，分類與 ID 仍須精確相等。量測不符時列出最小反例、來源與門檻的理由，交給 review 判斷。[Classic validator](../../../src/workers/classic-source-pool.ts) · [Hybrid validator](../../../src/workers/hybrid-direct-pool.ts) · [Classic fingerprint](../../../src/acoustics/compute-frame.ts) · [SceneSpec schema](../../../src/domain/scene/schema.ts)
 

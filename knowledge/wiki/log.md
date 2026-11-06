@@ -13,3 +13,7 @@
 ## [2026-11-06] Handoff | 基準與後續任務
 
 [工作階段](../sessions/2026-11-06-codex-cross-platform.md) 記錄本輪操作與驗證。[交接](../handoffs/2026-11-06-ec-001-codex.md) 指向 Phase 1 的入口。
+
+## [2026-11-06] Implement | EC-101 固定語料
+
+[來源登錄](../raw/sources/ec-101-corpus-baseline.md) 記錄 72 個 case、凍結的比較規則與驗收重跑。[工作階段](../sessions/2026-11-06-claude-ec-101-corpus.md) 與 [交接](../handoffs/2026-11-06-ec-101-claude.md) 保存過程。EC-101 轉為 Implemented，獨立驗證待進行。
