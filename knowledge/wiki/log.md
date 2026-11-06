@@ -17,3 +17,7 @@
 ## [2026-11-06] Implement | EC-101 固定語料
 
 [來源登錄](../raw/sources/ec-101-corpus-baseline.md) 記錄 72 個 case、凍結的比較規則與驗收重跑。[工作階段](../sessions/2026-11-06-claude-ec-101-corpus.md) 與 [交接](../handoffs/2026-11-06-ec-101-claude.md) 保存過程。EC-101 轉為 Implemented，獨立驗證待進行。
+
+## [2026-11-06] Correction | EC-101 語料更新為 86 個 case
+
+取代上一筆 Implement 記錄中的 72 個 case 數字：維護者於全分支審查後在驗證前加入 clamp、cap 與 locale case，規則重新凍結且檔案逐位元組相同。最終證據在 `cb2ef6d`，見 [來源登錄](../raw/sources/ec-101-corpus-baseline.md)。72 個 case 的第一次驗收保留於 [工作階段](../sessions/2026-11-06-claude-ec-101-corpus.md) 作歷史。EC-101 仍為 Implemented，獨立驗證待進行。

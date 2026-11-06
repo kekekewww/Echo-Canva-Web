@@ -11,5 +11,6 @@
 ## 未決事項
 
 - 歷史 Worker p95／Long Task 樣本有環境變異。先取得同機、相同版本與可重現互動的主執行緒／Worker trace。
-- 已定案：TypeScript 共同語料與其比較規則已於 2026-11-06 凍結（待獨立驗證），見 [語料來源](../raw/sources/ec-101-corpus-baseline.md)。未決：跨語言移植的浮點容差、並列排序、字串比較與 fingerprint producer 邊界。語料只涵蓋 TypeScript 對 TypeScript，另有 12 項待維護者處理的發現。
+- 已釘選（TypeScript，待獨立驗證）：86 個 case 的共同語料與凍結的比較規則；並列反射的順序（`compute-frame.ts:156-161`）；字串比較在強制的九個 locale 間輸出不變；fingerprint 對場景名稱的雜湊行為，包含非 BMP 低代理項碰撞（`LC03`、`LC05`）。見 [語料來源](../raw/sources/ec-101-corpus-baseline.md)。
+- 仍未決：跨語言移植的浮點容差；八處 `localeCompare`（`room-acoustics:62`、`image-source:151`、`:225`、`:238`、`bvh:42`、`:79`、`:156`、`second-order:82`）單獨變異時沒有任何 case 改變，語料抓不到；語料只涵蓋 TypeScript 對 TypeScript；另有 15 項待維護者處理的發現。
 - WebView2／WKWebView 的包裝、檔案權限、Web Audio 及硬體裝置行為需要代表性機器。Native DSP 與錄製另設驗收。

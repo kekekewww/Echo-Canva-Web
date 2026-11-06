@@ -29,10 +29,10 @@ The toolchain is pinned: Node 22.23.3 (`.nvmrc`) and pnpm 11.7.0 (`packageManage
 | One E2E spec, after `pnpm build` | `pnpm exec playwright test tests/e2e/workspace-paths.spec.ts -g "<title>"` |
 | Install the E2E browser once | `pnpm exec playwright install chromium` |
 | Lint, typecheck, unit and E2E in sequence | `pnpm verify` |
-| Check the fixed corpus files, hashes and frozen rules (`benchmarks/corpus/v1`) | `pnpm corpus:verify` |
+| Check the fixed corpus files, hashes and rules; runs `verify --require-frozen`, so it fails unless the rules are frozen (`benchmarks/corpus/v1`) | `pnpm corpus:verify` |
 | Run every corpus case through the TypeScript adapter into `.corpus-runs/` (git-ignored) | `pnpm corpus:run --run-id <id>` |
 | Compare a run directory against another run or `expected` | `pnpm corpus:compare <dirA> <dirB\|expected>` |
-| Verify, then run three fresh processes (two in manifest order, one reversed) and compare them with each other and `expected` | `pnpm corpus:rerun` |
+| Verify, then run three fresh processes (A and B in manifest order, C reversed); compares A with B, and A, B and C each with `expected` | `pnpm corpus:rerun` |
 | Docker dev environment (optional) | `docker compose -f compose.dev.yaml up --build --watch` |
 
 AI features are optional and nothing else needs a key. To use them locally, copy `.env.example` to `.env.local` and set `OPENAI_API_KEY`.
