@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "runId": "r1-alloc-w-w01",
+  "start": "2026-11-06T14:41:52.258Z",
+  "end": "2026-11-06T14:42:31.063Z",
+  "sampleCount": 13779,
+  "originalStatus": "passed",
+  "originalError": "not-applicable",
+  "rederivedAt": "2026-11-06T18:39:55.551Z",
+  "rederivedByCommit": "08f82274d6bb80298337132c91456ed68caac09e",
+  "originalPhasesNotReached": "not-applicable"
+}

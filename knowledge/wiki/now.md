@@ -5,7 +5,7 @@
 ## 接續工作
 
 1. 讀 [最近交接 EC-102](../handoffs/2026-11-07-ec-102-claude.md)，它回鏈 [EC-101 交接](../handoffs/2026-11-06-ec-101-claude.md)，後者回鏈 [EC-001 交接](../handoffs/2026-11-06-ec-001-codex.md) 與 [EC-001 記憶基礎](../tasks/EC-001.md)。
-2. [EC-101](../tasks/EC-101.md) 的語料已由 GPT-Sol 獨立驗證（Verified，候選 `b0807ae`），見 [語料來源](../raw/sources/ec-101-corpus-baseline.md) 與 [驗證工作階段](../sessions/2026-11-06-codex-ec-101-verification.md)。[EC-102](../tasks/EC-102.md) 已 Implemented（Windows 部分），獨立驗證待進行，macOS 沒有執行。結果見 [EC-102 Windows 剖析來源](../raw/sources/ec-102-windows-profiling.md)、[工作階段](../sessions/2026-11-07-claude-ec-102-profiling.md) 與 [效能基準](performance/baseline.md)。另讀 [本機執行紀錄](../raw/sources/windows-baseline.md) 和 [Benchmark 計畫](performance/benchmark-plan.md)。
+2. [EC-101](../tasks/EC-101.md) 的語料已由 GPT-Sol 獨立驗證（Verified，候選 `b0807ae`），見 [語料來源](../raw/sources/ec-101-corpus-baseline.md) 與 [驗證工作階段](../sessions/2026-11-06-codex-ec-101-verification.md)。[EC-102](../tasks/EC-102.md) 已 Implemented（Windows 部分），第一次獨立驗證在 `63a50c6` 為 NOT_VERIFIED，缺陷已修正，第二次獨立驗證待進行（[更正工作階段](../sessions/2026-11-07-claude-ec-102-corrections.md)），macOS 沒有執行。結果見 [EC-102 Windows 剖析來源](../raw/sources/ec-102-windows-profiling.md)、[工作階段](../sessions/2026-11-07-claude-ec-102-profiling.md) 與 [效能基準](performance/baseline.md)。另讀 [本機執行紀錄](../raw/sources/windows-baseline.md) 和 [Benchmark 計畫](performance/benchmark-plan.md)。
 3. 依 [路線圖](roadmap.md) 審查後續待認領項目。XR 提案供實驗前討論，正式採用狀態見 [決策索引](index.md#proposed-adrs)。
 
 ## 未決事項

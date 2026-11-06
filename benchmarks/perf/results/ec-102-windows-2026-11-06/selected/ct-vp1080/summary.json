@@ -1643,7 +1643,7 @@
     "threads": 54,
     "marks": 848,
     "gcEvents": 395,
-    "cpuThreads": 2,
+    "cpuThreads": 7,
     "exemplars": [
       {
         "file": "exemplar-91.trace.json",

@@ -4,6 +4,47 @@
 
 本登錄記錄 EC-102 在 Windows 上的實測。EC-102 的 Status 為 Implemented，獨立驗證待進行。macOS 沒有執行，EC-102 的 macOS 一半仍未完成。本頁沒有任何項目標為 Verified，也沒有任何問題被宣稱已修復。
 
+## 更正記錄（2026-11-07）
+
+以下各節是提交 `63a50c6` 時的紀錄，原文保留，未改寫。第一次獨立驗證在 `63a50c6` 回報 NOT_VERIFIED（[報告](../../../benchmarks/perf/results/ec-102-windows-2026-11-06/verification/63a50c6-not-verified-report.md)）。harness 缺陷在提交 `08f8227` 修正，所有 pool 執行由保留的原始 log 重新推導，沒有重新量測。舊值對新值見[更正表](../../../benchmarks/perf/results/ec-102-windows-2026-11-06/corrections-after-verification.md)。過程見[更正工作階段](../../sessions/2026-11-07-claude-ec-102-corrections.md)。下列項目取代下方對應的數字或敘述，仍以更正表為準。
+
+**取代的數字**
+
+- **Verified Fact**：open-loop 的 warm 標記原先計的是輸入事件，不是 job。W02 Round 1 static-install 的 TS-W `pool.compute-metric` p99 由 51.2 變 26.5，max 由 214.7 變 26.5（那些極值是冷 job）。W01 Round 2 TS-W p99 由 7.6 變 11.3。`r2-hc6-w01` p99 由 16.9 變 35.4。其他受影響的 N 與分位數見更正表。
+- **Verified Fact**：合併樣本在時間戳相同時遺失。現在 `merge.assemble` 在 46 個 pool 執行中都等於原始組裝次數（`r1-w-tc01` warm N 由 930 變 1052）。
+- **Verified Fact**：per-worker 摘要曾覆蓋同名執行緒，GC 摘要原先涵蓋整份 trace。`r1-traced-app-w-1` 的視窗內數字更正為：main 40 次 minor 57 ms、3 次 major 39.5 ms、74 次 incremental step 18.3 ms；workers 309 次 minor 134.3 ms。
+
+**取代的敘述**（錯誤句子，與更正後事實）
+
+- (a) 「Workers 降低 p50 與 p95」不成立。用更正後的值，W01 與 W03 四輪中 p50 都是 Workers 較低。p95 在三輪較低，W01 Round 1 反而較高（11.5 對 7.2）。p99 取自更正表，不訂規則。驗證者新跑的 W03 p99 是 3.5 對 5.6，對 Workers 有利，與本專案兩輪相反，所以沒有任何通用的 p99 說法成立。
+- (b) N 400 的 nearest-rank p99 是第 396 名，即第五大值，不是第四大。
+- (c) 「出現次數為零」只對有辨識度的 helper 成立：`elementSafeTagName`、`getExplicitAriaRole`、`getImplicitAriaRole`、`computeBox`。`query`、`querySelectorAll` 這類通用名稱在產品 bundle 也會出現。C 類的依據是這些有辨識度的 helper，加上 frame 沒有 `_next/static` URL。
+- (d) 清單：主索引有 109 個不重複 run id，其中 stock 列是 10 個 `APP_H100_SWITCH` 加 1 個 `APP_C_DRAG`。`stock-gate.jsonl` 有 12 列 H100，因為多了 2 個 pilot id。
+- (e) 「保留每次成功與失敗」需要限定：被中斷的 `r1-node-th01` 只在本機磁碟，狀態為 `started`，不在索引或封存中。較早的兩次 smoke stock 執行沒有編入索引，其中一次的輸出已遺失。`runs.tar.gz` 沒有 `samples.jsonl`，所以無法從已提交檔案重算歷史百分位。重新產生等於重新量測。
+
+**證據補強**
+
+- W01 與 W03 的配置數字現在有證據：heap profile 已加入 `raw-cpu-alloc-gc.tar.gz`。`archives.sha256` 現在列出封存檔與 `selected/`。
+
+**獨立結果：NOT CONFIRMED**（標籤維持原樣）
+
+- long task 的 A/B/C 分類：驗證者的 4 份診斷 trace 中，主執行緒 50 ms 以上的 task 為 0。它的 4 次未 trace 執行有 25 個 long task，沒有分類。分類在重複前只建立在本專案自己的 trace 上。
+- stock 失敗頻率：驗證者新跑 5 次失敗 0 次，另外多跑一次也通過，本專案封存的是 12 次中 3 次。
+- 負載敏感：沒有受控實驗。
+
+**限制**
+
+- 在 browser-pool，Hybrid 的 `accept.decide` 沒有量測：真正的函式不引入 UI graph 就無法匯入，決策用 harness 的重新實作。所以純 Hybrid 的接受成本只能由 in-app 的 `accept.to-*` 給出上界。
+- Node-core 執行沒有保留原始紀錄，無法重新推導。warm 缺陷不影響 closed-loop 執行，因為一步等於一個 job。
+
+**驗證者獨立重現**
+
+- commit-wait 與 Hybrid static-install 機制。驗證者的原話（報告第二行）：「The remeasurement reproduces the main commit-wait and Hybrid static-install mechanisms, but the stated Windows acceptance is not met: open-loop warm labels are wrong, merge samples are lost on timestamp ties, and per-worker trace summaries overwrite distinct workers.」
+
+**Docker**
+
+- CI 的 Production Docker job 在 `63a50c6` 失敗：`next build` 會對 `tests/unit/perf-*.test.ts` 做型別檢查，這些測試匯入的檔案被 `.dockerignore` 排除。這是本分支造成的回歸，在 `08f8227` 以允許 `benchmarks/perf/harness/` 修正。
+
 ## 環境
 
 **Verified Fact**：下列值來自每次執行的 `environment.json`。

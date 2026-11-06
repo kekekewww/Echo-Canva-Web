@@ -1170,6 +1170,36 @@
     },
     "jobLevelDecomposition": {
       "schema": "ec102.job-decomposition-jobs-summary.v1",
+      "counts": {
+        "note": "counts only; the levels are rows of a report table (reported metric at or above the level, in ms), not budgets or thresholds",
+        "all": {
+          "jobs": 200,
+          "replyWaitExceedsSlowestWorker": 17,
+          "withFrameChildrenInWait": 7
+        },
+        "atOrAboveReportedMetricMs": {
+          "8": {
+            "jobs": 10,
+            "replyWaitExceedsSlowestWorker": 6,
+            "withFrameChildrenInWait": 7
+          },
+          "12": {
+            "jobs": 6,
+            "replyWaitExceedsSlowestWorker": 6,
+            "withFrameChildrenInWait": 6
+          },
+          "25": {
+            "jobs": 6,
+            "replyWaitExceedsSlowestWorker": 6,
+            "withFrameChildrenInWait": 6
+          },
+          "50": {
+            "jobs": 5,
+            "replyWaitExceedsSlowestWorker": 5,
+            "withFrameChildrenInWait": 5
+          }
+        }
+      },
       "boundary": "browser-app",
       "clock": "trace-ts-us",
       "units": "microseconds, except reportedMetric (milliseconds) and the count lateStartWorkers",
@@ -1268,6 +1298,27 @@
             "p95": 2,
             "p99": 4,
             "max": 4
+          },
+          "mainOffCpuDuringWaitUs": {
+            "n": 199,
+            "p50": 8.727214900264826,
+            "p95": 340.86598562302277,
+            "p99": 62961.2804057615,
+            "max": 81405.11977528837
+          },
+          "rasterWallDuringWaitUs": {
+            "n": 199,
+            "p50": 274.8345947265625,
+            "p95": 7139.044372558594,
+            "p99": 149184,
+            "max": 215078
+          },
+          "rasterThreadsDuringWait": {
+            "n": 199,
+            "p50": 4,
+            "p95": 4,
+            "p99": 4,
+            "max": 4
           }
         }
       },
@@ -1364,6 +1415,27 @@
             "p95": 0,
             "p99": 1,
             "max": 1
+          },
+          "mainOffCpuDuringWaitUs": {
+            "n": 20,
+            "p50": 138.30855618897718,
+            "p95": 62961.2804057615,
+            "p99": 81405.11977528837,
+            "max": 81405.11977528837
+          },
+          "rasterWallDuringWaitUs": {
+            "n": 20,
+            "p50": 3325.44677734375,
+            "p95": 149184,
+            "p99": 215078,
+            "max": 215078
+          },
+          "rasterThreadsDuringWait": {
+            "n": 20,
+            "p50": 4,
+            "p95": 4,
+            "p99": 4,
+            "max": 4
           }
         },
         "seqs": [
@@ -1483,6 +1555,27 @@
               "p95": 2,
               "p99": 4,
               "max": 4
+            },
+            "mainOffCpuDuringWaitUs": {
+              "n": 199,
+              "p50": 8.727214900264826,
+              "p95": 340.86598562302277,
+              "p99": 62961.2804057615,
+              "max": 81405.11977528837
+            },
+            "rasterWallDuringWaitUs": {
+              "n": 199,
+              "p50": 274.8345947265625,
+              "p95": 7139.044372558594,
+              "p99": 149184,
+              "max": 215078
+            },
+            "rasterThreadsDuringWait": {
+              "n": 199,
+              "p50": 4,
+              "p95": 4,
+              "p99": 4,
+              "max": 4
             }
           }
         }
@@ -1492,7 +1585,7 @@
     "threads": 56,
     "marks": 1648,
     "gcEvents": 842,
-    "cpuThreads": 2,
+    "cpuThreads": 7,
     "exemplars": [
       {
         "file": "exemplar-184.trace.json",
@@ -1528,5 +1621,21 @@
     "fallback": 0,
     "error": 0,
     "timeout": 0
+  },
+  "traced": {
+    "measuredWindow": true,
+    "renderers": {
+      "58784": {
+        "rasterTasks": 7202,
+        "rasterTotalWallUs": 34260790,
+        "rasterTaskWallUs": {
+          "n": 7202,
+          "p50": 1936,
+          "p95": 15992,
+          "p99": 24286,
+          "max": 147174
+        }
+      }
+    }
   }
 }

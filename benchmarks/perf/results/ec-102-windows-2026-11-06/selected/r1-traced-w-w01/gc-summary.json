@@ -1,10 +1,78 @@
 {
-  "note": "Real collections only. minor and major durUs are pause time on that thread; incremental-marking-step durUs is time spent in steps, not a pause of the whole collection.",
+  "note": "Real collections only, in the measured window (collections starting between ec102:window:start and ec102:window:end, the same rule as busy.json). minor and major durUs are pause time on that thread; incremental-marking-step durUs is time spent in steps, not a pause of the whole collection. perThread is keyed by pid:tid; perName adds the threads that share a name or label.",
+  "window": {
+    "measured": true,
+    "startUs": 92771528384,
+    "endUs": 92794438777
+  },
+  "events": 694,
   "perThread": {
+    "51012:58056": {
+      "label": "main",
+      "pid": 51012,
+      "tid": 58056,
+      "threadName": "CrRendererMain",
+      "kinds": {
+        "minor": {
+          "count": 333,
+          "durUs": 101367
+        }
+      }
+    },
+    "51012:54812": {
+      "label": "w0",
+      "pid": 51012,
+      "tid": 54812,
+      "threadName": "DedicatedWorker thread",
+      "kinds": {
+        "minor": {
+          "count": 88,
+          "durUs": 29504
+        }
+      }
+    },
+    "51012:46844": {
+      "label": "w1",
+      "pid": 51012,
+      "tid": 46844,
+      "threadName": "DedicatedWorker thread",
+      "kinds": {
+        "minor": {
+          "count": 81,
+          "durUs": 37470
+        }
+      }
+    },
+    "51012:56792": {
+      "label": "w2",
+      "pid": 51012,
+      "tid": 56792,
+      "threadName": "DedicatedWorker thread",
+      "kinds": {
+        "minor": {
+          "count": 90,
+          "durUs": 28747
+        }
+      }
+    },
+    "51012:47940": {
+      "label": "w3",
+      "pid": 51012,
+      "tid": 47940,
+      "threadName": "DedicatedWorker thread",
+      "kinds": {
+        "minor": {
+          "count": 102,
+          "durUs": 32147
+        }
+      }
+    }
+  },
+  "perName": {
     "main": {
       "minor": {
-        "count": 336,
-        "durUs": 106060
+        "count": 333,
+        "durUs": 101367
       }
     },
     "w0": {
@@ -29,6 +97,103 @@
       "minor": {
         "count": 102,
         "durUs": 32147
+      }
+    }
+  },
+  "wholeTraceTotal": {
+    "events": 697,
+    "perThread": {
+      "51012:58056": {
+        "label": "main",
+        "pid": 51012,
+        "tid": 58056,
+        "threadName": "CrRendererMain",
+        "kinds": {
+          "minor": {
+            "count": 336,
+            "durUs": 106060
+          }
+        }
+      },
+      "51012:54812": {
+        "label": "w0",
+        "pid": 51012,
+        "tid": 54812,
+        "threadName": "DedicatedWorker thread",
+        "kinds": {
+          "minor": {
+            "count": 88,
+            "durUs": 29504
+          }
+        }
+      },
+      "51012:46844": {
+        "label": "w1",
+        "pid": 51012,
+        "tid": 46844,
+        "threadName": "DedicatedWorker thread",
+        "kinds": {
+          "minor": {
+            "count": 81,
+            "durUs": 37470
+          }
+        }
+      },
+      "51012:56792": {
+        "label": "w2",
+        "pid": 51012,
+        "tid": 56792,
+        "threadName": "DedicatedWorker thread",
+        "kinds": {
+          "minor": {
+            "count": 90,
+            "durUs": 28747
+          }
+        }
+      },
+      "51012:47940": {
+        "label": "w3",
+        "pid": 51012,
+        "tid": 47940,
+        "threadName": "DedicatedWorker thread",
+        "kinds": {
+          "minor": {
+            "count": 102,
+            "durUs": 32147
+          }
+        }
+      }
+    },
+    "perName": {
+      "main": {
+        "minor": {
+          "count": 336,
+          "durUs": 106060
+        }
+      },
+      "w0": {
+        "minor": {
+          "count": 88,
+          "durUs": 29504
+        }
+      },
+      "w1": {
+        "minor": {
+          "count": 81,
+          "durUs": 37470
+        }
+      },
+      "w2": {
+        "minor": {
+          "count": 90,
+          "durUs": 28747
+        }
+      },
+      "w3": {
+        "minor": {
+          "count": 102,
+          "durUs": 32147
+        }
       }
     }
   }

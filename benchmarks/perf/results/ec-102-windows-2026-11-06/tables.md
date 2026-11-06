@@ -11,21 +11,21 @@ Denominators: submitted=2000 coalesced=not-applicable dispatched=0 completed=200
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | app.input-to-commit | ms | warm | 1800 | 25.400 | 55.200 | 139.100 | 295.100 | 32.664 | 0 of 2 |
 | app.input-to-commit | ms | cold | 200 | 25.700 | 53.900 | 158.100 | 261.200 | 33.592 | 0 of 2 |
-| app.long-animation-frame | ms | warm | 38 | 73.800 | 177.700 | 200.700 | 200.700 | 87.124 | 2 of 2 |
-| app.long-animation-frame | ms | cold | 33 | 72.600 | 194.700 | 227.400 | 227.400 | 92.364 | 2 of 2 |
-| app.long-animation-frame.blocking | ms | warm | 38 | 20.900 | 127.800 | 149.300 | 149.300 | 33.287 | 2 of 2 |
-| app.long-animation-frame.blocking | ms | cold | 33 | 13.300 | 138.400 | 176.700 | 176.700 | 35.291 | 2 of 2 |
+| app.long-animation-frame | ms | warm | 60 | 70.000 | 177.700 | 227.400 | 227.400 | 87.510 | 2 of 2 |
+| app.long-animation-frame | ms | cold | 11 | 92.000 | 171.100 | 171.100 | 171.100 | 100.736 | 2 of 2 |
+| app.long-animation-frame.blocking | ms | warm | 60 | 15.600 | 127.800 | 176.700 | 176.700 | 33.145 | 2 of 2 |
+| app.long-animation-frame.blocking | ms | cold | 11 | 28.400 | 121.100 | 121.100 | 121.100 | 40.073 | 2 of 2 |
 | app.long-animation-frame.blocking.out-of-window | ms | cold | 3 | 16.900 | 67.300 | 67.300 | 67.300 | 31.567 | 2 of 2 |
 | app.long-animation-frame.out-of-window | ms | cold | 3 | 68.100 | 126.600 | 126.600 | 126.600 | 85.133 | 2 of 2 |
-| app.long-task | ms | warm | 15 | 73.000 | 185.000 | 185.000 | 185.000 | 84.200 | 2 of 2 |
-| app.long-task | ms | cold | 11 | 55.000 | 108.000 | 108.000 | 108.000 | 70.727 | 2 of 2 |
+| app.long-task | ms | warm | 23 | 71.000 | 143.000 | 185.000 | 185.000 | 79.000 | 2 of 2 |
+| app.long-task | ms | cold | 3 | 62.000 | 108.000 | 108.000 | 108.000 | 74.667 | 2 of 2 |
 | app.long-task.out-of-window | ms | cold | 2 | 66.000 | 114.000 | 114.000 | 114.000 | 90.000 | 2 of 2 |
 | app.worker-compute-metric | ms | warm | 1800 | 3.000 | 7.000 | 13.000 | 75.000 | 3.721 | 0 of 2 |
 | app.worker-compute-metric | ms | cold | 200 | 3.000 | 8.000 | 11.000 | 37.000 | 3.830 | 0 of 2 |
-| audio.callback-interval-mean | s | warm | 477 | 0.010 | 0.011 | 0.011 | 0.012 | 0.010 | 2 of 2 |
-| audio.callback-interval-mean | s | cold | 601 | 0.010 | 0.010 | 0.011 | 0.012 | 0.010 | 2 of 2 |
-| audio.render-capacity | ratio | warm | 477 | 0.120 | 0.796 | 0.992 | 0.996 | 0.196 | 2 of 2 |
-| audio.render-capacity | ratio | cold | 601 | 0.113 | 0.485 | 0.988 | 0.997 | 0.172 | 2 of 2 |
+| audio.callback-interval-mean | s | warm | 965 | 0.010 | 0.011 | 0.011 | 0.012 | 0.010 | 2 of 2 |
+| audio.callback-interval-mean | s | cold | 113 | 0.010 | 0.011 | 0.011 | 0.012 | 0.010 | 2 of 2 |
+| audio.render-capacity | ratio | warm | 965 | 0.118 | 0.569 | 0.991 | 0.997 | 0.181 | 2 of 2 |
+| audio.render-capacity | ratio | cold | 113 | 0.112 | 0.943 | 0.992 | 0.995 | 0.192 | 2 of 2 |
 | display.status-commit-to-frame-end | ms | warm | 1800 | 10.100 | 18.900 | 31.600 | 162.100 | 10.942 | 0 of 2 |
 | display.status-commit-to-frame-end | ms | cold | 200 | 9.500 | 18.900 | 33.300 | 44.800 | 10.451 | 0 of 2 |
 
@@ -498,38 +498,38 @@ Denominators: submitted=7200 coalesced=5856 dispatched=not-applicable completed=
 
 | phase | units | temperature | N | p50 | p95 | p99 | max | mean | exploratory runs |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| display.derive | ms | warm | 1231 | 0.600 | 1.700 | 3.000 | 15.300 | 0.740 | 2 of 2 |
-| display.derive | ms | cold | 113 | 0.700 | 2.700 | 4.700 | 8.700 | 0.989 | 2 of 2 |
-| display.derive [pose-only] | ms | warm | 1231 | 0.600 | 1.700 | 3.000 | 15.300 | 0.740 |  |
-| display.derive [pose-only] | ms | cold | 111 | 0.700 | 1.900 | 4.700 | 8.700 | 0.938 |  |
+| display.derive | ms | warm | 1144 | 0.500 | 1.700 | 3.000 | 15.300 | 0.727 | 2 of 2 |
+| display.derive | ms | cold | 200 | 0.700 | 2.100 | 4.000 | 8.700 | 0.953 | 2 of 2 |
+| display.derive [pose-only] | ms | warm | 1144 | 0.500 | 1.700 | 3.000 | 15.300 | 0.727 |  |
+| display.derive [pose-only] | ms | cold | 198 | 0.700 | 2.100 | 4.700 | 8.700 | 0.924 |  |
 | display.derive [static-install] | ms | cold | 2 | 3.700 | 4.000 | 4.000 | 4.000 | 3.850 |  |
-| input.lateness | ms | warm | 6598 | 0.333 | 5.400 | 105.500 | 182.233 | 3.257 | 0 of 2 |
-| input.lateness | ms | cold | 602 | 0.333 | 18.933 | 101.067 | 114.467 | 4.337 | 0 of 2 |
-| input.project | ms | warm | 6598 | 2.800 | 4.900 | 9.900 | 47.000 | 2.834 | 0 of 2 |
-| input.project | ms | cold | 602 | 2.000 | 4.900 | 12.900 | 67.900 | 2.686 | 0 of 2 |
-| job.submit-to-accepted | ms | warm | 1231 | 14.500 | 21.800 | 45.400 | 100.300 | 15.400 | 2 of 2 |
-| job.submit-to-accepted | ms | cold | 113 | 14.500 | 24.000 | 84.800 | 90.800 | 15.962 | 2 of 2 |
-| job.submit-to-accepted [pose-only] | ms | warm | 1231 | 14.500 | 21.800 | 45.400 | 100.300 | 15.400 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 111 | 14.400 | 22.000 | 84.800 | 90.800 | 15.857 |  |
+| input.lateness | ms | warm | 6133 | 0.333 | 5.367 | 102.400 | 182.233 | 3.196 | 0 of 2 |
+| input.lateness | ms | cold | 1067 | 0.367 | 16.967 | 104.667 | 124.467 | 4.215 | 0 of 2 |
+| input.project | ms | warm | 6133 | 2.800 | 4.900 | 9.900 | 47.000 | 2.829 | 0 of 2 |
+| input.project | ms | cold | 1067 | 2.500 | 4.700 | 12.900 | 67.900 | 2.780 | 0 of 2 |
+| job.submit-to-accepted | ms | warm | 1144 | 14.500 | 21.700 | 45.400 | 100.300 | 15.383 | 2 of 2 |
+| job.submit-to-accepted | ms | cold | 200 | 14.500 | 22.100 | 69.100 | 90.800 | 15.818 | 2 of 2 |
+| job.submit-to-accepted [pose-only] | ms | warm | 1144 | 14.500 | 21.700 | 45.400 | 100.300 | 15.383 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 198 | 14.400 | 22.100 | 84.800 | 90.800 | 15.758 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 2 | 19.000 | 24.600 | 24.600 | 24.600 | 21.800 |  |
-| pool.compute-metric | ms | warm | 1231 | 3.300 | 6.800 | 17.600 | 58.200 | 3.882 | 2 of 2 |
-| pool.compute-metric | ms | cold | 113 | 2.900 | 8.900 | 17.800 | 54.300 | 4.184 | 2 of 2 |
-| pool.compute-metric [pose-only] | ms | warm | 1231 | 3.300 | 6.800 | 17.600 | 58.200 | 3.882 |  |
-| pool.compute-metric [pose-only] | ms | cold | 111 | 2.900 | 8.900 | 17.800 | 54.300 | 4.152 |  |
+| pool.compute-metric | ms | warm | 1144 | 3.300 | 6.900 | 17.000 | 58.200 | 3.870 | 2 of 2 |
+| pool.compute-metric | ms | cold | 200 | 3.200 | 7.000 | 23.300 | 54.300 | 4.118 | 2 of 2 |
+| pool.compute-metric [pose-only] | ms | warm | 1144 | 3.300 | 6.900 | 17.000 | 58.200 | 3.870 |  |
+| pool.compute-metric [pose-only] | ms | cold | 198 | 3.100 | 7.300 | 30.000 | 54.300 | 4.099 |  |
 | pool.compute-metric [static-install] | ms | cold | 2 | 5.600 | 6.300 | 6.300 | 6.300 | 5.950 |  |
-| pose.age-at-accept | ms | warm | 1231 | 0.000 | 0.000 | 0.000 | 16.900 | 0.066 | 2 of 2 |
-| pose.age-at-accept | ms | cold | 113 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 2 of 2 |
-| pose.age-at-accept [pose-only] | ms | warm | 1231 | 0.000 | 0.000 | 0.000 | 16.900 | 0.066 |  |
-| pose.age-at-accept [pose-only] | ms | cold | 111 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
+| pose.age-at-accept | ms | warm | 1144 | 0.000 | 0.000 | 0.000 | 16.900 | 0.071 | 2 of 2 |
+| pose.age-at-accept | ms | cold | 200 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 2 of 2 |
+| pose.age-at-accept [pose-only] | ms | warm | 1144 | 0.000 | 0.000 | 0.000 | 16.900 | 0.071 |  |
+| pose.age-at-accept [pose-only] | ms | cold | 198 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
 | pose.age-at-accept [static-install] | ms | cold | 2 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
-| pose.latest-wait | ms | warm | 6598 | 50.200 | 89.700 | 95.500 | 164.000 | 51.126 | 0 of 2 |
-| pose.latest-wait | ms | cold | 602 | 50.300 | 89.900 | 96.800 | 168.500 | 51.354 | 0 of 2 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 6598 | 50.200 | 89.700 | 95.500 | 164.000 | 51.126 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 602 | 50.300 | 89.900 | 96.800 | 168.500 | 51.354 |  |
-| queue.wait | ms | warm | 1231 | 8.400 | 14.600 | 16.000 | 59.300 | 8.557 | 2 of 2 |
-| queue.wait | ms | cold | 113 | 8.500 | 14.000 | 16.300 | 16.300 | 8.507 | 2 of 2 |
-| queue.wait [pose-only] | ms | warm | 1231 | 8.400 | 14.600 | 16.000 | 59.300 | 8.557 |  |
-| queue.wait [pose-only] | ms | cold | 111 | 8.600 | 14.000 | 16.300 | 16.300 | 8.634 |  |
+| pose.latest-wait | ms | warm | 6133 | 50.300 | 89.800 | 95.500 | 164.000 | 51.146 | 0 of 2 |
+| pose.latest-wait | ms | cold | 1067 | 50.300 | 89.700 | 95.300 | 168.500 | 51.137 | 0 of 2 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 6133 | 50.300 | 89.800 | 95.500 | 164.000 | 51.146 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 1067 | 50.300 | 89.700 | 95.300 | 168.500 | 51.137 |  |
+| queue.wait | ms | warm | 1144 | 8.300 | 14.600 | 16.100 | 59.300 | 8.568 | 2 of 2 |
+| queue.wait | ms | cold | 200 | 8.400 | 14.100 | 15.900 | 16.300 | 8.463 | 2 of 2 |
+| queue.wait [pose-only] | ms | warm | 1144 | 8.300 | 14.600 | 16.100 | 59.300 | 8.568 |  |
+| queue.wait [pose-only] | ms | cold | 198 | 8.400 | 14.400 | 16.300 | 16.300 | 8.534 |  |
 | queue.wait [static-install] | ms | cold | 2 | 0.400 | 2.500 | 2.500 | 2.500 | 1.450 |  |
 
 ## TS-S W02_H100_STATIC_5HZ_30S pass=clean boundary=browser-pool workers=not-applicable audio=not-applicable build=not-applicable driver=not-applicable browser-channel=default viewport=not-applicable browser-args="not-applicable"
@@ -539,44 +539,44 @@ Denominators: submitted=3900 coalesced=3221 dispatched=not-applicable completed=
 
 | phase | units | temperature | N | p50 | p95 | p99 | max | mean | exploratory runs |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| display.derive | ms | warm | 564 | 0.500 | 1.600 | 2.200 | 2.600 | 0.655 | 2 of 2 |
-| display.derive | ms | cold | 115 | 0.600 | 1.900 | 4.000 | 7.200 | 0.767 | 2 of 2 |
-| display.derive [pose-only] | ms | warm | 315 | 0.500 | 1.600 | 2.000 | 2.600 | 0.650 |  |
-| display.derive [pose-only] | ms | cold | 62 | 0.500 | 1.800 | 2.400 | 2.400 | 0.637 |  |
-| display.derive [static-install] | ms | warm | 249 | 0.500 | 1.700 | 2.300 | 2.600 | 0.661 |  |
-| display.derive [static-install] | ms | cold | 53 | 0.600 | 1.900 | 7.200 | 7.200 | 0.919 |  |
-| input.lateness | ms | warm | 3246 | 0.400 | 6.233 | 12.133 | 22.333 | 1.075 | 0 of 2 |
-| input.lateness | ms | cold | 654 | 0.400 | 6.600 | 16.933 | 43.367 | 1.188 | 0 of 2 |
-| input.project | ms | warm | 3246 | 2.700 | 6.000 | 11.100 | 20.600 | 2.802 | 0 of 2 |
-| input.project | ms | cold | 654 | 1.300 | 4.500 | 12.000 | 24.100 | 2.264 | 0 of 2 |
-| job.submit-to-accepted | ms | warm | 564 | 14.100 | 20.800 | 23.100 | 99.100 | 14.577 | 2 of 2 |
-| job.submit-to-accepted | ms | cold | 115 | 13.900 | 21.800 | 23.600 | 35.000 | 13.957 | 2 of 2 |
-| job.submit-to-accepted [pose-only] | ms | warm | 315 | 14.000 | 20.700 | 22.600 | 99.100 | 14.731 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 62 | 13.900 | 20.800 | 23.500 | 23.500 | 13.547 |  |
-| job.submit-to-accepted [static-install] | ms | warm | 249 | 14.400 | 20.900 | 23.100 | 23.400 | 14.382 |  |
-| job.submit-to-accepted [static-install] | ms | cold | 53 | 13.600 | 21.900 | 35.000 | 35.000 | 14.438 |  |
-| pool.compute-metric | ms | warm | 564 | 3.000 | 6.000 | 7.000 | 9.400 | 3.339 | 2 of 2 |
-| pool.compute-metric | ms | cold | 115 | 2.000 | 6.200 | 6.700 | 10.100 | 2.928 | 2 of 2 |
-| pool.compute-metric [pose-only] | ms | warm | 315 | 3.000 | 6.000 | 6.400 | 9.400 | 3.296 |  |
-| pool.compute-metric [pose-only] | ms | cold | 62 | 1.900 | 6.200 | 6.600 | 6.600 | 2.734 |  |
-| pool.compute-metric [static-install] | ms | warm | 249 | 3.100 | 6.000 | 7.100 | 8.600 | 3.393 |  |
-| pool.compute-metric [static-install] | ms | cold | 53 | 2.400 | 6.300 | 10.100 | 10.100 | 3.155 |  |
-| pose.age-at-accept | ms | warm | 564 | 0.000 | 0.000 | 0.000 | 18.800 | 0.106 | 2 of 2 |
-| pose.age-at-accept | ms | cold | 115 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 2 of 2 |
-| pose.age-at-accept [pose-only] | ms | warm | 315 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
-| pose.age-at-accept [pose-only] | ms | cold | 62 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
-| pose.age-at-accept [static-install] | ms | warm | 249 | 0.000 | 0.000 | 15.900 | 18.800 | 0.240 |  |
-| pose.age-at-accept [static-install] | ms | cold | 53 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
-| pose.latest-wait | ms | warm | 3246 | 50.000 | 89.100 | 94.300 | 99.800 | 50.626 | 0 of 2 |
-| pose.latest-wait | ms | cold | 654 | 49.100 | 88.200 | 92.700 | 97.000 | 49.741 | 0 of 2 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 3246 | 50.000 | 89.100 | 94.300 | 99.800 | 50.626 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 654 | 49.100 | 88.200 | 92.700 | 97.000 | 49.741 |  |
-| queue.wait | ms | warm | 564 | 7.700 | 14.400 | 16.400 | 90.500 | 8.540 | 2 of 2 |
-| queue.wait | ms | cold | 115 | 8.000 | 15.100 | 16.000 | 16.300 | 8.510 | 2 of 2 |
-| queue.wait [pose-only] | ms | warm | 315 | 8.300 | 14.500 | 16.500 | 90.500 | 9.095 |  |
-| queue.wait [pose-only] | ms | cold | 62 | 8.400 | 15.200 | 16.300 | 16.300 | 8.985 |  |
-| queue.wait [static-install] | ms | warm | 249 | 6.500 | 14.400 | 15.800 | 16.400 | 7.837 |  |
-| queue.wait [static-install] | ms | cold | 53 | 7.400 | 13.900 | 15.500 | 15.500 | 7.953 |  |
+| display.derive | ms | warm | 479 | 0.500 | 1.600 | 2.200 | 2.600 | 0.629 | 2 of 2 |
+| display.derive | ms | cold | 200 | 0.600 | 1.900 | 2.600 | 7.200 | 0.784 | 2 of 2 |
+| display.derive [pose-only] | ms | warm | 268 | 0.500 | 1.600 | 2.200 | 2.600 | 0.627 |  |
+| display.derive [pose-only] | ms | cold | 109 | 0.500 | 1.800 | 2.100 | 2.400 | 0.701 |  |
+| display.derive [static-install] | ms | warm | 211 | 0.500 | 1.600 | 2.100 | 2.400 | 0.631 |  |
+| display.derive [static-install] | ms | cold | 91 | 0.600 | 2.200 | 7.200 | 7.200 | 0.882 |  |
+| input.lateness | ms | warm | 2754 | 0.400 | 6.033 | 11.833 | 18.733 | 1.021 | 0 of 2 |
+| input.lateness | ms | cold | 1146 | 0.467 | 7.333 | 15.733 | 43.367 | 1.270 | 0 of 2 |
+| input.project | ms | warm | 2754 | 2.600 | 5.700 | 11.000 | 18.100 | 2.742 | 0 of 2 |
+| input.project | ms | cold | 1146 | 1.900 | 5.600 | 11.800 | 24.100 | 2.641 | 0 of 2 |
+| job.submit-to-accepted | ms | warm | 479 | 14.000 | 20.800 | 23.100 | 99.100 | 14.507 | 2 of 2 |
+| job.submit-to-accepted | ms | cold | 200 | 14.200 | 21.700 | 23.500 | 35.000 | 14.388 | 2 of 2 |
+| job.submit-to-accepted [pose-only] | ms | warm | 268 | 13.900 | 20.700 | 26.200 | 99.100 | 14.665 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 109 | 14.200 | 20.800 | 22.700 | 23.500 | 14.220 |  |
+| job.submit-to-accepted [static-install] | ms | warm | 211 | 14.300 | 20.900 | 22.400 | 23.200 | 14.306 |  |
+| job.submit-to-accepted [static-install] | ms | cold | 91 | 14.600 | 21.900 | 35.000 | 35.000 | 14.589 |  |
+| pool.compute-metric | ms | warm | 479 | 3.000 | 5.900 | 6.400 | 9.400 | 3.280 | 2 of 2 |
+| pool.compute-metric | ms | cold | 200 | 2.600 | 6.300 | 8.100 | 10.100 | 3.243 | 2 of 2 |
+| pool.compute-metric [pose-only] | ms | warm | 268 | 3.000 | 6.000 | 6.400 | 9.400 | 3.267 |  |
+| pool.compute-metric [pose-only] | ms | cold | 109 | 2.200 | 6.200 | 6.600 | 8.100 | 3.047 |  |
+| pool.compute-metric [static-install] | ms | warm | 211 | 3.000 | 5.900 | 6.300 | 8.200 | 3.296 |  |
+| pool.compute-metric [static-install] | ms | cold | 91 | 3.100 | 6.700 | 10.100 | 10.100 | 3.478 |  |
+| pose.age-at-accept | ms | warm | 479 | 0.000 | 0.000 | 0.000 | 18.800 | 0.125 | 2 of 2 |
+| pose.age-at-accept | ms | cold | 200 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 2 of 2 |
+| pose.age-at-accept [pose-only] | ms | warm | 268 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
+| pose.age-at-accept [pose-only] | ms | cold | 109 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
+| pose.age-at-accept [static-install] | ms | warm | 211 | 0.000 | 0.000 | 15.900 | 18.800 | 0.283 |  |
+| pose.age-at-accept [static-install] | ms | cold | 91 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
+| pose.latest-wait | ms | warm | 2754 | 50.000 | 89.000 | 94.300 | 99.600 | 50.508 | 0 of 2 |
+| pose.latest-wait | ms | cold | 1146 | 50.300 | 88.700 | 93.600 | 99.800 | 50.407 | 0 of 2 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 2754 | 50.000 | 89.000 | 94.300 | 99.600 | 50.508 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 1146 | 50.300 | 88.700 | 93.600 | 99.800 | 50.407 |  |
+| queue.wait | ms | warm | 479 | 7.600 | 14.500 | 16.500 | 90.500 | 8.573 | 2 of 2 |
+| queue.wait | ms | cold | 200 | 8.000 | 14.500 | 15.500 | 16.300 | 8.442 | 2 of 2 |
+| queue.wait [pose-only] | ms | warm | 268 | 8.200 | 14.500 | 16.700 | 90.500 | 9.125 |  |
+| queue.wait [pose-only] | ms | cold | 109 | 8.800 | 15.100 | 16.000 | 16.300 | 8.960 |  |
+| queue.wait [static-install] | ms | warm | 211 | 6.500 | 14.500 | 15.800 | 16.400 | 7.873 |  |
+| queue.wait [static-install] | ms | cold | 91 | 7.400 | 13.900 | 15.500 | 15.500 | 7.822 |  |
 
 ## TS-S W03_C100_POSE_60HZ_60S pass=clean boundary=browser-pool workers=not-applicable audio=not-applicable build=not-applicable driver=not-applicable browser-channel=default viewport=not-applicable browser-args="not-applicable"
 
@@ -585,21 +585,21 @@ Denominators: submitted=7200 coalesced=5996 dispatched=not-applicable completed=
 
 | phase | units | temperature | N | p50 | p95 | p99 | max | mean | exploratory runs |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| input.lateness | ms | warm | 6598 | 0.167 | 1.200 | 1.800 | 24.233 | 0.218 | 0 of 2 |
-| input.lateness | ms | cold | 602 | 0.133 | 1.400 | 2.200 | 24.933 | 0.319 | 0 of 2 |
-| job.submit-to-accepted | ms | warm | 1103 | 3.500 | 5.300 | 7.500 | 38.200 | 3.594 | 2 of 2 |
-| job.submit-to-accepted | ms | cold | 101 | 3.000 | 8.100 | 9.900 | 41.100 | 3.781 | 2 of 2 |
-| pool.compute-metric | ms | warm | 1103 | 3.400 | 5.200 | 6.500 | 37.100 | 3.479 | 2 of 2 |
-| pool.compute-metric | ms | cold | 101 | 3.000 | 6.000 | 8.600 | 40.700 | 3.562 | 2 of 2 |
-| pose.age-at-accept | ms | warm | 1103 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 2 of 2 |
-| pose.age-at-accept | ms | cold | 101 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 2 of 2 |
-| pose.latest-wait | ms | warm | 6598 | 44.800 | 87.500 | 88.900 | 123.800 | 45.193 | 0 of 2 |
-| pose.latest-wait | ms | cold | 602 | 50.400 | 87.000 | 91.200 | 124.000 | 45.281 | 0 of 2 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 6598 | 44.800 | 87.500 | 88.900 | 123.800 | 45.193 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 602 | 50.400 | 87.000 | 91.200 | 124.000 | 45.281 |  |
+| input.lateness | ms | warm | 6013 | 0.167 | 1.200 | 1.800 | 24.233 | 0.221 | 0 of 2 |
+| input.lateness | ms | cold | 1187 | 0.100 | 1.300 | 2.033 | 24.933 | 0.255 | 0 of 2 |
+| job.submit-to-accepted | ms | warm | 1004 | 3.500 | 5.300 | 8.500 | 38.200 | 3.615 | 2 of 2 |
+| job.submit-to-accepted | ms | cold | 200 | 3.100 | 6.000 | 9.700 | 41.100 | 3.583 | 2 of 2 |
+| pool.compute-metric | ms | warm | 1004 | 3.400 | 5.200 | 7.200 | 37.100 | 3.495 | 2 of 2 |
+| pool.compute-metric | ms | cold | 200 | 3.100 | 5.500 | 8.500 | 40.700 | 3.444 | 2 of 2 |
+| pose.age-at-accept | ms | warm | 1004 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 2 of 2 |
+| pose.age-at-accept | ms | cold | 200 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 2 of 2 |
+| pose.latest-wait | ms | warm | 6013 | 49.600 | 87.500 | 88.900 | 123.800 | 45.238 | 0 of 2 |
+| pose.latest-wait | ms | cold | 1187 | 42.800 | 87.300 | 89.200 | 124.000 | 45.011 | 0 of 2 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 6013 | 49.600 | 87.500 | 88.900 | 123.800 | 45.238 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 1187 | 42.800 | 87.300 | 89.200 | 124.000 | 45.011 |  |
 | queue.client | ms | cold | 2 | 0.400 | 0.500 | 0.500 | 0.500 | 0.450 | 2 of 2 |
-| queue.wait | ms | warm | 1103 | 0.100 | 0.200 | 0.200 | 31.700 | 0.114 | 2 of 2 |
-| queue.wait | ms | cold | 101 | 0.100 | 0.200 | 3.600 | 8.200 | 0.219 | 2 of 2 |
+| queue.wait | ms | warm | 1004 | 0.100 | 0.200 | 0.200 | 31.700 | 0.119 | 2 of 2 |
+| queue.wait | ms | cold | 200 | 0.100 | 0.200 | 3.100 | 8.200 | 0.139 | 2 of 2 |
 
 ## TS-S W04_C100_STATIC_5HZ_30S pass=clean boundary=browser-pool workers=not-applicable audio=not-applicable build=not-applicable driver=not-applicable browser-channel=default viewport=not-applicable browser-args="not-applicable"
 
@@ -608,21 +608,21 @@ Denominators: submitted=3900 coalesced=3296 dispatched=not-applicable completed=
 
 | phase | units | temperature | N | p50 | p95 | p99 | max | mean | exploratory runs |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| input.lateness | ms | warm | 3247 | 0.267 | 1.233 | 1.833 | 10.867 | 0.263 | 0 of 2 |
-| input.lateness | ms | cold | 653 | 0.167 | 1.267 | 2.067 | 14.500 | 0.269 | 0 of 2 |
-| job.submit-to-accepted | ms | warm | 502 | 3.700 | 5.800 | 12.100 | 77.000 | 3.998 | 2 of 2 |
-| job.submit-to-accepted | ms | cold | 102 | 3.100 | 6.100 | 8.400 | 12.200 | 3.329 | 2 of 2 |
-| pool.compute-metric | ms | warm | 502 | 3.700 | 5.700 | 11.100 | 21.600 | 3.781 | 2 of 2 |
-| pool.compute-metric | ms | cold | 102 | 3.000 | 6.000 | 7.700 | 10.700 | 3.254 | 2 of 2 |
-| pose.age-at-accept | ms | warm | 502 | 0.000 | 0.000 | 0.000 | 20.900 | 0.042 | 2 of 2 |
-| pose.age-at-accept | ms | cold | 102 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 2 of 2 |
-| pose.latest-wait | ms | warm | 3247 | 52.400 | 88.300 | 95.900 | 109.600 | 48.047 | 0 of 2 |
-| pose.latest-wait | ms | cold | 653 | 50.900 | 87.700 | 90.200 | 96.200 | 46.302 | 0 of 2 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 3247 | 52.400 | 88.300 | 95.900 | 109.600 | 48.047 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 653 | 50.900 | 87.700 | 90.200 | 96.200 | 46.302 |  |
+| input.lateness | ms | warm | 2618 | 0.233 | 1.233 | 1.833 | 10.867 | 0.264 | 0 of 2 |
+| input.lateness | ms | cold | 1282 | 0.233 | 1.200 | 1.867 | 14.500 | 0.265 | 0 of 2 |
+| job.submit-to-accepted | ms | warm | 404 | 3.700 | 5.800 | 14.500 | 77.000 | 4.048 | 2 of 2 |
+| job.submit-to-accepted | ms | cold | 200 | 3.400 | 6.000 | 8.400 | 12.200 | 3.557 | 2 of 2 |
+| pool.compute-metric | ms | warm | 404 | 3.600 | 5.600 | 11.900 | 21.600 | 3.806 | 2 of 2 |
+| pool.compute-metric | ms | cold | 200 | 3.300 | 5.900 | 7.000 | 10.700 | 3.462 | 2 of 2 |
+| pose.age-at-accept | ms | warm | 404 | 0.000 | 0.000 | 0.000 | 20.900 | 0.052 | 2 of 2 |
+| pose.age-at-accept | ms | cold | 200 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 2 of 2 |
+| pose.latest-wait | ms | warm | 2618 | 52.500 | 88.300 | 96.100 | 109.600 | 48.199 | 0 of 2 |
+| pose.latest-wait | ms | cold | 1282 | 51.400 | 87.900 | 94.200 | 97.700 | 46.846 | 0 of 2 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 2618 | 52.500 | 88.300 | 96.100 | 109.600 | 48.199 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 1282 | 51.400 | 87.900 | 94.200 | 97.700 | 46.846 |  |
 | queue.client | ms | cold | 2 | 0.100 | 0.500 | 0.500 | 0.500 | 0.300 | 2 of 2 |
-| queue.wait | ms | warm | 502 | 0.100 | 0.200 | 0.200 | 73.900 | 0.215 | 2 of 2 |
-| queue.wait | ms | cold | 102 | 0.100 | 0.200 | 0.700 | 1.500 | 0.075 | 2 of 2 |
+| queue.wait | ms | warm | 404 | 0.100 | 0.200 | 0.200 | 73.900 | 0.240 | 2 of 2 |
+| queue.wait | ms | cold | 200 | 0.100 | 0.100 | 0.700 | 6.100 | 0.094 | 2 of 2 |
 
 ## TS-W APP_C_DRAG pass=clean boundary=browser-app workers=2 audio=on build=prod driver=poll browser-channel=default viewport=default browser-args=[]
 
@@ -647,8 +647,8 @@ Denominators: submitted=254 coalesced=not-applicable dispatched=117 completed=11
 | app.input-to-commit [pose-only] | ms | warm | 1 | 90.700 | 90.700 | 90.700 | 90.700 | 90.700 |  |
 | app.input-to-dispatch | ms | warm | 1 | 65.700 | 65.700 | 65.700 | 65.700 | 65.700 | 1 of 1 |
 | app.input-to-dispatch [pose-only] | ms | warm | 1 | 65.700 | 65.700 | 65.700 | 65.700 | 65.700 |  |
-| app.long-animation-frame | ms | cold | 1 | 61.500 | 61.500 | 61.500 | 61.500 | 61.500 | 1 of 1 |
-| app.long-animation-frame.blocking | ms | cold | 1 | 0.600 | 0.600 | 0.600 | 0.600 | 0.600 | 1 of 1 |
+| app.long-animation-frame | ms | warm | 1 | 61.500 | 61.500 | 61.500 | 61.500 | 61.500 | 1 of 1 |
+| app.long-animation-frame.blocking | ms | warm | 1 | 0.600 | 0.600 | 0.600 | 0.600 | 0.600 | 1 of 1 |
 | app.long-animation-frame.blocking.out-of-window | ms | cold | 3 | 47.200 | 60.400 | 60.400 | 60.400 | 35.867 | 1 of 1 |
 | app.long-animation-frame.out-of-window | ms | cold | 3 | 111.200 | 205.000 | 205.000 | 205.000 | 137.833 | 1 of 1 |
 | app.long-task.out-of-window | ms | cold | 1 | 97.000 | 97.000 | 97.000 | 97.000 | 97.000 | 1 of 1 |
@@ -660,7 +660,8 @@ Denominators: submitted=254 coalesced=not-applicable dispatched=117 completed=11
 | audio.apply-window | ms | cold | 100 | 0.000 | 0.200 | 0.800 | 0.900 | 0.067 | 1 of 1 |
 | audio.apply-window [pose-only] | ms | warm | 17 | 0.000 | 0.700 | 0.700 | 0.700 | 0.094 |  |
 | audio.apply-window [pose-only] | ms | cold | 100 | 0.000 | 0.200 | 0.800 | 0.900 | 0.067 |  |
-| audio.callback-interval-mean | s | cold | 49 | 0.010 | 0.011 | 0.011 | 0.011 | 0.010 | 1 of 1 |
+| audio.callback-interval-mean | s | warm | 14 | 0.010 | 0.011 | 0.011 | 0.011 | 0.010 | 1 of 1 |
+| audio.callback-interval-mean | s | cold | 35 | 0.010 | 0.011 | 0.011 | 0.011 | 0.010 | 1 of 1 |
 | audio.param-call-total-ms | ms | warm | 17 | 0.000 | 0.300 | 0.300 | 0.300 | 0.035 | 1 of 1 |
 | audio.param-call-total-ms | ms | cold | 100 | 0.000 | 0.100 | 0.300 | 0.400 | 0.028 | 1 of 1 |
 | audio.param-call-total-ms [pose-only] | ms | warm | 17 | 0.000 | 0.300 | 0.300 | 0.300 | 0.035 |  |
@@ -669,7 +670,8 @@ Denominators: submitted=254 coalesced=not-applicable dispatched=117 completed=11
 | audio.param-ops | count | cold | 100 | 8.000 | 19.000 | 29.000 | 29.000 | 8.890 | 1 of 1 |
 | audio.param-ops [pose-only] | count | warm | 17 | 9.000 | 19.000 | 19.000 | 19.000 | 10.118 |  |
 | audio.param-ops [pose-only] | count | cold | 100 | 8.000 | 19.000 | 29.000 | 29.000 | 8.890 |  |
-| audio.render-capacity | ratio | cold | 49 | 0.091 | 0.941 | 0.989 | 0.989 | 0.174 | 1 of 1 |
+| audio.render-capacity | ratio | warm | 14 | 0.086 | 0.989 | 0.989 | 0.989 | 0.170 | 1 of 1 |
+| audio.render-capacity | ratio | cold | 35 | 0.092 | 0.941 | 0.987 | 0.987 | 0.176 | 1 of 1 |
 | display.overlay-commit-to-frame-end | ms | warm | 17 | 14.000 | 20.800 | 20.800 | 20.800 | 13.088 | 1 of 1 |
 | display.overlay-commit-to-frame-end | ms | cold | 100 | 11.300 | 18.200 | 34.200 | 69.200 | 11.414 | 1 of 1 |
 | display.overlay-commit-to-frame-end [pose-only] | ms | warm | 17 | 14.000 | 20.800 | 20.800 | 20.800 | 13.088 |  |
@@ -744,7 +746,8 @@ Denominators: submitted=226 coalesced=not-applicable dispatched=105 completed=10
 | audio.apply-window | ms | cold | 100 | 0.000 | 0.200 | 0.600 | 8.300 | 0.129 | 1 of 1 |
 | audio.apply-window [pose-only] | ms | warm | 5 | 0.100 | 0.100 | 0.100 | 0.100 | 0.060 |  |
 | audio.apply-window [pose-only] | ms | cold | 100 | 0.000 | 0.200 | 0.600 | 8.300 | 0.129 |  |
-| audio.callback-interval-mean | s | cold | 46 | 0.010 | 0.011 | 0.012 | 0.012 | 0.010 | 1 of 1 |
+| audio.callback-interval-mean | s | warm | 7 | 0.010 | 0.011 | 0.011 | 0.011 | 0.010 | 1 of 1 |
+| audio.callback-interval-mean | s | cold | 39 | 0.010 | 0.011 | 0.012 | 0.012 | 0.010 | 1 of 1 |
 | audio.param-call-total-ms | ms | warm | 5 | 0.100 | 0.100 | 0.100 | 0.100 | 0.060 | 1 of 1 |
 | audio.param-call-total-ms | ms | cold | 100 | 0.000 | 0.100 | 0.200 | 1.900 | 0.038 | 1 of 1 |
 | audio.param-call-total-ms [pose-only] | ms | warm | 5 | 0.100 | 0.100 | 0.100 | 0.100 | 0.060 |  |
@@ -753,7 +756,8 @@ Denominators: submitted=226 coalesced=not-applicable dispatched=105 completed=10
 | audio.param-ops | count | cold | 100 | 8.000 | 20.000 | 30.000 | 30.000 | 9.080 | 1 of 1 |
 | audio.param-ops [pose-only] | count | warm | 5 | 10.000 | 12.000 | 12.000 | 12.000 | 10.200 |  |
 | audio.param-ops [pose-only] | count | cold | 100 | 8.000 | 20.000 | 30.000 | 30.000 | 9.080 |  |
-| audio.render-capacity | ratio | cold | 46 | 0.094 | 0.979 | 0.989 | 0.989 | 0.210 | 1 of 1 |
+| audio.render-capacity | ratio | warm | 7 | 0.077 | 0.989 | 0.989 | 0.989 | 0.210 | 1 of 1 |
+| audio.render-capacity | ratio | cold | 39 | 0.094 | 0.979 | 0.988 | 0.988 | 0.210 | 1 of 1 |
 | display.overlay-commit-to-frame-end | ms | warm | 5 | 14.100 | 15.100 | 15.100 | 15.100 | 13.140 | 1 of 1 |
 | display.overlay-commit-to-frame-end | ms | cold | 100 | 8.600 | 19.700 | 195.900 | 210.700 | 14.553 | 1 of 1 |
 | display.overlay-commit-to-frame-end [pose-only] | ms | warm | 5 | 14.100 | 15.100 | 15.100 | 15.100 | 13.140 |  |
@@ -2078,20 +2082,20 @@ Denominators: submitted=192 coalesced=0 dispatched=192 completed=192 accepted=19
 | install.post [static-install] | ms | cold | 2 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
 | install.worker-deserialize | ms | cold | 2 | 0.100 | 1.000 | 1.000 | 1.000 | 0.550 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | cold | 2 | 0.100 | 1.000 | 1.000 | 1.000 | 0.550 |  |
-| job.phase-residual | ms | warm | 85 | 0.000 | 0.000 | 0.100 | 0.100 | -0.005 | 1 of 1 |
-| job.phase-residual | ms | cold | 96 | 0.000 | 0.000 | 0.100 | 0.100 | -0.003 | 1 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 85 | 0.000 | 0.000 | 0.100 | 0.100 | -0.005 |  |
-| job.phase-residual [pose-only] | ms | cold | 95 | 0.000 | 0.000 | 0.100 | 0.100 | -0.001 |  |
+| job.phase-residual | ms | warm | 92 | 0.000 | 0.000 | 0.100 | 0.100 | -0.005 | 1 of 1 |
+| job.phase-residual | ms | cold | 100 | 0.000 | 0.000 | 0.100 | 0.100 | -0.003 | 1 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 92 | 0.000 | 0.000 | 0.100 | 0.100 | -0.005 |  |
+| job.phase-residual [pose-only] | ms | cold | 99 | 0.000 | 0.000 | 0.100 | 0.100 | -0.001 |  |
 | job.phase-residual [static-install] | ms | cold | 1 | -0.200 | -0.200 | -0.200 | -0.200 | -0.200 |  |
 | job.submit-to-accepted | ms | warm | 92 | 92.800 | 95.100 | 109.600 | 109.600 | 90.980 | 1 of 1 |
 | job.submit-to-accepted | ms | cold | 100 | 91.900 | 96.800 | 101.300 | 104.600 | 90.457 | 1 of 1 |
 | job.submit-to-accepted [pose-only] | ms | warm | 92 | 92.800 | 95.100 | 109.600 | 109.600 | 90.980 |  |
 | job.submit-to-accepted [pose-only] | ms | cold | 99 | 92.000 | 97.100 | 104.600 | 104.600 | 90.770 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 1 | 59.500 | 59.500 | 59.500 | 59.500 | 59.500 |  |
-| merge.assemble | ms | warm | 85 | 0.000 | 0.100 | 0.100 | 0.100 | 0.008 | 1 of 1 |
-| merge.assemble | ms | cold | 96 | 0.000 | 0.000 | 0.500 | 0.500 | 0.008 | 1 of 1 |
-| merge.assemble [pose-only] | ms | warm | 85 | 0.000 | 0.100 | 0.100 | 0.100 | 0.008 |  |
-| merge.assemble [pose-only] | ms | cold | 95 | 0.000 | 0.000 | 0.100 | 0.100 | 0.003 |  |
+| merge.assemble | ms | warm | 92 | 0.000 | 0.100 | 0.100 | 0.100 | 0.008 | 1 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.000 | 0.100 | 0.500 | 0.009 | 1 of 1 |
+| merge.assemble [pose-only] | ms | warm | 92 | 0.000 | 0.100 | 0.100 | 0.100 | 0.008 |  |
+| merge.assemble [pose-only] | ms | cold | 99 | 0.000 | 0.000 | 0.100 | 0.100 | 0.004 |  |
 | merge.assemble [static-install] | ms | cold | 1 | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 |  |
 | merge.reply-deserialize | ms | warm | 184 | 0.000 | 0.100 | 0.400 | 0.400 | 0.029 | 1 of 1 |
 | merge.reply-deserialize | ms | cold | 200 | 0.000 | 0.100 | 0.300 | 0.800 | 0.035 | 1 of 1 |
@@ -2101,7 +2105,7 @@ Denominators: submitted=192 coalesced=0 dispatched=192 completed=192 accepted=19
 | merge.validate | ms | warm | 184 | 0.100 | 0.300 | 1.700 | 2.200 | 0.116 | 1 of 1 |
 | merge.validate | ms | cold | 200 | 0.100 | 0.400 | 2.900 | 7.200 | 0.208 | 1 of 1 |
 | merge.validate [pose-only] | ms | warm | 184 | 0.100 | 0.300 | 1.700 | 2.200 | 0.116 |  |
-| merge.validate [pose-only] | ms | cold | 198 | 0.100 | 0.400 | 2.800 | 2.900 | 0.159 |  |
+| merge.validate [pose-only] | ms | cold | 198 | 0.100 | 0.400 | 2.800 | 2.900 | 0.158 |  |
 | merge.validate [static-install] | ms | cold | 2 | 3.100 | 7.200 | 7.200 | 7.200 | 5.150 |  |
 | pool.compute-metric | ms | warm | 92 | 0.600 | 2.100 | 9.700 | 9.700 | 0.905 | 1 of 1 |
 | pool.compute-metric | ms | cold | 100 | 0.700 | 2.900 | 10.300 | 54.500 | 1.593 | 1 of 1 |
@@ -2207,20 +2211,20 @@ Denominators: submitted=1152 coalesced=0 dispatched=1152 completed=1152 accepted
 | install.post [static-install] | ms | cold | 2 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
 | install.worker-deserialize | ms | cold | 2 | 0.000 | 0.100 | 0.100 | 0.100 | 0.050 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | cold | 2 | 0.000 | 0.100 | 0.100 | 0.100 | 0.050 |  |
-| job.phase-residual | ms | warm | 930 | 0.000 | 0.000 | 0.100 | 0.100 | -0.005 | 0 of 1 |
-| job.phase-residual | ms | cold | 89 | 0.000 | 0.000 | 0.100 | 0.100 | -0.004 | 0 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 930 | 0.000 | 0.000 | 0.100 | 0.100 | -0.005 |  |
-| job.phase-residual [pose-only] | ms | cold | 88 | 0.000 | 0.000 | 0.100 | 0.100 | -0.003 |  |
+| job.phase-residual | ms | warm | 1052 | 0.000 | 0.000 | 0.100 | 0.100 | -0.004 | 0 of 1 |
+| job.phase-residual | ms | cold | 100 | 0.000 | 0.000 | 0.000 | 0.100 | -0.004 | 0 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 1052 | 0.000 | 0.000 | 0.100 | 0.100 | -0.004 |  |
+| job.phase-residual [pose-only] | ms | cold | 99 | 0.000 | 0.000 | 0.100 | 0.100 | -0.003 |  |
 | job.phase-residual [static-install] | ms | cold | 1 | -0.100 | -0.100 | -0.100 | -0.100 | -0.100 |  |
 | job.submit-to-accepted | ms | warm | 1052 | 92.900 | 95.400 | 100.400 | 113.100 | 91.488 | 0 of 1 |
 | job.submit-to-accepted | ms | cold | 100 | 92.900 | 95.200 | 98.100 | 99.900 | 90.343 | 0 of 1 |
 | job.submit-to-accepted [pose-only] | ms | warm | 1052 | 92.900 | 95.400 | 100.400 | 113.100 | 91.488 |  |
 | job.submit-to-accepted [pose-only] | ms | cold | 99 | 92.900 | 95.400 | 99.900 | 99.900 | 91.134 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 1 | 12.000 | 12.000 | 12.000 | 12.000 | 12.000 |  |
-| merge.assemble | ms | warm | 930 | 0.000 | 0.100 | 0.100 | 0.300 | 0.007 | 0 of 1 |
-| merge.assemble | ms | cold | 89 | 0.000 | 0.000 | 0.100 | 0.100 | 0.003 | 0 of 1 |
-| merge.assemble [pose-only] | ms | warm | 930 | 0.000 | 0.100 | 0.100 | 0.300 | 0.007 |  |
-| merge.assemble [pose-only] | ms | cold | 88 | 0.000 | 0.000 | 0.100 | 0.100 | 0.003 |  |
+| merge.assemble | ms | warm | 1052 | 0.000 | 0.100 | 0.100 | 0.300 | 0.006 | 0 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.000 | 0.100 | 0.100 | 0.003 | 0 of 1 |
+| merge.assemble [pose-only] | ms | warm | 1052 | 0.000 | 0.100 | 0.100 | 0.300 | 0.006 |  |
+| merge.assemble [pose-only] | ms | cold | 99 | 0.000 | 0.000 | 0.100 | 0.100 | 0.003 |  |
 | merge.assemble [static-install] | ms | cold | 1 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
 | merge.reply-deserialize | ms | warm | 2104 | 0.000 | 0.100 | 0.400 | 1.700 | 0.034 | 0 of 1 |
 | merge.reply-deserialize | ms | cold | 200 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 | 0 of 1 |
@@ -2318,30 +2322,30 @@ Denominators: submitted=192 coalesced=0 dispatched=192 completed=192 accepted=19
 | install.post [static-install] | ms | cold | 2 | 0.000 | 0.100 | 0.100 | 0.100 | 0.050 |  |
 | install.worker-deserialize | ms | cold | 2 | 0.100 | 0.300 | 0.300 | 0.300 | 0.200 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | cold | 2 | 0.100 | 0.300 | 0.300 | 0.300 | 0.200 |  |
-| job.phase-residual | ms | warm | 82 | 0.000 | 0.100 | 1.800 | 1.800 | 0.028 | 1 of 1 |
-| job.phase-residual | ms | cold | 92 | 0.000 | 0.100 | 0.300 | 0.300 | 0.001 | 1 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 82 | 0.000 | 0.100 | 1.800 | 1.800 | 0.028 |  |
-| job.phase-residual [pose-only] | ms | cold | 91 | 0.000 | 0.100 | 0.300 | 0.300 | 0.009 |  |
+| job.phase-residual | ms | warm | 92 | 0.000 | 0.100 | 1.800 | 1.800 | 0.025 | 1 of 1 |
+| job.phase-residual | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.300 | -0.001 | 1 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 92 | 0.000 | 0.100 | 1.800 | 1.800 | 0.025 |  |
+| job.phase-residual [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.300 | 0.300 | 0.006 |  |
 | job.phase-residual [static-install] | ms | cold | 1 | -0.700 | -0.700 | -0.700 | -0.700 | -0.700 |  |
 | job.submit-to-accepted | ms | warm | 92 | 84.000 | 86.000 | 119.000 | 119.000 | 84.688 | 1 of 1 |
 | job.submit-to-accepted | ms | cold | 100 | 84.000 | 90.100 | 124.600 | 143.000 | 85.364 | 1 of 1 |
 | job.submit-to-accepted [pose-only] | ms | warm | 92 | 84.000 | 86.000 | 119.000 | 119.000 | 84.688 |  |
 | job.submit-to-accepted [pose-only] | ms | cold | 99 | 84.000 | 93.800 | 143.000 | 143.000 | 85.637 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 1 | 58.300 | 58.300 | 58.300 | 58.300 | 58.300 |  |
-| merge.assemble | ms | warm | 82 | 0.000 | 0.100 | 0.700 | 0.700 | 0.016 | 1 of 1 |
-| merge.assemble | ms | cold | 92 | 0.000 | 0.100 | 0.400 | 0.400 | 0.017 | 1 of 1 |
-| merge.assemble [pose-only] | ms | warm | 82 | 0.000 | 0.100 | 0.700 | 0.700 | 0.016 |  |
-| merge.assemble [pose-only] | ms | cold | 91 | 0.000 | 0.100 | 0.200 | 0.200 | 0.013 |  |
+| merge.assemble | ms | warm | 92 | 0.000 | 0.100 | 0.700 | 0.700 | 0.014 | 1 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.200 | 0.400 | 0.016 | 1 of 1 |
+| merge.assemble [pose-only] | ms | warm | 92 | 0.000 | 0.100 | 0.700 | 0.700 | 0.014 |  |
+| merge.assemble [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.200 | 0.200 | 0.012 |  |
 | merge.assemble [static-install] | ms | cold | 1 | 0.400 | 0.400 | 0.400 | 0.400 | 0.400 |  |
 | merge.reply-deserialize | ms | warm | 184 | 0.000 | 0.100 | 0.900 | 1.100 | 0.039 | 1 of 1 |
 | merge.reply-deserialize | ms | cold | 200 | 0.000 | 0.300 | 1.000 | 3.300 | 0.072 | 1 of 1 |
 | merge.reply-deserialize [pose-only] | ms | warm | 184 | 0.000 | 0.100 | 0.900 | 1.100 | 0.039 |  |
 | merge.reply-deserialize [pose-only] | ms | cold | 198 | 0.000 | 0.300 | 2.400 | 3.300 | 0.073 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 2 | 0.000 | 0.100 | 0.100 | 0.100 | 0.050 |  |
-| merge.validate | ms | warm | 184 | 0.100 | 0.300 | 9.600 | 16.200 | 0.269 | 1 of 1 |
-| merge.validate | ms | cold | 200 | 0.100 | 1.500 | 6.400 | 26.500 | 0.517 | 1 of 1 |
-| merge.validate [pose-only] | ms | warm | 184 | 0.100 | 0.300 | 9.600 | 16.200 | 0.269 |  |
-| merge.validate [pose-only] | ms | cold | 198 | 0.100 | 1.200 | 22.600 | 26.500 | 0.476 |  |
+| merge.validate | ms | warm | 184 | 0.100 | 0.300 | 9.600 | 16.200 | 0.268 | 1 of 1 |
+| merge.validate | ms | cold | 200 | 0.100 | 1.500 | 6.400 | 26.500 | 0.516 | 1 of 1 |
+| merge.validate [pose-only] | ms | warm | 184 | 0.100 | 0.300 | 9.600 | 16.200 | 0.268 |  |
+| merge.validate [pose-only] | ms | cold | 198 | 0.100 | 1.200 | 22.600 | 26.500 | 0.475 |  |
 | merge.validate [static-install] | ms | cold | 2 | 2.700 | 6.400 | 6.400 | 6.400 | 4.550 |  |
 | pool.compute-metric | ms | warm | 92 | 0.500 | 2.500 | 37.800 | 37.800 | 1.422 | 1 of 1 |
 | pool.compute-metric | ms | cold | 100 | 0.500 | 6.700 | 49.300 | 54.700 | 2.730 | 1 of 1 |
@@ -2437,24 +2441,24 @@ Denominators: submitted=1104 coalesced=0 dispatched=1104 completed=1104 accepted
 | install.worker-deserialize | ms | cold | 110 | 0.000 | 0.100 | 0.400 | 0.500 | 0.042 | 0 of 1 |
 | install.worker-deserialize [static-install] | ms | warm | 1086 | 0.000 | 0.100 | 0.200 | 1.100 | 0.049 |  |
 | install.worker-deserialize [static-install] | ms | cold | 110 | 0.000 | 0.100 | 0.400 | 0.500 | 0.042 |  |
-| job.phase-residual | ms | warm | 896 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 | 1 of 1 |
-| job.phase-residual | ms | cold | 86 | 0.000 | 0.100 | 0.100 | 0.100 | 0.002 | 1 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 414 | 0.000 | 0.000 | 0.000 | 0.100 | -0.006 |  |
-| job.phase-residual [pose-only] | ms | cold | 43 | 0.000 | 0.000 | 0.000 | 0.000 | -0.002 |  |
-| job.phase-residual [static-install] | ms | warm | 482 | 0.000 | 0.000 | 0.100 | 0.100 | 0.001 |  |
-| job.phase-residual [static-install] | ms | cold | 43 | 0.000 | 0.100 | 0.100 | 0.100 | 0.007 |  |
+| job.phase-residual | ms | warm | 1004 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 | 0 of 1 |
+| job.phase-residual | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.100 | 0.001 | 0 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 461 | 0.000 | 0.000 | 0.000 | 0.100 | -0.006 |  |
+| job.phase-residual [pose-only] | ms | cold | 45 | 0.000 | 0.000 | 0.000 | 0.000 | -0.002 |  |
+| job.phase-residual [static-install] | ms | warm | 543 | 0.000 | 0.000 | 0.100 | 0.100 | 0.001 |  |
+| job.phase-residual [static-install] | ms | cold | 55 | 0.000 | 0.100 | 0.100 | 0.100 | 0.004 |  |
 | job.submit-to-accepted | ms | warm | 1004 | 92.700 | 95.100 | 97.300 | 99.600 | 90.924 | 0 of 1 |
 | job.submit-to-accepted | ms | cold | 100 | 92.900 | 95.600 | 99.300 | 100.100 | 90.562 | 0 of 1 |
 | job.submit-to-accepted [pose-only] | ms | warm | 461 | 92.600 | 95.100 | 97.300 | 99.300 | 90.692 |  |
 | job.submit-to-accepted [pose-only] | ms | cold | 45 | 92.900 | 95.600 | 99.300 | 99.300 | 91.104 |  |
 | job.submit-to-accepted [static-install] | ms | warm | 543 | 92.800 | 95.200 | 97.700 | 99.600 | 91.122 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 55 | 92.900 | 96.900 | 100.100 | 100.100 | 90.118 |  |
-| merge.assemble | ms | warm | 896 | 0.000 | 0.000 | 0.100 | 0.100 | 0.003 | 1 of 1 |
-| merge.assemble | ms | cold | 86 | 0.000 | 0.100 | 0.100 | 0.100 | 0.007 | 1 of 1 |
-| merge.assemble [pose-only] | ms | warm | 414 | 0.000 | 0.000 | 0.100 | 0.100 | 0.002 |  |
-| merge.assemble [pose-only] | ms | cold | 43 | 0.000 | 0.100 | 0.100 | 0.100 | 0.007 |  |
-| merge.assemble [static-install] | ms | warm | 482 | 0.000 | 0.000 | 0.100 | 0.100 | 0.004 |  |
-| merge.assemble [static-install] | ms | cold | 43 | 0.000 | 0.100 | 0.100 | 0.100 | 0.007 |  |
+| merge.assemble | ms | warm | 1004 | 0.000 | 0.000 | 0.100 | 0.100 | 0.002 | 0 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.100 | 0.006 | 0 of 1 |
+| merge.assemble [pose-only] | ms | warm | 461 | 0.000 | 0.000 | 0.100 | 0.100 | 0.002 |  |
+| merge.assemble [pose-only] | ms | cold | 45 | 0.000 | 0.100 | 0.100 | 0.100 | 0.007 |  |
+| merge.assemble [static-install] | ms | warm | 543 | 0.000 | 0.000 | 0.100 | 0.100 | 0.003 |  |
+| merge.assemble [static-install] | ms | cold | 55 | 0.000 | 0.100 | 0.100 | 0.100 | 0.005 |  |
 | merge.reply-deserialize | ms | warm | 2008 | 0.000 | 0.100 | 0.100 | 0.500 | 0.014 | 0 of 1 |
 | merge.reply-deserialize | ms | cold | 200 | 0.000 | 0.100 | 0.400 | 0.400 | 0.019 | 0 of 1 |
 | merge.reply-deserialize [pose-only] | ms | warm | 922 | 0.000 | 0.100 | 0.100 | 0.500 | 0.016 |  |
@@ -2463,10 +2467,10 @@ Denominators: submitted=1104 coalesced=0 dispatched=1104 completed=1104 accepted
 | merge.reply-deserialize [static-install] | ms | cold | 110 | 0.000 | 0.100 | 0.400 | 0.400 | 0.019 |  |
 | merge.validate | ms | warm | 2008 | 0.000 | 0.100 | 0.300 | 1.300 | 0.054 | 0 of 1 |
 | merge.validate | ms | cold | 200 | 0.100 | 0.400 | 1.200 | 2.000 | 0.106 | 0 of 1 |
-| merge.validate [pose-only] | ms | warm | 922 | 0.000 | 0.100 | 0.200 | 0.900 | 0.051 |  |
+| merge.validate [pose-only] | ms | warm | 922 | 0.000 | 0.100 | 0.200 | 0.900 | 0.050 |  |
 | merge.validate [pose-only] | ms | cold | 90 | 0.100 | 0.200 | 1.200 | 1.200 | 0.083 |  |
 | merge.validate [static-install] | ms | warm | 1086 | 0.000 | 0.100 | 0.300 | 1.300 | 0.057 |  |
-| merge.validate [static-install] | ms | cold | 110 | 0.100 | 0.500 | 1.700 | 2.000 | 0.125 |  |
+| merge.validate [static-install] | ms | cold | 110 | 0.100 | 0.500 | 1.700 | 2.000 | 0.124 |  |
 | pool.compute-metric | ms | warm | 1004 | 0.600 | 1.000 | 1.900 | 12.800 | 0.663 | 0 of 1 |
 | pool.compute-metric | ms | cold | 100 | 0.600 | 1.900 | 9.900 | 16.200 | 0.977 | 0 of 1 |
 | pool.compute-metric [pose-only] | ms | warm | 461 | 0.500 | 0.800 | 2.200 | 12.800 | 0.601 |  |
@@ -2573,24 +2577,24 @@ Denominators: submitted=144 coalesced=0 dispatched=144 completed=144 accepted=14
 | install.worker-deserialize | ms | cold | 110 | 0.000 | 0.100 | 0.100 | 0.200 | 0.029 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | warm | 46 | 0.000 | 0.100 | 0.100 | 0.100 | 0.022 |  |
 | install.worker-deserialize [static-install] | ms | cold | 110 | 0.000 | 0.100 | 0.100 | 0.200 | 0.029 |  |
-| job.phase-residual | ms | warm | 35 | 0.000 | 0.100 | 0.200 | 0.200 | 0.009 | 1 of 1 |
-| job.phase-residual | ms | cold | 90 | 0.000 | 0.100 | 0.100 | 0.100 | 0.010 | 1 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 16 | 0.000 | 0.000 | 0.000 | 0.000 | -0.006 |  |
-| job.phase-residual [pose-only] | ms | cold | 38 | 0.000 | 0.100 | 0.100 | 0.100 | 0.003 |  |
-| job.phase-residual [static-install] | ms | warm | 19 | 0.000 | 0.200 | 0.200 | 0.200 | 0.021 |  |
-| job.phase-residual [static-install] | ms | cold | 52 | 0.000 | 0.100 | 0.100 | 0.100 | 0.015 |  |
+| job.phase-residual | ms | warm | 44 | 0.000 | 0.100 | 0.200 | 0.200 | 0.007 | 1 of 1 |
+| job.phase-residual | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.100 | 0.010 | 1 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 21 | 0.000 | 0.000 | 0.000 | 0.000 | -0.005 |  |
+| job.phase-residual [pose-only] | ms | cold | 45 | 0.000 | 0.100 | 0.100 | 0.100 | 0.002 |  |
+| job.phase-residual [static-install] | ms | warm | 23 | 0.000 | 0.100 | 0.200 | 0.200 | 0.017 |  |
+| job.phase-residual [static-install] | ms | cold | 55 | 0.000 | 0.100 | 0.100 | 0.100 | 0.016 |  |
 | job.submit-to-accepted | ms | warm | 44 | 83.900 | 84.900 | 85.000 | 85.000 | 83.820 | 1 of 1 |
 | job.submit-to-accepted | ms | cold | 100 | 84.200 | 85.300 | 85.600 | 86.100 | 83.662 | 1 of 1 |
 | job.submit-to-accepted [pose-only] | ms | warm | 21 | 83.900 | 84.900 | 84.900 | 84.900 | 83.848 |  |
 | job.submit-to-accepted [pose-only] | ms | cold | 45 | 84.200 | 85.400 | 85.600 | 85.600 | 84.249 |  |
 | job.submit-to-accepted [static-install] | ms | warm | 23 | 83.900 | 84.800 | 85.000 | 85.000 | 83.796 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 55 | 84.300 | 85.300 | 86.100 | 86.100 | 83.182 |  |
-| merge.assemble | ms | warm | 35 | 0.000 | 0.100 | 0.100 | 0.100 | 0.006 | 1 of 1 |
-| merge.assemble | ms | cold | 90 | 0.000 | 0.100 | 0.200 | 0.200 | 0.009 | 1 of 1 |
-| merge.assemble [pose-only] | ms | warm | 16 | 0.000 | 0.100 | 0.100 | 0.100 | 0.006 |  |
-| merge.assemble [pose-only] | ms | cold | 38 | 0.000 | 0.100 | 0.100 | 0.100 | 0.005 |  |
-| merge.assemble [static-install] | ms | warm | 19 | 0.000 | 0.100 | 0.100 | 0.100 | 0.005 |  |
-| merge.assemble [static-install] | ms | cold | 52 | 0.000 | 0.100 | 0.200 | 0.200 | 0.012 |  |
+| merge.assemble | ms | warm | 44 | 0.000 | 0.000 | 0.100 | 0.100 | 0.005 | 1 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.200 | 0.009 | 1 of 1 |
+| merge.assemble [pose-only] | ms | warm | 21 | 0.000 | 0.000 | 0.100 | 0.100 | 0.005 |  |
+| merge.assemble [pose-only] | ms | cold | 45 | 0.000 | 0.000 | 0.100 | 0.100 | 0.004 |  |
+| merge.assemble [static-install] | ms | warm | 23 | 0.000 | 0.000 | 0.100 | 0.100 | 0.004 |  |
+| merge.assemble [static-install] | ms | cold | 55 | 0.000 | 0.100 | 0.200 | 0.200 | 0.013 |  |
 | merge.reply-deserialize | ms | warm | 88 | 0.000 | 0.100 | 0.100 | 0.100 | 0.014 | 1 of 1 |
 | merge.reply-deserialize | ms | cold | 200 | 0.000 | 0.100 | 0.100 | 0.200 | 0.014 | 1 of 1 |
 | merge.reply-deserialize [pose-only] | ms | warm | 42 | 0.000 | 0.100 | 0.100 | 0.100 | 0.012 |  |
@@ -2598,11 +2602,11 @@ Denominators: submitted=144 coalesced=0 dispatched=144 completed=144 accepted=14
 | merge.reply-deserialize [static-install] | ms | warm | 46 | 0.000 | 0.100 | 0.100 | 0.100 | 0.015 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 110 | 0.000 | 0.100 | 0.100 | 0.200 | 0.014 |  |
 | merge.validate | ms | warm | 88 | 0.100 | 0.200 | 0.200 | 0.200 | 0.067 | 1 of 1 |
-| merge.validate | ms | cold | 200 | 0.100 | 0.300 | 0.400 | 2.700 | 0.098 | 1 of 1 |
+| merge.validate | ms | cold | 200 | 0.100 | 0.300 | 0.400 | 2.700 | 0.097 | 1 of 1 |
 | merge.validate [pose-only] | ms | warm | 42 | 0.000 | 0.200 | 0.200 | 0.200 | 0.057 |  |
 | merge.validate [pose-only] | ms | cold | 90 | 0.100 | 0.200 | 0.400 | 0.400 | 0.080 |  |
 | merge.validate [static-install] | ms | warm | 46 | 0.100 | 0.200 | 0.200 | 0.200 | 0.076 |  |
-| merge.validate [static-install] | ms | cold | 110 | 0.100 | 0.300 | 0.400 | 2.700 | 0.112 |  |
+| merge.validate [static-install] | ms | cold | 110 | 0.100 | 0.300 | 0.400 | 2.700 | 0.111 |  |
 | pool.compute-metric | ms | warm | 44 | 0.500 | 1.000 | 1.600 | 1.600 | 0.568 | 1 of 1 |
 | pool.compute-metric | ms | cold | 100 | 0.500 | 1.700 | 2.200 | 21.400 | 0.892 | 1 of 1 |
 | pool.compute-metric [pose-only] | ms | warm | 21 | 0.400 | 0.800 | 0.900 | 0.900 | 0.481 |  |
@@ -2703,20 +2707,20 @@ Denominators: submitted=192 coalesced=0 dispatched=192 completed=192 accepted=19
 | install.post [static-install] | ms | cold | 2 | 0.000 | 0.100 | 0.100 | 0.100 | 0.050 |  |
 | install.worker-deserialize | ms | cold | 2 | 0.200 | 0.200 | 0.200 | 0.200 | 0.200 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | cold | 2 | 0.200 | 0.200 | 0.200 | 0.200 | 0.200 |  |
-| job.phase-residual | ms | warm | 91 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 | 1 of 1 |
-| job.phase-residual | ms | cold | 99 | 0.000 | 0.100 | 0.100 | 0.100 | -0.003 | 1 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 91 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 |  |
-| job.phase-residual [pose-only] | ms | cold | 98 | 0.000 | 0.100 | 0.100 | 0.100 | -0.002 |  |
+| job.phase-residual | ms | warm | 92 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 | 1 of 1 |
+| job.phase-residual | ms | cold | 100 | 0.000 | 0.000 | 0.100 | 0.100 | -0.003 | 1 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 92 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 |  |
+| job.phase-residual [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.100 | 0.100 | -0.002 |  |
 | job.phase-residual [static-install] | ms | cold | 1 | -0.100 | -0.100 | -0.100 | -0.100 | -0.100 |  |
 | job.submit-to-accepted | ms | warm | 92 | 92.900 | 94.800 | 95.800 | 95.800 | 92.968 | 1 of 1 |
 | job.submit-to-accepted | ms | cold | 100 | 92.500 | 95.500 | 98.300 | 101.600 | 92.142 | 1 of 1 |
 | job.submit-to-accepted [pose-only] | ms | warm | 92 | 92.900 | 94.800 | 95.800 | 95.800 | 92.968 |  |
 | job.submit-to-accepted [pose-only] | ms | cold | 99 | 92.500 | 95.800 | 101.600 | 101.600 | 92.886 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 1 | 18.500 | 18.500 | 18.500 | 18.500 | 18.500 |  |
-| merge.assemble | ms | warm | 91 | 0.000 | 0.100 | 0.100 | 0.100 | 0.008 | 1 of 1 |
-| merge.assemble | ms | cold | 99 | 0.000 | 0.100 | 0.200 | 0.200 | 0.015 | 1 of 1 |
-| merge.assemble [pose-only] | ms | warm | 91 | 0.000 | 0.100 | 0.100 | 0.100 | 0.008 |  |
-| merge.assemble [pose-only] | ms | cold | 98 | 0.000 | 0.100 | 0.200 | 0.200 | 0.014 |  |
+| merge.assemble | ms | warm | 92 | 0.000 | 0.100 | 0.100 | 0.100 | 0.008 | 1 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.200 | 0.015 | 1 of 1 |
+| merge.assemble [pose-only] | ms | warm | 92 | 0.000 | 0.100 | 0.100 | 0.100 | 0.008 |  |
+| merge.assemble [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.200 | 0.200 | 0.014 |  |
 | merge.assemble [static-install] | ms | cold | 1 | 0.100 | 0.100 | 0.100 | 0.100 | 0.100 |  |
 | merge.reply-deserialize | ms | warm | 184 | 0.000 | 0.100 | 0.100 | 0.200 | 0.022 | 1 of 1 |
 | merge.reply-deserialize | ms | cold | 200 | 0.000 | 0.100 | 0.200 | 0.500 | 0.024 | 1 of 1 |
@@ -2832,29 +2836,29 @@ Denominators: submitted=1152 coalesced=0 dispatched=1152 completed=1152 accepted
 | install.post [static-install] | ms | cold | 2 | 0.100 | 0.300 | 0.300 | 0.300 | 0.200 |  |
 | install.worker-deserialize | ms | cold | 2 | 0.400 | 0.400 | 0.400 | 0.400 | 0.400 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | cold | 2 | 0.400 | 0.400 | 0.400 | 0.400 | 0.400 |  |
-| job.phase-residual | ms | warm | 989 | 0.000 | 0.000 | 0.000 | 0.300 | -0.004 | 0 of 1 |
-| job.phase-residual | ms | cold | 97 | 0.000 | 0.000 | 0.100 | 0.100 | -0.007 | 0 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 989 | 0.000 | 0.000 | 0.000 | 0.300 | -0.004 |  |
-| job.phase-residual [pose-only] | ms | cold | 96 | 0.000 | 0.000 | 0.100 | 0.100 | -0.005 |  |
+| job.phase-residual | ms | warm | 1052 | 0.000 | 0.000 | 0.000 | 0.300 | -0.004 | 0 of 1 |
+| job.phase-residual | ms | cold | 100 | 0.000 | 0.000 | 0.000 | 0.100 | -0.007 | 0 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 1052 | 0.000 | 0.000 | 0.000 | 0.300 | -0.004 |  |
+| job.phase-residual [pose-only] | ms | cold | 99 | 0.000 | 0.000 | 0.100 | 0.100 | -0.005 |  |
 | job.phase-residual [static-install] | ms | cold | 1 | -0.200 | -0.200 | -0.200 | -0.200 | -0.200 |  |
 | job.submit-to-accepted | ms | warm | 1052 | 93.300 | 95.100 | 96.200 | 109.000 | 93.336 | 0 of 1 |
 | job.submit-to-accepted | ms | cold | 100 | 93.200 | 95.200 | 96.100 | 96.100 | 92.993 | 0 of 1 |
 | job.submit-to-accepted [pose-only] | ms | warm | 1052 | 93.300 | 95.100 | 96.200 | 109.000 | 93.336 |  |
 | job.submit-to-accepted [pose-only] | ms | cold | 99 | 93.200 | 95.200 | 96.100 | 96.100 | 93.262 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 1 | 66.400 | 66.400 | 66.400 | 66.400 | 66.400 |  |
-| merge.assemble | ms | warm | 989 | 0.000 | 0.100 | 0.100 | 0.200 | 0.007 | 0 of 1 |
-| merge.assemble | ms | cold | 97 | 0.000 | 0.100 | 0.300 | 0.300 | 0.018 | 0 of 1 |
-| merge.assemble [pose-only] | ms | warm | 989 | 0.000 | 0.100 | 0.100 | 0.200 | 0.007 |  |
-| merge.assemble [pose-only] | ms | cold | 96 | 0.000 | 0.100 | 0.100 | 0.100 | 0.015 |  |
+| merge.assemble | ms | warm | 1052 | 0.000 | 0.100 | 0.100 | 0.200 | 0.006 | 0 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.300 | 0.017 | 0 of 1 |
+| merge.assemble [pose-only] | ms | warm | 1052 | 0.000 | 0.100 | 0.100 | 0.200 | 0.006 |  |
+| merge.assemble [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.100 | 0.100 | 0.014 |  |
 | merge.assemble [static-install] | ms | cold | 1 | 0.300 | 0.300 | 0.300 | 0.300 | 0.300 |  |
 | merge.reply-deserialize | ms | warm | 2104 | 0.000 | 0.100 | 0.200 | 0.800 | 0.025 | 0 of 1 |
 | merge.reply-deserialize | ms | cold | 200 | 0.000 | 0.100 | 0.100 | 0.200 | 0.020 | 0 of 1 |
 | merge.reply-deserialize [pose-only] | ms | warm | 2104 | 0.000 | 0.100 | 0.200 | 0.800 | 0.025 |  |
 | merge.reply-deserialize [pose-only] | ms | cold | 198 | 0.000 | 0.100 | 0.100 | 0.200 | 0.020 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 2 | 0.100 | 0.100 | 0.100 | 0.100 | 0.100 |  |
-| merge.validate | ms | warm | 2104 | 0.100 | 0.200 | 0.400 | 3.200 | 0.092 | 0 of 1 |
+| merge.validate | ms | warm | 2104 | 0.100 | 0.200 | 0.400 | 3.200 | 0.091 | 0 of 1 |
 | merge.validate | ms | cold | 200 | 0.100 | 0.200 | 0.600 | 2.400 | 0.119 | 0 of 1 |
-| merge.validate [pose-only] | ms | warm | 2104 | 0.100 | 0.200 | 0.400 | 3.200 | 0.092 |  |
+| merge.validate [pose-only] | ms | warm | 2104 | 0.100 | 0.200 | 0.400 | 3.200 | 0.091 |  |
 | merge.validate [pose-only] | ms | cold | 198 | 0.100 | 0.200 | 0.500 | 0.600 | 0.099 |  |
 | merge.validate [static-install] | ms | cold | 2 | 1.800 | 2.400 | 2.400 | 2.400 | 2.100 |  |
 | pool.compute-metric | ms | warm | 1052 | 0.600 | 1.300 | 2.800 | 11.100 | 0.782 | 0 of 1 |
@@ -2943,20 +2947,20 @@ Denominators: submitted=192 coalesced=0 dispatched=192 completed=192 accepted=19
 | install.post [static-install] | ms | cold | 2 | 0.000 | 0.100 | 0.100 | 0.100 | 0.050 |  |
 | install.worker-deserialize | ms | cold | 2 | 0.000 | 0.200 | 0.200 | 0.200 | 0.100 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | cold | 2 | 0.000 | 0.200 | 0.200 | 0.200 | 0.100 |  |
-| job.phase-residual | ms | warm | 90 | 0.000 | 0.100 | 0.700 | 0.700 | 0.032 | 1 of 1 |
-| job.phase-residual | ms | cold | 96 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 | 1 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 90 | 0.000 | 0.100 | 0.700 | 0.700 | 0.032 |  |
-| job.phase-residual [pose-only] | ms | cold | 95 | 0.000 | 0.100 | 0.100 | 0.100 | 0.012 |  |
+| job.phase-residual | ms | warm | 92 | 0.000 | 0.100 | 0.700 | 0.700 | 0.032 | 1 of 1 |
+| job.phase-residual | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 | 1 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 92 | 0.000 | 0.100 | 0.700 | 0.700 | 0.032 |  |
+| job.phase-residual [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.100 | 0.100 | 0.011 |  |
 | job.phase-residual [static-install] | ms | cold | 1 | -0.200 | -0.200 | -0.200 | -0.200 | -0.200 |  |
 | job.submit-to-accepted | ms | warm | 92 | 84.000 | 87.700 | 89.000 | 89.000 | 84.309 | 1 of 1 |
 | job.submit-to-accepted | ms | cold | 100 | 84.100 | 85.800 | 86.900 | 87.200 | 83.639 | 1 of 1 |
 | job.submit-to-accepted [pose-only] | ms | warm | 92 | 84.000 | 87.700 | 89.000 | 89.000 | 84.309 |  |
 | job.submit-to-accepted [pose-only] | ms | cold | 99 | 84.100 | 86.200 | 87.200 | 87.200 | 84.248 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 1 | 23.300 | 23.300 | 23.300 | 23.300 | 23.300 |  |
-| merge.assemble | ms | warm | 90 | 0.000 | 0.100 | 0.100 | 0.100 | 0.010 | 1 of 1 |
-| merge.assemble | ms | cold | 96 | 0.000 | 0.100 | 0.100 | 0.100 | 0.011 | 1 of 1 |
-| merge.assemble [pose-only] | ms | warm | 90 | 0.000 | 0.100 | 0.100 | 0.100 | 0.010 |  |
-| merge.assemble [pose-only] | ms | cold | 95 | 0.000 | 0.100 | 0.100 | 0.100 | 0.011 |  |
+| merge.assemble | ms | warm | 92 | 0.000 | 0.100 | 0.100 | 0.100 | 0.010 | 1 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.100 | 0.011 | 1 of 1 |
+| merge.assemble [pose-only] | ms | warm | 92 | 0.000 | 0.100 | 0.100 | 0.100 | 0.010 |  |
+| merge.assemble [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.100 | 0.100 | 0.010 |  |
 | merge.assemble [static-install] | ms | cold | 1 | 0.100 | 0.100 | 0.100 | 0.100 | 0.100 |  |
 | merge.reply-deserialize | ms | warm | 184 | 0.000 | 0.100 | 0.200 | 0.200 | 0.028 | 1 of 1 |
 | merge.reply-deserialize | ms | cold | 200 | 0.000 | 0.100 | 0.200 | 0.400 | 0.029 | 1 of 1 |
@@ -2966,7 +2970,7 @@ Denominators: submitted=192 coalesced=0 dispatched=192 completed=192 accepted=19
 | merge.validate | ms | warm | 184 | 0.100 | 0.500 | 1.100 | 1.200 | 0.157 | 1 of 1 |
 | merge.validate | ms | cold | 200 | 0.100 | 0.500 | 1.200 | 1.400 | 0.169 | 1 of 1 |
 | merge.validate [pose-only] | ms | warm | 184 | 0.100 | 0.500 | 1.100 | 1.200 | 0.157 |  |
-| merge.validate [pose-only] | ms | cold | 198 | 0.100 | 0.500 | 1.400 | 1.400 | 0.163 |  |
+| merge.validate [pose-only] | ms | cold | 198 | 0.100 | 0.500 | 1.400 | 1.400 | 0.162 |  |
 | merge.validate [static-install] | ms | cold | 2 | 0.700 | 1.000 | 1.000 | 1.000 | 0.850 |  |
 | pool.compute-metric | ms | warm | 92 | 0.600 | 3.800 | 5.100 | 5.100 | 1.008 | 1 of 1 |
 | pool.compute-metric | ms | cold | 100 | 0.800 | 3.600 | 5.700 | 11.300 | 1.191 | 1 of 1 |
@@ -3062,36 +3066,36 @@ Denominators: submitted=1104 coalesced=0 dispatched=1104 completed=1104 accepted
 | install.worker-deserialize | ms | cold | 110 | 0.300 | 1.400 | 3.400 | 3.800 | 0.456 | 0 of 1 |
 | install.worker-deserialize [static-install] | ms | warm | 1086 | 0.200 | 0.700 | 3.200 | 8.600 | 0.343 |  |
 | install.worker-deserialize [static-install] | ms | cold | 110 | 0.300 | 1.400 | 3.400 | 3.800 | 0.456 |  |
-| job.phase-residual | ms | warm | 954 | 0.000 | 0.000 | 0.100 | 0.200 | -0.000 | 0 of 1 |
-| job.phase-residual | ms | cold | 98 | 0.000 | 0.000 | 0.100 | 0.100 | -0.005 | 0 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 438 | 0.000 | 0.000 | 0.100 | 0.200 | -0.003 |  |
+| job.phase-residual | ms | warm | 1004 | 0.000 | 0.000 | 0.100 | 0.200 | -0.000 | 0 of 1 |
+| job.phase-residual | ms | cold | 100 | 0.000 | 0.000 | 0.100 | 0.100 | -0.004 | 0 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 461 | 0.000 | 0.000 | 0.100 | 0.200 | -0.003 |  |
 | job.phase-residual [pose-only] | ms | cold | 45 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 |  |
-| job.phase-residual [static-install] | ms | warm | 516 | 0.000 | 0.000 | 0.100 | 0.200 | 0.002 |  |
-| job.phase-residual [static-install] | ms | cold | 53 | 0.000 | 0.000 | 0.100 | 0.100 | -0.008 |  |
+| job.phase-residual [static-install] | ms | warm | 543 | 0.000 | 0.000 | 0.100 | 0.200 | 0.002 |  |
+| job.phase-residual [static-install] | ms | cold | 55 | 0.000 | 0.000 | 0.100 | 0.100 | -0.005 |  |
 | job.submit-to-accepted | ms | warm | 1004 | 93.200 | 96.400 | 100.300 | 131.900 | 93.349 | 0 of 1 |
 | job.submit-to-accepted | ms | cold | 100 | 93.000 | 96.700 | 112.900 | 117.300 | 92.876 | 0 of 1 |
 | job.submit-to-accepted [pose-only] | ms | warm | 461 | 92.500 | 95.600 | 99.500 | 105.900 | 92.621 |  |
 | job.submit-to-accepted [pose-only] | ms | cold | 45 | 92.200 | 95.500 | 112.900 | 112.900 | 92.571 |  |
 | job.submit-to-accepted [static-install] | ms | warm | 543 | 93.800 | 96.800 | 101.400 | 131.900 | 93.967 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 55 | 93.500 | 98.000 | 117.300 | 117.300 | 93.125 |  |
-| merge.assemble | ms | warm | 954 | 0.000 | 0.100 | 0.100 | 0.600 | 0.007 | 0 of 1 |
-| merge.assemble | ms | cold | 98 | 0.000 | 0.100 | 0.200 | 0.200 | 0.016 | 0 of 1 |
-| merge.assemble [pose-only] | ms | warm | 438 | 0.000 | 0.100 | 0.100 | 0.200 | 0.006 |  |
+| merge.assemble | ms | warm | 1004 | 0.000 | 0.100 | 0.100 | 0.600 | 0.007 | 0 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.200 | 0.200 | 0.016 | 0 of 1 |
+| merge.assemble [pose-only] | ms | warm | 461 | 0.000 | 0.000 | 0.100 | 0.200 | 0.005 |  |
 | merge.assemble [pose-only] | ms | cold | 45 | 0.000 | 0.100 | 0.200 | 0.200 | 0.018 |  |
-| merge.assemble [static-install] | ms | warm | 516 | 0.000 | 0.100 | 0.100 | 0.600 | 0.008 |  |
-| merge.assemble [static-install] | ms | cold | 53 | 0.000 | 0.100 | 0.200 | 0.200 | 0.015 |  |
+| merge.assemble [static-install] | ms | warm | 543 | 0.000 | 0.100 | 0.100 | 0.600 | 0.008 |  |
+| merge.assemble [static-install] | ms | cold | 55 | 0.000 | 0.100 | 0.200 | 0.200 | 0.015 |  |
 | merge.reply-deserialize | ms | warm | 2008 | 0.000 | 0.100 | 0.300 | 1.600 | 0.024 | 0 of 1 |
 | merge.reply-deserialize | ms | cold | 200 | 0.000 | 0.100 | 0.500 | 0.600 | 0.038 | 0 of 1 |
 | merge.reply-deserialize [pose-only] | ms | warm | 922 | 0.000 | 0.100 | 0.300 | 1.600 | 0.025 |  |
 | merge.reply-deserialize [pose-only] | ms | cold | 90 | 0.000 | 0.100 | 0.600 | 0.600 | 0.042 |  |
 | merge.reply-deserialize [static-install] | ms | warm | 1086 | 0.000 | 0.100 | 0.200 | 0.900 | 0.023 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 110 | 0.000 | 0.100 | 0.400 | 0.500 | 0.034 |  |
-| merge.validate | ms | warm | 2008 | 0.100 | 0.200 | 0.700 | 3.600 | 0.089 | 0 of 1 |
-| merge.validate | ms | cold | 200 | 0.100 | 0.600 | 5.100 | 13.100 | 0.303 | 0 of 1 |
-| merge.validate [pose-only] | ms | warm | 922 | 0.100 | 0.200 | 1.000 | 3.000 | 0.098 |  |
+| merge.validate | ms | warm | 2008 | 0.100 | 0.200 | 0.700 | 3.600 | 0.088 | 0 of 1 |
+| merge.validate | ms | cold | 200 | 0.100 | 0.600 | 5.100 | 13.100 | 0.301 | 0 of 1 |
+| merge.validate [pose-only] | ms | warm | 922 | 0.100 | 0.200 | 1.000 | 3.000 | 0.097 |  |
 | merge.validate [pose-only] | ms | cold | 90 | 0.100 | 0.600 | 13.100 | 13.100 | 0.342 |  |
-| merge.validate [static-install] | ms | warm | 1086 | 0.100 | 0.200 | 0.500 | 3.600 | 0.082 |  |
-| merge.validate [static-install] | ms | cold | 110 | 0.100 | 0.700 | 4.000 | 6.500 | 0.271 |  |
+| merge.validate [static-install] | ms | warm | 1086 | 0.000 | 0.200 | 0.500 | 3.600 | 0.081 |  |
+| merge.validate [static-install] | ms | cold | 110 | 0.100 | 0.700 | 4.000 | 6.500 | 0.268 |  |
 | pool.compute-metric | ms | warm | 1004 | 1.200 | 3.700 | 9.300 | 37.200 | 1.669 | 0 of 1 |
 | pool.compute-metric | ms | cold | 100 | 1.600 | 6.000 | 23.800 | 28.400 | 2.587 | 0 of 1 |
 | pool.compute-metric [pose-only] | ms | warm | 461 | 0.800 | 2.500 | 9.500 | 20.400 | 1.198 |  |
@@ -3198,36 +3202,36 @@ Denominators: submitted=144 coalesced=0 dispatched=144 completed=144 accepted=14
 | install.worker-deserialize | ms | cold | 110 | 0.200 | 0.400 | 0.600 | 0.600 | 0.213 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | warm | 46 | 0.200 | 0.300 | 0.300 | 0.300 | 0.176 |  |
 | install.worker-deserialize [static-install] | ms | cold | 110 | 0.200 | 0.400 | 0.600 | 0.600 | 0.213 |  |
-| job.phase-residual | ms | warm | 43 | 0.000 | 0.100 | 0.100 | 0.100 | 0.012 | 1 of 1 |
-| job.phase-residual | ms | cold | 97 | 0.000 | 0.100 | 0.100 | 0.100 | 0.014 | 1 of 1 |
+| job.phase-residual | ms | warm | 44 | 0.000 | 0.100 | 0.100 | 0.100 | 0.011 | 1 of 1 |
+| job.phase-residual | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.100 | 0.014 | 1 of 1 |
 | job.phase-residual [pose-only] | ms | warm | 21 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
 | job.phase-residual [pose-only] | ms | cold | 45 | 0.000 | 0.100 | 0.100 | 0.100 | 0.011 |  |
-| job.phase-residual [static-install] | ms | warm | 22 | 0.000 | 0.100 | 0.100 | 0.100 | 0.023 |  |
-| job.phase-residual [static-install] | ms | cold | 52 | 0.000 | 0.100 | 0.100 | 0.100 | 0.017 |  |
+| job.phase-residual [static-install] | ms | warm | 23 | 0.000 | 0.100 | 0.100 | 0.100 | 0.022 |  |
+| job.phase-residual [static-install] | ms | cold | 55 | 0.000 | 0.100 | 0.100 | 0.100 | 0.016 |  |
 | job.submit-to-accepted | ms | warm | 44 | 84.000 | 85.100 | 85.400 | 85.400 | 84.064 | 1 of 1 |
 | job.submit-to-accepted | ms | cold | 100 | 84.300 | 86.800 | 89.500 | 91.100 | 84.141 | 1 of 1 |
 | job.submit-to-accepted [pose-only] | ms | warm | 21 | 83.800 | 85.000 | 85.100 | 85.100 | 83.833 |  |
 | job.submit-to-accepted [pose-only] | ms | cold | 45 | 84.100 | 86.100 | 89.500 | 89.500 | 84.356 |  |
 | job.submit-to-accepted [static-install] | ms | warm | 23 | 84.300 | 85.100 | 85.400 | 85.400 | 84.274 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 55 | 84.600 | 87.100 | 91.100 | 91.100 | 83.965 |  |
-| merge.assemble | ms | warm | 43 | 0.000 | 0.100 | 0.100 | 0.100 | 0.007 | 1 of 1 |
-| merge.assemble | ms | cold | 97 | 0.000 | 0.000 | 0.100 | 0.100 | 0.004 | 1 of 1 |
+| merge.assemble | ms | warm | 44 | 0.000 | 0.100 | 0.100 | 0.100 | 0.007 | 1 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.000 | 0.100 | 0.100 | 0.005 | 1 of 1 |
 | merge.assemble [pose-only] | ms | warm | 21 | 0.000 | 0.100 | 0.100 | 0.100 | 0.014 |  |
 | merge.assemble [pose-only] | ms | cold | 45 | 0.000 | 0.000 | 0.100 | 0.100 | 0.002 |  |
-| merge.assemble [static-install] | ms | warm | 22 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
-| merge.assemble [static-install] | ms | cold | 52 | 0.000 | 0.100 | 0.100 | 0.100 | 0.006 |  |
+| merge.assemble [static-install] | ms | warm | 23 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
+| merge.assemble [static-install] | ms | cold | 55 | 0.000 | 0.100 | 0.100 | 0.100 | 0.007 |  |
 | merge.reply-deserialize | ms | warm | 88 | 0.000 | 0.100 | 0.100 | 0.100 | 0.012 | 1 of 1 |
 | merge.reply-deserialize | ms | cold | 200 | 0.000 | 0.100 | 0.200 | 0.400 | 0.020 | 1 of 1 |
 | merge.reply-deserialize [pose-only] | ms | warm | 42 | 0.000 | 0.100 | 0.100 | 0.100 | 0.007 |  |
 | merge.reply-deserialize [pose-only] | ms | cold | 90 | 0.000 | 0.100 | 0.200 | 0.200 | 0.026 |  |
 | merge.reply-deserialize [static-install] | ms | warm | 46 | 0.000 | 0.100 | 0.100 | 0.100 | 0.017 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 110 | 0.000 | 0.100 | 0.100 | 0.400 | 0.015 |  |
-| merge.validate | ms | warm | 88 | 0.100 | 0.200 | 0.400 | 0.400 | 0.099 | 1 of 1 |
-| merge.validate | ms | cold | 200 | 0.100 | 0.300 | 0.700 | 1.500 | 0.134 | 1 of 1 |
+| merge.validate | ms | warm | 88 | 0.100 | 0.200 | 0.400 | 0.400 | 0.098 | 1 of 1 |
+| merge.validate | ms | cold | 200 | 0.100 | 0.300 | 0.700 | 1.500 | 0.133 | 1 of 1 |
 | merge.validate [pose-only] | ms | warm | 42 | 0.100 | 0.200 | 0.400 | 0.400 | 0.112 |  |
 | merge.validate [pose-only] | ms | cold | 90 | 0.100 | 0.300 | 1.100 | 1.100 | 0.146 |  |
-| merge.validate [static-install] | ms | warm | 46 | 0.100 | 0.200 | 0.300 | 0.300 | 0.087 |  |
-| merge.validate [static-install] | ms | cold | 110 | 0.100 | 0.400 | 0.700 | 1.500 | 0.125 |  |
+| merge.validate [static-install] | ms | warm | 46 | 0.100 | 0.200 | 0.200 | 0.200 | 0.085 |  |
+| merge.validate [static-install] | ms | cold | 110 | 0.100 | 0.400 | 0.700 | 1.500 | 0.123 |  |
 | pool.compute-metric | ms | warm | 44 | 0.900 | 1.500 | 1.700 | 1.700 | 0.930 | 1 of 1 |
 | pool.compute-metric | ms | cold | 100 | 1.100 | 4.000 | 7.200 | 17.600 | 1.632 | 1 of 1 |
 | pool.compute-metric [pose-only] | ms | warm | 21 | 0.700 | 0.900 | 1.000 | 1.000 | 0.700 |  |
@@ -3313,70 +3317,70 @@ Denominators: submitted=1201 coalesced=970 dispatched=231 completed=231 accepted
 | dispatch.prepare [pose-only] | ms | warm | 131 | 0.000 | 0.100 | 0.200 | 0.200 | 0.049 |  |
 | dispatch.prepare [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.200 | 0.200 | 0.034 |  |
 | dispatch.prepare [static-install] | ms | cold | 1 | 0.700 | 0.700 | 0.700 | 0.700 | 0.700 |  |
-| display.derive | ms | warm | 174 | 0.500 | 1.500 | 3.600 | 6.600 | 0.610 | 1 of 1 |
-| display.derive | ms | cold | 57 | 0.700 | 2.100 | 8.300 | 8.300 | 0.967 | 1 of 1 |
-| display.derive [pose-only] | ms | warm | 174 | 0.500 | 1.500 | 3.600 | 6.600 | 0.610 |  |
-| display.derive [pose-only] | ms | cold | 56 | 0.700 | 1.900 | 3.300 | 3.300 | 0.836 |  |
+| display.derive | ms | warm | 131 | 0.500 | 1.600 | 3.600 | 6.600 | 0.624 | 1 of 1 |
+| display.derive | ms | cold | 100 | 0.600 | 1.500 | 3.300 | 8.300 | 0.795 | 1 of 1 |
+| display.derive [pose-only] | ms | warm | 131 | 0.500 | 1.600 | 3.600 | 6.600 | 0.624 |  |
+| display.derive [pose-only] | ms | cold | 99 | 0.600 | 1.500 | 3.300 | 3.300 | 0.719 |  |
 | display.derive [static-install] | ms | cold | 1 | 8.300 | 8.300 | 8.300 | 8.300 | 8.300 |  |
-| input.lateness | ms | warm | 900 | 0.300 | 1.400 | 1.867 | 3.233 | 0.322 | 0 of 1 |
-| input.lateness | ms | cold | 301 | 0.300 | 1.600 | 2.067 | 26.433 | 0.543 | 0 of 1 |
-| input.project | ms | warm | 900 | 2.200 | 3.800 | 6.400 | 8.600 | 2.336 | 0 of 1 |
-| input.project | ms | cold | 301 | 2.300 | 4.200 | 4.700 | 21.800 | 2.482 | 0 of 1 |
+| input.lateness | ms | warm | 679 | 0.333 | 1.333 | 1.900 | 3.233 | 0.309 | 0 of 1 |
+| input.lateness | ms | cold | 522 | 0.300 | 1.600 | 1.933 | 26.433 | 0.465 | 0 of 1 |
+| input.project | ms | warm | 679 | 2.200 | 4.000 | 7.100 | 8.600 | 2.354 | 0 of 1 |
+| input.project | ms | cold | 522 | 2.300 | 4.000 | 4.500 | 21.800 | 2.398 | 0 of 1 |
 | install.ack-roundtrip | ms | cold | 4 | 20.800 | 22.900 | 22.900 | 22.900 | 20.950 | 1 of 1 |
 | install.ack-roundtrip [static-install] | ms | cold | 4 | 20.800 | 22.900 | 22.900 | 22.900 | 20.950 |  |
 | install.post | ms | cold | 4 | 1.600 | 2.200 | 2.200 | 2.200 | 1.775 | 1 of 1 |
 | install.post [static-install] | ms | cold | 4 | 1.600 | 2.200 | 2.200 | 2.200 | 1.775 |  |
 | install.worker-deserialize | ms | cold | 4 | 2.500 | 4.100 | 4.100 | 4.100 | 2.925 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | cold | 4 | 2.500 | 4.100 | 4.100 | 4.100 | 2.925 |  |
-| job.phase-residual | ms | warm | 114 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 | 1 of 1 |
-| job.phase-residual | ms | cold | 91 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 | 1 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 114 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 |  |
-| job.phase-residual [pose-only] | ms | cold | 90 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 |  |
+| job.phase-residual | ms | warm | 131 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 | 1 of 1 |
+| job.phase-residual | ms | cold | 100 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 | 1 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 131 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 |  |
+| job.phase-residual [pose-only] | ms | cold | 99 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 |  |
 | job.phase-residual [static-install] | ms | cold | 1 | -0.000 | -0.000 | -0.000 | -0.000 | -0.000 |  |
-| job.submit-to-accepted | ms | warm | 174 | 13.100 | 19.600 | 24.500 | 69.800 | 13.820 | 1 of 1 |
-| job.submit-to-accepted | ms | cold | 57 | 13.500 | 22.700 | 60.000 | 60.000 | 14.605 | 1 of 1 |
-| job.submit-to-accepted [pose-only] | ms | warm | 174 | 13.100 | 19.600 | 24.500 | 69.800 | 13.820 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 56 | 13.400 | 21.400 | 23.100 | 23.100 | 13.795 |  |
+| job.submit-to-accepted | ms | warm | 131 | 13.000 | 19.400 | 24.500 | 69.800 | 13.821 | 1 of 1 |
+| job.submit-to-accepted | ms | cold | 100 | 13.400 | 21.400 | 23.100 | 60.000 | 14.266 | 1 of 1 |
+| job.submit-to-accepted [pose-only] | ms | warm | 131 | 13.000 | 19.400 | 24.500 | 69.800 | 13.821 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 99 | 13.400 | 21.400 | 23.100 | 23.100 | 13.804 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 1 | 60.000 | 60.000 | 60.000 | 60.000 | 60.000 |  |
-| merge.assemble | ms | warm | 114 | 0.000 | 0.000 | 0.100 | 0.100 | 0.004 | 1 of 1 |
-| merge.assemble | ms | cold | 91 | 0.000 | 0.100 | 0.200 | 0.200 | 0.010 | 1 of 1 |
-| merge.assemble [pose-only] | ms | warm | 114 | 0.000 | 0.000 | 0.100 | 0.100 | 0.004 |  |
-| merge.assemble [pose-only] | ms | cold | 90 | 0.000 | 0.100 | 0.100 | 0.100 | 0.008 |  |
+| merge.assemble | ms | warm | 131 | 0.000 | 0.000 | 0.100 | 0.100 | 0.003 | 1 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.200 | 0.010 | 1 of 1 |
+| merge.assemble [pose-only] | ms | warm | 131 | 0.000 | 0.000 | 0.100 | 0.100 | 0.003 |  |
+| merge.assemble [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.100 | 0.100 | 0.008 |  |
 | merge.assemble [static-install] | ms | cold | 1 | 0.200 | 0.200 | 0.200 | 0.200 | 0.200 |  |
 | merge.reply-deserialize | ms | warm | 524 | 0.000 | 0.100 | 0.100 | 0.200 | 0.015 | 1 of 1 |
 | merge.reply-deserialize | ms | cold | 400 | 0.000 | 0.100 | 0.100 | 0.200 | 0.018 | 1 of 1 |
 | merge.reply-deserialize [pose-only] | ms | warm | 524 | 0.000 | 0.100 | 0.100 | 0.200 | 0.015 |  |
 | merge.reply-deserialize [pose-only] | ms | cold | 396 | 0.000 | 0.100 | 0.100 | 0.200 | 0.017 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 4 | 0.000 | 0.100 | 0.100 | 0.100 | 0.025 |  |
-| merge.validate | ms | warm | 524 | 0.100 | 0.300 | 0.700 | 1.900 | 0.110 | 1 of 1 |
-| merge.validate | ms | cold | 400 | 0.100 | 0.500 | 1.100 | 2.200 | 0.147 | 1 of 1 |
-| merge.validate [pose-only] | ms | warm | 524 | 0.100 | 0.300 | 0.700 | 1.900 | 0.110 |  |
-| merge.validate [pose-only] | ms | cold | 396 | 0.100 | 0.500 | 0.900 | 2.200 | 0.142 |  |
+| merge.validate | ms | warm | 524 | 0.100 | 0.300 | 0.400 | 0.400 | 0.090 | 1 of 1 |
+| merge.validate | ms | cold | 400 | 0.100 | 0.400 | 0.700 | 1.300 | 0.133 | 1 of 1 |
+| merge.validate [pose-only] | ms | warm | 524 | 0.100 | 0.300 | 0.400 | 0.400 | 0.090 |  |
+| merge.validate [pose-only] | ms | cold | 396 | 0.100 | 0.400 | 0.700 | 1.300 | 0.127 |  |
 | merge.validate [static-install] | ms | cold | 4 | 0.400 | 1.200 | 1.200 | 1.200 | 0.700 |  |
-| pool.compute-metric | ms | warm | 174 | 1.900 | 4.600 | 8.800 | 9.600 | 2.247 | 1 of 1 |
-| pool.compute-metric | ms | cold | 57 | 2.200 | 6.800 | 37.400 | 37.400 | 3.288 | 1 of 1 |
-| pool.compute-metric [pose-only] | ms | warm | 174 | 1.900 | 4.600 | 8.800 | 9.600 | 2.247 |  |
-| pool.compute-metric [pose-only] | ms | cold | 56 | 2.200 | 6.000 | 7.300 | 7.300 | 2.679 |  |
+| pool.compute-metric | ms | warm | 131 | 1.900 | 4.500 | 8.800 | 9.600 | 2.239 | 1 of 1 |
+| pool.compute-metric | ms | cold | 100 | 2.100 | 6.000 | 7.300 | 37.400 | 2.851 | 1 of 1 |
+| pool.compute-metric [pose-only] | ms | warm | 131 | 1.900 | 4.500 | 8.800 | 9.600 | 2.239 |  |
+| pool.compute-metric [pose-only] | ms | cold | 99 | 2.100 | 6.000 | 7.300 | 7.300 | 2.502 |  |
 | pool.compute-metric [static-install] | ms | cold | 1 | 37.400 | 37.400 | 37.400 | 37.400 | 37.400 |  |
-| pool.shard-max | ms | warm | 174 | 1.400 | 2.200 | 3.500 | 3.600 | 1.495 | 1 of 1 |
-| pool.shard-max | ms | cold | 57 | 1.700 | 2.800 | 10.800 | 10.800 | 1.810 | 1 of 1 |
-| pool.shard-max [pose-only] | ms | warm | 174 | 1.400 | 2.200 | 3.500 | 3.600 | 1.495 |  |
-| pool.shard-max [pose-only] | ms | cold | 56 | 1.700 | 2.600 | 3.100 | 3.100 | 1.650 |  |
+| pool.shard-max | ms | warm | 131 | 1.400 | 2.200 | 3.500 | 3.600 | 1.509 | 1 of 1 |
+| pool.shard-max | ms | cold | 100 | 1.500 | 2.500 | 3.100 | 10.800 | 1.657 | 1 of 1 |
+| pool.shard-max [pose-only] | ms | warm | 131 | 1.400 | 2.200 | 3.500 | 3.600 | 1.509 |  |
+| pool.shard-max [pose-only] | ms | cold | 99 | 1.500 | 2.500 | 3.100 | 3.100 | 1.565 |  |
 | pool.shard-max [static-install] | ms | cold | 1 | 10.800 | 10.800 | 10.800 | 10.800 | 10.800 |  |
-| pool.shard-total | ms | warm | 174 | 4.500 | 7.000 | 12.900 | 13.500 | 4.721 | 1 of 1 |
-| pool.shard-total | ms | cold | 57 | 5.200 | 7.900 | 37.700 | 37.700 | 5.872 | 1 of 1 |
-| pool.shard-total [pose-only] | ms | warm | 174 | 4.500 | 7.000 | 12.900 | 13.500 | 4.721 |  |
-| pool.shard-total [pose-only] | ms | cold | 56 | 5.100 | 7.900 | 11.000 | 11.000 | 5.304 |  |
+| pool.shard-total | ms | warm | 131 | 4.500 | 7.600 | 12.900 | 13.500 | 4.827 | 1 of 1 |
+| pool.shard-total | ms | cold | 100 | 4.800 | 7.900 | 11.000 | 37.700 | 5.238 | 1 of 1 |
+| pool.shard-total [pose-only] | ms | warm | 131 | 4.500 | 7.600 | 12.900 | 13.500 | 4.827 |  |
+| pool.shard-total [pose-only] | ms | cold | 99 | 4.800 | 7.900 | 11.000 | 11.000 | 4.910 |  |
 | pool.shard-total [static-install] | ms | cold | 1 | 37.700 | 37.700 | 37.700 | 37.700 | 37.700 |  |
-| pose.age-at-accept | ms | warm | 174 | 0.000 | 16.700 | 18.000 | 18.200 | 3.432 | 1 of 1 |
-| pose.age-at-accept | ms | cold | 57 | 0.000 | 17.200 | 53.800 | 53.800 | 4.970 | 1 of 1 |
-| pose.age-at-accept [pose-only] | ms | warm | 174 | 0.000 | 16.700 | 18.000 | 18.200 | 3.432 |  |
-| pose.age-at-accept [pose-only] | ms | cold | 56 | 0.000 | 17.000 | 17.600 | 17.600 | 4.098 |  |
+| pose.age-at-accept | ms | warm | 131 | 0.000 | 16.600 | 16.800 | 16.900 | 3.295 | 1 of 1 |
+| pose.age-at-accept | ms | cold | 100 | 0.000 | 17.200 | 18.200 | 53.800 | 4.488 | 1 of 1 |
+| pose.age-at-accept [pose-only] | ms | warm | 131 | 0.000 | 16.600 | 16.800 | 16.900 | 3.295 |  |
+| pose.age-at-accept [pose-only] | ms | cold | 99 | 0.000 | 17.200 | 18.200 | 18.200 | 3.990 |  |
 | pose.age-at-accept [static-install] | ms | cold | 1 | 53.800 | 53.800 | 53.800 | 53.800 | 53.800 |  |
-| pose.latest-wait | ms | warm | 900 | 47.700 | 86.600 | 93.600 | 98.700 | 48.709 | 0 of 1 |
-| pose.latest-wait | ms | cold | 301 | 48.900 | 91.900 | 98.900 | 121.700 | 50.355 | 0 of 1 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 900 | 47.700 | 86.600 | 93.600 | 98.700 | 48.709 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 301 | 48.900 | 91.900 | 98.900 | 121.700 | 50.355 |  |
+| pose.latest-wait | ms | warm | 679 | 47.700 | 86.600 | 93.700 | 98.700 | 48.675 | 0 of 1 |
+| pose.latest-wait | ms | cold | 522 | 48.200 | 90.000 | 94.900 | 121.700 | 49.703 | 0 of 1 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 679 | 47.700 | 86.600 | 93.700 | 98.700 | 48.675 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 522 | 48.200 | 90.000 | 94.900 | 121.700 | 49.703 |  |
 | queue.rate-limit | ms | warm | 131 | 8.533 | 13.133 | 13.733 | 64.333 | 7.990 | 1 of 1 |
 | queue.rate-limit | ms | cold | 100 | 8.233 | 13.133 | 14.533 | 14.833 | 7.496 | 1 of 1 |
 | queue.rate-limit [pose-only] | ms | warm | 131 | 8.533 | 13.133 | 13.733 | 64.333 | 7.990 |  |
@@ -3430,15 +3434,15 @@ Denominators: submitted=3600 coalesced=2911 dispatched=not-applicable completed=
 
 | phase | units | temperature | N | p50 | p95 | p99 | max | mean | exploratory runs |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| job.submit-to-accepted | ms | warm | 631 | 13.600 | 20.700 | 26.200 | 88.600 | 14.224 | 1 of 1 |
-| job.submit-to-accepted | ms | cold | 58 | 12.400 | 19.100 | 43.500 | 43.500 | 12.881 | 1 of 1 |
-| job.submit-to-accepted [pose-only] | ms | warm | 631 | 13.600 | 20.700 | 26.200 | 88.600 | 14.224 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 57 | 12.400 | 18.900 | 19.500 | 19.500 | 12.344 |  |
+| job.submit-to-accepted | ms | warm | 589 | 13.700 | 20.800 | 26.700 | 88.600 | 14.283 | 1 of 1 |
+| job.submit-to-accepted | ms | cold | 100 | 12.800 | 19.400 | 20.800 | 43.500 | 13.099 | 1 of 1 |
+| job.submit-to-accepted [pose-only] | ms | warm | 589 | 13.700 | 20.800 | 26.700 | 88.600 | 14.283 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 99 | 12.800 | 19.400 | 20.800 | 20.800 | 12.792 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 1 | 43.500 | 43.500 | 43.500 | 43.500 | 43.500 |  |
-| pool.compute-metric | ms | warm | 631 | 1.900 | 4.900 | 12.000 | 45.500 | 2.488 | 1 of 1 |
-| pool.compute-metric | ms | cold | 58 | 1.700 | 3.700 | 27.400 | 27.400 | 2.322 | 1 of 1 |
-| pool.compute-metric [pose-only] | ms | warm | 631 | 1.900 | 4.900 | 12.000 | 45.500 | 2.488 |  |
-| pool.compute-metric [pose-only] | ms | cold | 57 | 1.700 | 3.600 | 3.800 | 3.800 | 1.882 |  |
+| pool.compute-metric | ms | warm | 589 | 1.900 | 5.000 | 12.100 | 45.500 | 2.533 | 1 of 1 |
+| pool.compute-metric | ms | cold | 100 | 1.600 | 3.700 | 4.100 | 27.400 | 2.123 | 1 of 1 |
+| pool.compute-metric [pose-only] | ms | warm | 589 | 1.900 | 5.000 | 12.100 | 45.500 | 2.533 |  |
+| pool.compute-metric [pose-only] | ms | cold | 99 | 1.600 | 3.700 | 4.100 | 4.100 | 1.868 |  |
 | pool.compute-metric [static-install] | ms | cold | 1 | 27.400 | 27.400 | 27.400 | 27.400 | 27.400 |  |
 
 ## TS-W W01_H100_POSE_60HZ_60S pass=clean boundary=browser-pool workers=1 audio=not-applicable build=not-applicable driver=not-applicable browser-channel=default viewport=not-applicable browser-args="not-applicable"
@@ -3453,15 +3457,15 @@ Denominators: submitted=3600 coalesced=2953 dispatched=647 completed=647 accepte
 | dispatch.prepare [pose-only] | ms | warm | 547 | 0.100 | 0.200 | 0.300 | 0.500 | 0.058 |  |
 | dispatch.prepare [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.200 | 0.200 | 0.044 |  |
 | dispatch.prepare [static-install] | ms | cold | 1 | 0.400 | 0.400 | 0.400 | 0.400 | 0.400 |  |
-| display.derive | ms | warm | 591 | 0.400 | 1.800 | 3.800 | 14.600 | 0.645 | 1 of 1 |
-| display.derive | ms | cold | 56 | 0.500 | 1.500 | 4.400 | 4.400 | 0.620 | 1 of 1 |
-| display.derive [pose-only] | ms | warm | 591 | 0.400 | 1.800 | 3.800 | 14.600 | 0.645 |  |
-| display.derive [pose-only] | ms | cold | 55 | 0.500 | 1.400 | 1.700 | 1.700 | 0.551 |  |
+| display.derive | ms | warm | 547 | 0.400 | 1.800 | 3.800 | 14.600 | 0.642 | 1 of 1 |
+| display.derive | ms | cold | 100 | 0.400 | 1.600 | 2.500 | 4.400 | 0.643 | 1 of 1 |
+| display.derive [pose-only] | ms | warm | 547 | 0.400 | 1.800 | 3.800 | 14.600 | 0.642 |  |
+| display.derive [pose-only] | ms | cold | 99 | 0.400 | 1.600 | 2.500 | 2.500 | 0.605 |  |
 | display.derive [static-install] | ms | cold | 1 | 4.400 | 4.400 | 4.400 | 4.400 | 4.400 |  |
-| input.lateness | ms | warm | 3299 | 0.333 | 19.000 | 106.200 | 125.333 | 3.993 | 0 of 1 |
-| input.lateness | ms | cold | 301 | 0.233 | 1.333 | 1.800 | 7.733 | 0.349 | 0 of 1 |
-| input.project | ms | warm | 3299 | 3.400 | 6.300 | 25.700 | 44.500 | 3.599 | 0 of 1 |
-| input.project | ms | cold | 301 | 2.100 | 4.000 | 4.200 | 15.100 | 2.479 | 0 of 1 |
+| input.lateness | ms | warm | 3059 | 0.333 | 26.900 | 106.633 | 125.333 | 4.281 | 0 of 1 |
+| input.lateness | ms | cold | 541 | 0.200 | 1.333 | 1.733 | 7.733 | 0.335 | 0 of 1 |
+| input.project | ms | warm | 3059 | 3.400 | 6.500 | 26.900 | 44.500 | 3.636 | 0 of 1 |
+| input.project | ms | cold | 541 | 3.400 | 3.900 | 4.100 | 15.100 | 2.766 | 0 of 1 |
 | install.ack-roundtrip | ms | cold | 1 | 8.600 | 8.600 | 8.600 | 8.600 | 8.600 | 1 of 1 |
 | install.ack-roundtrip [static-install] | ms | cold | 1 | 8.600 | 8.600 | 8.600 | 8.600 | 8.600 |  |
 | install.post | ms | cold | 1 | 1.300 | 1.300 | 1.300 | 1.300 | 1.300 | 1 of 1 |
@@ -3473,10 +3477,10 @@ Denominators: submitted=3600 coalesced=2953 dispatched=647 completed=647 accepte
 | job.phase-residual [pose-only] | ms | warm | 547 | 0.000 | 0.000 | 0.000 | 0.000 | -0.007 |  |
 | job.phase-residual [pose-only] | ms | cold | 99 | 0.000 | 0.000 | 0.000 | 0.000 | -0.005 |  |
 | job.phase-residual [static-install] | ms | cold | 1 | -0.100 | -0.100 | -0.100 | -0.100 | -0.100 |  |
-| job.submit-to-accepted | ms | warm | 591 | 16.600 | 24.500 | 113.400 | 128.300 | 19.232 | 1 of 1 |
-| job.submit-to-accepted | ms | cold | 56 | 15.800 | 24.400 | 33.400 | 33.400 | 16.705 | 1 of 1 |
-| job.submit-to-accepted [pose-only] | ms | warm | 591 | 16.600 | 24.500 | 113.400 | 128.300 | 19.232 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 55 | 15.800 | 24.400 | 24.700 | 24.700 | 16.402 |  |
+| job.submit-to-accepted | ms | warm | 547 | 16.600 | 24.900 | 113.400 | 128.300 | 19.348 | 1 of 1 |
+| job.submit-to-accepted | ms | cold | 100 | 15.800 | 23.900 | 24.700 | 33.400 | 17.185 | 1 of 1 |
+| job.submit-to-accepted [pose-only] | ms | warm | 547 | 16.600 | 24.900 | 113.400 | 128.300 | 19.348 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 99 | 15.800 | 23.900 | 24.700 | 24.700 | 17.021 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 1 | 33.400 | 33.400 | 33.400 | 33.400 | 33.400 |  |
 | merge.assemble | ms | warm | 547 | 0.000 | 0.100 | 0.100 | 0.200 | 0.013 | 1 of 1 |
 | merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.100 | 0.012 | 1 of 1 |
@@ -3493,30 +3497,30 @@ Denominators: submitted=3600 coalesced=2953 dispatched=647 completed=647 accepte
 | merge.validate [pose-only] | ms | warm | 547 | 0.400 | 1.600 | 8.100 | 19.800 | 0.684 |  |
 | merge.validate [pose-only] | ms | cold | 99 | 0.300 | 1.500 | 2.200 | 2.200 | 0.452 |  |
 | merge.validate [static-install] | ms | cold | 1 | 1.600 | 1.600 | 1.600 | 1.600 | 1.600 |  |
-| pool.compute-metric | ms | warm | 591 | 6.100 | 12.600 | 87.200 | 98.300 | 7.444 | 1 of 1 |
-| pool.compute-metric | ms | cold | 56 | 6.000 | 7.900 | 17.700 | 17.700 | 5.246 | 1 of 1 |
-| pool.compute-metric [pose-only] | ms | warm | 591 | 6.100 | 12.600 | 87.200 | 98.300 | 7.444 |  |
-| pool.compute-metric [pose-only] | ms | cold | 55 | 6.000 | 7.700 | 9.800 | 9.800 | 5.020 |  |
+| pool.compute-metric | ms | warm | 547 | 6.000 | 12.900 | 87.200 | 98.300 | 7.512 | 1 of 1 |
+| pool.compute-metric | ms | cold | 100 | 6.300 | 8.800 | 10.500 | 17.700 | 5.843 | 1 of 1 |
+| pool.compute-metric [pose-only] | ms | warm | 547 | 6.000 | 12.900 | 87.200 | 98.300 | 7.512 |  |
+| pool.compute-metric [pose-only] | ms | cold | 99 | 6.300 | 8.800 | 10.500 | 10.500 | 5.723 |  |
 | pool.compute-metric [static-install] | ms | cold | 1 | 17.700 | 17.700 | 17.700 | 17.700 | 17.700 |  |
-| pool.shard-max | ms | warm | 591 | 4.900 | 9.000 | 53.900 | 70.500 | 5.668 | 1 of 1 |
-| pool.shard-max | ms | cold | 56 | 4.700 | 6.800 | 7.300 | 7.300 | 4.214 | 1 of 1 |
-| pool.shard-max [pose-only] | ms | warm | 591 | 4.900 | 9.000 | 53.900 | 70.500 | 5.668 |  |
-| pool.shard-max [pose-only] | ms | cold | 55 | 4.700 | 6.700 | 6.900 | 6.900 | 4.158 |  |
+| pool.shard-max | ms | warm | 547 | 4.900 | 9.500 | 53.900 | 70.500 | 5.712 | 1 of 1 |
+| pool.shard-max | ms | cold | 100 | 5.000 | 6.600 | 6.900 | 7.300 | 4.612 | 1 of 1 |
+| pool.shard-max [pose-only] | ms | warm | 547 | 4.900 | 9.500 | 53.900 | 70.500 | 5.712 |  |
+| pool.shard-max [pose-only] | ms | cold | 99 | 5.000 | 6.600 | 6.900 | 6.900 | 4.585 |  |
 | pool.shard-max [static-install] | ms | cold | 1 | 7.300 | 7.300 | 7.300 | 7.300 | 7.300 |  |
-| pool.shard-total | ms | warm | 591 | 4.900 | 9.000 | 53.900 | 70.500 | 5.668 | 1 of 1 |
-| pool.shard-total | ms | cold | 56 | 4.700 | 6.800 | 7.300 | 7.300 | 4.214 | 1 of 1 |
-| pool.shard-total [pose-only] | ms | warm | 591 | 4.900 | 9.000 | 53.900 | 70.500 | 5.668 |  |
-| pool.shard-total [pose-only] | ms | cold | 55 | 4.700 | 6.700 | 6.900 | 6.900 | 4.158 |  |
+| pool.shard-total | ms | warm | 547 | 4.900 | 9.500 | 53.900 | 70.500 | 5.712 | 1 of 1 |
+| pool.shard-total | ms | cold | 100 | 5.000 | 6.600 | 6.900 | 7.300 | 4.612 | 1 of 1 |
+| pool.shard-total [pose-only] | ms | warm | 547 | 4.900 | 9.500 | 53.900 | 70.500 | 5.712 |  |
+| pool.shard-total [pose-only] | ms | cold | 99 | 5.000 | 6.600 | 6.900 | 6.900 | 4.585 |  |
 | pool.shard-total [static-install] | ms | cold | 1 | 7.300 | 7.300 | 7.300 | 7.300 | 7.300 |  |
-| pose.age-at-accept | ms | warm | 591 | 0.000 | 17.800 | 74.000 | 86.400 | 8.766 | 1 of 1 |
-| pose.age-at-accept | ms | cold | 56 | 0.000 | 17.900 | 26.800 | 26.800 | 6.779 | 1 of 1 |
-| pose.age-at-accept [pose-only] | ms | warm | 591 | 0.000 | 17.800 | 74.000 | 86.400 | 8.766 |  |
-| pose.age-at-accept [pose-only] | ms | cold | 55 | 0.000 | 17.900 | 17.900 | 17.900 | 6.415 |  |
+| pose.age-at-accept | ms | warm | 547 | 0.000 | 17.900 | 74.000 | 86.400 | 8.807 | 1 of 1 |
+| pose.age-at-accept | ms | cold | 100 | 0.000 | 17.800 | 17.900 | 26.800 | 7.428 | 1 of 1 |
+| pose.age-at-accept [pose-only] | ms | warm | 547 | 0.000 | 17.900 | 74.000 | 86.400 | 8.807 |  |
+| pose.age-at-accept [pose-only] | ms | cold | 99 | 0.000 | 17.800 | 17.900 | 17.900 | 7.232 |  |
 | pose.age-at-accept [static-install] | ms | cold | 1 | 26.800 | 26.800 | 26.800 | 26.800 | 26.800 |  |
-| pose.latest-wait | ms | warm | 3299 | 55.000 | 98.000 | 163.600 | 237.400 | 57.152 | 0 of 1 |
-| pose.latest-wait | ms | cold | 301 | 53.900 | 96.200 | 99.600 | 104.400 | 53.424 | 0 of 1 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 3299 | 55.000 | 98.000 | 163.600 | 237.400 | 57.152 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 301 | 53.900 | 96.200 | 99.600 | 104.400 | 53.424 |  |
+| pose.latest-wait | ms | warm | 3059 | 55.000 | 98.200 | 165.100 | 237.400 | 57.300 | 0 of 1 |
+| pose.latest-wait | ms | cold | 541 | 54.800 | 97.100 | 99.400 | 104.400 | 54.238 | 0 of 1 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 3059 | 55.000 | 98.200 | 165.100 | 237.400 | 57.300 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 541 | 54.800 | 97.100 | 99.400 | 104.400 | 54.238 |  |
 | queue.rate-limit | ms | warm | 547 | 5.733 | 13.033 | 14.633 | 57.533 | 6.047 | 1 of 1 |
 | queue.rate-limit | ms | cold | 100 | 7.933 | 13.633 | 15.233 | 15.833 | 6.748 | 1 of 1 |
 | queue.rate-limit [pose-only] | ms | warm | 547 | 5.733 | 13.033 | 14.633 | 57.533 | 6.047 |  |
@@ -3575,34 +3579,34 @@ Denominators: submitted=3600 coalesced=2932 dispatched=668 completed=668 accepte
 | dispatch.prepare [pose-only] | ms | warm | 568 | 0.000 | 0.100 | 0.200 | 0.400 | 0.049 |  |
 | dispatch.prepare [pose-only] | ms | cold | 99 | 0.100 | 0.200 | 0.400 | 0.400 | 0.065 |  |
 | dispatch.prepare [static-install] | ms | cold | 1 | 0.300 | 0.300 | 0.300 | 0.300 | 0.300 |  |
-| display.derive | ms | warm | 611 | 0.400 | 2.000 | 3.600 | 8.400 | 0.658 | 1 of 1 |
-| display.derive | ms | cold | 57 | 0.600 | 1.900 | 6.300 | 6.300 | 0.840 | 1 of 1 |
-| display.derive [pose-only] | ms | warm | 611 | 0.400 | 2.000 | 3.600 | 8.400 | 0.658 |  |
-| display.derive [pose-only] | ms | cold | 56 | 0.600 | 1.800 | 2.300 | 2.300 | 0.743 |  |
+| display.derive | ms | warm | 568 | 0.400 | 1.900 | 3.400 | 6.400 | 0.616 | 1 of 1 |
+| display.derive | ms | cold | 100 | 0.500 | 2.300 | 8.300 | 8.400 | 1.001 | 1 of 1 |
+| display.derive [pose-only] | ms | warm | 568 | 0.400 | 1.900 | 3.400 | 6.400 | 0.616 |  |
+| display.derive [pose-only] | ms | cold | 99 | 0.500 | 2.300 | 8.400 | 8.400 | 0.947 |  |
 | display.derive [static-install] | ms | cold | 1 | 6.300 | 6.300 | 6.300 | 6.300 | 6.300 |  |
-| input.lateness | ms | warm | 3299 | 0.300 | 1.633 | 60.300 | 113.933 | 1.635 | 0 of 1 |
-| input.lateness | ms | cold | 301 | 0.200 | 1.433 | 1.967 | 2.067 | 0.254 | 0 of 1 |
-| input.project | ms | warm | 3299 | 3.500 | 5.900 | 12.100 | 42.300 | 3.544 | 0 of 1 |
-| input.project | ms | cold | 301 | 3.100 | 4.100 | 4.800 | 11.700 | 2.623 | 0 of 1 |
+| input.lateness | ms | warm | 3062 | 0.300 | 1.500 | 29.533 | 113.933 | 1.170 | 0 of 1 |
+| input.lateness | ms | cold | 538 | 0.267 | 21.933 | 95.033 | 109.400 | 3.505 | 0 of 1 |
+| input.project | ms | warm | 3062 | 3.400 | 5.600 | 9.900 | 40.500 | 3.468 | 0 of 1 |
+| input.project | ms | cold | 538 | 3.500 | 5.600 | 22.000 | 42.300 | 3.466 | 0 of 1 |
 | install.ack-roundtrip | ms | cold | 2 | 6.500 | 7.200 | 7.200 | 7.200 | 6.850 | 1 of 1 |
 | install.ack-roundtrip [static-install] | ms | cold | 2 | 6.500 | 7.200 | 7.200 | 7.200 | 6.850 |  |
 | install.post | ms | cold | 2 | 0.800 | 1.000 | 1.000 | 1.000 | 0.900 | 1 of 1 |
 | install.post [static-install] | ms | cold | 2 | 0.800 | 1.000 | 1.000 | 1.000 | 0.900 |  |
 | install.worker-deserialize | ms | cold | 2 | 1.300 | 1.500 | 1.500 | 1.500 | 1.400 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | cold | 2 | 1.300 | 1.500 | 1.500 | 1.500 | 1.400 |  |
-| job.phase-residual | ms | warm | 564 | 0.000 | 0.000 | 0.100 | 0.100 | -0.004 | 1 of 1 |
+| job.phase-residual | ms | warm | 568 | 0.000 | 0.000 | 0.100 | 0.100 | -0.004 | 1 of 1 |
 | job.phase-residual | ms | cold | 100 | 0.000 | 0.000 | 0.000 | 0.000 | -0.007 | 1 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 564 | 0.000 | 0.000 | 0.100 | 0.100 | -0.004 |  |
+| job.phase-residual [pose-only] | ms | warm | 568 | 0.000 | 0.000 | 0.100 | 0.100 | -0.004 |  |
 | job.phase-residual [pose-only] | ms | cold | 99 | 0.000 | 0.000 | 0.000 | 0.000 | -0.007 |  |
 | job.phase-residual [static-install] | ms | cold | 1 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |  |
-| job.submit-to-accepted | ms | warm | 611 | 15.100 | 23.500 | 38.200 | 92.300 | 16.714 | 1 of 1 |
-| job.submit-to-accepted | ms | cold | 57 | 14.400 | 22.000 | 27.900 | 27.900 | 15.211 | 1 of 1 |
-| job.submit-to-accepted [pose-only] | ms | warm | 611 | 15.100 | 23.500 | 38.200 | 92.300 | 16.714 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 56 | 14.300 | 21.800 | 22.200 | 22.200 | 14.984 |  |
+| job.submit-to-accepted | ms | warm | 568 | 15.000 | 23.300 | 36.800 | 92.300 | 16.543 | 1 of 1 |
+| job.submit-to-accepted | ms | cold | 100 | 15.400 | 22.700 | 58.100 | 81.400 | 16.828 | 1 of 1 |
+| job.submit-to-accepted [pose-only] | ms | warm | 568 | 15.000 | 23.300 | 36.800 | 92.300 | 16.543 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 99 | 15.400 | 22.700 | 81.400 | 81.400 | 16.716 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 1 | 27.900 | 27.900 | 27.900 | 27.900 | 27.900 |  |
-| merge.assemble | ms | warm | 564 | 0.000 | 0.100 | 0.100 | 0.200 | 0.016 | 1 of 1 |
+| merge.assemble | ms | warm | 568 | 0.000 | 0.100 | 0.100 | 0.200 | 0.016 | 1 of 1 |
 | merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.200 | 0.018 | 1 of 1 |
-| merge.assemble [pose-only] | ms | warm | 564 | 0.000 | 0.100 | 0.100 | 0.200 | 0.016 |  |
+| merge.assemble [pose-only] | ms | warm | 568 | 0.000 | 0.100 | 0.100 | 0.200 | 0.016 |  |
 | merge.assemble [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.200 | 0.200 | 0.017 |  |
 | merge.assemble [static-install] | ms | cold | 1 | 0.100 | 0.100 | 0.100 | 0.100 | 0.100 |  |
 | merge.reply-deserialize | ms | warm | 1136 | 0.000 | 0.100 | 0.200 | 0.600 | 0.042 | 0 of 1 |
@@ -3610,35 +3614,35 @@ Denominators: submitted=3600 coalesced=2932 dispatched=668 completed=668 accepte
 | merge.reply-deserialize [pose-only] | ms | warm | 1136 | 0.000 | 0.100 | 0.200 | 0.600 | 0.042 |  |
 | merge.reply-deserialize [pose-only] | ms | cold | 198 | 0.000 | 0.100 | 0.400 | 0.500 | 0.044 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 2 | 0.000 | 0.200 | 0.200 | 0.200 | 0.100 |  |
-| merge.validate | ms | warm | 1136 | 0.200 | 0.900 | 1.500 | 5.900 | 0.312 | 0 of 1 |
+| merge.validate | ms | warm | 1136 | 0.200 | 0.900 | 1.500 | 5.900 | 0.311 | 0 of 1 |
 | merge.validate | ms | cold | 200 | 0.200 | 0.900 | 1.500 | 3.600 | 0.311 | 0 of 1 |
-| merge.validate [pose-only] | ms | warm | 1136 | 0.200 | 0.900 | 1.500 | 5.900 | 0.312 |  |
+| merge.validate [pose-only] | ms | warm | 1136 | 0.200 | 0.900 | 1.500 | 5.900 | 0.311 |  |
 | merge.validate [pose-only] | ms | cold | 198 | 0.200 | 0.900 | 3.400 | 3.600 | 0.305 |  |
 | merge.validate [static-install] | ms | cold | 2 | 0.400 | 1.500 | 1.500 | 1.500 | 0.950 |  |
-| pool.compute-metric | ms | warm | 611 | 3.700 | 10.200 | 19.700 | 51.900 | 4.833 | 1 of 1 |
-| pool.compute-metric | ms | cold | 57 | 3.800 | 8.300 | 15.800 | 15.800 | 4.204 | 1 of 1 |
-| pool.compute-metric [pose-only] | ms | warm | 611 | 3.700 | 10.200 | 19.700 | 51.900 | 4.833 |  |
-| pool.compute-metric [pose-only] | ms | cold | 56 | 3.700 | 7.600 | 9.900 | 9.900 | 3.996 |  |
+| pool.compute-metric | ms | warm | 568 | 3.700 | 9.400 | 17.300 | 51.900 | 4.738 | 1 of 1 |
+| pool.compute-metric | ms | cold | 100 | 3.800 | 10.200 | 21.000 | 42.800 | 5.014 | 1 of 1 |
+| pool.compute-metric [pose-only] | ms | warm | 568 | 3.700 | 9.400 | 17.300 | 51.900 | 4.738 |  |
+| pool.compute-metric [pose-only] | ms | cold | 99 | 3.800 | 10.200 | 42.800 | 42.800 | 4.905 |  |
 | pool.compute-metric [static-install] | ms | cold | 1 | 15.800 | 15.800 | 15.800 | 15.800 | 15.800 |  |
-| pool.shard-max | ms | warm | 611 | 2.900 | 5.000 | 12.500 | 38.600 | 3.187 | 1 of 1 |
-| pool.shard-max | ms | cold | 57 | 3.100 | 3.800 | 6.800 | 6.800 | 2.828 | 1 of 1 |
-| pool.shard-max [pose-only] | ms | warm | 611 | 2.900 | 5.000 | 12.500 | 38.600 | 3.187 |  |
-| pool.shard-max [pose-only] | ms | cold | 56 | 3.100 | 3.800 | 4.300 | 4.300 | 2.757 |  |
+| pool.shard-max | ms | warm | 568 | 2.900 | 4.600 | 10.800 | 38.600 | 3.097 | 1 of 1 |
+| pool.shard-max | ms | cold | 100 | 3.100 | 6.600 | 16.200 | 33.700 | 3.496 | 1 of 1 |
+| pool.shard-max [pose-only] | ms | warm | 568 | 2.900 | 4.600 | 10.800 | 38.600 | 3.097 |  |
+| pool.shard-max [pose-only] | ms | cold | 99 | 3.100 | 6.600 | 33.700 | 33.700 | 3.463 |  |
 | pool.shard-max [static-install] | ms | cold | 1 | 6.800 | 6.800 | 6.800 | 6.800 | 6.800 |  |
-| pool.shard-total | ms | warm | 611 | 5.300 | 9.500 | 24.300 | 73.500 | 5.865 | 1 of 1 |
-| pool.shard-total | ms | cold | 57 | 5.500 | 7.500 | 13.100 | 13.100 | 5.260 | 1 of 1 |
-| pool.shard-total [pose-only] | ms | warm | 611 | 5.300 | 9.500 | 24.300 | 73.500 | 5.865 |  |
-| pool.shard-total [pose-only] | ms | cold | 56 | 5.400 | 7.400 | 7.800 | 7.800 | 5.120 |  |
+| pool.shard-total | ms | warm | 568 | 5.300 | 8.700 | 18.500 | 73.500 | 5.700 | 1 of 1 |
+| pool.shard-total | ms | cold | 100 | 5.400 | 10.700 | 32.300 | 64.400 | 6.459 | 1 of 1 |
+| pool.shard-total [pose-only] | ms | warm | 568 | 5.300 | 8.700 | 18.500 | 73.500 | 5.700 |  |
+| pool.shard-total [pose-only] | ms | cold | 99 | 5.400 | 10.700 | 64.400 | 64.400 | 6.392 |  |
 | pool.shard-total [static-install] | ms | cold | 1 | 13.100 | 13.100 | 13.100 | 13.100 | 13.100 |  |
-| pose.age-at-accept | ms | warm | 611 | 0.000 | 17.700 | 19.000 | 48.000 | 6.389 | 1 of 1 |
-| pose.age-at-accept | ms | cold | 57 | 0.000 | 17.100 | 17.500 | 17.500 | 5.411 | 1 of 1 |
-| pose.age-at-accept [pose-only] | ms | warm | 611 | 0.000 | 17.700 | 19.000 | 48.000 | 6.389 |  |
-| pose.age-at-accept [pose-only] | ms | cold | 56 | 0.000 | 17.100 | 17.500 | 17.500 | 5.220 |  |
+| pose.age-at-accept | ms | warm | 568 | 0.000 | 17.700 | 18.600 | 48.000 | 6.292 | 1 of 1 |
+| pose.age-at-accept | ms | cold | 100 | 0.000 | 17.400 | 38.100 | 39.600 | 6.381 | 1 of 1 |
+| pose.age-at-accept [pose-only] | ms | warm | 568 | 0.000 | 17.700 | 18.600 | 48.000 | 6.292 |  |
+| pose.age-at-accept [pose-only] | ms | cold | 99 | 0.000 | 17.400 | 39.600 | 39.600 | 6.283 |  |
 | pose.age-at-accept [static-install] | ms | cold | 1 | 16.100 | 16.100 | 16.100 | 16.100 | 16.100 |  |
-| pose.latest-wait | ms | warm | 3299 | 53.300 | 94.700 | 106.700 | 163.300 | 53.275 | 0 of 1 |
-| pose.latest-wait | ms | cold | 301 | 49.900 | 93.200 | 96.500 | 97.800 | 51.378 | 0 of 1 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 3299 | 53.300 | 94.700 | 106.700 | 163.300 | 53.275 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 301 | 49.900 | 93.200 | 96.500 | 97.800 | 51.378 |  |
+| pose.latest-wait | ms | warm | 3062 | 53.200 | 94.600 | 105.100 | 160.900 | 53.103 | 0 of 1 |
+| pose.latest-wait | ms | cold | 538 | 52.100 | 94.900 | 119.800 | 163.300 | 53.198 | 0 of 1 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 3062 | 53.200 | 94.600 | 105.100 | 160.900 | 53.103 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 538 | 52.100 | 94.900 | 119.800 | 163.300 | 53.198 |  |
 | queue.rate-limit | ms | warm | 568 | 7.633 | 12.833 | 13.633 | 46.233 | 6.420 | 1 of 1 |
 | queue.rate-limit | ms | cold | 100 | 7.533 | 12.833 | 13.833 | 15.633 | 6.328 | 1 of 1 |
 | queue.rate-limit [pose-only] | ms | warm | 568 | 7.633 | 12.833 | 13.633 | 46.233 | 6.420 |  |
@@ -3697,70 +3701,70 @@ Denominators: submitted=10800 coalesced=8758 dispatched=2042 completed=2042 acce
 | dispatch.prepare [pose-only] | ms | warm | 1742 | 0.000 | 0.100 | 0.200 | 0.700 | 0.048 |  |
 | dispatch.prepare [pose-only] | ms | cold | 297 | 0.000 | 0.100 | 0.300 | 0.700 | 0.054 |  |
 | dispatch.prepare [static-install] | ms | cold | 3 | 0.600 | 0.800 | 0.800 | 0.800 | 0.600 |  |
-| display.derive | ms | warm | 1871 | 0.300 | 1.600 | 3.800 | 17.400 | 0.571 | 3 of 3 |
-| display.derive | ms | cold | 171 | 0.400 | 2.700 | 6.200 | 6.600 | 0.813 | 3 of 3 |
-| display.derive [pose-only] | ms | warm | 1871 | 0.300 | 1.600 | 3.800 | 17.400 | 0.571 |  |
-| display.derive [pose-only] | ms | cold | 168 | 0.400 | 2.000 | 4.700 | 6.200 | 0.733 |  |
+| display.derive | ms | warm | 1742 | 0.300 | 1.600 | 3.900 | 17.400 | 0.574 | 3 of 3 |
+| display.derive | ms | cold | 300 | 0.400 | 2.000 | 4.700 | 6.600 | 0.695 | 3 of 3 |
+| display.derive [pose-only] | ms | warm | 1742 | 0.300 | 1.600 | 3.900 | 17.400 | 0.574 |  |
+| display.derive [pose-only] | ms | cold | 297 | 0.400 | 1.900 | 3.900 | 6.200 | 0.648 |  |
 | display.derive [static-install] | ms | cold | 3 | 5.100 | 6.600 | 6.600 | 6.600 | 5.300 |  |
-| input.lateness | ms | warm | 9898 | 0.267 | 1.833 | 90.000 | 154.167 | 2.567 | 0 of 3 |
-| input.lateness | ms | cold | 902 | 0.200 | 2.000 | 67.733 | 93.900 | 2.158 | 0 of 3 |
-| input.project | ms | warm | 9898 | 2.900 | 5.200 | 11.800 | 42.800 | 2.995 | 0 of 3 |
-| input.project | ms | cold | 902 | 1.900 | 5.900 | 17.500 | 34.300 | 2.676 | 0 of 3 |
+| input.lateness | ms | warm | 9230 | 0.267 | 1.900 | 92.200 | 154.167 | 2.729 | 0 of 3 |
+| input.lateness | ms | cold | 1570 | 0.200 | 1.633 | 52.833 | 93.900 | 1.379 | 0 of 3 |
+| input.project | ms | warm | 9230 | 2.900 | 5.300 | 12.300 | 42.800 | 3.034 | 0 of 3 |
+| input.project | ms | cold | 1570 | 2.300 | 4.700 | 10.400 | 34.300 | 2.582 | 0 of 3 |
 | install.ack-roundtrip | ms | cold | 12 | 11.300 | 18.200 | 18.200 | 18.200 | 12.650 | 3 of 3 |
 | install.ack-roundtrip [static-install] | ms | cold | 12 | 11.300 | 18.200 | 18.200 | 18.200 | 12.650 |  |
 | install.post | ms | cold | 12 | 1.200 | 1.600 | 1.600 | 1.600 | 1.183 | 3 of 3 |
 | install.post [static-install] | ms | cold | 12 | 1.200 | 1.600 | 1.600 | 1.600 | 1.183 |  |
 | install.worker-deserialize | ms | cold | 12 | 2.100 | 2.900 | 2.900 | 2.900 | 1.967 | 3 of 3 |
 | install.worker-deserialize [static-install] | ms | cold | 12 | 2.100 | 2.900 | 2.900 | 2.900 | 1.967 |  |
-| job.phase-residual | ms | warm | 1591 | 0.000 | 0.000 | 0.100 | 0.200 | -0.002 | 3 of 3 |
-| job.phase-residual | ms | cold | 262 | 0.000 | 0.100 | 0.100 | 0.100 | 0.001 | 3 of 3 |
-| job.phase-residual [pose-only] | ms | warm | 1591 | 0.000 | 0.000 | 0.100 | 0.200 | -0.002 |  |
-| job.phase-residual [pose-only] | ms | cold | 260 | 0.000 | 0.100 | 0.100 | 0.100 | 0.001 |  |
-| job.phase-residual [static-install] | ms | cold | 2 | -0.100 | -0.000 | -0.000 | -0.000 | -0.050 |  |
-| job.submit-to-accepted | ms | warm | 1871 | 13.900 | 22.200 | 67.000 | 97.800 | 15.183 | 3 of 3 |
-| job.submit-to-accepted | ms | cold | 171 | 13.600 | 24.600 | 76.900 | 79.800 | 15.002 | 3 of 3 |
-| job.submit-to-accepted [pose-only] | ms | warm | 1871 | 13.900 | 22.200 | 67.000 | 97.800 | 15.183 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 168 | 13.600 | 22.000 | 76.900 | 79.800 | 14.559 |  |
+| job.phase-residual | ms | warm | 1742 | 0.000 | 0.000 | 0.100 | 0.200 | -0.003 | 3 of 3 |
+| job.phase-residual | ms | cold | 300 | 0.000 | 0.100 | 0.100 | 0.100 | 0.000 | 3 of 3 |
+| job.phase-residual [pose-only] | ms | warm | 1742 | 0.000 | 0.000 | 0.100 | 0.200 | -0.003 |  |
+| job.phase-residual [pose-only] | ms | cold | 297 | 0.000 | 0.100 | 0.100 | 0.100 | 0.001 |  |
+| job.phase-residual [static-install] | ms | cold | 3 | -0.100 | -0.000 | -0.000 | -0.000 | -0.100 |  |
+| job.submit-to-accepted | ms | warm | 1742 | 13.900 | 22.300 | 69.800 | 97.800 | 15.269 | 3 of 3 |
+| job.submit-to-accepted | ms | cold | 300 | 13.600 | 21.600 | 41.400 | 79.800 | 14.584 | 3 of 3 |
+| job.submit-to-accepted [pose-only] | ms | warm | 1742 | 13.900 | 22.300 | 69.800 | 97.800 | 15.269 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 297 | 13.600 | 21.300 | 31.100 | 79.800 | 14.329 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 3 | 41.400 | 49.100 | 49.100 | 49.100 | 39.833 |  |
-| merge.assemble | ms | warm | 1591 | 0.000 | 0.100 | 0.100 | 1.400 | 0.013 | 3 of 3 |
-| merge.assemble | ms | cold | 262 | 0.000 | 0.100 | 0.100 | 0.200 | 0.011 | 3 of 3 |
-| merge.assemble [pose-only] | ms | warm | 1591 | 0.000 | 0.100 | 0.100 | 1.400 | 0.013 |  |
-| merge.assemble [pose-only] | ms | cold | 260 | 0.000 | 0.100 | 0.100 | 0.100 | 0.010 |  |
-| merge.assemble [static-install] | ms | cold | 2 | 0.100 | 0.200 | 0.200 | 0.200 | 0.150 |  |
+| merge.assemble | ms | warm | 1742 | 0.000 | 0.100 | 0.100 | 1.400 | 0.012 | 3 of 3 |
+| merge.assemble | ms | cold | 300 | 0.000 | 0.100 | 0.100 | 0.200 | 0.011 | 3 of 3 |
+| merge.assemble [pose-only] | ms | warm | 1742 | 0.000 | 0.100 | 0.100 | 1.400 | 0.012 |  |
+| merge.assemble [pose-only] | ms | cold | 297 | 0.000 | 0.100 | 0.100 | 0.100 | 0.010 |  |
+| merge.assemble [static-install] | ms | cold | 3 | 0.100 | 0.200 | 0.200 | 0.200 | 0.133 |  |
 | merge.reply-deserialize | ms | warm | 6968 | 0.000 | 0.100 | 0.200 | 1.200 | 0.024 | 0 of 3 |
 | merge.reply-deserialize | ms | cold | 1200 | 0.000 | 0.100 | 0.200 | 0.300 | 0.020 | 0 of 3 |
 | merge.reply-deserialize [pose-only] | ms | warm | 6968 | 0.000 | 0.100 | 0.200 | 1.200 | 0.024 |  |
 | merge.reply-deserialize [pose-only] | ms | cold | 1188 | 0.000 | 0.100 | 0.200 | 0.300 | 0.020 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 12 | 0.000 | 0.200 | 0.200 | 0.200 | 0.033 |  |
-| merge.validate | ms | warm | 6968 | 0.100 | 0.500 | 1.300 | 7.200 | 0.159 | 0 of 3 |
-| merge.validate | ms | cold | 1200 | 0.100 | 0.500 | 1.000 | 7.000 | 0.142 | 0 of 3 |
-| merge.validate [pose-only] | ms | warm | 6968 | 0.100 | 0.500 | 1.300 | 7.200 | 0.159 |  |
-| merge.validate [pose-only] | ms | cold | 1188 | 0.100 | 0.500 | 0.900 | 2.500 | 0.132 |  |
-| merge.validate [static-install] | ms | cold | 12 | 0.200 | 7.000 | 7.000 | 7.000 | 1.108 |  |
-| pool.compute-metric | ms | warm | 1871 | 2.300 | 6.500 | 35.400 | 60.200 | 3.277 | 3 of 3 |
-| pool.compute-metric | ms | cold | 171 | 2.300 | 7.500 | 37.800 | 41.000 | 3.495 | 3 of 3 |
-| pool.compute-metric [pose-only] | ms | warm | 1871 | 2.300 | 6.500 | 35.400 | 60.200 | 3.277 |  |
-| pool.compute-metric [pose-only] | ms | cold | 168 | 2.300 | 7.300 | 37.800 | 41.000 | 3.148 |  |
+| merge.validate | ms | warm | 6968 | 0.100 | 0.400 | 1.200 | 7.200 | 0.149 | 0 of 3 |
+| merge.validate | ms | cold | 1200 | 0.100 | 0.400 | 0.800 | 2.500 | 0.123 | 0 of 3 |
+| merge.validate [pose-only] | ms | warm | 6968 | 0.100 | 0.400 | 1.200 | 7.200 | 0.149 |  |
+| merge.validate [pose-only] | ms | cold | 1188 | 0.100 | 0.400 | 0.700 | 2.500 | 0.119 |  |
+| merge.validate [static-install] | ms | cold | 12 | 0.200 | 2.000 | 2.000 | 2.000 | 0.542 |  |
+| pool.compute-metric | ms | warm | 1742 | 2.300 | 6.800 | 35.800 | 60.200 | 3.332 | 3 of 3 |
+| pool.compute-metric | ms | cold | 300 | 2.300 | 6.400 | 23.400 | 41.000 | 3.081 | 3 of 3 |
+| pool.compute-metric [pose-only] | ms | warm | 1742 | 2.300 | 6.800 | 35.800 | 60.200 | 3.332 |  |
+| pool.compute-metric [pose-only] | ms | cold | 297 | 2.300 | 6.100 | 15.500 | 41.000 | 2.880 |  |
 | pool.compute-metric [static-install] | ms | cold | 3 | 23.400 | 28.500 | 28.500 | 28.500 | 22.900 |  |
-| pool.shard-max | ms | warm | 1871 | 1.600 | 2.600 | 10.700 | 22.700 | 1.712 | 3 of 3 |
-| pool.shard-max | ms | cold | 171 | 1.700 | 4.500 | 18.400 | 19.400 | 1.910 | 3 of 3 |
-| pool.shard-max [pose-only] | ms | warm | 1871 | 1.600 | 2.600 | 10.700 | 22.700 | 1.712 |  |
-| pool.shard-max [pose-only] | ms | cold | 168 | 1.600 | 3.600 | 18.400 | 19.400 | 1.822 |  |
+| pool.shard-max | ms | warm | 1742 | 1.600 | 2.700 | 11.800 | 22.700 | 1.731 | 3 of 3 |
+| pool.shard-max | ms | cold | 300 | 1.600 | 2.900 | 7.900 | 19.400 | 1.715 | 3 of 3 |
+| pool.shard-max [pose-only] | ms | warm | 1742 | 1.600 | 2.700 | 11.800 | 22.700 | 1.731 |  |
+| pool.shard-max [pose-only] | ms | cold | 297 | 1.600 | 2.600 | 5.700 | 19.400 | 1.663 |  |
 | pool.shard-max [static-install] | ms | cold | 3 | 7.900 | 8.000 | 8.000 | 8.000 | 6.833 |  |
-| pool.shard-total | ms | warm | 1871 | 4.900 | 8.300 | 34.600 | 81.200 | 5.426 | 3 of 3 |
-| pool.shard-total | ms | cold | 171 | 4.600 | 15.500 | 46.000 | 64.500 | 5.965 | 3 of 3 |
-| pool.shard-total [pose-only] | ms | warm | 1871 | 4.900 | 8.300 | 34.600 | 81.200 | 5.426 |  |
-| pool.shard-total [pose-only] | ms | cold | 168 | 4.500 | 10.500 | 46.000 | 64.500 | 5.620 |  |
+| pool.shard-total | ms | warm | 1742 | 4.900 | 8.500 | 38.400 | 81.200 | 5.497 | 3 of 3 |
+| pool.shard-total | ms | cold | 300 | 4.500 | 8.100 | 29.000 | 64.500 | 5.321 | 3 of 3 |
+| pool.shard-total [pose-only] | ms | warm | 1742 | 4.900 | 8.500 | 38.400 | 81.200 | 5.497 |  |
+| pool.shard-total [pose-only] | ms | cold | 297 | 4.500 | 8.000 | 17.700 | 64.500 | 5.119 |  |
 | pool.shard-total [static-install] | ms | cold | 3 | 29.000 | 29.900 | 29.900 | 29.900 | 25.333 |  |
-| pose.age-at-accept | ms | warm | 1871 | 0.000 | 17.300 | 22.600 | 43.000 | 4.666 | 3 of 3 |
-| pose.age-at-accept | ms | cold | 171 | 0.000 | 17.000 | 40.700 | 41.000 | 4.589 | 3 of 3 |
-| pose.age-at-accept [pose-only] | ms | warm | 1871 | 0.000 | 17.300 | 22.600 | 43.000 | 4.666 |  |
-| pose.age-at-accept [pose-only] | ms | cold | 168 | 0.000 | 16.900 | 40.700 | 41.000 | 4.146 |  |
+| pose.age-at-accept | ms | warm | 1742 | 0.000 | 17.300 | 26.100 | 43.000 | 4.691 | 3 of 3 |
+| pose.age-at-accept | ms | cold | 300 | 0.000 | 17.000 | 33.100 | 41.000 | 4.476 | 3 of 3 |
+| pose.age-at-accept [pose-only] | ms | warm | 1742 | 0.000 | 17.300 | 26.100 | 43.000 | 4.691 |  |
+| pose.age-at-accept [pose-only] | ms | cold | 297 | 0.000 | 17.000 | 18.200 | 41.000 | 4.224 |  |
 | pose.age-at-accept [static-install] | ms | cold | 3 | 33.100 | 39.100 | 39.100 | 39.100 | 29.433 |  |
-| pose.latest-wait | ms | warm | 9898 | 48.900 | 91.900 | 102.500 | 185.400 | 50.754 | 0 of 3 |
-| pose.latest-wait | ms | cold | 902 | 48.600 | 91.100 | 106.800 | 169.900 | 50.443 | 0 of 3 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 9898 | 48.900 | 91.900 | 102.500 | 185.400 | 50.754 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 902 | 48.600 | 91.100 | 106.800 | 169.900 | 50.443 |  |
+| pose.latest-wait | ms | warm | 9230 | 49.000 | 92.100 | 104.500 | 185.400 | 50.867 | 0 of 3 |
+| pose.latest-wait | ms | cold | 1570 | 48.500 | 90.900 | 98.200 | 169.900 | 49.914 | 0 of 3 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 9230 | 49.000 | 92.100 | 104.500 | 185.400 | 50.867 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 1570 | 48.500 | 90.900 | 98.200 | 169.900 | 49.914 |  |
 | queue.rate-limit | ms | warm | 1742 | 8.133 | 13.433 | 14.733 | 72.633 | 7.296 | 3 of 3 |
 | queue.rate-limit | ms | cold | 300 | 8.133 | 13.533 | 15.033 | 15.933 | 7.435 | 3 of 3 |
 | queue.rate-limit [pose-only] | ms | warm | 1742 | 8.133 | 13.433 | 14.733 | 72.633 | 7.296 |  |
@@ -3819,70 +3823,70 @@ Denominators: submitted=1201 coalesced=969 dispatched=232 completed=232 accepted
 | dispatch.prepare [pose-only] | ms | warm | 132 | 0.000 | 0.100 | 0.200 | 0.200 | 0.037 |  |
 | dispatch.prepare [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 1.200 | 1.200 | 0.042 |  |
 | dispatch.prepare [static-install] | ms | cold | 1 | 0.800 | 0.800 | 0.800 | 0.800 | 0.800 |  |
-| display.derive | ms | warm | 173 | 0.300 | 1.200 | 3.700 | 6.700 | 0.483 | 1 of 1 |
-| display.derive | ms | cold | 59 | 0.400 | 1.100 | 8.600 | 8.600 | 0.629 | 1 of 1 |
-| display.derive [pose-only] | ms | warm | 173 | 0.300 | 1.200 | 3.700 | 6.700 | 0.483 |  |
-| display.derive [pose-only] | ms | cold | 58 | 0.400 | 1.100 | 2.700 | 2.700 | 0.491 |  |
+| display.derive | ms | warm | 132 | 0.400 | 1.200 | 2.700 | 3.700 | 0.468 | 1 of 1 |
+| display.derive | ms | cold | 100 | 0.400 | 1.100 | 6.700 | 8.600 | 0.589 | 1 of 1 |
+| display.derive [pose-only] | ms | warm | 132 | 0.400 | 1.200 | 2.700 | 3.700 | 0.468 |  |
+| display.derive [pose-only] | ms | cold | 99 | 0.400 | 1.100 | 6.700 | 6.700 | 0.508 |  |
 | display.derive [static-install] | ms | cold | 1 | 8.600 | 8.600 | 8.600 | 8.600 | 8.600 |  |
-| input.lateness | ms | warm | 900 | 0.267 | 1.300 | 166.700 | 208.833 | 4.070 | 0 of 1 |
-| input.lateness | ms | cold | 301 | 0.167 | 1.067 | 1.300 | 14.433 | 0.231 | 0 of 1 |
-| input.project | ms | warm | 900 | 1.300 | 4.100 | 7.000 | 107.900 | 1.837 | 0 of 1 |
-| input.project | ms | cold | 301 | 1.400 | 1.800 | 2.300 | 19.600 | 1.437 | 0 of 1 |
+| input.lateness | ms | warm | 678 | 0.233 | 1.133 | 1.467 | 2.067 | 0.267 | 0 of 1 |
+| input.lateness | ms | cold | 523 | 0.233 | 14.433 | 195.467 | 208.833 | 6.791 | 0 of 1 |
+| input.project | ms | warm | 678 | 1.200 | 4.100 | 6.800 | 7.500 | 1.610 | 0 of 1 |
+| input.project | ms | cold | 523 | 1.300 | 2.100 | 7.700 | 107.900 | 1.900 | 0 of 1 |
 | install.ack-roundtrip | ms | cold | 4 | 14.200 | 16.600 | 16.600 | 16.600 | 14.900 | 1 of 1 |
 | install.ack-roundtrip [static-install] | ms | cold | 4 | 14.200 | 16.600 | 16.600 | 16.600 | 14.900 |  |
 | install.post | ms | cold | 4 | 1.300 | 1.400 | 1.400 | 1.400 | 1.300 | 1 of 1 |
 | install.post [static-install] | ms | cold | 4 | 1.300 | 1.400 | 1.400 | 1.400 | 1.300 |  |
 | install.worker-deserialize | ms | cold | 4 | 2.100 | 2.200 | 2.200 | 2.200 | 2.100 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | cold | 4 | 2.100 | 2.200 | 2.200 | 2.200 | 2.100 |  |
-| job.phase-residual | ms | warm | 108 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 | 1 of 1 |
-| job.phase-residual | ms | cold | 83 | 0.000 | 0.100 | 1.700 | 1.700 | 0.029 | 1 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 108 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 |  |
-| job.phase-residual [pose-only] | ms | cold | 82 | 0.000 | 0.100 | 1.700 | 1.700 | 0.030 |  |
+| job.phase-residual | ms | warm | 132 | 0.000 | 0.100 | 0.100 | 0.100 | 0.010 | 1 of 1 |
+| job.phase-residual | ms | cold | 100 | 0.000 | 0.100 | 0.200 | 1.700 | 0.024 | 1 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 132 | 0.000 | 0.100 | 0.100 | 0.100 | 0.010 |  |
+| job.phase-residual [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 1.700 | 1.700 | 0.025 |  |
 | job.phase-residual [static-install] | ms | cold | 1 | -0.100 | -0.100 | -0.100 | -0.100 | -0.100 |  |
-| job.submit-to-accepted | ms | warm | 173 | 12.100 | 19.800 | 69.200 | 232.400 | 14.187 | 1 of 1 |
-| job.submit-to-accepted | ms | cold | 59 | 12.200 | 18.500 | 54.800 | 54.800 | 12.800 | 1 of 1 |
-| job.submit-to-accepted [pose-only] | ms | warm | 173 | 12.100 | 19.800 | 69.200 | 232.400 | 14.187 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 58 | 11.900 | 18.300 | 19.200 | 19.200 | 12.076 |  |
+| job.submit-to-accepted | ms | warm | 132 | 12.900 | 20.600 | 25.200 | 69.200 | 13.330 | 1 of 1 |
+| job.submit-to-accepted | ms | cold | 100 | 11.100 | 18.300 | 54.800 | 232.400 | 14.500 | 1 of 1 |
+| job.submit-to-accepted [pose-only] | ms | warm | 132 | 12.900 | 20.600 | 25.200 | 69.200 | 13.330 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 99 | 11.100 | 18.300 | 232.400 | 232.400 | 14.093 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 1 | 54.800 | 54.800 | 54.800 | 54.800 | 54.800 |  |
-| merge.assemble | ms | warm | 108 | 0.000 | 0.100 | 0.100 | 0.100 | 0.007 | 1 of 1 |
-| merge.assemble | ms | cold | 83 | 0.000 | 0.100 | 0.200 | 0.200 | 0.014 | 1 of 1 |
-| merge.assemble [pose-only] | ms | warm | 108 | 0.000 | 0.100 | 0.100 | 0.100 | 0.007 |  |
-| merge.assemble [pose-only] | ms | cold | 82 | 0.000 | 0.100 | 0.100 | 0.100 | 0.012 |  |
+| merge.assemble | ms | warm | 132 | 0.000 | 0.100 | 0.100 | 0.100 | 0.008 | 1 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.200 | 0.014 | 1 of 1 |
+| merge.assemble [pose-only] | ms | warm | 132 | 0.000 | 0.100 | 0.100 | 0.100 | 0.008 |  |
+| merge.assemble [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.100 | 0.100 | 0.012 |  |
 | merge.assemble [static-install] | ms | cold | 1 | 0.200 | 0.200 | 0.200 | 0.200 | 0.200 |  |
 | merge.reply-deserialize | ms | warm | 528 | 0.000 | 0.100 | 0.100 | 0.400 | 0.017 | 1 of 1 |
 | merge.reply-deserialize | ms | cold | 400 | 0.000 | 0.100 | 0.200 | 0.500 | 0.016 | 1 of 1 |
 | merge.reply-deserialize [pose-only] | ms | warm | 528 | 0.000 | 0.100 | 0.100 | 0.400 | 0.017 |  |
 | merge.reply-deserialize [pose-only] | ms | cold | 396 | 0.000 | 0.100 | 0.200 | 0.500 | 0.016 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 4 | 0.000 | 0.200 | 0.200 | 0.200 | 0.050 |  |
-| merge.validate | ms | warm | 528 | 0.100 | 0.400 | 0.800 | 1.200 | 0.110 | 1 of 1 |
-| merge.validate | ms | cold | 400 | 0.100 | 0.400 | 0.700 | 1.800 | 0.115 | 1 of 1 |
-| merge.validate [pose-only] | ms | warm | 528 | 0.100 | 0.400 | 0.800 | 1.200 | 0.110 |  |
-| merge.validate [pose-only] | ms | cold | 396 | 0.100 | 0.400 | 0.700 | 1.100 | 0.110 |  |
+| merge.validate | ms | warm | 528 | 0.100 | 0.300 | 0.500 | 0.900 | 0.092 | 1 of 1 |
+| merge.validate | ms | cold | 400 | 0.100 | 0.300 | 0.500 | 1.800 | 0.101 | 1 of 1 |
+| merge.validate [pose-only] | ms | warm | 528 | 0.100 | 0.300 | 0.500 | 0.900 | 0.092 |  |
+| merge.validate [pose-only] | ms | cold | 396 | 0.100 | 0.300 | 0.500 | 1.100 | 0.096 |  |
 | merge.validate [static-install] | ms | cold | 4 | 0.200 | 1.800 | 1.800 | 1.800 | 0.625 |  |
-| pool.compute-metric | ms | warm | 173 | 1.300 | 4.800 | 11.000 | 123.500 | 2.394 | 1 of 1 |
-| pool.compute-metric | ms | cold | 59 | 1.400 | 3.100 | 29.700 | 29.700 | 2.002 | 1 of 1 |
-| pool.compute-metric [pose-only] | ms | warm | 173 | 1.300 | 4.800 | 11.000 | 123.500 | 2.394 |  |
-| pool.compute-metric [pose-only] | ms | cold | 58 | 1.400 | 2.800 | 3.200 | 3.200 | 1.524 |  |
+| pool.compute-metric | ms | warm | 132 | 1.300 | 4.800 | 9.900 | 11.000 | 1.739 | 1 of 1 |
+| pool.compute-metric | ms | cold | 100 | 1.400 | 3.100 | 29.700 | 123.500 | 3.026 | 1 of 1 |
+| pool.compute-metric [pose-only] | ms | warm | 132 | 1.300 | 4.800 | 9.900 | 11.000 | 1.739 |  |
+| pool.compute-metric [pose-only] | ms | cold | 99 | 1.400 | 3.100 | 123.500 | 123.500 | 2.757 |  |
 | pool.compute-metric [static-install] | ms | cold | 1 | 29.700 | 29.700 | 29.700 | 29.700 | 29.700 |  |
-| pool.shard-max | ms | warm | 173 | 0.800 | 3.000 | 6.000 | 82.000 | 1.483 | 1 of 1 |
-| pool.shard-max | ms | cold | 59 | 0.900 | 2.000 | 9.600 | 9.600 | 1.103 | 1 of 1 |
-| pool.shard-max [pose-only] | ms | warm | 173 | 0.800 | 3.000 | 6.000 | 82.000 | 1.483 |  |
-| pool.shard-max [pose-only] | ms | cold | 58 | 0.900 | 1.700 | 2.700 | 2.700 | 0.957 |  |
+| pool.shard-max | ms | warm | 132 | 0.800 | 3.000 | 3.800 | 6.000 | 1.058 | 1 of 1 |
+| pool.shard-max | ms | cold | 100 | 0.800 | 2.000 | 9.600 | 82.000 | 1.819 | 1 of 1 |
+| pool.shard-max [pose-only] | ms | warm | 132 | 0.800 | 3.000 | 3.800 | 6.000 | 1.058 |  |
+| pool.shard-max [pose-only] | ms | cold | 99 | 0.800 | 2.000 | 82.000 | 82.000 | 1.740 |  |
 | pool.shard-max [static-install] | ms | cold | 1 | 9.600 | 9.600 | 9.600 | 9.600 | 9.600 |  |
-| pool.shard-total | ms | warm | 173 | 2.200 | 8.100 | 19.000 | 234.300 | 4.180 | 1 of 1 |
-| pool.shard-total | ms | cold | 59 | 2.800 | 5.300 | 36.600 | 36.600 | 3.420 | 1 of 1 |
-| pool.shard-total [pose-only] | ms | warm | 173 | 2.200 | 8.100 | 19.000 | 234.300 | 4.180 |  |
-| pool.shard-total [pose-only] | ms | cold | 58 | 2.800 | 4.600 | 5.600 | 5.600 | 2.848 |  |
+| pool.shard-total | ms | warm | 132 | 2.200 | 8.100 | 12.600 | 19.000 | 2.999 | 1 of 1 |
+| pool.shard-total | ms | cold | 100 | 2.400 | 5.300 | 36.600 | 234.300 | 5.290 | 1 of 1 |
+| pool.shard-total [pose-only] | ms | warm | 132 | 2.200 | 8.100 | 12.600 | 19.000 | 2.999 |  |
+| pool.shard-total [pose-only] | ms | cold | 99 | 2.400 | 5.300 | 234.300 | 234.300 | 4.974 |  |
 | pool.shard-total [static-install] | ms | cold | 1 | 36.600 | 36.600 | 36.600 | 36.600 | 36.600 |  |
-| pose.age-at-accept | ms | warm | 173 | 0.000 | 16.600 | 17.500 | 117.800 | 3.255 | 1 of 1 |
-| pose.age-at-accept | ms | cold | 59 | 0.000 | 16.600 | 50.200 | 50.200 | 2.781 | 1 of 1 |
-| pose.age-at-accept [pose-only] | ms | warm | 173 | 0.000 | 16.600 | 17.500 | 117.800 | 3.255 |  |
-| pose.age-at-accept [pose-only] | ms | cold | 58 | 0.000 | 16.600 | 16.800 | 16.800 | 1.964 |  |
+| pose.age-at-accept | ms | warm | 132 | 0.000 | 16.700 | 17.300 | 17.500 | 2.761 | 1 of 1 |
+| pose.age-at-accept | ms | cold | 100 | 0.000 | 16.600 | 50.200 | 117.800 | 3.628 | 1 of 1 |
+| pose.age-at-accept [pose-only] | ms | warm | 132 | 0.000 | 16.700 | 17.300 | 17.500 | 2.761 |  |
+| pose.age-at-accept [pose-only] | ms | cold | 99 | 0.000 | 16.600 | 117.800 | 117.800 | 3.158 |  |
 | pose.age-at-accept [static-install] | ms | cold | 1 | 50.200 | 50.200 | 50.200 | 50.200 | 50.200 |  |
-| pose.latest-wait | ms | warm | 900 | 46.900 | 85.500 | 95.300 | 265.700 | 48.366 | 0 of 1 |
-| pose.latest-wait | ms | cold | 301 | 46.700 | 84.600 | 91.300 | 111.400 | 47.074 | 0 of 1 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 900 | 46.900 | 85.500 | 95.300 | 265.700 | 48.366 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 301 | 46.700 | 84.600 | 91.300 | 111.400 | 47.074 |  |
+| pose.latest-wait | ms | warm | 678 | 47.000 | 85.500 | 93.500 | 105.000 | 47.762 | 0 of 1 |
+| pose.latest-wait | ms | cold | 523 | 46.700 | 85.400 | 104.900 | 265.700 | 48.406 | 0 of 1 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 678 | 47.000 | 85.500 | 93.500 | 105.000 | 47.762 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 523 | 46.700 | 85.400 | 104.900 | 265.700 | 48.406 |  |
 | queue.rate-limit | ms | warm | 132 | 9.333 | 14.833 | 15.533 | 66.333 | 9.123 | 1 of 1 |
 | queue.rate-limit | ms | cold | 100 | 8.533 | 13.933 | 14.933 | 15.333 | 8.088 | 1 of 1 |
 | queue.rate-limit [pose-only] | ms | warm | 132 | 9.333 | 14.833 | 15.533 | 66.333 | 9.123 |  |
@@ -3942,16 +3946,16 @@ Denominators: submitted=3900 coalesced=3290 dispatched=610 completed=581 accepte
 | dispatch.prepare [pose-only] | ms | cold | 98 | 0.000 | 0.100 | 0.400 | 0.400 | 0.046 |  |
 | dispatch.prepare [static-install] | ms | warm | 199 | 0.000 | 0.100 | 0.200 | 0.200 | 0.050 |  |
 | dispatch.prepare [static-install] | ms | cold | 102 | 0.100 | 0.200 | 0.500 | 3.100 | 0.108 |  |
-| display.derive | ms | warm | 481 | 0.300 | 1.500 | 2.400 | 3.400 | 0.457 | 2 of 2 |
-| display.derive | ms | cold | 100 | 0.500 | 1.600 | 4.300 | 4.400 | 0.680 | 2 of 2 |
-| display.derive [pose-only] | ms | warm | 231 | 0.400 | 1.600 | 2.400 | 3.200 | 0.516 |  |
-| display.derive [pose-only] | ms | cold | 51 | 0.400 | 1.600 | 3.100 | 3.100 | 0.624 |  |
-| display.derive [static-install] | ms | warm | 250 | 0.300 | 1.300 | 2.200 | 3.400 | 0.402 |  |
-| display.derive [static-install] | ms | cold | 49 | 0.500 | 3.600 | 4.400 | 4.400 | 0.739 |  |
-| input.lateness | ms | warm | 3247 | 0.467 | 20.667 | 145.800 | 274.367 | 5.759 | 0 of 2 |
-| input.lateness | ms | cold | 653 | 0.500 | 138.033 | 263.300 | 316.633 | 15.411 | 0 of 2 |
-| input.project | ms | warm | 3247 | 3.100 | 9.400 | 11.700 | 114.300 | 3.368 | 0 of 2 |
-| input.project | ms | cold | 653 | 1.900 | 6.400 | 13.800 | 274.000 | 3.133 | 0 of 2 |
+| display.derive | ms | warm | 391 | 0.300 | 1.300 | 2.200 | 3.000 | 0.419 | 2 of 2 |
+| display.derive | ms | cold | 190 | 0.400 | 2.100 | 4.300 | 4.400 | 0.652 | 2 of 2 |
+| display.derive [pose-only] | ms | warm | 192 | 0.300 | 1.500 | 2.200 | 3.000 | 0.478 |  |
+| display.derive [pose-only] | ms | cold | 90 | 0.400 | 2.300 | 3.200 | 3.200 | 0.658 |  |
+| display.derive [static-install] | ms | warm | 199 | 0.300 | 0.900 | 2.200 | 2.500 | 0.362 |  |
+| display.derive [static-install] | ms | cold | 100 | 0.400 | 1.800 | 4.300 | 4.400 | 0.646 |  |
+| input.lateness | ms | warm | 2602 | 0.467 | 14.467 | 23.033 | 68.833 | 2.337 | 0 of 2 |
+| input.lateness | ms | cold | 1298 | 0.567 | 144.067 | 256.767 | 316.633 | 17.474 | 0 of 2 |
+| input.project | ms | warm | 2602 | 3.100 | 8.800 | 11.400 | 32.700 | 3.257 | 0 of 2 |
+| input.project | ms | cold | 1298 | 2.500 | 9.200 | 16.200 | 274.000 | 3.471 | 0 of 2 |
 | install.ack-roundtrip | ms | warm | 796 | 9.900 | 16.800 | 21.400 | 38.600 | 10.410 | 2 of 2 |
 | install.ack-roundtrip | ms | cold | 408 | 8.300 | 18.000 | 90.000 | 162.100 | 10.715 | 2 of 2 |
 | install.ack-roundtrip [static-install] | ms | warm | 796 | 9.900 | 16.800 | 21.400 | 38.600 | 10.410 |  |
@@ -3964,22 +3968,22 @@ Denominators: submitted=3900 coalesced=3290 dispatched=610 completed=581 accepte
 | install.worker-deserialize | ms | cold | 408 | 4.400 | 7.800 | 33.500 | 65.300 | 4.912 | 2 of 2 |
 | install.worker-deserialize [static-install] | ms | warm | 796 | 5.300 | 6.500 | 9.800 | 15.000 | 5.012 |  |
 | install.worker-deserialize [static-install] | ms | cold | 408 | 4.400 | 7.800 | 33.500 | 65.300 | 4.912 |  |
-| job.phase-residual | ms | warm | 361 | 0.000 | 0.100 | 0.200 | 0.300 | 0.012 | 2 of 2 |
-| job.phase-residual | ms | cold | 179 | 0.000 | 0.100 | 0.200 | 0.500 | 0.017 | 2 of 2 |
-| job.phase-residual [pose-only] | ms | warm | 162 | 0.000 | 0.000 | 0.100 | 0.100 | -0.001 |  |
-| job.phase-residual [pose-only] | ms | cold | 79 | 0.000 | 0.000 | 0.100 | 0.100 | -0.001 |  |
+| job.phase-residual | ms | warm | 391 | 0.000 | 0.100 | 0.200 | 0.300 | 0.010 | 2 of 2 |
+| job.phase-residual | ms | cold | 190 | 0.000 | 0.100 | 0.200 | 0.500 | 0.016 | 2 of 2 |
+| job.phase-residual [pose-only] | ms | warm | 192 | 0.000 | 0.000 | 0.100 | 0.100 | -0.001 |  |
+| job.phase-residual [pose-only] | ms | cold | 90 | 0.000 | 0.000 | 0.100 | 0.100 | -0.001 |  |
 | job.phase-residual [static-install] | ms | warm | 199 | 0.000 | 0.100 | 0.200 | 0.300 | 0.022 |  |
 | job.phase-residual [static-install] | ms | cold | 100 | 0.000 | 0.200 | 0.200 | 0.500 | 0.031 |  |
-| job.submit-to-accepted | ms | warm | 481 | 20.800 | 38.000 | 63.100 | 262.000 | 23.169 | 2 of 2 |
-| job.submit-to-accepted | ms | cold | 100 | 15.100 | 32.100 | 36.500 | 218.000 | 19.316 | 2 of 2 |
-| job.submit-to-accepted [pose-only] | ms | warm | 231 | 12.200 | 21.500 | 31.800 | 63.100 | 13.713 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 51 | 11.700 | 18.700 | 27.800 | 27.800 | 12.418 |  |
-| job.submit-to-accepted [static-install] | ms | warm | 250 | 32.100 | 40.000 | 81.100 | 262.000 | 31.906 |  |
-| job.submit-to-accepted [static-install] | ms | cold | 49 | 21.400 | 34.100 | 218.000 | 218.000 | 26.496 |  |
-| merge.assemble | ms | warm | 377 | 0.000 | 0.100 | 0.100 | 0.100 | 0.016 | 2 of 2 |
-| merge.assemble | ms | cold | 188 | 0.000 | 0.100 | 0.200 | 0.200 | 0.013 | 2 of 2 |
-| merge.assemble [pose-only] | ms | warm | 178 | 0.000 | 0.100 | 0.100 | 0.100 | 0.017 |  |
-| merge.assemble [pose-only] | ms | cold | 86 | 0.000 | 0.100 | 0.100 | 0.100 | 0.010 |  |
+| job.submit-to-accepted | ms | warm | 391 | 20.400 | 37.800 | 58.900 | 81.900 | 22.551 | 2 of 2 |
+| job.submit-to-accepted | ms | cold | 190 | 17.900 | 37.400 | 218.000 | 262.000 | 22.412 | 2 of 2 |
+| job.submit-to-accepted [pose-only] | ms | warm | 192 | 12.200 | 21.200 | 54.000 | 63.100 | 13.739 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 90 | 11.600 | 21.400 | 31.800 | 31.800 | 12.923 |  |
+| job.submit-to-accepted [static-install] | ms | warm | 199 | 32.200 | 39.300 | 80.600 | 81.900 | 31.054 |  |
+| job.submit-to-accepted [static-install] | ms | cold | 100 | 26.400 | 41.100 | 218.000 | 262.000 | 30.952 |  |
+| merge.assemble | ms | warm | 410 | 0.000 | 0.100 | 0.100 | 0.100 | 0.015 | 2 of 2 |
+| merge.assemble | ms | cold | 200 | 0.000 | 0.100 | 0.100 | 0.200 | 0.012 | 2 of 2 |
+| merge.assemble [pose-only] | ms | warm | 211 | 0.000 | 0.100 | 0.100 | 0.100 | 0.015 |  |
+| merge.assemble [pose-only] | ms | cold | 98 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 |  |
 | merge.assemble [static-install] | ms | warm | 199 | 0.000 | 0.100 | 0.100 | 0.100 | 0.014 |  |
 | merge.assemble [static-install] | ms | cold | 102 | 0.000 | 0.100 | 0.200 | 0.200 | 0.015 |  |
 | merge.reply-deserialize | ms | warm | 1640 | 0.000 | 0.100 | 0.100 | 0.200 | 0.021 | 0 of 2 |
@@ -3988,40 +3992,40 @@ Denominators: submitted=3900 coalesced=3290 dispatched=610 completed=581 accepte
 | merge.reply-deserialize [pose-only] | ms | cold | 392 | 0.000 | 0.100 | 0.200 | 0.400 | 0.023 |  |
 | merge.reply-deserialize [static-install] | ms | warm | 796 | 0.000 | 0.100 | 0.100 | 0.200 | 0.027 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 408 | 0.000 | 0.100 | 0.200 | 0.700 | 0.030 |  |
-| merge.validate | ms | warm | 1640 | 0.100 | 0.500 | 0.700 | 1.200 | 0.150 | 0 of 2 |
-| merge.validate | ms | cold | 800 | 0.100 | 0.500 | 1.300 | 9.500 | 0.188 | 0 of 2 |
-| merge.validate [pose-only] | ms | warm | 844 | 0.100 | 0.400 | 0.700 | 1.200 | 0.128 |  |
-| merge.validate [pose-only] | ms | cold | 392 | 0.100 | 0.600 | 1.300 | 2.100 | 0.156 |  |
+| merge.validate | ms | warm | 1640 | 0.100 | 0.400 | 0.600 | 0.900 | 0.143 | 0 of 2 |
+| merge.validate | ms | cold | 800 | 0.100 | 0.400 | 1.200 | 9.500 | 0.180 | 0 of 2 |
+| merge.validate [pose-only] | ms | warm | 844 | 0.100 | 0.300 | 0.600 | 0.800 | 0.116 |  |
+| merge.validate [pose-only] | ms | cold | 392 | 0.100 | 0.400 | 1.200 | 2.100 | 0.141 |  |
 | merge.validate [static-install] | ms | warm | 796 | 0.100 | 0.500 | 0.700 | 0.900 | 0.172 |  |
 | merge.validate [static-install] | ms | cold | 408 | 0.100 | 0.400 | 1.300 | 9.500 | 0.218 |  |
-| pool.compute-metric | ms | warm | 481 | 9.400 | 22.700 | 37.800 | 214.700 | 11.177 | 2 of 2 |
-| pool.compute-metric | ms | cold | 100 | 5.000 | 20.800 | 21.700 | 103.500 | 8.159 | 2 of 2 |
-| pool.compute-metric [pose-only] | ms | warm | 231 | 2.200 | 6.100 | 11.200 | 12.600 | 2.620 |  |
-| pool.compute-metric [pose-only] | ms | cold | 51 | 2.300 | 3.800 | 14.200 | 14.200 | 2.396 |  |
-| pool.compute-metric [static-install] | ms | warm | 250 | 18.900 | 24.000 | 51.200 | 214.700 | 19.084 |  |
-| pool.compute-metric [static-install] | ms | cold | 49 | 11.500 | 21.300 | 103.500 | 103.500 | 14.157 |  |
-| pool.shard-max | ms | warm | 481 | 1.600 | 2.300 | 3.900 | 9.800 | 1.613 | 2 of 2 |
-| pool.shard-max | ms | cold | 100 | 1.500 | 2.600 | 4.700 | 4.800 | 1.616 | 2 of 2 |
-| pool.shard-max [pose-only] | ms | warm | 231 | 1.700 | 2.300 | 3.600 | 4.300 | 1.623 |  |
-| pool.shard-max [pose-only] | ms | cold | 51 | 1.500 | 2.500 | 4.800 | 4.800 | 1.571 |  |
-| pool.shard-max [static-install] | ms | warm | 250 | 1.600 | 2.300 | 3.900 | 9.800 | 1.604 |  |
-| pool.shard-max [static-install] | ms | cold | 49 | 1.600 | 3.200 | 4.700 | 4.700 | 1.663 |  |
-| pool.shard-total | ms | warm | 481 | 5.000 | 7.600 | 13.600 | 31.700 | 5.123 | 2 of 2 |
-| pool.shard-total | ms | cold | 100 | 4.700 | 8.000 | 16.200 | 17.400 | 4.859 | 2 of 2 |
-| pool.shard-total [pose-only] | ms | warm | 231 | 5.400 | 8.000 | 12.900 | 14.400 | 5.336 |  |
-| pool.shard-total [pose-only] | ms | cold | 51 | 4.700 | 8.000 | 16.200 | 16.200 | 4.822 |  |
-| pool.shard-total [static-install] | ms | warm | 250 | 4.700 | 7.100 | 14.800 | 31.700 | 4.926 |  |
-| pool.shard-total [static-install] | ms | cold | 49 | 4.900 | 8.300 | 17.400 | 17.400 | 4.898 |  |
-| pose.age-at-accept | ms | warm | 481 | 16.600 | 32.800 | 53.200 | 232.000 | 14.898 | 2 of 2 |
-| pose.age-at-accept | ms | cold | 100 | 0.000 | 24.700 | 29.200 | 208.900 | 11.128 | 2 of 2 |
-| pose.age-at-accept [pose-only] | ms | warm | 231 | 0.000 | 17.100 | 17.800 | 20.900 | 3.221 |  |
-| pose.age-at-accept [pose-only] | ms | cold | 51 | 0.000 | 16.500 | 18.400 | 18.400 | 2.733 |  |
-| pose.age-at-accept [static-install] | ms | warm | 250 | 25.400 | 37.100 | 71.800 | 232.000 | 25.688 |  |
-| pose.age-at-accept [static-install] | ms | cold | 49 | 17.200 | 28.600 | 208.900 | 208.900 | 19.865 |  |
-| pose.latest-wait | ms | warm | 3247 | 65.100 | 122.900 | 193.300 | 349.400 | 67.952 | 0 of 2 |
-| pose.latest-wait | ms | cold | 653 | 58.500 | 103.000 | 130.600 | 453.000 | 58.838 | 0 of 2 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 3247 | 65.100 | 122.900 | 193.300 | 349.400 | 67.952 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 653 | 58.500 | 103.000 | 130.600 | 453.000 | 58.838 |  |
+| pool.compute-metric | ms | warm | 391 | 8.700 | 22.300 | 26.500 | 53.100 | 10.585 | 2 of 2 |
+| pool.compute-metric | ms | cold | 190 | 6.400 | 21.700 | 103.500 | 214.700 | 10.807 | 2 of 2 |
+| pool.compute-metric [pose-only] | ms | warm | 192 | 2.200 | 5.100 | 9.500 | 12.600 | 2.556 |  |
+| pool.compute-metric [pose-only] | ms | cold | 90 | 2.300 | 5.200 | 14.200 | 14.200 | 2.630 |  |
+| pool.compute-metric [static-install] | ms | warm | 199 | 19.000 | 23.900 | 43.900 | 53.100 | 18.332 |  |
+| pool.compute-metric [static-install] | ms | cold | 100 | 15.200 | 26.100 | 103.500 | 214.700 | 18.167 |  |
+| pool.shard-max | ms | warm | 391 | 1.600 | 2.300 | 3.400 | 4.300 | 1.577 | 2 of 2 |
+| pool.shard-max | ms | cold | 190 | 1.600 | 2.800 | 4.800 | 9.800 | 1.689 | 2 of 2 |
+| pool.shard-max [pose-only] | ms | warm | 192 | 1.700 | 2.300 | 3.600 | 4.300 | 1.603 |  |
+| pool.shard-max [pose-only] | ms | cold | 90 | 1.600 | 2.600 | 4.800 | 4.800 | 1.637 |  |
+| pool.shard-max [static-install] | ms | warm | 199 | 1.600 | 2.300 | 3.200 | 3.700 | 1.552 |  |
+| pool.shard-max [static-install] | ms | cold | 100 | 1.600 | 3.200 | 4.800 | 9.800 | 1.736 |  |
+| pool.shard-total | ms | warm | 391 | 5.000 | 7.300 | 10.400 | 13.600 | 5.005 | 2 of 2 |
+| pool.shard-total | ms | cold | 190 | 4.900 | 8.600 | 17.400 | 31.700 | 5.228 | 2 of 2 |
+| pool.shard-total [pose-only] | ms | warm | 192 | 5.400 | 7.400 | 12.900 | 13.600 | 5.284 |  |
+| pool.shard-total [pose-only] | ms | cold | 90 | 5.200 | 8.600 | 16.200 | 16.200 | 5.156 |  |
+| pool.shard-total [static-install] | ms | warm | 199 | 4.600 | 7.100 | 8.700 | 10.400 | 4.735 |  |
+| pool.shard-total [static-install] | ms | cold | 100 | 4.900 | 8.300 | 17.400 | 31.700 | 5.293 |  |
+| pose.age-at-accept | ms | warm | 391 | 16.400 | 31.600 | 38.400 | 75.900 | 14.183 | 2 of 2 |
+| pose.age-at-accept | ms | cold | 190 | 15.100 | 31.700 | 208.900 | 232.000 | 14.387 | 2 of 2 |
+| pose.age-at-accept [pose-only] | ms | warm | 192 | 0.000 | 17.000 | 17.700 | 17.800 | 3.152 |  |
+| pose.age-at-accept [pose-only] | ms | cold | 90 | 0.000 | 17.400 | 20.900 | 20.900 | 3.092 |  |
+| pose.age-at-accept [static-install] | ms | warm | 199 | 25.500 | 36.300 | 71.300 | 75.900 | 24.825 |  |
+| pose.age-at-accept [static-install] | ms | cold | 100 | 20.200 | 37.300 | 208.900 | 232.000 | 24.552 |  |
+| pose.latest-wait | ms | warm | 2602 | 64.100 | 114.900 | 183.000 | 218.100 | 66.326 | 0 of 2 |
+| pose.latest-wait | ms | cold | 1298 | 62.500 | 122.700 | 239.500 | 453.000 | 66.626 | 0 of 2 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 2602 | 64.100 | 114.900 | 183.000 | 218.100 | 66.326 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 1298 | 62.500 | 122.700 | 239.500 | 453.000 | 66.626 |  |
 | queue.rate-limit | ms | warm | 410 | 3.733 | 13.233 | 15.533 | 44.633 | 4.635 | 2 of 2 |
 | queue.rate-limit | ms | cold | 200 | 3.133 | 13.533 | 15.633 | 16.333 | 4.435 | 2 of 2 |
 | queue.rate-limit [pose-only] | ms | warm | 211 | 6.433 | 14.233 | 16.333 | 44.633 | 6.738 |  |
@@ -4090,16 +4094,16 @@ Denominators: submitted=1301 coalesced=1088 dispatched=213 completed=204 accepte
 | dispatch.prepare [pose-only] | ms | cold | 54 | 0.000 | 0.100 | 0.200 | 0.200 | 0.044 |  |
 | dispatch.prepare [static-install] | ms | warm | 55 | 0.000 | 0.200 | 6.600 | 6.600 | 0.171 |  |
 | dispatch.prepare [static-install] | ms | cold | 46 | 0.000 | 0.100 | 0.800 | 0.800 | 0.063 |  |
-| display.derive | ms | warm | 153 | 0.400 | 1.700 | 2.600 | 5.200 | 0.525 | 1 of 1 |
-| display.derive | ms | cold | 51 | 0.600 | 2.800 | 7.300 | 7.300 | 0.851 | 1 of 1 |
-| display.derive [pose-only] | ms | warm | 78 | 0.400 | 1.900 | 2.600 | 2.600 | 0.514 |  |
-| display.derive [pose-only] | ms | cold | 26 | 0.500 | 1.800 | 2.700 | 2.700 | 0.700 |  |
-| display.derive [static-install] | ms | warm | 75 | 0.400 | 1.700 | 5.200 | 5.200 | 0.536 |  |
-| display.derive [static-install] | ms | cold | 25 | 0.600 | 2.900 | 7.300 | 7.300 | 1.008 |  |
-| input.lateness | ms | warm | 976 | 0.400 | 152.000 | 223.067 | 260.433 | 15.901 | 0 of 1 |
-| input.lateness | ms | cold | 325 | 0.267 | 4.033 | 9.767 | 19.533 | 0.667 | 0 of 1 |
-| input.project | ms | warm | 976 | 1.400 | 6.600 | 16.900 | 154.200 | 2.695 | 0 of 1 |
-| input.project | ms | cold | 325 | 1.700 | 5.000 | 7.700 | 16.600 | 2.153 | 0 of 1 |
+| display.derive | ms | warm | 108 | 0.400 | 1.900 | 2.600 | 5.200 | 0.570 | 1 of 1 |
+| display.derive | ms | cold | 96 | 0.500 | 1.800 | 7.300 | 7.300 | 0.647 | 1 of 1 |
+| display.derive [pose-only] | ms | warm | 53 | 0.400 | 1.900 | 2.600 | 2.600 | 0.568 |  |
+| display.derive [pose-only] | ms | cold | 51 | 0.500 | 1.400 | 2.700 | 2.700 | 0.553 |  |
+| display.derive [static-install] | ms | warm | 55 | 0.400 | 1.800 | 5.200 | 5.200 | 0.573 |  |
+| display.derive [static-install] | ms | cold | 45 | 0.500 | 2.800 | 7.300 | 7.300 | 0.753 |  |
+| input.lateness | ms | warm | 716 | 0.500 | 180.200 | 224.267 | 260.433 | 21.549 | 0 of 1 |
+| input.lateness | ms | cold | 585 | 0.267 | 2.333 | 8.133 | 19.533 | 0.525 | 0 of 1 |
+| input.project | ms | warm | 716 | 1.500 | 7.600 | 22.400 | 154.200 | 3.097 | 0 of 1 |
+| input.project | ms | cold | 585 | 1.500 | 4.200 | 7.600 | 16.600 | 1.901 | 0 of 1 |
 | install.ack-roundtrip | ms | warm | 220 | 4.600 | 22.200 | 46.900 | 116.200 | 7.719 | 1 of 1 |
 | install.ack-roundtrip | ms | cold | 184 | 4.500 | 9.500 | 17.700 | 19.400 | 5.139 | 1 of 1 |
 | install.ack-roundtrip [static-install] | ms | warm | 220 | 4.600 | 22.200 | 46.900 | 116.200 | 7.719 |  |
@@ -4112,64 +4116,64 @@ Denominators: submitted=1301 coalesced=1088 dispatched=213 completed=204 accepte
 | install.worker-deserialize | ms | cold | 184 | 2.300 | 4.500 | 5.500 | 6.200 | 2.617 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | warm | 220 | 2.600 | 11.200 | 17.600 | 31.500 | 3.833 |  |
 | install.worker-deserialize [static-install] | ms | cold | 184 | 2.300 | 4.500 | 5.500 | 6.200 | 2.617 |  |
-| job.phase-residual | ms | warm | 95 | 0.000 | 0.200 | 2.400 | 2.400 | 0.099 | 1 of 1 |
-| job.phase-residual | ms | cold | 89 | 0.000 | 0.200 | 0.500 | 0.500 | 0.035 | 1 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 40 | 0.000 | 0.100 | 2.400 | 2.400 | 0.075 |  |
-| job.phase-residual [pose-only] | ms | cold | 45 | 0.000 | 0.100 | 0.200 | 0.200 | 0.009 |  |
+| job.phase-residual | ms | warm | 108 | 0.000 | 0.200 | 2.400 | 2.400 | 0.089 | 1 of 1 |
+| job.phase-residual | ms | cold | 96 | 0.000 | 0.200 | 0.500 | 0.500 | 0.032 | 1 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 53 | 0.000 | 0.100 | 2.400 | 2.400 | 0.060 |  |
+| job.phase-residual [pose-only] | ms | cold | 51 | 0.000 | 0.100 | 0.200 | 0.200 | 0.008 |  |
 | job.phase-residual [static-install] | ms | warm | 55 | 0.000 | 0.300 | 2.400 | 2.400 | 0.116 |  |
-| job.phase-residual [static-install] | ms | cold | 44 | 0.000 | 0.200 | 0.500 | 0.500 | 0.061 |  |
-| job.submit-to-accepted | ms | warm | 153 | 15.900 | 57.300 | 235.800 | 253.300 | 22.119 | 1 of 1 |
-| job.submit-to-accepted | ms | cold | 51 | 14.900 | 26.600 | 31.100 | 31.100 | 15.600 | 1 of 1 |
-| job.submit-to-accepted [pose-only] | ms | warm | 78 | 14.000 | 25.000 | 253.300 | 253.300 | 19.469 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 26 | 9.600 | 18.300 | 18.900 | 18.900 | 10.873 |  |
-| job.submit-to-accepted [static-install] | ms | warm | 75 | 18.500 | 58.700 | 235.800 | 235.800 | 24.875 |  |
-| job.submit-to-accepted [static-install] | ms | cold | 25 | 20.300 | 28.300 | 31.100 | 31.100 | 20.516 |  |
-| merge.assemble | ms | warm | 100 | 0.000 | 0.100 | 0.100 | 0.300 | 0.018 | 1 of 1 |
-| merge.assemble | ms | cold | 91 | 0.000 | 0.100 | 0.100 | 0.100 | 0.011 | 1 of 1 |
-| merge.assemble [pose-only] | ms | warm | 45 | 0.000 | 0.100 | 0.300 | 0.300 | 0.022 |  |
-| merge.assemble [pose-only] | ms | cold | 46 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 |  |
+| job.phase-residual [static-install] | ms | cold | 45 | 0.000 | 0.200 | 0.500 | 0.500 | 0.060 |  |
+| job.submit-to-accepted | ms | warm | 108 | 16.400 | 68.500 | 235.800 | 253.300 | 25.373 | 1 of 1 |
+| job.submit-to-accepted | ms | cold | 96 | 14.700 | 24.600 | 31.100 | 31.100 | 14.995 | 1 of 1 |
+| job.submit-to-accepted [pose-only] | ms | warm | 53 | 14.500 | 96.400 | 253.300 | 253.300 | 22.934 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 51 | 10.400 | 18.900 | 19.200 | 19.200 | 11.486 |  |
+| job.submit-to-accepted [static-install] | ms | warm | 55 | 19.800 | 68.500 | 235.800 | 235.800 | 27.724 |  |
+| job.submit-to-accepted [static-install] | ms | cold | 45 | 18.600 | 26.600 | 31.100 | 31.100 | 18.971 |  |
+| merge.assemble | ms | warm | 113 | 0.000 | 0.100 | 0.100 | 0.300 | 0.018 | 1 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.100 | 0.011 | 1 of 1 |
+| merge.assemble [pose-only] | ms | warm | 58 | 0.000 | 0.100 | 0.300 | 0.300 | 0.021 |  |
+| merge.assemble [pose-only] | ms | cold | 54 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 |  |
 | merge.assemble [static-install] | ms | warm | 55 | 0.000 | 0.100 | 0.100 | 0.100 | 0.015 |  |
-| merge.assemble [static-install] | ms | cold | 45 | 0.000 | 0.100 | 0.100 | 0.100 | 0.013 |  |
+| merge.assemble [static-install] | ms | cold | 46 | 0.000 | 0.100 | 0.100 | 0.100 | 0.013 |  |
 | merge.reply-deserialize | ms | warm | 452 | 0.000 | 0.100 | 0.300 | 0.600 | 0.026 | 1 of 1 |
 | merge.reply-deserialize | ms | cold | 400 | 0.000 | 0.100 | 0.100 | 0.200 | 0.019 | 1 of 1 |
 | merge.reply-deserialize [pose-only] | ms | warm | 232 | 0.000 | 0.100 | 0.300 | 0.600 | 0.029 |  |
 | merge.reply-deserialize [pose-only] | ms | cold | 216 | 0.000 | 0.100 | 0.100 | 0.200 | 0.023 |  |
 | merge.reply-deserialize [static-install] | ms | warm | 220 | 0.000 | 0.100 | 0.100 | 0.200 | 0.023 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 184 | 0.000 | 0.100 | 0.100 | 0.100 | 0.016 |  |
-| merge.validate | ms | warm | 452 | 0.100 | 0.700 | 1.800 | 3.400 | 0.195 | 1 of 1 |
-| merge.validate | ms | cold | 400 | 0.100 | 0.400 | 0.800 | 3.000 | 0.137 | 1 of 1 |
-| merge.validate [pose-only] | ms | warm | 232 | 0.100 | 0.800 | 2.900 | 3.400 | 0.232 |  |
-| merge.validate [pose-only] | ms | cold | 216 | 0.100 | 0.400 | 0.800 | 3.000 | 0.142 |  |
+| merge.validate | ms | warm | 452 | 0.100 | 0.600 | 1.800 | 3.400 | 0.183 | 1 of 1 |
+| merge.validate | ms | cold | 400 | 0.100 | 0.300 | 0.600 | 1.900 | 0.122 | 1 of 1 |
+| merge.validate [pose-only] | ms | warm | 232 | 0.100 | 0.700 | 2.900 | 3.400 | 0.208 |  |
+| merge.validate [pose-only] | ms | cold | 216 | 0.100 | 0.300 | 0.400 | 1.900 | 0.119 |  |
 | merge.validate [static-install] | ms | warm | 220 | 0.100 | 0.500 | 1.000 | 1.000 | 0.155 |  |
-| merge.validate [static-install] | ms | cold | 184 | 0.100 | 0.300 | 0.900 | 1.100 | 0.130 |  |
-| pool.compute-metric | ms | warm | 153 | 5.700 | 30.400 | 123.000 | 138.100 | 8.591 | 1 of 1 |
-| pool.compute-metric | ms | cold | 51 | 5.400 | 15.200 | 23.600 | 23.600 | 6.580 | 1 of 1 |
-| pool.compute-metric [pose-only] | ms | warm | 78 | 1.500 | 9.500 | 123.000 | 123.000 | 3.892 |  |
-| pool.compute-metric [pose-only] | ms | cold | 26 | 1.700 | 4.800 | 5.400 | 5.400 | 2.327 |  |
-| pool.compute-metric [static-install] | ms | warm | 75 | 9.200 | 40.700 | 138.100 | 138.100 | 13.477 |  |
-| pool.compute-metric [static-install] | ms | cold | 25 | 10.900 | 16.700 | 23.600 | 23.600 | 11.004 |  |
-| pool.shard-max | ms | warm | 153 | 1.000 | 3.700 | 13.900 | 45.900 | 1.599 | 1 of 1 |
-| pool.shard-max | ms | cold | 51 | 1.400 | 4.100 | 5.000 | 5.000 | 1.729 | 1 of 1 |
-| pool.shard-max [pose-only] | ms | warm | 78 | 0.900 | 4.100 | 45.900 | 45.900 | 1.799 |  |
-| pool.shard-max [pose-only] | ms | cold | 26 | 1.300 | 3.100 | 3.800 | 3.800 | 1.500 |  |
-| pool.shard-max [static-install] | ms | warm | 75 | 1.100 | 3.600 | 5.800 | 5.800 | 1.391 |  |
-| pool.shard-max [static-install] | ms | cold | 25 | 1.500 | 4.300 | 5.000 | 5.000 | 1.968 |  |
-| pool.shard-total | ms | warm | 153 | 2.700 | 12.800 | 44.100 | 129.000 | 4.718 | 1 of 1 |
-| pool.shard-total | ms | cold | 51 | 3.800 | 9.600 | 17.800 | 17.800 | 4.851 | 1 of 1 |
-| pool.shard-total [pose-only] | ms | warm | 78 | 2.500 | 13.400 | 129.000 | 129.000 | 5.323 |  |
-| pool.shard-total [pose-only] | ms | cold | 26 | 3.400 | 8.700 | 9.300 | 9.300 | 4.173 |  |
-| pool.shard-total [static-install] | ms | warm | 75 | 2.800 | 12.800 | 21.000 | 21.000 | 4.089 |  |
-| pool.shard-total [static-install] | ms | cold | 25 | 4.301 | 12.400 | 17.800 | 17.800 | 5.556 |  |
-| pose.age-at-accept | ms | warm | 153 | 0.000 | 38.100 | 189.000 | 225.700 | 12.572 | 1 of 1 |
-| pose.age-at-accept | ms | cold | 51 | 0.000 | 20.900 | 27.600 | 27.600 | 8.524 | 1 of 1 |
-| pose.age-at-accept [pose-only] | ms | warm | 78 | 0.000 | 17.600 | 189.000 | 189.000 | 8.121 |  |
-| pose.age-at-accept [pose-only] | ms | cold | 26 | 0.000 | 16.300 | 16.700 | 16.700 | 1.269 |  |
-| pose.age-at-accept [static-install] | ms | warm | 75 | 16.200 | 53.300 | 225.700 | 225.700 | 17.201 |  |
-| pose.age-at-accept [static-install] | ms | cold | 25 | 16.400 | 21.800 | 27.600 | 27.600 | 16.068 |  |
-| pose.latest-wait | ms | warm | 976 | 57.500 | 122.900 | 286.100 | 382.500 | 63.135 | 0 of 1 |
-| pose.latest-wait | ms | cold | 325 | 57.300 | 105.700 | 153.700 | 170.200 | 58.399 | 0 of 1 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 976 | 57.500 | 122.900 | 286.100 | 382.500 | 63.135 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 325 | 57.300 | 105.700 | 153.700 | 170.200 | 58.399 |  |
+| merge.validate [static-install] | ms | cold | 184 | 0.100 | 0.300 | 0.900 | 1.100 | 0.127 |  |
+| pool.compute-metric | ms | warm | 108 | 6.000 | 31.800 | 123.000 | 138.100 | 10.233 | 1 of 1 |
+| pool.compute-metric | ms | cold | 96 | 3.800 | 14.000 | 23.600 | 23.600 | 5.675 | 1 of 1 |
+| pool.compute-metric [pose-only] | ms | warm | 53 | 1.600 | 13.700 | 123.000 | 123.000 | 5.002 |  |
+| pool.compute-metric [pose-only] | ms | cold | 51 | 1.600 | 4.400 | 5.400 | 5.400 | 1.941 |  |
+| pool.compute-metric [static-install] | ms | warm | 55 | 9.500 | 44.500 | 138.100 | 138.100 | 15.275 |  |
+| pool.compute-metric [static-install] | ms | cold | 45 | 9.100 | 15.200 | 23.600 | 23.600 | 9.907 |  |
+| pool.shard-max | ms | warm | 108 | 1.100 | 4.200 | 13.900 | 45.900 | 1.896 | 1 of 1 |
+| pool.shard-max | ms | cold | 96 | 1.100 | 3.800 | 5.000 | 5.000 | 1.333 | 1 of 1 |
+| pool.shard-max [pose-only] | ms | warm | 53 | 1.000 | 4.200 | 45.900 | 45.900 | 2.274 |  |
+| pool.shard-max [pose-only] | ms | cold | 51 | 0.900 | 2.500 | 3.800 | 3.800 | 1.153 |  |
+| pool.shard-max [static-install] | ms | warm | 55 | 1.200 | 5.100 | 5.800 | 5.800 | 1.533 |  |
+| pool.shard-max [static-install] | ms | cold | 45 | 1.200 | 4.100 | 5.000 | 5.000 | 1.538 |  |
+| pool.shard-total | ms | warm | 108 | 2.800 | 14.400 | 44.100 | 129.000 | 5.632 | 1 of 1 |
+| pool.shard-total | ms | cold | 96 | 3.100 | 9.200 | 17.800 | 17.800 | 3.760 | 1 of 1 |
+| pool.shard-total [pose-only] | ms | warm | 53 | 2.600 | 14.400 | 129.000 | 129.000 | 6.734 |  |
+| pool.shard-total [pose-only] | ms | cold | 51 | 3.000 | 7.500 | 9.300 | 9.300 | 3.271 |  |
+| pool.shard-total [static-install] | ms | warm | 55 | 2.900 | 18.100 | 21.000 | 21.000 | 4.571 |  |
+| pool.shard-total [static-install] | ms | cold | 45 | 3.600 | 9.600 | 17.800 | 17.800 | 4.316 |  |
+| pose.age-at-accept | ms | warm | 108 | 0.000 | 53.300 | 189.000 | 225.700 | 15.178 | 1 of 1 |
+| pose.age-at-accept | ms | cold | 96 | 0.000 | 20.500 | 27.600 | 27.600 | 7.490 | 1 of 1 |
+| pose.age-at-accept [pose-only] | ms | warm | 53 | 0.000 | 17.600 | 189.000 | 189.000 | 9.774 |  |
+| pose.age-at-accept [pose-only] | ms | cold | 51 | 0.000 | 16.700 | 17.300 | 17.300 | 2.910 |  |
+| pose.age-at-accept [static-install] | ms | warm | 55 | 16.500 | 62.300 | 225.700 | 225.700 | 20.385 |  |
+| pose.age-at-accept [static-install] | ms | cold | 45 | 16.300 | 20.900 | 27.600 | 27.600 | 12.680 |  |
+| pose.latest-wait | ms | warm | 716 | 61.400 | 141.100 | 303.200 | 382.500 | 67.641 | 0 of 1 |
+| pose.latest-wait | ms | cold | 585 | 53.700 | 96.100 | 152.000 | 170.200 | 54.990 | 0 of 1 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 716 | 61.400 | 141.100 | 303.200 | 382.500 | 67.641 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 585 | 53.700 | 96.100 | 152.000 | 170.200 | 54.990 |  |
 | queue.rate-limit | ms | warm | 113 | 6.133 | 14.433 | 16.933 | 81.833 | 7.252 | 1 of 1 |
 | queue.rate-limit | ms | cold | 100 | 5.833 | 14.233 | 14.633 | 15.533 | 6.171 | 1 of 1 |
 | queue.rate-limit [pose-only] | ms | warm | 58 | 6.733 | 15.433 | 81.833 | 81.833 | 8.716 |  |
@@ -4232,75 +4236,75 @@ Denominators: submitted=1201 coalesced=968 dispatched=233 completed=233 accepted
 
 | phase | units | temperature | N | p50 | p95 | p99 | max | mean | exploratory runs |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| accept.decide | ms | warm | 175 | 0.300 | 0.700 | 2.200 | 4.700 | 0.337 | 1 of 1 |
-| accept.decide | ms | cold | 58 | 0.300 | 0.700 | 0.800 | 0.800 | 0.317 | 1 of 1 |
-| accept.decide [pose-only] | ms | warm | 175 | 0.300 | 0.700 | 2.200 | 4.700 | 0.337 |  |
-| accept.decide [pose-only] | ms | cold | 57 | 0.300 | 0.700 | 0.800 | 0.800 | 0.318 |  |
+| accept.decide | ms | warm | 133 | 0.300 | 0.700 | 2.200 | 4.700 | 0.343 | 1 of 1 |
+| accept.decide | ms | cold | 100 | 0.300 | 0.600 | 0.700 | 0.800 | 0.317 | 1 of 1 |
+| accept.decide [pose-only] | ms | warm | 133 | 0.300 | 0.700 | 2.200 | 4.700 | 0.343 |  |
+| accept.decide [pose-only] | ms | cold | 99 | 0.300 | 0.600 | 0.800 | 0.800 | 0.317 |  |
 | accept.decide [static-install] | ms | cold | 1 | 0.300 | 0.300 | 0.300 | 0.300 | 0.300 |  |
 | dispatch.prepare | ms | warm | 133 | 0.200 | 0.400 | 0.500 | 3.200 | 0.206 | 1 of 1 |
 | dispatch.prepare | ms | cold | 100 | 0.200 | 0.400 | 0.600 | 2.600 | 0.214 | 1 of 1 |
 | dispatch.prepare [pose-only] | ms | warm | 133 | 0.200 | 0.400 | 0.500 | 3.200 | 0.206 |  |
 | dispatch.prepare [pose-only] | ms | cold | 99 | 0.200 | 0.400 | 0.600 | 0.600 | 0.190 |  |
 | dispatch.prepare [static-install] | ms | cold | 1 | 2.600 | 2.600 | 2.600 | 2.600 | 2.600 |  |
-| input.lateness | ms | warm | 900 | 0.167 | 1.300 | 1.633 | 16.233 | 0.292 | 0 of 1 |
-| input.lateness | ms | cold | 301 | 0.167 | 1.267 | 1.600 | 14.300 | 0.310 | 0 of 1 |
+| input.lateness | ms | warm | 686 | 0.167 | 1.300 | 1.633 | 16.233 | 0.296 | 0 of 1 |
+| input.lateness | ms | cold | 515 | 0.167 | 1.233 | 1.633 | 14.300 | 0.297 | 0 of 1 |
 | install.ack-roundtrip | ms | cold | 4 | 11.700 | 15.800 | 15.800 | 15.800 | 12.525 | 1 of 1 |
 | install.ack-roundtrip [static-install] | ms | cold | 4 | 11.700 | 15.800 | 15.800 | 15.800 | 12.525 |  |
 | install.post | ms | cold | 4 | 0.100 | 0.100 | 0.100 | 0.100 | 0.075 | 1 of 1 |
 | install.post [static-install] | ms | cold | 4 | 0.100 | 0.100 | 0.100 | 0.100 | 0.075 |  |
 | install.worker-deserialize | ms | cold | 4 | 0.100 | 0.200 | 0.200 | 0.200 | 0.100 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | cold | 4 | 0.100 | 0.200 | 0.200 | 0.200 | 0.100 |  |
-| job.phase-residual | ms | warm | 127 | 0.000 | 0.000 | 0.100 | 0.100 | -0.001 | 1 of 1 |
-| job.phase-residual | ms | cold | 99 | 0.000 | 0.100 | 0.100 | 0.100 | 0.002 | 1 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 127 | 0.000 | 0.000 | 0.100 | 0.100 | -0.001 |  |
-| job.phase-residual [pose-only] | ms | cold | 98 | 0.000 | 0.100 | 0.100 | 0.100 | 0.003 |  |
+| job.phase-residual | ms | warm | 133 | 0.000 | 0.000 | 0.100 | 0.100 | -0.001 | 1 of 1 |
+| job.phase-residual | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.100 | 0.002 | 1 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 133 | 0.000 | 0.000 | 0.100 | 0.100 | -0.001 |  |
+| job.phase-residual [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.100 | 0.100 | 0.003 |  |
 | job.phase-residual [static-install] | ms | cold | 1 | -0.100 | -0.100 | -0.100 | -0.100 | -0.100 |  |
-| job.submit-to-accepted | ms | warm | 175 | 23.000 | 31.200 | 63.800 | 81.600 | 23.590 | 1 of 1 |
-| job.submit-to-accepted | ms | cold | 58 | 24.500 | 31.400 | 33.500 | 33.500 | 24.603 | 1 of 1 |
-| job.submit-to-accepted [pose-only] | ms | warm | 175 | 23.000 | 31.200 | 63.800 | 81.600 | 23.590 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 57 | 24.500 | 31.400 | 33.500 | 33.500 | 24.525 |  |
+| job.submit-to-accepted | ms | warm | 133 | 23.000 | 31.200 | 63.800 | 81.600 | 23.552 | 1 of 1 |
+| job.submit-to-accepted | ms | cold | 100 | 24.300 | 31.300 | 32.000 | 33.500 | 24.229 | 1 of 1 |
+| job.submit-to-accepted [pose-only] | ms | warm | 133 | 23.000 | 31.200 | 63.800 | 81.600 | 23.552 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 99 | 24.300 | 31.400 | 33.500 | 33.500 | 24.180 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 1 | 29.100 | 29.100 | 29.100 | 29.100 | 29.100 |  |
-| merge.assemble | ms | warm | 127 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 | 1 of 1 |
-| merge.assemble | ms | cold | 99 | 0.000 | 0.100 | 0.200 | 0.200 | 0.009 | 1 of 1 |
-| merge.assemble [pose-only] | ms | warm | 127 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 |  |
-| merge.assemble [pose-only] | ms | cold | 98 | 0.000 | 0.100 | 0.100 | 0.100 | 0.007 |  |
+| merge.assemble | ms | warm | 133 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 | 1 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.200 | 0.009 | 1 of 1 |
+| merge.assemble [pose-only] | ms | warm | 133 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 |  |
+| merge.assemble [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.100 | 0.100 | 0.007 |  |
 | merge.assemble [static-install] | ms | cold | 1 | 0.200 | 0.200 | 0.200 | 0.200 | 0.200 |  |
 | merge.reply-deserialize | ms | warm | 532 | 0.000 | 0.100 | 0.100 | 0.400 | 0.016 | 1 of 1 |
 | merge.reply-deserialize | ms | cold | 400 | 0.000 | 0.100 | 0.100 | 0.100 | 0.014 | 1 of 1 |
 | merge.reply-deserialize [pose-only] | ms | warm | 532 | 0.000 | 0.100 | 0.100 | 0.400 | 0.016 |  |
 | merge.reply-deserialize [pose-only] | ms | cold | 396 | 0.000 | 0.100 | 0.100 | 0.100 | 0.013 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 4 | 0.100 | 0.100 | 0.100 | 0.100 | 0.075 |  |
-| merge.validate | ms | warm | 532 | 0.200 | 0.800 | 2.200 | 9.100 | 0.333 | 1 of 1 |
-| merge.validate | ms | cold | 400 | 0.300 | 0.800 | 1.300 | 2.800 | 0.332 | 1 of 1 |
-| merge.validate [pose-only] | ms | warm | 532 | 0.200 | 0.800 | 2.200 | 9.100 | 0.333 |  |
-| merge.validate [pose-only] | ms | cold | 396 | 0.300 | 0.800 | 1.100 | 1.500 | 0.316 |  |
+| merge.validate | ms | warm | 532 | 0.200 | 0.800 | 2.200 | 9.100 | 0.331 | 1 of 1 |
+| merge.validate | ms | cold | 400 | 0.300 | 0.800 | 1.300 | 2.800 | 0.331 | 1 of 1 |
+| merge.validate [pose-only] | ms | warm | 532 | 0.200 | 0.800 | 2.200 | 9.100 | 0.331 |  |
+| merge.validate [pose-only] | ms | cold | 396 | 0.300 | 0.800 | 1.100 | 1.500 | 0.315 |  |
 | merge.validate [static-install] | ms | cold | 4 | 1.500 | 2.800 | 2.800 | 2.800 | 1.875 |  |
-| pool.compute-metric | ms | warm | 175 | 2.200 | 4.000 | 14.500 | 35.900 | 2.658 | 1 of 1 |
-| pool.compute-metric | ms | cold | 58 | 2.200 | 4.900 | 27.500 | 27.500 | 2.909 | 1 of 1 |
-| pool.compute-metric [pose-only] | ms | warm | 175 | 2.200 | 4.000 | 14.500 | 35.900 | 2.658 |  |
-| pool.compute-metric [pose-only] | ms | cold | 57 | 2.200 | 4.700 | 4.900 | 4.900 | 2.477 |  |
+| pool.compute-metric | ms | warm | 133 | 2.100 | 4.200 | 14.500 | 35.900 | 2.701 | 1 of 1 |
+| pool.compute-metric | ms | cold | 100 | 2.400 | 4.100 | 4.900 | 27.500 | 2.747 | 1 of 1 |
+| pool.compute-metric [pose-only] | ms | warm | 133 | 2.100 | 4.200 | 14.500 | 35.900 | 2.701 |  |
+| pool.compute-metric [pose-only] | ms | cold | 99 | 2.400 | 4.100 | 4.900 | 4.900 | 2.497 |  |
 | pool.compute-metric [static-install] | ms | cold | 1 | 27.500 | 27.500 | 27.500 | 27.500 | 27.500 |  |
-| pool.shard-max | ms | warm | 175 | 1.000 | 1.500 | 13.700 | 16.000 | 1.197 | 1 of 1 |
-| pool.shard-max | ms | cold | 58 | 1.200 | 1.900 | 8.700 | 8.700 | 1.264 | 1 of 1 |
-| pool.shard-max [pose-only] | ms | warm | 175 | 1.000 | 1.500 | 13.700 | 16.000 | 1.197 |  |
-| pool.shard-max [pose-only] | ms | cold | 57 | 1.200 | 1.800 | 2.000 | 2.000 | 1.133 |  |
+| pool.shard-max | ms | warm | 133 | 1.000 | 1.600 | 13.700 | 16.000 | 1.236 | 1 of 1 |
+| pool.shard-max | ms | cold | 100 | 1.100 | 1.800 | 2.000 | 8.700 | 1.184 | 1 of 1 |
+| pool.shard-max [pose-only] | ms | warm | 133 | 1.000 | 1.600 | 13.700 | 16.000 | 1.236 |  |
+| pool.shard-max [pose-only] | ms | cold | 99 | 1.100 | 1.800 | 2.000 | 2.000 | 1.108 |  |
 | pool.shard-max [static-install] | ms | cold | 1 | 8.700 | 8.700 | 8.700 | 8.700 | 8.700 |  |
-| pool.shard-total | ms | warm | 175 | 2.900 | 5.100 | 16.400 | 31.800 | 3.238 | 1 of 1 |
-| pool.shard-total | ms | cold | 58 | 3.300 | 5.900 | 29.000 | 29.000 | 3.803 | 1 of 1 |
-| pool.shard-total [pose-only] | ms | warm | 175 | 2.900 | 5.100 | 16.400 | 31.800 | 3.238 |  |
-| pool.shard-total [pose-only] | ms | cold | 57 | 3.300 | 5.600 | 6.000 | 6.000 | 3.361 |  |
+| pool.shard-total | ms | warm | 133 | 2.800 | 5.200 | 16.400 | 31.800 | 3.280 | 1 of 1 |
+| pool.shard-total | ms | cold | 100 | 3.100 | 5.200 | 6.000 | 29.000 | 3.509 | 1 of 1 |
+| pool.shard-total [pose-only] | ms | warm | 133 | 2.800 | 5.200 | 16.400 | 31.800 | 3.280 |  |
+| pool.shard-total [pose-only] | ms | cold | 99 | 3.100 | 5.200 | 6.000 | 6.000 | 3.252 |  |
 | pool.shard-total [static-install] | ms | cold | 1 | 29.000 | 29.000 | 29.000 | 29.000 | 29.000 |  |
-| pose.age-at-accept | ms | warm | 175 | 16.500 | 18.000 | 33.800 | 34.700 | 14.493 | 1 of 1 |
-| pose.age-at-accept | ms | cold | 58 | 16.500 | 18.800 | 19.100 | 19.100 | 16.569 | 1 of 1 |
-| pose.age-at-accept [pose-only] | ms | warm | 175 | 16.500 | 18.000 | 33.800 | 34.700 | 14.493 |  |
-| pose.age-at-accept [pose-only] | ms | cold | 57 | 16.500 | 18.100 | 19.100 | 19.100 | 16.530 |  |
+| pose.age-at-accept | ms | warm | 133 | 16.500 | 18.000 | 33.800 | 34.700 | 14.205 | 1 of 1 |
+| pose.age-at-accept | ms | cold | 100 | 16.500 | 18.000 | 18.800 | 19.100 | 16.081 | 1 of 1 |
+| pose.age-at-accept [pose-only] | ms | warm | 133 | 16.500 | 18.000 | 33.800 | 34.700 | 14.205 |  |
+| pose.age-at-accept [pose-only] | ms | cold | 99 | 16.500 | 18.000 | 19.100 | 19.100 | 16.054 |  |
 | pose.age-at-accept [static-install] | ms | cold | 1 | 18.800 | 18.800 | 18.800 | 18.800 | 18.800 |  |
-| pose.latest-wait | ms | warm | 900 | 57.900 | 97.400 | 103.400 | 132.700 | 58.211 | 0 of 1 |
-| pose.latest-wait | ms | cold | 301 | 59.200 | 97.800 | 102.600 | 113.800 | 59.508 | 0 of 1 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 900 | 57.900 | 97.400 | 103.400 | 132.700 | 58.211 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 301 | 59.200 | 97.800 | 102.600 | 113.800 | 59.508 |  |
-| queue.client | ms | warm | 899 | 12.300 | 13.600 | 14.200 | 14.800 | 12.092 | 0 of 1 |
-| queue.client | ms | cold | 301 | 12.800 | 13.900 | 14.300 | 15.500 | 12.709 | 0 of 1 |
+| pose.latest-wait | ms | warm | 686 | 57.900 | 97.300 | 109.000 | 132.700 | 58.136 | 0 of 1 |
+| pose.latest-wait | ms | cold | 515 | 59.100 | 98.200 | 102.400 | 113.800 | 59.069 | 0 of 1 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 686 | 57.900 | 97.300 | 109.000 | 132.700 | 58.136 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 515 | 59.100 | 98.200 | 102.400 | 113.800 | 59.069 |  |
+| queue.client | ms | warm | 685 | 12.200 | 13.400 | 14.000 | 14.800 | 11.930 | 0 of 1 |
+| queue.client | ms | cold | 515 | 12.700 | 13.900 | 14.300 | 15.500 | 12.669 | 0 of 1 |
 | queue.rate-limit | ms | warm | 133 | 7.433 | 15.333 | 17.433 | 70.933 | 8.257 | 1 of 1 |
 | queue.rate-limit | ms | cold | 100 | 8.033 | 15.733 | 16.033 | 16.933 | 8.210 | 1 of 1 |
 | queue.rate-limit [pose-only] | ms | warm | 133 | 7.433 | 15.333 | 17.433 | 70.933 | 8.257 |  |
@@ -4354,75 +4358,75 @@ Denominators: submitted=7200 coalesced=5795 dispatched=1405 completed=1405 accep
 
 | phase | units | temperature | N | p50 | p95 | p99 | max | mean | exploratory runs |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| accept.decide | ms | warm | 1288 | 0.100 | 0.400 | 1.300 | 3.900 | 0.126 | 2 of 2 |
-| accept.decide | ms | cold | 117 | 0.000 | 0.600 | 1.500 | 3.800 | 0.162 | 2 of 2 |
-| accept.decide [pose-only] | ms | warm | 1288 | 0.100 | 0.400 | 1.300 | 3.900 | 0.126 |  |
-| accept.decide [pose-only] | ms | cold | 115 | 0.000 | 0.600 | 1.500 | 3.800 | 0.159 |  |
+| accept.decide | ms | warm | 1205 | 0.100 | 0.300 | 1.300 | 3.900 | 0.127 | 2 of 2 |
+| accept.decide | ms | cold | 200 | 0.000 | 0.500 | 1.100 | 3.800 | 0.141 | 2 of 2 |
+| accept.decide [pose-only] | ms | warm | 1205 | 0.100 | 0.300 | 1.300 | 3.900 | 0.127 |  |
+| accept.decide [pose-only] | ms | cold | 198 | 0.000 | 0.500 | 1.500 | 3.800 | 0.140 |  |
 | accept.decide [static-install] | ms | cold | 2 | 0.300 | 0.300 | 0.300 | 0.300 | 0.300 |  |
 | dispatch.prepare | ms | warm | 1205 | 0.100 | 0.400 | 0.800 | 2.700 | 0.171 | 2 of 2 |
 | dispatch.prepare | ms | cold | 200 | 0.200 | 0.400 | 1.700 | 3.600 | 0.229 | 2 of 2 |
 | dispatch.prepare [pose-only] | ms | warm | 1205 | 0.100 | 0.400 | 0.800 | 2.700 | 0.171 |  |
 | dispatch.prepare [pose-only] | ms | cold | 198 | 0.200 | 0.400 | 1.700 | 1.700 | 0.196 |  |
 | dispatch.prepare [static-install] | ms | cold | 2 | 3.300 | 3.600 | 3.600 | 3.600 | 3.450 |  |
-| input.lateness | ms | warm | 6598 | 0.333 | 1.300 | 1.800 | 24.533 | 0.351 | 0 of 2 |
-| input.lateness | ms | cold | 602 | 0.200 | 1.300 | 2.533 | 17.633 | 0.332 | 0 of 2 |
+| input.lateness | ms | warm | 6175 | 0.333 | 1.300 | 1.833 | 24.533 | 0.362 | 0 of 2 |
+| input.lateness | ms | cold | 1025 | 0.167 | 1.200 | 1.733 | 17.633 | 0.279 | 0 of 2 |
 | install.ack-roundtrip | ms | cold | 8 | 11.200 | 22.500 | 22.500 | 22.500 | 12.900 | 2 of 2 |
 | install.ack-roundtrip [static-install] | ms | cold | 8 | 11.200 | 22.500 | 22.500 | 22.500 | 12.900 |  |
 | install.post | ms | cold | 8 | 0.100 | 0.100 | 0.100 | 0.100 | 0.075 | 2 of 2 |
 | install.post [static-install] | ms | cold | 8 | 0.100 | 0.100 | 0.100 | 0.100 | 0.075 |  |
 | install.worker-deserialize | ms | cold | 8 | 0.200 | 0.300 | 0.300 | 0.300 | 0.212 | 2 of 2 |
 | install.worker-deserialize [static-install] | ms | cold | 8 | 0.200 | 0.300 | 0.300 | 0.300 | 0.212 |  |
-| job.phase-residual | ms | warm | 1122 | 0.000 | 0.000 | 0.100 | 0.100 | -0.004 | 2 of 2 |
-| job.phase-residual | ms | cold | 192 | 0.000 | 0.000 | 0.100 | 0.100 | 0.001 | 2 of 2 |
-| job.phase-residual [pose-only] | ms | warm | 1122 | 0.000 | 0.000 | 0.100 | 0.100 | -0.004 |  |
-| job.phase-residual [pose-only] | ms | cold | 190 | 0.000 | 0.000 | 0.100 | 0.100 | 0.002 |  |
+| job.phase-residual | ms | warm | 1205 | 0.000 | 0.000 | 0.100 | 0.100 | -0.003 | 2 of 2 |
+| job.phase-residual | ms | cold | 200 | 0.000 | 0.000 | 0.100 | 0.100 | 0.001 | 2 of 2 |
+| job.phase-residual [pose-only] | ms | warm | 1205 | 0.000 | 0.000 | 0.100 | 0.100 | -0.003 |  |
+| job.phase-residual [pose-only] | ms | cold | 198 | 0.000 | 0.000 | 0.100 | 0.100 | 0.002 |  |
 | job.phase-residual [static-install] | ms | cold | 2 | -0.100 | -0.100 | -0.100 | -0.100 | -0.100 |  |
-| job.submit-to-accepted | ms | warm | 1288 | 17.000 | 26.300 | 31.300 | 57.500 | 17.213 | 2 of 2 |
-| job.submit-to-accepted | ms | cold | 117 | 15.800 | 26.200 | 32.900 | 49.900 | 16.271 | 2 of 2 |
-| job.submit-to-accepted [pose-only] | ms | warm | 1288 | 17.000 | 26.300 | 31.300 | 57.500 | 17.213 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 115 | 15.700 | 25.300 | 32.100 | 49.900 | 16.011 |  |
+| job.submit-to-accepted | ms | warm | 1205 | 17.100 | 26.400 | 31.300 | 57.500 | 17.312 | 2 of 2 |
+| job.submit-to-accepted | ms | cold | 200 | 15.800 | 24.500 | 32.100 | 49.900 | 16.065 | 2 of 2 |
+| job.submit-to-accepted [pose-only] | ms | warm | 1205 | 17.100 | 26.400 | 31.300 | 57.500 | 17.312 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 198 | 15.700 | 24.300 | 32.100 | 49.900 | 15.913 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 2 | 29.500 | 32.900 | 32.900 | 32.900 | 31.200 |  |
-| merge.assemble | ms | warm | 1122 | 0.000 | 0.100 | 0.100 | 0.300 | 0.006 | 2 of 2 |
-| merge.assemble | ms | cold | 192 | 0.000 | 0.100 | 0.100 | 0.200 | 0.011 | 2 of 2 |
-| merge.assemble [pose-only] | ms | warm | 1122 | 0.000 | 0.100 | 0.100 | 0.300 | 0.006 |  |
-| merge.assemble [pose-only] | ms | cold | 190 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 |  |
+| merge.assemble | ms | warm | 1205 | 0.000 | 0.100 | 0.100 | 0.300 | 0.006 | 2 of 2 |
+| merge.assemble | ms | cold | 200 | 0.000 | 0.100 | 0.100 | 0.200 | 0.011 | 2 of 2 |
+| merge.assemble [pose-only] | ms | warm | 1205 | 0.000 | 0.100 | 0.100 | 0.300 | 0.006 |  |
+| merge.assemble [pose-only] | ms | cold | 198 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 |  |
 | merge.assemble [static-install] | ms | cold | 2 | 0.100 | 0.200 | 0.200 | 0.200 | 0.150 |  |
 | merge.reply-deserialize | ms | warm | 4820 | 0.000 | 0.100 | 0.200 | 0.700 | 0.016 | 0 of 2 |
 | merge.reply-deserialize | ms | cold | 800 | 0.000 | 0.100 | 0.100 | 0.700 | 0.018 | 0 of 2 |
 | merge.reply-deserialize [pose-only] | ms | warm | 4820 | 0.000 | 0.100 | 0.200 | 0.700 | 0.016 |  |
 | merge.reply-deserialize [pose-only] | ms | cold | 792 | 0.000 | 0.100 | 0.200 | 0.700 | 0.018 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 8 | 0.000 | 0.100 | 0.100 | 0.100 | 0.025 |  |
-| merge.validate | ms | warm | 4820 | 0.100 | 0.500 | 1.300 | 6.400 | 0.189 | 0 of 2 |
-| merge.validate | ms | cold | 800 | 0.200 | 0.700 | 1.900 | 5.100 | 0.269 | 0 of 2 |
-| merge.validate [pose-only] | ms | warm | 4820 | 0.100 | 0.500 | 1.300 | 6.400 | 0.189 |  |
+| merge.validate | ms | warm | 4820 | 0.100 | 0.500 | 1.300 | 6.400 | 0.188 | 0 of 2 |
+| merge.validate | ms | cold | 800 | 0.200 | 0.700 | 1.900 | 5.100 | 0.268 | 0 of 2 |
+| merge.validate [pose-only] | ms | warm | 4820 | 0.100 | 0.500 | 1.300 | 6.400 | 0.188 |  |
 | merge.validate [pose-only] | ms | cold | 792 | 0.200 | 0.600 | 1.800 | 5.100 | 0.253 |  |
 | merge.validate [static-install] | ms | cold | 8 | 1.600 | 3.300 | 3.300 | 3.300 | 1.825 |  |
-| pool.compute-metric | ms | warm | 1288 | 1.500 | 3.200 | 13.000 | 33.600 | 1.815 | 2 of 2 |
-| pool.compute-metric | ms | cold | 117 | 1.800 | 6.900 | 25.900 | 30.900 | 2.821 | 2 of 2 |
-| pool.compute-metric [pose-only] | ms | warm | 1288 | 1.500 | 3.200 | 13.000 | 33.600 | 1.815 |  |
-| pool.compute-metric [pose-only] | ms | cold | 115 | 1.800 | 6.100 | 17.800 | 23.400 | 2.376 |  |
+| pool.compute-metric | ms | warm | 1205 | 1.400 | 3.100 | 13.000 | 33.600 | 1.809 | 2 of 2 |
+| pool.compute-metric | ms | cold | 200 | 1.700 | 4.900 | 23.400 | 30.900 | 2.444 | 2 of 2 |
+| pool.compute-metric [pose-only] | ms | warm | 1205 | 1.400 | 3.100 | 13.000 | 33.600 | 1.809 |  |
+| pool.compute-metric [pose-only] | ms | cold | 198 | 1.700 | 4.300 | 17.800 | 23.400 | 2.182 |  |
 | pool.compute-metric [static-install] | ms | cold | 2 | 25.900 | 30.900 | 30.900 | 30.900 | 28.400 |  |
-| pool.shard-max | ms | warm | 1288 | 0.700 | 1.200 | 3.400 | 17.100 | 0.770 | 2 of 2 |
-| pool.shard-max | ms | cold | 117 | 0.800 | 2.900 | 7.000 | 7.000 | 1.109 | 2 of 2 |
-| pool.shard-max [pose-only] | ms | warm | 1288 | 0.700 | 1.200 | 3.400 | 17.100 | 0.770 |  |
-| pool.shard-max [pose-only] | ms | cold | 115 | 0.800 | 2.600 | 4.900 | 7.000 | 1.020 |  |
+| pool.shard-max | ms | warm | 1205 | 0.700 | 1.200 | 3.400 | 17.100 | 0.764 | 2 of 2 |
+| pool.shard-max | ms | cold | 200 | 0.800 | 1.900 | 5.400 | 7.000 | 1.006 | 2 of 2 |
+| pool.shard-max [pose-only] | ms | warm | 1205 | 0.700 | 1.200 | 3.400 | 17.100 | 0.764 |  |
+| pool.shard-max [pose-only] | ms | cold | 198 | 0.800 | 1.800 | 4.900 | 7.000 | 0.953 |  |
 | pool.shard-max [static-install] | ms | cold | 2 | 5.400 | 7.000 | 7.000 | 7.000 | 6.200 |  |
-| pool.shard-total | ms | warm | 1288 | 1.900 | 3.700 | 9.700 | 40.200 | 2.162 | 2 of 2 |
-| pool.shard-total | ms | cold | 117 | 2.300 | 7.400 | 20.700 | 26.000 | 3.265 | 2 of 2 |
-| pool.shard-total [pose-only] | ms | warm | 1288 | 1.900 | 3.700 | 9.700 | 40.200 | 2.162 |  |
-| pool.shard-total [pose-only] | ms | cold | 115 | 2.300 | 6.400 | 16.500 | 16.500 | 2.916 |  |
+| pool.shard-total | ms | warm | 1205 | 1.900 | 3.600 | 9.700 | 40.200 | 2.141 | 2 of 2 |
+| pool.shard-total | ms | cold | 200 | 2.300 | 5.800 | 16.500 | 26.000 | 2.935 | 2 of 2 |
+| pool.shard-total [pose-only] | ms | warm | 1205 | 1.900 | 3.600 | 9.700 | 40.200 | 2.141 |  |
+| pool.shard-total [pose-only] | ms | cold | 198 | 2.300 | 5.100 | 16.500 | 16.500 | 2.729 |  |
 | pool.shard-total [static-install] | ms | cold | 2 | 20.700 | 26.000 | 26.000 | 26.000 | 23.350 |  |
-| pose.age-at-accept | ms | warm | 1288 | 15.500 | 17.600 | 18.200 | 36.900 | 9.156 | 2 of 2 |
-| pose.age-at-accept | ms | cold | 117 | 0.000 | 18.200 | 25.500 | 27.600 | 8.069 | 2 of 2 |
-| pose.age-at-accept [pose-only] | ms | warm | 1288 | 15.500 | 17.600 | 18.200 | 36.900 | 9.156 |  |
-| pose.age-at-accept [pose-only] | ms | cold | 115 | 0.000 | 17.700 | 18.800 | 19.100 | 7.748 |  |
+| pose.age-at-accept | ms | warm | 1205 | 15.600 | 17.600 | 18.200 | 36.900 | 9.253 | 2 of 2 |
+| pose.age-at-accept | ms | cold | 200 | 0.000 | 17.700 | 19.100 | 27.600 | 7.932 | 2 of 2 |
+| pose.age-at-accept [pose-only] | ms | warm | 1205 | 15.600 | 17.600 | 18.200 | 36.900 | 9.253 |  |
+| pose.age-at-accept [pose-only] | ms | cold | 198 | 0.000 | 17.700 | 18.800 | 19.100 | 7.744 |  |
 | pose.age-at-accept [static-install] | ms | cold | 2 | 25.500 | 27.600 | 27.600 | 27.600 | 26.550 |  |
-| pose.latest-wait | ms | warm | 6598 | 51.600 | 90.100 | 95.000 | 143.000 | 51.632 | 0 of 2 |
-| pose.latest-wait | ms | cold | 602 | 51.000 | 89.800 | 99.800 | 130.900 | 51.107 | 0 of 2 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 6598 | 51.600 | 90.100 | 95.000 | 143.000 | 51.632 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 602 | 51.000 | 89.800 | 99.800 | 130.900 | 51.107 |  |
-| queue.client | ms | warm | 6589 | 5.100 | 10.400 | 11.200 | 15.500 | 6.483 | 0 of 2 |
-| queue.client | ms | cold | 600 | 4.700 | 5.900 | 6.800 | 16.800 | 4.822 | 0 of 2 |
+| pose.latest-wait | ms | warm | 6175 | 51.700 | 90.100 | 95.100 | 143.000 | 51.737 | 0 of 2 |
+| pose.latest-wait | ms | cold | 1025 | 50.800 | 89.300 | 95.000 | 130.900 | 50.693 | 0 of 2 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 6175 | 51.700 | 90.100 | 95.100 | 143.000 | 51.737 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 1025 | 50.800 | 89.300 | 95.000 | 130.900 | 50.693 |  |
+| queue.client | ms | warm | 6166 | 5.200 | 10.500 | 11.200 | 15.500 | 6.597 | 0 of 2 |
+| queue.client | ms | cold | 1023 | 4.700 | 5.900 | 6.600 | 16.800 | 4.819 | 0 of 2 |
 | queue.rate-limit | ms | warm | 1205 | 8.433 | 16.233 | 17.533 | 36.033 | 8.491 | 2 of 2 |
 | queue.rate-limit | ms | cold | 200 | 8.133 | 16.533 | 18.433 | 19.633 | 8.364 | 2 of 2 |
 | queue.rate-limit [pose-only] | ms | warm | 1205 | 8.433 | 16.233 | 17.533 | 36.033 | 8.491 |  |
@@ -4476,75 +4480,75 @@ Denominators: submitted=1201 coalesced=970 dispatched=231 completed=231 accepted
 
 | phase | units | temperature | N | p50 | p95 | p99 | max | mean | exploratory runs |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| accept.decide | ms | warm | 175 | 0.000 | 0.900 | 13.500 | 15.200 | 0.319 | 1 of 1 |
-| accept.decide | ms | cold | 56 | 0.000 | 2.000 | 11.800 | 11.800 | 0.529 | 1 of 1 |
-| accept.decide [pose-only] | ms | warm | 175 | 0.000 | 0.900 | 13.500 | 15.200 | 0.319 |  |
-| accept.decide [pose-only] | ms | cold | 55 | 0.000 | 2.000 | 11.800 | 11.800 | 0.529 |  |
+| accept.decide | ms | warm | 131 | 0.000 | 0.800 | 13.500 | 15.200 | 0.362 | 1 of 1 |
+| accept.decide | ms | cold | 100 | 0.000 | 1.000 | 6.300 | 11.800 | 0.380 | 1 of 1 |
+| accept.decide [pose-only] | ms | warm | 131 | 0.000 | 0.800 | 13.500 | 15.200 | 0.362 |  |
+| accept.decide [pose-only] | ms | cold | 99 | 0.000 | 1.800 | 11.800 | 11.800 | 0.379 |  |
 | accept.decide [static-install] | ms | cold | 1 | 0.500 | 0.500 | 0.500 | 0.500 | 0.500 |  |
 | dispatch.prepare | ms | warm | 131 | 0.100 | 0.500 | 2.000 | 3.000 | 0.206 | 1 of 1 |
 | dispatch.prepare | ms | cold | 100 | 0.100 | 1.000 | 6.000 | 14.300 | 0.424 | 1 of 1 |
 | dispatch.prepare [pose-only] | ms | warm | 131 | 0.100 | 0.500 | 2.000 | 3.000 | 0.206 |  |
 | dispatch.prepare [pose-only] | ms | cold | 99 | 0.100 | 1.000 | 14.300 | 14.300 | 0.368 |  |
 | dispatch.prepare [static-install] | ms | cold | 1 | 6.000 | 6.000 | 6.000 | 6.000 | 6.000 |  |
-| input.lateness | ms | warm | 901 | 0.200 | 1.133 | 35.267 | 61.133 | 0.941 | 0 of 1 |
-| input.lateness | ms | cold | 300 | 0.233 | 3.700 | 45.467 | 65.433 | 1.877 | 0 of 1 |
+| input.lateness | ms | warm | 677 | 0.200 | 1.167 | 43.967 | 61.133 | 1.147 | 0 of 1 |
+| input.lateness | ms | cold | 524 | 0.233 | 1.267 | 38.167 | 65.433 | 1.211 | 0 of 1 |
 | install.ack-roundtrip | ms | cold | 4 | 15.400 | 17.000 | 17.000 | 17.000 | 16.075 | 1 of 1 |
 | install.ack-roundtrip [static-install] | ms | cold | 4 | 15.400 | 17.000 | 17.000 | 17.000 | 16.075 |  |
 | install.post | ms | cold | 4 | 0.000 | 0.200 | 0.200 | 0.200 | 0.050 | 1 of 1 |
 | install.post [static-install] | ms | cold | 4 | 0.000 | 0.200 | 0.200 | 0.200 | 0.050 |  |
 | install.worker-deserialize | ms | cold | 4 | 0.100 | 0.200 | 0.200 | 0.200 | 0.150 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | cold | 4 | 0.100 | 0.200 | 0.200 | 0.200 | 0.150 |  |
-| job.phase-residual | ms | warm | 123 | 0.000 | 0.100 | 0.200 | 2.400 | 0.035 | 1 of 1 |
-| job.phase-residual | ms | cold | 96 | 0.000 | 0.100 | 0.300 | 0.300 | 0.029 | 1 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 123 | 0.000 | 0.100 | 0.200 | 2.400 | 0.035 |  |
-| job.phase-residual [pose-only] | ms | cold | 95 | 0.000 | 0.100 | 0.300 | 0.300 | 0.029 |  |
+| job.phase-residual | ms | warm | 131 | 0.000 | 0.100 | 0.200 | 2.400 | 0.033 | 1 of 1 |
+| job.phase-residual | ms | cold | 100 | 0.000 | 0.100 | 0.200 | 0.300 | 0.029 | 1 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 131 | 0.000 | 0.100 | 0.200 | 2.400 | 0.033 |  |
+| job.phase-residual [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.300 | 0.300 | 0.029 |  |
 | job.phase-residual [static-install] | ms | cold | 1 | -0.000 | -0.000 | -0.000 | -0.000 | -0.000 |  |
-| job.submit-to-accepted | ms | warm | 175 | 15.600 | 26.900 | 96.100 | 118.100 | 17.094 | 1 of 1 |
-| job.submit-to-accepted | ms | cold | 56 | 15.000 | 53.500 | 94.900 | 94.900 | 19.688 | 1 of 1 |
-| job.submit-to-accepted [pose-only] | ms | warm | 175 | 15.600 | 26.900 | 96.100 | 118.100 | 17.094 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 55 | 15.000 | 53.100 | 94.900 | 94.900 | 19.073 |  |
+| job.submit-to-accepted | ms | warm | 131 | 15.800 | 28.900 | 96.100 | 118.100 | 17.602 | 1 of 1 |
+| job.submit-to-accepted | ms | cold | 100 | 15.000 | 26.900 | 67.900 | 94.900 | 17.881 | 1 of 1 |
+| job.submit-to-accepted [pose-only] | ms | warm | 131 | 15.800 | 28.900 | 96.100 | 118.100 | 17.602 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 99 | 15.000 | 26.900 | 94.900 | 94.900 | 17.521 |  |
 | job.submit-to-accepted [static-install] | ms | cold | 1 | 53.500 | 53.500 | 53.500 | 53.500 | 53.500 |  |
-| merge.assemble | ms | warm | 123 | 0.000 | 0.100 | 1.000 | 2.000 | 0.033 | 1 of 1 |
-| merge.assemble | ms | cold | 96 | 0.000 | 0.100 | 0.300 | 0.300 | 0.022 | 1 of 1 |
-| merge.assemble [pose-only] | ms | warm | 123 | 0.000 | 0.100 | 1.000 | 2.000 | 0.033 |  |
-| merge.assemble [pose-only] | ms | cold | 95 | 0.000 | 0.100 | 0.200 | 0.200 | 0.019 |  |
+| merge.assemble | ms | warm | 131 | 0.000 | 0.100 | 1.000 | 2.000 | 0.031 | 1 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.200 | 0.300 | 0.021 | 1 of 1 |
+| merge.assemble [pose-only] | ms | warm | 131 | 0.000 | 0.100 | 1.000 | 2.000 | 0.031 |  |
+| merge.assemble [pose-only] | ms | cold | 99 | 0.000 | 0.100 | 0.200 | 0.200 | 0.018 |  |
 | merge.assemble [static-install] | ms | cold | 1 | 0.300 | 0.300 | 0.300 | 0.300 | 0.300 |  |
 | merge.reply-deserialize | ms | warm | 524 | 0.000 | 0.100 | 0.400 | 1.900 | 0.032 | 1 of 1 |
 | merge.reply-deserialize | ms | cold | 400 | 0.000 | 0.100 | 0.200 | 1.300 | 0.032 | 1 of 1 |
 | merge.reply-deserialize [pose-only] | ms | warm | 524 | 0.000 | 0.100 | 0.400 | 1.900 | 0.032 |  |
 | merge.reply-deserialize [pose-only] | ms | cold | 396 | 0.000 | 0.100 | 0.300 | 1.300 | 0.032 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 4 | 0.000 | 0.100 | 0.100 | 0.100 | 0.025 |  |
-| merge.validate | ms | warm | 524 | 0.200 | 0.900 | 3.400 | 26.700 | 0.404 | 1 of 1 |
-| merge.validate | ms | cold | 400 | 0.200 | 1.700 | 7.700 | 23.500 | 0.546 | 1 of 1 |
-| merge.validate [pose-only] | ms | warm | 524 | 0.200 | 0.900 | 3.400 | 26.700 | 0.404 |  |
-| merge.validate [pose-only] | ms | cold | 396 | 0.200 | 1.400 | 7.800 | 23.500 | 0.523 |  |
+| merge.validate | ms | warm | 524 | 0.200 | 0.900 | 3.400 | 26.700 | 0.403 | 1 of 1 |
+| merge.validate | ms | cold | 400 | 0.200 | 1.700 | 7.700 | 23.500 | 0.545 | 1 of 1 |
+| merge.validate [pose-only] | ms | warm | 524 | 0.200 | 0.900 | 3.400 | 26.700 | 0.403 |  |
+| merge.validate [pose-only] | ms | cold | 396 | 0.200 | 1.400 | 7.800 | 23.500 | 0.522 |  |
 | merge.validate [static-install] | ms | cold | 4 | 2.100 | 4.500 | 4.500 | 4.500 | 2.825 |  |
-| pool.compute-metric | ms | warm | 175 | 1.400 | 8.200 | 72.500 | 74.300 | 3.187 | 1 of 1 |
-| pool.compute-metric | ms | cold | 56 | 1.900 | 42.000 | 62.300 | 62.300 | 5.704 | 1 of 1 |
-| pool.compute-metric [pose-only] | ms | warm | 175 | 1.400 | 8.200 | 72.500 | 74.300 | 3.187 |  |
-| pool.compute-metric [pose-only] | ms | cold | 55 | 1.900 | 37.000 | 62.300 | 62.300 | 5.044 |  |
+| pool.compute-metric | ms | warm | 131 | 1.300 | 8.200 | 72.500 | 74.300 | 3.338 | 1 of 1 |
+| pool.compute-metric | ms | cold | 100 | 1.800 | 12.200 | 45.800 | 62.300 | 4.398 | 1 of 1 |
+| pool.compute-metric [pose-only] | ms | warm | 131 | 1.300 | 8.200 | 72.500 | 74.300 | 3.338 |  |
+| pool.compute-metric [pose-only] | ms | cold | 99 | 1.800 | 12.200 | 62.300 | 62.300 | 4.018 |  |
 | pool.compute-metric [static-install] | ms | cold | 1 | 42.000 | 42.000 | 42.000 | 42.000 | 42.000 |  |
-| pool.shard-max | ms | warm | 175 | 0.600 | 3.600 | 23.300 | 37.800 | 1.327 | 1 of 1 |
-| pool.shard-max | ms | cold | 56 | 0.800 | 9.800 | 20.500 | 20.500 | 2.030 | 1 of 1 |
-| pool.shard-max [pose-only] | ms | warm | 175 | 0.600 | 3.600 | 23.300 | 37.800 | 1.327 |  |
-| pool.shard-max [pose-only] | ms | cold | 55 | 0.800 | 9.300 | 20.500 | 20.500 | 1.889 |  |
+| pool.shard-max | ms | warm | 131 | 0.500 | 3.600 | 23.300 | 37.800 | 1.430 | 1 of 1 |
+| pool.shard-max | ms | cold | 100 | 0.700 | 5.500 | 18.500 | 20.500 | 1.586 | 1 of 1 |
+| pool.shard-max [pose-only] | ms | warm | 131 | 0.500 | 3.600 | 23.300 | 37.800 | 1.430 |  |
+| pool.shard-max [pose-only] | ms | cold | 99 | 0.700 | 5.500 | 20.500 | 20.500 | 1.503 |  |
 | pool.shard-max [static-install] | ms | cold | 1 | 9.800 | 9.800 | 9.800 | 9.800 | 9.800 |  |
-| pool.shard-total | ms | warm | 175 | 1.400 | 8.400 | 49.300 | 86.500 | 3.097 | 1 of 1 |
-| pool.shard-total | ms | cold | 56 | 2.100 | 36.300 | 57.600 | 57.600 | 5.470 | 1 of 1 |
-| pool.shard-total [pose-only] | ms | warm | 175 | 1.400 | 8.400 | 49.300 | 86.500 | 3.097 |  |
-| pool.shard-total [pose-only] | ms | cold | 55 | 2.100 | 27.500 | 57.600 | 57.600 | 4.869 |  |
+| pool.shard-total | ms | warm | 131 | 1.300 | 8.200 | 49.300 | 86.500 | 3.226 | 1 of 1 |
+| pool.shard-total | ms | cold | 100 | 1.900 | 13.400 | 38.500 | 57.600 | 4.256 | 1 of 1 |
+| pool.shard-total [pose-only] | ms | warm | 131 | 1.300 | 8.200 | 49.300 | 86.500 | 3.226 |  |
+| pool.shard-total [pose-only] | ms | cold | 99 | 1.900 | 13.400 | 57.600 | 57.600 | 3.910 |  |
 | pool.shard-total [static-install] | ms | cold | 1 | 38.500 | 38.500 | 38.500 | 38.500 | 38.500 |  |
-| pose.age-at-accept | ms | warm | 175 | 0.000 | 17.900 | 51.800 | 86.100 | 7.995 | 1 of 1 |
-| pose.age-at-accept | ms | cold | 56 | 0.000 | 22.100 | 62.900 | 62.900 | 8.987 | 1 of 1 |
-| pose.age-at-accept [pose-only] | ms | warm | 175 | 0.000 | 17.900 | 51.800 | 86.100 | 7.995 |  |
-| pose.age-at-accept [pose-only] | ms | cold | 55 | 0.000 | 17.800 | 62.900 | 62.900 | 8.545 |  |
+| pose.age-at-accept | ms | warm | 131 | 0.000 | 17.900 | 51.800 | 86.100 | 8.211 | 1 of 1 |
+| pose.age-at-accept | ms | cold | 100 | 0.000 | 17.800 | 33.300 | 62.900 | 8.268 | 1 of 1 |
+| pose.age-at-accept [pose-only] | ms | warm | 131 | 0.000 | 17.900 | 51.800 | 86.100 | 8.211 |  |
+| pose.age-at-accept [pose-only] | ms | cold | 99 | 0.000 | 17.800 | 62.900 | 62.900 | 8.015 |  |
 | pose.age-at-accept [static-install] | ms | cold | 1 | 33.300 | 33.300 | 33.300 | 33.300 | 33.300 |  |
-| pose.latest-wait | ms | warm | 901 | 50.900 | 90.500 | 134.900 | 185.500 | 52.035 | 0 of 1 |
-| pose.latest-wait | ms | cold | 300 | 55.300 | 109.500 | 144.800 | 206.200 | 56.245 | 0 of 1 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 901 | 50.900 | 90.500 | 134.900 | 185.500 | 52.035 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 300 | 55.300 | 109.500 | 144.800 | 206.200 | 56.245 |  |
-| queue.client | ms | warm | 889 | 4.600 | 5.700 | 7.000 | 15.600 | 4.803 | 0 of 1 |
-| queue.client | ms | cold | 292 | 4.600 | 5.800 | 8.700 | 9.200 | 4.809 | 0 of 1 |
+| pose.latest-wait | ms | warm | 677 | 51.400 | 90.900 | 151.300 | 185.500 | 52.605 | 0 of 1 |
+| pose.latest-wait | ms | cold | 524 | 53.500 | 94.600 | 129.200 | 206.200 | 53.708 | 0 of 1 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 677 | 51.400 | 90.900 | 151.300 | 185.500 | 52.605 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 524 | 53.500 | 94.600 | 129.200 | 206.200 | 53.708 |  |
+| queue.client | ms | warm | 667 | 4.600 | 5.700 | 7.700 | 15.600 | 4.785 | 0 of 1 |
+| queue.client | ms | cold | 514 | 4.700 | 5.800 | 7.000 | 9.200 | 4.829 | 0 of 1 |
 | queue.rate-limit | ms | warm | 131 | 9.133 | 16.233 | 17.933 | 67.133 | 9.114 | 1 of 1 |
 | queue.rate-limit | ms | cold | 100 | 7.633 | 16.433 | 17.333 | 17.633 | 7.987 | 1 of 1 |
 | queue.rate-limit [pose-only] | ms | warm | 131 | 9.133 | 16.233 | 17.933 | 67.133 | 9.114 |  |
@@ -4598,20 +4602,20 @@ Denominators: submitted=3900 coalesced=3198 dispatched=702 completed=694 accepte
 
 | phase | units | temperature | N | p50 | p95 | p99 | max | mean | exploratory runs |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| accept.decide | ms | warm | 579 | 0.100 | 0.500 | 0.900 | 3.100 | 0.132 | 2 of 2 |
-| accept.decide | ms | cold | 115 | 0.100 | 0.700 | 1.000 | 1.200 | 0.150 | 2 of 2 |
-| accept.decide [pose-only] | ms | warm | 329 | 0.100 | 0.400 | 0.900 | 3.100 | 0.137 |  |
-| accept.decide [pose-only] | ms | cold | 65 | 0.100 | 0.700 | 1.200 | 1.200 | 0.165 |  |
-| accept.decide [static-install] | ms | warm | 250 | 0.100 | 0.500 | 0.900 | 1.300 | 0.126 |  |
-| accept.decide [static-install] | ms | cold | 50 | 0.000 | 0.600 | 1.000 | 1.000 | 0.132 |  |
+| accept.decide | ms | warm | 497 | 0.100 | 0.400 | 0.900 | 3.100 | 0.132 | 2 of 2 |
+| accept.decide | ms | cold | 197 | 0.100 | 0.600 | 1.100 | 1.200 | 0.144 | 2 of 2 |
+| accept.decide [pose-only] | ms | warm | 283 | 0.100 | 0.400 | 1.000 | 3.100 | 0.138 |  |
+| accept.decide [pose-only] | ms | cold | 111 | 0.100 | 0.600 | 0.800 | 1.200 | 0.152 |  |
+| accept.decide [static-install] | ms | warm | 214 | 0.100 | 0.500 | 0.700 | 1.300 | 0.124 |  |
+| accept.decide [static-install] | ms | cold | 86 | 0.100 | 0.600 | 1.100 | 1.100 | 0.134 |  |
 | dispatch.prepare | ms | warm | 502 | 0.200 | 0.600 | 1.300 | 7.200 | 0.253 | 2 of 2 |
 | dispatch.prepare | ms | cold | 200 | 0.200 | 0.600 | 1.700 | 1.900 | 0.262 | 2 of 2 |
 | dispatch.prepare [pose-only] | ms | warm | 288 | 0.100 | 0.300 | 0.800 | 2.500 | 0.162 |  |
 | dispatch.prepare [pose-only] | ms | cold | 113 | 0.100 | 0.300 | 0.500 | 0.600 | 0.153 |  |
 | dispatch.prepare [static-install] | ms | warm | 214 | 0.300 | 0.800 | 1.300 | 7.200 | 0.375 |  |
 | dispatch.prepare [static-install] | ms | cold | 87 | 0.300 | 1.500 | 1.900 | 1.900 | 0.403 |  |
-| input.lateness | ms | warm | 3247 | 0.300 | 1.300 | 1.800 | 11.967 | 0.336 | 0 of 2 |
-| input.lateness | ms | cold | 653 | 0.300 | 1.500 | 2.067 | 12.700 | 0.369 | 0 of 2 |
+| input.lateness | ms | warm | 2791 | 0.333 | 1.300 | 1.867 | 11.967 | 0.344 | 0 of 2 |
+| input.lateness | ms | cold | 1109 | 0.300 | 1.400 | 1.833 | 12.700 | 0.336 | 0 of 2 |
 | install.ack-roundtrip | ms | warm | 856 | 0.500 | 1.000 | 2.100 | 10.300 | 0.565 | 2 of 2 |
 | install.ack-roundtrip | ms | cold | 348 | 0.400 | 1.300 | 7.300 | 9.100 | 0.635 | 2 of 2 |
 | install.ack-roundtrip [static-install] | ms | warm | 856 | 0.500 | 1.000 | 2.100 | 10.300 | 0.565 |  |
@@ -4624,66 +4628,66 @@ Denominators: submitted=3900 coalesced=3198 dispatched=702 completed=694 accepte
 | install.worker-deserialize | ms | cold | 348 | 0.200 | 0.400 | 0.700 | 0.800 | 0.231 | 2 of 2 |
 | install.worker-deserialize [static-install] | ms | warm | 856 | 0.300 | 0.500 | 0.800 | 4.000 | 0.272 |  |
 | install.worker-deserialize [static-install] | ms | cold | 348 | 0.200 | 0.400 | 0.700 | 0.800 | 0.231 |  |
-| job.phase-residual | ms | warm | 460 | 0.000 | 0.000 | 0.100 | 0.100 | -0.000 | 2 of 2 |
-| job.phase-residual | ms | cold | 191 | 0.000 | 0.000 | 0.100 | 0.100 | 0.003 | 2 of 2 |
-| job.phase-residual [pose-only] | ms | warm | 263 | 0.000 | 0.000 | 0.100 | 0.100 | -0.002 |  |
-| job.phase-residual [pose-only] | ms | cold | 109 | 0.000 | 0.000 | 0.100 | 0.100 | 0.001 |  |
-| job.phase-residual [static-install] | ms | warm | 197 | 0.000 | 0.000 | 0.100 | 0.100 | 0.001 |  |
-| job.phase-residual [static-install] | ms | cold | 82 | 0.000 | 0.100 | 0.100 | 0.100 | 0.006 |  |
-| job.submit-to-accepted | ms | warm | 559 | 17.500 | 27.800 | 33.800 | 49.900 | 17.570 | 2 of 2 |
-| job.submit-to-accepted | ms | cold | 110 | 17.300 | 28.800 | 30.300 | 30.700 | 17.799 | 2 of 2 |
-| job.submit-to-accepted [pose-only] | ms | warm | 309 | 17.700 | 27.800 | 32.700 | 38.900 | 17.823 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 60 | 17.900 | 28.900 | 30.700 | 30.700 | 18.678 |  |
-| job.submit-to-accepted [static-install] | ms | warm | 250 | 17.200 | 28.300 | 33.800 | 49.900 | 17.258 |  |
-| job.submit-to-accepted [static-install] | ms | cold | 50 | 16.000 | 25.900 | 29.200 | 29.200 | 16.744 |  |
-| merge.assemble | ms | warm | 465 | 0.000 | 0.000 | 0.100 | 0.100 | 0.005 | 2 of 2 |
-| merge.assemble | ms | cold | 194 | 0.000 | 0.100 | 0.100 | 0.100 | 0.006 | 2 of 2 |
-| merge.assemble [pose-only] | ms | warm | 268 | 0.000 | 0.000 | 0.100 | 0.100 | 0.005 |  |
-| merge.assemble [pose-only] | ms | cold | 111 | 0.000 | 0.100 | 0.100 | 0.100 | 0.006 |  |
-| merge.assemble [static-install] | ms | warm | 197 | 0.000 | 0.100 | 0.100 | 0.100 | 0.005 |  |
-| merge.assemble [static-install] | ms | cold | 83 | 0.000 | 0.100 | 0.100 | 0.100 | 0.006 |  |
+| job.phase-residual | ms | warm | 497 | 0.000 | 0.000 | 0.100 | 0.100 | -0.000 | 2 of 2 |
+| job.phase-residual | ms | cold | 197 | 0.000 | 0.000 | 0.100 | 0.100 | 0.003 | 2 of 2 |
+| job.phase-residual [pose-only] | ms | warm | 283 | 0.000 | 0.000 | 0.100 | 0.100 | -0.001 |  |
+| job.phase-residual [pose-only] | ms | cold | 111 | 0.000 | 0.000 | 0.100 | 0.100 | 0.001 |  |
+| job.phase-residual [static-install] | ms | warm | 214 | 0.000 | 0.000 | 0.100 | 0.100 | 0.000 |  |
+| job.phase-residual [static-install] | ms | cold | 86 | 0.000 | 0.100 | 0.100 | 0.100 | 0.006 |  |
+| job.submit-to-accepted | ms | warm | 481 | 17.500 | 28.300 | 34.300 | 49.900 | 17.598 | 2 of 2 |
+| job.submit-to-accepted | ms | cold | 188 | 17.500 | 28.300 | 30.600 | 30.700 | 17.634 | 2 of 2 |
+| job.submit-to-accepted [pose-only] | ms | warm | 267 | 17.700 | 27.900 | 36.600 | 38.900 | 17.799 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 102 | 17.600 | 28.600 | 30.300 | 30.700 | 18.387 |  |
+| job.submit-to-accepted [static-install] | ms | warm | 214 | 17.100 | 28.800 | 33.800 | 49.900 | 17.346 |  |
+| job.submit-to-accepted [static-install] | ms | cold | 86 | 16.100 | 25.700 | 30.600 | 30.600 | 16.741 |  |
+| merge.assemble | ms | warm | 502 | 0.000 | 0.000 | 0.100 | 0.100 | 0.005 | 2 of 2 |
+| merge.assemble | ms | cold | 200 | 0.000 | 0.100 | 0.100 | 0.100 | 0.006 | 2 of 2 |
+| merge.assemble [pose-only] | ms | warm | 288 | 0.000 | 0.000 | 0.100 | 0.100 | 0.005 |  |
+| merge.assemble [pose-only] | ms | cold | 113 | 0.000 | 0.100 | 0.100 | 0.100 | 0.006 |  |
+| merge.assemble [static-install] | ms | warm | 214 | 0.000 | 0.000 | 0.100 | 0.100 | 0.005 |  |
+| merge.assemble [static-install] | ms | cold | 87 | 0.000 | 0.100 | 0.100 | 0.100 | 0.006 |  |
 | merge.reply-deserialize | ms | warm | 2008 | 0.000 | 0.100 | 0.100 | 0.400 | 0.014 | 0 of 2 |
 | merge.reply-deserialize | ms | cold | 800 | 0.000 | 0.100 | 0.100 | 0.200 | 0.015 | 0 of 2 |
 | merge.reply-deserialize [pose-only] | ms | warm | 1152 | 0.000 | 0.100 | 0.100 | 0.400 | 0.014 |  |
 | merge.reply-deserialize [pose-only] | ms | cold | 452 | 0.000 | 0.100 | 0.100 | 0.200 | 0.015 |  |
 | merge.reply-deserialize [static-install] | ms | warm | 856 | 0.000 | 0.100 | 0.100 | 0.400 | 0.013 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 348 | 0.000 | 0.100 | 0.100 | 0.100 | 0.014 |  |
-| merge.validate | ms | warm | 2008 | 0.100 | 0.500 | 1.200 | 4.700 | 0.176 | 0 of 2 |
+| merge.validate | ms | warm | 2008 | 0.100 | 0.500 | 1.200 | 4.700 | 0.174 | 0 of 2 |
 | merge.validate | ms | cold | 800 | 0.100 | 0.600 | 1.100 | 3.100 | 0.204 | 0 of 2 |
-| merge.validate [pose-only] | ms | warm | 1152 | 0.100 | 0.500 | 1.300 | 4.700 | 0.175 |  |
+| merge.validate [pose-only] | ms | warm | 1152 | 0.100 | 0.500 | 1.300 | 4.700 | 0.173 |  |
 | merge.validate [pose-only] | ms | cold | 452 | 0.100 | 0.500 | 1.000 | 3.100 | 0.194 |  |
-| merge.validate [static-install] | ms | warm | 856 | 0.100 | 0.500 | 1.200 | 2.600 | 0.178 |  |
+| merge.validate [static-install] | ms | warm | 856 | 0.100 | 0.500 | 1.200 | 2.600 | 0.177 |  |
 | merge.validate [static-install] | ms | cold | 348 | 0.200 | 0.600 | 1.600 | 1.900 | 0.217 |  |
-| pool.compute-metric | ms | warm | 579 | 1.600 | 3.600 | 11.500 | 28.200 | 1.997 | 2 of 2 |
-| pool.compute-metric | ms | cold | 115 | 1.800 | 5.500 | 9.700 | 15.000 | 2.340 | 2 of 2 |
-| pool.compute-metric [pose-only] | ms | warm | 329 | 1.400 | 3.400 | 11.300 | 17.900 | 1.739 |  |
-| pool.compute-metric [pose-only] | ms | cold | 65 | 1.600 | 5.100 | 9.700 | 9.700 | 1.935 |  |
-| pool.compute-metric [static-install] | ms | warm | 250 | 1.900 | 3.700 | 11.500 | 28.200 | 2.336 |  |
-| pool.compute-metric [static-install] | ms | cold | 50 | 2.300 | 8.900 | 15.000 | 15.000 | 2.866 |  |
-| pool.shard-max | ms | warm | 579 | 0.700 | 1.200 | 3.300 | 15.800 | 0.733 | 2 of 2 |
-| pool.shard-max | ms | cold | 115 | 0.800 | 2.100 | 3.700 | 5.200 | 0.970 | 2 of 2 |
-| pool.shard-max [pose-only] | ms | warm | 329 | 0.700 | 1.200 | 3.600 | 15.800 | 0.759 |  |
-| pool.shard-max [pose-only] | ms | cold | 65 | 0.800 | 1.800 | 5.200 | 5.200 | 0.940 |  |
-| pool.shard-max [static-install] | ms | warm | 250 | 0.700 | 1.300 | 2.400 | 3.900 | 0.698 |  |
-| pool.shard-max [static-install] | ms | cold | 50 | 0.900 | 2.400 | 3.700 | 3.700 | 1.010 |  |
-| pool.shard-total | ms | warm | 579 | 1.800 | 3.500 | 8.800 | 18.100 | 2.074 | 2 of 2 |
-| pool.shard-total | ms | cold | 115 | 2.500 | 6.400 | 9.800 | 14.300 | 2.780 | 2 of 2 |
-| pool.shard-total [pose-only] | ms | warm | 329 | 1.800 | 3.400 | 11.700 | 18.100 | 2.115 |  |
-| pool.shard-total [pose-only] | ms | cold | 65 | 2.300 | 5.100 | 9.800 | 9.800 | 2.637 |  |
-| pool.shard-total [static-install] | ms | warm | 250 | 1.800 | 3.500 | 7.200 | 12.800 | 2.020 |  |
-| pool.shard-total [static-install] | ms | cold | 50 | 2.600 | 6.400 | 14.300 | 14.300 | 2.966 |  |
-| pose.age-at-accept | ms | warm | 559 | 15.400 | 17.800 | 18.500 | 39.000 | 9.611 | 2 of 2 |
-| pose.age-at-accept | ms | cold | 110 | 15.500 | 17.800 | 18.300 | 18.500 | 9.821 | 2 of 2 |
-| pose.age-at-accept [pose-only] | ms | warm | 309 | 15.700 | 17.800 | 18.500 | 34.300 | 9.793 |  |
-| pose.age-at-accept [pose-only] | ms | cold | 60 | 15.800 | 17.800 | 18.300 | 18.300 | 10.517 |  |
-| pose.age-at-accept [static-install] | ms | warm | 250 | 15.100 | 17.800 | 18.300 | 39.000 | 9.388 |  |
-| pose.age-at-accept [static-install] | ms | cold | 50 | 9.700 | 17.900 | 18.500 | 18.500 | 8.986 |  |
-| pose.latest-wait | ms | warm | 3247 | 54.200 | 97.000 | 161.800 | 182.500 | 55.871 | 0 of 2 |
-| pose.latest-wait | ms | cold | 653 | 55.800 | 101.400 | 155.800 | 173.900 | 57.113 | 0 of 2 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 3247 | 54.200 | 97.000 | 161.800 | 182.500 | 55.871 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 653 | 55.800 | 101.400 | 155.800 | 173.900 | 57.113 |  |
-| queue.client | ms | warm | 2995 | 5.600 | 11.000 | 11.600 | 13.900 | 6.910 | 0 of 2 |
-| queue.client | ms | cold | 602 | 5.600 | 11.400 | 12.000 | 13.300 | 7.232 | 0 of 2 |
+| pool.compute-metric | ms | warm | 497 | 1.600 | 3.700 | 12.100 | 28.200 | 2.014 | 2 of 2 |
+| pool.compute-metric | ms | cold | 197 | 1.700 | 5.100 | 10.500 | 15.000 | 2.154 | 2 of 2 |
+| pool.compute-metric [pose-only] | ms | warm | 283 | 1.300 | 3.400 | 14.000 | 17.900 | 1.755 |  |
+| pool.compute-metric [pose-only] | ms | cold | 111 | 1.500 | 4.600 | 5.700 | 9.700 | 1.814 |  |
+| pool.compute-metric [static-install] | ms | warm | 214 | 1.900 | 4.400 | 11.500 | 28.200 | 2.356 |  |
+| pool.compute-metric [static-install] | ms | cold | 86 | 2.100 | 6.100 | 15.000 | 15.000 | 2.593 |  |
+| pool.shard-max | ms | warm | 497 | 0.600 | 1.200 | 3.600 | 15.800 | 0.729 | 2 of 2 |
+| pool.shard-max | ms | cold | 197 | 0.800 | 1.800 | 3.700 | 5.200 | 0.881 | 2 of 2 |
+| pool.shard-max [pose-only] | ms | warm | 283 | 0.600 | 1.100 | 6.000 | 15.800 | 0.764 |  |
+| pool.shard-max [pose-only] | ms | cold | 111 | 0.800 | 1.600 | 2.600 | 5.200 | 0.851 |  |
+| pool.shard-max [static-install] | ms | warm | 214 | 0.600 | 1.300 | 2.000 | 3.900 | 0.682 |  |
+| pool.shard-max [static-install] | ms | cold | 86 | 0.800 | 2.100 | 3.700 | 3.700 | 0.920 |  |
+| pool.shard-total | ms | warm | 497 | 1.800 | 3.400 | 11.700 | 18.100 | 2.077 | 2 of 2 |
+| pool.shard-total | ms | cold | 197 | 2.100 | 5.100 | 9.800 | 14.300 | 2.477 | 2 of 2 |
+| pool.shard-total [pose-only] | ms | warm | 283 | 1.800 | 3.399 | 12.800 | 18.100 | 2.124 |  |
+| pool.shard-total [pose-only] | ms | cold | 111 | 2.200 | 4.900 | 7.700 | 9.800 | 2.398 |  |
+| pool.shard-total [static-install] | ms | warm | 214 | 1.800 | 3.500 | 7.200 | 12.800 | 2.016 |  |
+| pool.shard-total [static-install] | ms | cold | 86 | 2.100 | 6.100 | 14.300 | 14.300 | 2.579 |  |
+| pose.age-at-accept | ms | warm | 481 | 15.400 | 17.800 | 18.500 | 39.000 | 9.600 | 2 of 2 |
+| pose.age-at-accept | ms | cold | 188 | 15.600 | 17.800 | 18.300 | 18.500 | 9.762 | 2 of 2 |
+| pose.age-at-accept [pose-only] | ms | warm | 267 | 15.600 | 17.800 | 18.600 | 34.300 | 9.655 |  |
+| pose.age-at-accept [pose-only] | ms | cold | 102 | 15.900 | 17.800 | 18.200 | 18.300 | 10.577 |  |
+| pose.age-at-accept [static-install] | ms | warm | 214 | 15.100 | 17.800 | 18.300 | 39.000 | 9.532 |  |
+| pose.age-at-accept [static-install] | ms | cold | 86 | 10.000 | 17.700 | 18.500 | 18.500 | 8.795 |  |
+| pose.latest-wait | ms | warm | 2791 | 54.100 | 96.800 | 160.700 | 181.500 | 55.675 | 0 of 2 |
+| pose.latest-wait | ms | cold | 1109 | 55.200 | 101.800 | 163.300 | 182.500 | 57.095 | 0 of 2 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 2791 | 54.100 | 96.800 | 160.700 | 181.500 | 55.675 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 1109 | 55.200 | 101.800 | 163.300 | 182.500 | 57.095 |  |
+| queue.client | ms | warm | 2573 | 5.600 | 10.900 | 11.600 | 13.900 | 6.861 | 0 of 2 |
+| queue.client | ms | cold | 1024 | 5.700 | 11.300 | 11.900 | 13.300 | 7.221 | 0 of 2 |
 | queue.rate-limit | ms | warm | 502 | 8.333 | 16.333 | 17.933 | 22.633 | 8.383 | 2 of 2 |
 | queue.rate-limit | ms | cold | 200 | 7.333 | 16.333 | 16.933 | 16.933 | 7.767 | 2 of 2 |
 | queue.rate-limit [pose-only] | ms | warm | 288 | 8.233 | 16.033 | 17.733 | 22.633 | 8.291 |  |
@@ -4746,20 +4750,20 @@ Denominators: submitted=1301 coalesced=1074 dispatched=227 completed=225 accepte
 
 | phase | units | temperature | N | p50 | p95 | p99 | max | mean | exploratory runs |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| accept.decide | ms | warm | 169 | 0.100 | 1.100 | 19.300 | 47.700 | 0.731 | 1 of 1 |
-| accept.decide | ms | cold | 56 | 0.200 | 0.800 | 1.000 | 1.000 | 0.229 | 1 of 1 |
-| accept.decide [pose-only] | ms | warm | 94 | 0.100 | 1.100 | 47.700 | 47.700 | 0.747 |  |
-| accept.decide [pose-only] | ms | cold | 31 | 0.200 | 0.600 | 1.000 | 1.000 | 0.239 |  |
-| accept.decide [static-install] | ms | warm | 75 | 0.100 | 1.500 | 19.300 | 19.300 | 0.712 |  |
-| accept.decide [static-install] | ms | cold | 25 | 0.200 | 0.800 | 0.900 | 0.900 | 0.216 |  |
+| accept.decide | ms | warm | 127 | 0.100 | 1.500 | 19.300 | 47.700 | 0.931 | 1 of 1 |
+| accept.decide | ms | cold | 98 | 0.100 | 0.600 | 1.000 | 1.000 | 0.185 | 1 of 1 |
+| accept.decide [pose-only] | ms | warm | 70 | 0.100 | 1.100 | 47.700 | 47.700 | 0.951 |  |
+| accept.decide [pose-only] | ms | cold | 55 | 0.200 | 0.600 | 1.000 | 1.000 | 0.200 |  |
+| accept.decide [static-install] | ms | warm | 57 | 0.100 | 1.800 | 19.300 | 19.300 | 0.907 |  |
+| accept.decide [static-install] | ms | cold | 43 | 0.100 | 0.600 | 0.900 | 0.900 | 0.165 |  |
 | dispatch.prepare | ms | warm | 127 | 0.200 | 2.800 | 16.000 | 25.600 | 0.857 | 1 of 1 |
 | dispatch.prepare | ms | cold | 100 | 0.200 | 0.800 | 1.400 | 2.100 | 0.298 | 1 of 1 |
 | dispatch.prepare [pose-only] | ms | warm | 70 | 0.100 | 0.900 | 9.600 | 9.600 | 0.456 |  |
 | dispatch.prepare [pose-only] | ms | cold | 56 | 0.100 | 0.500 | 0.700 | 0.700 | 0.166 |  |
 | dispatch.prepare [static-install] | ms | warm | 57 | 0.400 | 3.300 | 25.600 | 25.600 | 1.349 |  |
 | dispatch.prepare [static-install] | ms | cold | 44 | 0.300 | 1.300 | 2.100 | 2.100 | 0.466 |  |
-| input.lateness | ms | warm | 976 | 0.267 | 52.433 | 126.200 | 144.700 | 5.767 | 0 of 1 |
-| input.lateness | ms | cold | 325 | 0.233 | 1.000 | 1.267 | 2.267 | 0.238 | 0 of 1 |
+| input.lateness | ms | warm | 746 | 0.333 | 68.733 | 126.667 | 144.700 | 7.489 | 0 of 1 |
+| input.lateness | ms | cold | 555 | 0.200 | 1.000 | 1.300 | 2.267 | 0.214 | 0 of 1 |
 | install.ack-roundtrip | ms | warm | 228 | 0.500 | 4.400 | 30.600 | 90.600 | 2.018 | 1 of 1 |
 | install.ack-roundtrip | ms | cold | 176 | 0.400 | 1.800 | 9.500 | 10.400 | 0.715 | 1 of 1 |
 | install.ack-roundtrip [static-install] | ms | warm | 228 | 0.500 | 4.400 | 30.600 | 90.600 | 2.018 |  |
@@ -4772,24 +4776,24 @@ Denominators: submitted=1301 coalesced=1074 dispatched=227 completed=225 accepte
 | install.worker-deserialize | ms | cold | 176 | 0.100 | 0.500 | 0.600 | 1.500 | 0.165 | 1 of 1 |
 | install.worker-deserialize [static-install] | ms | warm | 228 | 0.200 | 1.000 | 8.700 | 15.000 | 0.480 |  |
 | install.worker-deserialize [static-install] | ms | cold | 176 | 0.100 | 0.500 | 0.600 | 1.500 | 0.165 |  |
-| job.phase-residual | ms | warm | 122 | 0.000 | 0.200 | 0.400 | 2.400 | 0.051 | 1 of 1 |
-| job.phase-residual | ms | cold | 95 | 0.000 | 0.100 | 0.500 | 0.500 | 0.032 | 1 of 1 |
-| job.phase-residual [pose-only] | ms | warm | 68 | 0.000 | 0.100 | 2.400 | 2.400 | 0.060 |  |
-| job.phase-residual [pose-only] | ms | cold | 53 | 0.000 | 0.100 | 0.200 | 0.200 | 0.023 |  |
-| job.phase-residual [static-install] | ms | warm | 54 | 0.000 | 0.200 | 0.400 | 0.400 | 0.039 |  |
-| job.phase-residual [static-install] | ms | cold | 42 | 0.000 | 0.200 | 0.500 | 0.500 | 0.043 |  |
-| job.submit-to-accepted | ms | warm | 160 | 18.800 | 28.500 | 196.400 | 200.300 | 22.486 | 1 of 1 |
-| job.submit-to-accepted | ms | cold | 52 | 18.000 | 29.500 | 31.600 | 31.600 | 18.835 | 1 of 1 |
-| job.submit-to-accepted [pose-only] | ms | warm | 85 | 18.700 | 28.500 | 196.400 | 196.400 | 22.138 |  |
-| job.submit-to-accepted [pose-only] | ms | cold | 27 | 18.000 | 24.500 | 24.500 | 24.500 | 18.170 |  |
-| job.submit-to-accepted [static-install] | ms | warm | 75 | 19.800 | 30.700 | 200.300 | 200.300 | 22.880 |  |
-| job.submit-to-accepted [static-install] | ms | cold | 25 | 19.200 | 30.100 | 31.600 | 31.600 | 19.552 |  |
-| merge.assemble | ms | warm | 122 | 0.000 | 0.100 | 0.900 | 1.700 | 0.032 | 1 of 1 |
-| merge.assemble | ms | cold | 97 | 0.000 | 0.100 | 0.300 | 0.300 | 0.011 | 1 of 1 |
-| merge.assemble [pose-only] | ms | warm | 68 | 0.000 | 0.100 | 0.900 | 0.900 | 0.025 |  |
-| merge.assemble [pose-only] | ms | cold | 54 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 |  |
-| merge.assemble [static-install] | ms | warm | 54 | 0.000 | 0.100 | 1.700 | 1.700 | 0.041 |  |
-| merge.assemble [static-install] | ms | cold | 43 | 0.000 | 0.100 | 0.300 | 0.300 | 0.014 |  |
+| job.phase-residual | ms | warm | 127 | 0.000 | 0.200 | 0.400 | 2.400 | 0.049 | 1 of 1 |
+| job.phase-residual | ms | cold | 98 | 0.000 | 0.100 | 0.500 | 0.500 | 0.031 | 1 of 1 |
+| job.phase-residual [pose-only] | ms | warm | 70 | 0.000 | 0.100 | 2.400 | 2.400 | 0.059 |  |
+| job.phase-residual [pose-only] | ms | cold | 55 | 0.000 | 0.100 | 0.200 | 0.200 | 0.022 |  |
+| job.phase-residual [static-install] | ms | warm | 57 | 0.000 | 0.200 | 0.400 | 0.400 | 0.037 |  |
+| job.phase-residual [static-install] | ms | cold | 43 | 0.000 | 0.200 | 0.500 | 0.500 | 0.042 |  |
+| job.submit-to-accepted | ms | warm | 120 | 18.800 | 31.800 | 196.400 | 200.300 | 23.941 | 1 of 1 |
+| job.submit-to-accepted | ms | cold | 92 | 18.400 | 27.100 | 31.600 | 31.600 | 18.524 | 1 of 1 |
+| job.submit-to-accepted [pose-only] | ms | warm | 63 | 18.700 | 37.000 | 196.400 | 196.400 | 23.394 |  |
+| job.submit-to-accepted [pose-only] | ms | cold | 49 | 18.000 | 25.400 | 27.100 | 27.100 | 18.337 |  |
+| job.submit-to-accepted [static-install] | ms | warm | 57 | 20.100 | 31.800 | 200.300 | 200.300 | 24.546 |  |
+| job.submit-to-accepted [static-install] | ms | cold | 43 | 19.200 | 29.500 | 31.600 | 31.600 | 18.737 |  |
+| merge.assemble | ms | warm | 127 | 0.000 | 0.100 | 0.900 | 1.700 | 0.031 | 1 of 1 |
+| merge.assemble | ms | cold | 100 | 0.000 | 0.100 | 0.100 | 0.300 | 0.011 | 1 of 1 |
+| merge.assemble [pose-only] | ms | warm | 70 | 0.000 | 0.100 | 0.900 | 0.900 | 0.024 |  |
+| merge.assemble [pose-only] | ms | cold | 56 | 0.000 | 0.100 | 0.100 | 0.100 | 0.009 |  |
+| merge.assemble [static-install] | ms | warm | 57 | 0.000 | 0.100 | 1.700 | 1.700 | 0.039 |  |
+| merge.assemble [static-install] | ms | cold | 44 | 0.000 | 0.100 | 0.300 | 0.300 | 0.014 |  |
 | merge.reply-deserialize | ms | warm | 508 | 0.000 | 0.200 | 0.500 | 5.400 | 0.048 | 1 of 1 |
 | merge.reply-deserialize | ms | cold | 400 | 0.000 | 0.100 | 0.100 | 0.300 | 0.016 | 1 of 1 |
 | merge.reply-deserialize [pose-only] | ms | warm | 280 | 0.000 | 0.200 | 0.700 | 5.400 | 0.051 |  |
@@ -4797,41 +4801,41 @@ Denominators: submitted=1301 coalesced=1074 dispatched=227 completed=225 accepte
 | merge.reply-deserialize [static-install] | ms | warm | 228 | 0.000 | 0.200 | 0.400 | 2.400 | 0.044 |  |
 | merge.reply-deserialize [static-install] | ms | cold | 176 | 0.000 | 0.100 | 0.100 | 0.200 | 0.013 |  |
 | merge.validate | ms | warm | 508 | 0.200 | 1.400 | 21.000 | 35.700 | 0.790 | 1 of 1 |
-| merge.validate | ms | cold | 400 | 0.200 | 0.800 | 1.600 | 2.600 | 0.258 | 1 of 1 |
+| merge.validate | ms | cold | 400 | 0.200 | 0.800 | 1.600 | 2.600 | 0.257 | 1 of 1 |
 | merge.validate [pose-only] | ms | warm | 280 | 0.200 | 1.400 | 22.500 | 35.700 | 0.792 |  |
-| merge.validate [pose-only] | ms | cold | 224 | 0.200 | 0.700 | 1.300 | 1.700 | 0.225 |  |
-| merge.validate [static-install] | ms | warm | 228 | 0.200 | 1.300 | 19.800 | 27.000 | 0.787 |  |
+| merge.validate [pose-only] | ms | cold | 224 | 0.200 | 0.700 | 1.300 | 1.700 | 0.224 |  |
+| merge.validate [static-install] | ms | warm | 228 | 0.200 | 1.300 | 19.800 | 27.000 | 0.786 |  |
 | merge.validate [static-install] | ms | cold | 176 | 0.200 | 1.000 | 1.700 | 2.600 | 0.299 |  |
-| pool.compute-metric | ms | warm | 169 | 1.500 | 10.800 | 131.700 | 155.100 | 5.610 | 1 of 1 |
-| pool.compute-metric | ms | cold | 56 | 1.900 | 8.900 | 10.400 | 10.400 | 2.848 | 1 of 1 |
-| pool.compute-metric [pose-only] | ms | warm | 94 | 1.200 | 7.200 | 129.900 | 129.900 | 4.576 |  |
-| pool.compute-metric [pose-only] | ms | cold | 31 | 1.800 | 6.100 | 8.900 | 8.900 | 2.265 |  |
-| pool.compute-metric [static-install] | ms | warm | 75 | 2.000 | 12.600 | 155.100 | 155.100 | 6.907 |  |
-| pool.compute-metric [static-install] | ms | cold | 25 | 2.600 | 9.000 | 10.400 | 10.400 | 3.572 |  |
-| pool.shard-max | ms | warm | 169 | 0.400 | 2.800 | 33.400 | 45.500 | 1.386 | 1 of 1 |
-| pool.shard-max | ms | cold | 56 | 0.700 | 3.000 | 4.500 | 4.500 | 1.064 | 1 of 1 |
-| pool.shard-max [pose-only] | ms | warm | 94 | 0.300 | 3.100 | 45.500 | 45.500 | 1.437 |  |
-| pool.shard-max [pose-only] | ms | cold | 31 | 0.700 | 3.400 | 4.500 | 4.500 | 0.945 |  |
-| pool.shard-max [static-install] | ms | warm | 75 | 0.400 | 2.400 | 27.500 | 27.500 | 1.323 |  |
-| pool.shard-max [static-install] | ms | cold | 25 | 0.900 | 2.700 | 3.000 | 3.000 | 1.212 |  |
-| pool.shard-total | ms | warm | 169 | 1.000 | 6.700 | 103.600 | 116.900 | 3.789 | 1 of 1 |
-| pool.shard-total | ms | cold | 56 | 1.900 | 9.200 | 10.700 | 10.700 | 2.821 | 1 of 1 |
-| pool.shard-total [pose-only] | ms | warm | 94 | 1.000 | 6.700 | 116.900 | 116.900 | 3.833 |  |
-| pool.shard-total [pose-only] | ms | cold | 31 | 1.600 | 7.800 | 10.600 | 10.600 | 2.410 |  |
-| pool.shard-total [static-install] | ms | warm | 75 | 1.100 | 7.700 | 79.600 | 79.600 | 3.733 |  |
-| pool.shard-total [static-install] | ms | cold | 25 | 2.300 | 9.200 | 10.700 | 10.700 | 3.332 |  |
-| pose.age-at-accept | ms | warm | 160 | 16.200 | 18.100 | 116.100 | 175.100 | 13.137 | 1 of 1 |
-| pose.age-at-accept | ms | cold | 52 | 16.000 | 18.000 | 18.600 | 18.600 | 10.913 | 1 of 1 |
-| pose.age-at-accept [pose-only] | ms | warm | 85 | 16.200 | 17.600 | 116.100 | 116.100 | 12.715 |  |
-| pose.age-at-accept [pose-only] | ms | cold | 27 | 15.800 | 18.000 | 18.300 | 18.300 | 11.119 |  |
-| pose.age-at-accept [static-install] | ms | warm | 75 | 16.100 | 18.700 | 175.100 | 175.100 | 13.615 |  |
-| pose.age-at-accept [static-install] | ms | cold | 25 | 16.300 | 17.600 | 18.600 | 18.600 | 10.692 |  |
-| pose.latest-wait | ms | warm | 976 | 56.500 | 151.300 | 250.200 | 350.500 | 63.300 | 0 of 1 |
-| pose.latest-wait | ms | cold | 325 | 58.200 | 131.100 | 177.700 | 184.500 | 62.179 | 0 of 1 |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 976 | 56.500 | 151.300 | 250.200 | 350.500 | 63.300 |  |
-| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 325 | 58.200 | 131.100 | 177.700 | 184.500 | 62.179 |  |
-| queue.client | ms | warm | 863 | 7.200 | 8.300 | 9.500 | 61.000 | 7.147 | 0 of 1 |
-| queue.client | ms | cold | 301 | 7.600 | 8.500 | 9.000 | 9.900 | 7.547 | 0 of 1 |
+| pool.compute-metric | ms | warm | 127 | 1.500 | 12.600 | 131.700 | 155.100 | 6.962 | 1 of 1 |
+| pool.compute-metric | ms | cold | 98 | 1.600 | 6.200 | 10.400 | 10.400 | 2.280 | 1 of 1 |
+| pool.compute-metric [pose-only] | ms | warm | 70 | 1.200 | 10.800 | 129.900 | 129.900 | 5.716 |  |
+| pool.compute-metric [pose-only] | ms | cold | 55 | 1.300 | 5.200 | 8.900 | 8.900 | 1.822 |  |
+| pool.compute-metric [static-install] | ms | warm | 57 | 2.200 | 17.200 | 155.100 | 155.100 | 8.493 |  |
+| pool.compute-metric [static-install] | ms | cold | 43 | 2.000 | 6.600 | 10.400 | 10.400 | 2.865 |  |
+| pool.shard-max | ms | warm | 127 | 0.400 | 4.800 | 33.400 | 45.500 | 1.698 | 1 of 1 |
+| pool.shard-max | ms | cold | 98 | 0.500 | 2.700 | 4.500 | 4.500 | 0.799 | 1 of 1 |
+| pool.shard-max [pose-only] | ms | warm | 70 | 0.400 | 5.200 | 45.500 | 45.500 | 1.800 |  |
+| pool.shard-max [pose-only] | ms | cold | 55 | 0.500 | 2.900 | 4.500 | 4.500 | 0.698 |  |
+| pool.shard-max [static-install] | ms | warm | 57 | 0.500 | 4.800 | 27.500 | 27.500 | 1.572 |  |
+| pool.shard-max [static-install] | ms | cold | 43 | 0.600 | 2.600 | 3.000 | 3.000 | 0.928 |  |
+| pool.shard-total | ms | warm | 127 | 1.100 | 7.700 | 103.600 | 116.900 | 4.687 | 1 of 1 |
+| pool.shard-total | ms | cold | 98 | 1.300 | 7.400 | 10.700 | 10.700 | 2.071 | 1 of 1 |
+| pool.shard-total [pose-only] | ms | warm | 70 | 1.100 | 7.500 | 116.900 | 116.900 | 4.827 |  |
+| pool.shard-total [pose-only] | ms | cold | 55 | 1.200 | 6.300 | 10.600 | 10.600 | 1.765 |  |
+| pool.shard-total [static-install] | ms | warm | 57 | 1.300 | 8.700 | 79.600 | 79.600 | 4.516 |  |
+| pool.shard-total [static-install] | ms | cold | 43 | 1.600 | 7.400 | 10.700 | 10.700 | 2.463 |  |
+| pose.age-at-accept | ms | warm | 120 | 16.100 | 18.400 | 116.100 | 175.100 | 13.728 | 1 of 1 |
+| pose.age-at-accept | ms | cold | 92 | 16.100 | 18.000 | 18.600 | 18.600 | 11.110 | 1 of 1 |
+| pose.age-at-accept [pose-only] | ms | warm | 63 | 16.300 | 17.600 | 116.100 | 116.100 | 12.995 |  |
+| pose.age-at-accept [pose-only] | ms | cold | 49 | 16.100 | 18.000 | 18.300 | 18.300 | 11.476 |  |
+| pose.age-at-accept [static-install] | ms | warm | 57 | 16.100 | 18.800 | 175.100 | 175.100 | 14.537 |  |
+| pose.age-at-accept [static-install] | ms | cold | 43 | 16.300 | 17.600 | 18.600 | 18.600 | 10.693 |  |
+| pose.latest-wait | ms | warm | 746 | 57.600 | 167.600 | 264.200 | 350.500 | 65.423 | 0 of 1 |
+| pose.latest-wait | ms | cold | 555 | 56.100 | 119.300 | 174.900 | 184.500 | 59.789 | 0 of 1 |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | warm | 746 | 57.600 | 167.600 | 264.200 | 350.500 | 65.423 |  |
+| pose.latest-wait incl. 0 censored (lower bounds) | ms | cold | 555 | 56.100 | 119.300 | 174.900 | 184.500 | 59.789 |  |
+| queue.client | ms | warm | 651 | 7.100 | 8.300 | 10.200 | 61.000 | 7.098 | 0 of 1 |
+| queue.client | ms | cold | 513 | 7.500 | 8.500 | 8.900 | 9.900 | 7.443 | 0 of 1 |
 | queue.rate-limit | ms | warm | 127 | 8.333 | 15.533 | 16.933 | 35.233 | 8.198 | 1 of 1 |
 | queue.rate-limit | ms | cold | 100 | 8.333 | 15.533 | 16.333 | 16.533 | 8.408 | 1 of 1 |
 | queue.rate-limit [pose-only] | ms | warm | 70 | 8.433 | 15.633 | 35.233 | 35.233 | 8.441 |  |
@@ -4944,37 +4948,37 @@ Bit-exact false with zero rule violations means every difference is inside the c
 
 | phase | temperature | N TS-S | N TS-W | p50 diff | p95 diff | p99 diff |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| pool.compute-metric | warm | 624 | 622 | -0.300 | 3.700 | 16.700 |
-| pool.compute-metric | cold | 57 | 58 | -1.100 | -3.900 | -30.900 |
-| job.submit-to-accepted | warm | 624 | 622 | -0.100 | 3.400 | 26.200 |
-| job.submit-to-accepted | cold | 57 | 58 | -1.200 | -4.900 | -43.400 |
+| pool.compute-metric | warm | 581 | 580 | -0.300 | 4.300 | 18.200 |
+| pool.compute-metric | cold | 100 | 100 | -0.500 | -4.300 | -22.700 |
+| job.submit-to-accepted | warm | 581 | 580 | -0.100 | 4.700 | 27.000 |
+| job.submit-to-accepted | cold | 100 | 100 | -0.900 | -4.900 | -44.500 |
 
 ### W02_H100_STATIC_5HZ_30S pass=clean boundary=browser-pool order=113 (TS-S r1-s-w02, TS-W r1-w-w02)
 
 | phase | temperature | N TS-S | N TS-W | p50 diff | p95 diff | p99 diff |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| pool.compute-metric | warm | 288 | 233 | 7.400 | 17.600 | 30.700 |
-| pool.compute-metric | cold | 58 | 48 | 3.500 | 13.100 | 98.600 |
-| job.submit-to-accepted | warm | 288 | 233 | 7.000 | 18.500 | 32.900 |
-| job.submit-to-accepted | cold | 58 | 48 | 4.200 | 11.900 | 198.700 |
+| pool.compute-metric | warm | 246 | 189 | 5.800 | 17.700 | 19.400 |
+| pool.compute-metric | cold | 100 | 92 | 5.700 | 29.800 | 206.600 |
+| job.submit-to-accepted | warm | 246 | 189 | 6.400 | 16.800 | 19.500 |
+| job.submit-to-accepted | cold | 100 | 92 | 5.000 | 27.800 | 242.700 |
 
 ### W03_C100_POSE_60HZ_60S pass=clean boundary=browser-pool order=114 (TS-S r1-s-w03, TS-W r1-w-w03)
 
 | phase | temperature | N TS-S | N TS-W | p50 diff | p95 diff | p99 diff |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| pool.compute-metric | warm | 552 | 646 | -1.900 | -2.400 | 2.600 |
-| pool.compute-metric | cold | 50 | 59 | -0.700 | -0.700 | -14.800 |
-| job.submit-to-accepted | warm | 552 | 646 | 15.200 | 22.300 | 22.100 |
-| job.submit-to-accepted | cold | 50 | 59 | 12.700 | 16.700 | -11.600 |
+| pool.compute-metric | warm | 502 | 605 | -2.000 | -2.500 | 2.600 |
+| pool.compute-metric | cold | 100 | 100 | -1.100 | -0.300 | -1.600 |
+| job.submit-to-accepted | warm | 502 | 605 | 15.200 | 22.300 | 22.100 |
+| job.submit-to-accepted | cold | 100 | 100 | 12.600 | 18.900 | 20.300 |
 
 ### W04_C100_STATIC_5HZ_30S pass=clean boundary=browser-pool order=115 (TS-S r1-s-w04, TS-W r1-w-w04)
 
 | phase | temperature | N TS-S | N TS-W | p50 diff | p95 diff | p99 diff |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| pool.compute-metric | warm | 252 | 290 | -1.900 | -2.700 | -2.300 |
-| pool.compute-metric | cold | 51 | 58 | -1.000 | -1.700 | 7.300 |
-| job.submit-to-accepted | warm | 252 | 275 | 12.100 | 17.200 | 14.200 |
-| job.submit-to-accepted | cold | 51 | 53 | 11.600 | 17.200 | 15.200 |
+| pool.compute-metric | warm | 203 | 249 | -1.900 | -2.800 | -2.300 |
+| pool.compute-metric | cold | 100 | 99 | -1.500 | -1.900 | 8.800 |
+| job.submit-to-accepted | warm | 203 | 236 | 11.600 | 16.400 | 14.200 |
+| job.submit-to-accepted | cold | 100 | 92 | 11.800 | 18.000 | 15.700 |
 
 ## Pass overhead
 
@@ -5103,55 +5107,125 @@ Bit-exact false with zero rule violations means every difference is inside the c
 
 | phase | temperature | N higher | N lower | p50 diff | p95 diff | p99 diff |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| pool.compute-metric | warm | 173 | 1871 | -1.000 | -1.700 | -24.400 |
-| pool.compute-metric | cold | 59 | 171 | -0.900 | -4.400 | -8.100 |
-| job.submit-to-accepted | warm | 173 | 1871 | -1.800 | -2.400 | 2.200 |
-| job.submit-to-accepted | cold | 59 | 171 | -1.400 | -6.100 | -22.100 |
+| pool.compute-metric | warm | 132 | 1742 | -1.000 | -2.000 | -25.900 |
+| pool.compute-metric | cold | 100 | 300 | -0.900 | -3.300 | 6.300 |
+| job.submit-to-accepted | warm | 132 | 1742 | -1.000 | -1.700 | -44.600 |
+| job.submit-to-accepted | cold | 100 | 300 | -2.500 | -3.300 | 13.400 |
 
 ### clean minus bare: {"variant":"TS-W","case":"W01_H100_POSE_60HZ_60S","boundary":"browser-pool","workers":4,"audio":"not-applicable","build":"not-applicable","driver":"not-applicable","browserChannel":"default","viewport":"not-applicable","browserArgs":"not-applicable"}
 
 | phase | temperature | N higher | N lower | p50 diff | p95 diff | p99 diff |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| pool.compute-metric | warm | 1871 | 631 | 0.400 | 1.600 | 23.400 |
-| pool.compute-metric | cold | 171 | 58 | 0.600 | 3.800 | 10.400 |
-| job.submit-to-accepted | warm | 1871 | 631 | 0.300 | 1.500 | 40.800 |
-| job.submit-to-accepted | cold | 171 | 58 | 1.200 | 5.500 | 33.400 |
+| pool.compute-metric | warm | 1742 | 589 | 0.400 | 1.800 | 23.700 |
+| pool.compute-metric | cold | 300 | 100 | 0.700 | 2.700 | 19.300 |
+| job.submit-to-accepted | warm | 1742 | 589 | 0.200 | 1.500 | 43.100 |
+| job.submit-to-accepted | cold | 300 | 100 | 0.800 | 2.200 | 20.600 |
 
 ### traced minus clean: {"variant":"TS-W","case":"W02_H100_STATIC_5HZ_30S","boundary":"browser-pool","workers":4,"audio":"not-applicable","build":"not-applicable","driver":"not-applicable","browserChannel":"default","viewport":"not-applicable","browserArgs":"not-applicable"}
 
 | phase | temperature | N higher | N lower | p50 diff | p95 diff | p99 diff |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| pool.compute-metric | warm | 153 | 481 | -3.700 | 7.700 | 85.200 |
-| pool.compute-metric | cold | 51 | 100 | 0.400 | -5.600 | 1.900 |
-| job.submit-to-accepted | warm | 153 | 481 | -4.900 | 19.300 | 172.700 |
-| job.submit-to-accepted | cold | 51 | 100 | -0.200 | -5.500 | -5.400 |
+| pool.compute-metric | warm | 108 | 391 | -2.700 | 9.500 | 96.500 |
+| pool.compute-metric | cold | 96 | 190 | -2.600 | -7.700 | -79.900 |
+| job.submit-to-accepted | warm | 108 | 391 | -4.000 | 30.700 | 176.900 |
+| job.submit-to-accepted | cold | 96 | 190 | -3.200 | -12.800 | -186.900 |
 
 ### traced minus clean: {"variant":"TS-W","case":"W03_C100_POSE_60HZ_60S","boundary":"browser-pool","workers":4,"audio":"not-applicable","build":"not-applicable","driver":"not-applicable","browserChannel":"default","viewport":"not-applicable","browserArgs":"not-applicable"}
 
 | phase | temperature | N higher | N lower | p50 diff | p95 diff | p99 diff |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| pool.compute-metric | warm | 175 | 1288 | -0.100 | 5.000 | 59.500 |
-| pool.compute-metric | cold | 56 | 117 | 0.100 | 35.100 | 36.400 |
-| job.submit-to-accepted | warm | 175 | 1288 | -1.400 | 0.600 | 64.800 |
-| job.submit-to-accepted | cold | 56 | 117 | -0.800 | 27.300 | 62.000 |
+| pool.compute-metric | warm | 131 | 1205 | -0.100 | 5.100 | 59.500 |
+| pool.compute-metric | cold | 100 | 200 | 0.100 | 7.300 | 22.400 |
+| job.submit-to-accepted | warm | 131 | 1205 | -1.300 | 2.500 | 64.800 |
+| job.submit-to-accepted | cold | 100 | 200 | -0.800 | 2.400 | 35.800 |
 
 ### traced minus clean: {"variant":"TS-W","case":"W04_C100_STATIC_5HZ_30S","boundary":"browser-pool","workers":4,"audio":"not-applicable","build":"not-applicable","driver":"not-applicable","browserChannel":"default","viewport":"not-applicable","browserArgs":"not-applicable"}
 
 | phase | temperature | N higher | N lower | p50 diff | p95 diff | p99 diff |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| pool.compute-metric | warm | 169 | 579 | -0.100 | 7.200 | 120.200 |
-| pool.compute-metric | cold | 56 | 115 | 0.100 | 3.400 | 0.700 |
-| job.submit-to-accepted | warm | 160 | 559 | 1.300 | 0.700 | 162.600 |
-| job.submit-to-accepted | cold | 52 | 110 | 0.700 | 0.700 | 1.300 |
+| pool.compute-metric | warm | 127 | 497 | -0.100 | 8.900 | 119.600 |
+| pool.compute-metric | cold | 98 | 197 | -0.100 | 1.100 | -0.100 |
+| job.submit-to-accepted | warm | 120 | 481 | 1.300 | 3.500 | 162.100 |
+| job.submit-to-accepted | cold | 92 | 188 | 0.900 | -1.200 | 1.000 |
 
 
 ## Rederived runs
 
 These runs were rebuilt from their kept raw files with rederive; nothing was re-measured. The original status and error are in each run-status.json.
 
-- r1-app-w-audioon: passed, 33088 samples (rederived 2026-11-06T14:58:53.682Z)
-- r1-app-w-audiooff: passed, 29025 samples (rederived 2026-11-06T14:58:53.983Z)
-- r1-traced-app-w-1: passed, 6651 samples (rederived 2026-11-06T14:59:07.337Z)
-- r1-traced-app-w-2: passed, 6652 samples (rederived 2026-11-06T14:59:14.599Z)
-- r1-alloc-app-w: passed, 6613 samples (rederived 2026-11-06T14:58:54.400Z)
-- r1-app-w-audiooff-immediate: passed, 14542 samples (rederived 2026-11-06T14:58:54.662Z)
+- r1-app-w-audioon: passed, 33088 samples (rederived 2026-11-06T18:39:58.288Z)
+- r1-app-s-audioon: passed, 4170 samples (rederived 2026-11-06T18:39:56.028Z)
+- r1-app-w-audiooff: passed, 29025 samples (rederived 2026-11-06T18:39:56.651Z)
+- r1-w-tc01: passed, 32262 samples (rederived 2026-11-06T18:40:54.231Z)
+- r1-w-tc02: passed, 34500 samples (rederived 2026-11-06T18:40:54.970Z)
+- r1-w-th01: passed, 32262 samples (rederived 2026-11-06T18:40:55.626Z)
+- r1-w-th02: passed, 34500 samples (rederived 2026-11-06T18:40:56.424Z)
+- r1-w-w01: passed, 40732 samples (rederived 2026-11-06T18:40:57.361Z)
+- r1-s-w01: passed, 14205 samples (rederived 2026-11-06T18:40:02.310Z)
+- r1-s-w02: passed, 7580 samples (rederived 2026-11-06T18:40:02.492Z)
+- r1-w-w02: passed, 20939 samples (rederived 2026-11-06T18:40:57.761Z)
+- r1-w-w03: passed, 41828 samples (rederived 2026-11-06T18:40:58.696Z)
+- r1-s-w03: passed, 9609 samples (rederived 2026-11-06T18:40:02.793Z)
+- r1-s-w04: passed, 5113 samples (rederived 2026-11-06T18:40:02.920Z)
+- r1-w-w04: passed, 22916 samples (rederived 2026-11-06T18:40:59.128Z)
+- r1-traced-app-w-1: passed, 6651 samples (rederived 2026-11-06T18:40:21.342Z)
+- r1-traced-app-w-2: passed, 6652 samples (rederived 2026-11-06T18:40:35.751Z)
+- r1-traced-app-s: passed, 449 samples (rederived 2026-11-06T18:40:08.110Z)
+- r1-alloc-app-w: passed, 6613 samples (rederived 2026-11-06T18:39:55.125Z)
+- r1-app-w-audiooff-immediate: passed, 14542 samples (rederived 2026-11-06T18:39:56.957Z)
+- r1-drag-clean: passed, 2332 samples (rederived 2026-11-06T18:39:58.562Z)
+- r1-drag-traced: passed, 2128 samples (rederived 2026-11-06T18:40:01.872Z)
+- r1-traced-w-tc01: passed, 5382 samples (rederived 2026-11-06T18:40:37.515Z)
+- r1-traced-w-tc02: passed, 4500 samples (rederived 2026-11-06T18:40:38.719Z)
+- r1-traced-w-th01: passed, 5382 samples (rederived 2026-11-06T18:40:39.709Z)
+- r1-traced-w-th02: passed, 4500 samples (rederived 2026-11-06T18:40:40.732Z)
+- r1-traced-w-w01: passed, 13823 samples (rederived 2026-11-06T18:40:43.803Z)
+- r1-traced-w-w02: passed, 14424 samples (rederived 2026-11-06T18:40:46.376Z)
+- r1-traced-w-w03: passed, 13759 samples (rederived 2026-11-06T18:40:50.065Z)
+- r1-traced-w-w04: passed, 14926 samples (rederived 2026-11-06T18:40:53.557Z)
+- r1-alloc-w-th01: passed, 5382 samples (rederived 2026-11-06T18:39:55.332Z)
+- r1-alloc-w-tc01: passed, 5382 samples (rederived 2026-11-06T18:39:55.236Z)
+- r1-alloc-w-w01: passed, 13779 samples (rederived 2026-11-06T18:39:55.551Z)
+- r1-alloc-w-w03: passed, 13866 samples (rederived 2026-11-06T18:39:55.787Z)
+- r1-bare-w-th01: passed, 2304 samples (rederived 2026-11-06T18:39:58.430Z)
+- r1-bare-w-tc01: passed, 2304 samples (rederived 2026-11-06T18:39:58.380Z)
+- r1-bare-w-w01: passed, 1378 samples (rederived 2026-11-06T18:39:58.480Z)
+- c1-shell: passed, 17097 samples (rederived 2026-11-06T18:39:10.969Z)
+- c1-vp1080: passed, 17326 samples (rederived 2026-11-06T18:39:11.455Z)
+- c1-full: passed, 17054 samples (rederived 2026-11-06T18:39:09.838Z)
+- c1-fullgpu: passed, 17035 samples (rederived 2026-11-06T18:39:10.404Z)
+- c2-fullgpu: passed, 17057 samples (rederived 2026-11-06T18:39:12.361Z)
+- c2-full: passed, 17045 samples (rederived 2026-11-06T18:39:12.006Z)
+- c2-vp1080: passed, 17338 samples (rederived 2026-11-06T18:39:13.095Z)
+- c2-shell: passed, 17048 samples (rederived 2026-11-06T18:39:12.738Z)
+- ct-shell: passed, 3432 samples (rederived 2026-11-06T18:39:38.942Z)
+- ct-vp1080: passed, 3511 samples (rederived 2026-11-06T18:39:46.508Z)
+- ct-full: passed, 3427 samples (rederived 2026-11-06T18:39:21.505Z)
+- ct-fullgpu: passed, 3437 samples (rederived 2026-11-06T18:39:30.185Z)
+- r2-app-w-audiooff: passed, 29012 samples (rederived 2026-11-06T18:40:59.897Z)
+- r2-app-s-audioon: passed, 4162 samples (rederived 2026-11-06T18:40:59.323Z)
+- r2-app-w-audioon: passed, 34116 samples (rederived 2026-11-06T18:41:01.049Z)
+- r2-hc3-app-w: passed, 9646 samples (rederived 2026-11-06T18:41:01.561Z)
+- par-fb-tc01: passed, 0 samples (rederived 2026-11-06T18:39:54.729Z)
+- par-w-tc01: passed, 0 samples (rederived 2026-11-06T18:39:54.827Z)
+- par-fb-tc02: passed, 0 samples (rederived 2026-11-06T18:39:54.748Z)
+- par-w-tc02: passed, 0 samples (rederived 2026-11-06T18:39:54.849Z)
+- par-fb-th01: passed, 0 samples (rederived 2026-11-06T18:39:54.769Z)
+- par-w-th01: passed, 0 samples (rederived 2026-11-06T18:39:54.884Z)
+- par-fb-th02: passed, 0 samples (rederived 2026-11-06T18:39:54.787Z)
+- par-w-th02: passed, 0 samples (rederived 2026-11-06T18:39:54.914Z)
+- r2-s-w01: passed, 14115 samples (rederived 2026-11-06T18:41:03.995Z)
+- r2-w-w01: passed, 40952 samples (rederived 2026-11-06T18:41:05.386Z)
+- r2-w-w02: passed, 21010 samples (rederived 2026-11-06T18:41:05.773Z)
+- r2-s-w02: passed, 7515 samples (rederived 2026-11-06T18:41:04.150Z)
+- r2-s-w03: passed, 9609 samples (rederived 2026-11-06T18:41:04.400Z)
+- r2-w-w03: passed, 41605 samples (rederived 2026-11-06T18:41:06.661Z)
+- r2-w-w04: passed, 22875 samples (rederived 2026-11-06T18:41:07.074Z)
+- r2-s-w04: passed, 5105 samples (rederived 2026-11-06T18:41:04.516Z)
+- r2-hc3-w01: passed, 23743 samples (rederived 2026-11-06T18:41:02.052Z)
+- r2-hc4-w01: passed, 29510 samples (rederived 2026-11-06T18:41:02.664Z)
+- r2-hc6-w01: passed, 40600 samples (rederived 2026-11-06T18:41:03.589Z)
+- sched-app-w: passed, 3438 samples (rederived 2026-11-06T18:41:19.815Z)
+- attr-app-w: passed, 3433 samples (rederived 2026-11-06T18:39:09.073Z)
+- attr-app-s: passed, 434 samples (rederived 2026-11-06T18:39:04.142Z)
+- inv-app-w: passed, 1711 samples (rederived 2026-11-06T18:39:54.496Z)

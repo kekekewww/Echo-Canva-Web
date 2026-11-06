@@ -75,3 +75,5 @@ node scripts/perf/cli.mjs scan <paths...>
 ## 可重開入口
 
 看 [交接](../handoffs/2026-11-07-ec-102-claude.md)。
+
+更正：第一次獨立驗證回報 NOT_VERIFIED 後的修正，見 [驗證後更正工作階段](2026-11-07-claude-ec-102-corrections.md)。

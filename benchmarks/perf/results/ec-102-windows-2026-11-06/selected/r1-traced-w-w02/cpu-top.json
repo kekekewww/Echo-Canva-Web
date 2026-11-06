@@ -1,5 +1,9 @@
 {
-  "main": {
+  "49468:21636": {
+    "label": "main",
+    "pid": 49468,
+    "tid": 21636,
+    "threadName": "CrRendererMain",
     "thread": "CrRendererMain",
     "totalSelfUs": 24658163,
     "functions": [
@@ -285,7 +289,11 @@
       }
     ]
   },
-  "w0": {
+  "49468:45716": {
+    "label": "w0",
+    "pid": 49468,
+    "tid": 45716,
+    "threadName": "DedicatedWorker thread",
     "thread": "DedicatedWorker thread",
     "totalSelfUs": 22622348,
     "functions": [
@@ -571,7 +579,11 @@
       }
     ]
   },
-  "w1": {
+  "49468:54696": {
+    "label": "w1",
+    "pid": 49468,
+    "tid": 54696,
+    "threadName": "DedicatedWorker thread",
     "thread": "DedicatedWorker thread",
     "totalSelfUs": 22622216,
     "functions": [
@@ -857,7 +869,11 @@
       }
     ]
   },
-  "w2": {
+  "49468:33260": {
+    "label": "w2",
+    "pid": 49468,
+    "tid": 33260,
+    "threadName": "DedicatedWorker thread",
     "thread": "DedicatedWorker thread",
     "totalSelfUs": 22621535,
     "functions": [
@@ -1143,9 +1159,1478 @@
       }
     ]
   },
-  "w3": {
+  "49468:45768": {
+    "label": "w3",
+    "pid": 49468,
+    "tid": 45768,
+    "threadName": "DedicatedWorker thread",
     "thread": "DedicatedWorker thread",
     "totalSelfUs": 22621575,
+    "functions": [
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 21870.619,
+        "fraction": 0.9668035492665741
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 115,
+        "selfMs": 374.208,
+        "fraction": 0.01654208427132063
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 73.26,
+        "fraction": 0.003238501297986546
+      },
+      {
+        "functionName": "segmentIntersectsAabb3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 189,
+        "selfMs": 39.334,
+        "fraction": 0.0017387825560333443
+      },
+      {
+        "functionName": "visit",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 287,
+        "selfMs": 31.592,
+        "fraction": 0.0013965429020746788
+      },
+      {
+        "functionName": "length3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 178,
+        "selfMs": 22.551,
+        "fraction": 0.000996880190702902
+      },
+      {
+        "functionName": "materialForHybridReflection",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 477,
+        "selfMs": 19.452,
+        "fraction": 0.000859887076828205
+      },
+      {
+        "functionName": "reflectionAmplitude",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 482,
+        "selfMs": 17.641,
+        "fraction": 0.0007798307589104649
+      },
+      {
+        "functionName": "intersectSegmentPatch",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 246,
+        "selfMs": 16.411,
+        "fraction": 0.0007254578869950478
+      },
+      {
+        "functionName": "handleControl",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 45,
+        "selfMs": 15.617,
+        "fraction": 0.0006903586509781039
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 308,
+        "selfMs": 14.692,
+        "fraction": 0.0006494684830742333
+      },
+      {
+        "functionName": "subtract3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 161,
+        "selfMs": 14.25,
+        "fraction": 0.0006299296136542217
+      },
+      {
+        "functionName": "pointInPatch3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 227,
+        "selfMs": 11.221,
+        "fraction": 0.0004960308908641418
+      },
+      {
+        "functionName": "projectToDominantPlane",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 212,
+        "selfMs": 8.828,
+        "fraction": 0.00039024692135715573
+      },
+      {
+        "functionName": "reflectedPoint",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 316,
+        "selfMs": 7.616,
+        "fraction": 0.00033666975000635455
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 607,
+        "selfMs": 6.772,
+        "fraction": 0.0002993602346432554
+      },
+      {
+        "functionName": "findPrunedSecondOrderReflections3D",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 534,
+        "selfMs": 6.022,
+        "fraction": 0.0002662060444509279
+      },
+      {
+        "functionName": "boundedRepresentativePatches",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 498,
+        "selfMs": 5.768,
+        "fraction": 0.0002549778253724597
+      },
+      {
+        "functionName": "scale3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 168,
+        "selfMs": 5.56,
+        "fraction": 0.0002457830632924542
+      },
+      {
+        "functionName": "postMessage",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 5.436,
+        "fraction": 0.0002403015705139894
+      },
+      {
+        "functionName": "dot3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 175,
+        "selfMs": 5.324,
+        "fraction": 0.00023535054477860184
+      },
+      {
+        "functionName": "epochNow",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 10,
+        "selfMs": 3.974,
+        "fraction": 0.00017567300243241242
+      },
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 3.914,
+        "fraction": 0.00017302066721702622
+      },
+      {
+        "functionName": "visit",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 270,
+        "selfMs": 3.874,
+        "fraction": 0.00017125244374010208
+      },
+      {
+        "functionName": "scope.postMessage",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 18,
+        "selfMs": 3.815,
+        "fraction": 0.000168644314111639
+      },
+      {
+        "functionName": "representativePatches",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 306,
+        "selfMs": 3.732,
+        "fraction": 0.00016497525039702143
+      },
+      {
+        "functionName": "pointOnSegment2",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 222,
+        "selfMs": 3.613,
+        "fraction": 0.00015971478555317214
+      },
+      {
+        "functionName": "imageRayIntersection",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 320,
+        "selfMs": 3.152,
+        "fraction": 0.00013933600998162154
+      },
+      {
+        "functionName": "clampFinite",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 359,
+        "selfMs": 2.959,
+        "fraction": 0.0001308043317054626
+      },
+      {
+        "functionName": "linearToDb",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 363,
+        "selfMs": 2.938,
+        "fraction": 0.00012987601438007744
+      },
+      {
+        "functionName": "add3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 154,
+        "selfMs": 2.279,
+        "fraction": 0.00010074453259775237
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 478,
+        "selfMs": 1.759,
+        "fraction": 0.00007775762739773867
+      },
+      {
+        "functionName": "physicalSurfaceId",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 303,
+        "selfMs": 1.716,
+        "fraction": 0.00007585678716004522
+      },
+      {
+        "functionName": "smallestClockStep",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 31,
+        "selfMs": 1.567,
+        "fraction": 0.00006927015470850284
+      },
+      {
+        "functionName": "computeHybridDirectSources",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 604,
+        "selfMs": 1.46,
+        "fraction": 0.00006454015690773079
+      },
+      {
+        "functionName": "estimatedMidGainDb",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 505,
+        "selfMs": 1.46,
+        "fraction": 0.00006454015690773079
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 331,
+        "selfMs": 1.279,
+        "fraction": 0.00005653894567464909
+      },
+      {
+        "functionName": "reflectionLegIsVisible",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 329,
+        "selfMs": 1.185,
+        "fraction": 0.00005238362050387738
+      },
+      {
+        "functionName": "uniqueWallIds",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 582,
+        "selfMs": 1.091,
+        "fraction": 0.000048228295333105674
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 499,
+        "selfMs": 0.851,
+        "fraction": 0.00003761895447156089
+      }
+    ]
+  },
+  "aggregate:main": {
+    "label": "main",
+    "aggregate": true,
+    "threads": 1,
+    "members": [
+      "49468:21636"
+    ],
+    "thread": "CrRendererMain",
+    "totalSelfUs": 24658163,
+    "note": "functions lists only each thread's top 40, so a function outside every thread's top 40 is missing from this sum",
+    "functions": [
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 18379.624,
+        "fraction": 0.7453768555265046
+      },
+      {
+        "functionName": "mark",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 796.99,
+        "fraction": 0.0323215480407036
+      },
+      {
+        "functionName": "stableJson",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7257,
+        "selfMs": 705.37,
+        "fraction": 0.028605942786573354
+      },
+      {
+        "functionName": "postMessage",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 9188,
+        "selfMs": 668.251,
+        "fraction": 0.02710059950532406
+      },
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 659.601,
+        "fraction": 0.02674980289488718
+      },
+      {
+        "functionName": "classicProjectionHash",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7264,
+        "selfMs": 387.78,
+        "fraction": 0.015726232323145888
+      },
+      {
+        "functionName": "createSceneDocumentV2",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 9014,
+        "selfMs": 367.895,
+        "fraction": 0.01491980566435545
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 336.365,
+        "fraction": 0.013641121603421957
+      },
+      {
+        "functionName": "runChecks",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 2842,
+        "selfMs": 215.443,
+        "fraction": 0.008737187762121615
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7261,
+        "selfMs": 200.562,
+        "fraction": 0.008133695928605874
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 192.251,
+        "fraction": 0.007796647300936408
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 1247,
+        "selfMs": 128.123,
+        "fraction": 0.005195966950173863
+      },
+      {
+        "functionName": "jsonEqual",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 1011,
+        "selfMs": 114.487,
+        "fraction": 0.0046429654958481704
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "undefined",
+        "lineNumber": 2,
+        "selfMs": 85.599,
+        "fraction": 0.003471426480553316
+      },
+      {
+        "functionName": "inst._zod.parse",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 3826,
+        "selfMs": 81.791,
+        "fraction": 0.003316994862918215
+      },
+      {
+        "functionName": "aabbCentroid3",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 1126,
+        "selfMs": 78.909,
+        "fraction": 0.0032001167321345065
+      },
+      {
+        "functionName": "validateV2Semantics",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7272,
+        "selfMs": 72.108,
+        "fraction": 0.0029243054318361023
+      },
+      {
+        "functionName": "inst._zod.run",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 2883,
+        "selfMs": 71.878,
+        "fraction": 0.0029149778919054107
+      },
+      {
+        "functionName": "handleCatchall",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 3420,
+        "selfMs": 66.235,
+        "fraction": 0.0026861287274319665
+      },
+      {
+        "functionName": "inst._zod.check",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 2705,
+        "selfMs": 57.821,
+        "fraction": 0.002344902984054408
+      },
+      {
+        "functionName": "inst._zod.parse",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 3632,
+        "selfMs": 57.069,
+        "fraction": 0.002314405983933191
+      },
+      {
+        "functionName": "validateUniqueIds",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7138,
+        "selfMs": 56.611,
+        "fraction": 0.002295832013114683
+      },
+      {
+        "functionName": "makePatch3",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 1186,
+        "selfMs": 45.522,
+        "fraction": 0.0018461229248910391
+      },
+      {
+        "functionName": "RegExp: ^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 42.596,
+        "fraction": 0.001727460395164068
+      },
+      {
+        "functionName": "fnv1a",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7505,
+        "selfMs": 42.385,
+        "fraction": 0.0017189033911406944
+      },
+      {
+        "functionName": "buildNode",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 1239,
+        "selfMs": 41.598,
+        "fraction": 0.0016869869827691544
+      },
+      {
+        "functionName": "advance",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 9048,
+        "selfMs": 39.07,
+        "fraction": 0.0015844651525744233
+      },
+      {
+        "functionName": "validateGeometry",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7160,
+        "selfMs": 26.27,
+        "fraction": 0.0010653672781707217
+      },
+      {
+        "functionName": "structuredClone",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 25.365,
+        "fraction": 0.0010286654362695227
+      },
+      {
+        "functionName": "unionAabb3",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 1112,
+        "selfMs": 24.68,
+        "fraction": 0.001000885589084637
+      },
+      {
+        "functionName": "setTimeout",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 23.754,
+        "fraction": 0.0009633321022332442
+      },
+      {
+        "functionName": "inst._zod.parse",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 3351,
+        "selfMs": 22.99,
+        "fraction": 0.0009323484478547733
+      },
+      {
+        "functionName": "inst._zod.parse",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 3961,
+        "selfMs": 20.328,
+        "fraction": 0.0008243923117873784
+      },
+      {
+        "functionName": "isPointOnWall",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 615,
+        "selfMs": 20.281,
+        "fraction": 0.0008224862492798024
+      },
+      {
+        "functionName": "distance",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 150,
+        "selfMs": 19.582,
+        "fraction": 0.0007941386387947878
+      },
+      {
+        "functionName": "compile",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7774,
+        "selfMs": 18.702,
+        "fraction": 0.0007584506599295333
+      },
+      {
+        "functionName": "clearTimeout",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 18.023,
+        "fraction": 0.0007309141398732745
+      },
+      {
+        "functionName": "subtract",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 42,
+        "selfMs": 17.547,
+        "fraction": 0.0007116101876688867
+      },
+      {
+        "functionName": "isDirectPath",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 8664,
+        "selfMs": 15.934,
+        "fraction": 0.0006461957445897328
+      },
+      {
+        "functionName": "inst._zod.check",
+        "url": "http://127.0.0.1:59331/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 2525,
+        "selfMs": 15.574,
+        "fraction": 0.0006315961168721287
+      }
+    ]
+  },
+  "aggregate:w0": {
+    "label": "w0",
+    "aggregate": true,
+    "threads": 1,
+    "members": [
+      "49468:45716"
+    ],
+    "thread": "DedicatedWorker thread",
+    "totalSelfUs": 22622348,
+    "note": "functions lists only each thread's top 40, so a function outside every thread's top 40 is missing from this sum",
+    "functions": [
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 21848.34,
+        "fraction": 0.9657856912111864
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 115,
+        "selfMs": 411.534,
+        "fraction": 0.018191480389215125
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 92.93,
+        "fraction": 0.004107884822565721
+      },
+      {
+        "functionName": "segmentIntersectsAabb3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 189,
+        "selfMs": 31.705,
+        "fraction": 0.0014014902431878423
+      },
+      {
+        "functionName": "visit",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 287,
+        "selfMs": 27.606,
+        "fraction": 0.0012202977339045443
+      },
+      {
+        "functionName": "materialForHybridReflection",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 477,
+        "selfMs": 27.579,
+        "fraction": 0.001219104223840956
+      },
+      {
+        "functionName": "subtract3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 161,
+        "selfMs": 22.153,
+        "fraction": 0.000979252905136107
+      },
+      {
+        "functionName": "handleControl",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 45,
+        "selfMs": 15.302,
+        "fraction": 0.0006764107775196456
+      },
+      {
+        "functionName": "length3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 178,
+        "selfMs": 14.075,
+        "fraction": 0.0006221723757410151
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 308,
+        "selfMs": 13.324,
+        "fraction": 0.0005889751143426845
+      },
+      {
+        "functionName": "reflectionAmplitude",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 482,
+        "selfMs": 12.253,
+        "fraction": 0.0005416325484870094
+      },
+      {
+        "functionName": "pointInPatch3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 227,
+        "selfMs": 11.031,
+        "fraction": 0.00048761516709052485
+      },
+      {
+        "functionName": "scope.postMessage",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 18,
+        "selfMs": 7.792,
+        "fraction": 0.00034443816353634026
+      },
+      {
+        "functionName": "findPrunedSecondOrderReflections3D",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 534,
+        "selfMs": 7.383,
+        "fraction": 0.00032635869627679675
+      },
+      {
+        "functionName": "projectToDominantPlane",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 212,
+        "selfMs": 7.131,
+        "fraction": 0.0003152192690166379
+      },
+      {
+        "functionName": "reflectedPoint",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 316,
+        "selfMs": 6.916,
+        "fraction": 0.0003057153925843595
+      },
+      {
+        "functionName": "boundedRepresentativePatches",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 498,
+        "selfMs": 5.959,
+        "fraction": 0.0002634120914416134
+      },
+      {
+        "functionName": "intersectSegmentPatch",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 246,
+        "selfMs": 5.63,
+        "fraction": 0.00024886895029640604
+      },
+      {
+        "functionName": "imageRayIntersection",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 320,
+        "selfMs": 4.162,
+        "fraction": 0.0001839773660983378
+      },
+      {
+        "functionName": "dot3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 175,
+        "selfMs": 4.096,
+        "fraction": 0.0001810598970540105
+      },
+      {
+        "functionName": "visit",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 270,
+        "selfMs": 4.052,
+        "fraction": 0.00017911491769112558
+      },
+      {
+        "functionName": "representativePatches",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 306,
+        "selfMs": 3.654,
+        "fraction": 0.0001615216952723033
+      },
+      {
+        "functionName": "linearToDb",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 363,
+        "selfMs": 3.629,
+        "fraction": 0.00016041659336157326
+      },
+      {
+        "functionName": "scale3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 168,
+        "selfMs": 3.15,
+        "fraction": 0.00013924284075198562
+      },
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 2.905,
+        "fraction": 0.00012841284202683116
+      },
+      {
+        "functionName": "postMessage",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 2.767,
+        "fraction": 0.00012231267947960132
+      },
+      {
+        "functionName": "smallestClockStep",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 31,
+        "selfMs": 2.413,
+        "fraction": 0.0001066644364236639
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 499,
+        "selfMs": 1.872,
+        "fraction": 0.00008275003107546573
+      },
+      {
+        "functionName": "handle",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 637,
+        "selfMs": 1.763,
+        "fraction": 0.00007793178674468273
+      },
+      {
+        "functionName": "uniqueWallIds",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 582,
+        "selfMs": 1.701,
+        "fraction": 0.00007519113400607222
+      },
+      {
+        "functionName": "findFirstOrderReflections3D",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 333,
+        "selfMs": 1.631,
+        "fraction": 0.0000720968486560281
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 607,
+        "selfMs": 1.615,
+        "fraction": 0.00007138958343316088
+      },
+      {
+        "functionName": "solveSecondOrderReflectionPair",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 508,
+        "selfMs": 1.549,
+        "fraction": 0.00006847211438883356
+      },
+      {
+        "functionName": "pointOnSegment2",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 222,
+        "selfMs": 1.272,
+        "fraction": 0.00005622758521794466
+      },
+      {
+        "functionName": "estimatedMidGainDb",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 505,
+        "selfMs": 1.213,
+        "fraction": 0.00005361954470862176
+      },
+      {
+        "functionName": "add3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 154,
+        "selfMs": 1.198,
+        "fraction": 0.00005295648356218373
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 331,
+        "selfMs": 1.17,
+        "fraction": 0.00005171876942216608
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 478,
+        "selfMs": 1.167,
+        "fraction": 0.000051586157192878475
+      },
+      {
+        "functionName": "specularReflectionAmplitude",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 486,
+        "selfMs": 1.156,
+        "fraction": 0.000051099912352157256
+      },
+      {
+        "functionName": "physicalSurfaceId",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 303,
+        "selfMs": 1.139,
+        "fraction": 0.000050348443052860824
+      }
+    ]
+  },
+  "aggregate:w1": {
+    "label": "w1",
+    "aggregate": true,
+    "threads": 1,
+    "members": [
+      "49468:54696"
+    ],
+    "thread": "DedicatedWorker thread",
+    "totalSelfUs": 22622216,
+    "note": "functions lists only each thread's top 40, so a function outside every thread's top 40 is missing from this sum",
+    "functions": [
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 21933.364,
+        "fraction": 0.9695497558683022
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 115,
+        "selfMs": 382.669,
+        "fraction": 0.016915628424730805
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 59.481,
+        "fraction": 0.0026293180119931663
+      },
+      {
+        "functionName": "segmentIntersectsAabb3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 189,
+        "selfMs": 27.769,
+        "fraction": 0.0012275101608082957
+      },
+      {
+        "functionName": "materialForHybridReflection",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 477,
+        "selfMs": 25.088,
+        "fraction": 0.0011089983403924709
+      },
+      {
+        "functionName": "visit",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 287,
+        "selfMs": 17.293,
+        "fraction": 0.0007644255540659677
+      },
+      {
+        "functionName": "subtract3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 161,
+        "selfMs": 16.958,
+        "fraction": 0.0007496171020557845
+      },
+      {
+        "functionName": "handleControl",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 45,
+        "selfMs": 15.218,
+        "fraction": 0.000672701560271549
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 308,
+        "selfMs": 14.892,
+        "fraction": 0.0006582909472705945
+      },
+      {
+        "functionName": "reflectionAmplitude",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 482,
+        "selfMs": 12.786,
+        "fraction": 0.0005651966191110543
+      },
+      {
+        "functionName": "length3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 178,
+        "selfMs": 11.748,
+        "fraction": 0.0005193125200466656
+      },
+      {
+        "functionName": "reflectedPoint",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 316,
+        "selfMs": 7.662,
+        "fraction": 0.00033869360985678854
+      },
+      {
+        "functionName": "findPrunedSecondOrderReflections3D",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 534,
+        "selfMs": 7.09,
+        "fraction": 0.0003134087306035801
+      },
+      {
+        "functionName": "pointInPatch3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 227,
+        "selfMs": 7.011,
+        "fraction": 0.0003099165881892384
+      },
+      {
+        "functionName": "postMessage",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 6.288,
+        "fraction": 0.0002779568544478578
+      },
+      {
+        "functionName": "scope.postMessage",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 18,
+        "selfMs": 5.513,
+        "fraction": 0.0002436984953198219
+      },
+      {
+        "functionName": "boundedRepresentativePatches",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 498,
+        "selfMs": 5.116,
+        "fraction": 0.00022614937457939575
+      },
+      {
+        "functionName": "projectToDominantPlane",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 212,
+        "selfMs": 4.852,
+        "fraction": 0.00021447943030868417
+      },
+      {
+        "functionName": "visit",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 270,
+        "selfMs": 4.406,
+        "fraction": 0.00019476429718467899
+      },
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 4.262,
+        "fraction": 0.00018839887303701813
+      },
+      {
+        "functionName": "dot3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 175,
+        "selfMs": 3.964,
+        "fraction": 0.00017522598139810882
+      },
+      {
+        "functionName": "representativePatches",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 306,
+        "selfMs": 3.957,
+        "fraction": 0.00017491655105759753
+      },
+      {
+        "functionName": "findFirstOrderReflections3D",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 333,
+        "selfMs": 3.656,
+        "fraction": 0.00016161104641561198
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 499,
+        "selfMs": 3.299,
+        "fraction": 0.00014583009904953607
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 607,
+        "selfMs": 3.033,
+        "fraction": 0.00013407174611010698
+      },
+      {
+        "functionName": "intersectSegmentPatch",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 246,
+        "selfMs": 2.884,
+        "fraction": 0.00012748530029065233
+      },
+      {
+        "functionName": "pointOnSegment2",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 222,
+        "selfMs": 2.867,
+        "fraction": 0.0001267338266065535
+      },
+      {
+        "functionName": "epochNow",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 10,
+        "selfMs": 2.811,
+        "fraction": 0.00012425838388246315
+      },
+      {
+        "functionName": "scale3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 168,
+        "selfMs": 2.282,
+        "fraction": 0.00010087429100668122
+      },
+      {
+        "functionName": "solveSecondOrderReflectionPair",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 508,
+        "selfMs": 2.104,
+        "fraction": 0.00009300591949082266
+      },
+      {
+        "functionName": "add3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 154,
+        "selfMs": 2.058,
+        "fraction": 0.00009097252011031988
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 478,
+        "selfMs": 2.035,
+        "fraction": 0.0000899558204200685
+      },
+      {
+        "functionName": "intersectSegmentBvh",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 267,
+        "selfMs": 1.914,
+        "fraction": 0.00008460709596265901
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 719,
+        "selfMs": 1.685,
+        "fraction": 0.00007448430339450388
+      },
+      {
+        "functionName": "estimatedMidGainDb",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 505,
+        "selfMs": 1.679,
+        "fraction": 0.00007421907738835134
+      },
+      {
+        "functionName": "computeHybridDirectSources",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 604,
+        "selfMs": 1.67,
+        "fraction": 0.00007382123837912254
+      },
+      {
+        "functionName": "handle",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 637,
+        "selfMs": 1.474,
+        "fraction": 0.00006515718884480636
+      },
+      {
+        "functionName": "reflectionLegIsVisible",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 329,
+        "selfMs": 1.377,
+        "fraction": 0.00006086936841200703
+      },
+      {
+        "functionName": "solveDirectPath3D",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 585,
+        "selfMs": 1.17,
+        "fraction": 0.000051719071199744536
+      },
+      {
+        "functionName": "smallestClockStep",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 31,
+        "selfMs": 1.118,
+        "fraction": 0.00004942044581308922
+      }
+    ]
+  },
+  "aggregate:w2": {
+    "label": "w2",
+    "aggregate": true,
+    "threads": 1,
+    "members": [
+      "49468:33260"
+    ],
+    "thread": "DedicatedWorker thread",
+    "totalSelfUs": 22621535,
+    "note": "functions lists only each thread's top 40, so a function outside every thread's top 40 is missing from this sum",
+    "functions": [
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 21891.071,
+        "fraction": 0.9677093530567222
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 115,
+        "selfMs": 379.894,
+        "fraction": 0.016793466933167887
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 70.8,
+        "fraction": 0.0031297610882727455
+      },
+      {
+        "functionName": "segmentIntersectsAabb3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 189,
+        "selfMs": 43.599,
+        "fraction": 0.0019273227921977885
+      },
+      {
+        "functionName": "materialForHybridReflection",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 477,
+        "selfMs": 27.819,
+        "fraction": 0.0012297573970997105
+      },
+      {
+        "functionName": "visit",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 287,
+        "selfMs": 23.085,
+        "fraction": 0.001020487778570287
+      },
+      {
+        "functionName": "length3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 178,
+        "selfMs": 18.185,
+        "fraction": 0.0008038800196361564
+      },
+      {
+        "functionName": "subtract3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 161,
+        "selfMs": 18.154,
+        "fraction": 0.0008025096440184099
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 308,
+        "selfMs": 15.975,
+        "fraction": 0.0007061854997903546
+      },
+      {
+        "functionName": "handleControl",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 45,
+        "selfMs": 15.49,
+        "fraction": 0.0006847457522223846
+      },
+      {
+        "functionName": "reflectionAmplitude",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 482,
+        "selfMs": 13.381,
+        "fraction": 0.0005915160045505311
+      },
+      {
+        "functionName": "projectToDominantPlane",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 212,
+        "selfMs": 8.36,
+        "fraction": 0.0003695593601406801
+      },
+      {
+        "functionName": "dot3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 175,
+        "selfMs": 7.656,
+        "fraction": 0.000338438571918307
+      },
+      {
+        "functionName": "scope.postMessage",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 18,
+        "selfMs": 6.505,
+        "fraction": 0.00028755785140133065
+      },
+      {
+        "functionName": "intersectSegmentPatch",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 246,
+        "selfMs": 6.394,
+        "fraction": 0.00028265102257649626
+      },
+      {
+        "functionName": "findPrunedSecondOrderReflections3D",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 534,
+        "selfMs": 5.539,
+        "fraction": 0.00024485517892574487
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 331,
+        "selfMs": 5.16,
+        "fraction": 0.0002281012318571662
+      },
+      {
+        "functionName": "imageRayIntersection",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 320,
+        "selfMs": 4.823,
+        "fraction": 0.00021320392272230863
+      },
+      {
+        "functionName": "reflectedPoint",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 316,
+        "selfMs": 4.651,
+        "fraction": 0.00020560054832706977
+      },
+      {
+        "functionName": "pointOnSegment2",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 222,
+        "selfMs": 4.57,
+        "fraction": 0.00020201988945489332
+      },
+      {
+        "functionName": "pointInPatch3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 227,
+        "selfMs": 4.456,
+        "fraction": 0.00019698044363479313
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 478,
+        "selfMs": 4.192,
+        "fraction": 0.00018531014805140322
+      },
+      {
+        "functionName": "visit",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 270,
+        "selfMs": 3.605,
+        "fraction": 0.00015936142264439616
+      },
+      {
+        "functionName": "boundedRepresentativePatches",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 498,
+        "selfMs": 3.47,
+        "fraction": 0.0001533936578574354
+      },
+      {
+        "functionName": "postMessage",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 3.414,
+        "fraction": 0.00015091814061247392
+      },
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 3.291,
+        "fraction": 0.00014548084380657634
+      },
+      {
+        "functionName": "physicalSurfaceId",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 303,
+        "selfMs": 2.57,
+        "fraction": 0.00011360855927769711
+      },
+      {
+        "functionName": "scale3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 168,
+        "selfMs": 2.505,
+        "fraction": 0.00011073519104693824
+      },
+      {
+        "functionName": "computeHybridDirectSources",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 604,
+        "selfMs": 2.498,
+        "fraction": 0.00011042575139131805
+      },
+      {
+        "functionName": "solveSecondOrderReflectionPair",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 508,
+        "selfMs": 2.207,
+        "fraction": 0.000097561902850536
+      },
+      {
+        "functionName": "reflectionLegIsVisible",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 329,
+        "selfMs": 1.666,
+        "fraction": 0.00007364663803760443
+      },
+      {
+        "functionName": "linearToDb",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 363,
+        "selfMs": 1.6,
+        "fraction": 0.00007072906414175696
+      },
+      {
+        "functionName": "findFirstOrderReflections3D",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 333,
+        "selfMs": 1.469,
+        "fraction": 0.00006493812201515061
+      },
+      {
+        "functionName": "intersectSegmentBvh",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 267,
+        "selfMs": 1.383,
+        "fraction": 0.00006113643481753118
+      },
+      {
+        "functionName": "epochNow",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 10,
+        "selfMs": 1.298,
+        "fraction": 0.000057378953285000334
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 499,
+        "selfMs": 1.297,
+        "fraction": 0.000057334747619911735
+      },
+      {
+        "functionName": "smallestClockStep",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 31,
+        "selfMs": 1.295,
+        "fraction": 0.00005724633628973454
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 607,
+        "selfMs": 1.278,
+        "fraction": 0.00005649483998322837
+      },
+      {
+        "functionName": "uniqueWallIds",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 582,
+        "selfMs": 1.228,
+        "fraction": 0.00005428455672879846
+      },
+      {
+        "functionName": "add3",
+        "url": "http://127.0.0.1:59331/assets/hybrid-worker-entry-BC95lcKx.js",
+        "lineNumber": 154,
+        "selfMs": 1.152,
+        "fraction": 0.00005092492618206501
+      }
+    ]
+  },
+  "aggregate:w3": {
+    "label": "w3",
+    "aggregate": true,
+    "threads": 1,
+    "members": [
+      "49468:45768"
+    ],
+    "thread": "DedicatedWorker thread",
+    "totalSelfUs": 22621575,
+    "note": "functions lists only each thread's top 40, so a function outside every thread's top 40 is missing from this sum",
     "functions": [
       {
         "functionName": "(idle)",

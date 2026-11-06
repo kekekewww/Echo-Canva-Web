@@ -1049,5 +1049,6 @@
     "fallback": 0,
     "error": 0,
     "timeout": 0
-  }
+  },
+  "traced": "not-applicable"
 }

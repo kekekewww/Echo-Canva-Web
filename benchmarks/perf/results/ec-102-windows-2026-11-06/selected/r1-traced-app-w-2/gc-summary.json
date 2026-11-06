@@ -1,16 +1,92 @@
 {
-  "note": "Real collections only. minor and major durUs are pause time on that thread; incremental-marking-step durUs is time spent in steps, not a pause of the whole collection.",
+  "note": "Real collections only, in the measured window (collections starting between ec102:window:start and ec102:window:end, the same rule as busy.json). minor and major durUs are pause time on that thread; incremental-marking-step durUs is time spent in steps, not a pause of the whole collection. perThread is keyed by pid:tid; perName adds the threads that share a name or label.",
+  "window": {
+    "measured": true,
+    "startUs": 92317790938,
+    "endUs": 92349389711
+  },
+  "events": 832,
   "perThread": {
+    "58784:8340": {
+      "label": "DedicatedWorker thread",
+      "pid": 58784,
+      "tid": 8340,
+      "threadName": "DedicatedWorker thread",
+      "kinds": {
+        "minor": {
+          "count": 75,
+          "durUs": 45643
+        }
+      }
+    },
+    "58784:57300": {
+      "label": "DedicatedWorker thread",
+      "pid": 58784,
+      "tid": 57300,
+      "threadName": "DedicatedWorker thread",
+      "kinds": {
+        "minor": {
+          "count": 78,
+          "durUs": 33437
+        }
+      }
+    },
+    "58784:47456": {
+      "label": "DedicatedWorker thread",
+      "pid": 58784,
+      "tid": 47456,
+      "threadName": "DedicatedWorker thread",
+      "kinds": {
+        "minor": {
+          "count": 74,
+          "durUs": 28655
+        }
+      }
+    },
+    "58784:25280": {
+      "label": "DedicatedWorker thread",
+      "pid": 58784,
+      "tid": 25280,
+      "threadName": "DedicatedWorker thread",
+      "kinds": {
+        "minor": {
+          "count": 83,
+          "durUs": 38529
+        }
+      }
+    },
+    "58784:52504": {
+      "label": "main",
+      "pid": 58784,
+      "tid": 52504,
+      "threadName": "CrRendererMain",
+      "kinds": {
+        "minor": {
+          "count": 38,
+          "durUs": 48365
+        },
+        "incremental-marking-step": {
+          "count": 474,
+          "durUs": 35490
+        },
+        "major": {
+          "count": 10,
+          "durUs": 50385
+        }
+      }
+    }
+  },
+  "perName": {
     "DedicatedWorker thread": {
       "minor": {
-        "count": 318,
-        "durUs": 149024
+        "count": 310,
+        "durUs": 146264
       }
     },
     "main": {
       "minor": {
-        "count": 40,
-        "durUs": 52425
+        "count": 38,
+        "durUs": 48365
       },
       "incremental-marking-step": {
         "count": 474,
@@ -19,6 +95,101 @@
       "major": {
         "count": 10,
         "durUs": 50385
+      }
+    }
+  },
+  "wholeTraceTotal": {
+    "events": 842,
+    "perThread": {
+      "58784:47456": {
+        "label": "DedicatedWorker thread",
+        "pid": 58784,
+        "tid": 47456,
+        "threadName": "DedicatedWorker thread",
+        "kinds": {
+          "minor": {
+            "count": 76,
+            "durUs": 29496
+          }
+        }
+      },
+      "58784:8340": {
+        "label": "DedicatedWorker thread",
+        "pid": 58784,
+        "tid": 8340,
+        "threadName": "DedicatedWorker thread",
+        "kinds": {
+          "minor": {
+            "count": 76,
+            "durUs": 46047
+          }
+        }
+      },
+      "58784:25280": {
+        "label": "DedicatedWorker thread",
+        "pid": 58784,
+        "tid": 25280,
+        "threadName": "DedicatedWorker thread",
+        "kinds": {
+          "minor": {
+            "count": 86,
+            "durUs": 39313
+          }
+        }
+      },
+      "58784:57300": {
+        "label": "DedicatedWorker thread",
+        "pid": 58784,
+        "tid": 57300,
+        "threadName": "DedicatedWorker thread",
+        "kinds": {
+          "minor": {
+            "count": 80,
+            "durUs": 34168
+          }
+        }
+      },
+      "58784:52504": {
+        "label": "main",
+        "pid": 58784,
+        "tid": 52504,
+        "threadName": "CrRendererMain",
+        "kinds": {
+          "minor": {
+            "count": 40,
+            "durUs": 52425
+          },
+          "incremental-marking-step": {
+            "count": 474,
+            "durUs": 35490
+          },
+          "major": {
+            "count": 10,
+            "durUs": 50385
+          }
+        }
+      }
+    },
+    "perName": {
+      "DedicatedWorker thread": {
+        "minor": {
+          "count": 318,
+          "durUs": 149024
+        }
+      },
+      "main": {
+        "minor": {
+          "count": 40,
+          "durUs": 52425
+        },
+        "incremental-marking-step": {
+          "count": 474,
+          "durUs": 35490
+        },
+        "major": {
+          "count": 10,
+          "durUs": 50385
+        }
       }
     }
   }

@@ -3,5 +3,10 @@
   "runId": "r1-traced-w-w02",
   "start": "2026-11-06T14:37:30.498Z",
   "end": "2026-11-06T14:38:15.237Z",
-  "sampleCount": 14382
+  "sampleCount": 14424,
+  "originalStatus": "passed",
+  "originalError": "not-applicable",
+  "rederivedAt": "2026-11-06T18:40:46.376Z",
+  "rederivedByCommit": "08f82274d6bb80298337132c91456ed68caac09e",
+  "originalPhasesNotReached": "not-applicable"
 }

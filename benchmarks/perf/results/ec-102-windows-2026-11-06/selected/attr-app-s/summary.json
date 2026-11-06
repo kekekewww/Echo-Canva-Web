@@ -776,7 +776,7 @@
     "threads": 45,
     "marks": 338,
     "gcEvents": 111,
-    "cpuThreads": 1,
+    "cpuThreads": 2,
     "exemplars": []
   },
   "alloc": "not-applicable",

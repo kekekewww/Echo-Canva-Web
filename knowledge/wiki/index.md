@@ -18,6 +18,7 @@
 | [工作時間線](log.md) | 資料納入與查核紀錄 |
 | [EC-101 交接](../handoffs/2026-11-06-ec-101-claude.md) | 固定語料的實作狀態與獨立重跑步驟 |
 | [EC-102 交接](../handoffs/2026-11-07-ec-102-claude.md) | Windows 剖析的實作狀態與獨立驗證步驟 |
+| [EC-102 驗證後更正](../sessions/2026-11-07-claude-ec-102-corrections.md) | 第一次獨立驗證 NOT_VERIFIED 後的缺陷、修正與下一步 |
 
 ## Proposed ADRs
 

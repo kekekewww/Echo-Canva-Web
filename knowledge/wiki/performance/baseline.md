@@ -41,14 +41,16 @@
 | --- | --- | --- |
 | in-app gate 尾端 | 11 個達 12 ms 以上的 job 都是最後一個 Worker 完成後的回覆等待超過最慢 Worker task，期間 main 在 `WaitForCommitCompletion`，raster 在 4 個 `ThreadPoolForegroundWorker` 執行緒。viewport 控制：1920x1080 的 raster 牆鐘為 1280x720 的 2.9 倍，尾端跟著移動。 | **Measured Result** |
 | GPU raster | 嘗試的瀏覽器變體都是 `gpu_compositing: disabled_software`，沒有達成 GPU raster。 | **Measured Result**，無結論。有真正 GPU raster 時等待會縮小的說法是 **Hypothesis**，反證：在 `gpu_compositing` 啟用的環境跑同一 fixture |
-| stock gate | 12 次正式 build 執行 9 通過、3 失敗。Round 1 負載下 5 次中 2 次失敗，安靜時段 5 次中 0 次。24 個樣本的 nearest-rank p95 是第二大值。 | **Measured Result**（小樣本，暗示負載敏感，不證明）。算術為 **Verified Fact** |
-| 視窗內 long task | 三類：等 commit 與 raster、產品 JS 的輸入處理、測試驅動程式（`playwright-core` 函式，在 `.next/static` 與 `src` 出現次數為零）。 | 分類為 **Measured Result**；驅動程式有貢獻是 **Hypothesis**，反證：用不做 role 查詢的驅動程式比較 |
-| Hybrid 靜態安裝 | W02 TS-W `pool.compute-metric` 安靜 p50 20.4、p95 24.0；TS-S fallback p50 4.7、p95 6.1。Classic 控制 W04 `install.post` p50 0.1。 | **Measured Result**；BVH 與 patch 以 structured clone 傳給每個 Worker 為 **Verified Fact**（`hybrid-direct-pool.ts:705-716`） |
-| pose 延遲 | `pose.latest-wait` 各路徑 p50 約 49 至 52、p99 約 89 至 95，場景頻率 12 Hz（83.3 ms）。 | **Measured Result**，與速率限制間隔主導一致 |
-| Worker 對 serial | Worker 降低 p50 與 p95；p99 在 W03 兩輪都較差、W01 兩輪間反轉；小 tape 上 serial 較快。 | **Measured Result**，不宣稱通則 |
+| stock gate | 12 次正式 build 執行 9 通過、3 失敗（本專案封存）。Round 1 負載下 5 次中 2 次失敗，安靜時段 5 次中 0 次。24 個樣本的 nearest-rank p95 是第二大值。獨立驗證新跑 5 次失敗 0 次，為 NOT CONFIRMED，負載敏感沒有受控實驗。 | **Measured Result**（小樣本，暗示負載敏感，不證明）。算術為 **Verified Fact** |
+| 視窗內 long task | 三類：等 commit 與 raster、產品 JS 的輸入處理、測試驅動程式（`playwright-core` 函式，在 `.next/static` 與 `src` 出現次數為零）。 | 分類為 **Measured Result**（獨立驗證的 4 份診斷 trace 中主執行緒 50 ms 以上 task 為 0，其 4 次未 trace 執行有 25 個 long task 未分類，所以分類在重複前只建立在本專案的 trace 上，NOT CONFIRMED）；驅動程式有貢獻是 **Hypothesis**，反證：用不做 role 查詢的驅動程式比較 |
+| Hybrid 靜態安裝 | W02 TS-W `pool.compute-metric` 安靜 p50 20.6、p95 24.0；TS-S fallback p50 4.7、p95 6.1。Classic 控制 W04 `install.post` p50 0.1。 | **Measured Result**；BVH 與 patch 以 structured clone 傳給每個 Worker 為 **Verified Fact**（`hybrid-direct-pool.ts:705-716`） |
+| pose 延遲 | `pose.latest-wait` 各路徑 p50 約 49 至 53、p99 約 89 至 96，場景頻率 12 Hz（83.3 ms）。 | **Measured Result**，與速率限制間隔主導一致 |
+| Worker 對 serial | W01 與 W03 四輪中 p50 都是 Worker 較低；p95 在三輪較低，W01 Round 1 較高（11.5 對 7.2）。p99（更正後）：W01 Round 1 TS-W 40.7 對 TS-S 22.5，Round 2 11.3 對 15.4；W03 Round 1 9.1 對 6.5，Round 2 15.0 對 7.5。驗證者新跑的 W03 p99 是 3.5 對 5.6，對 Worker 有利，所以沒有 p99 通則。小 tape 上 serial 較快。 | **Measured Result**，不宣稱通則 |
 | 非尾端原因 | `merge.validate` W01 p95 0.4 至 0.6；GC 在慢 job 中小；音訊 `audio.param-call-total-ms` p95 0.2。 | **Measured Result** |
 | main thread Hybrid 驗證 | `input.project` W01 安靜 p50 3.0、p99 7.1；traced W01 有 103 與 110 ms 的 main task，CPU 約 50 ms。 | **Measured Result**；原因（排程或換頁）為 **Hypothesis**，反證：WPR 計數器 |
 | Chromium 與 Node 一致性 | Node 在四個 tape bit-exact；Chromium 最大 2 ulp，29／19／21／4 個葉節點不同，0 規則違反。 | **Measured Result**；EC-101 的 bit-exact 在 Node 成立、Chromium 在容差內為 **Verified Fact**；V8 `Math` 差異為 **Hypothesis**，反證：兩邊直接計算 |
+
+**更正（2026-11-07）**：第一次獨立驗證在 `63a50c6` 回報 NOT_VERIFIED，harness 缺陷已修正（`08f8227`），pool 執行由保留的原始 log 重新推導，沒有重新量測，本節數字已改為更正後的值，舊值對新值見[更正表](../../../benchmarks/perf/results/ec-102-windows-2026-11-06/corrections-after-verification.md)。獨立執行重現了 commit-wait 與 Hybrid static-install 機制，沒有確認 long task 的 A/B/C 分類、stock 失敗頻率與負載敏感；第二次獨立驗證待進行，尚未 Verified。N 400 的 nearest-rank p99 是第 396 名，即第五大值。
 
 未達成的計畫目標見 [benchmark-plan](benchmark-plan.md) 的實作狀態。
 

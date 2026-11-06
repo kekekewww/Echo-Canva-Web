@@ -3,5 +3,11 @@
   "runId": "ct-fullgpu",
   "start": "2026-11-06T15:32:59.971Z",
   "end": "2026-11-06T15:33:55.123Z",
-  "sampleCount": 3437
+  "sampleCount": 3437,
+  "originalStatus": "passed",
+  "originalError": "not-applicable",
+  "rederivedAt": "2026-11-06T18:39:30.185Z",
+  "rederivedByCommit": "08f82274d6bb80298337132c91456ed68caac09e",
+  "rederivedAudio": "audio-samples.json",
+  "originalPhasesNotReached": "not-applicable"
 }

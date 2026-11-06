@@ -1,5 +1,9 @@
 {
-  "main": {
+  "36916:50596": {
+    "label": "main",
+    "pid": 36916,
+    "tid": 50596,
+    "threadName": "CrRendererMain",
     "thread": "CrRendererMain",
     "totalSelfUs": 24066383,
     "functions": [
@@ -285,7 +289,11 @@
       }
     ]
   },
-  "w0": {
+  "36916:58108": {
+    "label": "w0",
+    "pid": 36916,
+    "tid": 58108,
+    "threadName": "DedicatedWorker thread",
     "thread": "DedicatedWorker thread",
     "totalSelfUs": 22656695,
     "functions": [
@@ -571,7 +579,11 @@
       }
     ]
   },
-  "w1": {
+  "36916:49528": {
+    "label": "w1",
+    "pid": 36916,
+    "tid": 49528,
+    "threadName": "DedicatedWorker thread",
     "thread": "DedicatedWorker thread",
     "totalSelfUs": 22655554,
     "functions": [
@@ -857,7 +869,11 @@
       }
     ]
   },
-  "w2": {
+  "36916:28912": {
+    "label": "w2",
+    "pid": 36916,
+    "tid": 28912,
+    "threadName": "DedicatedWorker thread",
     "thread": "DedicatedWorker thread",
     "totalSelfUs": 22654423,
     "functions": [
@@ -1143,7 +1159,11 @@
       }
     ]
   },
-  "w3": {
+  "36916:49852": {
+    "label": "w3",
+    "pid": 36916,
+    "tid": 49852,
+    "threadName": "DedicatedWorker thread",
     "thread": "DedicatedWorker thread",
     "totalSelfUs": 22653331,
     "functions": [
@@ -1405,6 +1425,1471 @@
         "lineNumber": 670,
         "selfMs": 1.007,
         "fraction": 0.000044452623766456246
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 694,
+        "selfMs": 0.683,
+        "fraction": 0.000030150091392740433
+      },
+      {
+        "functionName": "directUnitDirection",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 531,
+        "selfMs": 0.606,
+        "fraction": 0.000026751032773061058
+      },
+      {
+        "functionName": "turnRadians",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 645,
+        "selfMs": 0.582,
+        "fraction": 0.000025691585930563588
+      }
+    ]
+  },
+  "aggregate:main": {
+    "label": "main",
+    "aggregate": true,
+    "threads": 1,
+    "members": [
+      "36916:50596"
+    ],
+    "thread": "CrRendererMain",
+    "totalSelfUs": 24066383,
+    "note": "functions lists only each thread's top 40, so a function outside every thread's top 40 is missing from this sum",
+    "functions": [
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 20631.63,
+        "fraction": 0.8572800491041799
+      },
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 1434.756,
+        "fraction": 0.05961660296023711
+      },
+      {
+        "functionName": "mark",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 789.426,
+        "fraction": 0.03280202097672924
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 163.778,
+        "fraction": 0.006805260266987357
+      },
+      {
+        "functionName": "runChecks",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 2842,
+        "selfMs": 113.959,
+        "fraction": 0.0047351943164870266
+      },
+      {
+        "functionName": "subtract",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 42,
+        "selfMs": 109.947,
+        "fraction": 0.004568488750469898
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 77.615,
+        "fraction": 0.0032250380125671565
+      },
+      {
+        "functionName": "isPointOnWall",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 615,
+        "selfMs": 48.999,
+        "fraction": 0.002035993526738106
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "undefined",
+        "lineNumber": 2,
+        "selfMs": 36.818,
+        "fraction": 0.001529851826923888
+      },
+      {
+        "functionName": "fnv1a$1",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 864,
+        "selfMs": 34.469,
+        "fraction": 0.001432246798366003
+      },
+      {
+        "functionName": "setTimeout",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 32.231,
+        "fraction": 0.0013392540125369069
+      },
+      {
+        "functionName": "handleCatchall",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 3420,
+        "selfMs": 30.716,
+        "fraction": 0.001276303132049382
+      },
+      {
+        "functionName": "receive",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 9209,
+        "selfMs": 28.048,
+        "fraction": 0.0011654430996132655
+      },
+      {
+        "functionName": "innerSerialize",
+        "url": "undefined",
+        "lineNumber": 213,
+        "selfMs": 26.318,
+        "fraction": 0.0010935585958222304
+      },
+      {
+        "functionName": "createClassicStaticContext",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 872,
+        "selfMs": 23.718,
+        "fraction": 0.000985524081454201
+      },
+      {
+        "functionName": "validateUniqueIds",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7138,
+        "selfMs": 23.459,
+        "fraction": 0.0009747621817536935
+      },
+      {
+        "functionName": "inst._zod.check",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 2705,
+        "selfMs": 22.225,
+        "fraction": 0.000923487339165175
+      },
+      {
+        "functionName": "inst._zod.run",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 2883,
+        "selfMs": 21.7,
+        "fraction": 0.000901672677610092
+      },
+      {
+        "functionName": "segmentIntersection",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 56,
+        "selfMs": 20.49,
+        "fraction": 0.000851395076692663
+      },
+      {
+        "functionName": "RegExp: ^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 19.785,
+        "fraction": 0.0008221011026044088
+      },
+      {
+        "functionName": "isTypedArray",
+        "url": "undefined",
+        "lineNumber": 64,
+        "selfMs": 17.534,
+        "fraction": 0.0007285681442034726
+      },
+      {
+        "functionName": "requestAnimationFrame",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 16.833,
+        "fraction": 0.0006994403770604
+      },
+      {
+        "functionName": "serialize",
+        "url": "undefined",
+        "lineNumber": 202,
+        "selfMs": 16.1,
+        "fraction": 0.0006689829543558749
+      },
+      {
+        "functionName": "inst._zod.parse",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 3632,
+        "selfMs": 16.054,
+        "fraction": 0.0006670715744862864
+      },
+      {
+        "functionName": "isAcousticFrameSource",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 8219,
+        "selfMs": 13.819,
+        "fraction": 0.0005742034438660766
+      },
+      {
+        "functionName": "validateGeometry",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7160,
+        "selfMs": 13.792,
+        "fraction": 0.0005730815469861009
+      },
+      {
+        "functionName": "isPortalEdgeVisible",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 634,
+        "selfMs": 12.966,
+        "fraction": 0.0005387598128061039
+      },
+      {
+        "functionName": "now",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 12.201,
+        "fraction": 0.000506972734540126
+      },
+      {
+        "functionName": "distance",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 150,
+        "selfMs": 11.968,
+        "fraction": 0.0004972911799832987
+      },
+      {
+        "functionName": "findBestPortalRoute",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 664,
+        "selfMs": 11.44,
+        "fraction": 0.0004753518632193296
+      },
+      {
+        "functionName": "postMessage",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 9188,
+        "selfMs": 11.261,
+        "fraction": 0.00046791410242245376
+      },
+      {
+        "functionName": "inst._zod.parse",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 3351,
+        "selfMs": 11.164,
+        "fraction": 0.0004638835840018004
+      },
+      {
+        "functionName": "clearTimeout",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 8.968,
+        "fraction": 0.00037263597109711083
+      },
+      {
+        "functionName": "inst._zod.check",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 2525,
+        "selfMs": 8.901,
+        "fraction": 0.0003698520047653193
+      },
+      {
+        "functionName": "estimateRoomAcoustics",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 806,
+        "selfMs": 8.333,
+        "fraction": 0.00034625061854953444
+      },
+      {
+        "functionName": "postMessage",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 7.986,
+        "fraction": 0.00033183216605503203
+      },
+      {
+        "functionName": "isEarlyReflection",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 8195,
+        "selfMs": 7.677,
+        "fraction": 0.0003189926795397547
+      },
+      {
+        "functionName": "dispatch",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 8415,
+        "selfMs": 6.568,
+        "fraction": 0.0002729118039881606
+      },
+      {
+        "functionName": "ProbedWorker.real.onmessage",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 9178,
+        "selfMs": 6.129,
+        "fraction": 0.00025467059175448176
+      },
+      {
+        "functionName": "inst._zod.parse",
+        "url": "http://127.0.0.1:58241/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 3268,
+        "selfMs": 5.201,
+        "fraction": 0.0002161105804723543
+      }
+    ]
+  },
+  "aggregate:w0": {
+    "label": "w0",
+    "aggregate": true,
+    "threads": 1,
+    "members": [
+      "36916:58108"
+    ],
+    "thread": "DedicatedWorker thread",
+    "totalSelfUs": 22656695,
+    "note": "functions lists only each thread's top 40, so a function outside every thread's top 40 is missing from this sum",
+    "functions": [
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 22290.378,
+        "fraction": 0.9838318430821441
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 115,
+        "selfMs": 91.056,
+        "fraction": 0.004018944510662301
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 90.075,
+        "fraction": 0.003975646050758948
+      },
+      {
+        "functionName": "subtract",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 160,
+        "selfMs": 20.842,
+        "fraction": 0.0009199046904237357
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 453,
+        "selfMs": 19.383,
+        "fraction": 0.0008555087138702269
+      },
+      {
+        "functionName": "handleControl",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 45,
+        "selfMs": 13.332,
+        "fraction": 0.0005884353388700338
+      },
+      {
+        "functionName": "distance",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 166,
+        "selfMs": 11.725,
+        "fraction": 0.0005175070768265186
+      },
+      {
+        "functionName": "intersectSegmentWithWalls",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 223,
+        "selfMs": 9.609,
+        "fraction": 0.0004241130491450761
+      },
+      {
+        "functionName": "segmentIntersection",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 174,
+        "selfMs": 9.335,
+        "fraction": 0.00041201949357573997
+      },
+      {
+        "functionName": "scope.postMessage",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 18,
+        "selfMs": 8.299,
+        "fraction": 0.00036629349514569534
+      },
+      {
+        "functionName": "findSecondOrderReflections",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 485,
+        "selfMs": 7.988,
+        "fraction": 0.0003525668682038576
+      },
+      {
+        "functionName": "reflectAcrossWallLine",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 394,
+        "selfMs": 7.51,
+        "fraction": 0.0003314693515537019
+      },
+      {
+        "functionName": "isPointOnWall",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 654,
+        "selfMs": 7.28,
+        "fraction": 0.000321317826805719
+      },
+      {
+        "functionName": "isPortalEdgeVisible",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 673,
+        "selfMs": 6.036,
+        "fraction": 0.00026641131903836813
+      },
+      {
+        "functionName": "reflectionAmplitude",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 382,
+        "selfMs": 5.22,
+        "fraction": 0.00023039547471508974
+      },
+      {
+        "functionName": "postMessage",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 4.896,
+        "fraction": 0.00021609506593967036
+      },
+      {
+        "functionName": "computeClassicSourceRoute",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 784,
+        "selfMs": 4.632,
+        "fraction": 0.0002044428810115509
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 224,
+        "selfMs": 3.977,
+        "fraction": 0.0001755331040118605
+      },
+      {
+        "functionName": "cross",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 154,
+        "selfMs": 3.463,
+        "fraction": 0.00015284665305332484
+      },
+      {
+        "functionName": "reflectionLegIsVisible2D",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 408,
+        "selfMs": 3.291,
+        "fraction": 0.00014525507802439852
+      },
+      {
+        "functionName": "computeClassicSourceFrame",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 804,
+        "selfMs": 3.184,
+        "fraction": 0.0001405324121633804
+      },
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 3.056,
+        "fraction": 0.0001348828679558073
+      },
+      {
+        "functionName": "findBestPortalRoute",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 703,
+        "selfMs": 2.962,
+        "fraction": 0.00013073398392837084
+      },
+      {
+        "functionName": "computeClassicSourceResults",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 825,
+        "selfMs": 2.515,
+        "fraction": 0.00011100471626598672
+      },
+      {
+        "functionName": "traceDirectPath",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 252,
+        "selfMs": 2.469,
+        "fraction": 0.00010897441131639014
+      },
+      {
+        "functionName": "solveSecondOrderReflectionPair2D",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 455,
+        "selfMs": 2.451,
+        "fraction": 0.00010817994416220017
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 829,
+        "selfMs": 2.305,
+        "fraction": 0.00010173593280043714
+      },
+      {
+        "functionName": "smallestClockStep",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 31,
+        "selfMs": 2.29,
+        "fraction": 0.00010107387683861216
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 488,
+        "selfMs": 1.909,
+        "fraction": 0.00008425765540825792
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 433,
+        "selfMs": 1.783,
+        "fraction": 0.00007869638532892816
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 909,
+        "selfMs": 1.538,
+        "fraction": 0.00006788280461912031
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 253,
+        "selfMs": 1.496,
+        "fraction": 0.0000660290479260104
+      },
+      {
+        "functionName": "directUnitDirection",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 531,
+        "selfMs": 1.338,
+        "fraction": 0.00005905539179478737
+      },
+      {
+        "functionName": "handle",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 848,
+        "selfMs": 1.21,
+        "fraction": 0.00005340584758721429
+      },
+      {
+        "functionName": "findFirstOrderReflections",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 429,
+        "selfMs": 1.096,
+        "fraction": 0.00004837422227734451
+      },
+      {
+        "functionName": "firstOrderReflectionPoint2D",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 417,
+        "selfMs": 0.704,
+        "fraction": 0.00003107249314165195
+      },
+      {
+        "functionName": "lossForCrossing",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 519,
+        "selfMs": 0.658,
+        "fraction": 0.00002904218819205537
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 694,
+        "selfMs": 0.644,
+        "fraction": 0.000028424269294352067
+      },
+      {
+        "functionName": "liesStrictlyInsideOpenPortal",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 237,
+        "selfMs": 0.594,
+        "fraction": 0.00002621741608826883
+      },
+      {
+        "functionName": "scope.addEventListener",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 148,
+        "selfMs": 0.591,
+        "fraction": 0.000026085004895903837
+      }
+    ]
+  },
+  "aggregate:w1": {
+    "label": "w1",
+    "aggregate": true,
+    "threads": 1,
+    "members": [
+      "36916:49528"
+    ],
+    "thread": "DedicatedWorker thread",
+    "totalSelfUs": 22655554,
+    "note": "functions lists only each thread's top 40, so a function outside every thread's top 40 is missing from this sum",
+    "functions": [
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 22310.921,
+        "fraction": 0.9847881451056107
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 115,
+        "selfMs": 84.781,
+        "fraction": 0.0037421728905856814
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 77.325,
+        "fraction": 0.0034130703667630464
+      },
+      {
+        "functionName": "subtract",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 160,
+        "selfMs": 28.914,
+        "fraction": 0.001276243344126566
+      },
+      {
+        "functionName": "handleControl",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 45,
+        "selfMs": 12.408,
+        "fraction": 0.0005476802730138491
+      },
+      {
+        "functionName": "segmentIntersection",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 174,
+        "selfMs": 12.044,
+        "fraction": 0.000531613572548259
+      },
+      {
+        "functionName": "isPointOnWall",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 654,
+        "selfMs": 11.368,
+        "fraction": 0.0005017754145407347
+      },
+      {
+        "functionName": "distance",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 166,
+        "selfMs": 9.53,
+        "fraction": 0.00042064740504690375
+      },
+      {
+        "functionName": "findSecondOrderReflections",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 485,
+        "selfMs": 7.69,
+        "fraction": 0.000339431116979086
+      },
+      {
+        "functionName": "scope.postMessage",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 18,
+        "selfMs": 7.53,
+        "fraction": 0.00033236883106014533
+      },
+      {
+        "functionName": "reflectAcrossWallLine",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 394,
+        "selfMs": 7.469,
+        "fraction": 0.0003296763345535492
+      },
+      {
+        "functionName": "findBestPortalRoute",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 703,
+        "selfMs": 7.234,
+        "fraction": 0.0003193036021101051
+      },
+      {
+        "functionName": "postMessage",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 6.773,
+        "fraction": 0.0002989553908061573
+      },
+      {
+        "functionName": "intersectSegmentWithWalls",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 223,
+        "selfMs": 6.209,
+        "fraction": 0.0002740608329418914
+      },
+      {
+        "functionName": "computeClassicSourceFrame",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 804,
+        "selfMs": 6.085,
+        "fraction": 0.0002685875613547124
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 224,
+        "selfMs": 5.823,
+        "fraction": 0.00025702306816244704
+      },
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 4.761,
+        "fraction": 0.00021014714537547836
+      },
+      {
+        "functionName": "reflectionLegIsVisible2D",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 408,
+        "selfMs": 4.319,
+        "fraction": 0.00019063758052440474
+      },
+      {
+        "functionName": "smallestClockStep",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 31,
+        "selfMs": 3.967,
+        "fraction": 0.00017510055150273527
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 829,
+        "selfMs": 3.898,
+        "fraction": 0.0001720549407001921
+      },
+      {
+        "functionName": "estimateDirectOcclusion",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 546,
+        "selfMs": 3.208,
+        "fraction": 0.00014159883267476046
+      },
+      {
+        "functionName": "collinearInteriorOverlap",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 194,
+        "selfMs": 3.193,
+        "fraction": 0.00014093674336985976
+      },
+      {
+        "functionName": "handle",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 848,
+        "selfMs": 3.081,
+        "fraction": 0.0001359931432266013
+      },
+      {
+        "functionName": "solveSecondOrderReflectionPair2D",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 455,
+        "selfMs": 3.01,
+        "fraction": 0.00013285925385007137
+      },
+      {
+        "functionName": "cross",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 154,
+        "selfMs": 2.858,
+        "fraction": 0.00012615008222707774
+      },
+      {
+        "functionName": "dot",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 157,
+        "selfMs": 2.57,
+        "fraction": 0.00011343796757298453
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 433,
+        "selfMs": 2.297,
+        "fraction": 0.00010138794222379201
+      },
+      {
+        "functionName": "computeClassicSourceRoute",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 784,
+        "selfMs": 2.075,
+        "fraction": 0.00009158902051126183
+      },
+      {
+        "functionName": "computeClassicSourceResults",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 825,
+        "selfMs": 1.989,
+        "fraction": 0.00008779304182983122
+      },
+      {
+        "functionName": "isPortalEdgeVisible",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 673,
+        "selfMs": 1.822,
+        "fraction": 0.0000804217809019369
+      },
+      {
+        "functionName": "liesStrictlyInsideOpenPortal",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 237,
+        "selfMs": 1.531,
+        "fraction": 0.00006757724838686355
+      },
+      {
+        "functionName": "traceDirectPath",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 252,
+        "selfMs": 1.458,
+        "fraction": 0.00006435508043634686
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 488,
+        "selfMs": 1.186,
+        "fraction": 0.00005234919437414773
+      },
+      {
+        "functionName": "epochNow",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 10,
+        "selfMs": 1.084,
+        "fraction": 0.000047846987100823045
+      },
+      {
+        "functionName": "directUnitDirection",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 531,
+        "selfMs": 0.827,
+        "fraction": 0.00003650319034352459
+      },
+      {
+        "functionName": "liesStrictlyInsidePortal",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 662,
+        "selfMs": 0.734,
+        "fraction": 0.00003239823665314033
+      },
+      {
+        "functionName": "trace.crossings.reduce.low",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 558,
+        "selfMs": 0.653,
+        "fraction": 0.000028822954406676614
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 694,
+        "selfMs": 0.567,
+        "fraction": 0.000025026975725246002
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 253,
+        "selfMs": 0.566,
+        "fraction": 0.000024982836438252624
+      },
+      {
+        "functionName": "isWaivedPortalEndpoint",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 670,
+        "selfMs": 0.555,
+        "fraction": 0.000024497304281325454
+      }
+    ]
+  },
+  "aggregate:w2": {
+    "label": "w2",
+    "aggregate": true,
+    "threads": 1,
+    "members": [
+      "36916:28912"
+    ],
+    "thread": "DedicatedWorker thread",
+    "totalSelfUs": 22654423,
+    "note": "functions lists only each thread's top 40, so a function outside every thread's top 40 is missing from this sum",
+    "functions": [
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 22299.5,
+        "fraction": 0.9843331697302553
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 87.362,
+        "fraction": 0.003856288902171554
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 115,
+        "selfMs": 82.646,
+        "fraction": 0.0036481176324817456
+      },
+      {
+        "functionName": "subtract",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 160,
+        "selfMs": 22.519,
+        "fraction": 0.000994022226917896
+      },
+      {
+        "functionName": "distance",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 166,
+        "selfMs": 18.045,
+        "fraction": 0.0007965331979543245
+      },
+      {
+        "functionName": "segmentIntersection",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 174,
+        "selfMs": 12.01,
+        "fraction": 0.0005301393021574639
+      },
+      {
+        "functionName": "handleControl",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 45,
+        "selfMs": 11.937,
+        "fraction": 0.0005269169733433511
+      },
+      {
+        "functionName": "collinearInteriorOverlap",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 194,
+        "selfMs": 8.112,
+        "fraction": 0.0003580757717819606
+      },
+      {
+        "functionName": "findSecondOrderReflections",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 485,
+        "selfMs": 7.62,
+        "fraction": 0.0003363581584046524
+      },
+      {
+        "functionName": "computeClassicSourceResults",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 825,
+        "selfMs": 7.565,
+        "fraction": 0.0003339303764214167
+      },
+      {
+        "functionName": "scope.postMessage",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 18,
+        "selfMs": 7.2,
+        "fraction": 0.00031781873235085264
+      },
+      {
+        "functionName": "reflectAcrossWallLine",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 394,
+        "selfMs": 7.115,
+        "fraction": 0.0003140667056494884
+      },
+      {
+        "functionName": "computeClassicSourceRoute",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 784,
+        "selfMs": 6.971,
+        "fraction": 0.00030771033100247136
+      },
+      {
+        "functionName": "isPortalEdgeVisible",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 673,
+        "selfMs": 6.747,
+        "fraction": 0.0002978226371071115
+      },
+      {
+        "functionName": "intersectSegmentWithWalls",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 223,
+        "selfMs": 6.153,
+        "fraction": 0.00027160259168816615
+      },
+      {
+        "functionName": "isPointOnWall",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 654,
+        "selfMs": 6.02,
+        "fraction": 0.00026573177343779624
+      },
+      {
+        "functionName": "postMessage",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 5.359,
+        "fraction": 0.0002365542481483638
+      },
+      {
+        "functionName": "computeClassicSourceFrame",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 804,
+        "selfMs": 4.482,
+        "fraction": 0.00019784216088840575
+      },
+      {
+        "functionName": "smallestClockStep",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 31,
+        "selfMs": 3.607,
+        "fraction": 0.0001592183566096563
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 224,
+        "selfMs": 3.541,
+        "fraction": 0.0001563050182297735
+      },
+      {
+        "functionName": "cross",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 154,
+        "selfMs": 3.51,
+        "fraction": 0.00015493663202104067
+      },
+      {
+        "functionName": "trace.crossings.reduce.low",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 558,
+        "selfMs": 3.072,
+        "fraction": 0.00013560265913636378
+      },
+      {
+        "functionName": "solveSecondOrderReflectionPair2D",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 455,
+        "selfMs": 2.818,
+        "fraction": 0.00012439072052287538
+      },
+      {
+        "functionName": "findBestPortalRoute",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 703,
+        "selfMs": 2.744,
+        "fraction": 0.00012112425021815829
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 694,
+        "selfMs": 2.673,
+        "fraction": 0.00011799020438525404
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 488,
+        "selfMs": 2.595,
+        "fraction": 0.00011454716811811981
+      },
+      {
+        "functionName": "reflectionLegIsVisible2D",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 408,
+        "selfMs": 2.564,
+        "fraction": 0.00011317878190938696
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 829,
+        "selfMs": 2.353,
+        "fraction": 0.00010386492739188282
+      },
+      {
+        "functionName": "handle",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 848,
+        "selfMs": 2.052,
+        "fraction": 0.000090578338719993
+      },
+      {
+        "functionName": "epochNow",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 10,
+        "selfMs": 1.873,
+        "fraction": 0.00008267701190182597
+      },
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 1.578,
+        "fraction": 0.00006965527217356187
+      },
+      {
+        "functionName": "dot",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 157,
+        "selfMs": 1.331,
+        "fraction": 0.000058752323994303455
+      },
+      {
+        "functionName": "estimateDirectOcclusion",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 546,
+        "selfMs": 1.307,
+        "fraction": 0.00005769292821980061
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 909,
+        "selfMs": 1.289,
+        "fraction": 0.00005689838138892348
+      },
+      {
+        "functionName": "findFirstOrderReflections",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 429,
+        "selfMs": 1.15,
+        "fraction": 0.000050762714194927854
+      },
+      {
+        "functionName": "push",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 586,
+        "selfMs": 1.146,
+        "fraction": 0.00005058614823251071
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 245,
+        "selfMs": 0.799,
+        "fraction": 0.000035269050992823785
+      },
+      {
+        "functionName": "firstOrderReflectionPoint2D",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 417,
+        "selfMs": 0.796,
+        "fraction": 0.00003513662652101093
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 378,
+        "selfMs": 0.709,
+        "fraction": 0.00003129631683843813
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 232,
+        "selfMs": 0.659,
+        "fraction": 0.000029089242308223872
+      }
+    ]
+  },
+  "aggregate:w3": {
+    "label": "w3",
+    "aggregate": true,
+    "threads": 1,
+    "members": [
+      "36916:49852"
+    ],
+    "thread": "DedicatedWorker thread",
+    "totalSelfUs": 22653331,
+    "note": "functions lists only each thread's top 40, so a function outside every thread's top 40 is missing from this sum",
+    "functions": [
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 22298.287,
+        "fraction": 0.9843270731355137
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 115,
+        "selfMs": 89.191,
+        "fraction": 0.003937213472049651
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 80.072,
+        "fraction": 0.003534667815519051
+      },
+      {
+        "functionName": "subtract",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 160,
+        "selfMs": 33.467,
+        "fraction": 0.0014773544782442811
+      },
+      {
+        "functionName": "segmentIntersection",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 174,
+        "selfMs": 11.483,
+        "fraction": 0.0005069011705166009
+      },
+      {
+        "functionName": "handleControl",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 45,
+        "selfMs": 11.261,
+        "fraction": 0.0004971012872234992
+      },
+      {
+        "functionName": "intersectSegmentWithWalls",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 223,
+        "selfMs": 10.649,
+        "fraction": 0.00047008539273981384
+      },
+      {
+        "functionName": "collinearInteriorOverlap",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 194,
+        "selfMs": 9.437,
+        "fraction": 0.00041658332719369173
+      },
+      {
+        "functionName": "reflectionLegIsVisible2D",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 408,
+        "selfMs": 9.112,
+        "fraction": 0.00040223665120153854
+      },
+      {
+        "functionName": "findSecondOrderReflections",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 485,
+        "selfMs": 9.059,
+        "fraction": 0.0003998970394243566
+      },
+      {
+        "functionName": "distance",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 166,
+        "selfMs": 7.286,
+        "fraction": 0.0003216304039348562
+      },
+      {
+        "functionName": "reflectAcrossWallLine",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 394,
+        "selfMs": 6.869,
+        "fraction": 0.0003032225150464627
+      },
+      {
+        "functionName": "solveSecondOrderReflectionPair2D",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 455,
+        "selfMs": 6.811,
+        "fraction": 0.0003006621851770938
+      },
+      {
+        "functionName": "isPointOnWall",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 654,
+        "selfMs": 6.515,
+        "fraction": 0.00028759567411962506
+      },
+      {
+        "functionName": "cross",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 154,
+        "selfMs": 5.498,
+        "fraction": 0.00024270161416879487
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 433,
+        "selfMs": 5.371,
+        "fraction": 0.00023709537462724578
+      },
+      {
+        "functionName": "findFirstOrderReflections",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 429,
+        "selfMs": 3.742,
+        "fraction": 0.00016518542019273015
+      },
+      {
+        "functionName": "postMessage",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 3.701,
+        "fraction": 0.000163375531836797
+      },
+      {
+        "functionName": "findBestPortalRoute",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 703,
+        "selfMs": 3.671,
+        "fraction": 0.00016205122328367516
+      },
+      {
+        "functionName": "scope.postMessage",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 18,
+        "selfMs": 3.503,
+        "fraction": 0.00015463509538619287
+      },
+      {
+        "functionName": "computeClassicSourceRoute",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 784,
+        "selfMs": 3.473,
+        "fraction": 0.00015331078683307104
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 224,
+        "selfMs": 3.44,
+        "fraction": 0.000151854047424637
+      },
+      {
+        "functionName": "computeClassicSourceFrame",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 804,
+        "selfMs": 3.372,
+        "fraction": 0.00014885228137089419
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 909,
+        "selfMs": 3.221,
+        "fraction": 0.00014218659498684764
+      },
+      {
+        "functionName": "smallestClockStep",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 31,
+        "selfMs": 2.857,
+        "fraction": 0.00012611831787563604
+      },
+      {
+        "functionName": "isPortalEdgeVisible",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 673,
+        "selfMs": 2.622,
+        "fraction": 0.00011574456754284834
+      },
+      {
+        "functionName": "handle",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 848,
+        "selfMs": 1.967,
+        "fraction": 0.00008683049746635494
+      },
+      {
+        "functionName": "traceDirectPath",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 252,
+        "selfMs": 1.91,
+        "fraction": 0.00008431431121542346
+      },
+      {
+        "functionName": "epochNow",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 10,
+        "selfMs": 1.774,
+        "fraction": 0.0000783107791079378
+      },
+      {
+        "functionName": "linearToDb",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 391,
+        "selfMs": 1.519,
+        "fraction": 0.00006705415640640222
+      },
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 1.416,
+        "fraction": 0.00006250736370735059
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 245,
+        "selfMs": 1.212,
+        "fraction": 0.000053502065546122116
+      },
+      {
+        "functionName": "dot",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 157,
+        "selfMs": 1.21,
+        "fraction": 0.000053413778309247324
+      },
+      {
+        "functionName": "pop",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 597,
+        "selfMs": 1.134,
+        "fraction": 0.000050058863308005345
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 253,
+        "selfMs": 1.046,
+        "fraction": 0.00004617422488551463
+      },
+      {
+        "functionName": "liesStrictlyInsideOpenPortal",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 237,
+        "selfMs": 1.036,
+        "fraction": 0.00004573278870114068
+      },
+      {
+        "functionName": "isWaivedPortalEndpoint",
+        "url": "http://127.0.0.1:58241/assets/classic-worker-entry-BcW3WTlR.js",
+        "lineNumber": 670,
+        "selfMs": 1.007,
+        "fraction": 0.00004445262376645624
       },
       {
         "functionName": "(anonymous)",
