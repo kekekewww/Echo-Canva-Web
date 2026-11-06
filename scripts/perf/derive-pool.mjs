@@ -111,6 +111,21 @@ export function deriveSamples(log, context) {
   for (const step of log.steps) if (!stepByRevision.has(step.revision)) stepByRevision.set(step.revision, step);
   const firstJobAt = jobs.length > 0 ? Math.min(...jobs.map((job) => job.timer?.firedAt ?? job.firstPostAt)) : 0;
 
+  // A job that posted an install is a static-install job. Without posts (bare, fallback) the kind
+  // comes from a change of the static fingerprint between consecutive results in this process.
+  const jobKindOf = (job) => (job.perWorker.some((entry) => entry.install) ? "static-install" : "pose-only");
+  const kindByRequest = new Map(jobs.map((job) => [job.requestId, jobKindOf(job)]));
+  const resultKind = new Map();
+  let previousFingerprint = null;
+  for (const result of [...log.results].sort((a, b) => a.t0 - b.t0)) {
+    const known = result.staticFingerprint !== NOT_APPLICABLE;
+    let kind = NOT_APPLICABLE;
+    if (kindByRequest.has(result.requestSeq) && result.source === "worker") kind = kindByRequest.get(result.requestSeq);
+    else if (known) kind = result.staticFingerprint === previousFingerprint ? "pose-only" : "static-install";
+    if (known) previousFingerprint = result.staticFingerprint;
+    resultKind.set(result, kind);
+  }
+
   const add = (fields) => {
     samples.push(
       createSample({
@@ -130,6 +145,7 @@ export function deriveSamples(log, context) {
   };
   const jobFields = (job, jobOrdinal, extra) => ({
     requestSeq: job.requestId,
+    jobKind: jobKindOf(job),
     sceneRevision: job.revision ?? undefined,
     staticFingerprint: job.resultLog?.staticFingerprint !== NOT_APPLICABLE ? job.resultLog?.staticFingerprint : undefined,
     tapeStep: stepByRevision.get(job.revision)?.tapeStep,
@@ -146,6 +162,7 @@ export function deriveSamples(log, context) {
     const step = stepByRevision.get(result.revision);
     return {
       requestSeq: result.requestSeq > 0 ? result.requestSeq : undefined,
+      jobKind: resultKind.get(result),
       sceneRevision: result.revision,
       staticFingerprint: result.staticFingerprint !== NOT_APPLICABLE ? result.staticFingerprint : undefined,
       tapeStep: step?.tapeStep,

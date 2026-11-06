@@ -156,3 +156,21 @@ describe("one geometry compiler per process", () => {
     expect(compiles).toBeGreaterThan(1);
   });
 });
+
+describe("job kind in serial replays", () => {
+  it("marks the first job and every static change as static-install and the rest pose-only", async () => {
+    const pose = await replayTapeSerial(options(loadInput("TC01_LISTENER_TAPE_SEEDED", "classic"), { repeat: 2 }));
+    const kinds = pose.records.filter(({ phase }) => phase === "job.total").map(({ jobKind }) => jobKind);
+    expect(kinds[0]).toBe("static-install");
+    expect(kinds.slice(1).every((kind) => kind === "pose-only")).toBe(true);
+
+    const edits = await replayTapeSerial(options(loadInput("TH02_STATIC_EDIT_TAPE", "hybrid")));
+    const editKinds = edits.records.filter(({ phase }) => phase === "job.total");
+    const input = loadInput("TH02_STATIC_EDIT_TAPE", "hybrid");
+    input.tape.events.forEach((event, index) => {
+      const isStatic = event.type !== "listener-pose" && event.type !== "source-pose";
+      if (isStatic) expect(editKinds[index]!.jobKind).toBe("static-install");
+      else if (index > 0) expect(editKinds[index]!.jobKind).toBe("pose-only");
+    });
+  });
+});

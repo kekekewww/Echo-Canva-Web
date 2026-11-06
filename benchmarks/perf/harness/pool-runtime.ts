@@ -1,3 +1,4 @@
+import { runControls, type ControlObservations } from "./controls";
 import { replayTapeSerial, type SerialReplayOptions, type SerialReplayResult } from "./replay-serial";
 import {
   calibrateProbeWorkers,
@@ -21,6 +22,7 @@ export type PerfApi = {
   };
   runPool: (config: PoolRunConfig) => Promise<RawLog>;
   runSerial: (config: SerialRunConfig) => Promise<SerialReplayResult>;
+  controls: (mode: "classic" | "hybrid", workerCount: number) => Promise<ControlObservations>;
   calibrate: (
     mode: "classic" | "hybrid",
     workerCount: number,
@@ -43,6 +45,7 @@ export function installPerf(env: PoolEnv): void {
       now: () => performance.now(),
       sleep: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
     }),
+    controls: (mode, workerCount) => runControls(env, mode, workerCount),
     calibrate: (mode, workerCount, pings) => calibrateProbeWorkers(env, mode, workerCount, pings),
   };
   (window as unknown as { __perf: PerfApi }).__perf = api;

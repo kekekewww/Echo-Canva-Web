@@ -1,3 +1,7 @@
+export const REPO_ROOT: string;
+export function isInside(root: string, target: string): boolean;
+export function assertInsideRepo(target: string, label: string, repoRoot?: string): string;
+export function tempEnvironment(repoRoot?: string, env?: Record<string, string | undefined>, platform?: string): Record<string, string>;
 export const SAMPLE_SCHEMA: string;
 export const SUMMARY_SCHEMA: string;
 export const NOT_APPLICABLE: "not-applicable";
@@ -9,6 +13,7 @@ export const PASSES: string[];
 export const OUTCOMES: string[];
 export const CLOCKS: string[];
 export const MODES: string[];
+export const JOB_KINDS: string[];
 export const AUDIO_STATES: string[];
 export const DENOMINATORS: string[];
 export const EXPLORATORY_BELOW: number;
@@ -45,6 +50,7 @@ export type Sample = {
   clock: string;
   audio: string;
   tapeStep: number | string;
+  jobKind: string;
 };
 
 export type PhaseSummary = {
@@ -54,6 +60,7 @@ export type PhaseSummary = {
   warm: Stats;
   cold: Stats;
   exploratory: boolean;
+  byJobKind?: Record<string, { warm: Stats; cold: Stats }>;
   censoredCount?: number;
   includingCensored?: { note: string; censoredAreLowerBounds: boolean; warm: Stats; cold: Stats };
 };
@@ -106,7 +113,7 @@ export function buildGroups(
   runIds: string[];
   excludedRuns: { runId: string; status: string }[];
   denominators: Record<string, number | string>;
-  pooled: Record<string, { units: string; warm: Stats; cold: Stats }>;
+  pooled: Record<string, { units: string; warm: Stats; cold: Stats; byJobKind?: Record<string, { warm: Stats; cold: Stats }>; censoredCount?: number; includingCensored?: { warm: Stats; cold: Stats } }>;
   perRun: { runId: string; orderIndex: number | string; status: string; phases: Record<string, PhaseSummary> }[];
   dispersion: Record<string, unknown>;
   exploratoryRuns: Record<string, number>;

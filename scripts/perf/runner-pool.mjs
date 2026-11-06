@@ -7,9 +7,12 @@ import { extname, join, normalize, resolve } from "node:path";
 
 import { chromium } from "@playwright/test";
 
-import { deriveSamples } from "./derive-pool.mjs";
+import { startAllocation, startTracing } from "./cdp-tools.mjs";
+import { buildJobs, deriveSamples } from "./derive-pool.mjs";
+import { analyzeTrace, rankJobs } from "./trace-analyze.mjs";
+import { evaluateControls } from "./controls-check.mjs";
 import { serialSamples } from "./derive-serial.mjs";
-import { NOT_APPLICABLE, UNAVAILABLE, computeStats, makeDenominators, serializeJsonl, sha256File, writeJson } from "./lib.mjs";
+import { NOT_APPLICABLE, UNAVAILABLE, computeStats, tempEnvironment, makeDenominators, serializeJsonl, sha256File, writeJson } from "./lib.mjs";
 import { compareTapeParity } from "./parity.mjs";
 
 const TYPES = { ".html": "text/html", ".js": "text/javascript", ".json": "application/json", ".css": "text/css", ".map": "application/json" };
@@ -93,12 +96,17 @@ async function pageMetrics(session) {
 
 async function main() {
   const config = readConfig();
+  tempEnvironment(process.cwd());
   const runDir = resolve(config.runDir);
   const result = { status: "failed", startedAt: new Date().toISOString(), errors: [] };
   const { server, port } = await serve(resolve(config.bundleDir));
   const browser = await chromium.launch();
   let page = null;
   let samples = [];
+  let tracing = null;
+  let allocation = null;
+  let traceInfo = null;
+  let computeCheck = null;
   try {
     const context = await browser.newContext();
     page = await context.newPage();
@@ -123,6 +131,29 @@ async function main() {
       mainClockResolutionMs: info.mainClockResolutionMs,
     });
 
+    const startDiagnostics = async () => {
+      if (config.pass === "traced") tracing = await startTracing(browserSession);
+      if (config.pass === "alloc") {
+        allocation = await startAllocation(browserSession, pageSession);
+        await page.exposeFunction("__ec102BeforeDispose", () => allocation.stopWorkers(runDir));
+      }
+    };
+    const stopDiagnostics = async () => {
+      if (tracing) traceInfo = await tracing.stop(join(runDir, "chromium-trace.json"));
+      if (allocation) result.alloc = await allocation.stop(runDir);
+    };
+
+    if (config.caseSpec.kind === "controls") {
+      const workerCount = 2;
+      await startDiagnostics();
+      const observations = await page.evaluate(([mode, count]) => window.__perf.controls(mode, count), ["classic", workerCount]);
+      await stopDiagnostics();
+      result.controls = { observations };
+      result.denominators = makeDenominators({});
+      result.status = "passed";
+      throw Object.assign(new Error("controls-done"), { controlsDone: true });
+    }
+
     const input = loadInput(config);
     const workerMode = config.caseSpec.mode;
     const tsW = config.variant === "TS-W";
@@ -146,6 +177,7 @@ async function main() {
     };
     let parityResult = null;
     let timedOut = false;
+    await startDiagnostics();
     const deadline = new Promise((_, reject) => setTimeout(() => reject(new Error("run exceeded the 20 minute limit")), RUN_TIMEOUT_MS));
 
     if (config.variant === "TS-S" && config.tsSPath === "decomposed") {
@@ -169,6 +201,7 @@ async function main() {
     } else {
       const poolConfig = {
         kind: config.pass === "bare" ? "bare" : "probe",
+        traced: config.pass === "traced",
         mode: workerMode,
         variant: config.variant,
         replay: config.replay,
@@ -183,6 +216,17 @@ async function main() {
       };
       const log = await Promise.race([page.evaluate((payload) => window.__perf.runPool(payload), poolConfig), deadline]);
       writeFileSync(join(runDir, "raw-log.json"), JSON.stringify(log), "utf8");
+      computeCheck = {
+        wholeMilliseconds: config.pass === "bare",
+        jobs: buildJobs(log)
+          .map((job) => ({
+            seq: job.requestId,
+            entries: job.perWorker
+              .filter((entry) => entry.result && entry.result.computeMs !== null)
+              .map((entry) => ({ worker: entry.worker, reportedMs: entry.result.computeMs, recvEpochMs: entry.shardRecord?.recvEpochMs ?? null })),
+          }))
+          .filter((job) => job.entries.length > 0),
+      };
       const workers = log.workersCreated > 0 ? log.workersCreated : (log.expectedWorkers > 0 ? log.expectedWorkers : NOT_APPLICABLE);
       const derived = deriveSamples(log, { ...base, variant: config.variant, workers: tsW ? workers : NOT_APPLICABLE });
       samples = derived.samples;
@@ -229,8 +273,8 @@ async function main() {
       writeJson(join(runDir, "clock-calibration.json"), {
         start: calibration.start,
         end: { note: "the pool's own workers, pinged after the measured window", workers: calibration.end },
-        raw: { start: startCalibration.calibrations, end: calibration.endRaw },
       });
+      writeJson(join(runDir, "clock-calibration-raw.json"), { start: startCalibration.calibrations, end: calibration.endRaw });
     } else {
       writeJson(join(runDir, "clock-calibration.json"), { start: NOT_APPLICABLE, end: calibration.end });
     }
@@ -244,6 +288,7 @@ async function main() {
       writeFileSync(join(runDir, "parity-diffs.jsonl"), "not-applicable", "utf8");
     }
 
+    await stopDiagnostics();
     const cpuAfter = await processSnapshot(browserSession);
     const metricsAfter = await pageMetrics(pageSession);
     writeJson(join(runDir, "process-cpu.json"), {
@@ -256,8 +301,19 @@ async function main() {
     result.status = result.errors.length === 0 ? "passed" : "failed";
     if (result.errors.length > 0) result.error = result.errors.join(" | ");
   } catch (error) {
-    result.error = error instanceof Error ? (error.stack ?? error.message) : String(error);
-    result.errors.push(result.error);
+    if (error?.controlsDone) {
+      result.status = "passed";
+    } else {
+      result.error = error instanceof Error ? (error.stack ?? error.message) : String(error);
+      result.errors.push(result.error);
+      // Whatever the diagnostics captured before the failure stays on disk.
+      try {
+        if (tracing && !traceInfo) traceInfo = await tracing.stop(join(runDir, "chromium-trace.json"));
+        if (allocation && !result.alloc) result.alloc = await allocation.stop(runDir);
+      } catch {
+        // Nothing more to keep.
+      }
+    }
     if (!existsSync(join(runDir, "parity-diffs.jsonl"))) writeFileSync(join(runDir, "parity-diffs.jsonl"), "not-applicable", "utf8");
   } finally {
     await browser.close().catch(() => undefined);
@@ -265,10 +321,33 @@ async function main() {
     server.close();
   }
 
+  if (!existsSync(join(runDir, "parity-diffs.jsonl"))) writeFileSync(join(runDir, "parity-diffs.jsonl"), "not-applicable", "utf8");
   // A parity run records no timing.
   if (config.parity) samples = [];
   writeFileSync(join(runDir, "samples.jsonl"), serializeJsonl(samples), "utf8");
   result.sampleCount = samples.length;
+  if (traceInfo) {
+    try {
+      const jobs = rankJobs(join(runDir, "samples.jsonl"), "pool.compute-metric", 3);
+      const calibrationFile = join(runDir, "clock-calibration.json");
+      const analysis = await analyzeTrace({
+        file: traceInfo.file,
+        outDir: runDir,
+        calibrationFile,
+        exemplars: { phase: "pool.compute-metric", jobs },
+        computeCheck,
+      });
+      result.trace = { computeVsTrace: analysis.computeVsTrace, bytes: traceInfo.bytes, threads: analysis.threads, marks: analysis.marks, gcEvents: analysis.gcEvents, cpuThreads: analysis.cpuThreads, exemplars: analysis.exemplars };
+      if (result.controls) {
+        result.controls.evaluation = evaluateControls(runDir, result.controls.observations);
+        writeJson(join(runDir, "controls.json"), { schema: "ec102.controls.v1", boundary: "browser-pool", ...result.controls });
+      }
+    } catch (error) {
+      result.status = "failed";
+      result.errors.push(`trace analysis failed: ${error instanceof Error ? error.message : error}`);
+      result.error = result.errors.join(" | ");
+    }
+  }
   result.endedAt = new Date().toISOString();
   writeJson(join(runDir, "runner-result.json"), result);
   process.exitCode = result.status === "passed" ? 0 : 2;

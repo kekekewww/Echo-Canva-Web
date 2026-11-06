@@ -1,3 +1,7 @@
+import { hybridStaticGeometryHash } from "@/acoustics/hybrid3d/compile";
+import { projectHybridDocument } from "@/domain/workspace/projections";
+import type { WorkspaceProject } from "@/domain/workspace/types";
+
 import { replayTapeSerial, type SerialReplayOptions, type SerialReplayResult } from "./replay-serial";
 
 export type { ParityStep, SerialRecord, SerialReplayResult } from "./replay-serial";
@@ -11,6 +15,15 @@ export function runNodeReplay(options: NodeReplayOptions): Promise<SerialReplayR
     now: () => performance.now(),
     sleep: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
   });
+}
+
+/** The two hashes the workload manifest records for the 100-wall fixture, computed from a project the app held. */
+export function fixtureHashes(project: WorkspaceProject): { staticGeometryHash: string; classicProjectionHash: string } {
+  const document = projectHybridDocument(project);
+  return {
+    staticGeometryHash: hybridStaticGeometryHash(document),
+    classicProjectionHash: document.compatibility.classicProjectionHash,
+  };
 }
 
 export function clockResolutionMs(reads = 10_000): number {

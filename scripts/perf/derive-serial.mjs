@@ -21,6 +21,7 @@ export function serialSamples(records, base) {
       clock: "main-perf-now",
       audio: "not-applicable",
       tapeStep: record.tapeStep,
+      jobKind: record.jobKind,
     }),
   );
 }

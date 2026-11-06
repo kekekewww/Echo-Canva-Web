@@ -13,8 +13,51 @@ import {
   writeFileSync,
 } from "node:fs";
 import { hostname, userInfo } from "node:os";
-import { join, relative, resolve } from "node:path";
+import { isAbsolute, join, relative, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { createInterface } from "node:readline";
+
+export const REPO_ROOT = fileURLToPath(new URL("../..", import.meta.url));
+
+// ---------------------------------------------------------------------------
+// path guards
+// ---------------------------------------------------------------------------
+
+/** True when `target` is `root` or lies inside it. Compares resolved paths. */
+export function isInside(root, target) {
+  const difference = relative(resolve(root), resolve(target));
+  return difference === "" || (!difference.startsWith("..") && !isAbsolute(difference));
+}
+
+/** Throws unless `target` resolves inside the repository root. */
+export function assertInsideRepo(target, label, repoRoot = REPO_ROOT) {
+  if (!isInside(repoRoot, target)) {
+    throw new Error(`${label} must resolve inside the repository root; ${resolve(target)} does not`);
+  }
+  return resolve(target);
+}
+
+/**
+ * TEMP, TMP and TMPDIR for processes the harness starts. On Windows all three must be set and lie
+ * inside the repository: an unset or outside value would send temp files and browser profiles to
+ * the system drive, so the harness refuses to start instead.
+ */
+export function tempEnvironment(repoRoot = REPO_ROOT, env = process.env, platform = process.platform) {
+  const result = {};
+  for (const name of ["TEMP", "TMP", "TMPDIR"]) {
+    const value = env[name];
+    if (!value) {
+      if (platform === "win32") throw new Error(`${name} is not set; set TEMP, TMP and TMPDIR to a folder inside the worktree before running`);
+      continue;
+    }
+    if (!isInside(repoRoot, value)) {
+      if (platform === "win32") throw new Error(`${name} points outside the worktree; set TEMP, TMP and TMPDIR to a folder inside it`);
+      continue;
+    }
+    result[name] = resolve(value);
+  }
+  return result;
+}
 
 export const SAMPLE_SCHEMA = "ec102.sample.v1";
 export const SUMMARY_SCHEMA = "ec102.summary.v1";
@@ -35,6 +78,7 @@ export const CLOCKS = [
   "computed",
   "cdp",
 ];
+export const JOB_KINDS = ["pose-only", "static-install", NOT_APPLICABLE];
 export const MODES = ["classic", "hybrid", NOT_APPLICABLE];
 export const AUDIO_STATES = ["on", "off", NOT_APPLICABLE];
 export const DENOMINATORS = [
@@ -73,6 +117,7 @@ const SAMPLE_KEYS = [
   "clock",
   "audio",
   "tapeStep",
+  "jobKind",
 ];
 
 export function isMissingValue(value) {
@@ -164,6 +209,7 @@ export function validateSample(sample) {
   if (!CLOCKS.includes(sample.clock)) problems.push(`clock must be one of ${CLOCKS.join(", ")}`);
   if (!AUDIO_STATES.includes(sample.audio)) problems.push("audio must be on, off or not-applicable");
   if (!missingOr(sample.tapeStep, (v) => isCount(v, 0))) problems.push("tapeStep must be an integer >= 0 or a missing-value string");
+  if (!JOB_KINDS.includes(sample.jobKind)) problems.push("jobKind must be pose-only, static-install or not-applicable");
   return problems;
 }
 
@@ -190,6 +236,7 @@ export function createSample(fields) {
     clock: fields.clock,
     audio: fields.audio ?? NOT_APPLICABLE,
     tapeStep: fields.tapeStep ?? NOT_APPLICABLE,
+    jobKind: fields.jobKind ?? NOT_APPLICABLE,
   };
   const problems = validateSample(sample);
   if (problems.length > 0) throw new Error(`invalid sample (${fields.phase}): ${problems.join("; ")}`);
@@ -257,14 +304,18 @@ export function summarizeSamples(samples) {
   for (const sample of samples) {
     let bucket = buckets.get(sample.phase);
     if (!bucket) {
-      bucket = { units: sample.units, count: 0, outcomes: {}, warm: [], cold: [], warmAll: [], coldAll: [] };
+      bucket = { units: sample.units, count: 0, outcomes: {}, warm: [], cold: [], warmAll: [], coldAll: [], kinds: new Map() };
       buckets.set(sample.phase, bucket);
     } else if (bucket.units !== sample.units) {
       throw new Error(`phase ${sample.phase} mixes units ${bucket.units} and ${sample.units}`);
     }
     bucket.count += 1;
     bucket.outcomes[sample.outcome] = (bucket.outcomes[sample.outcome] ?? 0) + 1;
-    if (sample.outcome === "ok") (sample.warm ? bucket.warm : bucket.cold).push(sample.duration);
+    if (sample.outcome === "ok") {
+      (sample.warm ? bucket.warm : bucket.cold).push(sample.duration);
+      if (!bucket.kinds.has(sample.jobKind)) bucket.kinds.set(sample.jobKind, { warm: [], cold: [] });
+      bucket.kinds.get(sample.jobKind)[sample.warm ? "warm" : "cold"].push(sample.duration);
+    }
     if (sample.outcome === "ok" || sample.outcome === "censored") (sample.warm ? bucket.warmAll : bucket.coldAll).push(sample.duration);
   }
   const phases = {};
@@ -277,12 +328,27 @@ export function summarizeSamples(samples) {
       cold: computeStats(bucket.cold),
       exploratory: bucket.count < EXPLORATORY_BELOW,
     };
+    const split = kindSplit(bucket.kinds);
+    if (split) phases[phase].byJobKind = split;
     if (phase === CENSORED_PHASE) Object.assign(phases[phase], censoredBlock(bucket.outcomes.censored ?? 0, bucket.warmAll, bucket.coldAll));
   }
   return { schema: SUMMARY_SCHEMA, sampleCount: samples.length, phases };
 }
 
 export const CENSORED_PHASE = "pose.latest-wait";
+
+/**
+ * Statistics split by job kind. A static-install job queues its shard behind the install on the
+ * same worker, so its figures must not be mixed into pose-only ones. Absent when no sample of
+ * the phase carries a job kind.
+ */
+export function kindSplit(kinds) {
+  const named = [...kinds].filter(([kind]) => kind !== NOT_APPLICABLE);
+  if (named.length === 0) return null;
+  return Object.fromEntries(
+    named.sort(([a], [b]) => (a < b ? -1 : 1)).map(([kind, values]) => [kind, { warm: computeStats(values.warm), cold: computeStats(values.cold) }]),
+  );
+}
 
 /**
  * A censored latest-wait is the time a submit had waited when the run ended, so its true wait
@@ -358,7 +424,7 @@ export function buildGroups(runs) {
       for (const sample of samples) {
         if (sample.outcome === "censored" && sample.phase === CENSORED_PHASE) {
           const id = `${sample.phase}\u0000${sample.units}`;
-          if (!pooledBuckets.has(id)) pooledBuckets.set(id, { phase: sample.phase, units: sample.units, warm: [], cold: [], warmAll: [], coldAll: [], censored: 0 });
+          if (!pooledBuckets.has(id)) pooledBuckets.set(id, { phase: sample.phase, units: sample.units, warm: [], cold: [], warmAll: [], coldAll: [], censored: 0, kinds: new Map() });
           const bucket = pooledBuckets.get(id);
           bucket.censored += 1;
           bucket[sample.warm ? "warmAll" : "coldAll"].push(sample.duration);
@@ -366,14 +432,19 @@ export function buildGroups(runs) {
         }
         if (sample.outcome !== "ok") continue;
         const id = `${sample.phase}\u0000${sample.units}`;
-        if (!pooledBuckets.has(id)) pooledBuckets.set(id, { phase: sample.phase, units: sample.units, warm: [], cold: [], warmAll: [], coldAll: [], censored: 0 });
+        if (!pooledBuckets.has(id)) pooledBuckets.set(id, { phase: sample.phase, units: sample.units, warm: [], cold: [], warmAll: [], coldAll: [], censored: 0, kinds: new Map() });
         pooledBuckets.get(id)[sample.warm ? "warm" : "cold"].push(sample.duration);
+        const kinds = pooledBuckets.get(id).kinds;
+        if (!kinds.has(sample.jobKind)) kinds.set(sample.jobKind, { warm: [], cold: [] });
+        kinds.get(sample.jobKind)[sample.warm ? "warm" : "cold"].push(sample.duration);
         pooledBuckets.get(id)[sample.warm ? "warmAll" : "coldAll"].push(sample.duration);
       }
     }
     const pooled = {};
     for (const bucket of [...pooledBuckets.values()].sort((a, b) => (a.phase < b.phase ? -1 : 1))) {
       pooled[bucket.phase] = { units: bucket.units, warm: computeStats(bucket.warm), cold: computeStats(bucket.cold) };
+      const split = kindSplit(bucket.kinds);
+      if (split) pooled[bucket.phase].byJobKind = split;
       if (bucket.phase === CENSORED_PHASE) Object.assign(pooled[bucket.phase], censoredBlock(bucket.censored, bucket.warmAll, bucket.coldAll));
     }
     const dispersion = {};
@@ -430,6 +501,15 @@ export function renderTables(groups) {
         lines.push(
           `| ${phase} | ${entry.units} | ${temperature} | ${stats.N} | ${formatNumber(stats.p50)} | ${formatNumber(stats.p95)} | ${formatNumber(stats.p99)} | ${formatNumber(stats.max)} | ${formatNumber(stats.mean)} | ${group.exploratoryRuns[phase]} of ${group.runCount} |`,
         );
+      }
+      for (const [kind, stats] of Object.entries(entry.byJobKind ?? {})) {
+        for (const temperature of ["warm", "cold"]) {
+          const row = stats[temperature];
+          if (row.N === 0) continue;
+          lines.push(
+            `| ${phase} [${kind}] | ${entry.units} | ${temperature} | ${row.N} | ${formatNumber(row.p50)} | ${formatNumber(row.p95)} | ${formatNumber(row.p99)} | ${formatNumber(row.max)} | ${formatNumber(row.mean)} |  |`,
+          );
+        }
       }
       if (entry.includingCensored) {
         for (const temperature of ["warm", "cold"]) {

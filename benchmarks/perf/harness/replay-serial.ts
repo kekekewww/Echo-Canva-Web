@@ -53,6 +53,8 @@ export type SerialRecord = {
   phase: SerialPhase;
   duration: number;
   warm: boolean;
+  /** static-install when the static fingerprint differs from the previous job in this process, or for the first job. */
+  jobKind: "pose-only" | "static-install";
 };
 
 export type ParityStep =
@@ -169,6 +171,7 @@ export async function replayTapeSerial(options: SerialReplayOptions): Promise<Se
   let jobs = 0;
   let checksum = 0;
   let nextAllowedMs = 0;
+  let previousFingerprint: string | null = null;
   let firstJobMs = 0;
   const startedAtMs = now();
   // Production keeps one geometry compiler for the whole session, so a pose-only replay
@@ -199,6 +202,8 @@ export async function replayTapeSerial(options: SerialReplayOptions): Promise<Se
           : hybridJob(hybridStep!.document, compiler, now, stamp);
         const tapeStep = (classicStep ?? hybridStep)!.step;
         const sceneRevision = done.frame.revision;
+        const jobKind = done.staticFingerprint === previousFingerprint ? "pose-only" : "static-install";
+        previousFingerprint = done.staticFingerprint;
         checksum += sceneRevision;
         jobs += 1;
 
@@ -231,6 +236,7 @@ export async function replayTapeSerial(options: SerialReplayOptions): Promise<Se
             phase,
             duration,
             warm,
+            jobKind,
           });
         }
       }

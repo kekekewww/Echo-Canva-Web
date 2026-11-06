@@ -3,7 +3,7 @@ import { mkdirSync, readdirSync, readFileSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
-import { sha256Text } from "./lib.mjs";
+import { sha256Text, tempEnvironment } from "./lib.mjs";
 
 export const BUNDLE_ROOT = ".perf-runs/bundle";
 const HARNESS = "benchmarks/perf/harness";
@@ -76,6 +76,8 @@ export function checkWorkerBundles(dir, expectPreamble) {
 }
 
 export async function buildBundle(repoRoot, kind) {
+  // The bundler writes through os.tmpdir(); refuse to run with it pointing outside the worktree on Windows.
+  tempEnvironment(repoRoot);
   const spec = KINDS[kind];
   if (!spec) throw new Error(`Unknown bundle kind ${kind}`);
   const vite = resolveVite(repoRoot);

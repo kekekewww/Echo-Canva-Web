@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { promisify } from "node:util";
 
 import { collectGitInfo } from "../corpus/lib.mjs";
-import { NOT_APPLICABLE, UNAVAILABLE } from "./lib.mjs";
+import { NOT_APPLICABLE, UNAVAILABLE, tempEnvironment } from "./lib.mjs";
 
 const execFileAsync = promisify(execFile);
 
@@ -121,7 +121,7 @@ $out | ConvertTo-Json -Compress -Depth 5
 `;
 
 async function runPowerShell(script, args = []) {
-  const dir = process.env.TEMP ?? process.env.TMPDIR;
+  const dir = tempEnvironment().TEMP ?? process.env.TMPDIR;
   if (!dir) throw new Error("TEMP is not set; set TEMP, TMP and TMPDIR inside the worktree before running.");
   mkdirSync(dir, { recursive: true });
   const file = join(dir, `perf-env-${process.pid}-${Date.now()}.ps1`);
@@ -130,7 +130,7 @@ async function runPowerShell(script, args = []) {
     const { stdout } = await execFileAsync(
       "powershell.exe",
       ["-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", file, ...args],
-      { timeout: 60_000, windowsHide: true, maxBuffer: 4 * 1024 * 1024, encoding: "utf8" },
+      { timeout: 60_000, windowsHide: true, maxBuffer: 4 * 1024 * 1024, encoding: "utf8", env: { ...process.env, ...tempEnvironment() } },
     );
     return JSON.parse(stdout.trim());
   } finally {

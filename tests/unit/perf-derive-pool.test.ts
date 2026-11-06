@@ -207,3 +207,36 @@ describe("worker bundle check", () => {
     expect(checkWorkerBundles(clean, false)[0]!.preamblePresent).toBe(false);
   });
 });
+
+describe("job kind in pool derivations", () => {
+  it("tags a job with an install post as static-install and one without as pose-only", () => {
+    const log = syntheticLog();
+    const first = deriveSamples(log, context);
+    for (const sample of first.samples.filter((value) => typeof value.requestSeq === "number")) expect(sample.jobKind).toBe("static-install");
+
+    const poseOnly = syntheticLog();
+    poseOnly.posts = (poseOnly.posts as Loose[]).filter((post) => post.type !== "INSTALL_STATIC");
+    poseOnly.handlers = (poseOnly.handlers as Loose[]).filter((handler) => handler.type !== "STATIC_INSTALLED");
+    for (const flush of poseOnly.flushes as Loose[]) flush.records = (flush.records as Loose[]).filter((entry) => entry.type !== "INSTALL_STATIC");
+    const second = deriveSamples(poseOnly, context);
+    const kinds = new Set(second.samples.filter((value) => typeof value.requestSeq === "number").map((value) => value.jobKind));
+    expect([...kinds]).toEqual(["pose-only"]);
+    expect(second.samples.find((value) => value.phase === "input.project")).toBeUndefined();
+  });
+
+  it("derives the kind from a changing static fingerprint when there are no posts", () => {
+    const log = syntheticLog();
+    (log.config as Loose).kind = "bare";
+    const result = (log.results as Loose[])[0]!;
+    const next = { ...result, t0: 300, t1: 300.1, tEnd: 300.2, requestSeq: 2, revision: 302, staticFingerprint: "abcd1234", acceptedAt: 300.1 };
+    const other = { ...result, t0: 400, t1: 400.1, tEnd: 400.2, requestSeq: 3, revision: 303, staticFingerprint: "ffff0000", acceptedAt: 400.1 };
+    (log.results as Loose[]).push(next, other);
+    (log.steps as Loose[]).push(
+      { index: 1, replay: 0, tapeStep: 1, revision: 302, plannedMs: null, tickAt: 290, submitAt: 290, poolSubmitAt: 290, projectMs: "not-applicable", outcome: "ok" },
+      { index: 2, replay: 0, tapeStep: 2, revision: 303, plannedMs: null, tickAt: 390, submitAt: 390, poolSubmitAt: 390, projectMs: "not-applicable", outcome: "ok" },
+    );
+    const derived = deriveSamples(log, { ...context, pass: "bare" });
+    const kindOf = (seq: number) => derived.samples.find((sample) => sample.phase === "pool.compute-metric" && sample.requestSeq === seq)?.jobKind;
+    expect([kindOf(1), kindOf(2), kindOf(3)]).toEqual(["static-install", "pose-only", "static-install"]);
+  });
+});

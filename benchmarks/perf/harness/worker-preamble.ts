@@ -21,13 +21,17 @@ type Scope = {
   postMessage: (message: unknown, ...rest: unknown[]) => void;
 };
 
-type ControlMessage = { type: string; id?: number; ms?: number; name?: string };
+type ControlMessage = { type: string; id?: number; ms?: number; name?: string; label?: string };
 
 const scope = self as unknown as Scope;
 const timeOrigin = performance.timeOrigin;
 const epochNow = (): number => timeOrigin + performance.now();
 const records: WorkerRequestRecord[] = [];
 let current: WorkerRequestRecord | null = null;
+// Traced passes only: one clock mark per request handled, so the trace analyser can fit this
+// thread's clock over the whole run. Clean runs never turn it on and pay nothing.
+let traceLabel: string | null = null;
+let traceMarks = 0;
 
 // The solver never reads Date (grep over src/acoustics and src/domain finds only the audio
 // library), so this only raises the resolution of the controller's `options.now ?? Date.now`.
@@ -85,9 +89,25 @@ function handleControl(message: ControlMessage): void {
         records: records.splice(0, records.length),
       });
       return;
-    case "__perf_mark":
-      performance.mark(message.name ?? "ec102");
+    case "__perf_trace_on":
+      traceLabel = message.label ?? "w?";
       return;
+    case "__perf_mark": {
+      // The name carries this thread's own readings so the trace analyser can fit its clock.
+      const now = performance.now();
+      performance.mark(`${message.name ?? "ec102"}:${now}:${timeOrigin + now}`);
+      return;
+    }
+    case "__perf_alloc": {
+      // Garbage for the GC control: short-lived objects, nothing retained.
+      let kept = 0;
+      for (let round = 0; round < (message.ms ?? 1); round += 1) {
+        const chunk = Array.from({ length: 20_000 }, (_, index) => ({ index, text: String(index) }));
+        kept += chunk.length;
+      }
+      originalPost({ type: "__perf_alloc_done", id: message.id, objects: kept });
+      return;
+    }
     case "__perf_block": {
       const startedMs = performance.now();
       ec102ControlBusy(message.ms ?? 0);
@@ -110,6 +130,11 @@ function wrap(listener: unknown): (event: MessageEvent) => void {
     if (isControl(data)) {
       handleControl(data);
       return;
+    }
+    if (traceLabel !== null) {
+      const now = performance.now();
+      performance.mark(`ec102:clk:${traceLabel}:${traceMarks}:${now}:${timeOrigin + now}`);
+      traceMarks += 1;
     }
     const request = (typeof data === "object" && data !== null ? data : {}) as { type?: unknown; requestId?: unknown };
     const record: WorkerRequestRecord = {

@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 
 import { collectGitInfo, verifyCorpus } from "../corpus/lib.mjs";
 import { buildBundle } from "./bundle.mjs";
+import { overheadComparisons, pairedDifferences, parityRows, renderComparisons } from "./compare.mjs";
 import { collectEnvironment, sampleOtherActivity } from "./env.mjs";
 import {
   BOUNDARIES,
@@ -14,6 +15,7 @@ import {
   RUN_ID_PATTERN,
   UNAVAILABLE,
   artifactsSha256,
+  assertInsideRepo,
   buildGroups,
   executeRun,
   parseJsonl,
@@ -24,7 +26,9 @@ import {
   scanPaths,
   serializeJsonl,
   sha256File,
+  sha256Text,
   summarizeSamples,
+  tempEnvironment,
   verifyWorkloads,
   writeJson,
 } from "./lib.mjs";
@@ -33,7 +37,6 @@ const REPO = fileURLToPath(new URL("../..", import.meta.url));
 const DEFAULT_CORPUS_MANIFEST = "benchmarks/corpus/v1/manifest.json";
 const WORKLOAD_DIR = "benchmarks/perf/workloads/v1";
 const DEFAULT_OUT = ".perf-runs/runs";
-const SMALL_ARTIFACT_BYTES = 512 * 1024;
 const TAPE_KINDS = { "classic-tape": "classic", "hybrid-tape": "hybrid" };
 const PHASES_BY_MODE = {
   classic: ["static.build", "pose.snapshot", "room.estimate", "solve", "assemble", "job.total"],
@@ -46,12 +49,12 @@ const RUN_FLAGS = new Set([
   "variant", "case", "corpus-manifest", "run-id", "repeat", "out", "boundary", "pass", "audio",
   "samples", "hardware-concurrency", "build", "order-index", "plan", "ts-s-path", "max-duration-ms", "step-timeout-ms",
 ]);
-const BOOLEAN_FLAGS = new Set(["parity", "check"]);
+const BOOLEAN_FLAGS = new Set(["parity", "check", "with-slices"]);
 const COMMAND_FLAGS = {
   "verify-corpus": new Set(["corpus-manifest"]),
   "generate-workloads": new Set(["check"]),
   run: new Set([...RUN_FLAGS, ...BOOLEAN_FLAGS]),
-  summarize: new Set(["out", "to"]),
+  summarize: new Set(["out", "to", "with-slices"]),
   scan: new Set(),
 };
 
@@ -79,6 +82,23 @@ function parseArgs(argv) {
     }
   }
   return { command, positional, flags };
+}
+
+/** A path argument that must stay inside the repository; anything else is a usage error. */
+function insideRepo(value, label) {
+  try {
+    return assertInsideRepo(path.resolve(REPO, value), label, REPO);
+  } catch (error) {
+    throw new UsageError(error.message);
+  }
+}
+
+function safeTemp() {
+  try {
+    return tempEnvironment(REPO);
+  } catch (error) {
+    throw new UsageError(error.message);
+  }
 }
 
 function repoRelative(file) {
@@ -137,6 +157,7 @@ function checkWorkloads(bundle) {
       stdio: ["ignore", "ignore", "inherit"],
       env: {
         ...process.env,
+        ...safeTemp(),
         ECHO_PERF_GENERATE: "1",
         ECHO_PERF_OUT_DIR: repoRelative(scratch),
         ECHO_PERF_SOURCE_COMMIT: committedManifest.sourceCommit,
@@ -172,7 +193,7 @@ async function commandGenerateWorkloads(flags) {
   const result = spawnSync(process.execPath, [path.join(bundle.dir, "generate-workloads.mjs")], {
     cwd: REPO,
     stdio: "inherit",
-    env: { ...process.env, ECHO_PERF_GENERATE: "1", ECHO_PERF_SOURCE_COMMIT: head },
+    env: { ...process.env, ...safeTemp(), ECHO_PERF_GENERATE: "1", ECHO_PERF_SOURCE_COMMIT: head },
   });
   return result.status ?? 1;
 }
@@ -218,6 +239,7 @@ function normalizeEntry(raw, globals) {
     tsSPath: get("ts-s-path") ?? "decomposed",
     maxDurationMs: optionalNumber("max-duration-ms", 1),
     stepTimeoutMs: optionalNumber("step-timeout-ms", 3000) ?? 10_000,
+    samples: positiveInteger(get("samples") ?? 24, "--samples"),
   };
   if (!entry.variant || !entry.case || !entry.runId) throw new UsageError("run needs --variant, --case and --run-id");
   if (!RUN_ID_PATTERN.test(entry.runId)) throw new UsageError("--run-id may contain letters, digits, '.', '_' and '-' only");
@@ -225,26 +247,43 @@ function normalizeEntry(raw, globals) {
   if (!PASSES.includes(entry.pass)) throw new UsageError(`--pass must be one of ${PASSES.join(", ")}`);
   if (!["TS-S", "TS-W"].includes(entry.variant)) throw new UsageError("--variant must be TS-S or TS-W");
   if (!["decomposed", "fallback"].includes(entry.tsSPath)) throw new UsageError("--ts-s-path must be decomposed or fallback");
-  if (entry.audio !== NOT_APPLICABLE) throw new UsageError("--audio does not apply at node-core or browser-pool");
   if (entry.parity && entry.repeat !== 1) throw new UsageError("--parity is one replay with no timing; leave --repeat at 1");
   const workload = /^W0\d_/.test(entry.case);
+  const appCase = /^APP_/.test(entry.case);
+  const controls = entry.case === "CONTROLS";
+  if (entry.boundary !== "browser-app" && entry.audio !== NOT_APPLICABLE) throw new UsageError("--audio applies at browser-app only");
   if (entry.boundary === "node-core") {
     if (entry.variant !== "TS-S") throw new UsageError("TS-W needs workers; use --boundary browser-pool");
     if (!["clean", "traced", "alloc"].includes(entry.pass)) throw new UsageError(`pass ${entry.pass} does not exist at node-core; use clean, traced or alloc`);
-    if (workload) throw new UsageError("the long workloads run at browser-pool only");
+    if (workload || appCase || controls) throw new UsageError("this case does not run at node-core");
   } else if (entry.boundary === "browser-pool") {
-    if (entry.variant === "TS-S" && entry.pass !== "clean") throw new UsageError("TS-S at browser-pool supports pass clean only");
-    if (entry.variant === "TS-W" && !["bare", "clean"].includes(entry.pass)) throw new UsageError("TS-W at browser-pool supports passes bare and clean; traced and alloc come with Milestone 3");
+    if (appCase) throw new UsageError("APP_ cases run at browser-app");
+    if (entry.pass === "stock") throw new UsageError("pass stock is the existing Playwright spec; it runs at browser-app");
+    if (entry.variant === "TS-S" && entry.pass === "bare") throw new UsageError("pass bare is TS-W only");
     if (entry.variant === "TS-S" && workload) entry.tsSPath = "fallback";
-    if (entry.parity && workload) throw new UsageError("--parity needs a frozen corpus tape, not a long workload");
+    if (entry.parity && (workload || controls)) throw new UsageError("--parity needs a frozen corpus tape");
     if (entry.variant === "TS-W" && entry.tsSPath === "fallback") throw new UsageError("--ts-s-path applies to TS-S only");
+    if (controls && entry.pass !== "traced") throw new UsageError("CONTROLS needs --pass traced: the controls are read from the trace");
   } else {
-    throw new UsageError("browser-app runs come with Milestone 3");
+    if (!appCase && !controls) throw new UsageError("browser-app runs APP_H100_SWITCH, APP_C_DRAG or CONTROLS");
+    if (entry.audio === NOT_APPLICABLE) entry.audio = "on";
+    if (!["on", "off"].includes(entry.audio)) throw new UsageError("--audio must be on or off");
+    if (entry.pass === "bare") throw new UsageError("pass bare is a browser-pool pass");
+    if (entry.pass === "stock") {
+      if (entry.variant !== "TS-W" || controls) throw new UsageError("pass stock is the existing spec: TS-W, APP_ cases only");
+      entry.audio = "on";
+    }
+    if (controls && entry.pass !== "traced") throw new UsageError("CONTROLS needs --pass traced: the controls are read from the trace");
+    if (entry.parity) throw new UsageError("--parity does not apply in-app");
   }
   return entry;
 }
 
 function resolveCase(entry) {
+  if (/^APP_/.test(entry.case) || entry.case === "CONTROLS") {
+    const mode = entry.case === "APP_H100_SWITCH" ? "hybrid" : "classic";
+    return { app: true, controls: entry.case === "CONTROLS", mode, replay: entry.case === "APP_C_DRAG" ? "open" : "closed" };
+  }
   if (/^W0\d_/.test(entry.case)) {
     const dir = path.join(REPO, WORKLOAD_DIR);
     const manifest = readJson(path.join(dir, "manifest.json"));
@@ -264,6 +303,7 @@ function resolveCase(entry) {
 }
 
 function caseSpecFor(context, entry) {
+  if (context.app) return { caseId: entry.case, kind: context.controls ? "controls" : "app", mode: context.mode };
   if (context.workload) {
     return {
       caseId: entry.case,
@@ -287,7 +327,10 @@ function writeInputManifest(runDir, context, entry, bundle, workloads) {
   let caseBlock;
   let corpus;
   let manifestForGit = null;
-  if (context.workload) {
+  if (context.app) {
+    caseBlock = { id: entry.case, kind: context.controls ? "controls" : "app", mode: context.mode, audio: entry.audio, samples: entry.samples, maxDurationMs: entry.maxDurationMs ?? NOT_APPLICABLE };
+    corpus = { note: "not used by this case" };
+  } else if (context.workload) {
     const sceneFile = path.join(context.dir, context.found.scene);
     const tapeFile = path.join(context.dir, context.found.tape);
     caseBlock = {
@@ -329,12 +372,9 @@ function writeInputManifest(runDir, context, entry, bundle, workloads) {
     case: caseBlock,
     workloads: { manifestSha256: workloads.manifestSha256, files: workloads.fileCount },
     git: collectGitInfo(REPO, manifestForGit),
-    bundle: {
-      kind: bundle.kind,
-      sha256: bundle.sha256,
-      viteVersion: bundle.viteVersion,
-      workerChecks: bundle.workerChecks,
-    },
+    bundle: bundle.build
+      ? { kind: bundle.kind, buildId: bundle.build.buildId, staticSha256: bundle.build.staticSha256, note: "the production Next build in .next; its worker code is the production bundle, unlike the Vite bundle used at browser-pool" }
+      : { kind: bundle.kind, sha256: bundle.sha256, viteVersion: bundle.viteVersion, workerChecks: bundle.workerChecks },
     options: {
       hardwareConcurrency: entry.hardwareConcurrency ?? NOT_APPLICABLE,
       stepTimeoutMs: entry.stepTimeoutMs,
@@ -350,7 +390,7 @@ function spawnRunner(script, runDir, extraNodeArgs) {
     const child = spawn(
       process.execPath,
       [...extraNodeArgs, path.join(REPO, "scripts/perf", script), "--config", path.join(runDir, "runner-config.json")],
-      { cwd: REPO, stdio: ["ignore", out, err], env: process.env, windowsHide: true },
+      { cwd: REPO, stdio: ["ignore", out, err], env: { ...process.env, ...safeTemp() }, windowsHide: true },
     );
     child.on("error", reject);
     child.on("close", (code, signal) => resolve({ code, signal }));
@@ -360,7 +400,26 @@ function spawnRunner(script, runDir, extraNodeArgs) {
   });
 }
 
+/** Aggregate SHA-256 of .next/static, recorded with every in-app run. */
+function nextStaticHash() {
+  const lines = [];
+  const walk = (dir, prefix) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : 1))) {
+      const relative = prefix === "" ? entry.name : `${prefix}/${entry.name}`;
+      if (entry.isDirectory()) walk(path.join(dir, entry.name), relative);
+      else lines.push(`${relative}\u0000${sha256File(path.join(dir, entry.name))}`);
+    }
+  };
+  walk(path.join(REPO, ".next", "static"), "");
+  return sha256Text(lines.join("\n"));
+}
+
 function expectedPhases(entry, context) {
+  if (context.app) {
+    if (context.controls) return [];
+    if (entry.pass === "stock") return ["app.worker-compute-metric"];
+    return entry.case === "APP_H100_SWITCH" ? ["app.worker-compute-metric", "app.input-to-commit"] : ["app.worker-compute-metric"];
+  }
   if (entry.boundary === "node-core" || (entry.variant === "TS-S" && entry.tsSPath === "decomposed")) return PHASES_BY_MODE[context.mode];
   if (entry.variant === "TS-S") return POOL_PHASES["TS-S-fallback"];
   return POOL_PHASES[entry.pass === "bare" ? "TS-W-bare" : "TS-W-clean"];
@@ -369,6 +428,7 @@ function expectedPhases(entry, context) {
 async function runEntry(entry, index, outDir, prep) {
   const context = resolveCase(entry);
   const pool = entry.boundary === "browser-pool";
+  const app = entry.boundary === "browser-app";
   const meta = {
     runId: entry.runId,
     variant: entry.variant,
@@ -376,11 +436,11 @@ async function runEntry(entry, index, outDir, prep) {
     pass: entry.pass,
     boundary: entry.boundary,
     workers: NOT_APPLICABLE,
-    audio: NOT_APPLICABLE,
-    build: entry.build,
+    audio: app ? entry.audio : NOT_APPLICABLE,
+    build: app ? "prod" : entry.build,
     parity: entry.parity,
   };
-  const bundleKind = pool ? (entry.pass === "bare" ? "pool-bare" : "pool") : "node";
+  const bundleKind = app ? "next-build" : pool ? (entry.pass === "bare" ? "pool-bare" : "pool") : "node";
   return executeRun({
     outDir,
     meta,
@@ -401,7 +461,13 @@ async function runEntry(entry, index, outDir, prep) {
         runDir: runDirFor(runDir),
         replay: context.replay,
         caseSpec,
-        ...(pool
+        audio: app ? entry.audio : NOT_APPLICABLE,
+        samples: entry.samples,
+        maxDurationMs: entry.maxDurationMs,
+        hardwareConcurrency: entry.hardwareConcurrency,
+        ...(app
+          ? { nodeBundlePath: repoRelative(path.join((await prep.bundleFor("node")).dir, "node-entry.mjs")) }
+          : pool
           ? {
               bundleDir: repoRelative(bundle.dir),
               pageFile: bundle.page,
@@ -414,9 +480,11 @@ async function runEntry(entry, index, outDir, prep) {
       };
       writeJson(path.join(runDir, "runner-config.json"), config);
       const nodeArgs = [];
-      if (entry.pass === "traced") nodeArgs.push("--cpu-prof", `--cpu-prof-dir=${runDirFor(runDir)}`);
-      if (entry.pass === "alloc") nodeArgs.push("--heap-prof", `--heap-prof-dir=${runDirFor(runDir)}`);
-      const exit = await spawnRunner(pool ? "runner-pool.mjs" : "runner-node.mjs", runDir, nodeArgs);
+      // Node profiler flags describe the measured process, which is the Node process only at node-core.
+      if (entry.pass === "traced" && !pool && !app) nodeArgs.push("--cpu-prof", `--cpu-prof-dir=${runDirFor(runDir)}`);
+      if (entry.pass === "alloc" && !pool && !app) nodeArgs.push("--heap-prof", `--heap-prof-dir=${runDirFor(runDir)}`);
+      const script = app ? (entry.pass === "stock" ? "runner-stock.mjs" : "runner-app.mjs") : pool ? "runner-pool.mjs" : "runner-node.mjs";
+      const exit = await spawnRunner(script, runDir, nodeArgs);
       const after = entry.parity ? NOT_APPLICABLE : await sampleOtherActivity(3);
       const factsFile = path.join(runDir, "browser-facts.json");
       writeJson(path.join(runDir, "environment.json"), {
@@ -433,7 +501,11 @@ async function runEntry(entry, index, outDir, prep) {
       const samples = parseJsonl(readFileSync(path.join(runDir, "samples.jsonl"), "utf8"));
       const summary = summarizeSamples(samples);
       const observedWorkers = result.workers?.reportedByPool?.length === 1 ? result.workers.reportedByPool[0] : NOT_APPLICABLE;
-      if (entry.variant === "TS-W") {
+      if (app && entry.variant === "TS-W") {
+        const observedCount = Number(result.observed?.workerCountAttribute?.[0]);
+        meta.workers = Number.isInteger(observedCount) && observedCount > 0 ? observedCount : NOT_APPLICABLE;
+      }
+      if (entry.variant === "TS-W" && pool) {
         meta.workers = observedWorkers === NOT_APPLICABLE ? (result.workers?.created || result.workers?.expected || NOT_APPLICABLE) : observedWorkers;
       }
       writeJson(path.join(runDir, "summary.json"), {
@@ -444,7 +516,7 @@ async function runEntry(entry, index, outDir, prep) {
         pass: entry.pass,
         boundary: entry.boundary,
         workers: meta.workers,
-        audio: NOT_APPLICABLE,
+        audio: app ? entry.audio : NOT_APPLICABLE,
         denominators: result.denominators,
         jobs: result.jobs ?? UNAVAILABLE,
         intervalMs: result.intervalMs ?? UNAVAILABLE,
@@ -463,6 +535,12 @@ async function runEntry(entry, index, outDir, prep) {
             }
           : NOT_APPLICABLE,
         maxDurationMs: entry.maxDurationMs ?? NOT_APPLICABLE,
+        observed: result.observed ?? NOT_APPLICABLE,
+        trace: result.trace ?? NOT_APPLICABLE,
+        alloc: result.alloc ?? NOT_APPLICABLE,
+        controls: result.controls ?? NOT_APPLICABLE,
+        stock: result.exit ? { exit: result.exit, command: result.command, build: result.build, metrics: result.metrics ?? NOT_APPLICABLE } : NOT_APPLICABLE,
+        build: result.buildId ?? result.build ?? NOT_APPLICABLE,
       });
       const seen = new Set(samples.map((sample) => sample.phase));
       return {
@@ -480,7 +558,8 @@ function runDirFor(runDir) {
 }
 
 async function commandRun(flags) {
-  const outDir = path.resolve(REPO, flags.get("out") ?? DEFAULT_OUT);
+  const outDir = insideRepo(flags.get("out") ?? DEFAULT_OUT, "--out");
+  safeTemp();
   let entries;
   if (flags.has("plan")) {
     const plan = readJson(path.resolve(REPO, flags.get("plan")));
@@ -506,6 +585,11 @@ async function commandRun(flags) {
   const prep = {
     workloads,
     bundleFor: async (kind) => {
+      if (kind === "next-build") {
+        const idFile = path.join(REPO, ".next", "BUILD_ID");
+        if (!existsSync(idFile)) throw new Error(".next/BUILD_ID is missing; run corepack pnpm build before in-app runs");
+        bundles.set(kind, { kind, dir: path.join(REPO, ".next"), build: { buildId: readFileSync(idFile, "utf8").trim(), staticSha256: nextStaticHash() } });
+      }
       if (!bundles.has(kind)) bundles.set(kind, await buildBundle(REPO, kind));
       return bundles.get(kind);
     },
@@ -529,17 +613,46 @@ function copySanitised(source, target) {
   writeFileSync(target, sanitizeText(text), "utf8");
 }
 
+/** Per-run files copied into the evidence directory. Everything else stays in .perf-runs with only a checksum. */
+const EVIDENCE_FILES = [
+  "run-status.json", "environment.json", "input-manifest.json", "summary.json", "parity-diffs.jsonl", "process-cpu.json",
+  "page-metrics.json", "browser-facts.json", "clock-calibration.json", "clock-alignment.json", "busy.json", "cpu-top.json",
+  "thread-map.json", "exemplars.json", "controls.json", "fixture-crosscheck.json", "stdout.log", "stderr.log", "worker-stress-metrics.json",
+  "audio-render-capacity.json",
+];
+
+function listRunFiles(runDir) {
+  const out = [];
+  const walk = (dir, prefix) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const relative = prefix === "" ? entry.name : `${prefix}/${entry.name}`;
+      if (entry.isDirectory()) walk(path.join(dir, entry.name), relative);
+      else out.push(relative);
+    }
+  };
+  walk(runDir, "");
+  return out;
+}
+
+function parityPathOf(entry) {
+  if (entry.boundary === "node-core") return "node-core serial";
+  if (entry.variant === "TS-W") return "browser-pool TS-W (real pools)";
+  return entry.tsSPath === "fallback" ? "browser-pool production fallback" : "browser-pool serial";
+}
+
 function commandSummarize(flags) {
-  const outDir = path.resolve(REPO, flags.get("out") ?? DEFAULT_OUT);
-  const evidenceDir = path.resolve(REPO, flags.get("to") ?? "");
+  const outDir = insideRepo(flags.get("out") ?? DEFAULT_OUT, "--out");
   if (!flags.has("to")) throw new UsageError("summarize needs --to <evidenceDir>");
+  const evidenceDir = insideRepo(flags.get("to"), "--to");
   const index = readRunIndex(outDir);
   if (index.length === 0) throw new UsageError(`${repoRelative(outDir)} has no runs-index.jsonl entries`);
   mkdirSync(evidenceDir, { recursive: true });
+  const withSlices = flags.has("with-slices");
 
   const timingRuns = [];
   const parityRuns = [];
-  const omitted = [];
+  const largeLines = [];
+  const perRunBytes = {};
   for (const entry of index) {
     const runDir = path.join(outDir, entry.runId);
     if (!existsSync(runDir)) throw new Error(`${entry.runId} is in the index but its directory is missing`);
@@ -547,25 +660,44 @@ function commandSummarize(flags) {
     const summary = existsSync(summaryFile) ? readJson(summaryFile) : null;
     const samplesFile = path.join(runDir, "samples.jsonl");
     const samples = existsSync(samplesFile) ? parseJsonl(readFileSync(samplesFile, "utf8")) : [];
-    if (entry.parity === true) parityRuns.push({ runId: entry.runId, status: entry.status, case: entry.case, parity: summary?.parity ?? UNAVAILABLE });
-    else timingRuns.push({ entry, samples, denominators: summary?.denominators });
+    const inputManifest = existsSync(path.join(runDir, "input-manifest.json")) ? readJson(path.join(runDir, "input-manifest.json")) : null;
+    const enriched = { ...entry, tsSPath: inputManifest?.options?.tsSPath };
+    if (entry.parity === true) {
+      parityRuns.push({ runId: entry.runId, status: entry.status, case: entry.case, path: parityPathOf(enriched), parity: summary?.parity ?? UNAVAILABLE });
+    } else {
+      timingRuns.push({ entry, samples, denominators: summary?.denominators });
+    }
 
-    for (const name of ["run-status.json", "environment.json", "input-manifest.json", "summary.json", "samples.jsonl", "parity-diffs.jsonl", "process-cpu.json", "gc.jsonl", "stdout.log", "stderr.log"]) {
+    perRunBytes[entry.runId] = 0;
+    const files = listRunFiles(runDir);
+    for (const name of files) {
       const source = path.join(runDir, name);
-      if (!existsSync(source)) continue;
-      if (statSync(source).size > SMALL_ARTIFACT_BYTES) {
-        omitted.push({ runId: entry.runId, file: name, reason: "larger than the small-artifact limit" });
-        continue;
+      const base = name.split("/").at(-1);
+      const sliceName = /^exemplar-\d+\.trace\.json$/.test(base);
+      const copy = EVIDENCE_FILES.includes(name) || (withSlices && sliceName && name === files.filter((f) => /^exemplar-\d+\.trace\.json$/.test(f)).sort()[0]);
+      if (copy) {
+        const target = path.join(evidenceDir, "runs", entry.runId, name);
+        copySanitised(source, target);
+        perRunBytes[entry.runId] += statSync(target).size;
+      } else if (name !== "artifacts.sha256" && name !== "runner-config.json") {
+        largeLines.push(`${sha256File(source)}  ${statSync(source).size}  ${entry.runId}/${name}`);
       }
-      copySanitised(source, path.join(evidenceDir, "runs", entry.runId, name));
     }
   }
-  const groups = buildGroups(timingRuns);
-  writeJson(path.join(evidenceDir, "groups.json"), { schema: "ec102.groups.v1", groups, parityRuns, omitted });
-  writeFileSync(path.join(evidenceDir, "tables.md"), renderTables(groups), "utf8");
+  const groups = buildGroups(timingRuns.filter((run) => run.entry.status === "passed"));
+  const paired = pairedDifferences(timingRuns.filter((run) => run.entry.status === "passed"));
+  const overhead = overheadComparisons(groups);
+  const parity = parityRows(parityRuns);
+  writeJson(path.join(evidenceDir, "groups.json"), { schema: "ec102.groups.v1", groups, parityRuns });
+  writeJson(path.join(evidenceDir, "comparisons.json"), { schema: "ec102.comparisons.v1", paired, overhead, parity });
+  writeFileSync(path.join(evidenceDir, "tables.md"), renderTables(groups) + renderComparisons({ paired, overhead, parity }), "utf8");
   writeFileSync(path.join(evidenceDir, "runs-index.jsonl"), serializeJsonl(index), "utf8");
+  writeFileSync(path.join(evidenceDir, "large-artifacts.sha256"), `${largeLines.sort().join("\n")}\n`, "utf8");
   writeFileSync(path.join(evidenceDir, "artifacts.sha256"), artifactsSha256(evidenceDir), "utf8");
-  console.log(`summarized ${index.length} run(s) into ${repoRelative(evidenceDir)}: ${groups.length} group(s), ${parityRuns.length} parity run(s)`);
+  const total = Object.values(perRunBytes).reduce((sum, value) => sum + value, 0);
+  const largest = Math.max(0, ...Object.values(perRunBytes));
+  console.log(`summarized ${index.length} run(s) into ${repoRelative(evidenceDir)}: ${groups.length} group(s), ${parityRuns.length} parity run(s), ${paired.length} pair(s)`);
+  console.log(`evidence per run: largest ${largest} bytes, total ${total} bytes (run files only)`);
   return 0;
 }
 

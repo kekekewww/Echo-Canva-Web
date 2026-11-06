@@ -30,6 +30,8 @@ export type PoolRunConfig = {
   variant: "TS-S" | "TS-W";
   replay: "closed" | "open";
   parity: boolean;
+  /** Traced pass: the probes also emit performance.mark("ec102:...") so jobs can be found in a trace. */
+  traced: boolean;
   repeat: number;
   hardwareConcurrency: number | null;
   stepTimeoutMs: number;
@@ -154,7 +156,7 @@ type ProbeWorkerShape = {
 type PongWaiter = (data: { type: string; id: number; workerEpochMs?: number; smallestStepMs?: number; records?: WorkerFlush["records"]; timeOrigin?: number }) => void;
 
 /** Main-side wrapper that implements the pools' worker interfaces and logs every call. */
-class ProbedWorker implements ProbeWorkerShape {
+export class ProbedWorker implements ProbeWorkerShape {
   onerror: ProbeWorkerShape["onerror"] = null;
   onmessageerror: ProbeWorkerShape["onmessageerror"] = null;
   private handler: ProbeWorkerShape["onmessage"] = null;
@@ -182,6 +184,10 @@ class ProbedWorker implements ProbeWorkerShape {
     const t0 = performance.now();
     this.real.postMessage(request);
     const t1 = performance.now();
+    if (this.run.traced && typeof request.requestId === "number" && !this.run.markedJobs.has(request.requestId)) {
+      this.run.markedJobs.add(request.requestId);
+      performance.mark(`ec102:job:${request.requestId}:dispatch`);
+    }
     this.run.log.posts.push({
       worker: this.index,
       type: request.type,
@@ -236,14 +242,16 @@ class ProbedWorker implements ProbeWorkerShape {
   }
 }
 
-type RunContext = {
+export type RunContext = {
   log: RawLog;
   currentTimer: number;
   workers: ProbedWorker[];
   lastNow: number;
+  traced: boolean;
+  markedJobs: Set<number>;
 };
 
-function emptyLog(config: PoolRunConfig, expectedWorkers: number): RawLog {
+export function emptyLog(config: PoolRunConfig, expectedWorkers: number): RawLog {
   const { events, scene: _scene, document: _document, ...rest } = config;
   void _scene;
   void _document;
@@ -299,7 +307,7 @@ export async function calibrateProbeWorkers(
 ): Promise<{ calibrations: Calibration[]; mainClockResolutionMs: number }> {
   const make = mode === "classic" ? env.makeClassicWorker : env.makeHybridWorker;
   if (!make) throw new Error("calibration needs the probe worker entry");
-  const dummy: RunContext = { log: emptyLog({ events: [] } as unknown as PoolRunConfig, workerCount), currentTimer: -1, workers: [], lastNow: 0 };
+  const dummy: RunContext = { log: emptyLog({ events: [] } as unknown as PoolRunConfig, workerCount), currentTimer: -1, workers: [], lastNow: 0, traced: false, markedJobs: new Set() };
   const probes = Array.from({ length: workerCount }, (_, index) => new ProbedWorker(make(), index, dummy));
   try {
     const calibrations: Calibration[] = [];
@@ -322,6 +330,32 @@ export function clockStep(reads = 10_000): number {
   return smallest;
 }
 
+let mainMarkIndex = 0;
+
+function mainClockMark(): void {
+  const now = performance.now();
+  performance.mark(`ec102:clk:main:${mainMarkIndex}:${now}:${performance.timeOrigin + now}`);
+  mainMarkIndex += 1;
+}
+
+async function spacedMainMarks(count: number): Promise<void> {
+  for (let index = 0; index < count; index += 1) {
+    mainClockMark();
+    await new Promise((resolve) => setTimeout(resolve, 3));
+  }
+}
+
+/** Marks carrying each thread's own readings, interleaved, for the trace analyser's clock fit. */
+export async function clockMarks(workers: ProbedWorker[], count: number): Promise<void> {
+  for (let index = 0; index < count; index += 1) {
+    mainClockMark();
+    for (const worker of workers) worker.real.postMessage({ type: "__perf_mark", name: `ec102:clk:w${worker.index}:${index}` });
+    await new Promise((resolve) => setTimeout(resolve, 3));
+  }
+  // Marks are fire and forget; a round trip to each worker proves they were handled before tracing stops.
+  for (const worker of workers) await worker.control({ type: "__perf_ping" }, "__perf_pong", 1_000_000, 5000).catch(() => undefined);
+}
+
 function sleepUntil(targetMs: number): Promise<void> {
   const delay = targetMs - performance.now();
   return new Promise((resolve) => setTimeout(resolve, Math.max(0, delay)));
@@ -338,7 +372,7 @@ export async function runPoolReplay(config: PoolRunConfig, env: PoolEnv): Promis
     ? Math.min(sourceCount, classicSourcePoolCapacity(hardwareConcurrency))
     : 0;
   const log = emptyLog(config, expectedWorkers);
-  const run: RunContext = { log, currentTimer: -1, workers: [], lastNow: 0 };
+  const run: RunContext = { log, currentTimer: -1, workers: [], lastNow: 0, traced: config.traced, markedJobs: new Set() };
   const probe = config.kind === "probe";
 
   const now = (): number => {
@@ -365,6 +399,8 @@ export async function runPoolReplay(config: PoolRunConfig, env: PoolEnv): Promis
     const factory = kind === "classic" ? env.makeClassicWorker : env.makeHybridWorker;
     if (!factory) throw new Error("probe run without a worker entry");
     const worker = new ProbedWorker(factory(), run.workers.length, run);
+    // Messages to one worker are handled in order, so this arrives before its first job.
+    if (config.traced) worker.real.postMessage({ type: "__perf_trace_on", label: `w${worker.index}` });
     run.workers.push(worker);
     log.workersCreated = run.workers.length;
     return worker;
@@ -403,6 +439,7 @@ export async function runPoolReplay(config: PoolRunConfig, env: PoolEnv): Promis
       settle(entry.revision);
     }
     stored.tEnd = performance.now();
+    if (config.traced && entry.requestSeq > 0) performance.mark(`ec102:job:${entry.requestSeq}:complete`);
   };
 
   const stepLogs = log.steps;
@@ -631,12 +668,16 @@ export async function runPoolReplay(config: PoolRunConfig, env: PoolEnv): Promis
       outcome: "pending",
     };
     stepLogs.push(step);
+    if (config.traced) mainClockMark();
     pendingParityContext.event = state.event;
     pendingParityContext.tapeStep = state.tapeStep;
     return step;
   };
 
+  // Main-thread clock marks before the window, at every submit inside it, and after it: the fit then spans the run.
+  if (config.traced) await spacedMainMarks(20);
   log.startAt = performance.now();
+  if (config.traced) performance.mark("ec102:window:start");
   try {
     if (config.replay === "closed") {
       const replays = config.parity ? 1 : config.repeat;
@@ -675,6 +716,7 @@ export async function runPoolReplay(config: PoolRunConfig, env: PoolEnv): Promis
     log.errors.push(error instanceof Error ? (error.stack ?? error.message) : String(error));
   }
   log.endAt = performance.now();
+  if (config.traced) performance.mark("ec102:window:end");
 
   if (probe && run.workers.length > 0) {
     for (const worker of run.workers) {
@@ -693,6 +735,10 @@ export async function runPoolReplay(config: PoolRunConfig, env: PoolEnv): Promis
       }
     }
   }
+  if (config.traced) await clockMarks(run.workers, 30);
+  // Lets the runner read worker heap profiles before the pool terminates its workers.
+  const beforeDispose = (globalThis as { __ec102BeforeDispose?: () => Promise<void> }).__ec102BeforeDispose;
+  if (beforeDispose) await beforeDispose();
   await finish();
   return log;
 }
