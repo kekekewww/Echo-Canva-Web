@@ -6,6 +6,7 @@ export default defineConfig([
   ...nextVitals,
   ...nextTypeScript,
   globalIgnores([
+    ".claude/**",
     ".next/**",
     "out/**",
     "coverage/**",

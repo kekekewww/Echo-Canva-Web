@@ -47,10 +47,6 @@ CI (`.github/workflows/ci.yaml`, Ubuntu and Windows; macOS is excluded) also run
 
 CI sets `AI_ENABLED=false`. Unit tests mock the AI providers.
 
-## Worktrees
-
-Run gates from inside the worktree you are changing. ESLint's ignores are anchored at the repo root and `.claude/` is not ignored, so `pnpm lint` from a checkout that contains `.claude/worktrees/*` also lints those trees, including their `.next` output. `.claude/` is not gitignored either, so stage files by name rather than with `git add -A`.
-
 ## Dependencies
 
 `pnpm-workspace.yaml` applies lockfile-hashed patches from `patches/` to `next@16.4.2`, `braces@3.0.3` and `client-only@0.0.1`, and pins security `overrides` (ADR 0006). Patches are keyed to exact versions, so bumping one of those packages requires reworking its patch. Read `docs/maintenance/ARCHITECTURE_DEPENDENCIES.md` first, and after a patch change rerun `verify-client-marker-boundary.mjs` and rebuild the production image.
