@@ -1,0 +1,15 @@
+{
+  "caseId": "DV07_UNKNOWN_MATERIAL",
+  "kind": "scene-validation",
+  "outcome": "ok",
+  "value": {
+    "errors": [
+      {
+        "code": "unknown_material_id",
+        "message": "Unknown material ID: unobtainium",
+        "path": "walls.4.materialId"
+      }
+    ],
+    "ok": false
+  }
+}

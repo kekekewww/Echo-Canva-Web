@@ -1,0 +1,9 @@
+{
+  "caseId": "M011_SCHEMA_0_9_REJECTED",
+  "error": {
+    "message": "Unsupported scene schema version: 0.9",
+    "name": "SceneSerializationError"
+  },
+  "kind": "workspace-migration",
+  "outcome": "error"
+}

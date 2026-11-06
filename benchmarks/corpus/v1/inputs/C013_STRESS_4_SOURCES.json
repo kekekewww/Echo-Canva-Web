@@ -1,0 +1,1496 @@
+{
+  "scene": {
+    "schemaVersion": "1.0",
+    "revision": 112,
+    "units": "m",
+    "name": "Stress Test — 100 Walls",
+    "room": {
+      "outerPolygon": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "y": 8
+        },
+        {
+          "x": 0,
+          "y": 8
+        }
+      ],
+      "heightM": 3,
+      "floorMaterialId": "concrete_hard",
+      "ceilingMaterialId": "acoustic_treatment"
+    },
+    "walls": [
+      {
+        "id": "stress_boundary_north",
+        "a": {
+          "x": 0,
+          "y": 0
+        },
+        "b": {
+          "x": 12,
+          "y": 0
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "stress_boundary_east",
+        "a": {
+          "x": 12,
+          "y": 0
+        },
+        "b": {
+          "x": 12,
+          "y": 8
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "stress_boundary_south",
+        "a": {
+          "x": 12,
+          "y": 8
+        },
+        "b": {
+          "x": 0,
+          "y": 8
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "stress_boundary_west",
+        "a": {
+          "x": 0,
+          "y": 8
+        },
+        "b": {
+          "x": 0,
+          "y": 0
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "stress_0",
+        "a": {
+          "x": 0.45,
+          "y": 0.55
+        },
+        "b": {
+          "x": 0.87,
+          "y": 0.73
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_1",
+        "a": {
+          "x": 1.39,
+          "y": 0.55
+        },
+        "b": {
+          "x": 1.8099999999999998,
+          "y": 0.73
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_2",
+        "a": {
+          "x": 2.33,
+          "y": 0.55
+        },
+        "b": {
+          "x": 2.75,
+          "y": 0.73
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_3",
+        "a": {
+          "x": 3.27,
+          "y": 0.55
+        },
+        "b": {
+          "x": 3.69,
+          "y": 0.73
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_4",
+        "a": {
+          "x": 4.21,
+          "y": 0.55
+        },
+        "b": {
+          "x": 4.63,
+          "y": 0.73
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_5",
+        "a": {
+          "x": 5.1499999999999995,
+          "y": 0.55
+        },
+        "b": {
+          "x": 5.569999999999999,
+          "y": 0.73
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_6",
+        "a": {
+          "x": 6.09,
+          "y": 0.55
+        },
+        "b": {
+          "x": 6.51,
+          "y": 0.73
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_7",
+        "a": {
+          "x": 7.03,
+          "y": 0.55
+        },
+        "b": {
+          "x": 7.45,
+          "y": 0.73
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_8",
+        "a": {
+          "x": 7.97,
+          "y": 0.55
+        },
+        "b": {
+          "x": 8.39,
+          "y": 0.73
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_9",
+        "a": {
+          "x": 8.909999999999998,
+          "y": 0.55
+        },
+        "b": {
+          "x": 9.329999999999998,
+          "y": 0.73
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_10",
+        "a": {
+          "x": 9.849999999999998,
+          "y": 0.55
+        },
+        "b": {
+          "x": 10.269999999999998,
+          "y": 0.73
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_11",
+        "a": {
+          "x": 10.79,
+          "y": 0.55
+        },
+        "b": {
+          "x": 11.209999999999999,
+          "y": 0.73
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_12",
+        "a": {
+          "x": 0.45,
+          "y": 1.4700000000000002
+        },
+        "b": {
+          "x": 0.87,
+          "y": 1.6500000000000001
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_13",
+        "a": {
+          "x": 1.39,
+          "y": 1.4700000000000002
+        },
+        "b": {
+          "x": 1.8099999999999998,
+          "y": 1.6500000000000001
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_14",
+        "a": {
+          "x": 2.33,
+          "y": 1.4700000000000002
+        },
+        "b": {
+          "x": 2.75,
+          "y": 1.6500000000000001
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_15",
+        "a": {
+          "x": 3.27,
+          "y": 1.4700000000000002
+        },
+        "b": {
+          "x": 3.69,
+          "y": 1.6500000000000001
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_16",
+        "a": {
+          "x": 4.21,
+          "y": 1.4700000000000002
+        },
+        "b": {
+          "x": 4.63,
+          "y": 1.6500000000000001
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_17",
+        "a": {
+          "x": 5.1499999999999995,
+          "y": 1.4700000000000002
+        },
+        "b": {
+          "x": 5.569999999999999,
+          "y": 1.6500000000000001
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_18",
+        "a": {
+          "x": 6.09,
+          "y": 1.4700000000000002
+        },
+        "b": {
+          "x": 6.51,
+          "y": 1.6500000000000001
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_19",
+        "a": {
+          "x": 7.03,
+          "y": 1.4700000000000002
+        },
+        "b": {
+          "x": 7.45,
+          "y": 1.6500000000000001
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_20",
+        "a": {
+          "x": 7.97,
+          "y": 1.4700000000000002
+        },
+        "b": {
+          "x": 8.39,
+          "y": 1.6500000000000001
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_21",
+        "a": {
+          "x": 8.909999999999998,
+          "y": 1.4700000000000002
+        },
+        "b": {
+          "x": 9.329999999999998,
+          "y": 1.6500000000000001
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_22",
+        "a": {
+          "x": 9.849999999999998,
+          "y": 1.4700000000000002
+        },
+        "b": {
+          "x": 10.269999999999998,
+          "y": 1.6500000000000001
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_23",
+        "a": {
+          "x": 10.79,
+          "y": 1.4700000000000002
+        },
+        "b": {
+          "x": 11.209999999999999,
+          "y": 1.6500000000000001
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_24",
+        "a": {
+          "x": 0.45,
+          "y": 2.39
+        },
+        "b": {
+          "x": 0.87,
+          "y": 2.5700000000000003
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_25",
+        "a": {
+          "x": 1.39,
+          "y": 2.39
+        },
+        "b": {
+          "x": 1.8099999999999998,
+          "y": 2.5700000000000003
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_26",
+        "a": {
+          "x": 2.33,
+          "y": 2.39
+        },
+        "b": {
+          "x": 2.75,
+          "y": 2.5700000000000003
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_27",
+        "a": {
+          "x": 3.27,
+          "y": 2.39
+        },
+        "b": {
+          "x": 3.69,
+          "y": 2.5700000000000003
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_28",
+        "a": {
+          "x": 4.21,
+          "y": 2.39
+        },
+        "b": {
+          "x": 4.63,
+          "y": 2.5700000000000003
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_29",
+        "a": {
+          "x": 5.1499999999999995,
+          "y": 2.39
+        },
+        "b": {
+          "x": 5.569999999999999,
+          "y": 2.5700000000000003
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_30",
+        "a": {
+          "x": 6.09,
+          "y": 2.39
+        },
+        "b": {
+          "x": 6.51,
+          "y": 2.5700000000000003
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_31",
+        "a": {
+          "x": 7.03,
+          "y": 2.39
+        },
+        "b": {
+          "x": 7.45,
+          "y": 2.5700000000000003
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_32",
+        "a": {
+          "x": 7.97,
+          "y": 2.39
+        },
+        "b": {
+          "x": 8.39,
+          "y": 2.5700000000000003
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_33",
+        "a": {
+          "x": 8.909999999999998,
+          "y": 2.39
+        },
+        "b": {
+          "x": 9.329999999999998,
+          "y": 2.5700000000000003
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_34",
+        "a": {
+          "x": 9.849999999999998,
+          "y": 2.39
+        },
+        "b": {
+          "x": 10.269999999999998,
+          "y": 2.5700000000000003
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_35",
+        "a": {
+          "x": 10.79,
+          "y": 2.39
+        },
+        "b": {
+          "x": 11.209999999999999,
+          "y": 2.5700000000000003
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_36",
+        "a": {
+          "x": 0.45,
+          "y": 3.3100000000000005
+        },
+        "b": {
+          "x": 0.87,
+          "y": 3.4900000000000007
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_37",
+        "a": {
+          "x": 1.39,
+          "y": 3.3100000000000005
+        },
+        "b": {
+          "x": 1.8099999999999998,
+          "y": 3.4900000000000007
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_38",
+        "a": {
+          "x": 2.33,
+          "y": 3.3100000000000005
+        },
+        "b": {
+          "x": 2.75,
+          "y": 3.4900000000000007
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_39",
+        "a": {
+          "x": 3.27,
+          "y": 3.3100000000000005
+        },
+        "b": {
+          "x": 3.69,
+          "y": 3.4900000000000007
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_40",
+        "a": {
+          "x": 4.21,
+          "y": 3.3100000000000005
+        },
+        "b": {
+          "x": 4.63,
+          "y": 3.4900000000000007
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_41",
+        "a": {
+          "x": 5.1499999999999995,
+          "y": 3.3100000000000005
+        },
+        "b": {
+          "x": 5.569999999999999,
+          "y": 3.4900000000000007
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_42",
+        "a": {
+          "x": 6.09,
+          "y": 3.3100000000000005
+        },
+        "b": {
+          "x": 6.51,
+          "y": 3.4900000000000007
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_43",
+        "a": {
+          "x": 7.03,
+          "y": 3.3100000000000005
+        },
+        "b": {
+          "x": 7.45,
+          "y": 3.4900000000000007
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_44",
+        "a": {
+          "x": 7.97,
+          "y": 3.3100000000000005
+        },
+        "b": {
+          "x": 8.39,
+          "y": 3.4900000000000007
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_45",
+        "a": {
+          "x": 8.909999999999998,
+          "y": 3.3100000000000005
+        },
+        "b": {
+          "x": 9.329999999999998,
+          "y": 3.4900000000000007
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_46",
+        "a": {
+          "x": 9.849999999999998,
+          "y": 3.3100000000000005
+        },
+        "b": {
+          "x": 10.269999999999998,
+          "y": 3.4900000000000007
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_47",
+        "a": {
+          "x": 10.79,
+          "y": 3.3100000000000005
+        },
+        "b": {
+          "x": 11.209999999999999,
+          "y": 3.4900000000000007
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_48",
+        "a": {
+          "x": 0.45,
+          "y": 4.23
+        },
+        "b": {
+          "x": 0.87,
+          "y": 4.41
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_49",
+        "a": {
+          "x": 1.39,
+          "y": 4.23
+        },
+        "b": {
+          "x": 1.8099999999999998,
+          "y": 4.41
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_50",
+        "a": {
+          "x": 2.33,
+          "y": 4.23
+        },
+        "b": {
+          "x": 2.75,
+          "y": 4.41
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_51",
+        "a": {
+          "x": 3.27,
+          "y": 4.23
+        },
+        "b": {
+          "x": 3.69,
+          "y": 4.41
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_52",
+        "a": {
+          "x": 4.21,
+          "y": 4.23
+        },
+        "b": {
+          "x": 4.63,
+          "y": 4.41
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_53",
+        "a": {
+          "x": 5.1499999999999995,
+          "y": 4.23
+        },
+        "b": {
+          "x": 5.569999999999999,
+          "y": 4.41
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_54",
+        "a": {
+          "x": 6.09,
+          "y": 4.23
+        },
+        "b": {
+          "x": 6.51,
+          "y": 4.41
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_55",
+        "a": {
+          "x": 7.03,
+          "y": 4.23
+        },
+        "b": {
+          "x": 7.45,
+          "y": 4.41
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_56",
+        "a": {
+          "x": 7.97,
+          "y": 4.23
+        },
+        "b": {
+          "x": 8.39,
+          "y": 4.41
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_57",
+        "a": {
+          "x": 8.909999999999998,
+          "y": 4.23
+        },
+        "b": {
+          "x": 9.329999999999998,
+          "y": 4.41
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_58",
+        "a": {
+          "x": 9.849999999999998,
+          "y": 4.23
+        },
+        "b": {
+          "x": 10.269999999999998,
+          "y": 4.41
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_59",
+        "a": {
+          "x": 10.79,
+          "y": 4.23
+        },
+        "b": {
+          "x": 11.209999999999999,
+          "y": 4.41
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_60",
+        "a": {
+          "x": 0.45,
+          "y": 5.15
+        },
+        "b": {
+          "x": 0.87,
+          "y": 5.33
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_61",
+        "a": {
+          "x": 1.39,
+          "y": 5.15
+        },
+        "b": {
+          "x": 1.8099999999999998,
+          "y": 5.33
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_62",
+        "a": {
+          "x": 2.33,
+          "y": 5.15
+        },
+        "b": {
+          "x": 2.75,
+          "y": 5.33
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_63",
+        "a": {
+          "x": 3.27,
+          "y": 5.15
+        },
+        "b": {
+          "x": 3.69,
+          "y": 5.33
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_64",
+        "a": {
+          "x": 4.21,
+          "y": 5.15
+        },
+        "b": {
+          "x": 4.63,
+          "y": 5.33
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_65",
+        "a": {
+          "x": 5.1499999999999995,
+          "y": 5.15
+        },
+        "b": {
+          "x": 5.569999999999999,
+          "y": 5.33
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_66",
+        "a": {
+          "x": 6.09,
+          "y": 5.15
+        },
+        "b": {
+          "x": 6.51,
+          "y": 5.33
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_67",
+        "a": {
+          "x": 7.03,
+          "y": 5.15
+        },
+        "b": {
+          "x": 7.45,
+          "y": 5.33
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_68",
+        "a": {
+          "x": 7.97,
+          "y": 5.15
+        },
+        "b": {
+          "x": 8.39,
+          "y": 5.33
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_69",
+        "a": {
+          "x": 8.909999999999998,
+          "y": 5.15
+        },
+        "b": {
+          "x": 9.329999999999998,
+          "y": 5.33
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_70",
+        "a": {
+          "x": 9.849999999999998,
+          "y": 5.15
+        },
+        "b": {
+          "x": 10.269999999999998,
+          "y": 5.33
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_71",
+        "a": {
+          "x": 10.79,
+          "y": 5.15
+        },
+        "b": {
+          "x": 11.209999999999999,
+          "y": 5.33
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_72",
+        "a": {
+          "x": 0.45,
+          "y": 6.07
+        },
+        "b": {
+          "x": 0.87,
+          "y": 6.25
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_73",
+        "a": {
+          "x": 1.39,
+          "y": 6.07
+        },
+        "b": {
+          "x": 1.8099999999999998,
+          "y": 6.25
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_74",
+        "a": {
+          "x": 2.33,
+          "y": 6.07
+        },
+        "b": {
+          "x": 2.75,
+          "y": 6.25
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_75",
+        "a": {
+          "x": 3.27,
+          "y": 6.07
+        },
+        "b": {
+          "x": 3.69,
+          "y": 6.25
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_76",
+        "a": {
+          "x": 4.21,
+          "y": 6.07
+        },
+        "b": {
+          "x": 4.63,
+          "y": 6.25
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_77",
+        "a": {
+          "x": 5.1499999999999995,
+          "y": 6.07
+        },
+        "b": {
+          "x": 5.569999999999999,
+          "y": 6.25
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_78",
+        "a": {
+          "x": 6.09,
+          "y": 6.07
+        },
+        "b": {
+          "x": 6.51,
+          "y": 6.25
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_79",
+        "a": {
+          "x": 7.03,
+          "y": 6.07
+        },
+        "b": {
+          "x": 7.45,
+          "y": 6.25
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_80",
+        "a": {
+          "x": 7.97,
+          "y": 6.07
+        },
+        "b": {
+          "x": 8.39,
+          "y": 6.25
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_81",
+        "a": {
+          "x": 8.909999999999998,
+          "y": 6.07
+        },
+        "b": {
+          "x": 9.329999999999998,
+          "y": 6.25
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_82",
+        "a": {
+          "x": 9.849999999999998,
+          "y": 6.07
+        },
+        "b": {
+          "x": 10.269999999999998,
+          "y": 6.25
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_83",
+        "a": {
+          "x": 10.79,
+          "y": 6.07
+        },
+        "b": {
+          "x": 11.209999999999999,
+          "y": 6.25
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_84",
+        "a": {
+          "x": 0.45,
+          "y": 6.99
+        },
+        "b": {
+          "x": 0.87,
+          "y": 7.17
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_85",
+        "a": {
+          "x": 1.39,
+          "y": 6.99
+        },
+        "b": {
+          "x": 1.8099999999999998,
+          "y": 7.17
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_86",
+        "a": {
+          "x": 2.33,
+          "y": 6.99
+        },
+        "b": {
+          "x": 2.75,
+          "y": 7.17
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_87",
+        "a": {
+          "x": 3.27,
+          "y": 6.99
+        },
+        "b": {
+          "x": 3.69,
+          "y": 7.17
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_88",
+        "a": {
+          "x": 4.21,
+          "y": 6.99
+        },
+        "b": {
+          "x": 4.63,
+          "y": 7.17
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_89",
+        "a": {
+          "x": 5.1499999999999995,
+          "y": 6.99
+        },
+        "b": {
+          "x": 5.569999999999999,
+          "y": 7.17
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_90",
+        "a": {
+          "x": 6.09,
+          "y": 6.99
+        },
+        "b": {
+          "x": 6.51,
+          "y": 7.17
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_91",
+        "a": {
+          "x": 7.03,
+          "y": 6.99
+        },
+        "b": {
+          "x": 7.45,
+          "y": 7.17
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_92",
+        "a": {
+          "x": 7.97,
+          "y": 6.99
+        },
+        "b": {
+          "x": 8.39,
+          "y": 7.17
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_93",
+        "a": {
+          "x": 8.909999999999998,
+          "y": 6.99
+        },
+        "b": {
+          "x": 9.329999999999998,
+          "y": 7.17
+        },
+        "thicknessM": 0.08,
+        "materialId": "wood_medium",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_94",
+        "a": {
+          "x": 9.849999999999998,
+          "y": 6.99
+        },
+        "b": {
+          "x": 10.269999999999998,
+          "y": 7.17
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      },
+      {
+        "id": "stress_95",
+        "a": {
+          "x": 10.79,
+          "y": 6.99
+        },
+        "b": {
+          "x": 11.209999999999999,
+          "y": 7.17
+        },
+        "thicknessM": 0.08,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      }
+    ],
+    "portals": [],
+    "sources": [
+      {
+        "id": "stress_radio",
+        "name": "Stress radio",
+        "clipId": "radio_loop",
+        "sourceType": "point",
+        "position": {
+          "x": 10.8,
+          "y": 7.2
+        },
+        "gainDb": -6,
+        "loop": true
+      },
+      {
+        "id": "stress_rain",
+        "name": "Stress rain",
+        "clipId": "rain_loop",
+        "sourceType": "point",
+        "position": {
+          "x": 10.5,
+          "y": 1.2
+        },
+        "gainDb": -8,
+        "loop": true
+      },
+      {
+        "id": "stress_voice",
+        "name": "Stress voice",
+        "clipId": "voice_loop",
+        "sourceType": "point",
+        "position": {
+          "x": 6,
+          "y": 7.2
+        },
+        "gainDb": -4,
+        "loop": true
+      },
+      {
+        "id": "stress_radio_2",
+        "name": "Stress radio 2",
+        "clipId": "radio_loop",
+        "sourceType": "point",
+        "position": {
+          "x": 11.2,
+          "y": 4
+        },
+        "gainDb": -6,
+        "loop": true
+      }
+    ],
+    "listener": {
+      "position": {
+        "x": 1.2,
+        "y": 0.8
+      },
+      "headingDeg": 0
+    },
+    "settings": {
+      "acousticUpdateHz": 12,
+      "maxEarlyReflections": 6,
+      "hrtfEnabled": true
+    }
+  }
+}

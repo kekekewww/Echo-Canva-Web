@@ -1,0 +1,147 @@
+{
+  "caseId": "C003_CONCRETE_PORTAL_ROUTE",
+  "kind": "classic-frame",
+  "outcome": "ok",
+  "value": {
+    "frame": {
+      "generatedAtMs": 0,
+      "revision": 102,
+      "room": {
+        "preDelayMs": 28.565478049949593,
+        "rt60S": {
+          "high": 2.8906059255921006,
+          "low": 1.9696533078167364,
+          "mid": 2.345190185821351
+        },
+        "totalSurfaceM2": 360,
+        "volumeM3": 288
+      },
+      "sources": [
+        {
+          "directVisible": false,
+          "dryGainDb": -3,
+          "earlyReflections": [
+            {
+              "delayMs": 26.355958837168078,
+              "gainDb": -25.135031150053475,
+              "lowpassHz": 20000,
+              "order": 2,
+              "pathLengthM": 15.945218719101977,
+              "reflectionPoint": {
+                "x": 10.428571428571429,
+                "y": 8
+              },
+              "reflectionPoints": [
+                {
+                  "x": 12,
+                  "y": 6.625
+                },
+                {
+                  "x": 10.428571428571429,
+                  "y": 8
+                }
+              ],
+              "wallId": "boundary_south",
+              "wallIds": [
+                "boundary_east",
+                "boundary_south"
+              ]
+            },
+            {
+              "delayMs": 32.85031197502309,
+              "gainDb": -26.270849796971298,
+              "lowpassHz": 20000,
+              "order": 2,
+              "pathLengthM": 18.172781845386247,
+              "reflectionPoint": {
+                "x": 6,
+                "y": 1.9166666666666665
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0,
+                  "y": 2.75
+                },
+                {
+                  "x": 6,
+                  "y": 1.9166666666666665
+                }
+              ],
+              "wallId": "partition_center",
+              "wallIds": [
+                "boundary_west",
+                "partition_center"
+              ]
+            }
+          ],
+          "effectiveDistanceM": 6.905124837953328,
+          "lowpassHz": 18500,
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "physicalDistanceM": 6.5,
+          "portalIds": [
+            "partition_door"
+          ],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 9,
+              "y": 4
+            },
+            {
+              "x": 6,
+              "y": 4
+            },
+            {
+              "x": 3,
+              "y": 1.5
+            }
+          ],
+          "routeType": "portal",
+          "sourceId": "radio",
+          "virtualPosition": {
+            "x": 6,
+            "y": 4
+          }
+        },
+        {
+          "directVisible": false,
+          "dryGainDb": -3,
+          "earlyReflections": [],
+          "effectiveDistanceM": 8.62211540398163,
+          "lowpassHz": 18500,
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "physicalDistanceM": 7,
+          "portalIds": [
+            "partition_door"
+          ],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 10,
+              "y": 1.5
+            },
+            {
+              "x": 6,
+              "y": 4
+            },
+            {
+              "x": 3,
+              "y": 1.5
+            }
+          ],
+          "routeType": "portal",
+          "sourceId": "rain",
+          "virtualPosition": {
+            "x": 6,
+            "y": 4
+          }
+        }
+      ]
+    },
+    "staticFingerprint": "4a0e1c7b"
+  }
+}

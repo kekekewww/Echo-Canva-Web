@@ -1,0 +1,9 @@
+{
+  "caseId": "DK02_PATCH_COLLINEAR",
+  "error": {
+    "message": "Cannot normalize a zero-length 3D vector.",
+    "name": "Error"
+  },
+  "kind": "hybrid-patch",
+  "outcome": "error"
+}

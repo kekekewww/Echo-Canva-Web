@@ -1,0 +1,15 @@
+{
+  "caseId": "DV05_SOURCE_OUTSIDE_ROOM",
+  "kind": "scene-validation",
+  "outcome": "ok",
+  "value": {
+    "errors": [
+      {
+        "code": "position_out_of_bounds",
+        "message": "Source position must be inside the room",
+        "path": "sources.0.position"
+      }
+    ],
+    "ok": false
+  }
+}

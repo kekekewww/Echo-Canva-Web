@@ -1,0 +1,9 @@
+{
+  "caseId": "M013_HASH_MISMATCH_REJECTED",
+  "error": {
+    "message": "Scene document validation failed: Classic projection hash does not match the validated base scene.",
+    "name": "SceneDocumentSerializationError"
+  },
+  "kind": "workspace-migration",
+  "outcome": "error"
+}

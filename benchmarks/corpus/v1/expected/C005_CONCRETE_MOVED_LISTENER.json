@@ -1,0 +1,165 @@
+{
+  "caseId": "C005_CONCRETE_MOVED_LISTENER",
+  "kind": "classic-frame",
+  "outcome": "ok",
+  "value": {
+    "frame": {
+      "generatedAtMs": 0,
+      "revision": 104,
+      "room": {
+        "preDelayMs": 28.565478049949593,
+        "rt60S": {
+          "high": 2.8906059255921006,
+          "low": 1.9696533078167364,
+          "mid": 2.345190185821351
+        },
+        "totalSurfaceM2": 360,
+        "volumeM3": 288
+      },
+      "sources": [
+        {
+          "directVisible": false,
+          "dryGainDb": -3,
+          "earlyReflections": [
+            {
+              "delayMs": 26.28825002190806,
+              "gainDb": -25.305200295747458,
+              "lowpassHz": 20000,
+              "order": 2,
+              "pathLengthM": 16.260688792299053,
+              "reflectionPoint": {
+                "x": 10.192307692307693,
+                "y": 0
+              },
+              "reflectionPoints": [
+                {
+                  "x": 12,
+                  "y": 1.5039999999999996
+                },
+                {
+                  "x": 10.192307692307693,
+                  "y": 0
+                }
+              ],
+              "wallId": "boundary_north",
+              "wallIds": [
+                "boundary_east",
+                "boundary_north"
+              ]
+            },
+            {
+              "delayMs": 33.26882535743816,
+              "gainDb": -26.498338769043347,
+              "lowpassHz": 20000,
+              "order": 2,
+              "pathLengthM": 18.655026132385878,
+              "reflectionPoint": {
+                "x": 6,
+                "y": 5.9459459459459465
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0,
+                  "y": 5.167567567567568
+                },
+                {
+                  "x": 6,
+                  "y": 5.9459459459459465
+                }
+              ],
+              "wallId": "partition_center",
+              "wallIds": [
+                "boundary_west",
+                "partition_center"
+              ]
+            },
+            {
+              "delayMs": 35.77415351834785,
+              "gainDb": -26.889504977653232,
+              "lowpassHz": 20000,
+              "order": 2,
+              "pathLengthM": 19.514353691577902,
+              "reflectionPoint": {
+                "x": 4.760869565217392,
+                "y": 0
+              },
+              "reflectionPoints": [
+                {
+                  "x": 7.586956521739131,
+                  "y": 8
+                },
+                {
+                  "x": 4.760869565217392,
+                  "y": 0
+                }
+              ],
+              "wallId": "boundary_north",
+              "wallIds": [
+                "boundary_south",
+                "boundary_north"
+              ]
+            }
+          ],
+          "effectiveDistanceM": 7.243819034784589,
+          "lowpassHz": 18500,
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "physicalDistanceM": 6.928924880528003,
+          "portalIds": [
+            "partition_door"
+          ],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 9,
+              "y": 4
+            },
+            {
+              "x": 6,
+              "y": 4
+            },
+            {
+              "x": 2.5,
+              "y": 6.4
+            }
+          ],
+          "routeType": "portal",
+          "sourceId": "radio",
+          "virtualPosition": {
+            "x": 6,
+            "y": 4
+          }
+        },
+        {
+          "directVisible": true,
+          "dryGainDb": 0,
+          "earlyReflections": [],
+          "effectiveDistanceM": 8.958794561770015,
+          "lowpassHz": 20000,
+          "occluderWallIds": [],
+          "physicalDistanceM": 8.958794561770015,
+          "portalIds": [],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 10,
+              "y": 1.5
+            },
+            {
+              "x": 2.5,
+              "y": 6.4
+            }
+          ],
+          "routeType": "direct",
+          "sourceId": "rain",
+          "virtualPosition": {
+            "x": 10,
+            "y": 1.5
+          }
+        }
+      ]
+    },
+    "staticFingerprint": "4a0e1c7b"
+  }
+}

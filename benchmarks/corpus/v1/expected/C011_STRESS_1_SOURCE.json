@@ -1,0 +1,51 @@
+{
+  "caseId": "C011_STRESS_1_SOURCE",
+  "kind": "classic-frame",
+  "outcome": "ok",
+  "value": {
+    "frame": {
+      "generatedAtMs": 0,
+      "revision": 110,
+      "room": {
+        "preDelayMs": 28.565478049949593,
+        "rt60S": {
+          "high": 0.32911274928426565,
+          "low": 0.517963975942692,
+          "mid": 0.3516020403056913
+        },
+        "totalSurfaceM2": 575.2011185386546,
+        "volumeM3": 288
+      },
+      "sources": [
+        {
+          "directVisible": true,
+          "dryGainDb": 0,
+          "earlyReflections": [],
+          "effectiveDistanceM": 11.537764081484768,
+          "lowpassHz": 20000,
+          "occluderWallIds": [],
+          "physicalDistanceM": 11.537764081484768,
+          "portalIds": [],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 10.8,
+              "y": 7.2
+            },
+            {
+              "x": 1.2,
+              "y": 0.8
+            }
+          ],
+          "routeType": "direct",
+          "sourceId": "stress_radio",
+          "virtualPosition": {
+            "x": 10.8,
+            "y": 7.2
+          }
+        }
+      ]
+    },
+    "staticFingerprint": "870f39bb"
+  }
+}

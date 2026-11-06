@@ -1,0 +1,52 @@
+{
+  "caseId": "DK04_PATCH_DUPLICATE_VERTICES",
+  "kind": "hybrid-patch",
+  "outcome": "ok",
+  "value": {
+    "aabb": {
+      "max": {
+        "x": 1,
+        "y": 1,
+        "z": 0
+      },
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    "id": "degenerate-patch",
+    "kind": "wall",
+    "materialId": "concrete_hard",
+    "normal": {
+      "x": 0,
+      "y": 0,
+      "z": 1
+    },
+    "openings": [],
+    "surfaceId": "degenerate-patch",
+    "thicknessM": 0.1,
+    "vertices": [
+      {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "z": 0
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "z": 0
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "z": 0
+      }
+    ]
+  }
+}

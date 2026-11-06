@@ -1,0 +1,121 @@
+{
+  "caseId": "C012_STRESS_2_SOURCES",
+  "kind": "classic-frame",
+  "outcome": "ok",
+  "value": {
+    "frame": {
+      "generatedAtMs": 0,
+      "revision": 111,
+      "room": {
+        "preDelayMs": 28.565478049949593,
+        "rt60S": {
+          "high": 0.32911274928426565,
+          "low": 0.517963975942692,
+          "mid": 0.3516020403056913
+        },
+        "totalSurfaceM2": 575.2011185386546,
+        "volumeM3": 288
+      },
+      "sources": [
+        {
+          "directVisible": true,
+          "dryGainDb": 0,
+          "earlyReflections": [],
+          "effectiveDistanceM": 11.537764081484768,
+          "lowpassHz": 20000,
+          "occluderWallIds": [],
+          "physicalDistanceM": 11.537764081484768,
+          "portalIds": [],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 10.8,
+              "y": 7.2
+            },
+            {
+              "x": 1.2,
+              "y": 0.8
+            }
+          ],
+          "routeType": "direct",
+          "sourceId": "stress_radio",
+          "virtualPosition": {
+            "x": 10.8,
+            "y": 7.2
+          }
+        },
+        {
+          "directVisible": true,
+          "dryGainDb": 0,
+          "earlyReflections": [
+            {
+              "delayMs": 6.991945872123702,
+              "gainDb": -21.910001165807998,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 11.70683561001862,
+              "reflectionPoint": {
+                "x": 0,
+                "y": 0.8410256410256411
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0,
+                  "y": 0.8410256410256411
+                }
+              ],
+              "wallId": "stress_boundary_west",
+              "wallIds": [
+                "stress_boundary_west"
+              ]
+            },
+            {
+              "delayMs": 8.740245394870659,
+              "gainDb": -22.34390354374157,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 12.306502346320826,
+              "reflectionPoint": {
+                "x": 12,
+                "y": 1.1512195121951219
+              },
+              "reflectionPoints": [
+                {
+                  "x": 12,
+                  "y": 1.1512195121951219
+                }
+              ],
+              "wallId": "stress_boundary_east",
+              "wallIds": [
+                "stress_boundary_east"
+              ]
+            }
+          ],
+          "effectiveDistanceM": 9.30859817588019,
+          "lowpassHz": 20000,
+          "occluderWallIds": [],
+          "physicalDistanceM": 9.30859817588019,
+          "portalIds": [],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 10.5,
+              "y": 1.2
+            },
+            {
+              "x": 1.2,
+              "y": 0.8
+            }
+          ],
+          "routeType": "direct",
+          "sourceId": "stress_rain",
+          "virtualPosition": {
+            "x": 10.5,
+            "y": 1.2
+          }
+        }
+      ]
+    },
+    "staticFingerprint": "870f39bb"
+  }
+}

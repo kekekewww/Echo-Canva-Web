@@ -1,0 +1,140 @@
+{
+  "caseId": "H007_STRESS_8_PRIMITIVES",
+  "kind": "hybrid-frame",
+  "outcome": "ok",
+  "value": {
+    "audible": {
+      "audioState": {
+        "listenerPosition": {
+          "x": 1.2,
+          "y": 1.5,
+          "z": 0.8
+        },
+        "sourceStates": {
+          "stress_radio": {
+            "dryGainDb": -36,
+            "effectiveDistanceM": 11.537764081484768,
+            "lowpassHz": 700,
+            "position": {
+              "x": 10.8,
+              "y": 1.5,
+              "z": 7.2
+            },
+            "routeType": "blocked"
+          }
+        }
+      },
+      "paths": [
+        {
+          "dryGainDb": -36,
+          "effectiveDistanceM": 11.537764081484768,
+          "lowpassHz": 700,
+          "occluderWallIds": [
+            "stress_81",
+            "stress_box_1"
+          ],
+          "portalIds": [],
+          "routeType": "blocked",
+          "sourceId": "stress_radio",
+          "virtualPosition": {
+            "x": 10.8,
+            "y": 1.5,
+            "z": 7.2
+          }
+        }
+      ]
+    },
+    "earlyTapsBySource": {
+      "stress_radio": []
+    },
+    "frame": {
+      "classicProjectionHash": "1aa0a444",
+      "computedAtMs": 0,
+      "firstOrderReflectionsBySource": {
+        "stress_radio": []
+      },
+      "paths": [
+        {
+          "azimuthDeg": 56.309932474020215,
+          "delayMs": 33.63779615593227,
+          "directVisible": false,
+          "directionToSource": {
+            "x": 0.8320502943378436,
+            "y": 0,
+            "z": 0.554700196225229
+          },
+          "distanceM": 11.537764081484768,
+          "elevationDeg": 0,
+          "hits": [
+            {
+              "distanceM": 1.7547016207258106,
+              "materialId": "wood_medium",
+              "patchId": "stress_81:end-b",
+              "point": {
+                "x": 9.339999999999998,
+                "y": 1.5,
+                "z": 6.226666666666666
+              },
+              "surfaceId": "stress_81",
+              "thicknessM": 0.1,
+              "wallId": "stress_81"
+            },
+            {
+              "distanceM": 1.8349594548918002,
+              "materialId": "wood_medium",
+              "patchId": "stress_81:back",
+              "point": {
+                "x": 9.273221445459269,
+                "y": 1.5,
+                "z": 6.182147630306179
+              },
+              "surfaceId": "stress_81",
+              "thicknessM": 0.1,
+              "wallId": "stress_81"
+            },
+            {
+              "distanceM": 8.767465381173228,
+              "materialId": "wood_medium",
+              "patchId": "stress_box_1:side:1",
+              "point": {
+                "x": 3.5050278489979627,
+                "y": 1.5,
+                "z": 2.3366852326653085
+              },
+              "surfaceId": "stress_box_1",
+              "thicknessM": 0.8
+            },
+            {
+              "distanceM": 9.981401251239522,
+              "materialId": "wood_medium",
+              "patchId": "stress_box_1:side:3",
+              "point": {
+                "x": 2.4949721510020364,
+                "y": 1.5,
+                "z": 1.6633147673346906
+              },
+              "surfaceId": "stress_box_1",
+              "thicknessM": 0.8
+            }
+          ],
+          "occluderWallIds": [
+            "stress_81",
+            "stress_box_1"
+          ],
+          "propagationDirection": {
+            "x": -0.8320502943378436,
+            "y": 0,
+            "z": -0.554700196225229
+          },
+          "routeType": "blocked",
+          "sourceId": "stress_radio"
+        }
+      ],
+      "revision": 0,
+      "secondOrderReflectionsBySource": {
+        "stress_radio": []
+      }
+    },
+    "staticGeometryHash": "ff92ac62"
+  }
+}

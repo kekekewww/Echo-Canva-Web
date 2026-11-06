@@ -1,0 +1,391 @@
+{
+  "document": {
+    "documentVersion": "2.0",
+    "baseScene": {
+      "schemaVersion": "1.0",
+      "revision": 330,
+      "units": "m",
+      "name": "Concrete Partition",
+      "room": {
+        "outerPolygon": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 12,
+            "y": 0
+          },
+          {
+            "x": 12,
+            "y": 8
+          },
+          {
+            "x": 0,
+            "y": 8
+          }
+        ],
+        "heightM": 3,
+        "floorMaterialId": "concrete_hard",
+        "ceilingMaterialId": "concrete_hard"
+      },
+      "walls": [
+        {
+          "id": "boundary_north",
+          "a": {
+            "x": 0,
+            "y": 0
+          },
+          "b": {
+            "x": 12,
+            "y": 0
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "boundary_east",
+          "a": {
+            "x": 12,
+            "y": 0
+          },
+          "b": {
+            "x": 12,
+            "y": 8
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "boundary_south",
+          "a": {
+            "x": 12,
+            "y": 8
+          },
+          "b": {
+            "x": 0,
+            "y": 8
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "boundary_west",
+          "a": {
+            "x": 0,
+            "y": 8
+          },
+          "b": {
+            "x": 0,
+            "y": 0
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "partition_center",
+          "a": {
+            "x": 6,
+            "y": 0
+          },
+          "b": {
+            "x": 6,
+            "y": 8
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        }
+      ],
+      "portals": [
+        {
+          "id": "partition_door",
+          "wallId": "partition_center",
+          "center": {
+            "x": 6,
+            "y": 4
+          },
+          "widthM": 1.2,
+          "heightM": 2.1,
+          "open": true,
+          "lossDb": 3
+        }
+      ],
+      "sources": [
+        {
+          "id": "radio",
+          "name": "Radio",
+          "clipId": "radio_loop",
+          "sourceType": "point",
+          "position": {
+            "x": 9,
+            "y": 4
+          },
+          "gainDb": -3,
+          "loop": true
+        },
+        {
+          "id": "rain",
+          "name": "Rain",
+          "clipId": "rain_loop",
+          "sourceType": "point",
+          "position": {
+            "x": 10,
+            "y": 1.5
+          },
+          "gainDb": -8,
+          "loop": true
+        }
+      ],
+      "listener": {
+        "position": {
+          "x": 3,
+          "y": 4
+        },
+        "headingDeg": 0
+      },
+      "settings": {
+        "acousticUpdateHz": 12,
+        "maxEarlyReflections": 6,
+        "hrtfEnabled": true
+      }
+    },
+    "extensions": {
+      "spatial3d": {
+        "coordinateSystem": "x-right-y-up-z-forward",
+        "floorElevationM": 0,
+        "listenerHeightM": 1.5,
+        "sourceHeightsM": {
+          "radio": 1.3,
+          "rain": 1.5
+        },
+        "primitives": [
+          {
+            "id": "tape_box",
+            "name": "Tape box",
+            "kind": "box",
+            "position": {
+              "x": 8.5,
+              "y": 0.5,
+              "z": 6
+            },
+            "dimensions": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            },
+            "rotationYDeg": 0,
+            "materialId": "wood_medium"
+          },
+          {
+            "id": "tape_cylinder",
+            "name": "Tape cylinder",
+            "kind": "cylinder",
+            "position": {
+              "x": 3,
+              "y": 0.6,
+              "z": 2
+            },
+            "dimensions": {
+              "x": 0.8,
+              "y": 1.2,
+              "z": 0.8
+            },
+            "rotationYDeg": 0,
+            "materialId": "wood_medium"
+          }
+        ]
+      }
+    },
+    "compatibility": {
+      "migratedFrom": "1.0",
+      "classicProjectionHash": "4b9b69f5"
+    }
+  },
+  "events": [
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 2,
+        "y": 2
+      }
+    },
+    {
+      "type": "wall-endpoint",
+      "id": "partition_center",
+      "a": {
+        "x": 6,
+        "y": 0.5
+      },
+      "b": {
+        "x": 6,
+        "y": 8
+      }
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 3,
+        "y": 6
+      }
+    },
+    {
+      "type": "wall-material",
+      "id": "partition_center",
+      "materialId": "wood_medium"
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 4.5,
+        "y": 4.2
+      }
+    },
+    {
+      "type": "portal-toggle",
+      "id": "partition_door",
+      "open": false
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 5.2,
+        "y": 3.8
+      }
+    },
+    {
+      "type": "primitive-pose",
+      "id": "tape_box",
+      "position": {
+        "x": 9,
+        "y": 0.5,
+        "z": 6.5
+      },
+      "rotationYDeg": 30
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 7,
+        "y": 4
+      }
+    },
+    {
+      "type": "wall-endpoint",
+      "id": "boundary_east",
+      "a": {
+        "x": 12,
+        "y": 0.4
+      },
+      "b": {
+        "x": 12,
+        "y": 8
+      }
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 8,
+        "y": 6
+      }
+    },
+    {
+      "type": "wall-material",
+      "id": "boundary_north",
+      "materialId": "acoustic_treatment"
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 10.5,
+        "y": 6.5
+      }
+    },
+    {
+      "type": "portal-toggle",
+      "id": "partition_door",
+      "open": true
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 8,
+        "y": 2.5
+      }
+    },
+    {
+      "type": "primitive-pose",
+      "id": "tape_cylinder",
+      "position": {
+        "x": 2.5,
+        "y": 0.6,
+        "z": 2.5
+      },
+      "rotationYDeg": 0
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 7.2,
+        "y": 5
+      }
+    },
+    {
+      "type": "wall-endpoint",
+      "id": "partition_center",
+      "a": {
+        "x": 6,
+        "y": 1
+      },
+      "b": {
+        "x": 6,
+        "y": 7.5
+      }
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 4,
+        "y": 1.5
+      }
+    },
+    {
+      "type": "wall-material",
+      "id": "partition_center",
+      "materialId": "concrete_hard"
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 2.5,
+        "y": 7
+      }
+    },
+    {
+      "type": "portal-toggle",
+      "id": "partition_door",
+      "open": false
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 3,
+        "y": 4
+      }
+    },
+    {
+      "type": "primitive-pose",
+      "id": "tape_box",
+      "position": {
+        "x": 8,
+        "y": 0.5,
+        "z": 5.5
+      },
+      "rotationYDeg": 75
+    }
+  ]
+}

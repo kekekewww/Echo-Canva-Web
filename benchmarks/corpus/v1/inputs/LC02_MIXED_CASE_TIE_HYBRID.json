@@ -1,0 +1,165 @@
+{
+  "document": {
+    "documentVersion": "2.0",
+    "baseScene": {
+      "schemaVersion": "1.0",
+      "revision": 311,
+      "units": "m",
+      "name": "Mixed case tie hybrid",
+      "room": {
+        "outerPolygon": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 8,
+            "y": 0
+          },
+          {
+            "x": 8,
+            "y": 8
+          },
+          {
+            "x": 0,
+            "y": 8
+          }
+        ],
+        "heightM": 3,
+        "floorMaterialId": "concrete_hard",
+        "ceilingMaterialId": "concrete_hard"
+      },
+      "walls": [
+        {
+          "id": "edge-1",
+          "a": {
+            "x": 0,
+            "y": 8
+          },
+          "b": {
+            "x": 0,
+            "y": 0
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "Edge_b",
+          "a": {
+            "x": 0,
+            "y": 0
+          },
+          "b": {
+            "x": 8,
+            "y": 0
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "edge_1",
+          "a": {
+            "x": 8,
+            "y": 0
+          },
+          "b": {
+            "x": 8,
+            "y": 8
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "edge_a",
+          "a": {
+            "x": 8,
+            "y": 8
+          },
+          "b": {
+            "x": 0,
+            "y": 8
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        }
+      ],
+      "portals": [],
+      "sources": [
+        {
+          "id": "radio",
+          "name": "Radio",
+          "clipId": "radio_loop",
+          "sourceType": "point",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "gainDb": -3,
+          "loop": true
+        },
+        {
+          "id": "echo",
+          "name": "Echo",
+          "clipId": "radio_loop",
+          "sourceType": "point",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "gainDb": -3,
+          "loop": true
+        }
+      ],
+      "listener": {
+        "position": {
+          "x": 5,
+          "y": 4
+        },
+        "headingDeg": 0
+      },
+      "settings": {
+        "acousticUpdateHz": 12,
+        "maxEarlyReflections": 6,
+        "hrtfEnabled": true
+      }
+    },
+    "extensions": {
+      "spatial3d": {
+        "coordinateSystem": "x-right-y-up-z-forward",
+        "floorElevationM": 0,
+        "listenerHeightM": 1.5,
+        "sourceHeightsM": {
+          "radio": 1.5,
+          "echo": 2.5
+        },
+        "primitives": [
+          {
+            "id": "block",
+            "name": "Block",
+            "kind": "box",
+            "position": {
+              "x": 4,
+              "y": 1.5,
+              "z": 4
+            },
+            "dimensions": {
+              "x": 0.4,
+              "y": 0.6,
+              "z": 0.4
+            },
+            "rotationYDeg": 0,
+            "materialId": "wood_medium"
+          }
+        ]
+      }
+    },
+    "compatibility": {
+      "migratedFrom": "1.0",
+      "classicProjectionHash": "8ce73c5f"
+    }
+  }
+}

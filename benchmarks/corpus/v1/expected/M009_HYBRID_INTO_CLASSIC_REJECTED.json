@@ -1,0 +1,9 @@
+{
+  "caseId": "M009_HYBRID_INTO_CLASSIC_REJECTED",
+  "error": {
+    "message": "3D project cannot be imported into this mode.",
+    "name": "Error"
+  },
+  "kind": "workspace-migration",
+  "outcome": "error"
+}

@@ -1,0 +1,75 @@
+{
+  "caseId": "DK05_SEGMENTS_ON_PATCH",
+  "kind": "hybrid-visibility",
+  "outcome": "ok",
+  "value": [
+    {
+      "hasHit": false,
+      "hits": [],
+      "reverseHasHit": false
+    },
+    {
+      "hasHit": false,
+      "hits": [],
+      "reverseHasHit": false
+    },
+    {
+      "hasHit": false,
+      "hits": [],
+      "reverseHasHit": false
+    },
+    {
+      "hasHit": true,
+      "hits": [
+        {
+          "distanceM": 1,
+          "materialId": "concrete_hard",
+          "patchId": "plane-wall:front",
+          "point": {
+            "x": 1,
+            "y": 3,
+            "z": 2
+          },
+          "surfaceId": "plane-wall",
+          "thicknessM": 0.1,
+          "wallId": "plane-wall"
+        }
+      ],
+      "reverseHasHit": true
+    },
+    {
+      "hasHit": false,
+      "hits": [],
+      "reverseHasHit": false
+    },
+    {
+      "hasHit": false,
+      "hits": [],
+      "reverseHasHit": false
+    },
+    {
+      "hasHit": false,
+      "hits": [],
+      "reverseHasHit": false
+    },
+    {
+      "hasHit": true,
+      "hits": [
+        {
+          "distanceM": 1,
+          "materialId": "concrete_hard",
+          "patchId": "plane-wall:front",
+          "point": {
+            "x": 1,
+            "y": 1,
+            "z": 0
+          },
+          "surfaceId": "plane-wall",
+          "thicknessM": 0.1,
+          "wallId": "plane-wall"
+        }
+      ],
+      "reverseHasHit": true
+    }
+  ]
+}

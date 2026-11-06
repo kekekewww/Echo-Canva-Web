@@ -1,0 +1,15 @@
+{
+  "caseId": "DV09_ROOM_WIDTH_ABOVE_LIMIT",
+  "kind": "scene-validation",
+  "outcome": "ok",
+  "value": {
+    "errors": [
+      {
+        "code": "room_dimension_exceeded",
+        "message": "Room width and height must not exceed 50 m",
+        "path": "room.outerPolygon"
+      }
+    ],
+    "ok": false
+  }
+}

@@ -2,7 +2,7 @@
 
 **Evidence date** 2026-11-06 Asia/Taipei. **Runtime baseline** `98a4374fa839aa5dee7c6c35e575b8003f7f1a31`, GitHub `main` as fetched for this research. Run in branch `research/agent-memory-cross-platform-architecture` before any tracked product code or test changes. See the [repository snapshot](repository.md) and [existing acceptance criteria](../../../docs/ACCEPTANCE_TESTS.md).
 
-The linked JSON files are the unedited Playwright result artifacts. Terminal logs retain their content with normalized line endings and trailing whitespace removed.
+The linked JSON files are the unedited Playwright result artifacts. Terminal logs retain their content with normalized line endings and trailing whitespace removed. One later change is recorded under [Corrections](#corrections).
 
 ## Environment
 
@@ -43,3 +43,7 @@ The Hybrid timing is the fixture's reported Worker metric and excludes input-to-
 ## Coverage gaps
 
 This run did not measure p99 over a representative workload distribution, throughput, CPU/memory/GC, IPC, energy/thermal or physical audio continuity. Complete Playwright, Docker, macOS/Linux, Native Rust, WASM and device/listening checks were outside the executed commands. Future comparative work uses the [benchmark and numerical validation plan](../../wiki/performance/benchmark-plan.md).
+
+## Corrections
+
+**2026-11-06 更正記錄**：維護者決定，因儲存庫公開，移除 `windows-2026-11-06/unit.log` 與 `targeted-unit.log` 第 2 行（Vitest `RUN` 行）末尾的本機絕對 checkout 路徑，改為文字 `<local checkout path removed>`。兩個檔案沒有其他變更，測試結果不受影響。原始位元組仍在 git 歷史的提交 `2a68438`，該歷史未被改寫。

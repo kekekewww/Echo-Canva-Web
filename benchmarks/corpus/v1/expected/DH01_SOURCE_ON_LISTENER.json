@@ -1,0 +1,9 @@
+{
+  "caseId": "DH01_SOURCE_ON_LISTENER",
+  "error": {
+    "message": "Source and listener positions must be distinct in Hybrid 3D.",
+    "name": "Error"
+  },
+  "kind": "hybrid-frame",
+  "outcome": "error"
+}

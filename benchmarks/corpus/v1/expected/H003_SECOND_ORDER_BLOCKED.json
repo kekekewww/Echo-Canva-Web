@@ -1,0 +1,479 @@
+{
+  "caseId": "H003_SECOND_ORDER_BLOCKED",
+  "kind": "hybrid-frame",
+  "outcome": "ok",
+  "value": {
+    "audible": {
+      "audioState": {
+        "listenerPosition": {
+          "x": 1,
+          "y": 1,
+          "z": 4
+        },
+        "sourceStates": {
+          "radio": {
+            "dryGainDb": -32.42179356499724,
+            "effectiveDistanceM": 3,
+            "lowpassHz": 700,
+            "position": {
+              "x": 4,
+              "y": 1,
+              "z": 4
+            },
+            "routeType": "blocked"
+          }
+        }
+      },
+      "paths": [
+        {
+          "dryGainDb": -32.42179356499724,
+          "effectiveDistanceM": 3,
+          "lowpassHz": 700,
+          "occluderWallIds": [
+            "direct_blocker"
+          ],
+          "portalIds": [],
+          "routeType": "blocked",
+          "sourceId": "radio",
+          "virtualPosition": {
+            "x": 4,
+            "y": 1,
+            "z": 4
+          }
+        }
+      ]
+    },
+    "earlyTapsBySource": {
+      "radio": [
+        {
+          "delayMs": 10.511811298728833,
+          "gainDb": -11.680644290121194,
+          "id": "first:floor",
+          "lowpassHz": 20000,
+          "order": 1,
+          "position": {
+            "x": 2.5,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "delayMs": 14.577259475218659,
+          "gainDb": -14.520610853773201,
+          "id": "first:ceiling",
+          "lowpassHz": 20000,
+          "order": 1,
+          "position": {
+            "x": 2.5,
+            "y": 3,
+            "z": 4
+          }
+        },
+        {
+          "delayMs": 15.160349854227402,
+          "gainDb": -15.402488406801634,
+          "id": "second:floor>boundary_west",
+          "lowpassHz": 20000,
+          "order": 2,
+          "position": {
+            "x": 0.10000000000000009,
+            "y": 0.625,
+            "z": 4
+          }
+        },
+        {
+          "delayMs": 18.2163257747094,
+          "gainDb": -16.997519624052195,
+          "id": "second:ceiling>boundary_west",
+          "lowpassHz": 20000,
+          "order": 2,
+          "position": {
+            "x": 0.10000000000000009,
+            "y": 1.75,
+            "z": 4
+          }
+        },
+        {
+          "delayMs": 19.557445867345102,
+          "gainDb": -17.614546671859088,
+          "id": "second:ceiling>floor",
+          "lowpassHz": 20000,
+          "order": 2,
+          "position": {
+            "x": 1.5,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "delayMs": 19.557445867345102,
+          "gainDb": -17.614546671859088,
+          "id": "second:floor>ceiling",
+          "lowpassHz": 20000,
+          "order": 2,
+          "position": {
+            "x": 2,
+            "y": 3,
+            "z": 4
+          }
+        }
+      ]
+    },
+    "frame": {
+      "classicProjectionHash": "b3b1e10e",
+      "computedAtMs": 0,
+      "firstOrderReflectionsBySource": {
+        "radio": [
+          {
+            "arrivalDirection": {
+              "x": 0.8320502943378436,
+              "y": -0.554700196225229,
+              "z": 0
+            },
+            "delayMs": 10.511811298728833,
+            "excessDelayMs": 1.7654556135976374,
+            "id": "first:floor",
+            "materialId": "concrete_hard",
+            "patchId": "floor",
+            "pathLengthM": 3.6055512754639896,
+            "reflectionPoint": {
+              "x": 2.5,
+              "y": 0,
+              "z": 4
+            },
+            "surfaceId": "floor"
+          },
+          {
+            "arrivalDirection": {
+              "x": 0.6000000000000001,
+              "y": 0.8,
+              "z": 0
+            },
+            "delayMs": 14.577259475218659,
+            "excessDelayMs": 5.830903790087463,
+            "id": "first:ceiling",
+            "materialId": "concrete_hard",
+            "patchId": "ceiling",
+            "pathLengthM": 5,
+            "reflectionPoint": {
+              "x": 2.5,
+              "y": 3,
+              "z": 4
+            },
+            "surfaceId": "ceiling"
+          },
+          {
+            "arrivalDirection": {
+              "x": 0.3589790793088691,
+              "y": 0,
+              "z": -0.9333456062030595
+            },
+            "delayMs": 24.364527598572803,
+            "excessDelayMs": 15.618171913441609,
+            "id": "first:boundary_north",
+            "materialId": "concrete_hard",
+            "patchId": "boundary_north:front",
+            "pathLengthM": 8.357032966310472,
+            "reflectionPoint": {
+              "x": 2.5,
+              "y": 1,
+              "z": 0.10000000000000009
+            },
+            "surfaceId": "boundary_north"
+          },
+          {
+            "arrivalDirection": {
+              "x": 0.35897907930886896,
+              "y": 0,
+              "z": 0.9333456062030594
+            },
+            "delayMs": 24.36452759857281,
+            "excessDelayMs": 15.618171913441614,
+            "id": "first:boundary_south",
+            "materialId": "concrete_hard",
+            "patchId": "boundary_south:front",
+            "pathLengthM": 8.357032966310474,
+            "reflectionPoint": {
+              "x": 2.5,
+              "y": 1,
+              "z": 7.9
+            },
+            "surfaceId": "boundary_south"
+          }
+        ]
+      },
+      "paths": [
+        {
+          "azimuthDeg": 90,
+          "delayMs": 8.746355685131196,
+          "directVisible": false,
+          "directionToSource": {
+            "x": 1,
+            "y": 0,
+            "z": 0
+          },
+          "distanceM": 3,
+          "elevationDeg": 0,
+          "hits": [
+            {
+              "distanceM": 1.2999999999999998,
+              "materialId": "wood_medium",
+              "patchId": "direct_blocker:side:1",
+              "point": {
+                "x": 2.7,
+                "y": 1,
+                "z": 4
+              },
+              "surfaceId": "direct_blocker",
+              "thicknessM": 0.4
+            },
+            {
+              "distanceM": 1.7000000000000002,
+              "materialId": "wood_medium",
+              "patchId": "direct_blocker:side:3",
+              "point": {
+                "x": 2.3,
+                "y": 1,
+                "z": 4
+              },
+              "surfaceId": "direct_blocker",
+              "thicknessM": 0.4
+            }
+          ],
+          "occluderWallIds": [
+            "direct_blocker"
+          ],
+          "propagationDirection": {
+            "x": -1,
+            "y": 0,
+            "z": 0
+          },
+          "routeType": "blocked",
+          "sourceId": "radio"
+        }
+      ],
+      "revision": 0,
+      "secondOrderReflectionsBySource": {
+        "radio": [
+          {
+            "arrivalDirection": {
+              "x": -0.9230769230769231,
+              "y": -0.3846153846153847,
+              "z": 0
+            },
+            "delayMs": 15.160349854227402,
+            "estimatedMidGainDb": -15.402488406801634,
+            "excessDelayMs": 6.413994169096208,
+            "id": "second:floor>boundary_west",
+            "materialIds": [
+              "concrete_hard",
+              "concrete_hard"
+            ],
+            "patchIds": [
+              "floor",
+              "boundary_west:front"
+            ],
+            "pathLengthM": 5.199999999999999,
+            "reflectionPoints": [
+              {
+                "x": 1.6,
+                "y": 0,
+                "z": 4
+              },
+              {
+                "x": 0.10000000000000009,
+                "y": 0.625,
+                "z": 4
+              }
+            ],
+            "surfaceIds": [
+              "floor",
+              "boundary_west"
+            ]
+          },
+          {
+            "arrivalDirection": {
+              "x": -0.7682212795973757,
+              "y": 0.6401843996644798,
+              "z": 0
+            },
+            "delayMs": 18.2163257747094,
+            "estimatedMidGainDb": -16.997519624052195,
+            "excessDelayMs": 9.469970089578206,
+            "id": "second:ceiling>boundary_west",
+            "materialIds": [
+              "concrete_hard",
+              "concrete_hard"
+            ],
+            "patchIds": [
+              "ceiling",
+              "boundary_west:front"
+            ],
+            "pathLengthM": 6.248199740725324,
+            "reflectionPoints": [
+              {
+                "x": 1.6,
+                "y": 3,
+                "z": 4
+              },
+              {
+                "x": 0.10000000000000009,
+                "y": 1.75,
+                "z": 4
+              }
+            ],
+            "surfaceIds": [
+              "ceiling",
+              "boundary_west"
+            ]
+          },
+          {
+            "arrivalDirection": {
+              "x": 0.4472135954999579,
+              "y": -0.8944271909999159,
+              "z": 0
+            },
+            "delayMs": 19.557445867345102,
+            "estimatedMidGainDb": -17.614546671859088,
+            "excessDelayMs": 10.811090182213904,
+            "id": "second:ceiling>floor",
+            "materialIds": [
+              "concrete_hard",
+              "concrete_hard"
+            ],
+            "patchIds": [
+              "ceiling",
+              "floor"
+            ],
+            "pathLengthM": 6.708203932499369,
+            "reflectionPoints": [
+              {
+                "x": 3,
+                "y": 3,
+                "z": 4
+              },
+              {
+                "x": 1.5,
+                "y": 0,
+                "z": 4
+              }
+            ],
+            "surfaceIds": [
+              "ceiling",
+              "floor"
+            ]
+          },
+          {
+            "arrivalDirection": {
+              "x": 0.4472135954999579,
+              "y": 0.8944271909999159,
+              "z": 0
+            },
+            "delayMs": 19.557445867345102,
+            "estimatedMidGainDb": -17.614546671859088,
+            "excessDelayMs": 10.811090182213904,
+            "id": "second:floor>ceiling",
+            "materialIds": [
+              "concrete_hard",
+              "concrete_hard"
+            ],
+            "patchIds": [
+              "floor",
+              "ceiling"
+            ],
+            "pathLengthM": 6.708203932499369,
+            "reflectionPoints": [
+              {
+                "x": 3.5,
+                "y": 0,
+                "z": 4
+              },
+              {
+                "x": 2,
+                "y": 3,
+                "z": 4
+              }
+            ],
+            "surfaceIds": [
+              "floor",
+              "ceiling"
+            ]
+          },
+          {
+            "arrivalDirection": {
+              "x": -0.5240974256643346,
+              "y": 0,
+              "z": -0.8516583167045441
+            },
+            "delayMs": 26.701465053889933,
+            "estimatedMidGainDb": -20.31900575203871,
+            "excessDelayMs": 17.955109368758738,
+            "id": "second:boundary_north>boundary_west",
+            "materialIds": [
+              "concrete_hard",
+              "concrete_hard"
+            ],
+            "patchIds": [
+              "boundary_north:front",
+              "boundary_west:front"
+            ],
+            "pathLengthM": 9.158602513484247,
+            "reflectionPoints": [
+              {
+                "x": 1.6,
+                "y": 1,
+                "z": 0.10000000000000009
+              },
+              {
+                "x": 0.10000000000000009,
+                "y": 1,
+                "z": 2.5374999999999996
+              }
+            ],
+            "surfaceIds": [
+              "boundary_north",
+              "boundary_west"
+            ]
+          },
+          {
+            "arrivalDirection": {
+              "x": -0.5240974256643346,
+              "y": 0,
+              "z": 0.8516583167045441
+            },
+            "delayMs": 26.701465053889944,
+            "estimatedMidGainDb": -20.319005752038713,
+            "excessDelayMs": 17.955109368758748,
+            "id": "second:boundary_south>boundary_west",
+            "materialIds": [
+              "concrete_hard",
+              "concrete_hard"
+            ],
+            "patchIds": [
+              "boundary_south:front",
+              "boundary_west:front"
+            ],
+            "pathLengthM": 9.15860251348425,
+            "reflectionPoints": [
+              {
+                "x": 1.6,
+                "y": 1,
+                "z": 7.9
+              },
+              {
+                "x": 0.10000000000000009,
+                "y": 1,
+                "z": 5.4625
+              }
+            ],
+            "surfaceIds": [
+              "boundary_south",
+              "boundary_west"
+            ]
+          }
+        ]
+      }
+    },
+    "staticGeometryHash": "3d37ef76"
+  }
+}

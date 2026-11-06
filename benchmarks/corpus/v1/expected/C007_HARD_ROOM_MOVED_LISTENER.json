@@ -1,0 +1,136 @@
+{
+  "caseId": "C007_HARD_ROOM_MOVED_LISTENER",
+  "kind": "classic-frame",
+  "outcome": "ok",
+  "value": {
+    "frame": {
+      "generatedAtMs": 0,
+      "revision": 106,
+      "room": {
+        "preDelayMs": 26.076594489793468,
+        "rt60S": {
+          "high": 4,
+          "low": 2.810876279231652,
+          "mid": 3.53189760010557
+        },
+        "totalSurfaceM2": 268,
+        "volumeM3": 240
+      },
+      "sources": [
+        {
+          "directVisible": true,
+          "dryGainDb": 0,
+          "earlyReflections": [
+            {
+              "delayMs": 6.667814410175044,
+              "gainDb": -18.75306959314128,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 8.139410298049853,
+              "reflectionPoint": {
+                "x": 3.8333333333333335,
+                "y": 0
+              },
+              "reflectionPoints": [
+                {
+                  "x": 3.8333333333333335,
+                  "y": 0
+                }
+              ],
+              "wallId": "hard_north",
+              "wallIds": [
+                "hard_north"
+              ]
+            },
+            {
+              "delayMs": 11.241673364763805,
+              "gainDb": -20.28402435583113,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 9.708243919473798,
+              "reflectionPoint": {
+                "x": 0,
+                "y": 2.4210526315789473
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0,
+                  "y": 2.4210526315789473
+                }
+              ],
+              "wallId": "hard_west",
+              "wallIds": [
+                "hard_west"
+              ]
+            },
+            {
+              "delayMs": 14.100376699289106,
+              "gainDb": -21.11977285447171,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 10.688779163215976,
+              "reflectionPoint": {
+                "x": 10,
+                "y": 3.5238095238095237
+              },
+              "reflectionPoints": [
+                {
+                  "x": 10,
+                  "y": 3.5238095238095237
+                }
+              ],
+              "wallId": "hard_east",
+              "wallIds": [
+                "hard_east"
+              ]
+            },
+            {
+              "delayMs": 16.21096867391695,
+              "gainDb": -21.688988086768447,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 11.412712210513327,
+              "reflectionPoint": {
+                "x": 5.3,
+                "y": 8
+              },
+              "reflectionPoints": [
+                {
+                  "x": 5.3,
+                  "y": 8
+                }
+              ],
+              "wallId": "hard_south",
+              "wallIds": [
+                "hard_south"
+              ]
+            }
+          ],
+          "effectiveDistanceM": 5.852349955359813,
+          "lowpassHz": 20000,
+          "occluderWallIds": [],
+          "physicalDistanceM": 5.852349955359813,
+          "portalIds": [],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 7.5,
+              "y": 4
+            },
+            {
+              "x": 2,
+              "y": 2
+            }
+          ],
+          "routeType": "direct",
+          "sourceId": "hard_radio",
+          "virtualPosition": {
+            "x": 7.5,
+            "y": 4
+          }
+        }
+      ]
+    },
+    "staticFingerprint": "43c9cdec"
+  }
+}

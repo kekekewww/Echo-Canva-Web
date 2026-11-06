@@ -1,0 +1,414 @@
+{
+  "baselineSha": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+  "candidateSha": "b0807aedbc31b34f7db97ab565483c82e14d6191",
+  "criteria": [
+    {
+      "basis": "Two separate top-level reruns produced six matching child runs at the exact baseline SHA.",
+      "criterion": "Repeat the same corpus twice at the baseline SHA",
+      "status": "PASS"
+    },
+    {
+      "basis": "All seven fresh runs are 86/86 bit-exact; independent comparison has zero violations; tie-order mutation is caught.",
+      "criterion": "Discrete fields match exactly, including array order and tied reflections",
+      "status": "PASS"
+    },
+    {
+      "basis": "All 23 non-exact classes have units; all 25 classes match the dated decision; no proposed classes; frozen status.",
+      "criterion": "Continuous fields have units and approved tolerances",
+      "status": "PASS"
+    },
+    {
+      "basis": "All 86 entries record provenance and seed/null; all 172 hashes match; oracle and seeded inputs independently reproduced.",
+      "criterion": "Record source, seed and input/output hashes",
+      "status": "PASS"
+    },
+    {
+      "basis": "13 migration cases replayed; scratch-only instrumentation reached named legacy/cache/document branches.",
+      "criterion": "Cover legacy-scene migration",
+      "status": "PASS"
+    },
+    {
+      "basis": "25 tagged degenerate cases plus limit/locale cases; over ten numerical construction checks and direct edge probes completed.",
+      "criterion": "Cover degenerate geometry",
+      "status": "PASS"
+    },
+    {
+      "basis": "Product source and lockfile match baseline; no intervening source edits/reverts; tracked source checkouts unchanged.",
+      "criterion": "Preserve formulas, parameters, thresholds and product behavior",
+      "status": "PASS"
+    },
+    {
+      "basis": "Complete branch patch including generated data scanned; no private local identity/email/path finding. Only pre-existing logs outside scope contain local paths.",
+      "criterion": "Keep branch changes free of local paths and personal details",
+      "status": "PASS"
+    },
+    {
+      "basis": "Local shell only; no network, commits, pushes, PRs, Rust, WASM, Desktop or EC-102 profiling; audit mutations confined to scratch.",
+      "criterion": "Respect isolation and technology scope",
+      "status": "PASS"
+    }
+  ],
+  "date": "2026-11-06",
+  "environment": {
+    "arch": "x64",
+    "configurationModified": false,
+    "networkUsed": false,
+    "node": "v22.23.3",
+    "notes": "Local shell only. Installed process-skill guidance read locally. TEMP, TMP and TMPDIR set to absolute assignment-local scratch/tmp before Node.",
+    "platform": "win32",
+    "sandboxMode": "danger-full-access; no enforced operating-system isolation; all audit writes confined to assignment directory",
+    "shell": "PowerShell"
+  },
+  "findings": [
+    {
+      "basis": "Additional future-regression coverage gap. Existing measured degenerate-geometry coverage satisfies the stated criterion, which does not require exhaustive validator mutation coverage. No product change exists in this candidate.",
+      "blocksAcceptance": false,
+      "how": "scratch/mutations-boundary.json: 0 violations, 86 bit-exact. scratch/minimum-boundary-proof.json: originalOk=true, modifiedOk=false.",
+      "id": "I1",
+      "severity": "Important",
+      "what": "The exact-minimum wall case does not call validateScene. Doubling only the validator predicate threshold to 0.2 m leaves all 86 outputs bit-exact, although DC05 now fails validation.",
+      "where": "benchmarks/corpus/harness/ts-serial-adapter.ts:runClassicFrame; v1/inputs/DC05_WALL_EXACTLY_MIN_LENGTH.json"
+    },
+    {
+      "basis": "Checks establish consistency rather than cryptographic authenticity. Required full checks enforce tolerance policy; this audit independently reproduced baseline results. README describes the narrower CLI behavior accurately.",
+      "blocksAcceptance": false,
+      "how": "scratch/tampering.json: fabricated metadata passes 94 runnable corpus tests and CLI verify/frozen/compare/rerun. Rehashed 100 dB tolerance passes CLI but fails independently pinned unit tests; draft status fails frozen verification and unit tests.",
+      "id": "I2",
+      "severity": "Important",
+      "what": "Consistently fabricated historical environment/timestamp metadata passes all checks. CLI-only checks also accept consistently rehashed tolerances and draft rules unless require-frozen is requested.",
+      "where": "scripts/corpus/lib.mjs:verifyCorpus; scripts/corpus/cli.mjs:rerun; tests/unit/corpus-integrity.test.ts:freeze anchors"
+    },
+    {
+      "basis": "Already disclosed among eight singly undetected locale-sort sites. Final tied-reflection ordering is independently caught by the sort-tie mutation.",
+      "blocksAcceptance": false,
+      "how": "scratch/mutations.json, uncovered-room-sort: 0 violations, 86 bit-exact.",
+      "id": "I3",
+      "severity": "Important",
+      "what": "Reversing boundary-wall ID sorting produces no corpus change.",
+      "where": "src/acoustics/room-acoustics.ts:62; benchmarks/corpus/README.md:Known limits"
+    },
+    {
+      "basis": "Pre-existing behavior is reported and frozen. The assignment forbids tuning product formulas or fixtures to conceal it.",
+      "blocksAcceptance": false,
+      "how": "Fresh runs and direct probes reproduce source findings 1-10, 12, 13 and 15; see section K.",
+      "id": "I4",
+      "severity": "Important",
+      "what": "Baseline edge behavior includes singular vertical azimuth, mode-dependent coincident-source handling, default thickness in wall hits, and acceptance of non-planar/duplicate-vertex patches.",
+      "where": "src/acoustics/hybrid3d/direct.ts; geometry.ts; compile.ts; baseline product behavior"
+    },
+    {
+      "basis": "Documentation chronology only; corpus bytes and product source remain unchanged.",
+      "blocksAcceptance": false,
+      "how": "git diff cb2ef6d b0807ae also includes benchmarks/corpus/README.md and tests/unit/corpus-integrity.test.ts; three tests were added.",
+      "id": "M1",
+      "severity": "Minor",
+      "what": "The statement that only knowledge pages and the CLAUDE command table changed after cb2ef6d is incomplete at the candidate SHA.",
+      "where": "knowledge/handoffs/2026-11-06-ec-101-claude.md:9"
+    },
+    {
+      "basis": "Pre-existing main material is explicitly outside the maintainer-defined privacy scope.",
+      "blocksAcceptance": false,
+      "how": "Independent baseline diff scan found both lines; neither is changed by diff dd57934 b0807ae. Personal values omitted.",
+      "id": "M2",
+      "severity": "Minor",
+      "what": "Two pre-existing test logs contain absolute local paths.",
+      "where": "knowledge/raw/sources/windows-2026-11-06/targeted-unit.log:2; knowledge/raw/sources/windows-2026-11-06/unit.log:2"
+    }
+  ],
+  "reruns": [
+    {
+      "aggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "bitExactCount": 86,
+      "caseCount": 86,
+      "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+      "id": "baseline-1/A",
+      "leafCount": 135147,
+      "productTreeDiffs": [],
+      "productTreesMatchBaseline": true,
+      "recomputedAggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "violationCount": 0
+    },
+    {
+      "aggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "bitExactCount": 86,
+      "caseCount": 86,
+      "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+      "id": "baseline-1/B",
+      "leafCount": 135147,
+      "productTreeDiffs": [],
+      "productTreesMatchBaseline": true,
+      "recomputedAggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "violationCount": 0
+    },
+    {
+      "aggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "bitExactCount": 86,
+      "caseCount": 86,
+      "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+      "id": "baseline-1/C",
+      "leafCount": 135147,
+      "productTreeDiffs": [],
+      "productTreesMatchBaseline": true,
+      "recomputedAggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "violationCount": 0
+    },
+    {
+      "aggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "bitExactCount": 86,
+      "caseCount": 86,
+      "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+      "id": "baseline-2/A",
+      "leafCount": 135147,
+      "productTreeDiffs": [],
+      "productTreesMatchBaseline": true,
+      "recomputedAggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "violationCount": 0
+    },
+    {
+      "aggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "bitExactCount": 86,
+      "caseCount": 86,
+      "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+      "id": "baseline-2/B",
+      "leafCount": 135147,
+      "productTreeDiffs": [],
+      "productTreesMatchBaseline": true,
+      "recomputedAggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "violationCount": 0
+    },
+    {
+      "aggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "bitExactCount": 86,
+      "caseCount": 86,
+      "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+      "id": "baseline-2/C",
+      "leafCount": 135147,
+      "productTreeDiffs": [],
+      "productTreesMatchBaseline": true,
+      "recomputedAggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "violationCount": 0
+    },
+    {
+      "aggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "bitExactCount": 86,
+      "caseCount": 86,
+      "gitHead": "b0807aedbc31b34f7db97ab565483c82e14d6191",
+      "id": "candidate-run/candidate",
+      "leafCount": 135147,
+      "productTreeDiffs": [],
+      "productTreesMatchBaseline": true,
+      "recomputedAggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "violationCount": 0
+    }
+  ],
+  "sectionResults": {
+    "A": {
+      "basis": "Both SHAs confirmed; src/lockfile diff empty; nine external paths reviewed; 26 intervening commits inspected without product source changes/reverts.",
+      "evidence": [
+        "scratch/independent-audit.json",
+        "scratch/rules-claims-privacy.json"
+      ],
+      "status": "PASS"
+    },
+    "B": {
+      "basis": "172/172 input/expected files match independent hashes, sizes and LF/no-BOM; no missing/unlisted case files.",
+      "evidence": [
+        "scratch/independent.mjs",
+        "scratch/independent-audit.json"
+      ],
+      "expectedAggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "manifestSha256": "4b4bf901d2fadd8bf8266482739a30bd3b19de6dd1cd047fd80f59c0ee3e1fb6",
+      "status": "PASS"
+    },
+    "C": {
+      "basis": "Two top-level baseline reruns and one candidate run match. Exact heads/product metadata checked; baseline overlay changed no tracked file.",
+      "evidence": [
+        "scratch/baseline-1.json",
+        "scratch/baseline-2.json",
+        "scratch/rerun-independent.json"
+      ],
+      "status": "PASS",
+      "topLevelComparisons": [
+        {
+          "comparisons": [
+            {
+              "bitExactCount": 86,
+              "caseCount": 86,
+              "ok": true,
+              "pair": "A-B",
+              "violationCount": 0
+            },
+            {
+              "bitExactCount": 86,
+              "caseCount": 86,
+              "ok": true,
+              "pair": "A-expected",
+              "violationCount": 0
+            },
+            {
+              "bitExactCount": 86,
+              "caseCount": 86,
+              "ok": true,
+              "pair": "B-expected",
+              "violationCount": 0
+            },
+            {
+              "bitExactCount": 86,
+              "caseCount": 86,
+              "ok": true,
+              "pair": "C-expected",
+              "violationCount": 0
+            }
+          ],
+          "id": "baseline-1"
+        },
+        {
+          "comparisons": [
+            {
+              "bitExactCount": 86,
+              "caseCount": 86,
+              "ok": true,
+              "pair": "A-B",
+              "violationCount": 0
+            },
+            {
+              "bitExactCount": 86,
+              "caseCount": 86,
+              "ok": true,
+              "pair": "A-expected",
+              "violationCount": 0
+            },
+            {
+              "bitExactCount": 86,
+              "caseCount": 86,
+              "ok": true,
+              "pair": "B-expected",
+              "violationCount": 0
+            },
+            {
+              "bitExactCount": 86,
+              "caseCount": 86,
+              "ok": true,
+              "pair": "C-expected",
+              "violationCount": 0
+            }
+          ],
+          "id": "baseline-2"
+        }
+      ]
+    },
+    "D": {
+      "ambiguous": 0,
+      "basis": "135147 leaves, one matching rule each, zero comparison violations; 17 semantic probes agree with repository comparator.",
+      "classCoverage": {
+        "classic-cutoff-hz": 222,
+        "classic-delay-ms": 570,
+        "classic-gain-db": 792,
+        "classic-length-m": 1458,
+        "classic-new-area-m2": 117,
+        "classic-new-cutoff-hz": 570,
+        "classic-new-delay-ms": 117,
+        "classic-new-gain-db": 222,
+        "classic-new-length-m": 3518,
+        "classic-time-s": 351,
+        "classic-volume-m3": 117,
+        "discrete": 60922,
+        "hybrid-aux-delay-ms": 269,
+        "hybrid-aux-length-m": 20838,
+        "hybrid-azimuth-deg": 218,
+        "hybrid-cutoff-hz": 163,
+        "hybrid-delay-ms": 1808,
+        "hybrid-direction": 3951,
+        "hybrid-elevation-deg": 218,
+        "hybrid-gain-db": 331,
+        "hybrid-length-m": 1097,
+        "hybrid-metric-ms": 5,
+        "hybrid-metric-ratio": 15,
+        "hybrid-point-m": 34884,
+        "passthrough": 2374
+      },
+      "evidence": [
+        "scratch/independent.mjs",
+        "scratch/extended-results.json",
+        "scratch/raw-zero.json"
+      ],
+      "leafCount": 135147,
+      "nonintegerGenericDiscrete": 0,
+      "passthroughNonintegerNumericLeaves": 292,
+      "passthroughNumericLeaves": 1442,
+      "status": "PASS",
+      "unclassified": 0
+    },
+    "E": {
+      "basis": "25 classes match the decision: 2 discrete, 9 existing-test, 14 approved. Cited tests and their assertion helpers inspected.",
+      "evidence": [
+        "scratch/rules-claims-privacy.json"
+      ],
+      "status": "PASS"
+    },
+    "F": {
+      "basis": "All provenance references exist; ten Classic oracle projections match; 2048 queries and both 64-step tapes independently regenerated; cited fixtures match.",
+      "evidence": [
+        "scratch/provenance-coverage.json"
+      ],
+      "status": "PASS"
+    },
+    "G": {
+      "basis": "All M cases traced and more than ten geometry/limit/locale cases numerically checked. Positive validator-boundary replay gap disclosed in I1.",
+      "evidence": [
+        "scratch/provenance-coverage.json",
+        "scratch/extended-results.json",
+        "scratch/minimum-boundary-proof.json"
+      ],
+      "status": "PASS"
+    },
+    "H": {
+      "basis": "Unmutated control, eleven product mutations (nine caught, two missed), seven corpus-tampering variants, full corpus-test subset and CLI probes completed.",
+      "evidence": [
+        "scratch/mutations.json",
+        "scratch/mutations-extra.json",
+        "scratch/mutations-boundary.json",
+        "scratch/tampering.json"
+      ],
+      "status": "PASS"
+    },
+    "I": {
+      "basis": "85 unit files / 797 tests; typecheck, ESLint, knowledge lint and source-baseline checks all exit 0.",
+      "evidence": [
+        "scratch/check-exits.json",
+        "scratch/unit.log",
+        "scratch/typecheck.log",
+        "scratch/eslint.log",
+        "scratch/knowledge.log",
+        "scratch/source-baseline.log"
+      ],
+      "status": "PASS"
+    },
+    "J": {
+      "basis": "No private local identity/path in branch diff. Two pre-existing path-bearing logs and published-source attribution names are reported by location only.",
+      "evidence": [
+        "scratch/privacy-refined.json",
+        "scratch/rules-claims-privacy.json"
+      ],
+      "status": "PASS"
+    },
+    "K": {
+      "basis": "Hashes/counts/reruns and thirteen numbered findings reproduced; full sensitivity numerical data reproduced. One chronology error; external/historical claims remain UNVERIFIED.",
+      "evidence": [
+        "scratch/extended-results.json",
+        "scratch/sensitivity-comparison.json",
+        "scratch/raw-zero.json"
+      ],
+      "firstFreezeRulesByteIdentical": true,
+      "status": "PASS",
+      "unverified": [
+        "External CI run and cross-platform logs",
+        "Historical 72-case noise statistics",
+        "Universal unreachable-guard conclusion / previous 400000-scene search",
+        "Past local incidents and third-party mutation totals"
+      ]
+    }
+  },
+  "verdict": "VERIFIED",
+  "verifier": "GPT-Sol gpt-6.1-sol via Codex"
+}

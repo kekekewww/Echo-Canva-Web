@@ -1,0 +1,25 @@
+{
+  "caseId": "DV04_DUPLICATE_IDS",
+  "kind": "scene-validation",
+  "outcome": "ok",
+  "value": {
+    "errors": [
+      {
+        "code": "duplicate_id",
+        "message": "Duplicate entity ID: partition_center",
+        "path": "walls.5.id"
+      },
+      {
+        "code": "duplicate_id",
+        "message": "Duplicate entity ID: radio",
+        "path": "sources.1.id"
+      },
+      {
+        "code": "portal_detached",
+        "message": "Portal must lie on and fit within its referenced wall",
+        "path": "portals.0.center"
+      }
+    ],
+    "ok": false
+  }
+}

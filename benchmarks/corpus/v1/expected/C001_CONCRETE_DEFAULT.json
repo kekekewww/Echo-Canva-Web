@@ -1,0 +1,182 @@
+{
+  "caseId": "C001_CONCRETE_DEFAULT",
+  "kind": "classic-frame",
+  "outcome": "ok",
+  "value": {
+    "frame": {
+      "generatedAtMs": 0,
+      "revision": 100,
+      "room": {
+        "preDelayMs": 28.565478049949593,
+        "rt60S": {
+          "high": 2.8906059255921006,
+          "low": 1.9696533078167364,
+          "mid": 2.345190185821351
+        },
+        "totalSurfaceM2": 360,
+        "volumeM3": 288
+      },
+      "sources": [
+        {
+          "directVisible": true,
+          "dryGainDb": 0,
+          "earlyReflections": [
+            {
+              "delayMs": 17.49271137026239,
+              "gainDb": -22.124835688005323,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 12,
+              "reflectionPoint": {
+                "x": 12,
+                "y": 4
+              },
+              "reflectionPoints": [
+                {
+                  "x": 12,
+                  "y": 4
+                }
+              ],
+              "wallId": "boundary_east",
+              "wallIds": [
+                "boundary_east"
+              ]
+            },
+            {
+              "delayMs": 17.49271137026239,
+              "gainDb": -22.124835688005323,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 12,
+              "reflectionPoint": {
+                "x": 0,
+                "y": 4
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0,
+                  "y": 4
+                }
+              ],
+              "wallId": "boundary_west",
+              "wallIds": [
+                "boundary_west"
+              ]
+            }
+          ],
+          "effectiveDistanceM": 6,
+          "lowpassHz": 20000,
+          "occluderWallIds": [],
+          "physicalDistanceM": 6,
+          "portalIds": [],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 9,
+              "y": 4
+            },
+            {
+              "x": 3,
+              "y": 4
+            }
+          ],
+          "routeType": "direct",
+          "sourceId": "radio",
+          "virtualPosition": {
+            "x": 9,
+            "y": 4
+          }
+        },
+        {
+          "directVisible": false,
+          "dryGainDb": -3,
+          "earlyReflections": [
+            {
+              "delayMs": 33.37252866095773,
+              "gainDb": -26.732039578728592,
+              "lowpassHz": 20000,
+              "order": 2,
+              "pathLengthM": 19.1637678967368,
+              "reflectionPoint": {
+                "x": 12,
+                "y": 2.8157894736842106
+              },
+              "reflectionPoints": [
+                {
+                  "x": 6,
+                  "y": 2.026315789473684
+                },
+                {
+                  "x": 12,
+                  "y": 2.8157894736842106
+                }
+              ],
+              "wallId": "boundary_east",
+              "wallIds": [
+                "partition_center",
+                "boundary_east"
+              ]
+            },
+            {
+              "delayMs": 35.16924162922501,
+              "gainDb": -27.006965039650698,
+              "lowpassHz": 20000,
+              "order": 2,
+              "pathLengthM": 19.78004044485248,
+              "reflectionPoint": {
+                "x": 4.513513513513514,
+                "y": 0
+              },
+              "reflectionPoints": [
+                {
+                  "x": 7.54054054054054,
+                  "y": 8
+                },
+                {
+                  "x": 4.513513513513514,
+                  "y": 0
+                }
+              ],
+              "wallId": "boundary_north",
+              "wallIds": [
+                "boundary_south",
+                "boundary_north"
+              ]
+            }
+          ],
+          "effectiveDistanceM": 7.716990566028302,
+          "lowpassHz": 18500,
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "physicalDistanceM": 7.433034373659253,
+          "portalIds": [
+            "partition_door"
+          ],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 10,
+              "y": 1.5
+            },
+            {
+              "x": 6,
+              "y": 4
+            },
+            {
+              "x": 3,
+              "y": 4
+            }
+          ],
+          "routeType": "portal",
+          "sourceId": "rain",
+          "virtualPosition": {
+            "x": 6,
+            "y": 4
+          }
+        }
+      ]
+    },
+    "staticFingerprint": "4a0e1c7b"
+  }
+}

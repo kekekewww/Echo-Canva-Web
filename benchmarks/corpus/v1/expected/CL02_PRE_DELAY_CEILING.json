@@ -1,0 +1,136 @@
+{
+  "caseId": "CL02_PRE_DELAY_CEILING",
+  "kind": "classic-frame",
+  "outcome": "ok",
+  "value": {
+    "frame": {
+      "generatedAtMs": 0,
+      "revision": 301,
+      "room": {
+        "preDelayMs": 80,
+        "rt60S": {
+          "high": 4,
+          "low": 4,
+          "mid": 4
+        },
+        "totalSurfaceM2": 2280,
+        "volumeM3": 3600
+      },
+      "sources": [
+        {
+          "directVisible": true,
+          "dryGainDb": 0,
+          "earlyReflections": [
+            {
+              "delayMs": 69.97084548104957,
+              "gainDb": -30.083635861446073,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 30,
+              "reflectionPoint": {
+                "x": 30,
+                "y": 15
+              },
+              "reflectionPoints": [
+                {
+                  "x": 30,
+                  "y": 15
+                }
+              ],
+              "wallId": "ceil_east",
+              "wallIds": [
+                "ceil_east"
+              ]
+            },
+            {
+              "delayMs": 69.97084548104957,
+              "gainDb": -30.083635861446073,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 30,
+              "reflectionPoint": {
+                "x": 0,
+                "y": 15
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0,
+                  "y": 15
+                }
+              ],
+              "wallId": "ceil_west",
+              "wallIds": [
+                "ceil_west"
+              ]
+            },
+            {
+              "delayMs": 71.70296525235193,
+              "gainDb": -30.25396925443388,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 30.59411708155671,
+              "reflectionPoint": {
+                "x": 15,
+                "y": 0
+              },
+              "reflectionPoints": [
+                {
+                  "x": 15,
+                  "y": 0
+                }
+              ],
+              "wallId": "ceil_north",
+              "wallIds": [
+                "ceil_north"
+              ]
+            },
+            {
+              "delayMs": 71.70296525235193,
+              "gainDb": -30.25396925443388,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 30.59411708155671,
+              "reflectionPoint": {
+                "x": 15,
+                "y": 30
+              },
+              "reflectionPoints": [
+                {
+                  "x": 15,
+                  "y": 30
+                }
+              ],
+              "wallId": "ceil_south",
+              "wallIds": [
+                "ceil_south"
+              ]
+            }
+          ],
+          "effectiveDistanceM": 6,
+          "lowpassHz": 20000,
+          "occluderWallIds": [],
+          "physicalDistanceM": 6,
+          "portalIds": [],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 12,
+              "y": 15
+            },
+            {
+              "x": 18,
+              "y": 15
+            }
+          ],
+          "routeType": "direct",
+          "sourceId": "radio",
+          "virtualPosition": {
+            "x": 12,
+            "y": 15
+          }
+        }
+      ]
+    },
+    "staticFingerprint": "d3a4c321"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "caseId": "DV08_PORTAL_WIDER_THAN_WALL",
+  "kind": "scene-validation",
+  "outcome": "ok",
+  "value": {
+    "errors": [
+      {
+        "code": "portal_detached",
+        "message": "Portal must lie on and fit within its referenced wall",
+        "path": "portals.1.center"
+      }
+    ],
+    "ok": false
+  }
+}
