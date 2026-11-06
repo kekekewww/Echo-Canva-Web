@@ -1,0 +1,720 @@
+[
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-stock-1",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "stock",
+  "build": "prod",
+  "order-index": 100
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-stock-2",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "stock",
+  "build": "prod",
+  "order-index": 101
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-app-w-audioon",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "clean",
+  "audio": "on",
+  "samples": 1000,
+  "build": "prod",
+  "driver": "poll",
+  "order-index": 102
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-app-s-audioon",
+  "variant": "TS-S",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "clean",
+  "audio": "on",
+  "samples": 1000,
+  "build": "prod",
+  "driver": "poll",
+  "order-index": 103
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-app-w-audiooff",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "clean",
+  "audio": "off",
+  "samples": 1000,
+  "build": "prod",
+  "driver": "poll",
+  "order-index": 104
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-stock-3",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "stock",
+  "build": "prod",
+  "order-index": 105
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-stock-4",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "stock",
+  "build": "prod",
+  "order-index": 106
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-stock-5",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "stock",
+  "build": "prod",
+  "order-index": 107
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-w-tc01",
+  "variant": "TS-W",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "repeat": 18,
+  "order-index": 108
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-s-tc01",
+  "variant": "TS-S",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "repeat": 18,
+  "ts-s-path": "decomposed",
+  "order-index": 108
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-s-tc02",
+  "variant": "TS-S",
+  "case": "TC02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "repeat": 46,
+  "ts-s-path": "decomposed",
+  "order-index": 109
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-w-tc02",
+  "variant": "TS-W",
+  "case": "TC02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "repeat": 46,
+  "order-index": 109
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-w-th01",
+  "variant": "TS-W",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "repeat": 18,
+  "order-index": 110
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-s-th01",
+  "variant": "TS-S",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "repeat": 18,
+  "ts-s-path": "decomposed",
+  "order-index": 110
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-s-th02",
+  "variant": "TS-S",
+  "case": "TH02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "repeat": 46,
+  "ts-s-path": "decomposed",
+  "order-index": 111
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-w-th02",
+  "variant": "TS-W",
+  "case": "TH02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "repeat": 46,
+  "order-index": 111
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-w-w01",
+  "variant": "TS-W",
+  "case": "W01_H100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "order-index": 112
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-s-w01",
+  "variant": "TS-S",
+  "case": "W01_H100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback",
+  "order-index": 112
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-s-w02",
+  "variant": "TS-S",
+  "case": "W02_H100_STATIC_5HZ_30S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback",
+  "order-index": 113
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-w-w02",
+  "variant": "TS-W",
+  "case": "W02_H100_STATIC_5HZ_30S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "order-index": 113
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-w-w03",
+  "variant": "TS-W",
+  "case": "W03_C100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "order-index": 114
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-s-w03",
+  "variant": "TS-S",
+  "case": "W03_C100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback",
+  "order-index": 114
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-s-w04",
+  "variant": "TS-S",
+  "case": "W04_C100_STATIC_5HZ_30S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback",
+  "order-index": 115
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-w-w04",
+  "variant": "TS-W",
+  "case": "W04_C100_STATIC_5HZ_30S",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "order-index": 115
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-traced-app-w-1",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "traced",
+  "audio": "on",
+  "samples": 200,
+  "build": "prod",
+  "driver": "poll"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-traced-app-w-2",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "traced",
+  "audio": "on",
+  "samples": 200,
+  "build": "prod",
+  "driver": "poll"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-traced-app-s",
+  "variant": "TS-S",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "traced",
+  "audio": "on",
+  "samples": 100,
+  "build": "prod",
+  "driver": "poll"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-alloc-app-w",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "alloc",
+  "audio": "on",
+  "samples": 200,
+  "build": "prod",
+  "driver": "poll"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-app-w-audiooff-immediate",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "clean",
+  "audio": "off",
+  "samples": 500,
+  "build": "prod",
+  "driver": "immediate"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-drag-stock",
+  "variant": "TS-W",
+  "case": "APP_C_DRAG",
+  "boundary": "browser-app",
+  "pass": "stock",
+  "build": "prod"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-drag-clean",
+  "variant": "TS-W",
+  "case": "APP_C_DRAG",
+  "boundary": "browser-app",
+  "pass": "clean",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-drag-traced",
+  "variant": "TS-W",
+  "case": "APP_C_DRAG",
+  "boundary": "browser-app",
+  "pass": "traced",
+  "audio": "on",
+  "build": "prod",
+  "driver": "poll"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-traced-w-tc01",
+  "variant": "TS-W",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "traced",
+  "repeat": 3
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-traced-w-tc02",
+  "variant": "TS-W",
+  "case": "TC02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "traced",
+  "repeat": 6
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-traced-w-th01",
+  "variant": "TS-W",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "traced",
+  "repeat": 3
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-traced-w-th02",
+  "variant": "TS-W",
+  "case": "TH02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "traced",
+  "repeat": 6
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-traced-w-w01",
+  "variant": "TS-W",
+  "case": "W01_H100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "traced",
+  "max-duration-ms": 20000
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-traced-w-w02",
+  "variant": "TS-W",
+  "case": "W02_H100_STATIC_5HZ_30S",
+  "boundary": "browser-pool",
+  "pass": "traced",
+  "max-duration-ms": 20000
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-traced-w-w03",
+  "variant": "TS-W",
+  "case": "W03_C100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "traced",
+  "max-duration-ms": 20000
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-traced-w-w04",
+  "variant": "TS-W",
+  "case": "W04_C100_STATIC_5HZ_30S",
+  "boundary": "browser-pool",
+  "pass": "traced",
+  "max-duration-ms": 20000
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-traced-s-tc01",
+  "variant": "TS-S",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "traced",
+  "repeat": 3,
+  "ts-s-path": "decomposed"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-traced-s-th01",
+  "variant": "TS-S",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "traced",
+  "repeat": 3,
+  "ts-s-path": "decomposed"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-alloc-w-th01",
+  "variant": "TS-W",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "alloc",
+  "repeat": 3
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-alloc-w-tc01",
+  "variant": "TS-W",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "alloc",
+  "repeat": 3
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-alloc-w-w01",
+  "variant": "TS-W",
+  "case": "W01_H100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "alloc",
+  "max-duration-ms": 20000
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-alloc-w-w03",
+  "variant": "TS-W",
+  "case": "W03_C100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "alloc",
+  "max-duration-ms": 20000
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-bare-w-th01",
+  "variant": "TS-W",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "bare",
+  "repeat": 18
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-bare-w-tc01",
+  "variant": "TS-W",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "bare",
+  "repeat": 18
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-bare-w-w01",
+  "variant": "TS-W",
+  "case": "W01_H100_POSE_60HZ_60S",
+  "boundary": "browser-pool",
+  "pass": "bare"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-node-tc01",
+  "variant": "TS-S",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "node-core",
+  "pass": "clean",
+  "repeat": 18
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-node-tc02",
+  "variant": "TS-S",
+  "case": "TC02_STATIC_EDIT_TAPE",
+  "boundary": "node-core",
+  "pass": "clean",
+  "repeat": 46
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-node-th01",
+  "variant": "TS-S",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "node-core",
+  "pass": "clean",
+  "repeat": 18
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-node-th02",
+  "variant": "TS-S",
+  "case": "TH02_STATIC_EDIT_TAPE",
+  "boundary": "node-core",
+  "pass": "clean",
+  "repeat": 46
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-node-traced-th01",
+  "variant": "TS-S",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "node-core",
+  "pass": "traced",
+  "repeat": 3
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-node-alloc-th01",
+  "variant": "TS-S",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "node-core",
+  "pass": "alloc",
+  "repeat": 3
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-node-tc01",
+  "variant": "TS-S",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "node-core",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-s-tc01",
+  "variant": "TS-S",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "decomposed",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-fb-tc01",
+  "variant": "TS-S",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-w-tc01",
+  "variant": "TS-W",
+  "case": "TC01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-node-tc02",
+  "variant": "TS-S",
+  "case": "TC02_STATIC_EDIT_TAPE",
+  "boundary": "node-core",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-s-tc02",
+  "variant": "TS-S",
+  "case": "TC02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "decomposed",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-fb-tc02",
+  "variant": "TS-S",
+  "case": "TC02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-w-tc02",
+  "variant": "TS-W",
+  "case": "TC02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-node-th01",
+  "variant": "TS-S",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "node-core",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-s-th01",
+  "variant": "TS-S",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "decomposed",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-fb-th01",
+  "variant": "TS-S",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-w-th01",
+  "variant": "TS-W",
+  "case": "TH01_LISTENER_TAPE_SEEDED",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-node-th02",
+  "variant": "TS-S",
+  "case": "TH02_STATIC_EDIT_TAPE",
+  "boundary": "node-core",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-s-th02",
+  "variant": "TS-S",
+  "case": "TH02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "decomposed",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-fb-th02",
+  "variant": "TS-S",
+  "case": "TH02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "ts-s-path": "fallback",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-par-w-th02",
+  "variant": "TS-W",
+  "case": "TH02_STATIC_EDIT_TAPE",
+  "boundary": "browser-pool",
+  "pass": "clean",
+  "parity": true
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-controls-pool",
+  "variant": "TS-W",
+  "case": "CONTROLS",
+  "boundary": "browser-pool",
+  "pass": "traced"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "r1-controls-app",
+  "variant": "TS-W",
+  "case": "CONTROLS",
+  "boundary": "browser-app",
+  "pass": "traced",
+  "audio": "on",
+  "build": "prod"
+ }
+]

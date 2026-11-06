@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "runId": "inv-app-w",
+  "start": "2026-11-06T16:17:29.894Z",
+  "end": "2026-11-06T16:18:16.766Z",
+  "sampleCount": 1711,
+  "originalStatus": "passed",
+  "originalError": "not-applicable",
+  "rederivedAt": "2026-11-06T18:39:54.496Z",
+  "rederivedByCommit": "08f82274d6bb80298337132c91456ed68caac09e",
+  "rederivedAudio": "audio-samples.json",
+  "originalPhasesNotReached": "not-applicable"
+}

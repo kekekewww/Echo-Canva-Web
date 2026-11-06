@@ -1,0 +1,53 @@
+{
+  "unit": "core-seconds",
+  "note": "cpuTime per browser process from CDP SystemInfo.getProcessInfo, read before and after the replay, outside the measured window.",
+  "before": [
+    {
+      "type": "browser",
+      "id": 45440,
+      "cpuTime": 0.109375
+    },
+    {
+      "type": "renderer",
+      "id": 49468,
+      "cpuTime": 0.0625
+    },
+    {
+      "type": "GPU",
+      "id": 41712,
+      "cpuTime": 0.078125
+    },
+    {
+      "type": "network.mojom.NetworkService",
+      "id": 58200,
+      "cpuTime": 0.03125
+    }
+  ],
+  "after": [
+    {
+      "type": "browser",
+      "id": 45440,
+      "cpuTime": 0.581734
+    },
+    {
+      "type": "renderer",
+      "id": 49468,
+      "cpuTime": 22.153707
+    },
+    {
+      "type": "GPU",
+      "id": 41712,
+      "cpuTime": 0.114127
+    },
+    {
+      "type": "network.mojom.NetworkService",
+      "id": 58200,
+      "cpuTime": 0.075748
+    },
+    {
+      "type": "tracing.mojom.TracingService",
+      "id": 47736,
+      "cpuTime": 3.22601
+    }
+  ]
+}

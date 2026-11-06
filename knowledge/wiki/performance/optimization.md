@@ -1,5 +1,7 @@
 # 聲學運算最佳化研究
 
+> EC-102 的 Windows 實測結果見 [EC-102 Windows 剖析來源](../../raw/sources/ec-102-windows-profiling.md)。其中各項尾端歸因與待驗假設，仍屬研究輸入，不是已採用的變更。
+
 狀態 **Proposed Design**，對照 2026-11-06 的 [Web 基準](baseline.md)、[基準版本](../../raw/sources/repository.md)及[第一手來源](../../raw/references/performance.md)。以現行 TypeScript 為數值 oracle，保留固定品質、有限幾何、排序、場景相容性及 Worker 安全驗證。優先做不改模型的單變項實驗。
 
 ## 定位瓶頸再決定介入點

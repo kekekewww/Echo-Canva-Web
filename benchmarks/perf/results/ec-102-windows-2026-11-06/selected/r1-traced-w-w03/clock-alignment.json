@@ -1,0 +1,190 @@
+{
+  "schema": "ec102.clock-alignment.v1",
+  "model": "traceTsUs = offsetUs + (1 + driftPpm / 1e6) * (clockMs * 1000)",
+  "threads": {
+    "main": {
+      "thread": "CrRendererMain",
+      "marks": 1251,
+      "baselineMs": 23221.40000000596,
+      "perfNowFit": {
+        "n": 1251,
+        "offsetUs": 92859763124.03032,
+        "driftPpm": -0.6894702428983379,
+        "maxResidualUs": 740.5577087402344,
+        "model": {
+          "a": 92859763124.03032,
+          "b": 0.9999993105297571,
+          "meanX": 11441879.056760566,
+          "meanY": 92871204995.19824
+        }
+      },
+      "epochFit": {
+        "n": 1251,
+        "offsetUs": -1793881806652480.8,
+        "driftPpm": -0.6898618283290858,
+        "maxResidualUs": 742.25,
+        "model": {
+          "a": -1793881806652480.8,
+          "b": 0.9999993101381717,
+          "meanX": 1793975915452981,
+          "meanY": 92871204995.19824
+        }
+      }
+    },
+    "w0": {
+      "thread": "DedicatedWorker thread",
+      "marks": 263,
+      "baselineMs": 22653.20000000298,
+      "perfNowFit": {
+        "n": 263,
+        "offsetUs": 92861087527.16559,
+        "driftPpm": -1.0335385662862961,
+        "maxResidualUs": 448.8774108886719,
+        "model": {
+          "a": 92861087527.16559,
+          "b": 0.9999989664614337,
+          "meanX": 11546402.281368691,
+          "meanY": 92872633917.5133
+        }
+      },
+      "epochFit": {
+        "n": 263,
+        "offsetUs": -1793881190104773,
+        "driftPpm": -1.033538518879773,
+        "maxResidualUs": 449.25,
+        "model": {
+          "a": -1793881190104773,
+          "b": 0.9999989664614811,
+          "meanX": 1793975916881902.5,
+          "meanY": 92872633917.5133
+        }
+      }
+    },
+    "w1": {
+      "thread": "DedicatedWorker thread",
+      "marks": 263,
+      "baselineMs": 22652.59999999404,
+      "perfNowFit": {
+        "n": 263,
+        "offsetUs": 92861088415.57573,
+        "driftPpm": -0.48787013695594794,
+        "maxResidualUs": 482.42413330078125,
+        "model": {
+          "a": 92861088415.57573,
+          "b": 0.999999512129863,
+          "meanX": 11545607.224328777,
+          "meanY": 92872634017.1673
+        }
+      },
+      "epochFit": {
+        "n": 263,
+        "offsetUs": -1793882169020792.5,
+        "driftPpm": -0.487870148724312,
+        "maxResidualUs": 482.25,
+        "model": {
+          "a": -1793882169020792.5,
+          "b": 0.9999995121298513,
+          "meanX": 1793975916882107.2,
+          "meanY": 92872634017.1673
+        }
+      }
+    },
+    "w2": {
+      "thread": "DedicatedWorker thread",
+      "marks": 263,
+      "baselineMs": 22651.29999999702,
+      "perfNowFit": {
+        "n": 263,
+        "offsetUs": 92861090615.12186,
+        "driftPpm": -0.3475212978498732,
+        "maxResidualUs": 380.70176696777344,
+        "model": {
+          "a": 92861090615.12186,
+          "b": 0.9999996524787022,
+          "meanX": 11543438.022819588,
+          "meanY": 92872634049.13309
+        }
+      },
+      "epochFit": {
+        "n": 263,
+        "offsetUs": -1793882420802999.2,
+        "driftPpm": -0.3475213254944265,
+        "maxResidualUs": 379.5,
+        "model": {
+          "a": -1793882420802999.2,
+          "b": 0.9999996524786745,
+          "meanX": 1793975916881937,
+          "meanY": 92872634049.13309
+        }
+      }
+    },
+    "w3": {
+      "thread": "DedicatedWorker thread",
+      "marks": 263,
+      "baselineMs": 22650.79999999702,
+      "perfNowFit": {
+        "n": 263,
+        "offsetUs": 92861092210.94891,
+        "driftPpm": -0.18071604790392826,
+        "maxResidualUs": 203.9991455078125,
+        "model": {
+          "a": 92861092210.94891,
+          "b": 0.9999998192839521,
+          "meanX": 11541878.326992849,
+          "meanY": 92872634087.19011
+        }
+      },
+      "epochFit": {
+        "n": 263,
+        "offsetUs": -1793882720513295.2,
+        "driftPpm": -0.1804565459284646,
+        "maxResidualUs": 205.5,
+        "model": {
+          "a": -1793882720513295.2,
+          "b": 0.9999998195434541,
+          "meanX": 1793975916882080,
+          "meanY": 92872634087.19011
+        }
+      }
+    }
+  },
+  "crossThread": {
+    "w0": {
+      "traceTimeDisagreementUs": 2.06756591796875,
+      "note": "the two threads' fits of timeOrigin + performance.now() onto trace time, evaluated at the same epoch (the mean of all marks); 0 means the epoch clocks agree in trace time at that moment"
+    },
+    "w1": {
+      "traceTimeDisagreementUs": -103.45187377929688,
+      "note": "the two threads' fits of timeOrigin + performance.now() onto trace time, evaluated at the same epoch (the mean of all marks); 0 means the epoch clocks agree in trace time at that moment"
+    },
+    "w2": {
+      "traceTimeDisagreementUs": 98.6549072265625,
+      "note": "the two threads' fits of timeOrigin + performance.now() onto trace time, evaluated at the same epoch (the mean of all marks); 0 means the epoch clocks agree in trace time at that moment"
+    },
+    "w3": {
+      "traceTimeDisagreementUs": -6.417724609375,
+      "note": "the two threads' fits of timeOrigin + performance.now() onto trace time, evaluated at the same epoch (the mean of all marks); 0 means the epoch clocks agree in trace time at that moment"
+    }
+  },
+  "pingUncertainty": {
+    "source": "clock-calibration.json",
+    "halfRttMs": [
+      {
+        "worker": 0,
+        "halfRttMs": 0
+      },
+      {
+        "worker": 1,
+        "halfRttMs": 0
+      },
+      {
+        "worker": 2,
+        "halfRttMs": 0
+      },
+      {
+        "worker": 3,
+        "halfRttMs": 0
+      }
+    ]
+  }
+}

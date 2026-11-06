@@ -1,0 +1,137 @@
+{
+  "schema": "ec102.environment.v1",
+  "date": "2026-11-06T14:29:11.165Z",
+  "timezoneOffsetMinutes": 480,
+  "cpuModel": "13th Gen Intel(R) Core(TM) i9-13980HX",
+  "physicalCores": 24,
+  "logicalCores": 32,
+  "ramGB": 31.63,
+  "os": {
+    "name": "Microsoft Windows 11 家用版",
+    "build": "26200",
+    "arch": "x64"
+  },
+  "power": {
+    "scheme": "Turbo",
+    "line": "Online",
+    "batteryChargeStatus": "High",
+    "batteryPercent": 80
+  },
+  "acpiThermalZoneC": 27.9,
+  "versions": {
+    "node": "v22.23.3",
+    "pnpm": "11.7.0",
+    "playwright": "1.64.1"
+  },
+  "git": {
+    "sha": "973eddc0d1c50d1f18f5e9803d9c2fb5a529fc8f",
+    "dirty": false
+  },
+  "browser": "not-applicable",
+  "otherActivity": {
+    "before": {
+      "seconds": 3,
+      "method": "get-counter",
+      "machineCpuPercent": 10.093,
+      "topProcesses": [
+        {
+          "name": "ik product manager",
+          "cpuPercentOfMachine": 1.161,
+          "writeMBps": 17.551
+        },
+        {
+          "name": "reaper",
+          "cpuPercentOfMachine": 1.099,
+          "writeMBps": 0
+        },
+        {
+          "name": "svchost",
+          "cpuPercentOfMachine": 1.036,
+          "writeMBps": 0
+        },
+        {
+          "name": "claude",
+          "cpuPercentOfMachine": 1.019,
+          "writeMBps": 1.372
+        },
+        {
+          "name": "wmiprvse",
+          "cpuPercentOfMachine": 0.815,
+          "writeMBps": 0
+        },
+        {
+          "name": "system",
+          "cpuPercentOfMachine": 0.684,
+          "writeMBps": 0.076
+        },
+        {
+          "name": "discord",
+          "cpuPercentOfMachine": 0.588,
+          "writeMBps": 0.059
+        },
+        {
+          "name": "dwm",
+          "cpuPercentOfMachine": 0.415,
+          "writeMBps": 0
+        }
+      ],
+      "driveFreeGB": {
+        "C": 1.88,
+        "D": 38.69,
+        "F": 55.33
+      }
+    },
+    "after": {
+      "seconds": 3,
+      "method": "get-counter",
+      "machineCpuPercent": 8.767,
+      "topProcesses": [
+        {
+          "name": "ik product manager",
+          "cpuPercentOfMachine": 1.504,
+          "writeMBps": 18.827
+        },
+        {
+          "name": "reaper",
+          "cpuPercentOfMachine": 1.06,
+          "writeMBps": 0
+        },
+        {
+          "name": "claude",
+          "cpuPercentOfMachine": 0.65,
+          "writeMBps": 1.433
+        },
+        {
+          "name": "svchost",
+          "cpuPercentOfMachine": 0.635,
+          "writeMBps": 0
+        },
+        {
+          "name": "system",
+          "cpuPercentOfMachine": 0.602,
+          "writeMBps": 0.071
+        },
+        {
+          "name": "dwm",
+          "cpuPercentOfMachine": 0.522,
+          "writeMBps": 0
+        },
+        {
+          "name": "discord",
+          "cpuPercentOfMachine": 0.475,
+          "writeMBps": 0.104
+        },
+        {
+          "name": "wmiprvse",
+          "cpuPercentOfMachine": 0.429,
+          "writeMBps": 0
+        }
+      ],
+      "driveFreeGB": {
+        "C": 1.88,
+        "D": 37.23,
+        "F": 55.33
+      }
+    }
+  }
+}

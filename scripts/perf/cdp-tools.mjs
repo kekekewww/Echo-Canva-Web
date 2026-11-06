@@ -1,0 +1,224 @@
+// Chrome DevTools Protocol helpers shared by the browser runners: tracing to a file, and the
+// V8 sampling heap profiler on the page and on every worker.
+import { existsSync, readdirSync } from "node:fs";
+import { open, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+
+import { sanitizeText, sha256File } from "./lib.mjs";
+
+export const TRACE_CATEGORIES = [
+  "toplevel",
+  "devtools.timeline",
+  "v8",
+  "v8.execute",
+  "blink.user_timing",
+  "disabled-by-default-devtools.timeline",
+  "disabled-by-default-devtools.timeline.frame",
+  "disabled-by-default-v8.cpu_profiler",
+  "disabled-by-default-v8.gc",
+].join(",");
+
+/** Starts tracing on the browser session. `stop(file)` streams the trace to `file`. */
+export async function startTracing(session, extraCategories = []) {
+  const categories = extraCategories.length > 0 ? [TRACE_CATEGORIES, ...extraCategories].join(",") : TRACE_CATEGORIES;
+  await session.send("Tracing.start", { categories, transferMode: "ReturnAsStream" });
+  return {
+    async stop(file) {
+      const completed = new Promise((resolve) => session.once("Tracing.tracingComplete", resolve));
+      await session.send("Tracing.end");
+      const { stream } = await completed;
+      if (!stream) throw new Error("Chromium did not return the trace stream");
+      const handle = await open(file, "w");
+      let bytes = 0;
+      try {
+        let eof = false;
+        while (!eof) {
+          const chunk = await session.send("IO.read", { handle: stream });
+          const buffer = Buffer.from(chunk.data, chunk.base64Encoded ? "base64" : "utf8");
+          await handle.write(buffer);
+          bytes += buffer.length;
+          eof = chunk.eof;
+        }
+      } finally {
+        await handle.close();
+        await session.send("IO.close", { handle: stream });
+      }
+      return { file, bytes };
+    },
+  };
+}
+
+const SAMPLING = { samplingInterval: 32768, includeObjectsCollectedByMajorGC: true, includeObjectsCollectedByMinorGC: true };
+
+/**
+ * Allocation sampling without CPU sampling. The page is profiled through its own session. Workers
+ * are reached from the browser session: Target.setDiscoverTargets, then Target.attachToTarget with
+ * flatten false and Target.sendMessageToTarget, answers arriving in Target.receivedMessageFromTarget.
+ * A worker is attached when it is announced, so allocations before that moment are not sampled.
+ */
+export async function startAllocation(browserSession, pageSession) {
+  await pageSession.send("HeapProfiler.enable");
+  await pageSession.send("HeapProfiler.startSampling", SAMPLING);
+
+  const workers = new Map();
+  const pending = new Map();
+  let nextId = 1;
+  const notes = { route: "Target.attachToTarget flatten:false with Target.sendMessageToTarget", attachErrors: [] };
+
+  const sendToTarget = (sessionId, method, params = {}) =>
+    new Promise((resolve, reject) => {
+      const id = nextId++;
+      pending.set(id, { resolve, reject, sessionId });
+      browserSession
+        .send("Target.sendMessageToTarget", { sessionId, message: JSON.stringify({ id, method, params }) })
+        .catch((error) => {
+          pending.delete(id);
+          reject(error);
+        });
+    });
+
+  browserSession.on("Target.receivedMessageFromTarget", ({ sessionId, message }) => {
+    const parsed = JSON.parse(message);
+    const waiter = pending.get(parsed.id);
+    if (!waiter || waiter.sessionId !== sessionId) return;
+    pending.delete(parsed.id);
+    if (parsed.error) waiter.reject(new Error(parsed.error.message));
+    else waiter.resolve(parsed.result);
+  });
+
+  const attach = async (info) => {
+    if (info.type !== "worker" || workers.has(info.targetId)) return;
+    const entry = { targetId: info.targetId, url: info.url, sessionId: null, started: false };
+    workers.set(info.targetId, entry);
+    try {
+      const { sessionId } = await browserSession.send("Target.attachToTarget", { targetId: info.targetId, flatten: false });
+      entry.sessionId = sessionId;
+      await sendToTarget(sessionId, "HeapProfiler.enable");
+      await sendToTarget(sessionId, "HeapProfiler.startSampling", SAMPLING);
+      entry.started = true;
+    } catch (error) {
+      notes.attachErrors.push(error instanceof Error ? error.message.split("\n")[0] : String(error));
+    }
+  };
+  browserSession.on("Target.targetCreated", ({ targetInfo }) => void attach(targetInfo));
+  await browserSession.send("Target.setDiscoverTargets", { discover: true });
+  const { targetInfos } = await browserSession.send("Target.getTargets");
+  await Promise.all(targetInfos.map(attach));
+
+  const files = [];
+  let workersStopped = false;
+  return {
+    notes,
+    /** Worker profiles must be read while the workers are alive, so this can run before a pool is disposed. */
+    async stopWorkers(dir) {
+      if (workersStopped) return;
+      workersStopped = true;
+      let index = 0;
+      for (const entry of workers.values()) {
+        if (!entry.started) continue;
+        try {
+          const result = await sendToTarget(entry.sessionId, "HeapProfiler.stopSampling");
+          const name = `alloc-worker-${index}.heapprofile.json`;
+          await writeFile(join(dir, name), JSON.stringify(result.profile), "utf8");
+          files.push(name);
+          index += 1;
+        } catch (error) {
+          notes.attachErrors.push(`stop: ${error instanceof Error ? error.message.split("\n")[0] : String(error)}`);
+        }
+      }
+    },
+    async stop(dir) {
+      const main = await pageSession.send("HeapProfiler.stopSampling");
+      await writeFile(join(dir, "alloc-main.heapprofile.json"), JSON.stringify(main.profile), "utf8");
+      files.unshift("alloc-main.heapprofile.json");
+      await this.stopWorkers(dir);
+      return { files, workersAttached: [...workers.values()].filter((entry) => entry.started).length, notes };
+    },
+  };
+}
+
+/**
+ * Launches the browser for a run. "default" is Playwright's default launch (the headless shell);
+ * "chromium" passes channel "chromium": the new headless mode of the full build that is already
+ * installed. Nothing is installed and no GPU flag is passed; a missing full build fails the run.
+ */
+export async function launchBrowser(chromium, channel, args = []) {
+  const options = {};
+  if (channel === "chromium") {
+    if (!existsSync(chromium.executablePath())) {
+      throw new Error("--browser-channel chromium needs the full Chromium build, which is not installed; nothing was installed");
+    }
+    options.channel = "chromium";
+  }
+  if (args.length > 0) options.args = args;
+  return Object.keys(options).length === 0 ? chromium.launch() : chromium.launch(options);
+}
+
+/** The executable that launchBrowser starts: the full build for "chromium", else the sibling headless shell. */
+export function launchedExecutable(chromium, channel) {
+  const full = chromium.executablePath();
+  if (channel === "chromium") return { path: full, kind: "chromium-full" };
+  const dir = dirname(dirname(dirname(full)));
+  const revision = /chromium-(\d+)/.exec(full)?.[1];
+  if (!revision) return { path: null, kind: "unavailable" };
+  const shellRoot = join(dir, `chromium_headless_shell-${revision}`);
+  if (!existsSync(shellRoot)) return { path: null, kind: "unavailable" };
+  for (const entry of readdirSync(shellRoot, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    for (const name of ["chrome-headless-shell.exe", "chrome-headless-shell"]) {
+      const candidate = join(shellRoot, entry.name, name);
+      if (existsSync(candidate)) return { path: candidate, kind: "headless-shell" };
+    }
+  }
+  return { path: null, kind: "unavailable" };
+}
+
+/**
+ * Facts about the browser that was launched: version, which build and its SHA-256, the WebGL unmasked
+ * vendor and renderer (from a throwaway canvas, so call this outside the measured window) and the GPU
+ * rasterization feature status from SystemInfo.getInfo. Missing values are "unavailable". Never throws.
+ */
+export async function collectBrowserFacts({ browser, chromium, channel, page, browserSession, extraArgs = [] }) {
+  const executable = launchedExecutable(chromium, channel);
+  const facts = {
+    version: browser.version(),
+    browserChannel: channel,
+    executableKind: executable.kind,
+    executableSha256: executable.path && existsSync(executable.path) ? sha256File(executable.path) : "unavailable",
+    launchArgs: channel === "chromium" ? "channel chromium, no other options" : "playwright default launch options, none added",
+    extraLaunchArgs: extraArgs,
+    webglVendor: "unavailable",
+    webglRenderer: "unavailable",
+    gpuRasterization: "unavailable",
+    gpuCompositing: "unavailable",
+    gpuFeatureStatus: "unavailable",
+  };
+  try {
+    const webgl = await page.evaluate(() => {
+      const canvas = document.createElement("canvas");
+      const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+      if (!gl) return null;
+      const info = gl.getExtension("WEBGL_debug_renderer_info");
+      if (!info) return null;
+      return { vendor: String(gl.getParameter(info.UNMASKED_VENDOR_WEBGL)), renderer: String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) };
+    });
+    if (webgl) {
+      facts.webglVendor = sanitizeText(webgl.vendor);
+      facts.webglRenderer = sanitizeText(webgl.renderer);
+    }
+  } catch {
+    // Stays "unavailable".
+  }
+  try {
+    const info = await browserSession.send("SystemInfo.getInfo");
+    const status = info?.gpu?.featureStatus;
+    if (status && typeof status === "object") {
+      facts.gpuFeatureStatus = status;
+      if (typeof status.rasterization === "string") facts.gpuRasterization = status.rasterization;
+      if (typeof status.gpu_compositing === "string") facts.gpuCompositing = status.gpu_compositing;
+    }
+  } catch {
+    // Stays "unavailable".
+  }
+  return facts;
+}

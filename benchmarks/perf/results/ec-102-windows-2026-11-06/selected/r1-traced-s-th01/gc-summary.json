@@ -1,0 +1,11 @@
+{
+  "note": "Real collections only. minor and major durUs are pause time on that thread; incremental-marking-step durUs is time spent in steps, not a pause of the whole collection.",
+  "perThread": {
+    "main": {
+      "minor": {
+        "count": 39,
+        "durUs": 11982
+      }
+    }
+  }
+}

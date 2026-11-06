@@ -1,0 +1,403 @@
+{
+  "schema": "ec102.job-decomposition-jobs-summary.v1",
+  "counts": {
+    "note": "counts only; the levels are rows of a report table (reported metric at or above the level, in ms), not budgets or thresholds",
+    "all": {
+      "jobs": 100,
+      "replyWaitExceedsSlowestWorker": 8,
+      "withFrameChildrenInWait": 2
+    },
+    "atOrAboveReportedMetricMs": {
+      "8": {
+        "jobs": 1,
+        "replyWaitExceedsSlowestWorker": 0,
+        "withFrameChildrenInWait": 0
+      },
+      "12": {
+        "jobs": 0,
+        "replyWaitExceedsSlowestWorker": 0,
+        "withFrameChildrenInWait": 0
+      },
+      "25": {
+        "jobs": 0,
+        "replyWaitExceedsSlowestWorker": 0,
+        "withFrameChildrenInWait": 0
+      },
+      "50": {
+        "jobs": 0,
+        "replyWaitExceedsSlowestWorker": 0,
+        "withFrameChildrenInWait": 0
+      }
+    }
+  },
+  "boundary": "browser-app",
+  "clock": "trace-ts-us",
+  "units": "microseconds, except reportedMetric (milliseconds) and the count lateStartWorkers",
+  "window": "first post to the start of the last reply handler on main; worker tasks are top-level tasks on DedicatedWorker threads that start at or after the first post",
+  "jobs": 100,
+  "all": {
+    "jobs": 100,
+    "fields": {
+      "reportedMetric": {
+        "n": 100,
+        "p50": 2,
+        "p95": 6,
+        "p99": 7,
+        "max": 9
+      },
+      "firstPostToFirstWorkerStartUs": {
+        "n": 100,
+        "p50": 43.8853759765625,
+        "p95": 119.73713684082031,
+        "p99": 445.95887756347656,
+        "max": 497.86358642578125
+      },
+      "firstPostToLastWorkerEndUs": {
+        "n": 100,
+        "p50": 1959.7359924316406,
+        "p95": 4715.598846435547,
+        "p99": 5701.12077331543,
+        "max": 6009.167190551758
+      },
+      "slowestWorkerWallUs": {
+        "n": 100,
+        "p50": 1661,
+        "p95": 4039,
+        "p99": 5422,
+        "max": 5472
+      },
+      "slowestWorkerCpuUs": {
+        "n": 100,
+        "p50": 991,
+        "p95": 3126,
+        "p99": 3780,
+        "max": 4094
+      },
+      "slowestWorkerOffCpuUs": {
+        "n": 100,
+        "p50": 517,
+        "p95": 1239,
+        "p99": 1724,
+        "max": 1802
+      },
+      "lastWorkerEndToLastHandlerStartUs": {
+        "n": 100,
+        "p50": 118.53569030761719,
+        "p95": 1747.8072814941406,
+        "p99": 2691.364242553711,
+        "max": 4104.491973876953
+      },
+      "mainBusyWallUs": {
+        "n": 100,
+        "p50": 115.53569030761719,
+        "p95": 1735.0286712646484,
+        "p99": 2676.364242553711,
+        "max": 4089.491973876953
+      },
+      "mainBusyCpuUs": {
+        "n": 99,
+        "p50": 264,
+        "p95": 2010,
+        "p99": 3694,
+        "max": 3694
+      },
+      "lastHandlerUs": {
+        "n": 100,
+        "p50": 100.00000894069672,
+        "p95": 400.0000059604645,
+        "p99": 699.999988079071,
+        "max": 700.0000029802322
+      },
+      "gcOnMainInWindowUs": {
+        "n": 100,
+        "p50": 0,
+        "p95": 2464,
+        "p99": 2882,
+        "max": 4830
+      },
+      "gcOnWorkersInWindowUs": {
+        "n": 100,
+        "p50": 679,
+        "p95": 2860,
+        "p99": 4254,
+        "max": 4975
+      },
+      "lateStartWorkers": {
+        "n": 100,
+        "p50": 0,
+        "p95": 1,
+        "p99": 3,
+        "max": 4
+      },
+      "mainOffCpuDuringWaitUs": {
+        "n": 99,
+        "p50": 13.207207207207205,
+        "p95": 404.6963247039075,
+        "p99": 1521.031179182316,
+        "max": 1521.031179182316
+      },
+      "rasterWallDuringWaitUs": {
+        "n": 100,
+        "p50": 474.14276123046875,
+        "p95": 6991.2291259765625,
+        "p99": 10765.456970214844,
+        "max": 16417.967895507812
+      },
+      "rasterThreadsDuringWait": {
+        "n": 100,
+        "p50": 4,
+        "p95": 4,
+        "p99": 4,
+        "max": 4
+      }
+    }
+  },
+  "slowest10PercentByReportedMetric": {
+    "jobs": 10,
+    "fields": {
+      "reportedMetric": {
+        "n": 10,
+        "p50": 6,
+        "p95": 9,
+        "p99": 9,
+        "max": 9
+      },
+      "firstPostToFirstWorkerStartUs": {
+        "n": 10,
+        "p50": 69.14077758789062,
+        "p95": 180.1671905517578,
+        "p99": 180.1671905517578,
+        "max": 180.1671905517578
+      },
+      "firstPostToLastWorkerEndUs": {
+        "n": 10,
+        "p50": 4715.598846435547,
+        "p95": 6009.167190551758,
+        "p99": 6009.167190551758,
+        "max": 6009.167190551758
+      },
+      "slowestWorkerWallUs": {
+        "n": 10,
+        "p50": 4039,
+        "p95": 5472,
+        "p99": 5472,
+        "max": 5472
+      },
+      "slowestWorkerCpuUs": {
+        "n": 10,
+        "p50": 3126,
+        "p95": 4094,
+        "p99": 4094,
+        "max": 4094
+      },
+      "slowestWorkerOffCpuUs": {
+        "n": 10,
+        "p50": 886,
+        "p95": 1802,
+        "p99": 1802,
+        "max": 1802
+      },
+      "lastWorkerEndToLastHandlerStartUs": {
+        "n": 10,
+        "p50": 173.06057739257812,
+        "p95": 4104.491973876953,
+        "p99": 4104.491973876953,
+        "max": 4104.491973876953
+      },
+      "mainBusyWallUs": {
+        "n": 10,
+        "p50": 171.06057739257812,
+        "p95": 4089.491973876953,
+        "p99": 4089.491973876953,
+        "max": 4089.491973876953
+      },
+      "mainBusyCpuUs": {
+        "n": 10,
+        "p50": 808,
+        "p95": 3694,
+        "p99": 3694,
+        "max": 3694
+      },
+      "lastHandlerUs": {
+        "n": 10,
+        "p50": 299.99999701976776,
+        "p95": 700.0000029802322,
+        "p99": 700.0000029802322,
+        "max": 700.0000029802322
+      },
+      "gcOnMainInWindowUs": {
+        "n": 10,
+        "p50": 0,
+        "p95": 4830,
+        "p99": 4830,
+        "max": 4830
+      },
+      "gcOnWorkersInWindowUs": {
+        "n": 10,
+        "p50": 1965,
+        "p95": 3310,
+        "p99": 3310,
+        "max": 3310
+      },
+      "lateStartWorkers": {
+        "n": 10,
+        "p50": 0,
+        "p95": 1,
+        "p99": 1,
+        "max": 1
+      },
+      "mainOffCpuDuringWaitUs": {
+        "n": 10,
+        "p50": 25.571701888918454,
+        "p95": 1521.031179182316,
+        "p99": 1521.031179182316,
+        "max": 1521.031179182316
+      },
+      "rasterWallDuringWaitUs": {
+        "n": 10,
+        "p50": 692.2423095703125,
+        "p95": 16417.967895507812,
+        "p99": 16417.967895507812,
+        "max": 16417.967895507812
+      },
+      "rasterThreadsDuringWait": {
+        "n": 10,
+        "p50": 4,
+        "p95": 4,
+        "p99": 4,
+        "max": 4
+      }
+    },
+    "seqs": [
+      4,
+      6,
+      9,
+      22,
+      24,
+      42,
+      54,
+      59,
+      86,
+      91
+    ]
+  },
+  "byJobKind": {
+    "pose-only": {
+      "jobs": 100,
+      "fields": {
+        "reportedMetric": {
+          "n": 100,
+          "p50": 2,
+          "p95": 6,
+          "p99": 7,
+          "max": 9
+        },
+        "firstPostToFirstWorkerStartUs": {
+          "n": 100,
+          "p50": 43.8853759765625,
+          "p95": 119.73713684082031,
+          "p99": 445.95887756347656,
+          "max": 497.86358642578125
+        },
+        "firstPostToLastWorkerEndUs": {
+          "n": 100,
+          "p50": 1959.7359924316406,
+          "p95": 4715.598846435547,
+          "p99": 5701.12077331543,
+          "max": 6009.167190551758
+        },
+        "slowestWorkerWallUs": {
+          "n": 100,
+          "p50": 1661,
+          "p95": 4039,
+          "p99": 5422,
+          "max": 5472
+        },
+        "slowestWorkerCpuUs": {
+          "n": 100,
+          "p50": 991,
+          "p95": 3126,
+          "p99": 3780,
+          "max": 4094
+        },
+        "slowestWorkerOffCpuUs": {
+          "n": 100,
+          "p50": 517,
+          "p95": 1239,
+          "p99": 1724,
+          "max": 1802
+        },
+        "lastWorkerEndToLastHandlerStartUs": {
+          "n": 100,
+          "p50": 118.53569030761719,
+          "p95": 1747.8072814941406,
+          "p99": 2691.364242553711,
+          "max": 4104.491973876953
+        },
+        "mainBusyWallUs": {
+          "n": 100,
+          "p50": 115.53569030761719,
+          "p95": 1735.0286712646484,
+          "p99": 2676.364242553711,
+          "max": 4089.491973876953
+        },
+        "mainBusyCpuUs": {
+          "n": 99,
+          "p50": 264,
+          "p95": 2010,
+          "p99": 3694,
+          "max": 3694
+        },
+        "lastHandlerUs": {
+          "n": 100,
+          "p50": 100.00000894069672,
+          "p95": 400.0000059604645,
+          "p99": 699.999988079071,
+          "max": 700.0000029802322
+        },
+        "gcOnMainInWindowUs": {
+          "n": 100,
+          "p50": 0,
+          "p95": 2464,
+          "p99": 2882,
+          "max": 4830
+        },
+        "gcOnWorkersInWindowUs": {
+          "n": 100,
+          "p50": 679,
+          "p95": 2860,
+          "p99": 4254,
+          "max": 4975
+        },
+        "lateStartWorkers": {
+          "n": 100,
+          "p50": 0,
+          "p95": 1,
+          "p99": 3,
+          "max": 4
+        },
+        "mainOffCpuDuringWaitUs": {
+          "n": 99,
+          "p50": 13.207207207207205,
+          "p95": 404.6963247039075,
+          "p99": 1521.031179182316,
+          "max": 1521.031179182316
+        },
+        "rasterWallDuringWaitUs": {
+          "n": 100,
+          "p50": 474.14276123046875,
+          "p95": 6991.2291259765625,
+          "p99": 10765.456970214844,
+          "max": 16417.967895507812
+        },
+        "rasterThreadsDuringWait": {
+          "n": 100,
+          "p50": 4,
+          "p95": 4,
+          "p99": 4,
+          "max": 4
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "id": "ec102-workloads-v1",
+  "generator": "benchmarks/perf/harness/generate-workloads.ts",
+  "sourceCommit": "d2c3189ba62c1b34feae76fbacfcc8bccaf3818f",
+  "seed": 20261107,
+  "prng": {
+    "name": "lcg32",
+    "source": "benchmarks/corpus/harness/prng.ts",
+    "algorithm": "state = seed; next() { state = (Math.imul(state, 1664525) + 1013904223) >>> 0; return state / 2 ** 32; }",
+    "multiplier": 1664525,
+    "increment": 1013904223,
+    "modulus": "2^32",
+    "drawOrder": "One generator seeded once. Initial heading: one draw times 360. Then for each of the 61 waypoints, in order: x, y, heading delta. Position draws are discarded for portal-edge waypoints, so the draw count does not depend on the portal rule. The 30 s tape reuses the first 31 waypoints of the same sequence."
+  },
+  "scene": {
+    "fixtureSource": "tests/e2e/workspace.spec.ts lines 288-395 (preset stress-100-walls, then the mutation of lines 315-352)",
+    "preset": "stress-100-walls",
+    "walls": 100,
+    "portals": 8,
+    "sources": 4,
+    "listeners": 8,
+    "primitives": 0,
+    "staticGeometryHash": "6dc9f361",
+    "classicProjectionHash": "2483580d"
+  },
+  "tapes": {
+    "pose-60hz-60s.json": {
+      "eventCount": 3600,
+      "eventsByType": {
+        "listener-pose": 3600
+      }
+    },
+    "static-5hz-30s.json": {
+      "eventCount": 1950,
+      "eventsByType": {
+        "listener-pose": 1800,
+        "wall-endpoint": 50,
+        "wall-material": 50,
+        "portal-toggle": 50
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "W01_H100_POSE_60HZ_60S",
+      "mode": "hybrid",
+      "replay": "open",
+      "scene": "h100-scene.json",
+      "tape": "pose-60hz-60s.json",
+      "rateHz": 60,
+      "durationMs": 60000,
+      "eventCount": 3600,
+      "eventsByType": {
+        "listener-pose": 3600
+      }
+    },
+    {
+      "id": "W02_H100_STATIC_5HZ_30S",
+      "mode": "hybrid",
+      "replay": "open",
+      "scene": "h100-scene.json",
+      "tape": "static-5hz-30s.json",
+      "rateHz": 5,
+      "durationMs": 30000,
+      "eventCount": 1950,
+      "eventsByType": {
+        "listener-pose": 1800,
+        "wall-endpoint": 50,
+        "wall-material": 50,
+        "portal-toggle": 50
+      }
+    },
+    {
+      "id": "W03_C100_POSE_60HZ_60S",
+      "mode": "classic",
+      "replay": "open",
+      "scene": "c100-scene.json",
+      "tape": "pose-60hz-60s.json",
+      "rateHz": 60,
+      "durationMs": 60000,
+      "eventCount": 3600,
+      "eventsByType": {
+        "listener-pose": 3600
+      }
+    },
+    {
+      "id": "W04_C100_STATIC_5HZ_30S",
+      "mode": "classic",
+      "replay": "open",
+      "scene": "c100-scene.json",
+      "tape": "static-5hz-30s.json",
+      "rateHz": 5,
+      "durationMs": 30000,
+      "eventCount": 1950,
+      "eventsByType": {
+        "listener-pose": 1800,
+        "wall-endpoint": 50,
+        "wall-material": 50,
+        "portal-toggle": 50
+      }
+    }
+  ],
+  "files": {
+    "h100-scene.json": {
+      "sha256": "fc47c3d52731a374efdf039216b135e683eb3cea4f4e60994eaeb5321f55e317",
+      "bytes": 42226
+    },
+    "c100-scene.json": {
+      "sha256": "fb74a74e83975d7049283cd969eac3e4ded43937b5cce0c9c9b6f9429cd75464",
+      "bytes": 29610
+    },
+    "pose-60hz-60s.json": {
+      "sha256": "6af31ac6f78f279e3958f033152cc529e9881073a8bc2a7234a339d9f8fa5a4c",
+      "bytes": 442221
+    },
+    "static-5hz-30s.json": {
+      "sha256": "242948fb4bcfcbfc47b1f1997bc7c28a19284ba091b7bd84f14e9a5fb27cc6d3",
+      "bytes": 239243
+    }
+  },
+  "notes": [
+    "primitive-pose is not exercised by these workloads: the fixture has no primitives. Only corpus case TH02 exercises it.",
+    "Static events: wall-endpoint nudges the b end of stress_50 by +0.05 m and -0.05 m alternately from its original position; wall-material alternates wood_medium and concrete_hard; portal-toggle cycles stress_portal_0 to _7 and flips the current state.",
+    "Static events are planned at index * 200 ms plus 8.3333 ms, so none shares a planned time with a pose event.",
+    "Every event was replayed through validateScene and createSceneDocumentV2 at generation time; none was rejected."
+  ],
+  "corpusV1": "Unchanged. Corpus v1 (benchmarks/corpus/v1) still covers scenarios S1-S7 with its own tapes; these workloads do not replace or modify any of them."
+}

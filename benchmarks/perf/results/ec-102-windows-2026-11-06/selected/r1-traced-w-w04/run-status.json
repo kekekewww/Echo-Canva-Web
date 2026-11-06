@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "runId": "r1-traced-w-w04",
+  "start": "2026-11-06T14:39:01.223Z",
+  "end": "2026-11-06T14:39:46.113Z",
+  "sampleCount": 14926,
+  "originalStatus": "passed",
+  "originalError": "not-applicable",
+  "rederivedAt": "2026-11-06T18:40:53.557Z",
+  "rederivedByCommit": "08f82274d6bb80298337132c91456ed68caac09e",
+  "originalPhasesNotReached": "not-applicable"
+}

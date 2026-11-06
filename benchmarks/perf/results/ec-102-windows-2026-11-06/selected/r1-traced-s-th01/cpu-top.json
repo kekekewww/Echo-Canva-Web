@@ -1,0 +1,288 @@
+{
+  "main": {
+    "thread": "CrRendererMain",
+    "totalSelfUs": 16012381,
+    "functions": [
+      {
+        "functionName": "(idle)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 15747.48,
+        "fraction": 0.9834564890755473
+      },
+      {
+        "functionName": "(program)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 116.478,
+        "fraction": 0.007274246097441724
+      },
+      {
+        "functionName": "stableJson",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7257,
+        "selfMs": 16.602,
+        "fraction": 0.001036822693639378
+      },
+      {
+        "functionName": "(garbage collector)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 11.042,
+        "fraction": 0.0006895913855659567
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 8.907,
+        "fraction": 0.0005562570613327275
+      },
+      {
+        "functionName": "createSceneDocumentV2",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 9014,
+        "selfMs": 7.556,
+        "fraction": 0.00047188484960481515
+      },
+      {
+        "functionName": "visit",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 1285,
+        "selfMs": 6.528,
+        "fraction": 0.00040768452861570054
+      },
+      {
+        "functionName": "inst._zod.parse",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 3632,
+        "selfMs": 6.052,
+        "fraction": 0.0003779575317374724
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "undefined",
+        "lineNumber": 2,
+        "selfMs": 5.914,
+        "fraction": 0.0003693392007097508
+      },
+      {
+        "functionName": "segmentIntersectsAabb3",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 1133,
+        "selfMs": 5.481,
+        "fraction": 0.00034229762581842137
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 1247,
+        "selfMs": 5.19,
+        "fraction": 0.00032412418865126926
+      },
+      {
+        "functionName": "classicProjectionHash",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7264,
+        "selfMs": 4.917,
+        "fraction": 0.00030707488161816785
+      },
+      {
+        "functionName": "runChecks",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 2842,
+        "selfMs": 4.653,
+        "fraction": 0.00029058763965209174
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7261,
+        "selfMs": 4.233,
+        "fraction": 0.00026435793652424336
+      },
+      {
+        "functionName": "subtract3",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 1059,
+        "selfMs": 3.917,
+        "fraction": 0.00024462320750424314
+      },
+      {
+        "functionName": "validateGeometry",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7160,
+        "selfMs": 3.109,
+        "fraction": 0.00019416225482019194
+      },
+      {
+        "functionName": "structuredClone",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 3.059,
+        "fraction": 0.0001910396711144957
+      },
+      {
+        "functionName": "setTimeout",
+        "url": "undefined",
+        "lineNumber": null,
+        "selfMs": 2.567,
+        "fraction": 0.00016031344745044476
+      },
+      {
+        "functionName": "replayTapeSerial",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 9948,
+        "selfMs": 2.32,
+        "fraction": 0.00014488788394430535
+      },
+      {
+        "functionName": "handleCatchall",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 3420,
+        "selfMs": 2.059,
+        "fraction": 0.000128587997000571
+      },
+      {
+        "functionName": "validateUniqueIds",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7138,
+        "selfMs": 1.872,
+        "fraction": 0.00011690953394126707
+      },
+      {
+        "functionName": "isTypedArray",
+        "url": "undefined",
+        "lineNumber": 64,
+        "selfMs": 1.822,
+        "fraction": 0.00011378695023557084
+      },
+      {
+        "functionName": "inst._zod.parse",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 3826,
+        "selfMs": 1.809,
+        "fraction": 0.00011297507847208981
+      },
+      {
+        "functionName": "pointInPatch3",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 1171,
+        "selfMs": 1.706,
+        "fraction": 0.00010654255603835557
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7168,
+        "selfMs": 1.44,
+        "fraction": 0.0000899304107240516
+      },
+      {
+        "functionName": "serialize",
+        "url": "undefined",
+        "lineNumber": 202,
+        "selfMs": 1.423,
+        "fraction": 0.00008886873226411488
+      },
+      {
+        "functionName": "inst._zod.run",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 2883,
+        "selfMs": 1.421,
+        "fraction": 0.00008874382891588702
+      },
+      {
+        "functionName": "isSimplePolygon",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 171,
+        "selfMs": 1.334,
+        "fraction": 0.00008331053326797558
+      },
+      {
+        "functionName": "now",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 10048,
+        "selfMs": 1.315,
+        "fraction": 0.000082123951459811
+      },
+      {
+        "functionName": "validateV2Semantics",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7272,
+        "selfMs": 1.312,
+        "fraction": 0.00008193659643746923
+      },
+      {
+        "functionName": "solveSecondOrderReflectionPair",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7890,
+        "selfMs": 1.304,
+        "fraction": 0.00008143698304455784
+      },
+      {
+        "functionName": "validateSceneDocument",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7317,
+        "selfMs": 1.223,
+        "fraction": 0.00007637839744132993
+      },
+      {
+        "functionName": "intersectSegmentPatch",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 1206,
+        "selfMs": 1.213,
+        "fraction": 0.00007575388070019068
+      },
+      {
+        "functionName": "inst._zod.check",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 2509,
+        "selfMs": 1.209,
+        "fraction": 0.00007550407400373498
+      },
+      {
+        "functionName": "hybridJob",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 9926,
+        "selfMs": 1.176,
+        "fraction": 0.00007344316875797547
+      },
+      {
+        "functionName": "generateFastpass",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 3536,
+        "selfMs": 1.173,
+        "fraction": 0.0000732558137356337
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 2261,
+        "selfMs": 1.144,
+        "fraction": 0.00007144471518632988
+      },
+      {
+        "functionName": "validateScene",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7184,
+        "selfMs": 1.039,
+        "fraction": 0.00006488728940436778
+      },
+      {
+        "functionName": "(anonymous)",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7838,
+        "selfMs": 0.919,
+        "fraction": 0.000057393088510696816
+      },
+      {
+        "functionName": "reflectionLegIsVisible",
+        "url": "http://127.0.0.1:57688/assets/pool-page-AcEQA-Ne.js",
+        "lineNumber": 7813,
+        "selfMs": 0.85,
+        "fraction": 0.00005308392299683601
+      }
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "unit": "core-seconds",
+  "note": "cpuTime per browser process from CDP SystemInfo.getProcessInfo before and after the window.",
+  "before": [
+    {
+      "type": "browser",
+      "id": 57356,
+      "cpuTime": 0.390506
+    },
+    {
+      "type": "renderer",
+      "id": 21152,
+      "cpuTime": 0.072638
+    },
+    {
+      "type": "renderer",
+      "id": 51488,
+      "cpuTime": 0.052144
+    },
+    {
+      "type": "renderer",
+      "id": 52440,
+      "cpuTime": 0.21107
+    },
+    {
+      "type": "network.mojom.NetworkService",
+      "id": 2656,
+      "cpuTime": 0.072044
+    },
+    {
+      "type": "storage.mojom.StorageService",
+      "id": 57164,
+      "cpuTime": 0.023037
+    },
+    {
+      "type": "GPU",
+      "id": 55268,
+      "cpuTime": 0.006053
+    }
+  ],
+  "after": [
+    {
+      "type": "browser",
+      "id": 57356,
+      "cpuTime": 5.209963
+    },
+    {
+      "type": "renderer",
+      "id": 21152,
+      "cpuTime": 0.308582
+    },
+    {
+      "type": "renderer",
+      "id": 51488,
+      "cpuTime": 36.309332
+    },
+    {
+      "type": "renderer",
+      "id": 52440,
+      "cpuTime": 0.574405
+    },
+    {
+      "type": "network.mojom.NetworkService",
+      "id": 2656,
+      "cpuTime": 0.27175
+    },
+    {
+      "type": "storage.mojom.StorageService",
+      "id": 57164,
+      "cpuTime": 0.037322
+    },
+    {
+      "type": "GPU",
+      "id": 55268,
+      "cpuTime": 1.026548
+    },
+    {
+      "type": "audio.mojom.AudioService",
+      "id": 58836,
+      "cpuTime": 0.202014
+    },
+    {
+      "type": "tracing.mojom.TracingService",
+      "id": 736,
+      "cpuTime": 9.943408
+    }
+  ]
+}

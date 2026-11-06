@@ -1,0 +1,88 @@
+{
+  "note": "Real collections only, in the measured window (collections starting between ec102:window:start and ec102:window:end, the same rule as busy.json). minor and major durUs are pause time on that thread; incremental-marking-step durUs is time spent in steps, not a pause of the whole collection. perThread is keyed by pid:tid; perName adds the threads that share a name or label.",
+  "window": {
+    "measured": true,
+    "startUs": 98673900251,
+    "endUs": 98688830215
+  },
+  "events": 108,
+  "perThread": {
+    "59684:58452": {
+      "label": "main",
+      "pid": 59684,
+      "tid": 58452,
+      "threadName": "CrRendererMain",
+      "kinds": {
+        "minor": {
+          "count": 35,
+          "durUs": 37845
+        },
+        "incremental-marking-step": {
+          "count": 71,
+          "durUs": 10717
+        },
+        "major": {
+          "count": 2,
+          "durUs": 13259
+        }
+      }
+    }
+  },
+  "perName": {
+    "main": {
+      "minor": {
+        "count": 35,
+        "durUs": 37845
+      },
+      "incremental-marking-step": {
+        "count": 71,
+        "durUs": 10717
+      },
+      "major": {
+        "count": 2,
+        "durUs": 13259
+      }
+    }
+  },
+  "wholeTraceTotal": {
+    "events": 111,
+    "perThread": {
+      "59684:58452": {
+        "label": "main",
+        "pid": 59684,
+        "tid": 58452,
+        "threadName": "CrRendererMain",
+        "kinds": {
+          "minor": {
+            "count": 38,
+            "durUs": 42314
+          },
+          "incremental-marking-step": {
+            "count": 71,
+            "durUs": 10717
+          },
+          "major": {
+            "count": 2,
+            "durUs": 13259
+          }
+        }
+      }
+    },
+    "perName": {
+      "main": {
+        "minor": {
+          "count": 38,
+          "durUs": 42314
+        },
+        "incremental-marking-step": {
+          "count": 71,
+          "durUs": 10717
+        },
+        "major": {
+          "count": 2,
+          "durUs": 13259
+        }
+      }
+    }
+  }
+}

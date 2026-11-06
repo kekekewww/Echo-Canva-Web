@@ -1,0 +1,360 @@
+{
+  "note": "Real collections only, in the measured window (collections starting between ec102:window:start and ec102:window:end, the same rule as busy.json). minor and major durUs are pause time on that thread; incremental-marking-step durUs is time spent in steps, not a pause of the whole collection. perThread is keyed by pid:tid; perName adds the threads that share a name or label.",
+  "window": {
+    "measured": true,
+    "startUs": 92814814216,
+    "endUs": 92837679357
+  },
+  "events": 513,
+  "perThread": {
+    "49468:21636": {
+      "label": "main",
+      "pid": 49468,
+      "tid": 21636,
+      "threadName": "CrRendererMain",
+      "kinds": {
+        "minor": {
+          "count": 173,
+          "durUs": 135012
+        },
+        "incremental-marking-step": {
+          "count": 144,
+          "durUs": 17750
+        },
+        "major": {
+          "count": 5,
+          "durUs": 21715
+        }
+      }
+    },
+    "49468:54696": {
+      "label": "w1",
+      "pid": 49468,
+      "tid": 54696,
+      "threadName": "DedicatedWorker thread",
+      "kinds": {
+        "minor": {
+          "count": 25,
+          "durUs": 49221
+        },
+        "incremental-marking-step": {
+          "count": 19,
+          "durUs": 1033
+        },
+        "major": {
+          "count": 3,
+          "durUs": 4494
+        }
+      }
+    },
+    "49468:33260": {
+      "label": "w2",
+      "pid": 49468,
+      "tid": 33260,
+      "threadName": "DedicatedWorker thread",
+      "kinds": {
+        "minor": {
+          "count": 28,
+          "durUs": 53901
+        },
+        "incremental-marking-step": {
+          "count": 18,
+          "durUs": 1716
+        },
+        "major": {
+          "count": 4,
+          "durUs": 7721
+        }
+      }
+    },
+    "49468:45768": {
+      "label": "w3",
+      "pid": 49468,
+      "tid": 45768,
+      "threadName": "DedicatedWorker thread",
+      "kinds": {
+        "minor": {
+          "count": 28,
+          "durUs": 48760
+        },
+        "incremental-marking-step": {
+          "count": 19,
+          "durUs": 1431
+        },
+        "major": {
+          "count": 4,
+          "durUs": 9749
+        }
+      }
+    },
+    "49468:45716": {
+      "label": "w0",
+      "pid": 49468,
+      "tid": 45716,
+      "threadName": "DedicatedWorker thread",
+      "kinds": {
+        "minor": {
+          "count": 26,
+          "durUs": 62144
+        },
+        "incremental-marking-step": {
+          "count": 13,
+          "durUs": 2463
+        },
+        "major": {
+          "count": 4,
+          "durUs": 16311
+        }
+      }
+    }
+  },
+  "perName": {
+    "main": {
+      "minor": {
+        "count": 173,
+        "durUs": 135012
+      },
+      "incremental-marking-step": {
+        "count": 144,
+        "durUs": 17750
+      },
+      "major": {
+        "count": 5,
+        "durUs": 21715
+      }
+    },
+    "w1": {
+      "minor": {
+        "count": 25,
+        "durUs": 49221
+      },
+      "incremental-marking-step": {
+        "count": 19,
+        "durUs": 1033
+      },
+      "major": {
+        "count": 3,
+        "durUs": 4494
+      }
+    },
+    "w2": {
+      "minor": {
+        "count": 28,
+        "durUs": 53901
+      },
+      "incremental-marking-step": {
+        "count": 18,
+        "durUs": 1716
+      },
+      "major": {
+        "count": 4,
+        "durUs": 7721
+      }
+    },
+    "w3": {
+      "minor": {
+        "count": 28,
+        "durUs": 48760
+      },
+      "incremental-marking-step": {
+        "count": 19,
+        "durUs": 1431
+      },
+      "major": {
+        "count": 4,
+        "durUs": 9749
+      }
+    },
+    "w0": {
+      "minor": {
+        "count": 26,
+        "durUs": 62144
+      },
+      "incremental-marking-step": {
+        "count": 13,
+        "durUs": 2463
+      },
+      "major": {
+        "count": 4,
+        "durUs": 16311
+      }
+    }
+  },
+  "wholeTraceTotal": {
+    "events": 515,
+    "perThread": {
+      "49468:21636": {
+        "label": "main",
+        "pid": 49468,
+        "tid": 21636,
+        "threadName": "CrRendererMain",
+        "kinds": {
+          "minor": {
+            "count": 175,
+            "durUs": 139237
+          },
+          "incremental-marking-step": {
+            "count": 144,
+            "durUs": 17750
+          },
+          "major": {
+            "count": 5,
+            "durUs": 21715
+          }
+        }
+      },
+      "49468:54696": {
+        "label": "w1",
+        "pid": 49468,
+        "tid": 54696,
+        "threadName": "DedicatedWorker thread",
+        "kinds": {
+          "minor": {
+            "count": 25,
+            "durUs": 49221
+          },
+          "incremental-marking-step": {
+            "count": 19,
+            "durUs": 1033
+          },
+          "major": {
+            "count": 3,
+            "durUs": 4494
+          }
+        }
+      },
+      "49468:33260": {
+        "label": "w2",
+        "pid": 49468,
+        "tid": 33260,
+        "threadName": "DedicatedWorker thread",
+        "kinds": {
+          "minor": {
+            "count": 28,
+            "durUs": 53901
+          },
+          "incremental-marking-step": {
+            "count": 18,
+            "durUs": 1716
+          },
+          "major": {
+            "count": 4,
+            "durUs": 7721
+          }
+        }
+      },
+      "49468:45768": {
+        "label": "w3",
+        "pid": 49468,
+        "tid": 45768,
+        "threadName": "DedicatedWorker thread",
+        "kinds": {
+          "minor": {
+            "count": 28,
+            "durUs": 48760
+          },
+          "incremental-marking-step": {
+            "count": 19,
+            "durUs": 1431
+          },
+          "major": {
+            "count": 4,
+            "durUs": 9749
+          }
+        }
+      },
+      "49468:45716": {
+        "label": "w0",
+        "pid": 49468,
+        "tid": 45716,
+        "threadName": "DedicatedWorker thread",
+        "kinds": {
+          "minor": {
+            "count": 26,
+            "durUs": 62144
+          },
+          "incremental-marking-step": {
+            "count": 13,
+            "durUs": 2463
+          },
+          "major": {
+            "count": 4,
+            "durUs": 16311
+          }
+        }
+      }
+    },
+    "perName": {
+      "main": {
+        "minor": {
+          "count": 175,
+          "durUs": 139237
+        },
+        "incremental-marking-step": {
+          "count": 144,
+          "durUs": 17750
+        },
+        "major": {
+          "count": 5,
+          "durUs": 21715
+        }
+      },
+      "w1": {
+        "minor": {
+          "count": 25,
+          "durUs": 49221
+        },
+        "incremental-marking-step": {
+          "count": 19,
+          "durUs": 1033
+        },
+        "major": {
+          "count": 3,
+          "durUs": 4494
+        }
+      },
+      "w2": {
+        "minor": {
+          "count": 28,
+          "durUs": 53901
+        },
+        "incremental-marking-step": {
+          "count": 18,
+          "durUs": 1716
+        },
+        "major": {
+          "count": 4,
+          "durUs": 7721
+        }
+      },
+      "w3": {
+        "minor": {
+          "count": 28,
+          "durUs": 48760
+        },
+        "incremental-marking-step": {
+          "count": 19,
+          "durUs": 1431
+        },
+        "major": {
+          "count": 4,
+          "durUs": 9749
+        }
+      },
+      "w0": {
+        "minor": {
+          "count": 26,
+          "durUs": 62144
+        },
+        "incremental-marking-step": {
+          "count": 13,
+          "durUs": 2463
+        },
+        "major": {
+          "count": 4,
+          "durUs": 16311
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "schema": "ec102.environment.v1",
+  "date": "2026-11-06T16:15:06.485Z",
+  "timezoneOffsetMinutes": 480,
+  "cpuModel": "13th Gen Intel(R) Core(TM) i9-13980HX",
+  "physicalCores": 24,
+  "logicalCores": 32,
+  "ramGB": 31.63,
+  "os": {
+    "name": "Microsoft Windows 11 家用版",
+    "build": "26200",
+    "arch": "x64"
+  },
+  "power": {
+    "scheme": "Turbo",
+    "line": "Online",
+    "batteryChargeStatus": "High",
+    "batteryPercent": 80
+  },
+  "acpiThermalZoneC": 27.9,
+  "versions": {
+    "node": "v22.23.3",
+    "pnpm": "11.7.0",
+    "playwright": "1.64.1"
+  },
+  "git": {
+    "sha": "dc1bfe3a7cdbeb646ea8f0872465d7baf53f6954",
+    "dirty": true
+  },
+  "browser": {
+    "version": "156.0.8078.4",
+    "browserChannel": "default",
+    "executableKind": "headless-shell",
+    "executableSha256": "f77d8e27c8db1e4ac0399459a00e0c97bb9417adc393474cabaffebe2314ecb0",
+    "launchArgs": "playwright default launch options, none added",
+    "extraLaunchArgs": [],
+    "webglVendor": "Google Inc. (Google)",
+    "webglRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuRasterization": "disabled_software",
+    "gpuCompositing": "disabled_software",
+    "gpuFeatureStatus": {
+      "2d_canvas": "unavailable_software",
+      "direct_rendering_display_compositor": "disabled_off_ok",
+      "gpu_compositing": "disabled_software",
+      "multiple_raster_threads": "enabled_on",
+      "opengl": "disabled_off",
+      "rasterization": "disabled_software",
+      "raw_draw": "disabled_off_ok",
+      "skia_graphite": "disabled_off",
+      "trees_in_viz": "disabled_off",
+      "video_decode": "disabled_software",
+      "video_encode": "disabled_software",
+      "webgl": "unavailable_software",
+      "webgpu": "unavailable_software",
+      "webnn": "unavailable_software"
+    },
+    "viewport": {
+      "requested": "default",
+      "innerWidth": 1280,
+      "innerHeight": 720,
+      "devicePixelRatio": 1
+    },
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+    "hardwareConcurrency": 32,
+    "crossOriginIsolated": false
+  },
+  "otherActivity": {
+    "before": {
+      "seconds": 3,
+      "method": "get-counter",
+      "machineCpuPercent": 13.112,
+      "topProcesses": [
+        {
+          "name": "onedrive.sync.service",
+          "cpuPercentOfMachine": 3.092,
+          "writeMBps": 5.017
+        },
+        {
+          "name": "brave",
+          "cpuPercentOfMachine": 2.048,
+          "writeMBps": 1.042
+        },
+        {
+          "name": "system",
+          "cpuPercentOfMachine": 1.952,
+          "writeMBps": 0.098
+        },
+        {
+          "name": "discord",
+          "cpuPercentOfMachine": 0.994,
+          "writeMBps": 0.057
+        },
+        {
+          "name": "svchost",
+          "cpuPercentOfMachine": 0.973,
+          "writeMBps": 0.02
+        },
+        {
+          "name": "dwm",
+          "cpuPercentOfMachine": 0.501,
+          "writeMBps": 0
+        },
+        {
+          "name": "msmpeng",
+          "cpuPercentOfMachine": 0.426,
+          "writeMBps": 0
+        },
+        {
+          "name": "claude",
+          "cpuPercentOfMachine": 0.406,
+          "writeMBps": 0.034
+        }
+      ],
+      "driveFreeGB": {
+        "C": 0.38,
+        "D": 3.67,
+        "F": 55.32
+      }
+    },
+    "after": {
+      "seconds": 3,
+      "method": "get-counter",
+      "machineCpuPercent": 12.485,
+      "topProcesses": [
+        {
+          "name": "onedrive.sync.service",
+          "cpuPercentOfMachine": 5.261,
+          "writeMBps": 12.59
+        },
+        {
+          "name": "brave",
+          "cpuPercentOfMachine": 2.251,
+          "writeMBps": 2.228
+        },
+        {
+          "name": "svchost",
+          "cpuPercentOfMachine": 0.717,
+          "writeMBps": 0
+        },
+        {
+          "name": "system",
+          "cpuPercentOfMachine": 0.702,
+          "writeMBps": 0.034
+        },
+        {
+          "name": "dwm",
+          "cpuPercentOfMachine": 0.606,
+          "writeMBps": 0
+        },
+        {
+          "name": "discord",
+          "cpuPercentOfMachine": 0.526,
+          "writeMBps": 0.059
+        },
+        {
+          "name": "claude",
+          "cpuPercentOfMachine": 0.447,
+          "writeMBps": 0.039
+        },
+        {
+          "name": "audiodg",
+          "cpuPercentOfMachine": 0.176,
+          "writeMBps": 0
+        }
+      ],
+      "driveFreeGB": {
+        "C": 0.36,
+        "D": 3.6,
+        "F": 55.32
+      }
+    }
+  }
+}

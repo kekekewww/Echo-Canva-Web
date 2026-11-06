@@ -1,0 +1,173 @@
+{
+  "schema": "ec102.environment.v1",
+  "date": "2026-11-06T15:32:07.540Z",
+  "timezoneOffsetMinutes": 480,
+  "cpuModel": "13th Gen Intel(R) Core(TM) i9-13980HX",
+  "physicalCores": 24,
+  "logicalCores": 32,
+  "ramGB": 31.63,
+  "os": {
+    "name": "Microsoft Windows 11 家用版",
+    "build": "26200",
+    "arch": "x64"
+  },
+  "power": {
+    "scheme": "Turbo",
+    "line": "Online",
+    "batteryChargeStatus": "High",
+    "batteryPercent": 80
+  },
+  "acpiThermalZoneC": 27.9,
+  "versions": {
+    "node": "v22.23.3",
+    "pnpm": "11.7.0",
+    "playwright": "1.64.1"
+  },
+  "git": {
+    "sha": "bac507a4861121e667fa372b6a9865d265f6a443",
+    "dirty": true
+  },
+  "browser": {
+    "version": "156.0.8078.4",
+    "browserChannel": "chromium",
+    "executableKind": "chromium-full",
+    "executableSha256": "7f08161bbeb2853ffe1780a9ded4985087f52efb9725d7d8207aabdd42f7cfb9",
+    "launchArgs": "channel chromium, no other options",
+    "extraLaunchArgs": [],
+    "webglVendor": "unavailable",
+    "webglRenderer": "unavailable",
+    "gpuRasterization": "enabled",
+    "gpuCompositing": "disabled_software",
+    "gpuFeatureStatus": {
+      "2d_canvas": "enabled",
+      "direct_rendering_display_compositor": "disabled_off_ok",
+      "gpu_compositing": "disabled_software",
+      "multiple_raster_threads": "enabled_on",
+      "opengl": "enabled_on",
+      "rasterization": "enabled",
+      "raw_draw": "disabled_off_ok",
+      "skia_graphite": "disabled_off",
+      "trees_in_viz": "disabled_off",
+      "video_decode": "enabled",
+      "video_encode": "enabled",
+      "webgl": "enabled_readback",
+      "webgpu": "enabled_readback",
+      "webnn": "disabled_off"
+    },
+    "viewport": {
+      "requested": "default",
+      "innerWidth": 1280,
+      "innerHeight": 720,
+      "devicePixelRatio": 1
+    },
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "hardwareConcurrency": 32,
+    "crossOriginIsolated": false
+  },
+  "otherActivity": {
+    "before": {
+      "seconds": 3,
+      "method": "get-counter",
+      "machineCpuPercent": 10.04,
+      "topProcesses": [
+        {
+          "name": "brave",
+          "cpuPercentOfMachine": 2.754,
+          "writeMBps": 3.457
+        },
+        {
+          "name": "svchost",
+          "cpuPercentOfMachine": 0.543,
+          "writeMBps": 0.004
+        },
+        {
+          "name": "system",
+          "cpuPercentOfMachine": 0.495,
+          "writeMBps": 0
+        },
+        {
+          "name": "discord",
+          "cpuPercentOfMachine": 0.448,
+          "writeMBps": 0.029
+        },
+        {
+          "name": "claude",
+          "cpuPercentOfMachine": 0.401,
+          "writeMBps": 0.004
+        },
+        {
+          "name": "msmpeng",
+          "cpuPercentOfMachine": 0.382,
+          "writeMBps": 0
+        },
+        {
+          "name": "dwm",
+          "cpuPercentOfMachine": 0.337,
+          "writeMBps": 0
+        },
+        {
+          "name": "chatgpt",
+          "cpuPercentOfMachine": 0.144,
+          "writeMBps": 0.01
+        }
+      ],
+      "driveFreeGB": {
+        "C": 0.4,
+        "D": 4.39,
+        "F": 55.32
+      }
+    },
+    "after": {
+      "seconds": 3,
+      "method": "get-counter",
+      "machineCpuPercent": 8.874,
+      "topProcesses": [
+        {
+          "name": "system",
+          "cpuPercentOfMachine": 3.478,
+          "writeMBps": 0.102
+        },
+        {
+          "name": "wmiprvse",
+          "cpuPercentOfMachine": 1.101,
+          "writeMBps": 0
+        },
+        {
+          "name": "svchost",
+          "cpuPercentOfMachine": 1.051,
+          "writeMBps": 0.001
+        },
+        {
+          "name": "brave",
+          "cpuPercentOfMachine": 0.67,
+          "writeMBps": 0.107
+        },
+        {
+          "name": "discord",
+          "cpuPercentOfMachine": 0.415,
+          "writeMBps": 0.104
+        },
+        {
+          "name": "msmpeng",
+          "cpuPercentOfMachine": 0.336,
+          "writeMBps": 0
+        },
+        {
+          "name": "audacity4",
+          "cpuPercentOfMachine": 0.303,
+          "writeMBps": 0
+        },
+        {
+          "name": "claude",
+          "cpuPercentOfMachine": 0.144,
+          "writeMBps": 0.004
+        }
+      ],
+      "driveFreeGB": {
+        "C": 0.39,
+        "D": 4.3,
+        "F": 55.32
+      }
+    }
+  }
+}

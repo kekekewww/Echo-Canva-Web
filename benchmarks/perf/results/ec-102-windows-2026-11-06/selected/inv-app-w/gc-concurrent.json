@@ -1,0 +1,56 @@
+{
+  "concurrent": true,
+  "pause": false,
+  "note": "Background and parallel scavenge work on thread-pool threads. It runs beside JavaScript and is not a pause; the durations overlap each other across threads and are summed here as thread time only.",
+  "totalThreadUs": 150176,
+  "byName": {
+    "V8.GC_BACKGROUND_UNPARK": {
+      "count": 10,
+      "durUs": 6751
+    },
+    "V8.GC_BACKGROUND_SAFEPOINT": {
+      "count": 54,
+      "durUs": 19371
+    },
+    "V8.GC_SCAVENGER_BACKGROUND_SCAVENGE_PARALLEL": {
+      "count": 335,
+      "durUs": 46526
+    },
+    "V8.GC_MINOR_MS_BACKGROUND_SWEEPING": {
+      "count": 1,
+      "durUs": 3
+    },
+    "V8.GC_BACKGROUND_YOUNG_ARRAY_BUFFER_SWEEP": {
+      "count": 1,
+      "durUs": 2
+    },
+    "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+      "count": 8,
+      "durUs": 56
+    },
+    "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_RESET_PARALLEL": {
+      "count": 6,
+      "durUs": 54
+    },
+    "V8.GC_MC_BACKGROUND_MARKING": {
+      "count": 39,
+      "durUs": 59757
+    },
+    "V8.GC_MC_BACKGROUND_EVACUATE_COPY": {
+      "count": 9,
+      "durUs": 4329
+    },
+    "V8.GC_MC_BACKGROUND_SWEEPING": {
+      "count": 20,
+      "durUs": 11640
+    },
+    "V8.GC_MC_BACKGROUND_EVACUATE_UPDATE_POINTERS": {
+      "count": 13,
+      "durUs": 1680
+    },
+    "V8.GC_BACKGROUND_FULL_ARRAY_BUFFER_SWEEP": {
+      "count": 1,
+      "durUs": 7
+    }
+  }
+}

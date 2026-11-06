@@ -1,0 +1,18 @@
+[
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "sched-app-w",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "traced",
+  "audio": "on",
+  "samples": 100,
+  "driver": "poll",
+  "build": "prod",
+  "trace-extra-categories": [
+   "cc",
+   "disabled-by-default-cc.debug.scheduler"
+  ]
+ }
+]

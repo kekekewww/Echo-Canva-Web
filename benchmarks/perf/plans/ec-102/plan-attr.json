@@ -1,0 +1,26 @@
+[
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "attr-app-w",
+  "variant": "TS-W",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "traced",
+  "audio": "on",
+  "samples": 100,
+  "driver": "poll",
+  "build": "no-mangling"
+ },
+ {
+  "corpus-manifest": "benchmarks/corpus/v1/manifest.json",
+  "run-id": "attr-app-s",
+  "variant": "TS-S",
+  "case": "APP_H100_SWITCH",
+  "boundary": "browser-app",
+  "pass": "traced",
+  "audio": "on",
+  "samples": 100,
+  "driver": "poll",
+  "build": "no-mangling"
+ }
+]

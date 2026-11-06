@@ -1,0 +1,145 @@
+{
+  "schema": "ec102.environment.v1",
+  "date": "2026-11-06T14:37:32.918Z",
+  "timezoneOffsetMinutes": 480,
+  "cpuModel": "13th Gen Intel(R) Core(TM) i9-13980HX",
+  "physicalCores": 24,
+  "logicalCores": 32,
+  "ramGB": 31.63,
+  "os": {
+    "name": "Microsoft Windows 11 家用版",
+    "build": "26200",
+    "arch": "x64"
+  },
+  "power": {
+    "scheme": "Turbo",
+    "line": "Online",
+    "batteryChargeStatus": "High",
+    "batteryPercent": 80
+  },
+  "acpiThermalZoneC": 27.9,
+  "versions": {
+    "node": "v22.23.3",
+    "pnpm": "11.7.0",
+    "playwright": "1.64.1"
+  },
+  "git": {
+    "sha": "973eddc0d1c50d1f18f5e9803d9c2fb5a529fc8f",
+    "dirty": false
+  },
+  "browser": {
+    "version": "156.0.8078.4",
+    "executableSha256": "7f08161bbeb2853ffe1780a9ded4985087f52efb9725d7d8207aabdd42f7cfb9",
+    "launchArgs": "playwright default launch options, none added",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+    "hardwareConcurrency": 32,
+    "crossOriginIsolated": false,
+    "mainClockResolutionMs": 0.09999999403953552
+  },
+  "otherActivity": {
+    "before": {
+      "seconds": 3,
+      "method": "get-counter",
+      "machineCpuPercent": 12.42,
+      "topProcesses": [
+        {
+          "name": "ik product manager",
+          "cpuPercentOfMachine": 4.225,
+          "writeMBps": 41.458
+        },
+        {
+          "name": "explorer",
+          "cpuPercentOfMachine": 3.415,
+          "writeMBps": 0
+        },
+        {
+          "name": "svchost",
+          "cpuPercentOfMachine": 0.984,
+          "writeMBps": 0.036
+        },
+        {
+          "name": "system",
+          "cpuPercentOfMachine": 0.54,
+          "writeMBps": 0.089
+        },
+        {
+          "name": "dwm",
+          "cpuPercentOfMachine": 0.46,
+          "writeMBps": 0
+        },
+        {
+          "name": "discord",
+          "cpuPercentOfMachine": 0.445,
+          "writeMBps": 0.078
+        },
+        {
+          "name": "claude",
+          "cpuPercentOfMachine": 0.175,
+          "writeMBps": 0.004
+        },
+        {
+          "name": "nvdisplay.container",
+          "cpuPercentOfMachine": 0.159,
+          "writeMBps": 0
+        }
+      ],
+      "driveFreeGB": {
+        "C": 1.91,
+        "D": 28.38,
+        "F": 55.32
+      }
+    },
+    "after": {
+      "seconds": 3,
+      "method": "get-counter",
+      "machineCpuPercent": 15.274,
+      "topProcesses": [
+        {
+          "name": "system",
+          "cpuPercentOfMachine": 3.73,
+          "writeMBps": 0.05
+        },
+        {
+          "name": "ik product manager",
+          "cpuPercentOfMachine": 2.846,
+          "writeMBps": 33.507
+        },
+        {
+          "name": "reaper",
+          "cpuPercentOfMachine": 1.85,
+          "writeMBps": 0
+        },
+        {
+          "name": "wmiprvse",
+          "cpuPercentOfMachine": 0.969,
+          "writeMBps": 0
+        },
+        {
+          "name": "discord",
+          "cpuPercentOfMachine": 0.601,
+          "writeMBps": 0.02
+        },
+        {
+          "name": "svchost",
+          "cpuPercentOfMachine": 0.518,
+          "writeMBps": 0
+        },
+        {
+          "name": "dwm",
+          "cpuPercentOfMachine": 0.426,
+          "writeMBps": 0
+        },
+        {
+          "name": "claude",
+          "cpuPercentOfMachine": 0.316,
+          "writeMBps": 0.012
+        }
+      ],
+      "driveFreeGB": {
+        "C": 1.88,
+        "D": 27.16,
+        "F": 55.32
+      }
+    }
+  }
+}
