@@ -1,12 +1,12 @@
 {
-  "corpusSha256": "0d0d268b9af6da26192aae12fee97c219bc3834787ddcd3222cc554a26c65eb4",
+  "corpusSha256": "4b4bf901d2fadd8bf8266482739a30bd3b19de6dd1cd047fd80f59c0ee3e1fb6",
   "aggregatesIdentical": true,
   "ok": true,
   "runs": {
     "A": {
       "runId": "A",
       "order": "manifest",
-      "corpusSha256": "0d0d268b9af6da26192aae12fee97c219bc3834787ddcd3222cc554a26c65eb4",
+      "corpusSha256": "4b4bf901d2fadd8bf8266482739a30bd3b19de6dd1cd047fd80f59c0ee3e1fb6",
       "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
       "gitDirty": [
         ".corpus-runs/acceptance/A/outputs/C001_CONCRETE_DEFAULT.json",
@@ -23,6 +23,10 @@
         ".corpus-runs/acceptance/A/outputs/C012_STRESS_2_SOURCES.json",
         ".corpus-runs/acceptance/A/outputs/C013_STRESS_4_SOURCES.json",
         ".corpus-runs/acceptance/A/outputs/C014_REFLECTION_HEAVY.json",
+        ".corpus-runs/acceptance/A/outputs/CL01_PRE_DELAY_FLOOR.json",
+        ".corpus-runs/acceptance/A/outputs/CL02_PRE_DELAY_CEILING.json",
+        ".corpus-runs/acceptance/A/outputs/CL05_EARLY_DELAY_CAP.json",
+        ".corpus-runs/acceptance/A/outputs/CL06_SECOND_ORDER_PATH_LIMIT.json",
         ".corpus-runs/acceptance/A/outputs/DC01_SOURCE_ON_LISTENER.json",
         ".corpus-runs/acceptance/A/outputs/DC02_ROUTE_COLLINEAR_WITH_WALL.json",
         ".corpus-runs/acceptance/A/outputs/DC03_LISTENER_ON_WALL_ENDPOINT.json",
@@ -47,6 +51,7 @@
         ".corpus-runs/acceptance/A/outputs/DV06_ROOM_ABOVE_50M.json",
         ".corpus-runs/acceptance/A/outputs/DV07_UNKNOWN_MATERIAL.json",
         ".corpus-runs/acceptance/A/outputs/DV08_PORTAL_WIDER_THAN_WALL.json",
+        ".corpus-runs/acceptance/A/outputs/DV09_ROOM_WIDTH_ABOVE_LIMIT.json",
         ".corpus-runs/acceptance/A/outputs/H001_PARTITION_PORTAL_OPEN.json",
         ".corpus-runs/acceptance/A/outputs/H002_PARTITION_PORTAL_CLOSED.json",
         ".corpus-runs/acceptance/A/outputs/H003_SECOND_ORDER_BLOCKED.json",
@@ -57,6 +62,14 @@
         ".corpus-runs/acceptance/A/outputs/H008_STRESS_1_SOURCE.json",
         ".corpus-runs/acceptance/A/outputs/H009_STRESS_2_SOURCES.json",
         ".corpus-runs/acceptance/A/outputs/H010_STRESS_4_SOURCES.json",
+        ".corpus-runs/acceptance/A/outputs/HL02_SECOND_ORDER_PATH_LIMIT.json",
+        ".corpus-runs/acceptance/A/outputs/HL03_SECOND_ORDER_TOP_K.json",
+        ".corpus-runs/acceptance/A/outputs/HL04_REPRESENTATIVE_PATCH_CAP.json",
+        ".corpus-runs/acceptance/A/outputs/LC01_MIXED_CASE_TIE_CLASSIC.json",
+        ".corpus-runs/acceptance/A/outputs/LC02_MIXED_CASE_TIE_HYBRID.json",
+        ".corpus-runs/acceptance/A/outputs/LC03_UNICODE_NAME_CLASSIC.json",
+        ".corpus-runs/acceptance/A/outputs/LC04_UNICODE_NAME_HYBRID.json",
+        ".corpus-runs/acceptance/A/outputs/LC05_NONBMP_SIBLING_CLASSIC.json",
         ".corpus-runs/acceptance/A/outputs/M001_SCENESPEC_V1_TO_CLASSIC.json",
         ".corpus-runs/acceptance/A/outputs/M002_DOC_V2_SPATIAL_TO_HYBRID.json",
         ".corpus-runs/acceptance/A/outputs/M003_DOC_V2_NO_SPATIAL_TO_HYBRID.json",
@@ -74,6 +87,7 @@
         ".corpus-runs/acceptance/A/outputs/SO002_PRUNE_ALL.json",
         ".corpus-runs/acceptance/A/outputs/SO003_32_PATCH.json",
         ".corpus-runs/acceptance/A/outputs/SO004_REPRESENTATIVE_BUDGET.json",
+        ".corpus-runs/acceptance/A/outputs/SO005_DEFAULT_TOP_K.json",
         ".corpus-runs/acceptance/A/outputs/TC01_LISTENER_TAPE_SEEDED.json",
         ".corpus-runs/acceptance/A/outputs/TC02_STATIC_EDIT_TAPE.json",
         ".corpus-runs/acceptance/A/outputs/TH01_LISTENER_TAPE_SEEDED.json",
@@ -87,12 +101,14 @@
         "benchmarks/corpus/harness/definitions/hybrid.ts",
         "benchmarks/corpus/harness/definitions/index.ts",
         "benchmarks/corpus/harness/definitions/kernels.ts",
+        "benchmarks/corpus/harness/definitions/limits.ts",
         "benchmarks/corpus/harness/definitions/migration.ts",
         "benchmarks/corpus/harness/definitions/tapes.ts",
         "benchmarks/corpus/harness/prng.ts",
         "benchmarks/corpus/harness/ts-serial-adapter.ts",
         "benchmarks/corpus/harness/types.ts",
         "benchmarks/corpus/v1/comparison-rules.json",
+        "benchmarks/corpus/v1/evidence/acceptance-rerun.json",
         "benchmarks/corpus/v1/evidence/sensitivity.json",
         "benchmarks/corpus/v1/expected/C001_CONCRETE_DEFAULT.json",
         "benchmarks/corpus/v1/expected/C002_CONCRETE_CLOSED_PORTAL.json",
@@ -108,6 +124,10 @@
         "benchmarks/corpus/v1/expected/C012_STRESS_2_SOURCES.json",
         "benchmarks/corpus/v1/expected/C013_STRESS_4_SOURCES.json",
         "benchmarks/corpus/v1/expected/C014_REFLECTION_HEAVY.json",
+        "benchmarks/corpus/v1/expected/CL01_PRE_DELAY_FLOOR.json",
+        "benchmarks/corpus/v1/expected/CL02_PRE_DELAY_CEILING.json",
+        "benchmarks/corpus/v1/expected/CL05_EARLY_DELAY_CAP.json",
+        "benchmarks/corpus/v1/expected/CL06_SECOND_ORDER_PATH_LIMIT.json",
         "benchmarks/corpus/v1/expected/DC01_SOURCE_ON_LISTENER.json",
         "benchmarks/corpus/v1/expected/DC02_ROUTE_COLLINEAR_WITH_WALL.json",
         "benchmarks/corpus/v1/expected/DC03_LISTENER_ON_WALL_ENDPOINT.json",
@@ -132,6 +152,7 @@
         "benchmarks/corpus/v1/expected/DV06_ROOM_ABOVE_50M.json",
         "benchmarks/corpus/v1/expected/DV07_UNKNOWN_MATERIAL.json",
         "benchmarks/corpus/v1/expected/DV08_PORTAL_WIDER_THAN_WALL.json",
+        "benchmarks/corpus/v1/expected/DV09_ROOM_WIDTH_ABOVE_LIMIT.json",
         "benchmarks/corpus/v1/expected/H001_PARTITION_PORTAL_OPEN.json",
         "benchmarks/corpus/v1/expected/H002_PARTITION_PORTAL_CLOSED.json",
         "benchmarks/corpus/v1/expected/H003_SECOND_ORDER_BLOCKED.json",
@@ -142,6 +163,14 @@
         "benchmarks/corpus/v1/expected/H008_STRESS_1_SOURCE.json",
         "benchmarks/corpus/v1/expected/H009_STRESS_2_SOURCES.json",
         "benchmarks/corpus/v1/expected/H010_STRESS_4_SOURCES.json",
+        "benchmarks/corpus/v1/expected/HL02_SECOND_ORDER_PATH_LIMIT.json",
+        "benchmarks/corpus/v1/expected/HL03_SECOND_ORDER_TOP_K.json",
+        "benchmarks/corpus/v1/expected/HL04_REPRESENTATIVE_PATCH_CAP.json",
+        "benchmarks/corpus/v1/expected/LC01_MIXED_CASE_TIE_CLASSIC.json",
+        "benchmarks/corpus/v1/expected/LC02_MIXED_CASE_TIE_HYBRID.json",
+        "benchmarks/corpus/v1/expected/LC03_UNICODE_NAME_CLASSIC.json",
+        "benchmarks/corpus/v1/expected/LC04_UNICODE_NAME_HYBRID.json",
+        "benchmarks/corpus/v1/expected/LC05_NONBMP_SIBLING_CLASSIC.json",
         "benchmarks/corpus/v1/expected/M001_SCENESPEC_V1_TO_CLASSIC.json",
         "benchmarks/corpus/v1/expected/M002_DOC_V2_SPATIAL_TO_HYBRID.json",
         "benchmarks/corpus/v1/expected/M003_DOC_V2_NO_SPATIAL_TO_HYBRID.json",
@@ -159,6 +188,7 @@
         "benchmarks/corpus/v1/expected/SO002_PRUNE_ALL.json",
         "benchmarks/corpus/v1/expected/SO003_32_PATCH.json",
         "benchmarks/corpus/v1/expected/SO004_REPRESENTATIVE_BUDGET.json",
+        "benchmarks/corpus/v1/expected/SO005_DEFAULT_TOP_K.json",
         "benchmarks/corpus/v1/expected/TC01_LISTENER_TAPE_SEEDED.json",
         "benchmarks/corpus/v1/expected/TC02_STATIC_EDIT_TAPE.json",
         "benchmarks/corpus/v1/expected/TH01_LISTENER_TAPE_SEEDED.json",
@@ -180,6 +210,10 @@
         "benchmarks/corpus/v1/inputs/C012_STRESS_2_SOURCES.json",
         "benchmarks/corpus/v1/inputs/C013_STRESS_4_SOURCES.json",
         "benchmarks/corpus/v1/inputs/C014_REFLECTION_HEAVY.json",
+        "benchmarks/corpus/v1/inputs/CL01_PRE_DELAY_FLOOR.json",
+        "benchmarks/corpus/v1/inputs/CL02_PRE_DELAY_CEILING.json",
+        "benchmarks/corpus/v1/inputs/CL05_EARLY_DELAY_CAP.json",
+        "benchmarks/corpus/v1/inputs/CL06_SECOND_ORDER_PATH_LIMIT.json",
         "benchmarks/corpus/v1/inputs/DC01_SOURCE_ON_LISTENER.json",
         "benchmarks/corpus/v1/inputs/DC02_ROUTE_COLLINEAR_WITH_WALL.json",
         "benchmarks/corpus/v1/inputs/DC03_LISTENER_ON_WALL_ENDPOINT.json",
@@ -204,6 +238,7 @@
         "benchmarks/corpus/v1/inputs/DV06_ROOM_ABOVE_50M.json",
         "benchmarks/corpus/v1/inputs/DV07_UNKNOWN_MATERIAL.json",
         "benchmarks/corpus/v1/inputs/DV08_PORTAL_WIDER_THAN_WALL.json",
+        "benchmarks/corpus/v1/inputs/DV09_ROOM_WIDTH_ABOVE_LIMIT.json",
         "benchmarks/corpus/v1/inputs/H001_PARTITION_PORTAL_OPEN.json",
         "benchmarks/corpus/v1/inputs/H002_PARTITION_PORTAL_CLOSED.json",
         "benchmarks/corpus/v1/inputs/H003_SECOND_ORDER_BLOCKED.json",
@@ -214,6 +249,14 @@
         "benchmarks/corpus/v1/inputs/H008_STRESS_1_SOURCE.json",
         "benchmarks/corpus/v1/inputs/H009_STRESS_2_SOURCES.json",
         "benchmarks/corpus/v1/inputs/H010_STRESS_4_SOURCES.json",
+        "benchmarks/corpus/v1/inputs/HL02_SECOND_ORDER_PATH_LIMIT.json",
+        "benchmarks/corpus/v1/inputs/HL03_SECOND_ORDER_TOP_K.json",
+        "benchmarks/corpus/v1/inputs/HL04_REPRESENTATIVE_PATCH_CAP.json",
+        "benchmarks/corpus/v1/inputs/LC01_MIXED_CASE_TIE_CLASSIC.json",
+        "benchmarks/corpus/v1/inputs/LC02_MIXED_CASE_TIE_HYBRID.json",
+        "benchmarks/corpus/v1/inputs/LC03_UNICODE_NAME_CLASSIC.json",
+        "benchmarks/corpus/v1/inputs/LC04_UNICODE_NAME_HYBRID.json",
+        "benchmarks/corpus/v1/inputs/LC05_NONBMP_SIBLING_CLASSIC.json",
         "benchmarks/corpus/v1/inputs/M001_SCENESPEC_V1_TO_CLASSIC.json",
         "benchmarks/corpus/v1/inputs/M002_DOC_V2_SPATIAL_TO_HYBRID.json",
         "benchmarks/corpus/v1/inputs/M003_DOC_V2_NO_SPATIAL_TO_HYBRID.json",
@@ -231,6 +274,7 @@
         "benchmarks/corpus/v1/inputs/SO002_PRUNE_ALL.json",
         "benchmarks/corpus/v1/inputs/SO003_32_PATCH.json",
         "benchmarks/corpus/v1/inputs/SO004_REPRESENTATIVE_BUDGET.json",
+        "benchmarks/corpus/v1/inputs/SO005_DEFAULT_TOP_K.json",
         "benchmarks/corpus/v1/inputs/TC01_LISTENER_TAPE_SEEDED.json",
         "benchmarks/corpus/v1/inputs/TC02_STATIC_EDIT_TAPE.json",
         "benchmarks/corpus/v1/inputs/TH01_LISTENER_TAPE_SEEDED.json",
@@ -263,7 +307,7 @@
         "cpuModel": "13th Gen Intel(R) Core(TM) i9-13980HX",
         "logicalCpus": 32
       },
-      "aggregateSha256": "027f31592b3e8c72adee2a9c079363f4f82624aa9238159cfdad9445543fa4c3",
+      "aggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
       "negativeZeroPaths": {
         "H001_PARTITION_PORTAL_OPEN": [
           "/value/frame/paths/0/propagationDirection/z",
@@ -446,14 +490,26 @@
           "/value/steps/22/frame/paths/1/propagationDirection/y",
           "/value/steps/23/frame/paths/0/propagationDirection/z",
           "/value/steps/23/frame/paths/1/propagationDirection/y"
+        ],
+        "HL04_REPRESENTATIVE_PATCH_CAP": [
+          "/value/frame/paths/0/propagationDirection/y",
+          "/value/frame/paths/0/propagationDirection/z"
+        ],
+        "LC02_MIXED_CASE_TIE_HYBRID": [
+          "/value/frame/paths/0/propagationDirection/y",
+          "/value/frame/paths/0/propagationDirection/z",
+          "/value/frame/paths/1/propagationDirection/z"
+        ],
+        "LC04_UNICODE_NAME_HYBRID": [
+          "/value/frame/paths/0/propagationDirection/y"
         ]
       },
-      "startedAt": "2026-11-06T04:18:08.414Z"
+      "startedAt": "2026-11-06T05:44:46.700Z"
     },
     "B": {
       "runId": "B",
       "order": "manifest",
-      "corpusSha256": "0d0d268b9af6da26192aae12fee97c219bc3834787ddcd3222cc554a26c65eb4",
+      "corpusSha256": "4b4bf901d2fadd8bf8266482739a30bd3b19de6dd1cd047fd80f59c0ee3e1fb6",
       "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
       "gitDirty": [
         ".corpus-runs/acceptance/A/outputs/C001_CONCRETE_DEFAULT.json",
@@ -470,6 +526,10 @@
         ".corpus-runs/acceptance/A/outputs/C012_STRESS_2_SOURCES.json",
         ".corpus-runs/acceptance/A/outputs/C013_STRESS_4_SOURCES.json",
         ".corpus-runs/acceptance/A/outputs/C014_REFLECTION_HEAVY.json",
+        ".corpus-runs/acceptance/A/outputs/CL01_PRE_DELAY_FLOOR.json",
+        ".corpus-runs/acceptance/A/outputs/CL02_PRE_DELAY_CEILING.json",
+        ".corpus-runs/acceptance/A/outputs/CL05_EARLY_DELAY_CAP.json",
+        ".corpus-runs/acceptance/A/outputs/CL06_SECOND_ORDER_PATH_LIMIT.json",
         ".corpus-runs/acceptance/A/outputs/DC01_SOURCE_ON_LISTENER.json",
         ".corpus-runs/acceptance/A/outputs/DC02_ROUTE_COLLINEAR_WITH_WALL.json",
         ".corpus-runs/acceptance/A/outputs/DC03_LISTENER_ON_WALL_ENDPOINT.json",
@@ -494,6 +554,7 @@
         ".corpus-runs/acceptance/A/outputs/DV06_ROOM_ABOVE_50M.json",
         ".corpus-runs/acceptance/A/outputs/DV07_UNKNOWN_MATERIAL.json",
         ".corpus-runs/acceptance/A/outputs/DV08_PORTAL_WIDER_THAN_WALL.json",
+        ".corpus-runs/acceptance/A/outputs/DV09_ROOM_WIDTH_ABOVE_LIMIT.json",
         ".corpus-runs/acceptance/A/outputs/H001_PARTITION_PORTAL_OPEN.json",
         ".corpus-runs/acceptance/A/outputs/H002_PARTITION_PORTAL_CLOSED.json",
         ".corpus-runs/acceptance/A/outputs/H003_SECOND_ORDER_BLOCKED.json",
@@ -504,6 +565,14 @@
         ".corpus-runs/acceptance/A/outputs/H008_STRESS_1_SOURCE.json",
         ".corpus-runs/acceptance/A/outputs/H009_STRESS_2_SOURCES.json",
         ".corpus-runs/acceptance/A/outputs/H010_STRESS_4_SOURCES.json",
+        ".corpus-runs/acceptance/A/outputs/HL02_SECOND_ORDER_PATH_LIMIT.json",
+        ".corpus-runs/acceptance/A/outputs/HL03_SECOND_ORDER_TOP_K.json",
+        ".corpus-runs/acceptance/A/outputs/HL04_REPRESENTATIVE_PATCH_CAP.json",
+        ".corpus-runs/acceptance/A/outputs/LC01_MIXED_CASE_TIE_CLASSIC.json",
+        ".corpus-runs/acceptance/A/outputs/LC02_MIXED_CASE_TIE_HYBRID.json",
+        ".corpus-runs/acceptance/A/outputs/LC03_UNICODE_NAME_CLASSIC.json",
+        ".corpus-runs/acceptance/A/outputs/LC04_UNICODE_NAME_HYBRID.json",
+        ".corpus-runs/acceptance/A/outputs/LC05_NONBMP_SIBLING_CLASSIC.json",
         ".corpus-runs/acceptance/A/outputs/M001_SCENESPEC_V1_TO_CLASSIC.json",
         ".corpus-runs/acceptance/A/outputs/M002_DOC_V2_SPATIAL_TO_HYBRID.json",
         ".corpus-runs/acceptance/A/outputs/M003_DOC_V2_NO_SPATIAL_TO_HYBRID.json",
@@ -521,6 +590,7 @@
         ".corpus-runs/acceptance/A/outputs/SO002_PRUNE_ALL.json",
         ".corpus-runs/acceptance/A/outputs/SO003_32_PATCH.json",
         ".corpus-runs/acceptance/A/outputs/SO004_REPRESENTATIVE_BUDGET.json",
+        ".corpus-runs/acceptance/A/outputs/SO005_DEFAULT_TOP_K.json",
         ".corpus-runs/acceptance/A/outputs/TC01_LISTENER_TAPE_SEEDED.json",
         ".corpus-runs/acceptance/A/outputs/TC02_STATIC_EDIT_TAPE.json",
         ".corpus-runs/acceptance/A/outputs/TH01_LISTENER_TAPE_SEEDED.json",
@@ -543,6 +613,10 @@
         ".corpus-runs/acceptance/B/outputs/C012_STRESS_2_SOURCES.json",
         ".corpus-runs/acceptance/B/outputs/C013_STRESS_4_SOURCES.json",
         ".corpus-runs/acceptance/B/outputs/C014_REFLECTION_HEAVY.json",
+        ".corpus-runs/acceptance/B/outputs/CL01_PRE_DELAY_FLOOR.json",
+        ".corpus-runs/acceptance/B/outputs/CL02_PRE_DELAY_CEILING.json",
+        ".corpus-runs/acceptance/B/outputs/CL05_EARLY_DELAY_CAP.json",
+        ".corpus-runs/acceptance/B/outputs/CL06_SECOND_ORDER_PATH_LIMIT.json",
         ".corpus-runs/acceptance/B/outputs/DC01_SOURCE_ON_LISTENER.json",
         ".corpus-runs/acceptance/B/outputs/DC02_ROUTE_COLLINEAR_WITH_WALL.json",
         ".corpus-runs/acceptance/B/outputs/DC03_LISTENER_ON_WALL_ENDPOINT.json",
@@ -567,6 +641,7 @@
         ".corpus-runs/acceptance/B/outputs/DV06_ROOM_ABOVE_50M.json",
         ".corpus-runs/acceptance/B/outputs/DV07_UNKNOWN_MATERIAL.json",
         ".corpus-runs/acceptance/B/outputs/DV08_PORTAL_WIDER_THAN_WALL.json",
+        ".corpus-runs/acceptance/B/outputs/DV09_ROOM_WIDTH_ABOVE_LIMIT.json",
         ".corpus-runs/acceptance/B/outputs/H001_PARTITION_PORTAL_OPEN.json",
         ".corpus-runs/acceptance/B/outputs/H002_PARTITION_PORTAL_CLOSED.json",
         ".corpus-runs/acceptance/B/outputs/H003_SECOND_ORDER_BLOCKED.json",
@@ -577,6 +652,14 @@
         ".corpus-runs/acceptance/B/outputs/H008_STRESS_1_SOURCE.json",
         ".corpus-runs/acceptance/B/outputs/H009_STRESS_2_SOURCES.json",
         ".corpus-runs/acceptance/B/outputs/H010_STRESS_4_SOURCES.json",
+        ".corpus-runs/acceptance/B/outputs/HL02_SECOND_ORDER_PATH_LIMIT.json",
+        ".corpus-runs/acceptance/B/outputs/HL03_SECOND_ORDER_TOP_K.json",
+        ".corpus-runs/acceptance/B/outputs/HL04_REPRESENTATIVE_PATCH_CAP.json",
+        ".corpus-runs/acceptance/B/outputs/LC01_MIXED_CASE_TIE_CLASSIC.json",
+        ".corpus-runs/acceptance/B/outputs/LC02_MIXED_CASE_TIE_HYBRID.json",
+        ".corpus-runs/acceptance/B/outputs/LC03_UNICODE_NAME_CLASSIC.json",
+        ".corpus-runs/acceptance/B/outputs/LC04_UNICODE_NAME_HYBRID.json",
+        ".corpus-runs/acceptance/B/outputs/LC05_NONBMP_SIBLING_CLASSIC.json",
         ".corpus-runs/acceptance/B/outputs/M001_SCENESPEC_V1_TO_CLASSIC.json",
         ".corpus-runs/acceptance/B/outputs/M002_DOC_V2_SPATIAL_TO_HYBRID.json",
         ".corpus-runs/acceptance/B/outputs/M003_DOC_V2_NO_SPATIAL_TO_HYBRID.json",
@@ -594,6 +677,7 @@
         ".corpus-runs/acceptance/B/outputs/SO002_PRUNE_ALL.json",
         ".corpus-runs/acceptance/B/outputs/SO003_32_PATCH.json",
         ".corpus-runs/acceptance/B/outputs/SO004_REPRESENTATIVE_BUDGET.json",
+        ".corpus-runs/acceptance/B/outputs/SO005_DEFAULT_TOP_K.json",
         ".corpus-runs/acceptance/B/outputs/TC01_LISTENER_TAPE_SEEDED.json",
         ".corpus-runs/acceptance/B/outputs/TC02_STATIC_EDIT_TAPE.json",
         ".corpus-runs/acceptance/B/outputs/TH01_LISTENER_TAPE_SEEDED.json",
@@ -607,12 +691,14 @@
         "benchmarks/corpus/harness/definitions/hybrid.ts",
         "benchmarks/corpus/harness/definitions/index.ts",
         "benchmarks/corpus/harness/definitions/kernels.ts",
+        "benchmarks/corpus/harness/definitions/limits.ts",
         "benchmarks/corpus/harness/definitions/migration.ts",
         "benchmarks/corpus/harness/definitions/tapes.ts",
         "benchmarks/corpus/harness/prng.ts",
         "benchmarks/corpus/harness/ts-serial-adapter.ts",
         "benchmarks/corpus/harness/types.ts",
         "benchmarks/corpus/v1/comparison-rules.json",
+        "benchmarks/corpus/v1/evidence/acceptance-rerun.json",
         "benchmarks/corpus/v1/evidence/sensitivity.json",
         "benchmarks/corpus/v1/expected/C001_CONCRETE_DEFAULT.json",
         "benchmarks/corpus/v1/expected/C002_CONCRETE_CLOSED_PORTAL.json",
@@ -628,6 +714,10 @@
         "benchmarks/corpus/v1/expected/C012_STRESS_2_SOURCES.json",
         "benchmarks/corpus/v1/expected/C013_STRESS_4_SOURCES.json",
         "benchmarks/corpus/v1/expected/C014_REFLECTION_HEAVY.json",
+        "benchmarks/corpus/v1/expected/CL01_PRE_DELAY_FLOOR.json",
+        "benchmarks/corpus/v1/expected/CL02_PRE_DELAY_CEILING.json",
+        "benchmarks/corpus/v1/expected/CL05_EARLY_DELAY_CAP.json",
+        "benchmarks/corpus/v1/expected/CL06_SECOND_ORDER_PATH_LIMIT.json",
         "benchmarks/corpus/v1/expected/DC01_SOURCE_ON_LISTENER.json",
         "benchmarks/corpus/v1/expected/DC02_ROUTE_COLLINEAR_WITH_WALL.json",
         "benchmarks/corpus/v1/expected/DC03_LISTENER_ON_WALL_ENDPOINT.json",
@@ -652,6 +742,7 @@
         "benchmarks/corpus/v1/expected/DV06_ROOM_ABOVE_50M.json",
         "benchmarks/corpus/v1/expected/DV07_UNKNOWN_MATERIAL.json",
         "benchmarks/corpus/v1/expected/DV08_PORTAL_WIDER_THAN_WALL.json",
+        "benchmarks/corpus/v1/expected/DV09_ROOM_WIDTH_ABOVE_LIMIT.json",
         "benchmarks/corpus/v1/expected/H001_PARTITION_PORTAL_OPEN.json",
         "benchmarks/corpus/v1/expected/H002_PARTITION_PORTAL_CLOSED.json",
         "benchmarks/corpus/v1/expected/H003_SECOND_ORDER_BLOCKED.json",
@@ -662,6 +753,14 @@
         "benchmarks/corpus/v1/expected/H008_STRESS_1_SOURCE.json",
         "benchmarks/corpus/v1/expected/H009_STRESS_2_SOURCES.json",
         "benchmarks/corpus/v1/expected/H010_STRESS_4_SOURCES.json",
+        "benchmarks/corpus/v1/expected/HL02_SECOND_ORDER_PATH_LIMIT.json",
+        "benchmarks/corpus/v1/expected/HL03_SECOND_ORDER_TOP_K.json",
+        "benchmarks/corpus/v1/expected/HL04_REPRESENTATIVE_PATCH_CAP.json",
+        "benchmarks/corpus/v1/expected/LC01_MIXED_CASE_TIE_CLASSIC.json",
+        "benchmarks/corpus/v1/expected/LC02_MIXED_CASE_TIE_HYBRID.json",
+        "benchmarks/corpus/v1/expected/LC03_UNICODE_NAME_CLASSIC.json",
+        "benchmarks/corpus/v1/expected/LC04_UNICODE_NAME_HYBRID.json",
+        "benchmarks/corpus/v1/expected/LC05_NONBMP_SIBLING_CLASSIC.json",
         "benchmarks/corpus/v1/expected/M001_SCENESPEC_V1_TO_CLASSIC.json",
         "benchmarks/corpus/v1/expected/M002_DOC_V2_SPATIAL_TO_HYBRID.json",
         "benchmarks/corpus/v1/expected/M003_DOC_V2_NO_SPATIAL_TO_HYBRID.json",
@@ -679,6 +778,7 @@
         "benchmarks/corpus/v1/expected/SO002_PRUNE_ALL.json",
         "benchmarks/corpus/v1/expected/SO003_32_PATCH.json",
         "benchmarks/corpus/v1/expected/SO004_REPRESENTATIVE_BUDGET.json",
+        "benchmarks/corpus/v1/expected/SO005_DEFAULT_TOP_K.json",
         "benchmarks/corpus/v1/expected/TC01_LISTENER_TAPE_SEEDED.json",
         "benchmarks/corpus/v1/expected/TC02_STATIC_EDIT_TAPE.json",
         "benchmarks/corpus/v1/expected/TH01_LISTENER_TAPE_SEEDED.json",
@@ -700,6 +800,10 @@
         "benchmarks/corpus/v1/inputs/C012_STRESS_2_SOURCES.json",
         "benchmarks/corpus/v1/inputs/C013_STRESS_4_SOURCES.json",
         "benchmarks/corpus/v1/inputs/C014_REFLECTION_HEAVY.json",
+        "benchmarks/corpus/v1/inputs/CL01_PRE_DELAY_FLOOR.json",
+        "benchmarks/corpus/v1/inputs/CL02_PRE_DELAY_CEILING.json",
+        "benchmarks/corpus/v1/inputs/CL05_EARLY_DELAY_CAP.json",
+        "benchmarks/corpus/v1/inputs/CL06_SECOND_ORDER_PATH_LIMIT.json",
         "benchmarks/corpus/v1/inputs/DC01_SOURCE_ON_LISTENER.json",
         "benchmarks/corpus/v1/inputs/DC02_ROUTE_COLLINEAR_WITH_WALL.json",
         "benchmarks/corpus/v1/inputs/DC03_LISTENER_ON_WALL_ENDPOINT.json",
@@ -724,6 +828,7 @@
         "benchmarks/corpus/v1/inputs/DV06_ROOM_ABOVE_50M.json",
         "benchmarks/corpus/v1/inputs/DV07_UNKNOWN_MATERIAL.json",
         "benchmarks/corpus/v1/inputs/DV08_PORTAL_WIDER_THAN_WALL.json",
+        "benchmarks/corpus/v1/inputs/DV09_ROOM_WIDTH_ABOVE_LIMIT.json",
         "benchmarks/corpus/v1/inputs/H001_PARTITION_PORTAL_OPEN.json",
         "benchmarks/corpus/v1/inputs/H002_PARTITION_PORTAL_CLOSED.json",
         "benchmarks/corpus/v1/inputs/H003_SECOND_ORDER_BLOCKED.json",
@@ -734,6 +839,14 @@
         "benchmarks/corpus/v1/inputs/H008_STRESS_1_SOURCE.json",
         "benchmarks/corpus/v1/inputs/H009_STRESS_2_SOURCES.json",
         "benchmarks/corpus/v1/inputs/H010_STRESS_4_SOURCES.json",
+        "benchmarks/corpus/v1/inputs/HL02_SECOND_ORDER_PATH_LIMIT.json",
+        "benchmarks/corpus/v1/inputs/HL03_SECOND_ORDER_TOP_K.json",
+        "benchmarks/corpus/v1/inputs/HL04_REPRESENTATIVE_PATCH_CAP.json",
+        "benchmarks/corpus/v1/inputs/LC01_MIXED_CASE_TIE_CLASSIC.json",
+        "benchmarks/corpus/v1/inputs/LC02_MIXED_CASE_TIE_HYBRID.json",
+        "benchmarks/corpus/v1/inputs/LC03_UNICODE_NAME_CLASSIC.json",
+        "benchmarks/corpus/v1/inputs/LC04_UNICODE_NAME_HYBRID.json",
+        "benchmarks/corpus/v1/inputs/LC05_NONBMP_SIBLING_CLASSIC.json",
         "benchmarks/corpus/v1/inputs/M001_SCENESPEC_V1_TO_CLASSIC.json",
         "benchmarks/corpus/v1/inputs/M002_DOC_V2_SPATIAL_TO_HYBRID.json",
         "benchmarks/corpus/v1/inputs/M003_DOC_V2_NO_SPATIAL_TO_HYBRID.json",
@@ -751,6 +864,7 @@
         "benchmarks/corpus/v1/inputs/SO002_PRUNE_ALL.json",
         "benchmarks/corpus/v1/inputs/SO003_32_PATCH.json",
         "benchmarks/corpus/v1/inputs/SO004_REPRESENTATIVE_BUDGET.json",
+        "benchmarks/corpus/v1/inputs/SO005_DEFAULT_TOP_K.json",
         "benchmarks/corpus/v1/inputs/TC01_LISTENER_TAPE_SEEDED.json",
         "benchmarks/corpus/v1/inputs/TC02_STATIC_EDIT_TAPE.json",
         "benchmarks/corpus/v1/inputs/TH01_LISTENER_TAPE_SEEDED.json",
@@ -783,7 +897,7 @@
         "cpuModel": "13th Gen Intel(R) Core(TM) i9-13980HX",
         "logicalCpus": 32
       },
-      "aggregateSha256": "027f31592b3e8c72adee2a9c079363f4f82624aa9238159cfdad9445543fa4c3",
+      "aggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
       "negativeZeroPaths": {
         "H001_PARTITION_PORTAL_OPEN": [
           "/value/frame/paths/0/propagationDirection/z",
@@ -966,14 +1080,26 @@
           "/value/steps/22/frame/paths/1/propagationDirection/y",
           "/value/steps/23/frame/paths/0/propagationDirection/z",
           "/value/steps/23/frame/paths/1/propagationDirection/y"
+        ],
+        "HL04_REPRESENTATIVE_PATCH_CAP": [
+          "/value/frame/paths/0/propagationDirection/y",
+          "/value/frame/paths/0/propagationDirection/z"
+        ],
+        "LC02_MIXED_CASE_TIE_HYBRID": [
+          "/value/frame/paths/0/propagationDirection/y",
+          "/value/frame/paths/0/propagationDirection/z",
+          "/value/frame/paths/1/propagationDirection/z"
+        ],
+        "LC04_UNICODE_NAME_HYBRID": [
+          "/value/frame/paths/0/propagationDirection/y"
         ]
       },
-      "startedAt": "2026-11-06T04:18:10.773Z"
+      "startedAt": "2026-11-06T05:44:48.707Z"
     },
     "C": {
       "runId": "C",
       "order": "reverse",
-      "corpusSha256": "0d0d268b9af6da26192aae12fee97c219bc3834787ddcd3222cc554a26c65eb4",
+      "corpusSha256": "4b4bf901d2fadd8bf8266482739a30bd3b19de6dd1cd047fd80f59c0ee3e1fb6",
       "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
       "gitDirty": [
         ".corpus-runs/acceptance/A/outputs/C001_CONCRETE_DEFAULT.json",
@@ -990,6 +1116,10 @@
         ".corpus-runs/acceptance/A/outputs/C012_STRESS_2_SOURCES.json",
         ".corpus-runs/acceptance/A/outputs/C013_STRESS_4_SOURCES.json",
         ".corpus-runs/acceptance/A/outputs/C014_REFLECTION_HEAVY.json",
+        ".corpus-runs/acceptance/A/outputs/CL01_PRE_DELAY_FLOOR.json",
+        ".corpus-runs/acceptance/A/outputs/CL02_PRE_DELAY_CEILING.json",
+        ".corpus-runs/acceptance/A/outputs/CL05_EARLY_DELAY_CAP.json",
+        ".corpus-runs/acceptance/A/outputs/CL06_SECOND_ORDER_PATH_LIMIT.json",
         ".corpus-runs/acceptance/A/outputs/DC01_SOURCE_ON_LISTENER.json",
         ".corpus-runs/acceptance/A/outputs/DC02_ROUTE_COLLINEAR_WITH_WALL.json",
         ".corpus-runs/acceptance/A/outputs/DC03_LISTENER_ON_WALL_ENDPOINT.json",
@@ -1014,6 +1144,7 @@
         ".corpus-runs/acceptance/A/outputs/DV06_ROOM_ABOVE_50M.json",
         ".corpus-runs/acceptance/A/outputs/DV07_UNKNOWN_MATERIAL.json",
         ".corpus-runs/acceptance/A/outputs/DV08_PORTAL_WIDER_THAN_WALL.json",
+        ".corpus-runs/acceptance/A/outputs/DV09_ROOM_WIDTH_ABOVE_LIMIT.json",
         ".corpus-runs/acceptance/A/outputs/H001_PARTITION_PORTAL_OPEN.json",
         ".corpus-runs/acceptance/A/outputs/H002_PARTITION_PORTAL_CLOSED.json",
         ".corpus-runs/acceptance/A/outputs/H003_SECOND_ORDER_BLOCKED.json",
@@ -1024,6 +1155,14 @@
         ".corpus-runs/acceptance/A/outputs/H008_STRESS_1_SOURCE.json",
         ".corpus-runs/acceptance/A/outputs/H009_STRESS_2_SOURCES.json",
         ".corpus-runs/acceptance/A/outputs/H010_STRESS_4_SOURCES.json",
+        ".corpus-runs/acceptance/A/outputs/HL02_SECOND_ORDER_PATH_LIMIT.json",
+        ".corpus-runs/acceptance/A/outputs/HL03_SECOND_ORDER_TOP_K.json",
+        ".corpus-runs/acceptance/A/outputs/HL04_REPRESENTATIVE_PATCH_CAP.json",
+        ".corpus-runs/acceptance/A/outputs/LC01_MIXED_CASE_TIE_CLASSIC.json",
+        ".corpus-runs/acceptance/A/outputs/LC02_MIXED_CASE_TIE_HYBRID.json",
+        ".corpus-runs/acceptance/A/outputs/LC03_UNICODE_NAME_CLASSIC.json",
+        ".corpus-runs/acceptance/A/outputs/LC04_UNICODE_NAME_HYBRID.json",
+        ".corpus-runs/acceptance/A/outputs/LC05_NONBMP_SIBLING_CLASSIC.json",
         ".corpus-runs/acceptance/A/outputs/M001_SCENESPEC_V1_TO_CLASSIC.json",
         ".corpus-runs/acceptance/A/outputs/M002_DOC_V2_SPATIAL_TO_HYBRID.json",
         ".corpus-runs/acceptance/A/outputs/M003_DOC_V2_NO_SPATIAL_TO_HYBRID.json",
@@ -1041,6 +1180,7 @@
         ".corpus-runs/acceptance/A/outputs/SO002_PRUNE_ALL.json",
         ".corpus-runs/acceptance/A/outputs/SO003_32_PATCH.json",
         ".corpus-runs/acceptance/A/outputs/SO004_REPRESENTATIVE_BUDGET.json",
+        ".corpus-runs/acceptance/A/outputs/SO005_DEFAULT_TOP_K.json",
         ".corpus-runs/acceptance/A/outputs/TC01_LISTENER_TAPE_SEEDED.json",
         ".corpus-runs/acceptance/A/outputs/TC02_STATIC_EDIT_TAPE.json",
         ".corpus-runs/acceptance/A/outputs/TH01_LISTENER_TAPE_SEEDED.json",
@@ -1063,6 +1203,10 @@
         ".corpus-runs/acceptance/B/outputs/C012_STRESS_2_SOURCES.json",
         ".corpus-runs/acceptance/B/outputs/C013_STRESS_4_SOURCES.json",
         ".corpus-runs/acceptance/B/outputs/C014_REFLECTION_HEAVY.json",
+        ".corpus-runs/acceptance/B/outputs/CL01_PRE_DELAY_FLOOR.json",
+        ".corpus-runs/acceptance/B/outputs/CL02_PRE_DELAY_CEILING.json",
+        ".corpus-runs/acceptance/B/outputs/CL05_EARLY_DELAY_CAP.json",
+        ".corpus-runs/acceptance/B/outputs/CL06_SECOND_ORDER_PATH_LIMIT.json",
         ".corpus-runs/acceptance/B/outputs/DC01_SOURCE_ON_LISTENER.json",
         ".corpus-runs/acceptance/B/outputs/DC02_ROUTE_COLLINEAR_WITH_WALL.json",
         ".corpus-runs/acceptance/B/outputs/DC03_LISTENER_ON_WALL_ENDPOINT.json",
@@ -1087,6 +1231,7 @@
         ".corpus-runs/acceptance/B/outputs/DV06_ROOM_ABOVE_50M.json",
         ".corpus-runs/acceptance/B/outputs/DV07_UNKNOWN_MATERIAL.json",
         ".corpus-runs/acceptance/B/outputs/DV08_PORTAL_WIDER_THAN_WALL.json",
+        ".corpus-runs/acceptance/B/outputs/DV09_ROOM_WIDTH_ABOVE_LIMIT.json",
         ".corpus-runs/acceptance/B/outputs/H001_PARTITION_PORTAL_OPEN.json",
         ".corpus-runs/acceptance/B/outputs/H002_PARTITION_PORTAL_CLOSED.json",
         ".corpus-runs/acceptance/B/outputs/H003_SECOND_ORDER_BLOCKED.json",
@@ -1097,6 +1242,14 @@
         ".corpus-runs/acceptance/B/outputs/H008_STRESS_1_SOURCE.json",
         ".corpus-runs/acceptance/B/outputs/H009_STRESS_2_SOURCES.json",
         ".corpus-runs/acceptance/B/outputs/H010_STRESS_4_SOURCES.json",
+        ".corpus-runs/acceptance/B/outputs/HL02_SECOND_ORDER_PATH_LIMIT.json",
+        ".corpus-runs/acceptance/B/outputs/HL03_SECOND_ORDER_TOP_K.json",
+        ".corpus-runs/acceptance/B/outputs/HL04_REPRESENTATIVE_PATCH_CAP.json",
+        ".corpus-runs/acceptance/B/outputs/LC01_MIXED_CASE_TIE_CLASSIC.json",
+        ".corpus-runs/acceptance/B/outputs/LC02_MIXED_CASE_TIE_HYBRID.json",
+        ".corpus-runs/acceptance/B/outputs/LC03_UNICODE_NAME_CLASSIC.json",
+        ".corpus-runs/acceptance/B/outputs/LC04_UNICODE_NAME_HYBRID.json",
+        ".corpus-runs/acceptance/B/outputs/LC05_NONBMP_SIBLING_CLASSIC.json",
         ".corpus-runs/acceptance/B/outputs/M001_SCENESPEC_V1_TO_CLASSIC.json",
         ".corpus-runs/acceptance/B/outputs/M002_DOC_V2_SPATIAL_TO_HYBRID.json",
         ".corpus-runs/acceptance/B/outputs/M003_DOC_V2_NO_SPATIAL_TO_HYBRID.json",
@@ -1114,6 +1267,7 @@
         ".corpus-runs/acceptance/B/outputs/SO002_PRUNE_ALL.json",
         ".corpus-runs/acceptance/B/outputs/SO003_32_PATCH.json",
         ".corpus-runs/acceptance/B/outputs/SO004_REPRESENTATIVE_BUDGET.json",
+        ".corpus-runs/acceptance/B/outputs/SO005_DEFAULT_TOP_K.json",
         ".corpus-runs/acceptance/B/outputs/TC01_LISTENER_TAPE_SEEDED.json",
         ".corpus-runs/acceptance/B/outputs/TC02_STATIC_EDIT_TAPE.json",
         ".corpus-runs/acceptance/B/outputs/TH01_LISTENER_TAPE_SEEDED.json",
@@ -1136,6 +1290,10 @@
         ".corpus-runs/acceptance/C/outputs/C012_STRESS_2_SOURCES.json",
         ".corpus-runs/acceptance/C/outputs/C013_STRESS_4_SOURCES.json",
         ".corpus-runs/acceptance/C/outputs/C014_REFLECTION_HEAVY.json",
+        ".corpus-runs/acceptance/C/outputs/CL01_PRE_DELAY_FLOOR.json",
+        ".corpus-runs/acceptance/C/outputs/CL02_PRE_DELAY_CEILING.json",
+        ".corpus-runs/acceptance/C/outputs/CL05_EARLY_DELAY_CAP.json",
+        ".corpus-runs/acceptance/C/outputs/CL06_SECOND_ORDER_PATH_LIMIT.json",
         ".corpus-runs/acceptance/C/outputs/DC01_SOURCE_ON_LISTENER.json",
         ".corpus-runs/acceptance/C/outputs/DC02_ROUTE_COLLINEAR_WITH_WALL.json",
         ".corpus-runs/acceptance/C/outputs/DC03_LISTENER_ON_WALL_ENDPOINT.json",
@@ -1160,6 +1318,7 @@
         ".corpus-runs/acceptance/C/outputs/DV06_ROOM_ABOVE_50M.json",
         ".corpus-runs/acceptance/C/outputs/DV07_UNKNOWN_MATERIAL.json",
         ".corpus-runs/acceptance/C/outputs/DV08_PORTAL_WIDER_THAN_WALL.json",
+        ".corpus-runs/acceptance/C/outputs/DV09_ROOM_WIDTH_ABOVE_LIMIT.json",
         ".corpus-runs/acceptance/C/outputs/H001_PARTITION_PORTAL_OPEN.json",
         ".corpus-runs/acceptance/C/outputs/H002_PARTITION_PORTAL_CLOSED.json",
         ".corpus-runs/acceptance/C/outputs/H003_SECOND_ORDER_BLOCKED.json",
@@ -1170,6 +1329,14 @@
         ".corpus-runs/acceptance/C/outputs/H008_STRESS_1_SOURCE.json",
         ".corpus-runs/acceptance/C/outputs/H009_STRESS_2_SOURCES.json",
         ".corpus-runs/acceptance/C/outputs/H010_STRESS_4_SOURCES.json",
+        ".corpus-runs/acceptance/C/outputs/HL02_SECOND_ORDER_PATH_LIMIT.json",
+        ".corpus-runs/acceptance/C/outputs/HL03_SECOND_ORDER_TOP_K.json",
+        ".corpus-runs/acceptance/C/outputs/HL04_REPRESENTATIVE_PATCH_CAP.json",
+        ".corpus-runs/acceptance/C/outputs/LC01_MIXED_CASE_TIE_CLASSIC.json",
+        ".corpus-runs/acceptance/C/outputs/LC02_MIXED_CASE_TIE_HYBRID.json",
+        ".corpus-runs/acceptance/C/outputs/LC03_UNICODE_NAME_CLASSIC.json",
+        ".corpus-runs/acceptance/C/outputs/LC04_UNICODE_NAME_HYBRID.json",
+        ".corpus-runs/acceptance/C/outputs/LC05_NONBMP_SIBLING_CLASSIC.json",
         ".corpus-runs/acceptance/C/outputs/M001_SCENESPEC_V1_TO_CLASSIC.json",
         ".corpus-runs/acceptance/C/outputs/M002_DOC_V2_SPATIAL_TO_HYBRID.json",
         ".corpus-runs/acceptance/C/outputs/M003_DOC_V2_NO_SPATIAL_TO_HYBRID.json",
@@ -1187,6 +1354,7 @@
         ".corpus-runs/acceptance/C/outputs/SO002_PRUNE_ALL.json",
         ".corpus-runs/acceptance/C/outputs/SO003_32_PATCH.json",
         ".corpus-runs/acceptance/C/outputs/SO004_REPRESENTATIVE_BUDGET.json",
+        ".corpus-runs/acceptance/C/outputs/SO005_DEFAULT_TOP_K.json",
         ".corpus-runs/acceptance/C/outputs/TC01_LISTENER_TAPE_SEEDED.json",
         ".corpus-runs/acceptance/C/outputs/TC02_STATIC_EDIT_TAPE.json",
         ".corpus-runs/acceptance/C/outputs/TH01_LISTENER_TAPE_SEEDED.json",
@@ -1200,12 +1368,14 @@
         "benchmarks/corpus/harness/definitions/hybrid.ts",
         "benchmarks/corpus/harness/definitions/index.ts",
         "benchmarks/corpus/harness/definitions/kernels.ts",
+        "benchmarks/corpus/harness/definitions/limits.ts",
         "benchmarks/corpus/harness/definitions/migration.ts",
         "benchmarks/corpus/harness/definitions/tapes.ts",
         "benchmarks/corpus/harness/prng.ts",
         "benchmarks/corpus/harness/ts-serial-adapter.ts",
         "benchmarks/corpus/harness/types.ts",
         "benchmarks/corpus/v1/comparison-rules.json",
+        "benchmarks/corpus/v1/evidence/acceptance-rerun.json",
         "benchmarks/corpus/v1/evidence/sensitivity.json",
         "benchmarks/corpus/v1/expected/C001_CONCRETE_DEFAULT.json",
         "benchmarks/corpus/v1/expected/C002_CONCRETE_CLOSED_PORTAL.json",
@@ -1221,6 +1391,10 @@
         "benchmarks/corpus/v1/expected/C012_STRESS_2_SOURCES.json",
         "benchmarks/corpus/v1/expected/C013_STRESS_4_SOURCES.json",
         "benchmarks/corpus/v1/expected/C014_REFLECTION_HEAVY.json",
+        "benchmarks/corpus/v1/expected/CL01_PRE_DELAY_FLOOR.json",
+        "benchmarks/corpus/v1/expected/CL02_PRE_DELAY_CEILING.json",
+        "benchmarks/corpus/v1/expected/CL05_EARLY_DELAY_CAP.json",
+        "benchmarks/corpus/v1/expected/CL06_SECOND_ORDER_PATH_LIMIT.json",
         "benchmarks/corpus/v1/expected/DC01_SOURCE_ON_LISTENER.json",
         "benchmarks/corpus/v1/expected/DC02_ROUTE_COLLINEAR_WITH_WALL.json",
         "benchmarks/corpus/v1/expected/DC03_LISTENER_ON_WALL_ENDPOINT.json",
@@ -1245,6 +1419,7 @@
         "benchmarks/corpus/v1/expected/DV06_ROOM_ABOVE_50M.json",
         "benchmarks/corpus/v1/expected/DV07_UNKNOWN_MATERIAL.json",
         "benchmarks/corpus/v1/expected/DV08_PORTAL_WIDER_THAN_WALL.json",
+        "benchmarks/corpus/v1/expected/DV09_ROOM_WIDTH_ABOVE_LIMIT.json",
         "benchmarks/corpus/v1/expected/H001_PARTITION_PORTAL_OPEN.json",
         "benchmarks/corpus/v1/expected/H002_PARTITION_PORTAL_CLOSED.json",
         "benchmarks/corpus/v1/expected/H003_SECOND_ORDER_BLOCKED.json",
@@ -1255,6 +1430,14 @@
         "benchmarks/corpus/v1/expected/H008_STRESS_1_SOURCE.json",
         "benchmarks/corpus/v1/expected/H009_STRESS_2_SOURCES.json",
         "benchmarks/corpus/v1/expected/H010_STRESS_4_SOURCES.json",
+        "benchmarks/corpus/v1/expected/HL02_SECOND_ORDER_PATH_LIMIT.json",
+        "benchmarks/corpus/v1/expected/HL03_SECOND_ORDER_TOP_K.json",
+        "benchmarks/corpus/v1/expected/HL04_REPRESENTATIVE_PATCH_CAP.json",
+        "benchmarks/corpus/v1/expected/LC01_MIXED_CASE_TIE_CLASSIC.json",
+        "benchmarks/corpus/v1/expected/LC02_MIXED_CASE_TIE_HYBRID.json",
+        "benchmarks/corpus/v1/expected/LC03_UNICODE_NAME_CLASSIC.json",
+        "benchmarks/corpus/v1/expected/LC04_UNICODE_NAME_HYBRID.json",
+        "benchmarks/corpus/v1/expected/LC05_NONBMP_SIBLING_CLASSIC.json",
         "benchmarks/corpus/v1/expected/M001_SCENESPEC_V1_TO_CLASSIC.json",
         "benchmarks/corpus/v1/expected/M002_DOC_V2_SPATIAL_TO_HYBRID.json",
         "benchmarks/corpus/v1/expected/M003_DOC_V2_NO_SPATIAL_TO_HYBRID.json",
@@ -1272,6 +1455,7 @@
         "benchmarks/corpus/v1/expected/SO002_PRUNE_ALL.json",
         "benchmarks/corpus/v1/expected/SO003_32_PATCH.json",
         "benchmarks/corpus/v1/expected/SO004_REPRESENTATIVE_BUDGET.json",
+        "benchmarks/corpus/v1/expected/SO005_DEFAULT_TOP_K.json",
         "benchmarks/corpus/v1/expected/TC01_LISTENER_TAPE_SEEDED.json",
         "benchmarks/corpus/v1/expected/TC02_STATIC_EDIT_TAPE.json",
         "benchmarks/corpus/v1/expected/TH01_LISTENER_TAPE_SEEDED.json",
@@ -1293,6 +1477,10 @@
         "benchmarks/corpus/v1/inputs/C012_STRESS_2_SOURCES.json",
         "benchmarks/corpus/v1/inputs/C013_STRESS_4_SOURCES.json",
         "benchmarks/corpus/v1/inputs/C014_REFLECTION_HEAVY.json",
+        "benchmarks/corpus/v1/inputs/CL01_PRE_DELAY_FLOOR.json",
+        "benchmarks/corpus/v1/inputs/CL02_PRE_DELAY_CEILING.json",
+        "benchmarks/corpus/v1/inputs/CL05_EARLY_DELAY_CAP.json",
+        "benchmarks/corpus/v1/inputs/CL06_SECOND_ORDER_PATH_LIMIT.json",
         "benchmarks/corpus/v1/inputs/DC01_SOURCE_ON_LISTENER.json",
         "benchmarks/corpus/v1/inputs/DC02_ROUTE_COLLINEAR_WITH_WALL.json",
         "benchmarks/corpus/v1/inputs/DC03_LISTENER_ON_WALL_ENDPOINT.json",
@@ -1317,6 +1505,7 @@
         "benchmarks/corpus/v1/inputs/DV06_ROOM_ABOVE_50M.json",
         "benchmarks/corpus/v1/inputs/DV07_UNKNOWN_MATERIAL.json",
         "benchmarks/corpus/v1/inputs/DV08_PORTAL_WIDER_THAN_WALL.json",
+        "benchmarks/corpus/v1/inputs/DV09_ROOM_WIDTH_ABOVE_LIMIT.json",
         "benchmarks/corpus/v1/inputs/H001_PARTITION_PORTAL_OPEN.json",
         "benchmarks/corpus/v1/inputs/H002_PARTITION_PORTAL_CLOSED.json",
         "benchmarks/corpus/v1/inputs/H003_SECOND_ORDER_BLOCKED.json",
@@ -1327,6 +1516,14 @@
         "benchmarks/corpus/v1/inputs/H008_STRESS_1_SOURCE.json",
         "benchmarks/corpus/v1/inputs/H009_STRESS_2_SOURCES.json",
         "benchmarks/corpus/v1/inputs/H010_STRESS_4_SOURCES.json",
+        "benchmarks/corpus/v1/inputs/HL02_SECOND_ORDER_PATH_LIMIT.json",
+        "benchmarks/corpus/v1/inputs/HL03_SECOND_ORDER_TOP_K.json",
+        "benchmarks/corpus/v1/inputs/HL04_REPRESENTATIVE_PATCH_CAP.json",
+        "benchmarks/corpus/v1/inputs/LC01_MIXED_CASE_TIE_CLASSIC.json",
+        "benchmarks/corpus/v1/inputs/LC02_MIXED_CASE_TIE_HYBRID.json",
+        "benchmarks/corpus/v1/inputs/LC03_UNICODE_NAME_CLASSIC.json",
+        "benchmarks/corpus/v1/inputs/LC04_UNICODE_NAME_HYBRID.json",
+        "benchmarks/corpus/v1/inputs/LC05_NONBMP_SIBLING_CLASSIC.json",
         "benchmarks/corpus/v1/inputs/M001_SCENESPEC_V1_TO_CLASSIC.json",
         "benchmarks/corpus/v1/inputs/M002_DOC_V2_SPATIAL_TO_HYBRID.json",
         "benchmarks/corpus/v1/inputs/M003_DOC_V2_NO_SPATIAL_TO_HYBRID.json",
@@ -1344,6 +1541,7 @@
         "benchmarks/corpus/v1/inputs/SO002_PRUNE_ALL.json",
         "benchmarks/corpus/v1/inputs/SO003_32_PATCH.json",
         "benchmarks/corpus/v1/inputs/SO004_REPRESENTATIVE_BUDGET.json",
+        "benchmarks/corpus/v1/inputs/SO005_DEFAULT_TOP_K.json",
         "benchmarks/corpus/v1/inputs/TC01_LISTENER_TAPE_SEEDED.json",
         "benchmarks/corpus/v1/inputs/TC02_STATIC_EDIT_TAPE.json",
         "benchmarks/corpus/v1/inputs/TH01_LISTENER_TAPE_SEEDED.json",
@@ -1376,8 +1574,20 @@
         "cpuModel": "13th Gen Intel(R) Core(TM) i9-13980HX",
         "logicalCpus": 32
       },
-      "aggregateSha256": "027f31592b3e8c72adee2a9c079363f4f82624aa9238159cfdad9445543fa4c3",
+      "aggregateSha256": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
       "negativeZeroPaths": {
+        "LC04_UNICODE_NAME_HYBRID": [
+          "/value/frame/paths/0/propagationDirection/y"
+        ],
+        "LC02_MIXED_CASE_TIE_HYBRID": [
+          "/value/frame/paths/0/propagationDirection/y",
+          "/value/frame/paths/0/propagationDirection/z",
+          "/value/frame/paths/1/propagationDirection/z"
+        ],
+        "HL04_REPRESENTATIVE_PATCH_CAP": [
+          "/value/frame/paths/0/propagationDirection/y",
+          "/value/frame/paths/0/propagationDirection/z"
+        ],
         "TH02_STATIC_EDIT_TAPE": [
           "/value/steps/0/frame/paths/1/propagationDirection/y",
           "/value/steps/1/frame/paths/1/propagationDirection/y",
@@ -1561,7 +1771,7 @@
           "/value/frame/paths/1/propagationDirection/y"
         ]
       },
-      "startedAt": "2026-11-06T04:18:12.625Z"
+      "startedAt": "2026-11-06T05:44:50.512Z"
     }
   },
   "comparisons": [
@@ -1570,18 +1780,18 @@
       "actual": "A",
       "reference": "B",
       "ok": true,
-      "caseCount": 72,
+      "caseCount": 86,
       "aggregateSha256": {
-        "actual": "027f31592b3e8c72adee2a9c079363f4f82624aa9238159cfdad9445543fa4c3",
-        "reference": "027f31592b3e8c72adee2a9c079363f4f82624aa9238159cfdad9445543fa4c3"
+        "actual": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+        "reference": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6"
       },
-      "bitExactCases": 72,
+      "bitExactCases": 86,
       "negativeZeroLeafCount": 0,
       "violationCount": 0,
       "firstViolations": [],
       "stats": {
         "classic-new-delay-ms": {
-          "count": 110,
+          "count": 117,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1594,7 +1804,7 @@
           }
         },
         "classic-time-s": {
-          "count": 330,
+          "count": 351,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1607,7 +1817,7 @@
           }
         },
         "classic-new-area-m2": {
-          "count": 110,
+          "count": 117,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1620,7 +1830,7 @@
           }
         },
         "classic-volume-m3": {
-          "count": 110,
+          "count": 117,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1633,7 +1843,7 @@
           }
         },
         "classic-gain-db": {
-          "count": 761,
+          "count": 792,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1646,7 +1856,7 @@
           }
         },
         "classic-delay-ms": {
-          "count": 546,
+          "count": 570,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1659,7 +1869,7 @@
           }
         },
         "classic-new-cutoff-hz": {
-          "count": 546,
+          "count": 570,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1672,7 +1882,7 @@
           }
         },
         "classic-length-m": {
-          "count": 1406,
+          "count": 1458,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1685,7 +1895,7 @@
           }
         },
         "classic-new-length-m": {
-          "count": 3392,
+          "count": 3518,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1698,7 +1908,7 @@
           }
         },
         "classic-cutoff-hz": {
-          "count": 215,
+          "count": 222,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1711,7 +1921,7 @@
           }
         },
         "classic-new-gain-db": {
-          "count": 215,
+          "count": 222,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1724,7 +1934,7 @@
           }
         },
         "hybrid-point-m": {
-          "count": 34353,
+          "count": 34884,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1737,7 +1947,7 @@
           }
         },
         "hybrid-gain-db": {
-          "count": 242,
+          "count": 331,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1750,7 +1960,7 @@
           }
         },
         "hybrid-aux-length-m": {
-          "count": 20810,
+          "count": 20838,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1763,7 +1973,7 @@
           }
         },
         "hybrid-cutoff-hz": {
-          "count": 116,
+          "count": 163,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1776,7 +1986,7 @@
           }
         },
         "hybrid-aux-delay-ms": {
-          "count": 192,
+          "count": 269,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1789,7 +1999,7 @@
           }
         },
         "hybrid-direction": {
-          "count": 3690,
+          "count": 3951,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1802,7 +2012,7 @@
           }
         },
         "hybrid-delay-ms": {
-          "count": 1694,
+          "count": 1808,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1815,7 +2025,7 @@
           }
         },
         "hybrid-length-m": {
-          "count": 1016,
+          "count": 1097,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1828,7 +2038,7 @@
           }
         },
         "hybrid-azimuth-deg": {
-          "count": 212,
+          "count": 218,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1841,7 +2051,7 @@
           }
         },
         "hybrid-elevation-deg": {
-          "count": 212,
+          "count": 218,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1854,7 +2064,7 @@
           }
         },
         "hybrid-metric-ms": {
-          "count": 4,
+          "count": 5,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1867,7 +2077,7 @@
           }
         },
         "hybrid-metric-ratio": {
-          "count": 12,
+          "count": 15,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1889,18 +2099,18 @@
       "actual": "A",
       "reference": "expected",
       "ok": true,
-      "caseCount": 72,
+      "caseCount": 86,
       "aggregateSha256": {
-        "actual": "027f31592b3e8c72adee2a9c079363f4f82624aa9238159cfdad9445543fa4c3",
-        "reference": "027f31592b3e8c72adee2a9c079363f4f82624aa9238159cfdad9445543fa4c3"
+        "actual": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+        "reference": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6"
       },
-      "bitExactCases": 72,
+      "bitExactCases": 86,
       "negativeZeroLeafCount": 0,
       "violationCount": 0,
       "firstViolations": [],
       "stats": {
         "classic-new-delay-ms": {
-          "count": 110,
+          "count": 117,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1913,7 +2123,7 @@
           }
         },
         "classic-time-s": {
-          "count": 330,
+          "count": 351,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1926,7 +2136,7 @@
           }
         },
         "classic-new-area-m2": {
-          "count": 110,
+          "count": 117,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1939,7 +2149,7 @@
           }
         },
         "classic-volume-m3": {
-          "count": 110,
+          "count": 117,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1952,7 +2162,7 @@
           }
         },
         "classic-gain-db": {
-          "count": 761,
+          "count": 792,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1965,7 +2175,7 @@
           }
         },
         "classic-delay-ms": {
-          "count": 546,
+          "count": 570,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1978,7 +2188,7 @@
           }
         },
         "classic-new-cutoff-hz": {
-          "count": 546,
+          "count": 570,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -1991,7 +2201,7 @@
           }
         },
         "classic-length-m": {
-          "count": 1406,
+          "count": 1458,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2004,7 +2214,7 @@
           }
         },
         "classic-new-length-m": {
-          "count": 3392,
+          "count": 3518,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2017,7 +2227,7 @@
           }
         },
         "classic-cutoff-hz": {
-          "count": 215,
+          "count": 222,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2030,7 +2240,7 @@
           }
         },
         "classic-new-gain-db": {
-          "count": 215,
+          "count": 222,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2043,7 +2253,7 @@
           }
         },
         "hybrid-point-m": {
-          "count": 34353,
+          "count": 34884,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2056,7 +2266,7 @@
           }
         },
         "hybrid-gain-db": {
-          "count": 242,
+          "count": 331,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2069,7 +2279,7 @@
           }
         },
         "hybrid-aux-length-m": {
-          "count": 20810,
+          "count": 20838,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2082,7 +2292,7 @@
           }
         },
         "hybrid-cutoff-hz": {
-          "count": 116,
+          "count": 163,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2095,7 +2305,7 @@
           }
         },
         "hybrid-aux-delay-ms": {
-          "count": 192,
+          "count": 269,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2108,7 +2318,7 @@
           }
         },
         "hybrid-direction": {
-          "count": 3690,
+          "count": 3951,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2121,7 +2331,7 @@
           }
         },
         "hybrid-delay-ms": {
-          "count": 1694,
+          "count": 1808,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2134,7 +2344,7 @@
           }
         },
         "hybrid-length-m": {
-          "count": 1016,
+          "count": 1097,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2147,7 +2357,7 @@
           }
         },
         "hybrid-azimuth-deg": {
-          "count": 212,
+          "count": 218,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2160,7 +2370,7 @@
           }
         },
         "hybrid-elevation-deg": {
-          "count": 212,
+          "count": 218,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2173,7 +2383,7 @@
           }
         },
         "hybrid-metric-ms": {
-          "count": 4,
+          "count": 5,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2186,7 +2396,7 @@
           }
         },
         "hybrid-metric-ratio": {
-          "count": 12,
+          "count": 15,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2208,18 +2418,18 @@
       "actual": "B",
       "reference": "expected",
       "ok": true,
-      "caseCount": 72,
+      "caseCount": 86,
       "aggregateSha256": {
-        "actual": "027f31592b3e8c72adee2a9c079363f4f82624aa9238159cfdad9445543fa4c3",
-        "reference": "027f31592b3e8c72adee2a9c079363f4f82624aa9238159cfdad9445543fa4c3"
+        "actual": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+        "reference": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6"
       },
-      "bitExactCases": 72,
+      "bitExactCases": 86,
       "negativeZeroLeafCount": 0,
       "violationCount": 0,
       "firstViolations": [],
       "stats": {
         "classic-new-delay-ms": {
-          "count": 110,
+          "count": 117,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2232,7 +2442,7 @@
           }
         },
         "classic-time-s": {
-          "count": 330,
+          "count": 351,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2245,7 +2455,7 @@
           }
         },
         "classic-new-area-m2": {
-          "count": 110,
+          "count": 117,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2258,7 +2468,7 @@
           }
         },
         "classic-volume-m3": {
-          "count": 110,
+          "count": 117,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2271,7 +2481,7 @@
           }
         },
         "classic-gain-db": {
-          "count": 761,
+          "count": 792,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2284,7 +2494,7 @@
           }
         },
         "classic-delay-ms": {
-          "count": 546,
+          "count": 570,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2297,7 +2507,7 @@
           }
         },
         "classic-new-cutoff-hz": {
-          "count": 546,
+          "count": 570,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2310,7 +2520,7 @@
           }
         },
         "classic-length-m": {
-          "count": 1406,
+          "count": 1458,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2323,7 +2533,7 @@
           }
         },
         "classic-new-length-m": {
-          "count": 3392,
+          "count": 3518,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2336,7 +2546,7 @@
           }
         },
         "classic-cutoff-hz": {
-          "count": 215,
+          "count": 222,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2349,7 +2559,7 @@
           }
         },
         "classic-new-gain-db": {
-          "count": 215,
+          "count": 222,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2362,7 +2572,7 @@
           }
         },
         "hybrid-point-m": {
-          "count": 34353,
+          "count": 34884,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2375,7 +2585,7 @@
           }
         },
         "hybrid-gain-db": {
-          "count": 242,
+          "count": 331,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2388,7 +2598,7 @@
           }
         },
         "hybrid-aux-length-m": {
-          "count": 20810,
+          "count": 20838,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2401,7 +2611,7 @@
           }
         },
         "hybrid-cutoff-hz": {
-          "count": 116,
+          "count": 163,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2414,7 +2624,7 @@
           }
         },
         "hybrid-aux-delay-ms": {
-          "count": 192,
+          "count": 269,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2427,7 +2637,7 @@
           }
         },
         "hybrid-direction": {
-          "count": 3690,
+          "count": 3951,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2440,7 +2650,7 @@
           }
         },
         "hybrid-delay-ms": {
-          "count": 1694,
+          "count": 1808,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2453,7 +2663,7 @@
           }
         },
         "hybrid-length-m": {
-          "count": 1016,
+          "count": 1097,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2466,7 +2676,7 @@
           }
         },
         "hybrid-azimuth-deg": {
-          "count": 212,
+          "count": 218,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2479,7 +2689,7 @@
           }
         },
         "hybrid-elevation-deg": {
-          "count": 212,
+          "count": 218,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2492,7 +2702,7 @@
           }
         },
         "hybrid-metric-ms": {
-          "count": 4,
+          "count": 5,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2505,7 +2715,7 @@
           }
         },
         "hybrid-metric-ratio": {
-          "count": 12,
+          "count": 15,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2527,18 +2737,18 @@
       "actual": "C",
       "reference": "expected",
       "ok": true,
-      "caseCount": 72,
+      "caseCount": 86,
       "aggregateSha256": {
-        "actual": "027f31592b3e8c72adee2a9c079363f4f82624aa9238159cfdad9445543fa4c3",
-        "reference": "027f31592b3e8c72adee2a9c079363f4f82624aa9238159cfdad9445543fa4c3"
+        "actual": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+        "reference": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6"
       },
-      "bitExactCases": 72,
+      "bitExactCases": 86,
       "negativeZeroLeafCount": 0,
       "violationCount": 0,
       "firstViolations": [],
       "stats": {
         "classic-new-delay-ms": {
-          "count": 110,
+          "count": 117,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2551,7 +2761,7 @@
           }
         },
         "classic-time-s": {
-          "count": 330,
+          "count": 351,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2564,7 +2774,7 @@
           }
         },
         "classic-new-area-m2": {
-          "count": 110,
+          "count": 117,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2577,7 +2787,7 @@
           }
         },
         "classic-volume-m3": {
-          "count": 110,
+          "count": 117,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2590,7 +2800,7 @@
           }
         },
         "classic-gain-db": {
-          "count": 761,
+          "count": 792,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2603,7 +2813,7 @@
           }
         },
         "classic-delay-ms": {
-          "count": 546,
+          "count": 570,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2616,7 +2826,7 @@
           }
         },
         "classic-new-cutoff-hz": {
-          "count": 546,
+          "count": 570,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2629,7 +2839,7 @@
           }
         },
         "classic-length-m": {
-          "count": 1406,
+          "count": 1458,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2642,7 +2852,7 @@
           }
         },
         "classic-new-length-m": {
-          "count": 3392,
+          "count": 3518,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2655,7 +2865,7 @@
           }
         },
         "classic-cutoff-hz": {
-          "count": 215,
+          "count": 222,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2668,7 +2878,7 @@
           }
         },
         "classic-new-gain-db": {
-          "count": 215,
+          "count": 222,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2681,7 +2891,7 @@
           }
         },
         "hybrid-point-m": {
-          "count": 34353,
+          "count": 34884,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2694,7 +2904,7 @@
           }
         },
         "hybrid-gain-db": {
-          "count": 242,
+          "count": 331,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2707,7 +2917,7 @@
           }
         },
         "hybrid-aux-length-m": {
-          "count": 20810,
+          "count": 20838,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2720,7 +2930,7 @@
           }
         },
         "hybrid-cutoff-hz": {
-          "count": 116,
+          "count": 163,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2733,7 +2943,7 @@
           }
         },
         "hybrid-aux-delay-ms": {
-          "count": 192,
+          "count": 269,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2746,7 +2956,7 @@
           }
         },
         "hybrid-direction": {
-          "count": 3690,
+          "count": 3951,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2759,7 +2969,7 @@
           }
         },
         "hybrid-delay-ms": {
-          "count": 1694,
+          "count": 1808,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2772,7 +2982,7 @@
           }
         },
         "hybrid-length-m": {
-          "count": 1016,
+          "count": 1097,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2785,7 +2995,7 @@
           }
         },
         "hybrid-azimuth-deg": {
-          "count": 212,
+          "count": 218,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2798,7 +3008,7 @@
           }
         },
         "hybrid-elevation-deg": {
-          "count": 212,
+          "count": 218,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2811,7 +3021,7 @@
           }
         },
         "hybrid-metric-ms": {
-          "count": 4,
+          "count": 5,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
@@ -2824,7 +3034,7 @@
           }
         },
         "hybrid-metric-ratio": {
-          "count": 12,
+          "count": 15,
           "maxAbsError": 0,
           "p50AbsError": 0,
           "p95AbsError": 0,
