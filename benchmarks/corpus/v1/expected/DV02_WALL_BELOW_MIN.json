@@ -1,0 +1,15 @@
+{
+  "caseId": "DV02_WALL_BELOW_MIN",
+  "kind": "scene-validation",
+  "outcome": "ok",
+  "value": {
+    "errors": [
+      {
+        "code": "wall_too_short",
+        "message": "Wall length must be at least 0.1 m",
+        "path": "walls.5"
+      }
+    ],
+    "ok": false
+  }
+}

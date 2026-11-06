@@ -1,0 +1,329 @@
+{
+  "scene": {
+    "schemaVersion": "1.0",
+    "revision": 320,
+    "units": "m",
+    "name": "Concrete Partition",
+    "room": {
+      "outerPolygon": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "y": 8
+        },
+        {
+          "x": 0,
+          "y": 8
+        }
+      ],
+      "heightM": 3,
+      "floorMaterialId": "concrete_hard",
+      "ceilingMaterialId": "concrete_hard"
+    },
+    "walls": [
+      {
+        "id": "boundary_north",
+        "a": {
+          "x": 0,
+          "y": 0
+        },
+        "b": {
+          "x": 12,
+          "y": 0
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "boundary_east",
+        "a": {
+          "x": 12,
+          "y": 0
+        },
+        "b": {
+          "x": 12,
+          "y": 8
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "boundary_south",
+        "a": {
+          "x": 12,
+          "y": 8
+        },
+        "b": {
+          "x": 0,
+          "y": 8
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "boundary_west",
+        "a": {
+          "x": 0,
+          "y": 8
+        },
+        "b": {
+          "x": 0,
+          "y": 0
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "partition_center",
+        "a": {
+          "x": 6,
+          "y": 0
+        },
+        "b": {
+          "x": 6,
+          "y": 8
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      }
+    ],
+    "portals": [
+      {
+        "id": "partition_door",
+        "wallId": "partition_center",
+        "center": {
+          "x": 6,
+          "y": 4
+        },
+        "widthM": 1.2,
+        "heightM": 2.1,
+        "open": true,
+        "lossDb": 3
+      }
+    ],
+    "sources": [
+      {
+        "id": "radio",
+        "name": "Radio",
+        "clipId": "radio_loop",
+        "sourceType": "point",
+        "position": {
+          "x": 9,
+          "y": 4
+        },
+        "gainDb": -3,
+        "loop": true
+      },
+      {
+        "id": "rain",
+        "name": "Rain",
+        "clipId": "rain_loop",
+        "sourceType": "point",
+        "position": {
+          "x": 10,
+          "y": 1.5
+        },
+        "gainDb": -8,
+        "loop": true
+      }
+    ],
+    "listener": {
+      "position": {
+        "x": 3,
+        "y": 4
+      },
+      "headingDeg": 0
+    },
+    "settings": {
+      "acousticUpdateHz": 12,
+      "maxEarlyReflections": 6,
+      "hrtfEnabled": true
+    }
+  },
+  "events": [
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 2,
+        "y": 2
+      }
+    },
+    {
+      "type": "wall-endpoint",
+      "id": "partition_center",
+      "a": {
+        "x": 6,
+        "y": 0.5
+      },
+      "b": {
+        "x": 6,
+        "y": 8
+      }
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 3,
+        "y": 6
+      }
+    },
+    {
+      "type": "wall-material",
+      "id": "partition_center",
+      "materialId": "wood_medium"
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 4.5,
+        "y": 4.2
+      }
+    },
+    {
+      "type": "portal-toggle",
+      "id": "partition_door",
+      "open": false
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 5.2,
+        "y": 3.8
+      }
+    },
+    {
+      "type": "wall-endpoint",
+      "id": "boundary_east",
+      "a": {
+        "x": 12,
+        "y": 0.4
+      },
+      "b": {
+        "x": 12,
+        "y": 8
+      }
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 7,
+        "y": 4
+      }
+    },
+    {
+      "type": "wall-material",
+      "id": "boundary_north",
+      "materialId": "acoustic_treatment"
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 8,
+        "y": 6
+      }
+    },
+    {
+      "type": "portal-toggle",
+      "id": "partition_door",
+      "open": true
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 10.5,
+        "y": 6.5
+      }
+    },
+    {
+      "type": "wall-endpoint",
+      "id": "partition_center",
+      "a": {
+        "x": 6,
+        "y": 1
+      },
+      "b": {
+        "x": 6,
+        "y": 7.5
+      }
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 8,
+        "y": 2.5
+      }
+    },
+    {
+      "type": "wall-material",
+      "id": "partition_center",
+      "materialId": "concrete_hard"
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 7.2,
+        "y": 5
+      }
+    },
+    {
+      "type": "portal-toggle",
+      "id": "partition_door",
+      "open": false
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 4,
+        "y": 1.5
+      }
+    },
+    {
+      "type": "wall-endpoint",
+      "id": "partition_center",
+      "a": {
+        "x": 6,
+        "y": 0
+      },
+      "b": {
+        "x": 6,
+        "y": 8
+      }
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 2.5,
+        "y": 7
+      }
+    },
+    {
+      "type": "wall-material",
+      "id": "boundary_south",
+      "materialId": "soft_foliage"
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 3,
+        "y": 4
+      }
+    },
+    {
+      "type": "portal-toggle",
+      "id": "partition_door",
+      "open": true
+    }
+  ]
+}

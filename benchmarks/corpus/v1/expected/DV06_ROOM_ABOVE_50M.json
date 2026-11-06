@@ -1,0 +1,20 @@
+{
+  "caseId": "DV06_ROOM_ABOVE_50M",
+  "kind": "scene-validation",
+  "outcome": "ok",
+  "value": {
+    "errors": [
+      {
+        "code": "too_big",
+        "message": "Too big: expected number to be <=50",
+        "path": "room.outerPolygon.1.x"
+      },
+      {
+        "code": "too_big",
+        "message": "Too big: expected number to be <=50",
+        "path": "room.outerPolygon.2.x"
+      }
+    ],
+    "ok": false
+  }
+}

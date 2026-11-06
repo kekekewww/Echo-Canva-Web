@@ -1121,6 +1121,1444 @@
       "tags": [
         "representative-budget"
       ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 13279,
+        "path": "benchmarks/corpus/v1/expected/M001_SCENESPEC_V1_TO_CLASSIC.json",
+        "sha256": "b16a1480ad42a5738c5ba3141c65654b742af2eb41b82dc39c9b37da3d7b2992"
+      },
+      "expectedOutcome": "ok",
+      "id": "M001_SCENESPEC_V1_TO_CLASSIC",
+      "input": {
+        "bytes": 2899,
+        "path": "benchmarks/corpus/v1/inputs/M001_SCENESPEC_V1_TO_CLASSIC.json",
+        "sha256": "5a159965e3da772bb2a4909eba2bad042b2c5328e782162ad077434beac6e7ba"
+      },
+      "kind": "workspace-migration",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Bare Classic SceneSpec named Migrated Classic, as in 'migrates a bare Classic SceneSpec'.",
+        "refs": [
+          "tests/unit/workspace-persistence.test.ts",
+          "src/domain/workspace/persistence.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "migration",
+        "scenespec-v1",
+        "classic"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 17090,
+        "path": "benchmarks/corpus/v1/expected/M002_DOC_V2_SPATIAL_TO_HYBRID.json",
+        "sha256": "3223d6af360f594a4e3116d9e087288238ecf71d5dcaf0b5587f81933d5681ef"
+      },
+      "expectedOutcome": "ok",
+      "id": "M002_DOC_V2_SPATIAL_TO_HYBRID",
+      "input": {
+        "bytes": 3612,
+        "path": "benchmarks/corpus/v1/inputs/M002_DOC_V2_SPATIAL_TO_HYBRID.json",
+        "sha256": "6821884da20270af2342a11a8748b712edd2e0bc4edf7d74dedb2197d239b795"
+      },
+      "kind": "workspace-migration",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "v2 document with listener height 1.7 m and source heights 1.2 m.",
+        "refs": [
+          "tests/unit/workspace-persistence.test.ts",
+          "src/domain/workspace/persistence.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "migration",
+        "document-v2",
+        "spatial3d",
+        "hybrid"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 16657,
+        "path": "benchmarks/corpus/v1/expected/M003_DOC_V2_NO_SPATIAL_TO_HYBRID.json",
+        "sha256": "8f90f61542635109bca56afb8651be708c8a0f611c867e29ccdfa966aebec172"
+      },
+      "expectedOutcome": "ok",
+      "id": "M003_DOC_V2_NO_SPATIAL_TO_HYBRID",
+      "input": {
+        "bytes": 3378,
+        "path": "benchmarks/corpus/v1/inputs/M003_DOC_V2_NO_SPATIAL_TO_HYBRID.json",
+        "sha256": "3c3d241972bd0b3074f4c46568930ee23f4754908bf2f64048a69faa6b41ee5b"
+      },
+      "kind": "workspace-migration",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "v2 document without a spatial3d extension.",
+        "refs": [
+          "tests/unit/workspace-persistence.test.ts",
+          "src/domain/workspace/persistence.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "migration",
+        "document-v2",
+        "no-spatial3d",
+        "hybrid"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 15231,
+        "path": "benchmarks/corpus/v1/expected/M004_LEGACY_CACHE_2_0.json",
+        "sha256": "b592c0cba6fe73f2933ca703793ea979869d8bffde5a9d6666af871f57ebc05f"
+      },
+      "expectedOutcome": "ok",
+      "id": "M004_LEGACY_CACHE_2_0",
+      "input": {
+        "bytes": 6197,
+        "path": "benchmarks/corpus/v1/inputs/M004_LEGACY_CACHE_2_0.json",
+        "sha256": "8f4c8d72fd4478752eac8a1e3b2bea4b1d5a4dc5d16442751a37e6f0bda13bfe"
+      },
+      "kind": "workspace-migration",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "cacheVersion 2.0 snapshot history with one past state, loaded under the Classic key.",
+        "refs": [
+          "tests/unit/workspace-persistence.test.ts",
+          "src/domain/workspace/persistence.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "migration",
+        "cache",
+        "legacy-history",
+        "classic"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 16671,
+        "path": "benchmarks/corpus/v1/expected/M005_CACHE_BEFORE_PANNING.json",
+        "sha256": "0ac3d3d5f1d4b377445764c7554520c4342fe95af9016b4bc144574a3a49067c"
+      },
+      "expectedOutcome": "ok",
+      "id": "M005_CACHE_BEFORE_PANNING",
+      "input": {
+        "bytes": 3175,
+        "path": "benchmarks/corpus/v1/inputs/M005_CACHE_BEFORE_PANNING.json",
+        "sha256": "b0a5e9f22ad086319056f65f15057d5eec1b1404bb975d9b81c16d47b8009217"
+      },
+      "kind": "workspace-migration",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Current-version cache whose camera has no panX or panY.",
+        "refs": [
+          "tests/unit/workspace-persistence.test.ts",
+          "src/domain/workspace/persistence.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "migration",
+        "cache",
+        "view-state",
+        "hybrid"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 16674,
+        "path": "benchmarks/corpus/v1/expected/M006_CACHE_BEFORE_PRIMITIVES.json",
+        "sha256": "dc63c612f0556817998853633cf88a4499b90c807ec35f2fb9f1a47cce150a9e"
+      },
+      "expectedOutcome": "ok",
+      "id": "M006_CACHE_BEFORE_PRIMITIVES",
+      "input": {
+        "bytes": 3179,
+        "path": "benchmarks/corpus/v1/inputs/M006_CACHE_BEFORE_PRIMITIVES.json",
+        "sha256": "af5b316852c1661838e64ddd9e114b2b5d09e8e19d18ee112f79fc634a092091"
+      },
+      "kind": "workspace-migration",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Current-version cache whose project has no primitives field.",
+        "refs": [
+          "tests/unit/workspace-persistence.test.ts",
+          "src/domain/workspace/persistence.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "migration",
+        "cache",
+        "primitives",
+        "hybrid"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 16660,
+        "path": "benchmarks/corpus/v1/expected/M007_ENVELOPE_BEFORE_ROOM_MATERIALS.json",
+        "sha256": "5ca5a07c7e1fcebccb6d7c6e1accc117a8f846346fd819b2f0931fbe4a3f6e3c"
+      },
+      "expectedOutcome": "ok",
+      "id": "M007_ENVELOPE_BEFORE_ROOM_MATERIALS",
+      "input": {
+        "bytes": 4982,
+        "path": "benchmarks/corpus/v1/inputs/M007_ENVELOPE_BEFORE_ROOM_MATERIALS.json",
+        "sha256": "f33d77ac7f14bd5790ab222fd175c4b293ae97ac4ca3cf5b8799eec1e1429059"
+      },
+      "kind": "workspace-migration",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Authoring envelope with no room3d floorMaterialId, ceilingMaterialId or ceilingEnabled.",
+        "refs": [
+          "src/domain/workspace/persistence.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "migration",
+        "envelope",
+        "room-materials",
+        "hybrid"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 12860,
+        "path": "benchmarks/corpus/v1/expected/M008_TRANSFER_MISSING_LOCAL_AUDIO.json",
+        "sha256": "a97678ffbaa49e0bfe66c8ac276898cfab41652454f3f65f2e4d35dc32ee7bc2"
+      },
+      "expectedOutcome": "ok",
+      "id": "M008_TRANSFER_MISSING_LOCAL_AUDIO",
+      "input": {
+        "bytes": 5773,
+        "path": "benchmarks/corpus/v1/inputs/M008_TRANSFER_MISSING_LOCAL_AUDIO.json",
+        "sha256": "d67a38eb1efe1ab7765edc5c457495275f3a441e39395579a65802508b0886c5"
+      },
+      "kind": "workspace-migration",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Transfer file whose only source uses local_missing; no local audio is available.",
+        "refs": [
+          "tests/unit/workspace-transfer.test.ts",
+          "src/domain/workspace/transfer.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "migration",
+        "transfer",
+        "local-audio",
+        "relink",
+        "hybrid"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 209,
+        "path": "benchmarks/corpus/v1/expected/M009_HYBRID_INTO_CLASSIC_REJECTED.json",
+        "sha256": "5a285a9aa49377b9382ce87531e5d7800382b3e4951d8a870bc9718ecb3269ee"
+      },
+      "expectedOutcome": "error",
+      "id": "M009_HYBRID_INTO_CLASSIC_REJECTED",
+      "input": {
+        "bytes": 5923,
+        "path": "benchmarks/corpus/v1/inputs/M009_HYBRID_INTO_CLASSIC_REJECTED.json",
+        "sha256": "b9a69d74e1a48b622af0a5b4f8a604b689ad18c40bc7cbefd19623c8a06599b6"
+      },
+      "kind": "workspace-migration",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Default Hybrid transfer imported into Classic.",
+        "refs": [
+          "tests/unit/workspace-transfer.test.ts",
+          "src/domain/workspace/transfer.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "migration",
+        "transfer",
+        "wrong-mode",
+        "rejected"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 150,
+        "path": "benchmarks/corpus/v1/expected/M010_DOC_V2_INTO_CLASSIC_REJECTED.json",
+        "sha256": "c20b826b613feb58a1a05e9bcdf5fc62ea0618280f6babfa4a59d9ae53413c6e"
+      },
+      "expectedOutcome": "ok",
+      "id": "M010_DOC_V2_INTO_CLASSIC_REJECTED",
+      "input": {
+        "bytes": 3615,
+        "path": "benchmarks/corpus/v1/inputs/M010_DOC_V2_INTO_CLASSIC_REJECTED.json",
+        "sha256": "3d87a5b5d4d60af20c76a710feb08ed7391ae9a1ee61eb2148cc07032a4811d1"
+      },
+      "kind": "workspace-migration",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "The M002 v2 document migrated into Classic; the migration returns a failure result.",
+        "refs": [
+          "tests/unit/workspace-persistence.test.ts",
+          "src/domain/workspace/persistence.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "migration",
+        "document-v2",
+        "wrong-mode",
+        "rejected"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 210,
+        "path": "benchmarks/corpus/v1/expected/M011_SCHEMA_0_9_REJECTED.json",
+        "sha256": "c770cad68bf4485f49c0b95c3214428a01a534028547a27d786a38e69edcb9cd"
+      },
+      "expectedOutcome": "error",
+      "id": "M011_SCHEMA_0_9_REJECTED",
+      "input": {
+        "bytes": 1741,
+        "path": "benchmarks/corpus/v1/inputs/M011_SCHEMA_0_9_REJECTED.json",
+        "sha256": "24ad483a1b41bbeb4d72eae21ca77697bd1785285c272c34aa7bc4147c78d2fa"
+      },
+      "kind": "workspace-migration",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Concrete Partition with schemaVersion 0.9.",
+        "refs": [
+          "tests/unit/scene-serialization.test.ts",
+          "src/domain/scene/serialize.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "migration",
+        "schema-version",
+        "rejected"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 242,
+        "path": "benchmarks/corpus/v1/expected/M012_INVALID_SPATIAL_REJECTED.json",
+        "sha256": "bf691d2a03cfe5058f50f4a4323fed8719b1145813e47f2efaeb5cf11192e970"
+      },
+      "expectedOutcome": "error",
+      "id": "M012_INVALID_SPATIAL_REJECTED",
+      "input": {
+        "bytes": 3363,
+        "path": "benchmarks/corpus/v1/inputs/M012_INVALID_SPATIAL_REJECTED.json",
+        "sha256": "51c4cb76d3666428e6fd1c1e2dad8ca2dfffa50b6d57e5f0b5768d87760236ac"
+      },
+      "kind": "workspace-migration",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Issue reproduction: first wall bottom 5, top -1, thickness -1.",
+        "refs": [
+          "tests/unit/workspace-transfer.test.ts",
+          "src/domain/workspace/spatial-validation.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "migration",
+        "spatial-validation",
+        "rejected",
+        "hybrid"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 282,
+        "path": "benchmarks/corpus/v1/expected/M013_HASH_MISMATCH_REJECTED.json",
+        "sha256": "67ce10507c45b41e06f9c705cd30ed857d75eca83a1b77c0fb64a9fc1615bc67"
+      },
+      "expectedOutcome": "error",
+      "id": "M013_HASH_MISMATCH_REJECTED",
+      "input": {
+        "bytes": 1896,
+        "path": "benchmarks/corpus/v1/inputs/M013_HASH_MISMATCH_REJECTED.json",
+        "sha256": "019f34f0ea6ee64d641049cca8380611ceaff35d74cac69f8a12e35ebd510baa"
+      },
+      "kind": "workspace-migration",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "v2 document whose base scene name changed after the compatibility hash was computed.",
+        "refs": [
+          "tests/unit/scene-document.test.ts",
+          "src/domain/scene-document/validate.ts"
+        ],
+        "type": "test-fixture"
+      },
+      "tags": [
+        "migration",
+        "classic-projection-hash",
+        "rejected",
+        "hybrid"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 3475,
+        "path": "benchmarks/corpus/v1/expected/DC01_SOURCE_ON_LISTENER.json",
+        "sha256": "c3582479f7175f734522ce478db2150399e556a4b78dc44f97907acef672b478"
+      },
+      "expectedOutcome": "ok",
+      "id": "DC01_SOURCE_ON_LISTENER",
+      "input": {
+        "bytes": 2837,
+        "path": "benchmarks/corpus/v1/inputs/DC01_SOURCE_ON_LISTENER.json",
+        "sha256": "f2a1de587b094a56a842122769fe193abee516e32b8cd91bc4ccc5eb51089bfe"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Radio placed exactly on the listener at (3, 4).",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "coincident"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 6
+      },
+      "expected": {
+        "bytes": 5009,
+        "path": "benchmarks/corpus/v1/expected/DC02_ROUTE_COLLINEAR_WITH_WALL.json",
+        "sha256": "8450e39293d4a13135060b499ed6a980bde9580ea7536f14f3c6f5cc10cd9376"
+      },
+      "expectedOutcome": "ok",
+      "id": "DC02_ROUTE_COLLINEAR_WITH_WALL",
+      "input": {
+        "bytes": 3102,
+        "path": "benchmarks/corpus/v1/inputs/DC02_ROUTE_COLLINEAR_WITH_WALL.json",
+        "sha256": "989cb3d1f88d03a0eaa0d295be7bebf688ee8018d455fb2f27169666ed07a8fa"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "A wall from (4, 4) to (5, 4) lies on the direct line from the listener (3, 4) to the radio (9, 4).",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "collinear"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 6
+      },
+      "expected": {
+        "bytes": 4581,
+        "path": "benchmarks/corpus/v1/expected/DC03_LISTENER_ON_WALL_ENDPOINT.json",
+        "sha256": "2a06eae644612c1dc285f1f73fdcfa82cb587f527af6bcb99ff567bdd6d55ebb"
+      },
+      "expectedOutcome": "ok",
+      "id": "DC03_LISTENER_ON_WALL_ENDPOINT",
+      "input": {
+        "bytes": 3097,
+        "path": "benchmarks/corpus/v1/inputs/DC03_LISTENER_ON_WALL_ENDPOINT.json",
+        "sha256": "2189f6dc2f8635e62978ede9aa2e6df4cec50acf5c58fe63d244ee7d88d2043d"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "A stub wall starts exactly at the listener position (3, 4).",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "endpoint"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 4245,
+        "path": "benchmarks/corpus/v1/expected/DC04_ROUTE_GRAZES_PORTAL_EDGE.json",
+        "sha256": "3bddb36a41ba709c832ce2611e73ba4c5b37db7f1c930809e8a9fee3dcad7968"
+      },
+      "expectedOutcome": "ok",
+      "id": "DC04_ROUTE_GRAZES_PORTAL_EDGE",
+      "input": {
+        "bytes": 2835,
+        "path": "benchmarks/corpus/v1/inputs/DC04_ROUTE_GRAZES_PORTAL_EDGE.json",
+        "sha256": "cde85cabd3e5398100e219e0b5fccafa264cefb21bcc5a34a4a3b0122a782443"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Door narrowed to 1 m; the route from (3, 3) to the radio at (9, 4) crosses the partition at y = 3.5, the door edge.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "portal-edge",
+        "grazing"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 6
+      },
+      "expected": {
+        "bytes": 4626,
+        "path": "benchmarks/corpus/v1/expected/DC05_WALL_EXACTLY_MIN_LENGTH.json",
+        "sha256": "3d3e08e096241836b29165d8ba6e5eb47384bc8a7a0c691a609edae518dfc151"
+      },
+      "expectedOutcome": "ok",
+      "id": "DC05_WALL_EXACTLY_MIN_LENGTH",
+      "input": {
+        "bytes": 3098,
+        "path": "benchmarks/corpus/v1/inputs/DC05_WALL_EXACTLY_MIN_LENGTH.json",
+        "sha256": "538b0f98dcdbde13f2bf53f5adaef1e065d9d571c134a063db378e62db58879b"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "A wall of length exactly 0.1 m, the validator minimum.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "min-length"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 1961,
+        "path": "benchmarks/corpus/v1/expected/DC06_REFLECTIONS_LIMIT_ZERO.json",
+        "sha256": "cdb1266ea610d903fdf3b0c989eeb424a1cb7787fe7d5854f418a044f8618406"
+      },
+      "expectedOutcome": "ok",
+      "id": "DC06_REFLECTIONS_LIMIT_ZERO",
+      "input": {
+        "bytes": 2837,
+        "path": "benchmarks/corpus/v1/inputs/DC06_REFLECTIONS_LIMIT_ZERO.json",
+        "sha256": "33361f54e9d7dc0d0d6b876a6e19e2a20e5ccafffde26c7b0a0a8e79c185aa11"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "maxEarlyReflections is 0.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "reflection-cap"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 207,
+        "path": "benchmarks/corpus/v1/expected/DH01_SOURCE_ON_LISTENER.json",
+        "sha256": "c85ed35cf1b2313c3458ad8aaad02637d006907454793dd5afe127c08ab55c5c"
+      },
+      "expectedOutcome": "error",
+      "id": "DH01_SOURCE_ON_LISTENER",
+      "input": {
+        "bytes": 3554,
+        "path": "benchmarks/corpus/v1/inputs/DH01_SOURCE_ON_LISTENER.json",
+        "sha256": "a74c327bdd89d4e1f43a7d86c8b0a4ee63e63447fc092d265539a74d26ddb854"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Radio at the listener plan position and the same 1.5 m height.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "coincident",
+        "expected-error"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 12395,
+        "path": "benchmarks/corpus/v1/expected/DH02_SOURCE_DIRECTLY_ABOVE.json",
+        "sha256": "2b711b78286983442eec82def02769e9e238611cd26858fcf8fdac27056342b5"
+      },
+      "expectedOutcome": "ok",
+      "id": "DH02_SOURCE_DIRECTLY_ABOVE",
+      "input": {
+        "bytes": 3552,
+        "path": "benchmarks/corpus/v1/inputs/DH02_SOURCE_DIRECTLY_ABOVE.json",
+        "sha256": "10bae6a104dd67c94b740e5c7e23ad858c56d95ad2918acd4a6e880b511a9339"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Radio directly above the listener (same plan position, 1.5 m higher), so the direction is exactly vertical.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "elevation",
+        "asin"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 13860,
+        "path": "benchmarks/corpus/v1/expected/DH03_AZIMUTH_WRAP_180.json",
+        "sha256": "d206f608bff7f43b56cc8e547630d73ec33cb3dc40c98de8cc36269833a5b2f7"
+      },
+      "expectedOutcome": "ok",
+      "id": "DH03_AZIMUTH_WRAP_180",
+      "input": {
+        "bytes": 3561,
+        "path": "benchmarks/corpus/v1/inputs/DH03_AZIMUTH_WRAP_180.json",
+        "sha256": "5ea299a687fd716e5dba2772779e904c831c5c538bbed230d6c9ac07b964bd3a"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Radio exactly behind the listener and rain 1e-9 m to its left, on either side of the atan2 branch cut.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "azimuth",
+        "branch-cut"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 11249,
+        "path": "benchmarks/corpus/v1/expected/DH04_SOURCE_ON_PATCH_PLANE.json",
+        "sha256": "5d93d87f792ff9f5177c8c51bad73378f2d2bde4d76e64f9664e6b5cb27b6e5a"
+      },
+      "expectedOutcome": "ok",
+      "id": "DH04_SOURCE_ON_PATCH_PLANE",
+      "input": {
+        "bytes": 3558,
+        "path": "benchmarks/corpus/v1/inputs/DH04_SOURCE_ON_PATCH_PLANE.json",
+        "sha256": "b11a1252b1f9ceda837872d58dd06d9d54453f82c6813bf0d0bd124be5ca10b8"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Radio on the plane of the partition back face at x = 6.1.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "patch-plane",
+        "coplanar"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 17010,
+        "path": "benchmarks/corpus/v1/expected/DH05_ROUTE_GRAZES_PORTAL_EDGE.json",
+        "sha256": "83f6a2e3c5f53e22159170664f73bc8b6739530143f6a14ead2dccb889605541"
+      },
+      "expectedOutcome": "ok",
+      "id": "DH05_ROUTE_GRAZES_PORTAL_EDGE",
+      "input": {
+        "bytes": 3554,
+        "path": "benchmarks/corpus/v1/inputs/DH05_ROUTE_GRAZES_PORTAL_EDGE.json",
+        "sha256": "107f0d2742c55bec7b6e23249e2adafeb4f0dbf4b43209fe9d57f4f44452b243"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "The route to the radio crosses the door plane at exactly the 2.1 m door top.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "portal-edge",
+        "grazing"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 279,
+        "path": "benchmarks/corpus/v1/expected/DV01_ZERO_LENGTH_WALL.json",
+        "sha256": "2756a75f2a31752826e1176ac5b65dcb43b62206c5353fc0681b93909ab70745"
+      },
+      "expectedOutcome": "ok",
+      "id": "DV01_ZERO_LENGTH_WALL",
+      "input": {
+        "bytes": 1859,
+        "path": "benchmarks/corpus/v1/inputs/DV01_ZERO_LENGTH_WALL.json",
+        "sha256": "8d1aef107f4632052509501154560eb72e4666e08e8fca2a95b749b203af8b8a"
+      },
+      "kind": "scene-validation",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "A wall whose endpoints coincide.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts",
+          "src/domain/scene/validate.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "validation"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 277,
+        "path": "benchmarks/corpus/v1/expected/DV02_WALL_BELOW_MIN.json",
+        "sha256": "b520e03956eafa56e91f6eea892ae7377480936517391f4a58598c6e55a78a0e"
+      },
+      "expectedOutcome": "ok",
+      "id": "DV02_WALL_BELOW_MIN",
+      "input": {
+        "bytes": 1863,
+        "path": "benchmarks/corpus/v1/inputs/DV02_WALL_BELOW_MIN.json",
+        "sha256": "88b9d2e1d0feba8865c22fbcc656192dd969ee3e2655e9cd1093033ea8d43bc7"
+      },
+      "kind": "scene-validation",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "A 0.05 m wall, half the 0.1 m minimum.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts",
+          "src/domain/scene/validate.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "validation"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 301,
+        "path": "benchmarks/corpus/v1/expected/DV03_NON_FINITE_COORDINATE.json",
+        "sha256": "91281d19294db258cd32b1130e510f4d54265392cf702ebd14847331fb1f86b0"
+      },
+      "expectedOutcome": "ok",
+      "id": "DV03_NON_FINITE_COORDINATE",
+      "input": {
+        "bytes": 1862,
+        "path": "benchmarks/corpus/v1/inputs/DV03_NON_FINITE_COORDINATE.json",
+        "sha256": "5bae5b75b1e370e99faecb759c0bd5b425f44c739fdaafec940da4e31fc356eb"
+      },
+      "kind": "scene-validation",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "A wall endpoint written as 1e999 in the raw text, which JSON.parse reads as Infinity.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts",
+          "src/domain/scene/validate.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "validation"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 572,
+        "path": "benchmarks/corpus/v1/expected/DV04_DUPLICATE_IDS.json",
+        "sha256": "5e2b5f2de414b3e900d3e766be9288bf0a07bfa168e1e5d6481090f9c4673df2"
+      },
+      "expectedOutcome": "ok",
+      "id": "DV04_DUPLICATE_IDS",
+      "input": {
+        "bytes": 1867,
+        "path": "benchmarks/corpus/v1/inputs/DV04_DUPLICATE_IDS.json",
+        "sha256": "9d1d047c6fcdf24a9887ec7fd007daafc79b473ee3c65f20315f4f9175aab53c"
+      },
+      "kind": "scene-validation",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "A second wall named partition_center and a second source named radio.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts",
+          "src/domain/scene/validate.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "validation"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 306,
+        "path": "benchmarks/corpus/v1/expected/DV05_SOURCE_OUTSIDE_ROOM.json",
+        "sha256": "39acfdb2e0b76bac5be9fd265fe685988acb37f7f75e48c964831469b1b7e3ed"
+      },
+      "expectedOutcome": "ok",
+      "id": "DV05_SOURCE_OUTSIDE_ROOM",
+      "input": {
+        "bytes": 1714,
+        "path": "benchmarks/corpus/v1/inputs/DV05_SOURCE_OUTSIDE_ROOM.json",
+        "sha256": "ea82167224515589ce3fccfb1bdc6204c86e5fe4dff900a046dabda6debe5408"
+      },
+      "kind": "scene-validation",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Radio at (20, 4), outside the 12 by 8 m room.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts",
+          "src/domain/scene/validate.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "validation"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 427,
+        "path": "benchmarks/corpus/v1/expected/DV06_ROOM_ABOVE_50M.json",
+        "sha256": "a33ecc522837176aa26e01bbf36f4b79af0f74521b42cbb4cef59c52e2dc533a"
+      },
+      "expectedOutcome": "ok",
+      "id": "DV06_ROOM_ABOVE_50M",
+      "input": {
+        "bytes": 1713,
+        "path": "benchmarks/corpus/v1/inputs/DV06_ROOM_ABOVE_50M.json",
+        "sha256": "3900dcf309fe5b2128aef1d613bfdc17eeb23d70b675bd644c1149cff57ca1e3"
+      },
+      "kind": "scene-validation",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "A 60 by 8 m room, above the 50 m dimension limit.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts",
+          "src/domain/scene/validate.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "validation"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 293,
+        "path": "benchmarks/corpus/v1/expected/DV07_UNKNOWN_MATERIAL.json",
+        "sha256": "a9c1a2746663da4ca041032319507d656859a58a5e81ec3fa7f891dcd17ec576"
+      },
+      "expectedOutcome": "ok",
+      "id": "DV07_UNKNOWN_MATERIAL",
+      "input": {
+        "bytes": 1711,
+        "path": "benchmarks/corpus/v1/inputs/DV07_UNKNOWN_MATERIAL.json",
+        "sha256": "dd7bc5082662a40d61fd02fee8e1b9d0ac3c38d6f1f2d0d2c15965486544f3fd"
+      },
+      "kind": "scene-validation",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "The partition uses the material id unobtainium.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts",
+          "src/domain/scene/validate.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "validation"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 314,
+        "path": "benchmarks/corpus/v1/expected/DV08_PORTAL_WIDER_THAN_WALL.json",
+        "sha256": "9200a363e15a9bc2f2e5b1b79b188ef236ad4082f4661616a78b42b4fd9592d0"
+      },
+      "expectedOutcome": "ok",
+      "id": "DV08_PORTAL_WIDER_THAN_WALL",
+      "input": {
+        "bytes": 2004,
+        "path": "benchmarks/corpus/v1/inputs/DV08_PORTAL_WIDER_THAN_WALL.json",
+        "sha256": "560258a43ef7fec3b29b14700e76872bcb15384fe93178fc32bf039a34a5807b"
+      },
+      "kind": "scene-validation",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "A 3 m portal on a 2 m wall.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts",
+          "src/domain/scene/validate.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "validation"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 199,
+        "path": "benchmarks/corpus/v1/expected/DK01_PATCH_TOO_FEW_VERTICES.json",
+        "sha256": "c5a0ffa8b51a1721edbb765dbb8718d68b2d5dfdc052edc83fc3fcada529923c"
+      },
+      "expectedOutcome": "error",
+      "id": "DK01_PATCH_TOO_FEW_VERTICES",
+      "input": {
+        "bytes": 210,
+        "path": "benchmarks/corpus/v1/inputs/DK01_PATCH_TOO_FEW_VERTICES.json",
+        "sha256": "1c874dc7348292b6842da76c7f13ed89eb85c012402e27030666850578f522dc"
+      },
+      "kind": "hybrid-patch",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Two vertices.",
+        "refs": [
+          "src/acoustics/hybrid3d/geometry.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "patch",
+        "vertex-count"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 185,
+        "path": "benchmarks/corpus/v1/expected/DK02_PATCH_COLLINEAR.json",
+        "sha256": "dbe6a326938c823d495852a9614432fd1ced95678b487c347a95adcf8d40ddc1"
+      },
+      "expectedOutcome": "error",
+      "id": "DK02_PATCH_COLLINEAR",
+      "input": {
+        "bytes": 264,
+        "path": "benchmarks/corpus/v1/inputs/DK02_PATCH_COLLINEAR.json",
+        "sha256": "98b6a19b3015e3abe61a18e584568407d18520a9a11e648ab384f94c47b4d792"
+      },
+      "kind": "hybrid-patch",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Three vertices on one line.",
+        "refs": [
+          "src/acoustics/hybrid3d/geometry.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "patch",
+        "collinear"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 777,
+        "path": "benchmarks/corpus/v1/expected/DK03_PATCH_NON_PLANAR.json",
+        "sha256": "242599e2dea44dc9ed25a6d4120b1a7ff688ebf01176c5634e38e86189828e66"
+      },
+      "expectedOutcome": "ok",
+      "id": "DK03_PATCH_NON_PLANAR",
+      "input": {
+        "bytes": 320,
+        "path": "benchmarks/corpus/v1/inputs/DK03_PATCH_NON_PLANAR.json",
+        "sha256": "4dcd05a50a6afdf4a940702b3aa5b9da73c3c52e8503a761c16913731a9a2c1b"
+      },
+      "kind": "hybrid-patch",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "A quad whose fourth vertex lies 0.5 m off the plane of the first three.",
+        "refs": [
+          "src/acoustics/hybrid3d/geometry.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "patch",
+        "non-planar"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 781,
+        "path": "benchmarks/corpus/v1/expected/DK04_PATCH_DUPLICATE_VERTICES.json",
+        "sha256": "b7d5dd5c8f396f96cf320f2da666884b8a5a1bf9a73fc1e1a22bbe7557013a89"
+      },
+      "expectedOutcome": "ok",
+      "id": "DK04_PATCH_DUPLICATE_VERTICES",
+      "input": {
+        "bytes": 318,
+        "path": "benchmarks/corpus/v1/inputs/DK04_PATCH_DUPLICATE_VERTICES.json",
+        "sha256": "e314d52f6d056c95c9bf42c49ff10a228d9ea24274e6549bc9d7f85839fc6813"
+      },
+      "kind": "hybrid-patch",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "A quad whose fourth vertex repeats the second.",
+        "refs": [
+          "src/acoustics/hybrid3d/geometry.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "patch",
+        "duplicate-vertices"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 1422,
+        "path": "benchmarks/corpus/v1/expected/DK05_SEGMENTS_ON_PATCH.json",
+        "sha256": "a0ca7d714993115fc92068586258e50bb3fd89802e7638497fe1f98504511c6a"
+      },
+      "expectedOutcome": "ok",
+      "id": "DK05_SEGMENTS_ON_PATCH",
+      "input": {
+        "bytes": 1806,
+        "path": "benchmarks/corpus/v1/inputs/DK05_SEGMENTS_ON_PATCH.json",
+        "sha256": "8dc8924552a83f9b2d38c80ee09beeadedde1e58c0a095b7be0b15a69da48f20"
+      },
+      "kind": "hybrid-visibility",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "One wall patch in the plane x = 1; coplanar, along-edge, vertex-ending, zero-length and parallel segments, plus one crossing segment.",
+        "refs": [
+          "src/acoustics/hybrid3d/geometry.ts",
+          "src/acoustics/hybrid3d/bvh.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "coplanar",
+        "along-edge",
+        "vertex-end",
+        "zero-length",
+        "parallel"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 407257,
+        "path": "benchmarks/corpus/v1/expected/TC01_LISTENER_TAPE_SEEDED.json",
+        "sha256": "5e0aead4b7f9468e009cb22efbb1d8965c94c0aa49dd98f9e50b10bfb8df1688"
+      },
+      "expectedOutcome": "ok",
+      "id": "TC01_LISTENER_TAPE_SEEDED",
+      "input": {
+        "bytes": 11742,
+        "path": "benchmarks/corpus/v1/inputs/TC01_LISTENER_TAPE_SEEDED.json",
+        "sha256": "f12fe88db7a407a50654e8caf84398ae8af1fdd635619c4910153fffcb1f18a8"
+      },
+      "kind": "classic-tape",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S5",
+      "seed": {
+        "algorithm": "lcg32-v1",
+        "consumers": "x then y jitter of each of the 64 listener poses, two draws per step in step order",
+        "value": 20261106
+      },
+      "source": {
+        "notes": "64 listener poses along a jittered walk from the left room through the door to the right room.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "tape",
+        "listener-walk",
+        "seeded",
+        "partition",
+        "door-edge"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 562337,
+        "path": "benchmarks/corpus/v1/expected/TH01_LISTENER_TAPE_SEEDED.json",
+        "sha256": "52da4fc980ff5bc863dd9081caef6a83bbd622f5f80deadd13c42aff83385125"
+      },
+      "expectedOutcome": "ok",
+      "id": "TH01_LISTENER_TAPE_SEEDED",
+      "input": {
+        "bytes": 12459,
+        "path": "benchmarks/corpus/v1/inputs/TH01_LISTENER_TAPE_SEEDED.json",
+        "sha256": "1fc690eed4817eed538743d0c8e82e35f9683bc4b2d03b827484742310555f2d"
+      },
+      "kind": "hybrid-tape",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S5",
+      "seed": {
+        "algorithm": "lcg32-v1",
+        "consumers": "x then y jitter of each of the 64 listener poses, two draws per step in step order",
+        "value": 20261106
+      },
+      "source": {
+        "notes": "The TC01 walk on the Hybrid partition document with 1.5 m listener height.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "tape",
+        "listener-walk",
+        "seeded",
+        "partition",
+        "door-edge"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 0,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 133251,
+        "path": "benchmarks/corpus/v1/expected/TC02_STATIC_EDIT_TAPE.json",
+        "sha256": "aa696ea8b34feb7c960bd5c406a7dd5eb8c21931e95967a5b3844fd42862a27c"
+      },
+      "expectedOutcome": "ok",
+      "id": "TC02_STATIC_EDIT_TAPE",
+      "input": {
+        "bytes": 5661,
+        "path": "benchmarks/corpus/v1/inputs/TC02_STATIC_EDIT_TAPE.json",
+        "sha256": "9bc2ff84449d933cb8e1866b3bc17ca280ddd94217adb93f83623518053eb00d"
+      },
+      "kind": "classic-tape",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": "S6",
+      "seed": null,
+      "source": {
+        "notes": "24 steps alternating a listener pose with one static edit: wall endpoint, wall material or portal toggle.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "tape",
+        "static-edits",
+        "partition"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 1,
+        "primitives": 2,
+        "walls": 5
+      },
+      "expected": {
+        "bytes": 186813,
+        "path": "benchmarks/corpus/v1/expected/TH02_STATIC_EDIT_TAPE.json",
+        "sha256": "614ca57d876e7ef78a8739e556edf3480d6880548acf4a2c447d0ccab4ac6214"
+      },
+      "expectedOutcome": "ok",
+      "id": "TH02_STATIC_EDIT_TAPE",
+      "input": {
+        "bytes": 7382,
+        "path": "benchmarks/corpus/v1/inputs/TH02_STATIC_EDIT_TAPE.json",
+        "sha256": "564bfe38b29088dc092cf94a302a2498cafcbc803620a512702de41989656f62"
+      },
+      "kind": "hybrid-tape",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": "S6",
+      "seed": null,
+      "source": {
+        "notes": "24 steps alternating a listener pose with one static edit: wall endpoint, wall material, portal toggle or primitive pose.",
+        "refs": [
+          "src/domain/presets/concrete-partition.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "tape",
+        "static-edits",
+        "partition",
+        "primitives"
+      ]
     }
   ],
   "corpusId": "echo-canvas-common",

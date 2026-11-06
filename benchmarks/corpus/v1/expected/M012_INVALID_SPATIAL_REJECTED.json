@@ -1,0 +1,9 @@
+{
+  "caseId": "M012_INVALID_SPATIAL_REJECTED",
+  "error": {
+    "message": "This authoring project has invalid 3D geometry: Wall thickness must be 0.02–2 m.",
+    "name": "Error"
+  },
+  "kind": "workspace-migration",
+  "outcome": "error"
+}

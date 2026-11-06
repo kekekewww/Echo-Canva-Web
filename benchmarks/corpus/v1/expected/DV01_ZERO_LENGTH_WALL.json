@@ -1,0 +1,15 @@
+{
+  "caseId": "DV01_ZERO_LENGTH_WALL",
+  "kind": "scene-validation",
+  "outcome": "ok",
+  "value": {
+    "errors": [
+      {
+        "code": "wall_too_short",
+        "message": "Wall length must be at least 0.1 m",
+        "path": "walls.5"
+      }
+    ],
+    "ok": false
+  }
+}

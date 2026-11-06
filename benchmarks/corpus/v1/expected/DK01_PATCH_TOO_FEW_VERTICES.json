@@ -1,0 +1,9 @@
+{
+  "caseId": "DK01_PATCH_TOO_FEW_VERTICES",
+  "error": {
+    "message": "An acoustic patch needs at least three vertices.",
+    "name": "Error"
+  },
+  "kind": "hybrid-patch",
+  "outcome": "error"
+}

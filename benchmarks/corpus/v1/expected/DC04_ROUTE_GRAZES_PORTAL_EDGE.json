@@ -1,0 +1,168 @@
+{
+  "caseId": "DC04_ROUTE_GRAZES_PORTAL_EDGE",
+  "kind": "classic-frame",
+  "outcome": "ok",
+  "value": {
+    "frame": {
+      "generatedAtMs": 0,
+      "revision": 203,
+      "room": {
+        "preDelayMs": 28.565478049949593,
+        "rt60S": {
+          "high": 3.052533168953329,
+          "low": 2.043518354169438,
+          "mid": 2.4506609114775872
+        },
+        "totalSurfaceM2": 360,
+        "volumeM3": 288
+      },
+      "sources": [
+        {
+          "directVisible": false,
+          "dryGainDb": -3,
+          "earlyReflections": [
+            {
+              "delayMs": 17.140865651964766,
+              "gainDb": -22.15489078940258,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 12.041594578792294,
+              "reflectionPoint": {
+                "x": 0,
+                "y": 3.25
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0,
+                  "y": 3.25
+                }
+              ],
+              "wallId": "boundary_west",
+              "wallIds": [
+                "boundary_west"
+              ]
+            },
+            {
+              "delayMs": 34.5932324115206,
+              "gainDb": -26.201255143894393,
+              "lowpassHz": 20000,
+              "order": 2,
+              "pathLengthM": 18.027756377319946,
+              "reflectionPoint": {
+                "x": 4.764705882352941,
+                "y": 8
+              },
+              "reflectionPoints": [
+                {
+                  "x": 7.588235294117647,
+                  "y": 0
+                },
+                {
+                  "x": 4.764705882352941,
+                  "y": 8
+                }
+              ],
+              "wallId": "boundary_south",
+              "wallIds": [
+                "boundary_north",
+                "boundary_south"
+              ]
+            },
+            {
+              "delayMs": 34.5932324115206,
+              "gainDb": -26.201255143894393,
+              "lowpassHz": 20000,
+              "order": 2,
+              "pathLengthM": 18.027756377319946,
+              "reflectionPoint": {
+                "x": 6,
+                "y": 3.1666666666666665
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0,
+                  "y": 3.5
+                },
+                {
+                  "x": 6,
+                  "y": 3.1666666666666665
+                }
+              ],
+              "wallId": "partition_center",
+              "wallIds": [
+                "boundary_west",
+                "partition_center"
+              ]
+            }
+          ],
+          "effectiveDistanceM": 6.16227766016838,
+          "lowpassHz": 18500,
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "physicalDistanceM": 6.0827625302982185,
+          "portalIds": [
+            "partition_door"
+          ],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 9,
+              "y": 4
+            },
+            {
+              "x": 6,
+              "y": 4
+            },
+            {
+              "x": 3,
+              "y": 3
+            }
+          ],
+          "routeType": "portal",
+          "sourceId": "radio",
+          "virtualPosition": {
+            "x": 6,
+            "y": 4
+          }
+        },
+        {
+          "directVisible": false,
+          "dryGainDb": -3,
+          "earlyReflections": [],
+          "effectiveDistanceM": 7.879268226196681,
+          "lowpassHz": 18500,
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "physicalDistanceM": 7.158910531638176,
+          "portalIds": [
+            "partition_door"
+          ],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 10,
+              "y": 1.5
+            },
+            {
+              "x": 6,
+              "y": 4
+            },
+            {
+              "x": 3,
+              "y": 3
+            }
+          ],
+          "routeType": "portal",
+          "sourceId": "rain",
+          "virtualPosition": {
+            "x": 6,
+            "y": 4
+          }
+        }
+      ]
+    },
+    "staticFingerprint": "ab042d7f"
+  }
+}

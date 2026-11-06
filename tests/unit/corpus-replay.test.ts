@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 
 import { CONCRETE_PARTITION_PRESET } from "@/domain/presets/concrete-partition";
 import { createClassicStaticContext } from "@/acoustics/compute-frame";
+import { classicProjectionHash } from "@/domain/scene-document/validate";
 import { corpusCaseDefinitions } from "../../benchmarks/corpus/harness/definitions";
 import { runCorpusCase } from "../../benchmarks/corpus/harness/ts-serial-adapter";
 import type { CorpusCaseKind } from "../../benchmarks/corpus/harness/types";
@@ -16,6 +17,7 @@ type ManifestCase = {
   id: string;
   kind: CorpusCaseKind;
   expectedOutcome: "ok" | "error";
+  tags: string[];
   input: { path: string; sha256: string; bytes: number };
   expected: { path: string; sha256: string; bytes: number };
 };
@@ -140,6 +142,7 @@ describe("frozen corpus replay", () => {
 
   it("replays every case deterministically and byte-exactly", () => {
     const hashes: Record<string, string> = {};
+    const negativeZeroCounts: Record<string, number> = {};
     let bitExact = 0;
     for (const entry of manifest.cases) {
       const inputText = readText(entry.input.path);
@@ -147,15 +150,82 @@ describe("frozen corpus replay", () => {
       const expectedText = readText(entry.expected.path);
       expect(sha256Hex(expectedText), `${entry.id} expected hash`).toBe(entry.expected.sha256);
 
-      const first = canonicalize(runCorpusCase(entry.id, entry.kind, JSON.parse(inputText))).text;
+      const firstRun = canonicalize(runCorpusCase(entry.id, entry.kind, JSON.parse(inputText)));
+      const first = firstRun.text;
       const second = canonicalize(runCorpusCase(entry.id, entry.kind, JSON.parse(inputText))).text;
       expect(second, `${entry.id} determinism`).toBe(first);
       expect(first, `${entry.id} bytes`).toBe(expectedText);
+      if (/^(H|C|DC|DH)\d/.test(entry.id)) negativeZeroCounts[entry.id] = firstRun.negativeZeroPaths.length;
       hashes[entry.id] = sha256Hex(first);
       bitExact += 1;
     }
     console.info(
+      `[corpus] negativeZeroPaths ${JSON.stringify(
+        Object.fromEntries(Object.entries(negativeZeroCounts).filter(([, count]) => count > 0)),
+      )} checked=${Object.keys(negativeZeroCounts).length}`,
+    );
+    console.info(
       `[corpus] aggregateSha256=${aggregateSha256(hashes)} bitExact=${bitExact}/${manifest.cases.length} platform=${process.platform} node=${process.version}`,
     );
+  });
+});
+
+type TapeStep = { step: number; event: string; staticFingerprint?: string; staticGeometryHash?: string };
+
+describe("migration, degenerate and tape pins", () => {
+  it("tags every D* and M* case", () => {
+    for (const entry of manifest.cases) {
+      if (entry.id.startsWith("D")) expect(entry.tags, entry.id).toContain("degenerate");
+      if (/^M\d/.test(entry.id)) expect(entry.tags, entry.id).toContain("migration");
+    }
+  });
+
+  it("pins the Hybrid source-on-listener error", () => {
+    expect(expectedOf("DH01_SOURCE_ON_LISTENER")).toMatchObject({
+      outcome: "error",
+      error: { message: "Source and listener positions must be distinct in Hybrid 3D." },
+    });
+  });
+
+  it("pins the migration payloads", () => {
+    const m001 = expectedOf("M001_SCENESPEC_V1_TO_CLASSIC") as {
+      value: { result: string; project: { sourceHeightsM: Record<string, number> } };
+    };
+    expect(m001.value.result).toBe("ok");
+    expect(Object.values(m001.value.project.sourceHeightsM).length).toBeGreaterThan(0);
+    expect(Object.values(m001.value.project.sourceHeightsM).every((height) => height === 1.5)).toBe(true);
+
+    const m002 = expectedOf("M002_DOC_V2_SPATIAL_TO_HYBRID") as {
+      value: { result: string; project: { scene: Parameters<typeof classicProjectionHash>[0] }; classicProjectionHash: string };
+    };
+    expect(m002.value.result).toBe("ok");
+    expect(m002.value.classicProjectionHash).toBe(classicProjectionHash(m002.value.project.scene));
+
+    const m012 = expectedOf("M012_INVALID_SPATIAL_REJECTED") as { outcome: string; error: { message: string } };
+    expect(m012.outcome).toBe("error");
+    expect(m012.error.message).toMatch(/invalid 3D geometry/);
+  });
+
+  it.each([
+    ["TC02_STATIC_EDIT_TAPE", "staticFingerprint", 24],
+    ["TH02_STATIC_EDIT_TAPE", "staticGeometryHash", 24],
+  ] as const)("%s changes the static hash on every static step and only then", (id, field, length) => {
+    const steps = (expectedOf(id) as { value: { steps: TapeStep[] } }).value.steps;
+    expect(steps).toHaveLength(length);
+    const staticEvents = new Set(["wall-endpoint", "wall-material", "portal-toggle", "primitive-pose"]);
+    for (let index = 1; index < steps.length; index++) {
+      const changed = steps[index]![field] !== steps[index - 1]![field];
+      expect(changed, `${id} step ${index} ${steps[index]!.event}`).toBe(staticEvents.has(steps[index]!.event));
+    }
+  });
+
+  it("freezes the seeded tapes at 64 steps", () => {
+    for (const id of ["TC01_LISTENER_TAPE_SEEDED", "TH01_LISTENER_TAPE_SEEDED"]) {
+      const entry = manifest.cases.find((candidate) => candidate.id === id)!;
+      const input = JSON.parse(readText(entry.input.path)) as { events: unknown[] };
+      expect(input.events, id).toHaveLength(64);
+      const steps = (expectedOf(id) as { value: { steps: unknown[] } }).value.steps;
+      expect(steps, id).toHaveLength(64);
+    }
   });
 });

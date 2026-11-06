@@ -1,0 +1,8 @@
+{
+  "caseId": "M010_DOC_V2_INTO_CLASSIC_REJECTED",
+  "kind": "workspace-migration",
+  "outcome": "ok",
+  "value": {
+    "result": "unsupported"
+  }
+}

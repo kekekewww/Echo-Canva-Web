@@ -1,0 +1,687 @@
+{
+  "document": {
+    "documentVersion": "2.0",
+    "baseScene": {
+      "schemaVersion": "1.0",
+      "revision": 310,
+      "units": "m",
+      "name": "Concrete Partition",
+      "room": {
+        "outerPolygon": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 12,
+            "y": 0
+          },
+          {
+            "x": 12,
+            "y": 8
+          },
+          {
+            "x": 0,
+            "y": 8
+          }
+        ],
+        "heightM": 3,
+        "floorMaterialId": "concrete_hard",
+        "ceilingMaterialId": "concrete_hard"
+      },
+      "walls": [
+        {
+          "id": "boundary_north",
+          "a": {
+            "x": 0,
+            "y": 0
+          },
+          "b": {
+            "x": 12,
+            "y": 0
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "boundary_east",
+          "a": {
+            "x": 12,
+            "y": 0
+          },
+          "b": {
+            "x": 12,
+            "y": 8
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "boundary_south",
+          "a": {
+            "x": 12,
+            "y": 8
+          },
+          "b": {
+            "x": 0,
+            "y": 8
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "boundary_west",
+          "a": {
+            "x": 0,
+            "y": 8
+          },
+          "b": {
+            "x": 0,
+            "y": 0
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "partition_center",
+          "a": {
+            "x": 6,
+            "y": 0
+          },
+          "b": {
+            "x": 6,
+            "y": 8
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        }
+      ],
+      "portals": [
+        {
+          "id": "partition_door",
+          "wallId": "partition_center",
+          "center": {
+            "x": 6,
+            "y": 4
+          },
+          "widthM": 1.2,
+          "heightM": 2.1,
+          "open": true,
+          "lossDb": 3
+        }
+      ],
+      "sources": [
+        {
+          "id": "radio",
+          "name": "Radio",
+          "clipId": "radio_loop",
+          "sourceType": "point",
+          "position": {
+            "x": 9,
+            "y": 4
+          },
+          "gainDb": -3,
+          "loop": true
+        },
+        {
+          "id": "rain",
+          "name": "Rain",
+          "clipId": "rain_loop",
+          "sourceType": "point",
+          "position": {
+            "x": 10,
+            "y": 1.5
+          },
+          "gainDb": -8,
+          "loop": true
+        }
+      ],
+      "listener": {
+        "position": {
+          "x": 3,
+          "y": 4
+        },
+        "headingDeg": 0
+      },
+      "settings": {
+        "acousticUpdateHz": 12,
+        "maxEarlyReflections": 6,
+        "hrtfEnabled": true
+      }
+    },
+    "extensions": {
+      "spatial3d": {
+        "coordinateSystem": "x-right-y-up-z-forward",
+        "floorElevationM": 0,
+        "listenerHeightM": 1.5,
+        "sourceHeightsM": {
+          "radio": 1.3,
+          "rain": 1.5
+        }
+      }
+    },
+    "compatibility": {
+      "migratedFrom": "1.0",
+      "classicProjectionHash": "421f90eb"
+    }
+  },
+  "events": [
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 1.4954,
+        "y": 6.5758
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 1.6778,
+        "y": 6.3384
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 1.8495,
+        "y": 6.3558
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 1.8798,
+        "y": 6.2887
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 2.0977,
+        "y": 6.1286
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 2.1353,
+        "y": 6.0507
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 2.3616,
+        "y": 5.9391
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 2.3709,
+        "y": 5.7672
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 2.583,
+        "y": 5.7045
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 2.7863,
+        "y": 5.7139
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 2.8039,
+        "y": 5.4762
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 2.91,
+        "y": 5.3934
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 3.1803,
+        "y": 5.3318
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 3.3336,
+        "y": 5.1471
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 3.4311,
+        "y": 5.036
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 3.5521,
+        "y": 5.051
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 3.677,
+        "y": 4.8628
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 3.7892,
+        "y": 4.9106
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 3.8717,
+        "y": 4.8174
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 4.135,
+        "y": 4.6214
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 4.2782,
+        "y": 4.551
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 4.3748,
+        "y": 4.41
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 4.4943,
+        "y": 4.3072
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 4.7364,
+        "y": 4.3206
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 4.7793,
+        "y": 4.0909
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 4.835,
+        "y": 3.9648
+      },
+      "headingDeg": 125.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 5.0998,
+        "y": 3.9447
+      },
+      "headingDeg": 90
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 5.188,
+        "y": 3.9387
+      },
+      "headingDeg": 90
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 5.3269,
+        "y": 3.9583
+      },
+      "headingDeg": 90
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 5.6702,
+        "y": 3.9745
+      },
+      "headingDeg": 90
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 5.7823,
+        "y": 4.0226
+      },
+      "headingDeg": 90
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 5.9015,
+        "y": 3.9283
+      },
+      "headingDeg": 90
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 6.0358,
+        "y": 4.0106
+      },
+      "headingDeg": 90
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 6.1684,
+        "y": 3.9559
+      },
+      "headingDeg": 90
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 6.3398,
+        "y": 3.9183
+      },
+      "headingDeg": 90
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 6.6582,
+        "y": 3.9011
+      },
+      "headingDeg": 90
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 6.7816,
+        "y": 3.9736
+      },
+      "headingDeg": 90
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 6.827,
+        "y": 3.9446
+      },
+      "headingDeg": 90
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 6.9933,
+        "y": 3.9582
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 7.262,
+        "y": 4.176
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 7.4125,
+        "y": 4.1991
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 7.5485,
+        "y": 4.3874
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 7.5485,
+        "y": 4.5126
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 7.8482,
+        "y": 4.4595
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 7.8311,
+        "y": 4.6548
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 8.1192,
+        "y": 4.7673
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 8.1079,
+        "y": 4.8829
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 8.2983,
+        "y": 4.8976
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 8.5364,
+        "y": 5.0668
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 8.5042,
+        "y": 5.1602
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 8.7181,
+        "y": 5.253
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 8.8035,
+        "y": 5.3136
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 8.9282,
+        "y": 5.3688
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 9.1176,
+        "y": 5.6216
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 9.3439,
+        "y": 5.6102
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 9.4979,
+        "y": 5.8059
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 9.6246,
+        "y": 5.9009
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 9.6492,
+        "y": 5.9112
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 9.8466,
+        "y": 6.0665
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 10.0273,
+        "y": 6.1468
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 10.0465,
+        "y": 6.2115
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 10.2902,
+        "y": 6.2228
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 10.2751,
+        "y": 6.4416
+      },
+      "headingDeg": 54.5
+    },
+    {
+      "type": "listener-pose",
+      "position": {
+        "x": 10.5311,
+        "y": 6.5435
+      },
+      "headingDeg": 54.5
+    }
+  ]
+}

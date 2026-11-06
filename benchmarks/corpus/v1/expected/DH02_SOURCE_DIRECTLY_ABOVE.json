@@ -1,0 +1,451 @@
+{
+  "caseId": "DH02_SOURCE_DIRECTLY_ABOVE",
+  "kind": "hybrid-frame",
+  "outcome": "ok",
+  "value": {
+    "audible": {
+      "audioState": {
+        "listenerPosition": {
+          "x": 3,
+          "y": 1,
+          "z": 4
+        },
+        "sourceStates": {
+          "radio": {
+            "dryGainDb": 0,
+            "effectiveDistanceM": 1.5,
+            "lowpassHz": 20000,
+            "position": {
+              "x": 3,
+              "y": 2.5,
+              "z": 4
+            },
+            "routeType": "direct"
+          },
+          "rain": {
+            "dryGainDb": -3,
+            "effectiveDistanceM": 7.738823543014952,
+            "lowpassHz": 18500,
+            "position": {
+              "x": 6,
+              "y": 1.05,
+              "z": 4
+            },
+            "routeType": "portal"
+          }
+        }
+      },
+      "paths": [
+        {
+          "dryGainDb": 0,
+          "effectiveDistanceM": 1.5,
+          "lowpassHz": 20000,
+          "occluderWallIds": [],
+          "portalIds": [],
+          "routeType": "direct",
+          "sourceId": "radio",
+          "virtualPosition": {
+            "x": 3,
+            "y": 2.5,
+            "z": 4
+          }
+        },
+        {
+          "dryGainDb": -3,
+          "effectiveDistanceM": 7.738823543014952,
+          "lowpassHz": 18500,
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "portalIds": [
+            "partition_door"
+          ],
+          "routeType": "portal",
+          "sourceId": "rain",
+          "virtualPosition": {
+            "x": 6,
+            "y": 1.05,
+            "z": 4
+          }
+        }
+      ]
+    },
+    "earlyTapsBySource": {
+      "radio": [
+        {
+          "delayMs": 7.288629737609329,
+          "gainDb": -8.500010940493576,
+          "id": "first:ceiling",
+          "lowpassHz": 20000,
+          "order": 1,
+          "position": {
+            "x": 3,
+            "y": 3,
+            "z": 4
+          }
+        },
+        {
+          "delayMs": 10.204081632653061,
+          "gainDb": -11.42257165405834,
+          "id": "first:floor",
+          "lowpassHz": 20000,
+          "order": 1,
+          "position": {
+            "x": 3,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "delayMs": 17.465965948396683,
+          "gainDb": -16.090945350385223,
+          "id": "first:boundary_west",
+          "lowpassHz": 20000,
+          "order": 1,
+          "position": {
+            "x": 0.10000000000000009,
+            "y": 1.75,
+            "z": 4
+          }
+        },
+        {
+          "delayMs": 17.465965948396686,
+          "gainDb": -16.090945350385223,
+          "id": "first:partition_center",
+          "lowpassHz": 20000,
+          "order": 1,
+          "position": {
+            "x": 5.9,
+            "y": 1.75,
+            "z": 4
+          }
+        },
+        {
+          "delayMs": 23.15720518053713,
+          "gainDb": -18.540816041112663,
+          "id": "first:boundary_north",
+          "lowpassHz": 20000,
+          "order": 1,
+          "position": {
+            "x": 3,
+            "y": 1.75,
+            "z": 0.10000000000000009
+          }
+        },
+        {
+          "delayMs": 23.157205180537133,
+          "gainDb": -18.540816041112663,
+          "id": "first:boundary_south",
+          "lowpassHz": 20000,
+          "order": 1,
+          "position": {
+            "x": 3,
+            "y": 1.75,
+            "z": 7.9
+          }
+        }
+      ],
+      "rain": [
+        {
+          "delayMs": 55.89005688828225,
+          "gainDb": -26.734994968307788,
+          "id": "second:partition_center>boundary_east",
+          "lowpassHz": 20000,
+          "order": 2,
+          "position": {
+            "x": 11.9,
+            "y": 1.2342105263157894,
+            "z": 2.8289473684210527
+          }
+        },
+        {
+          "delayMs": 56.59732455034502,
+          "gainDb": -26.844221971982822,
+          "id": "second:boundary_south>boundary_north",
+          "lowpassHz": 20000,
+          "order": 2,
+          "position": {
+            "x": 4.50828729281768,
+            "y": 1.1077348066298343,
+            "z": 0.09999999999999964
+          }
+        }
+      ]
+    },
+    "frame": {
+      "classicProjectionHash": "836dbee1",
+      "computedAtMs": 0,
+      "firstOrderReflectionsBySource": {
+        "radio": [
+          {
+            "arrivalDirection": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            },
+            "delayMs": 7.288629737609329,
+            "excessDelayMs": 2.9154518950437316,
+            "id": "first:ceiling",
+            "materialId": "concrete_hard",
+            "patchId": "ceiling",
+            "pathLengthM": 2.5,
+            "reflectionPoint": {
+              "x": 3,
+              "y": 3,
+              "z": 4
+            },
+            "surfaceId": "ceiling"
+          },
+          {
+            "arrivalDirection": {
+              "x": 0,
+              "y": -1,
+              "z": 0
+            },
+            "delayMs": 10.204081632653061,
+            "excessDelayMs": 5.830903790087463,
+            "id": "first:floor",
+            "materialId": "concrete_hard",
+            "patchId": "floor",
+            "pathLengthM": 3.5,
+            "reflectionPoint": {
+              "x": 3,
+              "y": 0,
+              "z": 4
+            },
+            "surfaceId": "floor"
+          },
+          {
+            "arrivalDirection": {
+              "x": -0.9681469116116013,
+              "y": 0.2503828219685176,
+              "z": 0
+            },
+            "delayMs": 17.465965948396683,
+            "excessDelayMs": 13.092788105831088,
+            "id": "first:boundary_west",
+            "materialId": "concrete_hard",
+            "patchId": "boundary_west:front",
+            "pathLengthM": 5.990826320300063,
+            "reflectionPoint": {
+              "x": 0.10000000000000009,
+              "y": 1.75,
+              "z": 4
+            },
+            "surfaceId": "boundary_west"
+          },
+          {
+            "arrivalDirection": {
+              "x": 0.9681469116116013,
+              "y": 0.2503828219685176,
+              "z": 0
+            },
+            "delayMs": 17.465965948396686,
+            "excessDelayMs": 13.09278810583109,
+            "id": "first:partition_center",
+            "materialId": "concrete_hard",
+            "patchId": "partition_center:front",
+            "pathLengthM": 5.990826320300064,
+            "reflectionPoint": {
+              "x": 5.9,
+              "y": 1.75,
+              "z": 4
+            },
+            "surfaceId": "partition_center"
+          },
+          {
+            "arrivalDirection": {
+              "x": 0,
+              "y": 0.18884739365012448,
+              "z": -0.9820064469806472
+            },
+            "delayMs": 23.15720518053713,
+            "excessDelayMs": 18.784027337971533,
+            "id": "first:boundary_north",
+            "materialId": "concrete_hard",
+            "patchId": "boundary_north:front",
+            "pathLengthM": 7.942921376924236,
+            "reflectionPoint": {
+              "x": 3,
+              "y": 1.75,
+              "z": 0.10000000000000009
+            },
+            "surfaceId": "boundary_north"
+          },
+          {
+            "arrivalDirection": {
+              "x": 0,
+              "y": 0.18884739365012448,
+              "z": 0.9820064469806473
+            },
+            "delayMs": 23.157205180537133,
+            "excessDelayMs": 18.784027337971533,
+            "id": "first:boundary_south",
+            "materialId": "concrete_hard",
+            "patchId": "boundary_south:front",
+            "pathLengthM": 7.942921376924237,
+            "reflectionPoint": {
+              "x": 3,
+              "y": 1.75,
+              "z": 7.9
+            },
+            "surfaceId": "boundary_south"
+          }
+        ],
+        "rain": []
+      },
+      "paths": [
+        {
+          "azimuthDeg": 0,
+          "delayMs": 4.373177842565598,
+          "directVisible": true,
+          "directionToSource": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          },
+          "distanceM": 1.5,
+          "elevationDeg": 90,
+          "hits": [],
+          "occluderWallIds": [],
+          "propagationDirection": {
+            "x": 0,
+            "y": -1,
+            "z": 0
+          },
+          "routeType": "direct",
+          "sourceId": "radio"
+        },
+        {
+          "azimuthDeg": 109.65382405805333,
+          "delayMs": 21.719627442786212,
+          "directVisible": false,
+          "directionToSource": {
+            "x": 0.939618477299634,
+            "y": 0.06711560552140243,
+            "z": -0.33557802760701216
+          },
+          "distanceM": 7.449832212875671,
+          "elevationDeg": 3.848333771211175,
+          "hits": [
+            {
+              "distanceM": 4.150620804316445,
+              "materialId": "concrete_hard",
+              "patchId": "partition_center:back",
+              "point": {
+                "x": 6.1,
+                "y": 1.2214285714285715,
+                "z": 2.892857142857143
+              },
+              "surfaceId": "partition_center",
+              "thicknessM": 0.1,
+              "wallId": "partition_center"
+            },
+            {
+              "distanceM": 4.363473153255749,
+              "materialId": "concrete_hard",
+              "patchId": "partition_center:front",
+              "point": {
+                "x": 5.9,
+                "y": 1.2071428571428573,
+                "z": 2.964285714285714
+              },
+              "surfaceId": "partition_center",
+              "thicknessM": 0.1,
+              "wallId": "partition_center"
+            }
+          ],
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "propagationDirection": {
+            "x": -0.939618477299634,
+            "y": -0.06711560552140243,
+            "z": 0.33557802760701216
+          },
+          "routeType": "blocked",
+          "sourceId": "rain"
+        }
+      ],
+      "revision": 211,
+      "secondOrderReflectionsBySource": {
+        "radio": [],
+        "rain": [
+          {
+            "arrivalDirection": {
+              "x": 0.9911170088188719,
+              "y": 0.026082026547865043,
+              "z": -0.13041013273932525
+            },
+            "delayMs": 55.89005688828225,
+            "estimatedMidGainDb": -26.734994968307788,
+            "excessDelayMs": 34.17042944549605,
+            "id": "second:partition_center>boundary_east",
+            "materialIds": [
+              "concrete_hard",
+              "concrete_hard"
+            ],
+            "patchIds": [
+              "partition_center:front",
+              "boundary_east:front"
+            ],
+            "pathLengthM": 19.170289512680814,
+            "reflectionPoints": [
+              {
+                "x": 5.9,
+                "y": 1.3921052631578947,
+                "z": 2.0394736842105265
+              },
+              {
+                "x": 11.9,
+                "y": 1.2342105263157894,
+                "z": 2.8289473684210527
+              }
+            ],
+            "surfaceIds": [
+              "partition_center",
+              "boundary_east"
+            ]
+          },
+          {
+            "arrivalDirection": {
+              "x": 0.360585300231859,
+              "y": 0.02575609287370421,
+              "z": -0.9323705620280925
+            },
+            "delayMs": 56.59732455034502,
+            "estimatedMidGainDb": -26.844221971982822,
+            "excessDelayMs": 34.87769710755882,
+            "id": "second:boundary_south>boundary_north",
+            "materialIds": [
+              "concrete_hard",
+              "concrete_hard"
+            ],
+            "patchIds": [
+              "boundary_south:front",
+              "boundary_north:front"
+            ],
+            "pathLengthM": 19.412882320768343,
+            "reflectionPoints": [
+              {
+                "x": 7.524861878453039,
+                "y": 1.3232044198895028,
+                "z": 7.9
+              },
+              {
+                "x": 4.50828729281768,
+                "y": 1.1077348066298343,
+                "z": 0.09999999999999964
+              }
+            ],
+            "surfaceIds": [
+              "boundary_south",
+              "boundary_north"
+            ]
+          }
+        ]
+      }
+    },
+    "staticGeometryHash": "27297686"
+  }
+}

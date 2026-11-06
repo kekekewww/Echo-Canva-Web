@@ -1,0 +1,646 @@
+{
+  "caseId": "M004_LEGACY_CACHE_2_0",
+  "kind": "workspace-migration",
+  "outcome": "ok",
+  "value": {
+    "classicScene": {
+      "listener": {
+        "headingDeg": 0,
+        "position": {
+          "x": 4,
+          "y": 2
+        }
+      },
+      "name": "Concrete Partition",
+      "portals": [
+        {
+          "center": {
+            "x": 6,
+            "y": 4
+          },
+          "heightM": 2.1,
+          "id": "partition_door",
+          "lossDb": 3,
+          "open": true,
+          "wallId": "partition_center",
+          "widthM": 1.2
+        }
+      ],
+      "revision": 1,
+      "room": {
+        "ceilingMaterialId": "concrete_hard",
+        "floorMaterialId": "concrete_hard",
+        "heightM": 3,
+        "outerPolygon": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 12,
+            "y": 0
+          },
+          {
+            "x": 12,
+            "y": 8
+          },
+          {
+            "x": 0,
+            "y": 8
+          }
+        ]
+      },
+      "schemaVersion": "1.0",
+      "settings": {
+        "acousticUpdateHz": 12,
+        "hrtfEnabled": true,
+        "maxEarlyReflections": 6
+      },
+      "sources": [
+        {
+          "clipId": "radio_loop",
+          "gainDb": -3,
+          "id": "radio",
+          "loop": true,
+          "name": "Radio",
+          "position": {
+            "x": 9,
+            "y": 4
+          },
+          "sourceType": "point"
+        },
+        {
+          "clipId": "rain_loop",
+          "gainDb": -8,
+          "id": "rain",
+          "loop": true,
+          "name": "Rain",
+          "position": {
+            "x": 10,
+            "y": 1.5
+          },
+          "sourceType": "point"
+        }
+      ],
+      "units": "m",
+      "walls": [
+        {
+          "a": {
+            "x": 0,
+            "y": 0
+          },
+          "b": {
+            "x": 12,
+            "y": 0
+          },
+          "id": "boundary_north",
+          "kind": "boundary",
+          "materialId": "concrete_hard",
+          "thicknessM": 0.2
+        },
+        {
+          "a": {
+            "x": 12,
+            "y": 0
+          },
+          "b": {
+            "x": 12,
+            "y": 8
+          },
+          "id": "boundary_east",
+          "kind": "boundary",
+          "materialId": "concrete_hard",
+          "thicknessM": 0.2
+        },
+        {
+          "a": {
+            "x": 12,
+            "y": 8
+          },
+          "b": {
+            "x": 0,
+            "y": 8
+          },
+          "id": "boundary_south",
+          "kind": "boundary",
+          "materialId": "concrete_hard",
+          "thicknessM": 0.2
+        },
+        {
+          "a": {
+            "x": 0,
+            "y": 8
+          },
+          "b": {
+            "x": 0,
+            "y": 0
+          },
+          "id": "boundary_west",
+          "kind": "boundary",
+          "materialId": "concrete_hard",
+          "thicknessM": 0.2
+        },
+        {
+          "a": {
+            "x": 6,
+            "y": 0
+          },
+          "b": {
+            "x": 6,
+            "y": 8
+          },
+          "id": "partition_center",
+          "kind": "partition",
+          "materialId": "concrete_hard",
+          "thicknessM": 0.2
+        }
+      ]
+    },
+    "frame": {
+      "generatedAtMs": 0,
+      "revision": 1,
+      "room": {
+        "preDelayMs": 28.565478049949593,
+        "rt60S": {
+          "high": 2.8906059255921006,
+          "low": 1.9696533078167364,
+          "mid": 2.345190185821351
+        },
+        "totalSurfaceM2": 360,
+        "volumeM3": 288
+      },
+      "sources": [
+        {
+          "directVisible": false,
+          "dryGainDb": -3,
+          "earlyReflections": [
+            {
+              "delayMs": 21.354283712010833,
+              "gainDb": -22.92167179834078,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 13.152946437965905,
+              "reflectionPoint": {
+                "x": 0,
+                "y": 2.6153846153846154
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0,
+                  "y": 2.6153846153846154
+                }
+              ],
+              "wallId": "boundary_west",
+              "wallIds": [
+                "boundary_west"
+              ]
+            },
+            {
+              "delayMs": 26.348809395254566,
+              "gainDb": -24.52634427095676,
+              "lowpassHz": 20000,
+              "order": 2,
+              "pathLengthM": 14.866068747318506,
+              "reflectionPoint": {
+                "x": 10.6,
+                "y": 8
+              },
+              "reflectionPoints": [
+                {
+                  "x": 12,
+                  "y": 6.727272727272727
+                },
+                {
+                  "x": 10.6,
+                  "y": 8
+                }
+              ],
+              "wallId": "boundary_south",
+              "wallIds": [
+                "boundary_east",
+                "boundary_south"
+              ]
+            },
+            {
+              "delayMs": 26.348809395254566,
+              "gainDb": -24.52634427095676,
+              "lowpassHz": 20000,
+              "order": 2,
+              "pathLengthM": 14.866068747318506,
+              "reflectionPoint": {
+                "x": 4.714285714285714,
+                "y": 0
+              },
+              "reflectionPoints": [
+                {
+                  "x": 7.571428571428571,
+                  "y": 8
+                },
+                {
+                  "x": 4.714285714285714,
+                  "y": 0
+                }
+              ],
+              "wallId": "boundary_north",
+              "wallIds": [
+                "boundary_south",
+                "boundary_north"
+              ]
+            },
+            {
+              "delayMs": 32.91199896174198,
+              "gainDb": -25.751097737646745,
+              "lowpassHz": 20000,
+              "order": 2,
+              "pathLengthM": 17.11724276862369,
+              "reflectionPoint": {
+                "x": 6,
+                "y": 2.235294117647059
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0,
+                  "y": 2.9411764705882355
+                },
+                {
+                  "x": 6,
+                  "y": 2.235294117647059
+                }
+              ],
+              "wallId": "partition_center",
+              "wallIds": [
+                "boundary_west",
+                "partition_center"
+              ]
+            }
+          ],
+          "effectiveDistanceM": 5.82842712474619,
+          "lowpassHz": 18500,
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "physicalDistanceM": 5.385164807134505,
+          "portalIds": [
+            "partition_door"
+          ],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 9,
+              "y": 4
+            },
+            {
+              "x": 6,
+              "y": 4
+            },
+            {
+              "x": 4,
+              "y": 2
+            }
+          ],
+          "routeType": "portal",
+          "sourceId": "radio",
+          "virtualPosition": {
+            "x": 6,
+            "y": 4
+          }
+        },
+        {
+          "directVisible": false,
+          "dryGainDb": -3,
+          "earlyReflections": [
+            {
+              "delayMs": 24.671699425095127,
+              "gainDb": -25.169060274743757,
+              "lowpassHz": 20000,
+              "order": 2,
+              "pathLengthM": 16.00781059358212,
+              "reflectionPoint": {
+                "x": 8.8,
+                "y": 8
+              },
+              "reflectionPoints": [
+                {
+                  "x": 12,
+                  "y": 4
+                },
+                {
+                  "x": 8.8,
+                  "y": 8
+                }
+              ],
+              "wallId": "boundary_south",
+              "wallIds": [
+                "boundary_east",
+                "boundary_south"
+              ]
+            },
+            {
+              "delayMs": 29.188431997973606,
+              "gainDb": -25.97145238678334,
+              "lowpassHz": 20000,
+              "order": 2,
+              "pathLengthM": 17.55704986607944,
+              "reflectionPoint": {
+                "x": 4.7272727272727275,
+                "y": 0
+              },
+              "reflectionPoints": [
+                {
+                  "x": 7.636363636363637,
+                  "y": 8
+                },
+                {
+                  "x": 4.7272727272727275,
+                  "y": 0
+                }
+              ],
+              "wallId": "boundary_north",
+              "wallIds": [
+                "boundary_south",
+                "boundary_north"
+              ]
+            }
+          ],
+          "effectiveDistanceM": 7.545417690774492,
+          "lowpassHz": 18500,
+          "occluderWallIds": [
+            "partition_center"
+          ],
+          "physicalDistanceM": 6.020797289396147,
+          "portalIds": [
+            "partition_door"
+          ],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 10,
+              "y": 1.5
+            },
+            {
+              "x": 6,
+              "y": 4
+            },
+            {
+              "x": 4,
+              "y": 2
+            }
+          ],
+          "routeType": "portal",
+          "sourceId": "rain",
+          "virtualPosition": {
+            "x": 6,
+            "y": 4
+          }
+        }
+      ]
+    },
+    "project": {
+      "activeListenerId": "listener_primary",
+      "disabledEntityIds": [],
+      "listeners": [
+        {
+          "enabled": true,
+          "headingDeg": 0,
+          "id": "listener_primary",
+          "name": "Listener",
+          "position": {
+            "x": 4,
+            "y": 1.5,
+            "z": 2
+          }
+        }
+      ],
+      "localAudioMetadata": {},
+      "missingAudioAssetIds": [],
+      "mode": "classic-2d5d",
+      "notice": null,
+      "portal3dById": {
+        "partition_door": {
+          "bottomM": 0,
+          "thicknessM": 0.12,
+          "topM": 2.1
+        }
+      },
+      "primitives": [],
+      "revision": 1,
+      "room3d": {
+        "ceilingEnabled": true,
+        "ceilingMaterialId": "concrete_hard",
+        "depthM": 8,
+        "floorMaterialId": "concrete_hard",
+        "heightM": 3,
+        "widthM": 12
+      },
+      "scene": {
+        "listener": {
+          "headingDeg": 0,
+          "position": {
+            "x": 3,
+            "y": 4
+          }
+        },
+        "name": "Concrete Partition",
+        "portals": [
+          {
+            "center": {
+              "x": 6,
+              "y": 4
+            },
+            "heightM": 2.1,
+            "id": "partition_door",
+            "lossDb": 3,
+            "open": true,
+            "wallId": "partition_center",
+            "widthM": 1.2
+          }
+        ],
+        "revision": 0,
+        "room": {
+          "ceilingMaterialId": "concrete_hard",
+          "floorMaterialId": "concrete_hard",
+          "heightM": 3,
+          "outerPolygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 12,
+              "y": 0
+            },
+            {
+              "x": 12,
+              "y": 8
+            },
+            {
+              "x": 0,
+              "y": 8
+            }
+          ]
+        },
+        "schemaVersion": "1.0",
+        "settings": {
+          "acousticUpdateHz": 12,
+          "hrtfEnabled": true,
+          "maxEarlyReflections": 6
+        },
+        "sources": [
+          {
+            "clipId": "radio_loop",
+            "gainDb": -3,
+            "id": "radio",
+            "loop": true,
+            "name": "Radio",
+            "position": {
+              "x": 9,
+              "y": 4
+            },
+            "sourceType": "point"
+          },
+          {
+            "clipId": "rain_loop",
+            "gainDb": -8,
+            "id": "rain",
+            "loop": true,
+            "name": "Rain",
+            "position": {
+              "x": 10,
+              "y": 1.5
+            },
+            "sourceType": "point"
+          }
+        ],
+        "units": "m",
+        "walls": [
+          {
+            "a": {
+              "x": 0,
+              "y": 0
+            },
+            "b": {
+              "x": 12,
+              "y": 0
+            },
+            "id": "boundary_north",
+            "kind": "boundary",
+            "materialId": "concrete_hard",
+            "thicknessM": 0.2
+          },
+          {
+            "a": {
+              "x": 12,
+              "y": 0
+            },
+            "b": {
+              "x": 12,
+              "y": 8
+            },
+            "id": "boundary_east",
+            "kind": "boundary",
+            "materialId": "concrete_hard",
+            "thicknessM": 0.2
+          },
+          {
+            "a": {
+              "x": 12,
+              "y": 8
+            },
+            "b": {
+              "x": 0,
+              "y": 8
+            },
+            "id": "boundary_south",
+            "kind": "boundary",
+            "materialId": "concrete_hard",
+            "thicknessM": 0.2
+          },
+          {
+            "a": {
+              "x": 0,
+              "y": 8
+            },
+            "b": {
+              "x": 0,
+              "y": 0
+            },
+            "id": "boundary_west",
+            "kind": "boundary",
+            "materialId": "concrete_hard",
+            "thicknessM": 0.2
+          },
+          {
+            "a": {
+              "x": 6,
+              "y": 0
+            },
+            "b": {
+              "x": 6,
+              "y": 8
+            },
+            "id": "partition_center",
+            "kind": "partition",
+            "materialId": "concrete_hard",
+            "thicknessM": 0.2
+          }
+        ]
+      },
+      "schemaVersion": "2.0",
+      "selection": {
+        "id": "listener_primary",
+        "type": "listener"
+      },
+      "sourceHeightsM": {
+        "radio": 1.5,
+        "rain": 1.5
+      },
+      "view": {
+        "camera": {
+          "panX": 0,
+          "panY": 0,
+          "pitchDeg": 34,
+          "yawDeg": 38,
+          "zoom": 1
+        },
+        "overlays": {
+          "ceilingVisible": true,
+          "pathsVisible": true,
+          "showAllPaths": false
+        },
+        "panels": {
+          "inspectorCollapsed": false,
+          "outlinerCollapsed": false
+        }
+      },
+      "wall3dById": {
+        "boundary_east": {
+          "bottomM": 0,
+          "thicknessM": 0.2,
+          "topM": 3
+        },
+        "boundary_north": {
+          "bottomM": 0,
+          "thicknessM": 0.2,
+          "topM": 3
+        },
+        "boundary_south": {
+          "bottomM": 0,
+          "thicknessM": 0.2,
+          "topM": 3
+        },
+        "boundary_west": {
+          "bottomM": 0,
+          "thicknessM": 0.2,
+          "topM": 3
+        },
+        "partition_center": {
+          "bottomM": 0,
+          "thicknessM": 0.2,
+          "topM": 3
+        }
+      }
+    },
+    "result": "ok",
+    "warning": "A previous scene document was migrated to the current authoring format."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "caseId": "DV03_NON_FINITE_COORDINATE",
+  "kind": "scene-validation",
+  "outcome": "ok",
+  "value": {
+    "errors": [
+      {
+        "code": "invalid_type",
+        "message": "Invalid input: expected number, received Infinity",
+        "path": "walls.5.b.x"
+      }
+    ],
+    "ok": false
+  }
+}
