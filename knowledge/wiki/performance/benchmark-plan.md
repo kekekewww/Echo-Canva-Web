@@ -67,7 +67,7 @@ try {
 | S9 Playback Under Load | 固定 clip/hash、兩種 sample rate/device profile、idle vs. S3/S5，校準 loopback、拖曳、切換播放模式。另做 device-loss/recovery。 | audio deadline、缺樣、latency、CPU 競爭 |
 | S10 Fault / Backpressure | 注入 delayed/missing/duplicate shard、Worker deny、stale fingerprint、native cancel/restart、malformed frame。相同輸入序列。 | 原子採納、queue bound、fallback 與 recovery time |
 
-實作狀態：語料含標記 S1–S7 的 TypeScript 正確性輸入 case（見 [EC-101 固定語料](../../raw/sources/ec-101-corpus-baseline.md)）；S5、S6 的完整長度 tape、計時與剖析屬 EC-102 及後續，S8–S10 尚未實作。待獨立驗證。
+實作狀態：語料含標記 S1–S7 的 TypeScript 正確性輸入 case（見 [EC-101 固定語料](../../raw/sources/ec-101-corpus-baseline.md)）；S5、S6 的完整長度 tape、計時與剖析屬 EC-102 及後續，S8–S10 尚未實作。已獨立驗證於 `b0807ae`。
 
 S1–S7 適用 7 個 variants 的共同 workload，能測哪些層由各 variant 能力決定。S8 追加 TS-W／WA-W／IPC 壓力。S9 僅在連接真實 renderer 的完整路徑執行，必要時含 TS-S fallback。S10 依各 adapter 支援的邊界執行，純 core 僅測輸入錯誤及取消合作點。Audio opt-in 10 秒輸出保留為現行短測，額外長時驗證另用此規格。
 

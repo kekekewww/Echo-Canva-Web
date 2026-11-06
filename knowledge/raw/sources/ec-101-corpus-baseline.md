@@ -2,7 +2,7 @@
 
 **取得日期** 2026-11-06 Asia/Taipei。**系統** Echo Canvas TypeScript 實作，由 Claude Code (Opus 5.5 orchestrator) 在分支 `test/ec-101-corpus` 產生。**工作分支起點** `dd57934c31915c64c0c505face8cdb7534a24346`（當時的 `main`）。**驗收基準** `98a4374fa839aa5dee7c6c35e575b8003f7f1a31`，見 [儲存庫快照](repository.md)。**授權** 與儲存庫相同的 MIT，見 [LICENSE](../../../LICENSE)。隱私測試 `tests/unit/corpus-integrity.test.ts` 掃描提交頁面是否含本機路徑與類似電子郵件的字串。**草稿 PR** [#60](https://github.com/kekekewww/Echo-Canva-Web/pull/60)。
 
-本登錄記錄 EC-101 的交付物與其證據，狀態為最終 86 個 case 的版本（證據提交 `cb2ef6d`）。EC-101 的 Status 為 Implemented，獨立驗證尚未進行。
+本登錄記錄 EC-101 的交付物與其證據，狀態為最終 86 個 case 的版本（證據提交 `cb2ef6d`，驗證候選 `b0807ae`）。EC-101 的 Status 為 Verified，適用於 `b0807aedbc31b34f7db97ab565483c82e14d6191`。
 
 ## 範圍
 
@@ -28,7 +28,7 @@
 
 其他工件：`benchmarks/corpus/v1/inputs/`、`benchmarks/corpus/v1/expected/`（逐檔 SHA-256 在 manifest）。`benchmarks/corpus/v1` 約 7.5 MB。程式在 `benchmarks/corpus/harness/`、`scripts/corpus/`、`tests/corpus/`、`vitest.corpus.config.ts`，單元測試為 `tests/unit/corpus-comparator.test.ts`、`corpus-integrity.test.ts`、`corpus-replay.test.ts`。
 
-提交（舊到新）：`e5de2f3`、`c61ca1f`、`7980625`、`63f91de`、`442caa2`、`e45a465`、`aa5b985`、`6e6c454`、`27d7048`、`e8a1024`、`d82092b`、`9f60c93`（72 個 case 的版本），其後 `68fb16b`（凍結強制與不再綁定基準 tree 的測試）、`5c7bf6e`（clamp、cap 與 locale case）、`899ed91`（更緊的 locale 釘選與記錄不可達 guard）、`95d28e1`（重新凍結）、`cb2ef6d`（86 個 case 的驗收重跑）。
+提交（舊到新）：`e5de2f3`、`c61ca1f`、`7980625`、`63f91de`、`442caa2`、`e45a465`、`aa5b985`、`6e6c454`、`27d7048`、`e8a1024`、`d82092b`、`9f60c93`（72 個 case 的版本），其後 `68fb16b`（凍結強制與不再綁定基準 tree 的測試）、`5c7bf6e`（clamp、cap 與 locale case）、`899ed91`（更緊的 locale 釘選與記錄不可達 guard）、`95d28e1`（重新凍結）、`cb2ef6d`（86 個 case 的驗收重跑）、`b0807ae`（釘住核准的容差與驗收結果，驗證候選）。
 
 ## 基準一致性
 
@@ -68,6 +68,12 @@ node scripts/corpus/cli.mjs rerun --out .corpus-runs/acceptance --evidence evide
 **Measured Result**：敏感度，[sensitivity.json](../../../benchmarks/corpus/v1/evidence/sensitivity.json)，於 `899ed91` 產生。擾動 51 個 frame 與 tape case，以 ±δ（1e-12 m 與 1e-9 m，符號取自 `lcg32(20261106)`）移動 listener、sources、牆端點、primitives 與 tape 事件。未移動 portal 中心、房間尺寸、高度與厚度。kernel、migration、validation、patch 不被擾動，`hybrid-metric-*` class 沒有擾動資料。在沒有離散變化的單位中，1e-12 m 的最大變化為 2.54e-10（`classic-cutoff-hz`），1e-9 m 為 2.53e-7。排除 azimuth 後，1e-12 沒有任何 class 出現 violation。azimuth 在 `DH02` 移動 135 度。離散翻轉在 1e-12 出現於 `C001`、`CL02`、`DC02`、`DC04`、`DH01`、`DH03`、`HL02`、`HL03`、`LC01`、`LC02`、`LC03`、`LC05`、`TC02`、`TH01`、`TH02`，在 1e-9 另出現於 `H003`、`HL04`。其中許多 case 刻意建在精確並列與極限上。
 
 **Measured Result**：變異測試（由全分支審查者在 `src` 的暫存副本上執行，副本不屬於提交）。真實的求解器退化會使 replay 失敗：音速常數、路由 enum、反射排序、`compute-frame.ts:158` 的並列處理、新增或移除欄位、遷移預設值。加入新 case 後，移除 pre-delay 下限與上限、early-delay cap、Classic 與 Hybrid 二階路徑上限、frame 路徑的候選與 patch 預算、房間尺寸檢查，各自使預期的 case 失敗，獨立審查者重複了 11 項此類變異。`compute-frame.ts:158`、`reflections.ts:106`、`second-order.ts:59`、`reflection-rendering.ts:59` 單一位置的 `localeCompare` 替換使 `LC01` 或 `LC02` 失敗。另外八處單獨變異時沒有任何 case 改變：`room-acoustics:62`、`image-source:151`、`:225`、`:238`、`bvh:42`、`:79`、`:156`、`second-order:82`。八處一起替換則被偵測。在強制的 collation locale `en, zh-TW, de, sv, cs, et, lt, da, tr` 之間輸出不變。
+
+## 獨立驗證
+
+**Measured Result**：GPT-Sol 對 `b0807ae` 的結論為 `VERIFIED`（第一次在 `cd0d6ab` 為 `NOT_VERIFIED`）。驗證者以自己的比較器對 135,147 個葉節點零 violation，172 個輸入與預期檔雜湊相符，基準重跑與候選執行的 aggregate 皆為 `76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6`，86/86 bit-exact。候選版本的單元測試為 85 個檔案、797 個測試。目前的 CI 參考：GitHub Actions run 42176534040 於 `b0807ae`，三個 job 通過，`linux` 與 `win32` 的 aggregate 相同，`bitExact=86/86`。證據：[報告](../../../benchmarks/corpus/v1/evidence/verification-b0807ae.md)、[資料](../../../benchmarks/corpus/v1/evidence/verification-b0807ae.json)，完整內容與限制見 [驗證工作階段](../../sessions/2026-11-06-codex-ec-101-verification.md)。
+
+兩項發現記於此處，皆為未決：I1，`DC05_WALL_EXACTLY_MIN_LENGTH` 沒有呼叫 `validateScene`，只加倍 validator 的最小牆長門檻，86 個輸出仍 bit-exact；M2，兩個既有的 Windows 基準紀錄含本機路徑，來自 `2a68438` 與 PR #59，不是本分支所改，維護者另行處理。驗證者未能確認外部 CI 與跨 OS 紀錄、72 個 case 時代的雜訊統計、不可達 guard 的普遍結論與過去的本機事件，這些依賴先前的審查與 CI。
 
 ## 未執行
 

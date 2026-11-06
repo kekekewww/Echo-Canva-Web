@@ -21,3 +21,7 @@
 ## [2026-11-06] Correction | EC-101 語料更新為 86 個 case
 
 取代上一筆 Implement 記錄中的 72 個 case 數字：維護者於全分支審查後在驗證前加入 clamp、cap 與 locale case，規則重新凍結且檔案逐位元組相同。最終證據在 `cb2ef6d`，見 [來源登錄](../raw/sources/ec-101-corpus-baseline.md)。72 個 case 的第一次驗收保留於 [工作階段](../sessions/2026-11-06-claude-ec-101-corpus.md) 作歷史。EC-101 仍為 Implemented，獨立驗證待進行。
+
+## [2026-11-06] Verify | EC-101 獨立驗證
+
+GPT-Sol 對 `b0807ae` 的結論為 `VERIFIED`，EC-101 轉為 Verified。第一次在 `cd0d6ab` 為 `NOT_VERIFIED`，保留紀錄。見 [驗證工作階段](../sessions/2026-11-06-codex-ec-101-verification.md)、[語料來源](../raw/sources/ec-101-corpus-baseline.md)。非阻擋發現為未決項目，產品未修改。

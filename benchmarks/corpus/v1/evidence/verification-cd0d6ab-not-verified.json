@@ -1,0 +1,355 @@
+{
+  "artifactHashes": {
+    "comparison-rules.json": "ecd33cd6bb4010474a471dc2e937f302d14ec6d8aaffcd2b819ab8bb6cc6fa74",
+    "evidence/acceptance-rerun.json": "6452a2261a97bcd8a4ddf91284390ae2e29a6a354d1d8499a937086b4efec265",
+    "evidence/sensitivity.json": "5f4854bca7a800ba065835cbe4d4f2c8a31323e71e6f728b56bd901016d73d3b",
+    "manifest.json": "4b4bf901d2fadd8bf8266482739a30bd3b19de6dd1cd047fd80f59c0ee3e1fb6"
+  },
+  "baselineSha": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+  "candidateSha": "cd0d6ab2738d2712e495ee24ce723a60bccd2895",
+  "classification": {
+    "classCounts": {
+      "classic-cutoff-hz": 222,
+      "classic-delay-ms": 570,
+      "classic-gain-db": 792,
+      "classic-length-m": 1458,
+      "classic-new-area-m2": 117,
+      "classic-new-cutoff-hz": 570,
+      "classic-new-delay-ms": 117,
+      "classic-new-gain-db": 222,
+      "classic-new-length-m": 3518,
+      "classic-time-s": 351,
+      "classic-volume-m3": 117,
+      "discrete": 60922,
+      "hybrid-aux-delay-ms": 269,
+      "hybrid-aux-length-m": 20838,
+      "hybrid-azimuth-deg": 218,
+      "hybrid-cutoff-hz": 163,
+      "hybrid-delay-ms": 1808,
+      "hybrid-direction": 3951,
+      "hybrid-elevation-deg": 218,
+      "hybrid-gain-db": 331,
+      "hybrid-length-m": 1097,
+      "hybrid-metric-ms": 5,
+      "hybrid-metric-ratio": 15,
+      "hybrid-point-m": 34884,
+      "passthrough": 2374
+    },
+    "continuousWithoutUnit": [],
+    "leafCount": 135147,
+    "multi": [],
+    "nonIntegerDiscrete": [],
+    "passTypes": {
+      "boolean": 163,
+      "number": 1442,
+      "object": 70,
+      "string": 699
+    },
+    "zero": []
+  },
+  "criteria": [
+    {
+      "basis": "Two separate top-level invocations produced six fresh baseline processes; all 86 cases matched.",
+      "criterion": "Rerun the same corpus twice at the baseline SHA.",
+      "id": "baseline-reruns",
+      "status": "PASS"
+    },
+    {
+      "basis": "All seven output sets were 86/86 bit-exact with zero independent comparison violations.",
+      "criterion": "Discrete fields match exactly, including order and length.",
+      "id": "discrete-equality",
+      "status": "PASS"
+    },
+    {
+      "basis": "All 23 calculated classes have units and match the maintainer decision; migrated values are exact.",
+      "criterion": "Continuous calculated fields have units and approved tolerances.",
+      "id": "continuous-units-tolerances",
+      "status": "PASS"
+    },
+    {
+      "basis": "All cases have provenance and seed object or explicit null; all 172 file hashes and sizes matched.",
+      "criterion": "Record data source, seed and input/output hashes.",
+      "id": "provenance",
+      "status": "PASS"
+    },
+    {
+      "basis": "13 migration cases reran; scratch instrumentation confirmed named persistence branches and related rejection paths.",
+      "criterion": "Cover legacy-scene migration.",
+      "id": "migration-coverage",
+      "status": "PASS"
+    },
+    {
+      "basis": "25 degenerate-tagged cases reran; independent numeric checks confirmed the named constructions.",
+      "criterion": "Cover degenerate geometry.",
+      "id": "degenerate-coverage",
+      "status": "PASS"
+    },
+    {
+      "basis": "25 intermediate commits preserve inspected product trees/configuration/oracle; package changes are scripts only.",
+      "criterion": "Preserve formulas, parameters, thresholds and product behavior.",
+      "id": "preserve-product",
+      "status": "PASS"
+    },
+    {
+      "basis": "Only local correctness runs and scratch mutations were performed.",
+      "criterion": "No Rust, WASM, Desktop or EC-102 profiling.",
+      "id": "excluded-work",
+      "status": "PASS"
+    },
+    {
+      "basis": "Two changed historical test logs contain absolute local checkout paths (F01).",
+      "criterion": "Keep absolute local paths and personal details out of committed evidence.",
+      "id": "public-evidence-privacy",
+      "status": "FAIL"
+    }
+  ],
+  "date": "2026-11-06",
+  "environment": {
+    "arch": "x64",
+    "node": "v22.23.3",
+    "platform": "win32",
+    "sandboxMode": "danger-full-access; approvals never; brief boundaries enforced procedurally; local shell only"
+  },
+  "finalCheckoutStatus": {
+    "baseline": {
+      "head": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+      "status": [
+        "?? benchmarks/corpus/",
+        "?? scripts/corpus/",
+        "?? tests/corpus/",
+        "?? vitest.corpus.config.ts"
+      ],
+      "trackedDiff": ""
+    },
+    "candidate": {
+      "head": "cd0d6ab2738d2712e495ee24ce723a60bccd2895",
+      "status": [],
+      "trackedDiff": ""
+    }
+  },
+  "findings": [
+    {
+      "blocksAcceptance": true,
+      "evidence": "Independent scan of all 251 changed files found drive-qualified paths. Both files were added by earlier shared-memory commit 2a68438 and remain in this candidate delta. Values are deliberately omitted.",
+      "id": "F01",
+      "problem": "Two committed historical logs contain absolute local checkout paths.",
+      "severity": "Important",
+      "where": [
+        "candidate/knowledge/raw/sources/windows-2026-11-06/targeted-unit.log:2",
+        "candidate/knowledge/raw/sources/windows-2026-11-06/unit.log:2"
+      ]
+    },
+    {
+      "blocksAcceptance": false,
+      "evidence": "Changed runs.A.gitHead to an all-zero SHA, evidence ok=false and every comparison to ok=false/violationCount=123. Both CLI verification modes, rerun and all 95 corpus tests passed in scratch.",
+      "id": "F02",
+      "problem": "Acceptance-evidence checks do not validate recorded success or baseline identity.",
+      "severity": "Important",
+      "where": [
+        "candidate/tests/unit/corpus-integrity.test.ts (freeze anchors)",
+        "candidate/benchmarks/corpus/v1/evidence/acceptance-rerun.json"
+      ]
+    },
+    {
+      "blocksAcceptance": false,
+      "evidence": "Changed hybrid-gain-db atol from 1e-5 to 1000000, retained formatting/frozen status, rehashed rules/manifest and updated corpus/rules hash references in both evidence files. Both verification modes, rerun and all 95 corpus tests passed. With stale evidence references two anchor tests failed.",
+      "id": "F03",
+      "problem": "Freeze checks enforce consistency among editable files rather than independently pinning approved tolerance values.",
+      "severity": "Important",
+      "where": [
+        "candidate/tests/unit/corpus-integrity.test.ts (freeze anchors)",
+        "candidate/scripts/corpus/cli.mjs"
+      ]
+    },
+    {
+      "blocksAcceptance": false,
+      "evidence": "2374 leaves include 1442 numbers, 699 strings, 163 booleans and 70 null/empty-container leaves, plus inserted defaults and generated integer history-path indices. Sampled physical quantities are copied/defaulted without acoustic calculation; exact comparison remains appropriate.",
+      "id": "F04",
+      "problem": "Passthrough is described more narrowly than the fields assigned to it.",
+      "severity": "Minor",
+      "where": [
+        "candidate/benchmarks/corpus/v1/comparison-rules.json (passthrough)",
+        "candidate/benchmarks/corpus/README.md"
+      ]
+    }
+  ],
+  "limitations": [
+    "Windows x64 only; historical CI not accessed.",
+    "Build, E2E, Docker, physical audio and listening checks were outside the brief and were not run.",
+    "Scratch logs can contain tool-rendered paths and are local working evidence."
+  ],
+  "reruns": [
+    {
+      "aggregate": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "bitExactCount": 86,
+      "caseCount": 86,
+      "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+      "id": "baseline-one/A",
+      "productTreeDiffs": [],
+      "productTreesMatchBaseline": true,
+      "violationCount": 0
+    },
+    {
+      "aggregate": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "bitExactCount": 86,
+      "caseCount": 86,
+      "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+      "id": "baseline-one/B",
+      "productTreeDiffs": [],
+      "productTreesMatchBaseline": true,
+      "violationCount": 0
+    },
+    {
+      "aggregate": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "bitExactCount": 86,
+      "caseCount": 86,
+      "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+      "id": "baseline-one/C",
+      "productTreeDiffs": [],
+      "productTreesMatchBaseline": true,
+      "violationCount": 0
+    },
+    {
+      "aggregate": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "bitExactCount": 86,
+      "caseCount": 86,
+      "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+      "id": "baseline-two/A",
+      "productTreeDiffs": [],
+      "productTreesMatchBaseline": true,
+      "violationCount": 0
+    },
+    {
+      "aggregate": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "bitExactCount": 86,
+      "caseCount": 86,
+      "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+      "id": "baseline-two/B",
+      "productTreeDiffs": [],
+      "productTreesMatchBaseline": true,
+      "violationCount": 0
+    },
+    {
+      "aggregate": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "bitExactCount": 86,
+      "caseCount": 86,
+      "gitHead": "98a4374fa839aa5dee7c6c35e575b8003f7f1a31",
+      "id": "baseline-two/C",
+      "productTreeDiffs": [],
+      "productTreesMatchBaseline": true,
+      "violationCount": 0
+    },
+    {
+      "aggregate": "76d6ad8b3a2b5d1fe0dbec6b0372676903821332c56fb4ecbe53ec897c1598e6",
+      "bitExactCount": 86,
+      "caseCount": 86,
+      "gitHead": "cd0d6ab2738d2712e495ee24ce723a60bccd2895",
+      "id": "candidate-run/candidate",
+      "productTreeDiffs": [],
+      "productTreesMatchBaseline": true,
+      "violationCount": 0
+    }
+  ],
+  "sectionResults": {
+    "A": {
+      "basis": "SHAs verified; product diff empty; all 25 intermediate commits checked; nine other paths assessed.",
+      "evidence": [
+        "scratch/identity-privacy.json",
+        "scratch/final-status.json"
+      ],
+      "status": "PASS"
+    },
+    "B": {
+      "basis": "172 files independently hash/size/LF/BOM checked; none missing or unlisted; aggregate matches.",
+      "evidence": [
+        "scratch/independent.mjs",
+        "scratch/independent.json"
+      ],
+      "status": "PASS"
+    },
+    "C": {
+      "basis": "Six baseline processes and one candidate process: identical aggregates, 86 bit-exact cases, zero violations.",
+      "evidence": [
+        "scratch/baseline-one.json",
+        "scratch/baseline-two.json",
+        "scratch/candidate-run/candidate/run.json"
+      ],
+      "status": "PASS"
+    },
+    "D": {
+      "basis": "135147 leaves each matched one rule; own comparator agreed on reruns and 49 probes; F04 records wording caveat.",
+      "evidence": [
+        "scratch/independent.json",
+        "scratch/differential.json"
+      ],
+      "status": "PASS"
+    },
+    "E": {
+      "basis": "25 classes match decision; 2 discrete, 9 existing-test, 14 approved; frozen, none proposed; cited precisions read.",
+      "evidence": [
+        "scratch/decision.json"
+      ],
+      "status": "PASS"
+    },
+    "F": {
+      "basis": "Ten oracle cases, 2048 seeded queries, both seeded tapes, named fixtures and sensitivity reproduced.",
+      "evidence": [
+        "scratch/provenance.json",
+        "scratch/coverage.json"
+      ],
+      "status": "PASS"
+    },
+    "G": {
+      "basis": "Migration branches traced in scratch; 25 numeric/tape checks passed; Hybrid caps inspected. Coverage is finite.",
+      "evidence": [
+        "scratch/coverage.json",
+        "scratch/investigation.json"
+      ],
+      "status": "PASS"
+    },
+    "H": {
+      "basis": "Control passed; 10/11 mutations caught; eight tampering trials exercised with CLI and all corpus tests. F02/F03 record gaps.",
+      "evidence": [
+        "scratch/mutations.json",
+        "scratch/tampering.json",
+        "scratch/tamper-rules.json",
+        "scratch/tamper-cli.json"
+      ],
+      "status": "PASS"
+    },
+    "I": {
+      "basis": "85 unit files/794 tests, typecheck, ESLint, knowledge lint and source-baseline check passed.",
+      "evidence": [
+        "scratch/unit.log",
+        "scratch/typecheck.log",
+        "scratch/eslint.log",
+        "scratch/knowledge.log",
+        "scratch/source.log"
+      ],
+      "status": "PASS"
+    },
+    "J": {
+      "basis": "Two absolute checkout paths remain in changed historical logs outside the corpus privacy test scope.",
+      "evidence": [
+        "scratch/identity-privacy.json"
+      ],
+      "status": "FAIL"
+    },
+    "K": {
+      "basis": "Required documents audited; hashes/counts/reruns/sensitivity/nine locales and numbered findings reproduced.",
+      "evidence": [
+        "scratch/provenance.json",
+        "scratch/coverage.json",
+        "scratch/locales.json"
+      ],
+      "status": "PASS",
+      "unverifiedClaims": [
+        "Historical GitHub Actions and cross-OS results: network forbidden.",
+        "Historical 400000-scene search/universal unreachable-guard proof: original search artifact unavailable; not independently rerun.",
+        "Historical disk/agent incidents and contemporaneous invocations: no independent record obtained."
+      ]
+    }
+  },
+  "verdict": "NOT_VERIFIED",
+  "verifier": "GPT-Sol gpt-6.1-sol via Codex"
+}
