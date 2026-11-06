@@ -7,7 +7,7 @@ import { classicProjectionHash } from "@/domain/scene-document/validate";
 import { lcg32 } from "../../benchmarks/corpus/harness/prng";
 import { runCorpusCase } from "../../benchmarks/corpus/harness/ts-serial-adapter";
 import type { CorpusCaseKind } from "../../benchmarks/corpus/harness/types";
-import { canonicalize, collectGitInfo, compareOutputs } from "../../scripts/corpus/lib.mjs";
+import { canonicalize, collectGitInfo, compareOutputs, sha256Hex } from "../../scripts/corpus/lib.mjs";
 import type { CorpusRules } from "../../scripts/corpus/lib.mjs";
 
 const ROOT = resolve(process.cwd());
@@ -108,7 +108,7 @@ describe("corpus sensitivity", () => {
       throw new Error("Refusing to write evidence: set ECHO_CORPUS_UPDATE=1.");
     }
     const manifest = JSON.parse(readText(`${CORPUS_DIR}/manifest.json`)) as {
-      baseline: { treeHashes: Record<string, string> };
+      baseline: { treeHashes: Record<string, string>; packageJsonNoScriptsSha256?: string };
       cases: ManifestCase[];
     };
     const rules = JSON.parse(readText(`${CORPUS_DIR}/comparison-rules.json`)) as CorpusRules;
@@ -218,7 +218,9 @@ describe("corpus sensitivity", () => {
       unitsWithFlips,
       hashChanges,
       coordinatesPerturbed,
-      gitHead: collectGitInfo(ROOT, manifest.baseline.treeHashes).gitHead,
+      rulesSha256: sha256Hex(readFileSync(resolve(ROOT, CORPUS_DIR, "comparison-rules.json"))),
+      corpusSha256: sha256Hex(readFileSync(resolve(ROOT, CORPUS_DIR, "manifest.json"))),
+      gitHead: collectGitInfo(ROOT, manifest.baseline).gitHead,
     };
     mkdirSync(resolve(ROOT, CORPUS_DIR, "evidence"), { recursive: true });
     writeFileSync(resolve(ROOT, CORPUS_DIR, "evidence/sensitivity.json"), canonicalize(evidence).text);

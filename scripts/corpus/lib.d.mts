@@ -77,8 +77,14 @@ export type GitInfo = {
   gitDirty: string[] | "unavailable";
   productTrees: { src: string; "package.json": string; "pnpm-lock.yaml": string };
   productTreesMatchBaseline: boolean;
+  productTreeDiffs: string[] | "unavailable";
+  packageJsonNoScriptsSha256: string;
 };
-export function collectGitInfo(repoRoot: string, baselineTreeHashes: Record<string, string>): GitInfo;
+export function packageJsonNoScriptsSha256(text: string): string;
+export function collectGitInfo(
+  repoRoot: string,
+  baseline: { treeHashes: Record<string, string>; packageJsonNoScriptsSha256?: string },
+): GitInfo;
 export function collectEnvironment(): {
   node: string;
   v8: string;

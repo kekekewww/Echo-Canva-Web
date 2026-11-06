@@ -46,6 +46,8 @@ Every command also accepts `--corpus <dir>` to point at a copy of `v1`. `package
 - `freeze` refuses unless every class is `discrete`, `existing-test` or `approved`. Otherwise it sets `status` to `frozen`, records `frozenOn`, and rewrites `rules.sha256`.
 - `refresh-rules-hash` rewrites only `rules.sha256`, for use while the rules are draft.
 
+`run.json` also records `productTreeDiffs` and `productTreesMatchBaseline`. Committed trees at `HEAD` are compared with `baseline.treeHashes` in the manifest for `src`, `pnpm-lock.yaml`, `pnpm-workspace.yaml` and `patches`. `package.json` is compared by the SHA-256 of its canonical JSON with the `scripts` field removed (`baseline.packageJsonNoScriptsSha256`, read from the baseline commit when the corpus was generated), because this work adds scripts to it. `productTreeDiffs` lists the paths that differ and `productTreesMatchBaseline` is true when it is empty. Uncommitted changes do not affect either; they appear in `gitDirty`. When git is unavailable both are `"unavailable"` (and the boolean is false). `packageJsonNoScriptsSha256` in `run.json` is the value computed from `HEAD`.
+
 Regenerating the corpus and the sensitivity evidence needs an explicit opt-in, and the generator refuses once the rules are frozen:
 
 ```text

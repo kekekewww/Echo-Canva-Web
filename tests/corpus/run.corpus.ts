@@ -36,7 +36,7 @@ describe("corpus run", () => {
 
     const manifestBytes = readFileSync(resolve(corpusDir, "manifest.json"));
     const manifest = JSON.parse(manifestBytes.toString("utf8")) as {
-      baseline: { treeHashes: Record<string, string> };
+      baseline: { treeHashes: Record<string, string>; packageJsonNoScriptsSha256?: string };
       cases: ManifestCase[];
     };
     const cases = order === "reverse" ? [...manifest.cases].reverse() : manifest.cases;
@@ -63,7 +63,7 @@ describe("corpus run", () => {
       runId,
       order,
       corpusSha256: sha256Hex(manifestBytes),
-      ...collectGitInfo(ROOT, manifest.baseline.treeHashes),
+      ...collectGitInfo(ROOT, manifest.baseline),
       environment: collectEnvironment(),
       caseHashes: Object.fromEntries(Object.entries(caseHashes).sort(([a], [b]) => (a < b ? -1 : 1))),
       aggregateSha256: aggregateSha256(caseHashes),

@@ -4,6 +4,7 @@
     "equivalentCommits": [
       "dd57934c31915c64c0c505face8cdb7534a24346"
     ],
+    "packageJsonNoScriptsSha256": "5f01ee87071cad8b0c88299047fc3e27c4c87d1bd231162f8bb70693e5b09e93",
     "treeHashes": {
       "package.json": "96f306bf0a1489c8566d46e5caa2fedd3dbb256d",
       "patches": "75200ad43d03478993f32d3dacac0ce6976d687b",
@@ -2572,7 +2573,7 @@
   },
   "rules": {
     "path": "comparison-rules.json",
-    "sha256": "99767341118469770596f7917ccdc287ee864c8bae8831e568277237f6e7274f"
+    "sha256": "7151c5dc59c7311efcb7f8f69851951a44b04ae1883009912437bbf7e5d53851"
   },
   "runtime": {
     "node": "22.23.3",

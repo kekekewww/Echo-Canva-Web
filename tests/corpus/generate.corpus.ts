@@ -9,12 +9,17 @@ import { validateSceneDocument } from "@/domain/scene-document/validate";
 import { corpusCaseDefinitions } from "../../benchmarks/corpus/harness/definitions";
 import { runCorpusCase } from "../../benchmarks/corpus/harness/ts-serial-adapter";
 import type { CorpusCaseDefinition } from "../../benchmarks/corpus/harness/types";
-import { canonicalize, sha256Hex } from "../../scripts/corpus/lib.mjs";
+import { canonicalize, packageJsonNoScriptsSha256, sha256Hex } from "../../scripts/corpus/lib.mjs";
 
 const ROOT = resolve(process.cwd());
 const CORPUS_DIR = "benchmarks/corpus/v1";
 const BASELINE_COMMIT = "98a4374fa839aa5dee7c6c35e575b8003f7f1a31";
 const EQUIVALENT_COMMITS = ["dd57934c31915c64c0c505face8cdb7534a24346"];
+
+function gitPackageJsonNoScriptsSha256(): string {
+  const text = execFileSync("git", ["show", `${BASELINE_COMMIT}:package.json`], { cwd: ROOT, encoding: "utf8" });
+  return packageJsonNoScriptsSha256(text);
+}
 
 function gitTreeHash(path: string): string {
   return execFileSync("git", ["rev-parse", `${BASELINE_COMMIT}:${path}`], { cwd: ROOT, encoding: "utf8" }).trim();
@@ -111,6 +116,7 @@ describe("corpus generator", () => {
       baseline: {
         commit: BASELINE_COMMIT,
         equivalentCommits: EQUIVALENT_COMMITS,
+        packageJsonNoScriptsSha256: gitPackageJsonNoScriptsSha256(),
         treeHashes: {
           src: gitTreeHash("src"),
           "package.json": gitTreeHash("package.json"),

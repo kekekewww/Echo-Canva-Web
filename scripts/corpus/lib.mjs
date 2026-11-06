@@ -607,14 +607,26 @@ function git(repoRoot, args) {
   }
 }
 
-/** Repo-relative git facts for run.json. Anything git cannot answer is the string "unavailable". */
-export function collectGitInfo(repoRoot, baselineTreeHashes) {
+/** SHA-256 of a package.json text with its scripts field removed, in canonical form. */
+export function packageJsonNoScriptsSha256(text) {
+  const parsed = JSON.parse(text);
+  delete parsed.scripts;
+  return sha256Hex(canonicalize(parsed).text);
+}
+
+const COMPARED_TREES = ["src", "pnpm-lock.yaml", "pnpm-workspace.yaml", "patches"];
+
+/**
+ * Repo-relative git facts for run.json. Anything git cannot answer is the string "unavailable".
+ * Product trees are compared as committed at HEAD; package.json is compared without its scripts field.
+ */
+export function collectGitInfo(repoRoot, baseline) {
   const head = git(repoRoot, ["rev-parse", "HEAD"]);
   const status = git(repoRoot, ["status", "--porcelain", "-z", "--untracked-files=all"]);
   let gitDirty = "unavailable";
   if (status !== null) {
     gitDirty = [];
-    const records = status.split("\0").filter((record) => record.length > 0);
+    const records = status.split(" ").filter((record) => record.length > 0);
     for (let index = 0; index < records.length; index++) {
       const record = records[index];
       gitDirty.push(record.slice(3));
@@ -627,17 +639,34 @@ export function collectGitInfo(repoRoot, baselineTreeHashes) {
     const hash = git(repoRoot, ["rev-parse", `HEAD:${name}`]);
     productTrees[name] = hash === null ? "unavailable" : hash.trim();
   }
+  const treeHashes = isPlainObject(baseline) && isPlainObject(baseline.treeHashes) ? baseline.treeHashes : null;
+  const headPackage = git(repoRoot, ["show", "HEAD:package.json"]);
+  let packageHash = "unavailable";
+  if (headPackage !== null) {
+    try {
+      packageHash = packageJsonNoScriptsSha256(headPackage);
+    } catch {
+      packageHash = "unavailable";
+    }
+  }
+  let productTreeDiffs = "unavailable";
   let productTreesMatchBaseline = false;
-  if (isPlainObject(baselineTreeHashes) && gitDirty !== "unavailable") {
-    const untouched = !gitDirty.some((file) => file === "package.json" || file === "pnpm-lock.yaml" || file.startsWith("src/"));
-    productTreesMatchBaseline =
-      untouched && Object.keys(productTrees).every((name) => productTrees[name] === baselineTreeHashes[name]);
+  if (treeHashes !== null && packageHash !== "unavailable" && head !== null) {
+    productTreeDiffs = [];
+    for (const name of COMPARED_TREES) {
+      const hash = git(repoRoot, ["rev-parse", `HEAD:${name}`]);
+      if (hash === null || hash.trim() !== treeHashes[name]) productTreeDiffs.push(name);
+    }
+    if (packageHash !== baseline.packageJsonNoScriptsSha256) productTreeDiffs.push("package.json");
+    productTreesMatchBaseline = productTreeDiffs.length === 0;
   }
   return {
     gitHead: head === null ? "unavailable" : head.trim(),
     gitDirty,
     productTrees,
     productTreesMatchBaseline,
+    productTreeDiffs,
+    packageJsonNoScriptsSha256: packageHash,
   };
 }
 

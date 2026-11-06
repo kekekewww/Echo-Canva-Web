@@ -41,11 +41,12 @@
     "TH01_LISTENER_TAPE_SEEDED": 154,
     "TH02_STATIC_EDIT_TAPE": 77
   },
+  "corpusSha256": "1b11f24016e3aa67addcae1d637db9d7b008239654269d354e917aa95895b9a5",
   "deltasM": [
     1e-12,
     1e-9
   ],
-  "gitHead": "aa5b985b98e0273be6158372b694f7f86504e678",
+  "gitHead": "6e6c45488050d6ddd6ff2965f68ce6792b7cfeaf",
   "hashChanges": {
     "1e-12": 328,
     "1e-9": 328
@@ -1100,6 +1101,7 @@
       }
     }
   },
+  "rulesSha256": "7151c5dc59c7311efcb7f8f69851951a44b04ae1883009912437bbf7e5d53851",
   "seed": 20261106,
   "unitsWithFlips": {
     "1e-12": {

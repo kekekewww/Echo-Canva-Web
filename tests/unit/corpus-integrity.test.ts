@@ -229,6 +229,8 @@ describe("public files stay free of local identity", () => {
     const user = userInfo().username;
     if (host.length > 3) expect(text.toLowerCase()).not.toContain(host.toLowerCase());
     if (user.length > 3) expect(text.toLowerCase()).not.toContain(user.toLowerCase());
+    // Committed trees only, so an uncommitted working tree does not matter.
+    expect(parsed).toMatchObject({ productTreesMatchBaseline: true, productTreeDiffs: [] });
     expect(parsed).toMatchObject({
       runId: "privacy",
       order: "manifest",
