@@ -1,6 +1,6 @@
 [
   {
-    "file": "D:\\Developing\\Echo Canvas Web\\verification-logs\\fix-lazy-native-stress-results\\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium\\worker-stress-metrics.json",
+    "file": "<local-path>",
     "phase": "stress",
     "browser": {
       "hardwareConcurrency": 32,
@@ -93,7 +93,7 @@
     ]
   },
   {
-    "file": "D:\\Developing\\Echo Canvas Web\\verification-logs\\fix-lazy-native-stress-results\\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium-repeat1\\worker-stress-metrics.json",
+    "file": "<local-path>",
     "phase": "stress",
     "browser": {
       "hardwareConcurrency": 32,
@@ -186,7 +186,7 @@
     ]
   },
   {
-    "file": "D:\\Developing\\Echo Canvas Web\\verification-logs\\fix-lazy-native-stress-results\\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium-repeat2\\worker-stress-metrics.json",
+    "file": "<local-path>",
     "phase": "stress",
     "browser": {
       "hardwareConcurrency": 32,

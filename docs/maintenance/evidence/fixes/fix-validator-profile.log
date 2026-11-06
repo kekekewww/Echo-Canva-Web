@@ -2,7 +2,7 @@
   "startedAt": "2026-10-13T07:00:13.440Z",
   "buildId": "2ny829QrRqlazPRczRblE",
   "command": [
-    "C:\\Program Files\\nodejs\\node.exe",
+    "<local-path>",
     "node_modules/@playwright/test/cli.js",
     "test",
     "--config",
@@ -40,7 +40,7 @@ Running 1 test using 1 worker
       230 |   expect(
       231 |     longTasks.every((duration) => duration <= 50),
       232 |     `Observed long tasks: ${JSON.stringify(longTasks)}`,
-        at D:\Developing\Echo Canvas Web\verification-logs\fix-validator-profile.spec.ts:229:55
+        at <local-path>:229:55
 
     attachment #1: worker-stress-metrics (application/json) ────────────────────────────────────────
     ..\verification-logs\fix-validator-profile-results\fix-validator-profile-surv-2ac27-ker-and-interaction-budgets-chromium\attachments\worker-stress-metrics-b0093afcbfa0ae848d21a7dd5086086281f8da4e.json
@@ -55,4 +55,4 @@ Running 1 test using 1 worker
   1 failed
     [chromium] › ..\verification-logs\fix-validator-profile.spec.ts:3:1 › survives the full entity-limit project within Worker and interaction budgets
 
-RESULT {"startedAt":"2026-10-13T07:00:13.440Z","buildId":"2ny829QrRqlazPRczRblE","command":["C:\\Program Files\\nodejs\\node.exe","node_modules/@playwright/test/cli.js","test","--config","../verification-logs/fix-validator-profile.config.cjs"],"platform":"win32","arch":"x64","node":"v22.17.0","diagnosticOnly":true,"hardwareConcurrencyOverride":3,"profilerSamplingIntervalUs":250,"endedAt":"2026-10-13T07:00:25.482Z","durationSeconds":12.041971300000002,"exitCode":1,"signal":null}
+RESULT {"startedAt":"2026-10-13T07:00:13.440Z","buildId":"2ny829QrRqlazPRczRblE","command":["<local-path>","node_modules/@playwright/test/cli.js","test","--config","../verification-logs/fix-validator-profile.config.cjs"],"platform":"win32","arch":"x64","node":"v22.17.0","diagnosticOnly":true,"hardwareConcurrencyOverride":3,"profilerSamplingIntervalUs":250,"endedAt":"2026-10-13T07:00:25.482Z","durationSeconds":12.041971300000002,"exitCode":1,"signal":null}

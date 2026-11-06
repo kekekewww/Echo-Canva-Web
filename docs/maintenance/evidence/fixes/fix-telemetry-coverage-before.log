@@ -20,8 +20,8 @@ Running 1 test using 1 worker
       151 |   })));
       152 |   await writeFile(test.info().outputPath("telemetry-main-coverage.json"), JSON.stringify({ diagnosticOnly: true, previousSequence, acceptedSequence: Number(await statusbar.getAttribute("data-acoustic-sequence")), expectedWorkerCount, scripts }, null, 2));
       153 |   await session.send("Profiler.stopPreciseCoverage");
-        at map (D:\Developing\Echo Canvas Web\verification-logs\fix-telemetry-coverage.spec.ts:150:28)
-        at D:\Developing\Echo Canvas Web\verification-logs\fix-telemetry-coverage.spec.ts:148:118
+        at map (<local-path>:150:28)
+        at <local-path>:148:118
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ..\verification-logs\fix-telemetry-coverage-before-results\fix-telemetry-coverage-sur-a5c8a-ker-and-interaction-budgets-chromium\test-failed-1.png

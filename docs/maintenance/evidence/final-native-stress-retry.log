@@ -1,5 +1,5 @@
 pnpm.exe : [WebServer] (node:38968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
-位於 C:\Users\kevin\AppData\Local\pnpm\bin\pnpm.ps1:14 字元:3
+位於 <user-home>\AppData\Local\pnpm\bin\pnpm.ps1:14 字元:3
 +   & "$basedir/../global/v11/e9b8-19fbe146e2d-68c1886746feab5d/node_mo ...
 +   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     + CategoryInfo          : NotSpecified: ([WebServer] (no... env being set.:String) [], RemoteException
@@ -35,7 +35,7 @@ Running 1 test using 1 worker
       481 |
       482 |   await page.getByRole("button", { name: "2.5D", exact: true }).click();
       483 |   await page.getByRole("button", { name: "3D", exact: true }).click();
-        at D:\Developing\Echo Canvas Web\Echo-Canva-Web\tests\e2e\workspace.spec.ts:480:5
+        at <local-checkout>\tests\e2e\workspace.spec.ts:480:5
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ..\verification-logs\final-native-stress-retry-results\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium\test-failed-1.png

@@ -1,9 +1,9 @@
 {
   "stage": "lint",
   "startedAt": "2026-10-13T06:31:54.049Z",
-  "cwd": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web",
+  "cwd": "<local-checkout>",
   "command": [
-    "C:\\Program Files\\nodejs\\node.exe",
+    "<local-path>",
     "node_modules/eslint/bin/eslint.js",
     ".",
     "--max-warnings=0"

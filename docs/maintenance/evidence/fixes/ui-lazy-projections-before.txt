@@ -1,5 +1,5 @@
 
- RUN  v4.1.11 D:/Developing/Echo Canvas Web/Echo-Canva-Web
+ RUN  v4.1.11 <local-checkout>
 
  ❯ tests/unit/workspace-project-tools.test.ts (2 tests | 2 failed) 19ms
      × renders Classic AI controls without calculating unused acoustic projections 16ms

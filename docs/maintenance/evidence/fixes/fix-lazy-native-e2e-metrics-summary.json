@@ -1,6 +1,6 @@
 [
   {
-    "file": "D:\\Developing\\Echo Canvas Web\\verification-logs\\fix-lazy-native-e2e-results\\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium\\worker-stress-metrics.json",
+    "file": "<local-path>",
     "phase": "e2e",
     "browser": {
       "hardwareConcurrency": 32,

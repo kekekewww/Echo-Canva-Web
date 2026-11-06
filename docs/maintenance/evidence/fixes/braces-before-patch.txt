@@ -1,5 +1,5 @@
 
- RUN  v4.1.11 D:/Developing/Echo Canvas Web/Echo-Canva-Web
+ RUN  v4.1.11 <local-checkout>
 
  ❯ tests/unit/braces-security.test.ts (26 tests | 16 failed) 477ms
      × parse rejects the 9,999-character stack-exhaustion pattern before recursive work 12ms

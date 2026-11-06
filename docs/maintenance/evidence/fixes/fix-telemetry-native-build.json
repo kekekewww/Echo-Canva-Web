@@ -1,9 +1,9 @@
 {
   "stage": "build",
   "startedAt": "2026-10-13T07:36:25.242Z",
-  "cwd": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web",
+  "cwd": "<local-checkout>",
   "command": [
-    "C:\\Program Files\\nodejs\\node.exe",
+    "<local-path>",
     "node_modules/next/dist/bin/next",
     "build"
   ],

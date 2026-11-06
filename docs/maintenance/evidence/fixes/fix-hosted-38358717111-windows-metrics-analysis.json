@@ -1,6 +1,6 @@
 [
   {
-    "path": "D:\\Developing\\Echo Canvas Web\\verification-logs\\fix-hosted-38358717111-windows-artifact\\test-results\\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium\\worker-stress-metrics.json",
+    "path": "<local-path>",
     "hardwareConcurrency": 4,
     "expectedWorkerCount": 2,
     "p95Ms": 13,
@@ -250,7 +250,7 @@
     ]
   },
   {
-    "path": "D:\\Developing\\Echo Canvas Web\\verification-logs\\fix-hosted-38358717111-windows-artifact\\test-results\\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium-retry1\\worker-stress-metrics.json",
+    "path": "<local-path>",
     "hardwareConcurrency": 4,
     "expectedWorkerCount": 2,
     "p95Ms": 13,
@@ -527,7 +527,7 @@
     ]
   },
   {
-    "path": "D:\\Developing\\Echo Canvas Web\\verification-logs\\fix-hosted-38358717111-windows-artifact\\test-results\\workspace-survives-the-ful-f3b06-ker-and-interaction-budgets-chromium-retry2\\worker-stress-metrics.json",
+    "path": "<local-path>",
     "hardwareConcurrency": 4,
     "expectedWorkerCount": 2,
     "p95Ms": 14,

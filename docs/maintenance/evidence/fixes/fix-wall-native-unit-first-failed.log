@@ -1,9 +1,9 @@
 {
   "stage": "unit",
   "startedAt": "2026-10-13T06:35:11.802Z",
-  "cwd": "D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web",
+  "cwd": "<local-checkout>",
   "command": [
-    "C:\\Program Files\\nodejs\\node.exe",
+    "<local-path>",
     "node_modules/vitest/vitest.mjs",
     "run"
   ],
@@ -16,7 +16,7 @@
   "vitest": "4.1.11"
 }
 
- RUN  v4.1.11 D:/Developing/Echo Canvas Web/Echo-Canva-Web
+ RUN  v4.1.11 <local-checkout>
 
  ❯ tests/unit/client-only-marker.test.ts (7 tests | 1 failed) 6966ms
    × preserves Next's actual server/client alias targets and rejection behavior 6245ms
@@ -42,4 +42,4 @@ If this is a long-running test, pass a timeout value as the last argument or con
    Duration  8.07s (transform 20.54s, setup 0ms, import 60.18s, tests 17.34s, environment 24ms)
 
 
-RESULT {"stage":"unit","startedAt":"2026-10-13T06:35:11.802Z","cwd":"D:\\Developing\\Echo Canvas Web\\Echo-Canva-Web","command":["C:\\Program Files\\nodejs\\node.exe","node_modules/vitest/vitest.mjs","run"],"platform":"win32","arch":"x64","node":"v22.17.0","packageManager":"pnpm@11.7.0","next":"16.3.8","playwright":"1.61.1","vitest":"4.1.11","endedAt":"2026-10-13T06:35:20.493Z","durationSeconds":8.689215,"exitCode":1,"signal":null}
+RESULT {"stage":"unit","startedAt":"2026-10-13T06:35:11.802Z","cwd":"<local-checkout>","command":["<local-path>","node_modules/vitest/vitest.mjs","run"],"platform":"win32","arch":"x64","node":"v22.17.0","packageManager":"pnpm@11.7.0","next":"16.3.8","playwright":"1.61.1","vitest":"4.1.11","endedAt":"2026-10-13T06:35:20.493Z","durationSeconds":8.689215,"exitCode":1,"signal":null}
