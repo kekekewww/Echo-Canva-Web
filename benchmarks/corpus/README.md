@@ -108,7 +108,7 @@ A structure change (a missing or extra leaf, an array that became an object, a n
 
 ## Case families
 
-72 cases. The ids use a letter prefix.
+86 cases. The ids use a letter prefix.
 
 | prefix | kind | what it covers |
 | --- | --- | --- |
@@ -119,6 +119,7 @@ A structure change (a missing or extra leaf, an array that became an object, a n
 | `M` | `workspace-migration` | accepted and rejected project, document, cache and transfer payloads |
 | `DC`, `DH`, `DV`, `DK` | `classic-frame`, `hybrid-frame`, `scene-validation`, `hybrid-patch` (and one `hybrid-visibility`) | degenerate geometry: coincident points, grazing and collinear routes, invalid scenes and patches |
 | `TC`, `TH` | `classic-tape`, `hybrid-tape` | event tapes: a seeded listener tape and a static edit tape for each mode |
+| `CL`, `HL`, `LC`, `DV09`, `SO005` | `classic-frame`, `hybrid-frame`, `scene-validation`, `hybrid-second-order` | clamps, caps and locale behaviour: pre-delay floor and ceiling, early-delay cap, second-order path limit, second-order top K, representative-patch cap, room dimension limit, id tie-breaks under `localeCompare`, Unicode scene names. Tagged `limit` or `locale`. Added to v1 under a one-time maintainer exception, after mutation testing showed these constants unpinned |
 
 ### Scenario coverage
 
@@ -161,4 +162,7 @@ While the rules are draft, add the definition under `harness/definitions/`, rege
 - `existing-test` is a claim about where a precision is already asserted. It is not a claim that the precision is the right one.
 - `azimuthDeg` is undefined when the source is directly above or below the listener. `DH02` is compared at its exact input, where it is bit-identical on Windows and Linux. A small coordinate shift moves it by 135 degrees, so a future port must handle this deliberately.
 - The output order of Classic reflections is set at `src/acoustics/compute-frame.ts:156-161`. Array order is part of the contract, so a port with different float noise in symmetric scenes can fail on order.
+- Three clamps cannot be reached by a valid scene, so no case pins them: `MIN_PORTAL_LOWPASS_HZ` (a route holds at most 8 portals, so the lowpass never falls below 8000 Hz), `MIN_REFLECTION_GAIN_DB` in `src/acoustics/image-source.ts` (a first-order tap that passes the 80 ms delay cap is never quieter than about -53 dB) and `MIN_LOWPASS_HZ` in `src/acoustics/hybrid3d/reflection-rendering.ts` (no registry material has a high-to-mid reflection ratio below 0.63).
+- `fnv1a` adds `charCodeAt(0)` of each code point, which is only the high surrogate for a character outside the BMP. `LC03` and `LC05` differ only by U+1D11E and U+1D11F and have the same `staticFingerprint`.
+- Reflection ties are ordered by `localeCompare`. `LC01` and `LC02` use ids whose locale order differs from code-unit order. Outputs did not change under the collation locales en, zh-TW, de, sv, cs, et, lt, da and tr, but a port has to reproduce the ICU ordering of those ASCII ids or fail those two cases.
 - The six Classic oracle classes use six-decimal rounding to match the existing test, which can fail on noise when a value sits at a rounding boundary.

@@ -3,6 +3,7 @@ import { classicCaseDefinitions } from "./classic";
 import { degenerateCaseDefinitions } from "./degenerate";
 import { hybridCaseDefinitions } from "./hybrid";
 import { kernelCaseDefinitions } from "./kernels";
+import { limitCaseDefinitions } from "./limits";
 import { migrationCaseDefinitions } from "./migration";
 import { tapeCaseDefinitions } from "./tapes";
 
@@ -15,5 +16,6 @@ export function corpusCaseDefinitions(): readonly CorpusCaseDefinition[] {
     ...migrationCaseDefinitions(),
     ...degenerateCaseDefinitions(),
     ...tapeCaseDefinitions(),
+    ...limitCaseDefinitions(),
   ];
 }

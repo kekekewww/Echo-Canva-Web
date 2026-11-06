@@ -1,0 +1,348 @@
+{
+  "document": {
+    "documentVersion": "2.0",
+    "baseScene": {
+      "schemaVersion": "1.0",
+      "revision": 322,
+      "units": "m",
+      "name": "Representative patch cap",
+      "room": {
+        "outerPolygon": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 16,
+            "y": 0
+          },
+          {
+            "x": 16,
+            "y": 10
+          },
+          {
+            "x": 0,
+            "y": 10
+          }
+        ],
+        "heightM": 3,
+        "floorMaterialId": "concrete_hard",
+        "ceilingMaterialId": "concrete_hard"
+      },
+      "walls": [
+        {
+          "id": "cap_west",
+          "a": {
+            "x": 0,
+            "y": 10
+          },
+          "b": {
+            "x": 0,
+            "y": 0
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "cap_north",
+          "a": {
+            "x": 0,
+            "y": 0
+          },
+          "b": {
+            "x": 16,
+            "y": 0
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "cap_east",
+          "a": {
+            "x": 16,
+            "y": 0
+          },
+          "b": {
+            "x": 16,
+            "y": 10
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "cap_south",
+          "a": {
+            "x": 16,
+            "y": 10
+          },
+          "b": {
+            "x": 0,
+            "y": 10
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "stub_1",
+          "a": {
+            "x": 2,
+            "y": 3
+          },
+          "b": {
+            "x": 2.5,
+            "y": 3
+          },
+          "thicknessM": 0.1,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        },
+        {
+          "id": "stub_2",
+          "a": {
+            "x": 4,
+            "y": 3
+          },
+          "b": {
+            "x": 4.5,
+            "y": 3
+          },
+          "thicknessM": 0.1,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        },
+        {
+          "id": "stub_3",
+          "a": {
+            "x": 6,
+            "y": 3
+          },
+          "b": {
+            "x": 6.5,
+            "y": 3
+          },
+          "thicknessM": 0.1,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        },
+        {
+          "id": "stub_4",
+          "a": {
+            "x": 8,
+            "y": 3
+          },
+          "b": {
+            "x": 8.5,
+            "y": 3
+          },
+          "thicknessM": 0.1,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        },
+        {
+          "id": "stub_5",
+          "a": {
+            "x": 10,
+            "y": 3
+          },
+          "b": {
+            "x": 10.5,
+            "y": 3
+          },
+          "thicknessM": 0.1,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        },
+        {
+          "id": "stub_6",
+          "a": {
+            "x": 12,
+            "y": 3
+          },
+          "b": {
+            "x": 12.5,
+            "y": 3
+          },
+          "thicknessM": 0.1,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        },
+        {
+          "id": "stub_7",
+          "a": {
+            "x": 14,
+            "y": 3
+          },
+          "b": {
+            "x": 14.5,
+            "y": 3
+          },
+          "thicknessM": 0.1,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        },
+        {
+          "id": "stub_8",
+          "a": {
+            "x": 2,
+            "y": 7
+          },
+          "b": {
+            "x": 2.5,
+            "y": 7
+          },
+          "thicknessM": 0.1,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        },
+        {
+          "id": "stub_9",
+          "a": {
+            "x": 4,
+            "y": 7
+          },
+          "b": {
+            "x": 4.5,
+            "y": 7
+          },
+          "thicknessM": 0.1,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        },
+        {
+          "id": "stub_10",
+          "a": {
+            "x": 6,
+            "y": 7
+          },
+          "b": {
+            "x": 6.5,
+            "y": 7
+          },
+          "thicknessM": 0.1,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        },
+        {
+          "id": "stub_11",
+          "a": {
+            "x": 8,
+            "y": 7
+          },
+          "b": {
+            "x": 8.5,
+            "y": 7
+          },
+          "thicknessM": 0.1,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        },
+        {
+          "id": "stub_12",
+          "a": {
+            "x": 10,
+            "y": 7
+          },
+          "b": {
+            "x": 10.5,
+            "y": 7
+          },
+          "thicknessM": 0.1,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        },
+        {
+          "id": "stub_13",
+          "a": {
+            "x": 12,
+            "y": 7
+          },
+          "b": {
+            "x": 12.5,
+            "y": 7
+          },
+          "thicknessM": 0.1,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        },
+        {
+          "id": "stub_14",
+          "a": {
+            "x": 14,
+            "y": 7
+          },
+          "b": {
+            "x": 14.5,
+            "y": 7
+          },
+          "thicknessM": 0.1,
+          "materialId": "concrete_hard",
+          "kind": "partition"
+        }
+      ],
+      "portals": [],
+      "sources": [
+        {
+          "id": "radio",
+          "name": "Radio",
+          "clipId": "radio_loop",
+          "sourceType": "point",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "gainDb": -3,
+          "loop": true
+        }
+      ],
+      "listener": {
+        "position": {
+          "x": 13,
+          "y": 5
+        },
+        "headingDeg": 0
+      },
+      "settings": {
+        "acousticUpdateHz": 12,
+        "maxEarlyReflections": 6,
+        "hrtfEnabled": true
+      }
+    },
+    "extensions": {
+      "spatial3d": {
+        "coordinateSystem": "x-right-y-up-z-forward",
+        "floorElevationM": 0,
+        "listenerHeightM": 1.5,
+        "sourceHeightsM": {
+          "radio": 1.5
+        },
+        "primitives": [
+          {
+            "id": "block",
+            "name": "Block",
+            "kind": "box",
+            "position": {
+              "x": 8,
+              "y": 1.5,
+              "z": 5
+            },
+            "dimensions": {
+              "x": 0.4,
+              "y": 1,
+              "z": 0.4
+            },
+            "rotationYDeg": 0,
+            "materialId": "wood_medium"
+          }
+        ]
+      }
+    },
+    "compatibility": {
+      "migratedFrom": "1.0",
+      "classicProjectionHash": "472166cf"
+    }
+  }
+}

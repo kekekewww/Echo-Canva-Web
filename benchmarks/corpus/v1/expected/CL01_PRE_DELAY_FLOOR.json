@@ -1,0 +1,136 @@
+{
+  "caseId": "CL01_PRE_DELAY_FLOOR",
+  "kind": "classic-frame",
+  "outcome": "ok",
+  "value": {
+    "frame": {
+      "generatedAtMs": 0,
+      "revision": 300,
+      "room": {
+        "preDelayMs": 5,
+        "rt60S": {
+          "high": 1.5247378880630138,
+          "low": 0.9054264937909647,
+          "mid": 1.1376785538801595
+        },
+        "totalSurfaceM2": 19.5,
+        "volumeM3": 5.625
+      },
+      "sources": [
+        {
+          "directVisible": true,
+          "dryGainDb": 0,
+          "earlyReflections": [
+            {
+              "delayMs": 2.9154518950437316,
+              "gainDb": -4.06303594816645,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 1.5,
+              "reflectionPoint": {
+                "x": 1.5,
+                "y": 0.75
+              },
+              "reflectionPoints": [
+                {
+                  "x": 1.5,
+                  "y": 0.75
+                }
+              ],
+              "wallId": "floor_east",
+              "wallIds": [
+                "floor_east"
+              ]
+            },
+            {
+              "delayMs": 2.9154518950437316,
+              "gainDb": -4.06303594816645,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 1.5,
+              "reflectionPoint": {
+                "x": 0,
+                "y": 0.75
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0,
+                  "y": 0.75
+                }
+              ],
+              "wallId": "floor_west",
+              "wallIds": [
+                "floor_west"
+              ]
+            },
+            {
+              "delayMs": 3.152008250974314,
+              "gainDb": -4.520610853773201,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 1.5811388300841898,
+              "reflectionPoint": {
+                "x": 0.75,
+                "y": 0
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0.75,
+                  "y": 0
+                }
+              ],
+              "wallId": "floor_north",
+              "wallIds": [
+                "floor_north"
+              ]
+            },
+            {
+              "delayMs": 3.152008250974314,
+              "gainDb": -4.520610853773201,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 1.5811388300841898,
+              "reflectionPoint": {
+                "x": 0.75,
+                "y": 1.5
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0.75,
+                  "y": 1.5
+                }
+              ],
+              "wallId": "floor_south",
+              "wallIds": [
+                "floor_south"
+              ]
+            }
+          ],
+          "effectiveDistanceM": 0.5,
+          "lowpassHz": 20000,
+          "occluderWallIds": [],
+          "physicalDistanceM": 0.5,
+          "portalIds": [],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 0.5,
+              "y": 0.75
+            },
+            {
+              "x": 1,
+              "y": 0.75
+            }
+          ],
+          "routeType": "direct",
+          "sourceId": "radio",
+          "virtualPosition": {
+            "x": 0.5,
+            "y": 0.75
+          }
+        }
+      ]
+    },
+    "staticFingerprint": "6f64ee7f"
+  }
+}

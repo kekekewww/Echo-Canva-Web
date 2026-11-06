@@ -1,0 +1,102 @@
+{
+  "scene": {
+    "schemaVersion": "1.0",
+    "revision": 303,
+    "units": "m",
+    "name": "Second-order path limit",
+    "room": {
+      "outerPolygon": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 44,
+          "y": 0
+        },
+        {
+          "x": 44,
+          "y": 20
+        },
+        {
+          "x": 0,
+          "y": 20
+        }
+      ],
+      "heightM": 3,
+      "floorMaterialId": "concrete_hard",
+      "ceilingMaterialId": "concrete_hard"
+    },
+    "walls": [
+      {
+        "id": "far_west",
+        "a": {
+          "x": 0,
+          "y": 20
+        },
+        "b": {
+          "x": 0,
+          "y": 0
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "far_east",
+        "a": {
+          "x": 44,
+          "y": 0
+        },
+        "b": {
+          "x": 44,
+          "y": 20
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "stop",
+        "a": {
+          "x": 20,
+          "y": 9.7
+        },
+        "b": {
+          "x": 20,
+          "y": 10.3
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "partition"
+      }
+    ],
+    "portals": [],
+    "sources": [
+      {
+        "id": "radio",
+        "name": "Radio",
+        "clipId": "radio_loop",
+        "sourceType": "point",
+        "position": {
+          "x": 2,
+          "y": 5
+        },
+        "gainDb": -3,
+        "loop": true
+      }
+    ],
+    "listener": {
+      "position": {
+        "x": 38,
+        "y": 15
+      },
+      "headingDeg": 0
+    },
+    "settings": {
+      "acousticUpdateHz": 12,
+      "maxEarlyReflections": 6,
+      "hrtfEnabled": true
+    }
+  }
+}

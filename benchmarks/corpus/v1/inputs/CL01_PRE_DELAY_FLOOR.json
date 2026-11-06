@@ -1,0 +1,116 @@
+{
+  "scene": {
+    "schemaVersion": "1.0",
+    "revision": 300,
+    "units": "m",
+    "name": "Pre-delay floor",
+    "room": {
+      "outerPolygon": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 1.5,
+          "y": 0
+        },
+        {
+          "x": 1.5,
+          "y": 1.5
+        },
+        {
+          "x": 0,
+          "y": 1.5
+        }
+      ],
+      "heightM": 2.5,
+      "floorMaterialId": "concrete_hard",
+      "ceilingMaterialId": "concrete_hard"
+    },
+    "walls": [
+      {
+        "id": "floor_west",
+        "a": {
+          "x": 0,
+          "y": 1.5
+        },
+        "b": {
+          "x": 0,
+          "y": 0
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "floor_north",
+        "a": {
+          "x": 0,
+          "y": 0
+        },
+        "b": {
+          "x": 1.5,
+          "y": 0
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "floor_east",
+        "a": {
+          "x": 1.5,
+          "y": 0
+        },
+        "b": {
+          "x": 1.5,
+          "y": 1.5
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "floor_south",
+        "a": {
+          "x": 1.5,
+          "y": 1.5
+        },
+        "b": {
+          "x": 0,
+          "y": 1.5
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      }
+    ],
+    "portals": [],
+    "sources": [
+      {
+        "id": "radio",
+        "name": "Radio",
+        "clipId": "radio_loop",
+        "sourceType": "point",
+        "position": {
+          "x": 0.5,
+          "y": 0.75
+        },
+        "gainDb": -3,
+        "loop": true
+      }
+    ],
+    "listener": {
+      "position": {
+        "x": 1,
+        "y": 0.75
+      },
+      "headingDeg": 0
+    },
+    "settings": {
+      "acousticUpdateHz": 12,
+      "maxEarlyReflections": 6,
+      "hrtfEnabled": true
+    }
+  }
+}

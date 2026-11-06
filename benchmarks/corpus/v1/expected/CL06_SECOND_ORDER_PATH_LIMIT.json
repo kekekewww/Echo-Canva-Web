@@ -1,0 +1,100 @@
+{
+  "caseId": "CL06_SECOND_ORDER_PATH_LIMIT",
+  "kind": "classic-frame",
+  "outcome": "ok",
+  "value": {
+    "frame": {
+      "generatedAtMs": 0,
+      "revision": 303,
+      "room": {
+        "preDelayMs": 80,
+        "rt60S": {
+          "high": 1.2245232712447593,
+          "low": 1.084701343696061,
+          "mid": 1.150742153416991
+        },
+        "totalSurfaceM2": 2147.6,
+        "volumeM3": 2640
+      },
+      "sources": [
+        {
+          "directVisible": false,
+          "dryGainDb": -24,
+          "earlyReflections": [
+            {
+              "delayMs": 11.27688883859414,
+              "gainDb": -32.84569998083556,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 41.2310562561766,
+              "reflectionPoint": {
+                "x": 0,
+                "y": 5.5
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0,
+                  "y": 5.5
+                }
+              ],
+              "wallId": "far_west",
+              "wallIds": [
+                "far_west"
+              ]
+            },
+            {
+              "delayMs": 34.016091265266,
+              "gainDb": -34.350555400359845,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 49.03060268852505,
+              "reflectionPoint": {
+                "x": 44,
+                "y": 13.75
+              },
+              "reflectionPoints": [
+                {
+                  "x": 44,
+                  "y": 13.75
+                }
+              ],
+              "wallId": "far_east",
+              "wallIds": [
+                "far_east"
+              ]
+            }
+          ],
+          "effectiveDistanceM": 37.36308338453881,
+          "lowpassHz": 700,
+          "occluderWallIds": [
+            "stop"
+          ],
+          "physicalDistanceM": 37.36308338453881,
+          "portalIds": [],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 2,
+              "y": 5
+            },
+            {
+              "x": 20,
+              "y": 10
+            },
+            {
+              "x": 38,
+              "y": 15
+            }
+          ],
+          "routeType": "blocked",
+          "sourceId": "radio",
+          "virtualPosition": {
+            "x": 2,
+            "y": 5
+          }
+        }
+      ]
+    },
+    "staticFingerprint": "3ac1350b"
+  }
+}

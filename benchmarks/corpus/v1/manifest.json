@@ -2560,6 +2560,523 @@
         "partition",
         "primitives"
       ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 3451,
+        "path": "benchmarks/corpus/v1/expected/CL01_PRE_DELAY_FLOOR.json",
+        "sha256": "17ce64d6a44029a8ac4a29f7c87c9d917228a678de6a192f1faa6b2fd66f28bc"
+      },
+      "expectedOutcome": "ok",
+      "id": "CL01_PRE_DELAY_FLOOR",
+      "input": {
+        "bytes": 2098,
+        "path": "benchmarks/corpus/v1/inputs/CL01_PRE_DELAY_FLOOR.json",
+        "sha256": "cba7c66d2afbbe1f521242e622b2bed97887e70d0db06b315878becb6324f16a"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "A 1.5 by 1.5 m room: sqrt(area) / 343 is 4.37 ms, so preDelayMs is raised to MIN_PRE_DELAY_MS (5 ms).",
+        "refs": [
+          "src/acoustics/room-acoustics.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "limit",
+        "pre-delay"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 3361,
+        "path": "benchmarks/corpus/v1/expected/CL02_PRE_DELAY_CEILING.json",
+        "sha256": "75b97c011627748ba17e2771740f9ebf60b69cff1bd6ced8e0141022822628fa"
+      },
+      "expectedOutcome": "ok",
+      "id": "CL02_PRE_DELAY_CEILING",
+      "input": {
+        "bytes": 2078,
+        "path": "benchmarks/corpus/v1/inputs/CL02_PRE_DELAY_CEILING.json",
+        "sha256": "45501474650b839c6e7f084bcc4c384f98ef67f80024bb6e1baadb44958fb828"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "A 30 by 30 m room: sqrt(area) / 343 is 87.5 ms, so preDelayMs is cut to MAX_PRE_DELAY_MS (80 ms).",
+        "refs": [
+          "src/acoustics/room-acoustics.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "limit",
+        "pre-delay"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 2213,
+        "path": "benchmarks/corpus/v1/expected/CL05_EARLY_DELAY_CAP.json",
+        "sha256": "e53c56192afd4ba06fd3c6d49c9b9d87a56b5cabfbf2099fdf2abb8866e5e5c4"
+      },
+      "expectedOutcome": "ok",
+      "id": "CL05_EARLY_DELAY_CAP",
+      "input": {
+        "bytes": 2070,
+        "path": "benchmarks/corpus/v1/inputs/CL05_EARLY_DELAY_CAP.json",
+        "sha256": "58e2c734f1a4c0119377c646e1ee5712ba5478245f038d4e75480c4be43eb250"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Radio and listener 2 m apart in the south-west corner of a 50 by 50 m room. The north and east first-order candidates have an excess delay above MAX_EARLY_DELAY_MS (80 ms) and are rejected; the west and south ones are kept.",
+        "refs": [
+          "src/acoustics/image-source.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "limit",
+        "reflection-cap"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 3
+      },
+      "expected": {
+        "bytes": 2428,
+        "path": "benchmarks/corpus/v1/expected/CL06_SECOND_ORDER_PATH_LIMIT.json",
+        "sha256": "7ae95d259de2b8f7c157c1af82f5e9dd9ed73f9ba8345785dbc14fc83537e889"
+      },
+      "expectedOutcome": "ok",
+      "id": "CL06_SECOND_ORDER_PATH_LIMIT",
+      "input": {
+        "bytes": 1818,
+        "path": "benchmarks/corpus/v1/inputs/CL06_SECOND_ORDER_PATH_LIMIT.json",
+        "sha256": "bcf0b67b2d19eebcf62f959bdad15831574b03170026e8f5501348297dcef2db"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Direct path blocked by a 0.6 m stop. The west-then-east second-order path is 52 m long with an excess delay and gain inside their limits, so only MAX_SECOND_ORDER_PATH_M (50 m) in image-source.ts rejects it. Not in the original brief; added because the constant of that name is the Classic one.",
+        "refs": [
+          "src/acoustics/image-source.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "limit",
+        "second-order"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 1,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 12756,
+        "path": "benchmarks/corpus/v1/expected/HL02_SECOND_ORDER_PATH_LIMIT.json",
+        "sha256": "eee1b4a1eb9f495652215701d789cc313aeb9e93e75d9db6ce68dde6d4947135"
+      },
+      "expectedOutcome": "ok",
+      "id": "HL02_SECOND_ORDER_PATH_LIMIT",
+      "input": {
+        "bytes": 3141,
+        "path": "benchmarks/corpus/v1/inputs/HL02_SECOND_ORDER_PATH_LIMIT.json",
+        "sha256": "39bf4577ad1f5534317b079cc3daa70564cc8e510af863733089845e216925d3"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Direct path blocked. Two valid second-order paths of 50.5 m are cut by the 50 m path limit in findPrunedSecondOrderReflections3D (a literal 50; the constant of that name is in image-source.ts); four shorter ones are kept.",
+        "refs": [
+          "src/acoustics/hybrid3d/second-order.ts",
+          "src/acoustics/hybrid3d/direct.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "limit",
+        "second-order"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 1,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 14881,
+        "path": "benchmarks/corpus/v1/expected/HL03_SECOND_ORDER_TOP_K.json",
+        "sha256": "e4b08abfd806e5ebbf3d178217a5aa4029437e3b590edc2f34cc3929c6e4ff1f"
+      },
+      "expectedOutcome": "ok",
+      "id": "HL03_SECOND_ORDER_TOP_K",
+      "input": {
+        "bytes": 3129,
+        "path": "benchmarks/corpus/v1/inputs/HL03_SECOND_ORDER_TOP_K.json",
+        "sha256": "f92c6785f041f04c507c015f301ff6981432e0a928a0cb7c23888c1cc3390d03"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Direct path blocked. Twelve valid second-order paths, of which the frame keeps six. The frame path passes maxCandidates 6 explicitly in direct.ts; DEFAULT_SECOND_ORDER_TOP_K applies only when a caller leaves it out.",
+        "refs": [
+          "src/acoustics/hybrid3d/second-order.ts",
+          "src/acoustics/hybrid3d/direct.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "limit",
+        "second-order"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 1,
+        "walls": 18
+      },
+      "expected": {
+        "bytes": 9875,
+        "path": "benchmarks/corpus/v1/expected/HL04_REPRESENTATIVE_PATCH_CAP.json",
+        "sha256": "fd4d3350781007e59bea211c4342a09163a57bc722d9e1e0e39912450775af33"
+      },
+      "expectedOutcome": "ok",
+      "id": "HL04_REPRESENTATIVE_PATCH_CAP",
+      "input": {
+        "bytes": 7162,
+        "path": "benchmarks/corpus/v1/inputs/HL04_REPRESENTATIVE_PATCH_CAP.json",
+        "sha256": "0abcc25c27947d543d56bde17365e3596b97c5ae5cd25917281f70277a4551ef"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Direct path blocked, 26 physical surfaces. The frame passes maxRepresentativePatches 24 in direct.ts, so the two farthest surfaces take no part in the second-order search (the 32 in second-order.ts limits only the exhaustive reference).",
+        "refs": [
+          "src/acoustics/hybrid3d/second-order.ts",
+          "src/acoustics/hybrid3d/direct.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "limit",
+        "second-order"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 22416,
+        "path": "benchmarks/corpus/v1/expected/SO005_DEFAULT_TOP_K.json",
+        "sha256": "89e8bf85030d246cdf7908da28e3feb4f440ce7c9f0087f2787bad8f37c88f94"
+      },
+      "expectedOutcome": "ok",
+      "id": "SO005_DEFAULT_TOP_K",
+      "input": {
+        "bytes": 2733,
+        "path": "benchmarks/corpus/v1/inputs/SO005_DEFAULT_TOP_K.json",
+        "sha256": "a91c1c5d24a99b57a600b11e91f392dcf260eed592e03218b8a912f2f5d6cc93"
+      },
+      "kind": "hybrid-second-order",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Six box surfaces with more than six valid second-order paths and no maxCandidates option, so the search keeps DEFAULT_SECOND_ORDER_TOP_K of them. Not in the original brief; added because the frame path never reaches that constant.",
+        "refs": [
+          "src/acoustics/hybrid3d/second-order.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "limit",
+        "second-order"
+      ]
+    },
+    {
+      "counts": null,
+      "expected": {
+        "bytes": 312,
+        "path": "benchmarks/corpus/v1/expected/DV09_ROOM_WIDTH_ABOVE_LIMIT.json",
+        "sha256": "3c34adaee2886b2aa9fe92e6de217778c8c4942ec23a2ac533dc9d12e4375a0d"
+      },
+      "expectedOutcome": "ok",
+      "id": "DV09_ROOM_WIDTH_ABOVE_LIMIT",
+      "input": {
+        "bytes": 1721,
+        "path": "benchmarks/corpus/v1/inputs/DV09_ROOM_WIDTH_ABOVE_LIMIT.json",
+        "sha256": "1194c83ffbe8382166e27ae2b51822a662dd4202230dcc0f245c85ec95ac24a9"
+      },
+      "kind": "scene-validation",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "A room from x = -10 to x = 45, 55 m wide. Every vertex is within the +-50 m schema range, so the scene passes zod and is rejected at the MAX_ROOM_DIMENSION_M check in validateGeometry.",
+        "refs": [
+          "src/domain/scene/validate.ts",
+          "src/domain/scene/geometry-validation.ts",
+          "src/domain/scene/schema.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "degenerate",
+        "validation",
+        "limit"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 3366,
+        "path": "benchmarks/corpus/v1/expected/LC01_MIXED_CASE_TIE_CLASSIC.json",
+        "sha256": "e6502c92421376d822a7d657b57eb88082e7758f26f8410c462e3b64631a4243"
+      },
+      "expectedOutcome": "ok",
+      "id": "LC01_MIXED_CASE_TIE_CLASSIC",
+      "input": {
+        "bytes": 2045,
+        "path": "benchmarks/corpus/v1/inputs/LC01_MIXED_CASE_TIE_CLASSIC.json",
+        "sha256": "7cea776d995bcbdc4ccd822851109aaffae29280a71f7459216c5b12cfc38798"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Two exact gain ties between walls whose ids differ in case, hyphen and underscore, so localeCompare and code-unit order disagree.",
+        "refs": [
+          "src/acoustics/compute-frame.ts",
+          "src/acoustics/image-source.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "locale",
+        "tie-break"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 2,
+        "portals": 0,
+        "primitives": 1,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 18288,
+        "path": "benchmarks/corpus/v1/expected/LC02_MIXED_CASE_TIE_HYBRID.json",
+        "sha256": "e5e3fcc342aa9fe98ef387575296d28f53a0998c62aea5bb2d712a84330aa535"
+      },
+      "expectedOutcome": "ok",
+      "id": "LC02_MIXED_CASE_TIE_HYBRID",
+      "input": {
+        "bytes": 3387,
+        "path": "benchmarks/corpus/v1/inputs/LC02_MIXED_CASE_TIE_HYBRID.json",
+        "sha256": "09273fc22b44fc0864c1806f32090d2f80b288e567c64db00877feb8385c9d63"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "Exact ties between first-order paths (echo) and between second-order paths (radio) whose ids differ in case, hyphen and underscore. Sorted by localeCompare in reflections.ts, second-order.ts and reflection-rendering.ts.",
+        "refs": [
+          "src/acoustics/hybrid3d/reflections.ts",
+          "src/acoustics/hybrid3d/second-order.ts",
+          "src/acoustics/hybrid3d/reflection-rendering.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "locale",
+        "tie-break"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 3488,
+        "path": "benchmarks/corpus/v1/expected/LC03_UNICODE_NAME_CLASSIC.json",
+        "sha256": "b5346d9eef2b8e7d26ac78ccc75f8c423dcb15d18cd2a815f130e4d80c2d9fbd"
+      },
+      "expectedOutcome": "ok",
+      "id": "LC03_UNICODE_NAME_CLASSIC",
+      "input": {
+        "bytes": 2068,
+        "path": "benchmarks/corpus/v1/inputs/LC03_UNICODE_NAME_CLASSIC.json",
+        "sha256": "bcfaeffa459de39d179adce45a9c885656c8eaa1a7761aa0339244134a127a9a"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "The scene name holds é, Ü, two CJK characters and U+1D11E (outside the BMP). Pins staticFingerprint, an FNV hash over for...of code points.",
+        "refs": [
+          "src/acoustics/compute-frame.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "locale",
+        "unicode"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 7392,
+        "path": "benchmarks/corpus/v1/expected/LC04_UNICODE_NAME_HYBRID.json",
+        "sha256": "b7fcdfee9e99c0e7a5e8254b0e695fca9fb654d8424bfe9c370b33be1fab5840"
+      },
+      "expectedOutcome": "ok",
+      "id": "LC04_UNICODE_NAME_HYBRID",
+      "input": {
+        "bytes": 2684,
+        "path": "benchmarks/corpus/v1/inputs/LC04_UNICODE_NAME_HYBRID.json",
+        "sha256": "0d13e1896932f09e788c3125f5943a3fc7f4a7dc315ee3bc94e2cefb11ddc7bb"
+      },
+      "kind": "hybrid-frame",
+      "license": "MIT (repository)",
+      "mode": "hybrid-3d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "The scene name holds é, Ü, two CJK characters and U+1D11E (outside the BMP). Pins staticGeometryHash and classicProjectionHash.",
+        "refs": [
+          "src/acoustics/hybrid3d/compile.ts",
+          "src/domain/scene-document/validate.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "locale",
+        "unicode"
+      ]
+    },
+    {
+      "counts": {
+        "activeListeners": 1,
+        "enabledSources": 1,
+        "portals": 0,
+        "primitives": 0,
+        "walls": 4
+      },
+      "expected": {
+        "bytes": 3490,
+        "path": "benchmarks/corpus/v1/expected/LC05_NONBMP_SIBLING_CLASSIC.json",
+        "sha256": "c07fc3ce97ebdd159d298a0b47780d3d0dd180550d6f5bf7308bf7a348d34257"
+      },
+      "expectedOutcome": "ok",
+      "id": "LC05_NONBMP_SIBLING_CLASSIC",
+      "input": {
+        "bytes": 2068,
+        "path": "benchmarks/corpus/v1/inputs/LC05_NONBMP_SIBLING_CLASSIC.json",
+        "sha256": "56dce3e2706f6fce33b7c1c5a8be2280a9f710fe3363d7e974b5b397bfa8ccdd"
+      },
+      "kind": "classic-frame",
+      "license": "MIT (repository)",
+      "mode": "classic-2d5d",
+      "scenario": null,
+      "seed": null,
+      "source": {
+        "notes": "LC03 with U+1D11E replaced by U+1D11F, which has the same high surrogate. fnv1a hashes charCodeAt(0) of each code point, so both characters add the same value.",
+        "refs": [
+          "src/acoustics/compute-frame.ts"
+        ],
+        "type": "handwritten"
+      },
+      "tags": [
+        "locale",
+        "unicode",
+        "collision"
+      ]
     }
   ],
   "corpusId": "echo-canvas-common",
@@ -2573,7 +3090,7 @@
   },
   "rules": {
     "path": "comparison-rules.json",
-    "sha256": "ecd33cd6bb4010474a471dc2e937f302d14ec6d8aaffcd2b819ab8bb6cc6fa74"
+    "sha256": "574a8def626014aa0bf10edf57ab464006f3aef7351a96344898aa905a1930d6"
   },
   "runtime": {
     "node": "22.23.3",

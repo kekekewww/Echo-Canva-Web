@@ -1,0 +1,152 @@
+{
+  "document": {
+    "documentVersion": "2.0",
+    "baseScene": {
+      "schemaVersion": "1.0",
+      "revision": 320,
+      "units": "m",
+      "name": "Second-order path limit",
+      "room": {
+        "outerPolygon": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 50,
+            "y": 0
+          },
+          {
+            "x": 50,
+            "y": 20
+          },
+          {
+            "x": 0,
+            "y": 20
+          }
+        ],
+        "heightM": 6,
+        "floorMaterialId": "concrete_hard",
+        "ceilingMaterialId": "concrete_hard"
+      },
+      "walls": [
+        {
+          "id": "limit_west",
+          "a": {
+            "x": 0,
+            "y": 20
+          },
+          "b": {
+            "x": 0,
+            "y": 0
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "limit_north",
+          "a": {
+            "x": 0,
+            "y": 0
+          },
+          "b": {
+            "x": 50,
+            "y": 0
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "limit_east",
+          "a": {
+            "x": 50,
+            "y": 0
+          },
+          "b": {
+            "x": 50,
+            "y": 20
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        },
+        {
+          "id": "limit_south",
+          "a": {
+            "x": 50,
+            "y": 20
+          },
+          "b": {
+            "x": 0,
+            "y": 20
+          },
+          "thicknessM": 0.2,
+          "materialId": "concrete_hard",
+          "kind": "boundary"
+        }
+      ],
+      "portals": [],
+      "sources": [
+        {
+          "id": "radio",
+          "name": "Radio",
+          "clipId": "radio_loop",
+          "sourceType": "point",
+          "position": {
+            "x": 2.5,
+            "y": 12
+          },
+          "gainDb": -3,
+          "loop": true
+        }
+      ],
+      "listener": {
+        "position": {
+          "x": 47.5,
+          "y": 4
+        },
+        "headingDeg": 0
+      },
+      "settings": {
+        "acousticUpdateHz": 12,
+        "maxEarlyReflections": 6,
+        "hrtfEnabled": true
+      }
+    },
+    "extensions": {
+      "spatial3d": {
+        "coordinateSystem": "x-right-y-up-z-forward",
+        "floorElevationM": 0,
+        "listenerHeightM": 4.5,
+        "sourceHeightsM": {
+          "radio": 5
+        },
+        "primitives": [
+          {
+            "id": "block",
+            "name": "Block",
+            "kind": "box",
+            "position": {
+              "x": 25,
+              "y": 4.75,
+              "z": 8
+            },
+            "dimensions": {
+              "x": 0.4,
+              "y": 0.4,
+              "z": 0.4
+            },
+            "rotationYDeg": 0,
+            "materialId": "wood_medium"
+          }
+        ]
+      }
+    },
+    "compatibility": {
+      "migratedFrom": "1.0",
+      "classicProjectionHash": "912cd235"
+    }
+  }
+}

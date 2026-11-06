@@ -1,0 +1,180 @@
+{
+  "patches": [
+    {
+      "id": "floor",
+      "kind": "floor",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "z": 4
+        },
+        {
+          "x": 6,
+          "y": 0,
+          "z": 4
+        },
+        {
+          "x": 6,
+          "y": 0,
+          "z": 0
+        }
+      ]
+    },
+    {
+      "id": "ceiling",
+      "kind": "ceiling",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 0,
+          "y": 3,
+          "z": 0
+        },
+        {
+          "x": 6,
+          "y": 3,
+          "z": 0
+        },
+        {
+          "x": 6,
+          "y": 3,
+          "z": 4
+        },
+        {
+          "x": 0,
+          "y": 3,
+          "z": 4
+        }
+      ]
+    },
+    {
+      "id": "box-west",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 3,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 3,
+          "z": 4
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "z": 4
+        }
+      ]
+    },
+    {
+      "id": "box-east",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 6,
+          "y": 0,
+          "z": 0
+        },
+        {
+          "x": 6,
+          "y": 0,
+          "z": 4
+        },
+        {
+          "x": 6,
+          "y": 3,
+          "z": 4
+        },
+        {
+          "x": 6,
+          "y": 3,
+          "z": 0
+        }
+      ]
+    },
+    {
+      "id": "box-north",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        {
+          "x": 6,
+          "y": 0,
+          "z": 0
+        },
+        {
+          "x": 6,
+          "y": 3,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "y": 3,
+          "z": 0
+        }
+      ]
+    },
+    {
+      "id": "box-south",
+      "kind": "wall",
+      "materialId": "concrete_hard",
+      "vertices": [
+        {
+          "x": 0,
+          "y": 0,
+          "z": 4
+        },
+        {
+          "x": 0,
+          "y": 3,
+          "z": 4
+        },
+        {
+          "x": 6,
+          "y": 3,
+          "z": 4
+        },
+        {
+          "x": 6,
+          "y": 0,
+          "z": 4
+        }
+      ]
+    }
+  ],
+  "source": {
+    "x": 1.5,
+    "y": 1,
+    "z": 1
+  },
+  "listener": {
+    "x": 4.5,
+    "y": 1.2,
+    "z": 2.5
+  },
+  "options": {
+    "maxPathLengthM": 200,
+    "minEstimatedGainDb": -80
+  }
+}

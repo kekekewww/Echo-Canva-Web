@@ -1,0 +1,116 @@
+{
+  "scene": {
+    "schemaVersion": "1.0",
+    "revision": 312,
+    "units": "m",
+    "name": "Café Über 中文 𝄟",
+    "room": {
+      "outerPolygon": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 8,
+          "y": 0
+        },
+        {
+          "x": 8,
+          "y": 8
+        },
+        {
+          "x": 0,
+          "y": 8
+        }
+      ],
+      "heightM": 3,
+      "floorMaterialId": "concrete_hard",
+      "ceilingMaterialId": "concrete_hard"
+    },
+    "walls": [
+      {
+        "id": "bay_west",
+        "a": {
+          "x": 0,
+          "y": 8
+        },
+        "b": {
+          "x": 0,
+          "y": 0
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "bay_north",
+        "a": {
+          "x": 0,
+          "y": 0
+        },
+        "b": {
+          "x": 8,
+          "y": 0
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "bay_east",
+        "a": {
+          "x": 8,
+          "y": 0
+        },
+        "b": {
+          "x": 8,
+          "y": 8
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      },
+      {
+        "id": "bay_south",
+        "a": {
+          "x": 8,
+          "y": 8
+        },
+        "b": {
+          "x": 0,
+          "y": 8
+        },
+        "thicknessM": 0.2,
+        "materialId": "concrete_hard",
+        "kind": "boundary"
+      }
+    ],
+    "portals": [],
+    "sources": [
+      {
+        "id": "radio",
+        "name": "Radio",
+        "clipId": "radio_loop",
+        "sourceType": "point",
+        "position": {
+          "x": 2.5,
+          "y": 3
+        },
+        "gainDb": -3,
+        "loop": true
+      }
+    ],
+    "listener": {
+      "position": {
+        "x": 5.5,
+        "y": 5
+      },
+      "headingDeg": 0
+    },
+    "settings": {
+      "acousticUpdateHz": 12,
+      "maxEarlyReflections": 6,
+      "hrtfEnabled": true
+    }
+  }
+}

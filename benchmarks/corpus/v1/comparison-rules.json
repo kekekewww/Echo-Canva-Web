@@ -1,7 +1,7 @@
 {
   "rulesVersion": "1",
-  "status": "frozen",
-  "frozenOn": "2026-11-06",
+  "status": "draft",
+  "frozenOn": null,
   "classes": {
     "discrete": {"compare":"exact","status":"discrete","source":"ids, enums, booleans, strings, hashes, integer counters, outcome, error.*, array order and length"},
     "passthrough": {"compare":"exact","status":"discrete","source":"numbers workspace migration copies from its input without calculating"},

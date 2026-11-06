@@ -95,7 +95,7 @@ describe("verifyCorpus", () => {
     const result = verifyCorpus(REAL);
     expect(result.problems).toEqual([]);
     expect(result.ok).toBe(true);
-    expect(result.caseCount).toBe(72);
+    expect(result.caseCount).toBe(86);
     expect(result.corpusSha256).toBe(sha256Hex(readFileSync(path.join(REAL, "manifest.json"))));
   });
 
@@ -403,7 +403,7 @@ describe("public files stay free of local identity", () => {
       if (!existsSync(full)) continue;
       for (const name of readdirSync(full)) if (name.endsWith(".json")) files.push(`benchmarks/corpus/v1/${dir}/${name}`);
     }
-    expect(files.length).toBeGreaterThan(140);
+    expect(files.length).toBeGreaterThan(170);
     for (const file of files) {
       const full = path.join(REPO, file);
       if (!existsSync(full)) continue; // a knowledge page may not be checked out

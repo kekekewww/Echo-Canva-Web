@@ -1,0 +1,94 @@
+{
+  "caseId": "CL05_EARLY_DELAY_CAP",
+  "kind": "classic-frame",
+  "outcome": "ok",
+  "value": {
+    "frame": {
+      "generatedAtMs": 0,
+      "revision": 302,
+      "room": {
+        "preDelayMs": 80,
+        "rt60S": {
+          "high": 4,
+          "low": 4,
+          "mid": 4
+        },
+        "totalSurfaceM2": 5800,
+        "volumeM3": 10000
+      },
+      "sources": [
+        {
+          "directVisible": true,
+          "dryGainDb": 0,
+          "earlyReflections": [
+            {
+              "delayMs": 12.608033003897257,
+              "gainDb": -16.56181068033245,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 6.324555320336759,
+              "reflectionPoint": {
+                "x": 4,
+                "y": 50
+              },
+              "reflectionPoints": [
+                {
+                  "x": 4,
+                  "y": 50
+                }
+              ],
+              "wallId": "cap_south",
+              "wallIds": [
+                "cap_south"
+              ]
+            },
+            {
+              "delayMs": 17.49271137026239,
+              "gainDb": -18.603010506891696,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 8,
+              "reflectionPoint": {
+                "x": 0,
+                "y": 47
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0,
+                  "y": 47
+                }
+              ],
+              "wallId": "cap_west",
+              "wallIds": [
+                "cap_west"
+              ]
+            }
+          ],
+          "effectiveDistanceM": 2,
+          "lowpassHz": 20000,
+          "occluderWallIds": [],
+          "physicalDistanceM": 2,
+          "portalIds": [],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 3,
+              "y": 47
+            },
+            {
+              "x": 5,
+              "y": 47
+            }
+          ],
+          "routeType": "direct",
+          "sourceId": "radio",
+          "virtualPosition": {
+            "x": 3,
+            "y": 47
+          }
+        }
+      ]
+    },
+    "staticFingerprint": "14905f39"
+  }
+}

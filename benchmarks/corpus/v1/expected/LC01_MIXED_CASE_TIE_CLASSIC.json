@@ -1,0 +1,136 @@
+{
+  "caseId": "LC01_MIXED_CASE_TIE_CLASSIC",
+  "kind": "classic-frame",
+  "outcome": "ok",
+  "value": {
+    "frame": {
+      "generatedAtMs": 0,
+      "revision": 310,
+      "room": {
+        "preDelayMs": 23.323615160349853,
+        "rt60S": {
+          "high": 4,
+          "low": 2.690410152978867,
+          "mid": 3.380530560101045
+        },
+        "totalSurfaceM2": 224,
+        "volumeM3": 192
+      },
+      "sources": [
+        {
+          "directVisible": true,
+          "dryGainDb": 0,
+          "earlyReflections": [
+            {
+              "delayMs": 17.49271137026239,
+              "gainDb": -18.603010506891696,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 8,
+              "reflectionPoint": {
+                "x": 8,
+                "y": 4
+              },
+              "reflectionPoints": [
+                {
+                  "x": 8,
+                  "y": 4
+                }
+              ],
+              "wallId": "edge_1",
+              "wallIds": [
+                "edge_1"
+              ]
+            },
+            {
+              "delayMs": 17.49271137026239,
+              "gainDb": -18.603010506891696,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 8,
+              "reflectionPoint": {
+                "x": 0,
+                "y": 4
+              },
+              "reflectionPoints": [
+                {
+                  "x": 0,
+                  "y": 4
+                }
+              ],
+              "wallId": "edge-1",
+              "wallIds": [
+                "edge-1"
+              ]
+            },
+            {
+              "delayMs": 18.210528429257497,
+              "gainDb": -18.86629989411519,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 8.246211251235321,
+              "reflectionPoint": {
+                "x": 4,
+                "y": 8
+              },
+              "reflectionPoints": [
+                {
+                  "x": 4,
+                  "y": 8
+                }
+              ],
+              "wallId": "edge_a",
+              "wallIds": [
+                "edge_a"
+              ]
+            },
+            {
+              "delayMs": 18.210528429257497,
+              "gainDb": -18.86629989411519,
+              "lowpassHz": 20000,
+              "order": 1,
+              "pathLengthM": 8.246211251235321,
+              "reflectionPoint": {
+                "x": 4,
+                "y": 0
+              },
+              "reflectionPoints": [
+                {
+                  "x": 4,
+                  "y": 0
+                }
+              ],
+              "wallId": "Edge_b",
+              "wallIds": [
+                "Edge_b"
+              ]
+            }
+          ],
+          "effectiveDistanceM": 2,
+          "lowpassHz": 20000,
+          "occluderWallIds": [],
+          "physicalDistanceM": 2,
+          "portalIds": [],
+          "reverbSendDb": 0,
+          "routePolyline": [
+            {
+              "x": 3,
+              "y": 4
+            },
+            {
+              "x": 5,
+              "y": 4
+            }
+          ],
+          "routeType": "direct",
+          "sourceId": "radio",
+          "virtualPosition": {
+            "x": 3,
+            "y": 4
+          }
+        }
+      ]
+    },
+    "staticFingerprint": "57caa710"
+  }
+}
