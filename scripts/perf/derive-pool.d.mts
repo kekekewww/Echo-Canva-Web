@@ -21,3 +21,12 @@ export function deriveSamples(
   phaseResidualCount: number;
   revisionsSeen: number;
 };
+export function poolComputeCheck(
+  log: Loose,
+  wholeMilliseconds: boolean,
+  metricByJob?: Map<number, number>,
+): {
+  wholeMilliseconds: boolean;
+  metricName: string;
+  jobs: { seq: number; jobKind: string; firstPostStartMs: number; lastHandlerStartMs: number | null; lastHandlerEndMs: number | null; metricMs: number | null; entries: { worker: number; reportedMs: number; recvEpochMs: number | null; postEndMs: number | null; handlerStartMs: number | null }[] }[];
+};

@@ -74,6 +74,7 @@ export type RunIndexLine = {
   workers: number | string;
   audio: string;
   build: string;
+  driver?: string;
   parity: boolean;
   status: string;
   start: string;
@@ -123,7 +124,7 @@ export function appendRunIndex(outDir: string, line: RunIndexLine): void;
 export function readRunIndex(outDir: string): RunIndexLine[];
 export function executeRun(options: {
   outDir: string;
-  meta: { runId: string; variant: string; case: string; pass: string; boundary: string; workers?: number | string; audio?: string; build?: string; parity?: boolean };
+  meta: { runId: string; variant: string; case: string; pass: string; boundary: string; workers?: number | string; audio?: string; build?: string; driver?: string; parity?: boolean };
   orderIndex?: number;
   execute: (context: { runDir: string }) => Promise<{
     status?: "passed" | "failed";

@@ -28,6 +28,7 @@
       longtask: false,
       longAnimationFrame: false,
     },
+    window: null,
   };
 
   if (config.forceSerial) {
@@ -121,12 +122,36 @@
     window.addEventListener(type, (event) => log.inputs.push({ type, ts: event.timeStamp }), { capture: true, passive: true });
   }
 
+  // Frame timing: every entry that wants "frame end" waits for the next animation frame, then for a
+  // message task posted inside it. Entries recorded within one frame share that frame.
   const channel = new MessageChannel();
-  const pendingFrames = [];
+  const pending = [];
+  const batches = [];
+  let frameScheduled = false;
   channel.port1.onmessage = () => {
-    const entry = pendingFrames.shift();
-    if (entry) entry.frameEnd = pn();
+    const batch = batches.shift();
+    if (!batch) return;
+    const t = pn();
+    for (const entry of batch) entry.frameEnd = t;
   };
+  const trackFrame = (entry) => {
+    pending.push(entry);
+    if (frameScheduled) return;
+    frameScheduled = true;
+    requestAnimationFrame(() => {
+      frameScheduled = false;
+      const batch = pending.splice(0);
+      const t = pn();
+      for (const item of batch) item.raf = t;
+      batches.push(batch);
+      channel.port2.postMessage(0);
+    });
+  };
+
+  // One accepted frame runs: last shard handler -> React commit 1 (the viewport) -> passive effects
+  // (audio engine calls, then onAcousticStatus) -> commit 2 (the status bar attributes). The viewport
+  // root and the status bar are therefore observed separately.
+  log.overlay = { selector: ".workspace-viewport-panel", found: false, hasCanvas: false, mutations: [] };
   const observeStatusbar = () => {
     const bar = document.querySelector(".workspace-statusbar");
     if (!bar) return false;
@@ -144,19 +169,31 @@
       log.commits.push(commit);
       clockMark();
       if (config.traced) performance.mark(`ec102:app:commit:${commit.sequence}`);
-      requestAnimationFrame(() => {
-        commit.raf = pn();
-        pendingFrames.push(commit);
-        channel.port2.postMessage(0);
-      });
+      trackFrame(commit);
       if (config.traced && commit.sequence !== null && commit.sequence !== "") performance.mark(`ec102:job:${commit.sequence}:complete`);
     }).observe(bar, { attributes: true, attributeFilter: ["data-acoustic-sequence", "data-acoustic-revision"] });
     return true;
   };
-  const waitForBar = new MutationObserver(() => {
-    if (observeStatusbar()) waitForBar.disconnect();
+  const observeViewport = () => {
+    const root = document.querySelector(log.overlay.selector);
+    if (!root) return false;
+    log.overlay.found = true;
+    log.overlay.hasCanvas = root.querySelector("canvas") !== null;
+    new MutationObserver(() => {
+      const entry = { t: pn(), raf: null, frameEnd: null };
+      log.overlay.mutations.push(entry);
+      trackFrame(entry);
+    }).observe(root, { attributes: true, childList: true, subtree: true });
+    return true;
+  };
+  let statusbarObserved = false;
+  let viewportObserved = false;
+  const waitForRoots = new MutationObserver(() => {
+    if (!statusbarObserved) statusbarObserved = observeStatusbar();
+    if (!viewportObserved) viewportObserved = observeViewport();
+    if (statusbarObserved && viewportObserved) waitForRoots.disconnect();
   });
-  waitForBar.observe(document, { childList: true, subtree: true });
+  waitForRoots.observe(document, { childList: true, subtree: true });
 
   try {
     log.support.longtask = PerformanceObserver.supportedEntryTypes.includes("longtask");
@@ -182,9 +219,17 @@
       log.params.length = 0;
       log.inputs.length = 0;
       log.commits.length = 0;
-      log.longTasks.length = 0;
-      log.loafs.length = 0;
+      log.overlay.mutations.length = 0;
       marked.clear();
+    },
+    // The measured window, in this page's performance.now(): used to flag long tasks and frames.
+    windowStart() {
+      log.window = { start: pn(), end: null };
+      performance.mark("ec102:window:start");
+    },
+    windowEnd() {
+      if (log.window) log.window.end = pn();
+      performance.mark("ec102:window:end");
     },
     mark(name) {
       performance.mark(name);
@@ -198,6 +243,8 @@
         params: log.params,
         inputs: log.inputs,
         commits: log.commits,
+        overlay: log.overlay,
+        window: log.window,
         longTasks: log.longTasks,
         loafs: log.loafs,
         support: log.support,

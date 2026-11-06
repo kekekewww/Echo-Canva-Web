@@ -7,7 +7,10 @@ import { fileURLToPath } from "node:url";
 import { collectGitInfo, verifyCorpus } from "../corpus/lib.mjs";
 import { buildBundle } from "./bundle.mjs";
 import { overheadComparisons, pairedDifferences, parityRows, renderComparisons } from "./compare.mjs";
+import { computeCheckFromDump } from "./derive-app.mjs";
+import { poolComputeCheck } from "./derive-pool.mjs";
 import { collectEnvironment, sampleOtherActivity } from "./env.mjs";
+import { analyzeTrace, rankJobs } from "./trace-analyze.mjs";
 import {
   BOUNDARIES,
   NOT_APPLICABLE,
@@ -47,7 +50,7 @@ class UsageError extends Error {}
 
 const RUN_FLAGS = new Set([
   "variant", "case", "corpus-manifest", "run-id", "repeat", "out", "boundary", "pass", "audio",
-  "samples", "hardware-concurrency", "build", "order-index", "plan", "ts-s-path", "max-duration-ms", "step-timeout-ms",
+  "samples", "driver", "hardware-concurrency", "build", "order-index", "plan", "ts-s-path", "max-duration-ms", "step-timeout-ms",
 ]);
 const BOOLEAN_FLAGS = new Set(["parity", "check", "with-slices"]);
 const COMMAND_FLAGS = {
@@ -55,13 +58,14 @@ const COMMAND_FLAGS = {
   "generate-workloads": new Set(["check"]),
   run: new Set([...RUN_FLAGS, ...BOOLEAN_FLAGS]),
   summarize: new Set(["out", "to", "with-slices"]),
+  analyze: new Set(["out", "top"]),
   scan: new Set(),
 };
 
 function parseArgs(argv) {
   const [command, ...rest] = argv;
   const allowed = COMMAND_FLAGS[command];
-  if (!allowed) throw new UsageError(`Unknown command ${command ?? "(none)"}. Use verify-corpus, generate-workloads, run, summarize or scan.`);
+  if (!allowed) throw new UsageError(`Unknown command ${command ?? "(none)"}. Use verify-corpus, generate-workloads, run, summarize, analyze or scan.`);
   const positional = [];
   const flags = new Map();
   for (let index = 0; index < rest.length; index += 1) {
@@ -231,6 +235,7 @@ function normalizeEntry(raw, globals) {
     boundary: get("boundary") ?? "node-core",
     pass: get("pass") ?? "clean",
     audio: get("audio") ?? NOT_APPLICABLE,
+    driver: get("driver") ?? NOT_APPLICABLE,
     parity: raw.parity === true || (globals.get("parity") === true && raw.parity !== false),
     corpusManifest: get("corpus-manifest"),
     orderIndex: get("order-index") === undefined ? undefined : Number(get("order-index")),
@@ -251,6 +256,7 @@ function normalizeEntry(raw, globals) {
   const workload = /^W0\d_/.test(entry.case);
   const appCase = /^APP_/.test(entry.case);
   const controls = entry.case === "CONTROLS";
+  if (entry.boundary !== "browser-app" && entry.driver !== NOT_APPLICABLE) throw new UsageError("--driver applies at browser-app only");
   if (entry.boundary !== "browser-app" && entry.audio !== NOT_APPLICABLE) throw new UsageError("--audio applies at browser-app only");
   if (entry.boundary === "node-core") {
     if (entry.variant !== "TS-S") throw new UsageError("TS-W needs workers; use --boundary browser-pool");
@@ -268,6 +274,9 @@ function normalizeEntry(raw, globals) {
     if (!appCase && !controls) throw new UsageError("browser-app runs APP_H100_SWITCH, APP_C_DRAG or CONTROLS");
     if (entry.audio === NOT_APPLICABLE) entry.audio = "on";
     if (!["on", "off"].includes(entry.audio)) throw new UsageError("--audio must be on or off");
+    if (entry.driver === NOT_APPLICABLE) entry.driver = "poll";
+    if (!["poll", "immediate"].includes(entry.driver)) throw new UsageError("--driver must be poll or immediate");
+    if (entry.driver === "immediate" && entry.pass === "stock") throw new UsageError("--driver does not apply to pass stock: the stock spec has its own driver");
     if (entry.pass === "bare") throw new UsageError("pass bare is a browser-pool pass");
     if (entry.pass === "stock") {
       if (entry.variant !== "TS-W" || controls) throw new UsageError("pass stock is the existing spec: TS-W, APP_ cases only");
@@ -437,6 +446,7 @@ async function runEntry(entry, index, outDir, prep) {
     boundary: entry.boundary,
     workers: NOT_APPLICABLE,
     audio: app ? entry.audio : NOT_APPLICABLE,
+    driver: app ? (entry.pass === "stock" ? "stock-poll" : entry.driver) : NOT_APPLICABLE,
     build: app ? "prod" : entry.build,
     parity: entry.parity,
   };
@@ -462,6 +472,7 @@ async function runEntry(entry, index, outDir, prep) {
         replay: context.replay,
         caseSpec,
         audio: app ? entry.audio : NOT_APPLICABLE,
+        driver: app ? entry.driver : NOT_APPLICABLE,
         samples: entry.samples,
         maxDurationMs: entry.maxDurationMs,
         hardwareConcurrency: entry.hardwareConcurrency,
@@ -517,6 +528,7 @@ async function runEntry(entry, index, outDir, prep) {
         boundary: entry.boundary,
         workers: meta.workers,
         audio: app ? entry.audio : NOT_APPLICABLE,
+        driver: meta.driver,
         denominators: result.denominators,
         jobs: result.jobs ?? UNAVAILABLE,
         intervalMs: result.intervalMs ?? UNAVAILABLE,
@@ -616,7 +628,7 @@ function copySanitised(source, target) {
 /** Per-run files copied into the evidence directory. Everything else stays in .perf-runs with only a checksum. */
 const EVIDENCE_FILES = [
   "run-status.json", "environment.json", "input-manifest.json", "summary.json", "parity-diffs.jsonl", "process-cpu.json",
-  "page-metrics.json", "browser-facts.json", "clock-calibration.json", "clock-alignment.json", "busy.json", "cpu-top.json",
+  "page-metrics.json", "browser-facts.json", "clock-calibration.json", "clock-alignment.json", "job-decomposition-summary.json", "job-decomposition-jobs-summary.json", "busy.json", "cpu-top.json",
   "thread-map.json", "exemplars.json", "controls.json", "fixture-crosscheck.json", "stdout.log", "stderr.log", "worker-stress-metrics.json",
   "audio-render-capacity.json",
 ];
@@ -705,6 +717,44 @@ function commandSummarize(flags) {
 // scan
 // ---------------------------------------------------------------------------
 
+/**
+ * Re-derives the trace analysis of a finished traced run from its raw files (chromium-trace.json and
+ * probe-dump.json or raw-log.json). The run's own files are not touched: the result goes to
+ * <runDir>/reanalysis, or to --out.
+ */
+async function commandAnalyze(positional, flags) {
+  if (positional.length !== 1) throw new UsageError("analyze needs one run directory");
+  const runDir = assertInsideRepo(path.resolve(positional[0]), "run directory");
+  const traceFile = path.join(runDir, "chromium-trace.json");
+  if (!existsSync(traceFile)) throw new UsageError(`${runDir} has no chromium-trace.json: only traced runs can be analysed`);
+  const outDir = assertInsideRepo(path.resolve(flags.get("out") ?? path.join(runDir, "reanalysis")), "--out");
+  mkdirSync(outDir, { recursive: true });
+  const samplesFile = path.join(runDir, "samples.jsonl");
+  const config = existsSync(path.join(runDir, "runner-config.json")) ? readJson(path.join(runDir, "runner-config.json")) : {};
+  let computeCheck;
+  let phase;
+  if (existsSync(path.join(runDir, "probe-dump.json"))) {
+    computeCheck = computeCheckFromDump(readJson(path.join(runDir, "probe-dump.json")));
+    phase = "app.worker-compute-metric";
+  } else if (existsSync(path.join(runDir, "raw-log.json"))) {
+    phase = "pool.compute-metric";
+    const metrics = new Map(
+      parseJsonl(readFileSync(samplesFile, "utf8"))
+        .filter((sample) => sample.phase === phase && sample.outcome === "ok" && Number.isInteger(sample.requestSeq))
+        .map((sample) => [sample.requestSeq, sample.duration]),
+    );
+    computeCheck = poolComputeCheck(readJson(path.join(runDir, "raw-log.json")), config.pass === "bare", metrics);
+  } else {
+    throw new UsageError(`${runDir} has neither probe-dump.json nor raw-log.json`);
+  }
+  const top = Number(flags.get("top") ?? 3);
+  const jobs = rankJobs(samplesFile, phase, top);
+  const calibrationFile = path.join(runDir, "clock-calibration.json");
+  const result = await analyzeTrace({ file: traceFile, outDir, calibrationFile, exemplars: { phase, jobs }, computeCheck });
+  console.log(JSON.stringify({ outDir: path.relative(REPO, outDir), rankedBy: phase, jobs, jobDecomposition: result.jobDecomposition === UNAVAILABLE ? UNAVAILABLE : { lines: result.jobDecomposition.lines, jobs: result.jobDecomposition.jobs }, jobLevelDecomposition: result.jobLevelDecomposition }));
+  return 0;
+}
+
 async function commandScan(positional) {
   if (positional.length === 0) throw new UsageError("scan needs at least one path");
   const hits = await scanPaths(positional);
@@ -728,6 +778,8 @@ async function main() {
       return commandRun(flags);
     case "summarize":
       return commandSummarize(flags);
+    case "analyze":
+      return commandAnalyze(positional, flags);
     default:
       return commandScan(positional);
   }

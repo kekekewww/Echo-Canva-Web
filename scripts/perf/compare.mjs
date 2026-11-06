@@ -28,7 +28,7 @@ export function pairedDifferences(runs) {
   const buckets = new Map();
   for (const run of runs) {
     const { entry } = run;
-    const key = JSON.stringify([entry.case, entry.pass, entry.boundary, entry.audio, entry.build, entry.orderIndex]);
+    const key = JSON.stringify([entry.case, entry.pass, entry.boundary, entry.audio, entry.build, entry.orderIndex, entry.driver ?? "not-applicable"]);
     if (!buckets.has(key)) buckets.set(key, { TS_S: null, TS_W: null });
     const slot = entry.variant === "TS-S" ? "TS_S" : "TS_W";
     buckets.get(key)[slot] ??= run;
@@ -36,7 +36,7 @@ export function pairedDifferences(runs) {
   const pairs = [];
   for (const [key, slot] of buckets) {
     if (!slot.TS_S || !slot.TS_W) continue;
-    const [caseId, pass, boundary, audio, build, orderIndex] = JSON.parse(key);
+    const [caseId, pass, boundary, audio, build, orderIndex, driver] = JSON.parse(key);
     const phases = {};
     for (const [serialPhase, poolPhase] of PAIR_PHASES) {
       const label = serialPhase === poolPhase ? serialPhase : `${serialPhase} (TS-S) against ${poolPhase} (TS-W)`;
@@ -49,7 +49,7 @@ export function pairedDifferences(runs) {
       }
       if (Object.keys(block).length > 0) phases[label] = block;
     }
-    pairs.push({ case: caseId, pass, boundary, audio, build, orderIndex, tsS: slot.TS_S.entry.runId, tsW: slot.TS_W.entry.runId, phases });
+    pairs.push({ case: caseId, pass, boundary, audio, build, driver, orderIndex, tsS: slot.TS_S.entry.runId, tsW: slot.TS_W.entry.runId, phases });
   }
   return pairs.sort((a, b) => (JSON.stringify([a.case, a.orderIndex]) < JSON.stringify([b.case, b.orderIndex]) ? -1 : 1));
 }

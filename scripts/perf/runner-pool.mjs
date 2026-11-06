@@ -8,7 +8,7 @@ import { extname, join, normalize, resolve } from "node:path";
 import { chromium } from "@playwright/test";
 
 import { startAllocation, startTracing } from "./cdp-tools.mjs";
-import { buildJobs, deriveSamples } from "./derive-pool.mjs";
+import { deriveSamples, poolComputeCheck } from "./derive-pool.mjs";
 import { analyzeTrace, rankJobs } from "./trace-analyze.mjs";
 import { evaluateControls } from "./controls-check.mjs";
 import { serialSamples } from "./derive-serial.mjs";
@@ -216,20 +216,11 @@ async function main() {
       };
       const log = await Promise.race([page.evaluate((payload) => window.__perf.runPool(payload), poolConfig), deadline]);
       writeFileSync(join(runDir, "raw-log.json"), JSON.stringify(log), "utf8");
-      computeCheck = {
-        wholeMilliseconds: config.pass === "bare",
-        jobs: buildJobs(log)
-          .map((job) => ({
-            seq: job.requestId,
-            entries: job.perWorker
-              .filter((entry) => entry.result && entry.result.computeMs !== null)
-              .map((entry) => ({ worker: entry.worker, reportedMs: entry.result.computeMs, recvEpochMs: entry.shardRecord?.recvEpochMs ?? null })),
-          }))
-          .filter((job) => job.entries.length > 0),
-      };
+      computeCheck = poolComputeCheck(log, config.pass === "bare");
       const workers = log.workersCreated > 0 ? log.workersCreated : (log.expectedWorkers > 0 ? log.expectedWorkers : NOT_APPLICABLE);
       const derived = deriveSamples(log, { ...base, variant: config.variant, workers: tsW ? workers : NOT_APPLICABLE });
       samples = derived.samples;
+      computeCheck = poolComputeCheck(log, config.pass === "bare", new Map(samples.filter((sample) => sample.phase === "pool.compute-metric" && sample.outcome === "ok" && Number.isInteger(sample.requestSeq)).map((sample) => [sample.requestSeq, sample.duration])));
       result.denominators = makeDenominators(derived.denominators);
       result.workers = { expected: log.expectedWorkers, created: log.workersCreated, reportedByPool: derived.workerCounts };
       result.integrity = derived.integrity;
@@ -337,7 +328,7 @@ async function main() {
         exemplars: { phase: "pool.compute-metric", jobs },
         computeCheck,
       });
-      result.trace = { computeVsTrace: analysis.computeVsTrace, bytes: traceInfo.bytes, threads: analysis.threads, marks: analysis.marks, gcEvents: analysis.gcEvents, cpuThreads: analysis.cpuThreads, exemplars: analysis.exemplars };
+      result.trace = { computeVsTrace: analysis.computeVsTrace, jobDecomposition: analysis.jobDecomposition, jobLevelDecomposition: analysis.jobLevelDecomposition, bytes: traceInfo.bytes, threads: analysis.threads, marks: analysis.marks, gcEvents: analysis.gcEvents, cpuThreads: analysis.cpuThreads, exemplars: analysis.exemplars };
       if (result.controls) {
         result.controls.evaluation = evaluateControls(runDir, result.controls.observations);
         writeJson(join(runDir, "controls.json"), { schema: "ec102.controls.v1", boundary: "browser-pool", ...result.controls });

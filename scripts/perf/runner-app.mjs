@@ -191,6 +191,54 @@ function waitForCommit(statusbar, previousSequence, timeoutMs) {
   );
 }
 
+const POLL_INTERVALS_MS = [100, 250, 500, 1000];
+
+/**
+ * The stock spec's wait: expect.poll with its default intervals (a first check at once, then 100, 250,
+ * 500 and 1000 ms, then 1000 ms again) on the same condition, followed by the same one-shot read of the
+ * status attributes. Reproduces the rhythm the stock gate imposes on the page.
+ */
+async function pollCommit(statusbar, expected, timeoutMs) {
+  const started = Date.now();
+  const check = () =>
+    statusbar.evaluate((element, want) => {
+      const timing = element.getAttribute("data-worker-compute-ms");
+      const revision = element.getAttribute("data-acoustic-revision");
+      const sequence = element.getAttribute("data-acoustic-sequence");
+      const workerCount = element.getAttribute("data-worker-count");
+      const workerSource = element.getAttribute("data-worker-source");
+      return {
+        ok: (want.workerCount === null || (workerSource === "Worker" && workerCount !== null && workerCount !== "" && Number(workerCount) === want.workerCount))
+          && timing !== null && timing !== "" && Number.isFinite(Number(timing))
+          && revision !== null && revision !== "" && Number.isFinite(Number(revision)) && Number(revision) > want.revision
+          && sequence !== null && sequence !== "" && Number.isFinite(Number(sequence)) && Number(sequence) > want.sequence,
+        sequence: Number(sequence),
+        revision: Number(revision),
+        source: workerSource,
+        count: workerCount,
+      };
+    }, expected);
+  let attempt = 0;
+  for (;;) {
+    const state = await check();
+    if (state.ok) {
+      await statusbar.evaluate((element) => ({
+        timing: element.getAttribute("data-worker-compute-ms"),
+        revision: element.getAttribute("data-acoustic-revision"),
+        sequence: element.getAttribute("data-acoustic-sequence"),
+        workerCount: element.getAttribute("data-worker-count"),
+        workerSource: element.getAttribute("data-worker-source"),
+        statusText: element.textContent,
+      }));
+      return state;
+    }
+    const wait = POLL_INTERVALS_MS[Math.min(attempt, POLL_INTERVALS_MS.length - 1)];
+    attempt += 1;
+    if (Date.now() - started + wait > timeoutMs) return { ...state, ok: false };
+    await new Promise((resolveWait) => setTimeout(resolveWait, wait));
+  }
+}
+
 async function readStatus(statusbar) {
   return statusbar.evaluate((element) => ({
     sequence: Number(element.getAttribute("data-acoustic-sequence")),
@@ -290,6 +338,16 @@ async function main() {
     }, undefined, { timeout: 30_000 });
     const expectedCount = forceSerial ? 0 : expectedWorkers(hardwareConcurrency, sourceCount);
     const settled = await readStatus(statusbar);
+    const updateHz = await page.evaluate(() => {
+      try {
+        const present = JSON.parse(localStorage.getItem("echo-canvas:project:hybrid:v1")).present;
+        return present.scene?.settings?.acousticUpdateHz ?? present.settings?.acousticUpdateHz ?? null;
+      } catch {
+        return null;
+      }
+    });
+    result.updateHz = updateHz ?? NOT_APPLICABLE;
+    result.driver = config.driver;
     result.statusBeforeWindow = { ...settled, expectedWorkerCount: expectedCount, hardwareConcurrency };
 
     if (caseId === "APP_H100_SWITCH") await crossCheckFixture(page, config, runDir, result);
@@ -306,19 +364,24 @@ async function main() {
       }
       await page.evaluate(() => {
         window.__ec102.reset();
-        window.__ec102.mark("ec102:window:start");
+        window.__ec102.windowStart();
       });
-      let previous = (await readStatus(statusbar)).sequence;
+      const start = await readStatus(statusbar);
+      let previous = start.sequence;
+      let previousRevision = Number(start.revision);
       for (let index = 0; index < config.samples; index += 1) {
         await outliner.locator(".kind-listener").nth(index % 8).click();
         submitted += 1;
-        const committed = await waitForCommit(statusbar, previous, SWITCH_TIMEOUT_MS);
+        const committed = config.driver === "immediate"
+          ? await waitForCommit(statusbar, previous, SWITCH_TIMEOUT_MS)
+          : await pollCommit(statusbar, { sequence: previous, revision: previousRevision, workerCount: forceSerial ? null : expectedCount }, SWITCH_TIMEOUT_MS);
         if (!committed.ok) {
           timeouts.push(index);
           result.errors.push(`switch ${index} timed out after ${SWITCH_TIMEOUT_MS} ms`);
           continue;
         }
         previous = committed.sequence;
+        if (Number.isFinite(committed.revision)) previousRevision = committed.revision;
       }
     } else if (caseId === "APP_C_DRAG") {
       const dragMs = config.maxDurationMs ?? 10_000;
@@ -332,7 +395,7 @@ async function main() {
       await page.mouse.down();
       await page.evaluate(() => {
         window.__ec102.reset();
-        window.__ec102.mark("ec102:window:start");
+        window.__ec102.windowStart();
       });
       const startedAt = Date.now();
       while (Date.now() - startedAt < dragMs) {
@@ -346,7 +409,7 @@ async function main() {
     } else {
       await runInAppControls(page, result, audioOn);
     }
-    await page.evaluate(() => window.__ec102.mark("ec102:window:end"));
+    await page.evaluate(() => window.__ec102.windowEnd());
     const audioSamples = sampler ? (await sampler.stop(), sampler.samples) : [];
     if (result.controls?.audio) {
       const capacities = audioSamples.map((sample) => sample.renderCapacity);
@@ -382,6 +445,7 @@ async function main() {
       workers: forceSerial ? NOT_APPLICABLE : (Number(dump.commits.at(-1)?.workerCount) || expectedCount),
       audio: audioOn ? "on" : "off",
       audioSamples,
+      updateHz: typeof updateHz === "number" ? updateHz : null,
       submitted,
       timeouts: timeouts.length,
     });
@@ -445,7 +509,7 @@ async function main() {
       const phase = "app.worker-compute-metric";
       const jobs = config.caseSpec.caseId === "CONTROLS" ? [] : rankJobs(join(runDir, "samples.jsonl"), phase, 3);
       const analysis = await analyzeTrace({ file: traceInfo.file, outDir: runDir, exemplars: { phase, jobs }, computeCheck });
-      result.trace = { computeVsTrace: analysis.computeVsTrace, bytes: traceInfo.bytes, threads: analysis.threads, marks: analysis.marks, gcEvents: analysis.gcEvents, cpuThreads: analysis.cpuThreads, exemplars: analysis.exemplars };
+      result.trace = { computeVsTrace: analysis.computeVsTrace, jobDecomposition: analysis.jobDecomposition, jobLevelDecomposition: analysis.jobLevelDecomposition, bytes: traceInfo.bytes, threads: analysis.threads, marks: analysis.marks, gcEvents: analysis.gcEvents, cpuThreads: analysis.cpuThreads, exemplars: analysis.exemplars };
       if (result.controls) {
         const { evaluateControls } = await import("./controls-check.mjs");
         result.controls.evaluation = evaluateControls(runDir, result.controls.observations);

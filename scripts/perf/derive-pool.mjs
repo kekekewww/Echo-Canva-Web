@@ -22,6 +22,42 @@ function groupBy(items, keyOf) {
   return map;
 }
 
+/**
+ * The per-job reported compute values and main-thread stamps the trace analyser needs, from a raw pool log.
+ * metricByJob maps a request sequence to the job's pool.compute-metric.
+ */
+export function poolComputeCheck(log, wholeMilliseconds, metricByJob = new Map()) {
+  return {
+    wholeMilliseconds,
+    metricName: "pool.compute-metric",
+    jobs: buildJobs(log)
+      .map((job) => ({
+        seq: job.requestId,
+        jobKind: job.perWorker.some((entry) => entry.install) ? "static-install" : "pose-only",
+        firstPostStartMs: Math.min(...job.perWorker.flatMap((entry) => [entry.install?.t0, entry.shard?.t0]).filter((value) => typeof value === "number")),
+        lastHandlerStartMs: (() => {
+          const starts = job.perWorker.map((entry) => entry.result?.h0).filter((value) => typeof value === "number");
+          return starts.length > 0 ? Math.max(...starts) : null;
+        })(),
+        lastHandlerEndMs: (() => {
+          const last = job.perWorker.filter((entry) => entry.result).sort((a, b) => b.result.h0 - a.result.h0)[0];
+          return last ? last.result.h2 : null;
+        })(),
+        metricMs: metricByJob.get(job.requestId) ?? null,
+        entries: job.perWorker
+          .filter((entry) => entry.result && entry.result.computeMs !== null)
+          .map((entry) => ({
+            worker: entry.worker,
+            reportedMs: entry.result.computeMs,
+            recvEpochMs: entry.shardRecord?.recvEpochMs ?? null,
+            postEndMs: entry.shard ? entry.shard.t1 : null,
+            handlerStartMs: entry.result.h0,
+          })),
+      }))
+      .filter((job) => job.entries.length > 0),
+  };
+}
+
 /** Groups posts and handlers by pool request id and attaches the timer and the worker records. */
 export function buildJobs(log) {
   const posts = log.posts.filter((post) => SHARD_TYPES.has(post.type));

@@ -5,7 +5,7 @@
 import { createReadStream, existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-import { UNAVAILABLE, parseJsonl, privacyTerms, sanitizeTrace, serializeJsonl, writeJson } from "./lib.mjs";
+import { UNAVAILABLE, nearestRank, parseJsonl, privacyTerms, sanitizeTrace, serializeJsonl, writeJson } from "./lib.mjs";
 
 export const EXEMPLAR_BYTES = 300_000;
 const EXEMPLAR_MARGIN_US = 50_000;
@@ -123,6 +123,7 @@ async function collect(file) {
   const processNames = new Map();
   const marks = [];
   const tasks = new Map();
+  const events = new Map();
   const gc = [];
   const concurrent = [];
   const profiles = new Map();
@@ -141,10 +142,14 @@ async function collect(file) {
     }
     if (event.ph === "X" && (event.name === "RunTask" || event.name === "ThreadControllerImpl::RunTask")) {
       if (!tasks.has(key)) tasks.set(key, []);
-      tasks.get(key).push({ ts: event.ts, dur: event.dur ?? 0 });
+      tasks.get(key).push({ ts: event.ts, dur: event.dur ?? 0, tdur: typeof event.tdur === "number" ? event.tdur : undefined });
       return;
     }
     if (event.ph === "X" && typeof event.name === "string") {
+      if ((event.dur ?? 0) > 0) {
+        if (!events.has(key)) events.set(key, []);
+        events.get(key).push({ name: event.name, ts: event.ts, dur: event.dur });
+      }
       const kind = PRIMARY_GC.get(event.name);
       if (kind) {
         gc.push({
@@ -190,7 +195,7 @@ async function collect(file) {
       }
     }
   });
-  return { names, processNames, marks, tasks, gc, concurrent, profiles, nodeNames };
+  return { names, processNames, marks, tasks, events, gc, concurrent, profiles, nodeNames };
 }
 
 function buildClockAlignment(marks, names, calibration) {
@@ -215,6 +220,7 @@ function buildClockAlignment(marks, names, calibration) {
         offsetUs: perfFit.a,
         driftPpm: typeof perfFit.b === "number" ? (perfFit.b - 1) * 1e6 : UNAVAILABLE,
         maxResidualUs: perfFit.maxResidualUs,
+        model: { a: perfFit.a, b: perfFit.b, meanX: perfFit.meanX, meanY: perfFit.meanY },
       },
       epochFit: { n: epochFit.n, offsetUs: epochFit.a, driftPpm: typeof epochFit.b === "number" ? (epochFit.b - 1) * 1e6 : UNAVAILABLE, maxResidualUs: epochFit.maxResidualUs, model: { a: epochFit.a, b: epochFit.b, meanX: epochFit.meanX, meanY: epochFit.meanY } },
     };
@@ -267,18 +273,84 @@ function overlap(aStart, aEnd, bStart, bEnd) {
   return Math.max(0, Math.min(aEnd, bEnd) - Math.max(aStart, bStart));
 }
 
-/** Top-level tasks only: drops any task that lies inside an earlier, longer one. */
-function topLevel(tasks) {
+/**
+ * Outermost tasks only, each counted once. Chromium emits RunTask and ThreadControllerImpl::RunTask
+ * for the same task, nested; a task that starts inside an earlier one is absorbed by it, and if it
+ * ends later (rounding) the outer task's extent grows to cover it, so the wall time of the result is
+ * the union of the task intervals. The outer task's own thread CPU time (tdur) is kept.
+ */
+export function topLevel(tasks) {
   const sorted = [...tasks].sort((a, b) => a.ts - b.ts || b.dur - a.dur);
   const result = [];
-  let end = -Infinity;
+  let current = null;
   for (const task of sorted) {
-    if (task.ts >= end) {
-      result.push(task);
-      end = task.ts + task.dur;
+    if (current && task.ts < current.ts + current.dur) {
+      const end = Math.max(current.ts + current.dur, task.ts + task.dur);
+      current.dur = end - current.ts;
+      continue;
     }
+    current = { ts: task.ts, dur: task.dur, tdur: task.tdur };
+    result.push(current);
   }
   return result;
+}
+
+const NO_CHILD_EVENT = "(no child event)";
+
+function lowerBound(list, ts) {
+  let lo = 0;
+  let hi = list.length;
+  while (lo < hi) {
+    const mid = (lo + hi) >> 1;
+    if (list[mid].ts < ts) lo = mid + 1;
+    else hi = mid;
+  }
+  return lo;
+}
+
+/** Events of one thread ordered so that a parent precedes its children. */
+function sortEvents(list) {
+  return [...(list ?? [])].sort((a, b) => a.ts - b.ts || b.dur - a.dur);
+}
+
+/**
+ * Exclusive time per event name inside one task: a parent's time minus its direct children's. The
+ * time inside the task that no nested event covers is reported as "(no child event)". The parts sum to
+ * the task's duration. `events` must come from sortEvents. Events are clamped to their parent, so
+ * overlap that is not strictly nested cannot make the parts exceed the whole.
+ */
+export function exclusiveBreakdown(task, events) {
+  const end = task.ts + task.dur;
+  const root = { name: NO_CHILD_EVENT, start: task.ts, end, child: 0 };
+  const stack = [root];
+  const totals = new Map();
+  const close = (node) => {
+    const exclusive = Math.max(0, node.end - node.start - node.child);
+    totals.set(node.name, (totals.get(node.name) ?? 0) + exclusive);
+  };
+  for (let index = lowerBound(events, task.ts); index < events.length && events[index].ts < end; index += 1) {
+    const event = events[index];
+    while (stack.length > 1 && event.ts >= stack[stack.length - 1].end) close(stack.pop());
+    const parent = stack[stack.length - 1];
+    const start = Math.max(event.ts, parent.start);
+    const stop = Math.min(event.ts + event.dur, parent.end);
+    if (stop <= start) continue;
+    parent.child += stop - start;
+    stack.push({ name: event.name, start, end: stop, child: 0 });
+  }
+  while (stack.length > 1) close(stack.pop());
+  close(root);
+  return [...totals].filter(([, us]) => us > 0).sort((a, b) => b[1] - a[1]).map(([name, us]) => ({ name, us }));
+}
+
+/** wall, cpu and off-cpu time of a task record: tdur is the thread's CPU time over the same task. */
+function timing(task) {
+  const cpuUs = typeof task.tdur === "number" ? task.tdur : UNAVAILABLE;
+  return { wallUs: task.dur, cpuUs, offCpuUs: typeof cpuUs === "number" ? task.dur - cpuUs : UNAVAILABLE };
+}
+
+function describeTask(task, events) {
+  return { ts: task.ts, ...timing(task), breakdown: exclusiveBreakdown(task, events) };
 }
 
 function medianOf(values) {
@@ -298,6 +370,7 @@ function computeVsTrace({ computeCheck, marks, tasks, names, workerLabels, align
   const keyOfLabel = new Map([...workerLabels].map(([key, name]) => [name, key]));
   const unlabelled = [...names].filter(([, name]) => /DedicatedWorker/.test(name)).map(([key]) => key);
   const entries = [];
+  const matches = [];
   let jobsWithoutMarks = 0;
   const pending = (job, entry, reason) =>
     entries.push({ seq: job.seq, worker: entry.worker, reportedMs: entry.reportedMs, traceTaskMs: "unmatched", differenceMs: "unmatched", matchedBy: "none", reason });
@@ -310,8 +383,11 @@ function computeVsTrace({ computeCheck, marks, tasks, names, workerLabels, align
       continue;
     }
     const inWindow = (key) =>
-      topLevel(tasks.get(key) ?? []).filter((task) => overlap(task.ts, task.ts + task.dur, start.ts, end.ts) > 0);
-    const record = (entry, task, matchedBy) =>
+      topLevel(tasks.get(key) ?? [])
+        .filter((task) => overlap(task.ts, task.ts + task.dur, start.ts, end.ts) > 0)
+        .map((task) => ({ ...task, key }));
+    const record = (entry, task, matchedBy) => {
+      matches.push({ job, entry, task, matchedBy });
       entries.push({
         seq: job.seq,
         worker: entry.worker,
@@ -321,6 +397,7 @@ function computeVsTrace({ computeCheck, marks, tasks, names, workerLabels, align
         matchedBy,
         reason: "",
       });
+    };
     if (keyOfLabel.size > 0) {
       for (const entry of job.entries) {
         const key = keyOfLabel.get(`w${entry.worker}`);
@@ -377,12 +454,239 @@ function computeVsTrace({ computeCheck, marks, tasks, names, workerLabels, align
     },
     entries,
   };
-  return result;
+  return { result, matches };
+}
+
+const JOB_FIELDS = [
+  "reportedMetric",
+  "firstPostToFirstWorkerStartUs",
+  "firstPostToLastWorkerEndUs",
+  "slowestWorkerWallUs",
+  "slowestWorkerCpuUs",
+  "slowestWorkerOffCpuUs",
+  "lastWorkerEndToLastHandlerStartUs",
+  "mainBusyWallUs",
+  "mainBusyCpuUs",
+  "lastHandlerUs",
+  "gcOnMainInWindowUs",
+  "gcOnWorkersInWindowUs",
+  "lateStartWorkers",
+];
+
+/**
+ * One line per job, needing no worker pairing. The window runs from the job's first post to the start
+ * of its last reply handler on main; worker tasks are the top-level tasks on DedicatedWorker threads
+ * that start inside it. A worker task that straddles the first post is not counted but is reported as
+ * lateStartWorkers. Main busy time is main's top-level task time overlapping the wait from the latest
+ * worker task end to the last handler start; mainBusyCpuUs adds the thread CPU time of those whole tasks.
+ */
+function jobLevelDecomposition({ computeCheck, marks, tasks, eventsOf, mainKey, alignment, gc, names, boundary }) {
+  const model = alignment.threads.main?.perfNowFit?.model;
+  const fitted = model && typeof model.b === "number" && typeof model.meanX === "number";
+  const toTrace = (ms) => (fitted && typeof ms === "number" && Number.isFinite(ms) ? model.meanY + model.b * (ms * 1000 - model.meanX) : null);
+  const byName = new Map(marks.map((mark) => [mark.name, mark]));
+  const workerKeys = [...names].filter(([, name]) => /DedicatedWorker/.test(name)).map(([key]) => key);
+  const workerTasks = new Map(workerKeys.map((key) => [key, topLevel(tasks.get(key) ?? [])]));
+  const mainTasks = mainKey ? topLevel(tasks.get(mainKey) ?? []) : [];
+  const mainEvents = mainKey ? eventsOf(mainKey) : [];
+  const lines = [];
+  for (const job of computeCheck.jobs) {
+    const firstPost = toTrace(job.firstPostStartMs);
+    const lastHandlerStart = toTrace(job.lastHandlerStartMs);
+    const line = {
+      requestSeq: job.seq,
+      jobKind: job.jobKind ?? UNAVAILABLE,
+      boundary,
+      clock: "trace-ts-us",
+      reportedMetric: typeof job.metricMs === "number" ? job.metricMs : UNAVAILABLE,
+      reportedMetricName: computeCheck.metricName ?? UNAVAILABLE,
+    };
+    if (firstPost === null || lastHandlerStart === null) {
+      for (const name of JOB_FIELDS) if (!(name in line)) line[name] = UNAVAILABLE;
+      line.note = "job stamps or the main clock fit are missing";
+      lines.push(line);
+      continue;
+    }
+    const dispatch = byName.get(`ec102:job:${job.seq}:dispatch`);
+    const windowStart = dispatch ? Math.min(dispatch.ts, firstPost) : firstPost;
+    const inJob = [];
+    let late = 0;
+    for (const key of workerKeys) {
+      for (const task of workerTasks.get(key)) {
+        if (task.ts > lastHandlerStart || task.ts + task.dur < windowStart) continue;
+        if (task.ts >= firstPost) inJob.push(task);
+        else if (task.ts + task.dur > firstPost) late += 1;
+      }
+    }
+    line.firstPostTs = firstPost;
+    line.lastHandlerStartTs = lastHandlerStart;
+    line.lateStartWorkers = late;
+    line.workerTasksInWindow = inJob.length;
+    line.lastHandlerUs = typeof job.lastHandlerEndMs === "number" ? (job.lastHandlerEndMs - job.lastHandlerStartMs) * 1000 : UNAVAILABLE;
+    const gcIn = (predicate) => gc.filter((event) => predicate(event.key)).reduce((sum, event) => sum + overlap(event.ts, event.ts + event.dur, firstPost, lastHandlerStart), 0);
+    line.gcOnMainInWindowUs = gcIn((key) => key === mainKey);
+    line.gcOnWorkersInWindowUs = gcIn((key) => workerKeys.includes(key));
+    if (inJob.length === 0) {
+      for (const name of JOB_FIELDS) if (!(name in line)) line[name] = UNAVAILABLE;
+      line.note = "no worker task started inside the job window";
+      lines.push(line);
+      continue;
+    }
+    const slowest = inJob.reduce((best, task) => (task.dur > best.dur ? task : best));
+    const firstStart = Math.min(...inJob.map((task) => task.ts));
+    const lastEnd = Math.max(...inJob.map((task) => task.ts + task.dur));
+    line.firstPostToFirstWorkerStartUs = firstStart - firstPost;
+    line.firstPostToLastWorkerEndUs = lastEnd - firstPost;
+    line.slowestWorkerWallUs = slowest.dur;
+    line.slowestWorkerCpuUs = typeof slowest.tdur === "number" ? slowest.tdur : UNAVAILABLE;
+    line.slowestWorkerOffCpuUs = typeof slowest.tdur === "number" ? slowest.dur - slowest.tdur : UNAVAILABLE;
+    line.lastWorkerEndToLastHandlerStartUs = lastHandlerStart - lastEnd;
+    const waiting = lastHandlerStart > lastEnd
+      ? mainTasks.map((task) => ({ task, shared: overlap(task.ts, task.ts + task.dur, lastEnd, lastHandlerStart) })).filter(({ shared }) => shared > 0)
+      : [];
+    line.mainBusyWallUs = waiting.reduce((sum, { shared }) => sum + shared, 0);
+    line.mainBusyCpuUs = waiting.length === 0 ? 0 : (waiting.every(({ task }) => typeof task.tdur === "number") ? waiting.reduce((sum, { task }) => sum + task.tdur, 0) : UNAVAILABLE);
+    line.mainTasksDuringWait = [...waiting]
+      .sort((a, b) => b.shared - a.shared)
+      .slice(0, 3)
+      .map(({ task, shared }) => ({ ts: task.ts, ...timing(task), overlapUs: shared, exclusive: exclusiveBreakdown(task, mainEvents).slice(0, 5) }));
+    lines.push(line);
+  }
+  const rankedJobs = lines.filter((line) => typeof line.reportedMetric === "number").sort((a, b) => b.reportedMetric - a.reportedMetric);
+  const slowCount = rankedJobs.length === 0 ? 0 : Math.max(1, Math.ceil(rankedJobs.length * 0.1));
+  const slow = new Set(rankedJobs.slice(0, slowCount).map((line) => line.requestSeq));
+  const summarise = (subset) => ({ jobs: subset.length, fields: Object.fromEntries(JOB_FIELDS.map((name) => [name, fieldStats(subset.map((line) => line[name]))])) });
+  const kinds = [...new Set(lines.map((line) => line.jobKind))];
+  const summary = {
+    schema: "ec102.job-decomposition-jobs-summary.v1",
+    boundary,
+    clock: "trace-ts-us",
+    units: "microseconds, except reportedMetric (milliseconds) and the count lateStartWorkers",
+    window: "first post to the start of the last reply handler on main; worker tasks are top-level tasks on DedicatedWorker threads that start at or after the first post",
+    jobs: lines.length,
+    all: summarise(lines),
+    slowest10PercentByReportedMetric: { ...summarise(lines.filter((line) => slow.has(line.requestSeq))), seqs: [...slow].sort((a, b) => a - b) },
+    byJobKind: Object.fromEntries(kinds.map((kind) => [kind, summarise(lines.filter((line) => line.jobKind === kind))])),
+  };
+  return { lines, summary };
+}
+
+const DECOMPOSITION_FIELDS = [
+  "dispatchToWorkerStartUs",
+  "workerTaskWallUs",
+  "workerTaskCpuUs",
+  "workerEndToMainHandlerUs",
+  "mainBusyDuringReplyWaitUs",
+  "reportedMetric",
+];
+
+function fieldStats(values) {
+  const numbers = values.filter((value) => typeof value === "number" && Number.isFinite(value));
+  if (numbers.length === 0) return { n: 0, p50: UNAVAILABLE, p95: UNAVAILABLE, p99: UNAVAILABLE, max: UNAVAILABLE };
+  return { n: numbers.length, p50: nearestRank(numbers, 0.5), p95: nearestRank(numbers, 0.95), p99: nearestRank(numbers, 0.99), max: Math.max(...numbers) };
+}
+
+/**
+ * One line per job and worker, on the trace clock, for the path post -> worker task -> reply -> main
+ * handler. The main thread's performance.now() stamps are mapped onto trace time with the main clock
+ * fit. The worker task is the one compute-vs-trace matched; in-app that match is by rank, which is
+ * approximate (the worker threads cannot be told apart), and the lines say so.
+ */
+function jobDecomposition({ computeCheck, matches, tasks, events, mainKey, alignment, boundary }) {
+  const model = alignment.threads.main?.perfNowFit?.model;
+  const fitted = model && typeof model.b === "number" && typeof model.meanX === "number";
+  const toTrace = (ms) => (fitted && typeof ms === "number" ? model.meanY + model.b * (ms * 1000 - model.meanX) : null);
+  const mainTasks = mainKey ? topLevel(tasks.get(mainKey) ?? []) : [];
+  const mainEvents = mainKey ? sortEvents(events.get(mainKey)) : [];
+  const metricByJob = new Map(computeCheck.jobs.map((job) => [job.seq, typeof job.metricMs === "number" ? job.metricMs : UNAVAILABLE]));
+  const lines = [];
+  for (const { job, entry, task, matchedBy } of matches) {
+    const postEnd = toTrace(entry.postEndMs);
+    const handlerStart = toTrace(entry.handlerStartMs);
+    const workerEnd = task.ts + task.dur;
+    let busy = UNAVAILABLE;
+    let busyTasks = UNAVAILABLE;
+    if (handlerStart !== null) {
+      busy = 0;
+      busyTasks = [];
+      for (const main of mainTasks) {
+        const shared = overlap(main.ts, main.ts + main.dur, workerEnd, handlerStart);
+        const holdsHandler = main.ts <= handlerStart && handlerStart <= main.ts + main.dur;
+        if (shared <= 0 && !(holdsHandler && handlerStart >= workerEnd)) continue;
+        busy += shared;
+        busyTasks.push({
+          ts: main.ts,
+          ...timing(main),
+          overlapUs: shared,
+          containsHandlerStart: holdsHandler,
+          topExclusive: exclusiveBreakdown(main, mainEvents).slice(0, 3),
+        });
+      }
+    }
+    lines.push({
+      seq: job.seq,
+      worker: entry.worker,
+      boundary,
+      clock: "trace-ts-us",
+      workerMatch: matchedBy,
+      workerMatchApproximate: matchedBy.startsWith("rank"),
+      postEndTs: postEnd ?? UNAVAILABLE,
+      workerTaskStartTs: task.ts,
+      workerTaskEndTs: workerEnd,
+      handlerStartTs: handlerStart ?? UNAVAILABLE,
+      dispatchToWorkerStartUs: postEnd === null ? UNAVAILABLE : task.ts - postEnd,
+      workerTaskWallUs: task.dur,
+      workerTaskCpuUs: typeof task.tdur === "number" ? task.tdur : UNAVAILABLE,
+      workerEndToMainHandlerUs: handlerStart === null ? UNAVAILABLE : handlerStart - workerEnd,
+      mainBusyDuringReplyWaitUs: busy,
+      mainTasksDuringReplyWait: busyTasks,
+      reportedMetric: metricByJob.get(job.seq) ?? UNAVAILABLE,
+      reportedMetricName: computeCheck.metricName ?? UNAVAILABLE,
+      reportedWorkerComputeMs: entry.reportedMs,
+    });
+  }
+  const byJob = new Map();
+  for (const line of lines) {
+    if (typeof line.reportedMetric === "number" && !byJob.has(line.seq)) byJob.set(line.seq, line.reportedMetric);
+  }
+  const ranked = [...byJob].sort((a, b) => b[1] - a[1]);
+  const slowCount = ranked.length === 0 ? 0 : Math.max(1, Math.ceil(ranked.length * 0.1));
+  const slowSeqs = new Set(ranked.slice(0, slowCount).map(([seq]) => seq));
+  const summarise = (subset) => Object.fromEntries(DECOMPOSITION_FIELDS.map((name) => [name, fieldStats(subset.map((line) => line[name]))]));
+  const methods = [...new Set(lines.map((line) => line.workerMatch))];
+  const summary = {
+    schema: "ec102.job-decomposition-summary.v1",
+    boundary,
+    clock: "trace-ts-us",
+    units: "microseconds, except reportedMetric which is in the job's own unit (milliseconds)",
+    lines: lines.length,
+    jobs: byJob.size,
+    workerMatching: {
+      methods,
+      approximate: lines.some((line) => line.workerMatchApproximate),
+      note: boundary === "browser-app"
+        ? "approximate: in-app the worker threads cannot be told apart, so each job's reported shard values are paired with its largest worker tasks by rank; the task paired with a line may belong to another worker"
+        : "worker thread known from its clock marks; the task is the one containing the worker's receive time, else the largest task in the job window",
+    },
+    mainClockFit: fitted ? { baselineMs: alignment.threads.main.baselineMs, driftPpm: alignment.threads.main.perfNowFit.driftPpm, maxResidualUs: alignment.threads.main.perfNowFit.maxResidualUs } : UNAVAILABLE,
+    all: summarise(lines),
+    slowest10PercentByReportedMetric: {
+      jobs: slowSeqs.size,
+      seqs: [...slowSeqs].sort((a, b) => a - b),
+      fields: summarise(lines.filter((line) => slowSeqs.has(line.seq))),
+    },
+  };
+  return { lines, summary };
 }
 
 export async function analyzeTrace({ file, outDir, calibrationFile, exemplars, computeCheck }) {
   const data = await collect(file);
-  const { names, processNames, marks, tasks, gc: gcAll, concurrent, profiles, nodeNames } = data;
+  const { names, processNames, marks, tasks, events, gc: gcAll, concurrent, profiles, nodeNames } = data;
+  const sortedCache = new Map();
+  const eventsOf = (key) => {
+    if (!sortedCache.has(key)) sortedCache.set(key, sortEvents(events.get(key)));
+    return sortedCache.get(key);
+  };
   const gc = gcAll.filter((event) => isJsThread(names.get(event.key)));
 
   const workerLabels = new Map();
@@ -446,14 +750,24 @@ export async function analyzeTrace({ file, outDir, calibrationFile, exemplars, c
   const windowEnd = marks.find((mark) => mark.name === "ec102:window:end")?.ts ?? Infinity;
   const busy = {};
   for (const [key, list] of tasks) {
-    const inside = topLevel(list.filter((task) => task.ts >= windowStart && task.ts <= windowEnd));
+    // Outermost tasks are found first and then selected by start time, so a nested task whose parent
+    // starts before the window is never promoted to a task of its own.
+    const inside = topLevel(list).filter((task) => task.ts >= windowStart && task.ts <= windowEnd);
+    const withCpu = inside.filter((task) => typeof task.tdur === "number");
+    const cpuTotal = withCpu.reduce((sum, task) => sum + task.tdur, 0);
+    const wallTotal = inside.reduce((sum, task) => sum + task.dur, 0);
     busy[label(key)] = {
       thread: names.get(key) ?? key,
       windowUs: Number.isFinite(windowEnd - windowStart) ? windowEnd - windowStart : UNAVAILABLE,
-      busyUs: inside.reduce((sum, task) => sum + task.dur, 0),
+      busyUs: wallTotal,
+      wallUs: wallTotal,
+      cpuUs: withCpu.length === 0 && inside.length > 0 ? UNAVAILABLE : cpuTotal,
+      offCpuUs: withCpu.length === inside.length && inside.length > 0 ? wallTotal - cpuTotal : (inside.length === 0 ? 0 : UNAVAILABLE),
+      tasksWithoutCpuTime: inside.length - withCpu.length,
       tasks: inside.length,
       maxTaskUs: inside.reduce((max, task) => Math.max(max, task.dur), 0),
       topTasksUs: inside.map((task) => task.dur).sort((a, b) => b - a).slice(0, 5),
+      topTasks: [...inside].sort((a, b) => b.dur - a.dur).slice(0, 5).map((task) => describeTask(task, eventsOf(key))),
       longTasks: inside.filter((task) => task.dur >= LONG_TASK_US).map((task) => ({ ts: task.ts, durUs: task.dur })),
     };
   }
@@ -478,24 +792,44 @@ export async function analyzeTrace({ file, outDir, calibrationFile, exemplars, c
   writeJson(join(outDir, "cpu-top.json"), cpuTop);
 
   let computeSummary = UNAVAILABLE;
+  let decompositionSummary = UNAVAILABLE;
+  let jobLevelSummary = UNAVAILABLE;
   if (computeCheck) {
-    const check = computeVsTrace({ computeCheck, marks, tasks, names, workerLabels, alignment });
+    const { result: check, matches } = computeVsTrace({ computeCheck, marks, tasks, names, workerLabels, alignment });
     writeJson(join(outDir, "compute-vs-trace.json"), check);
     computeSummary = check.summary;
+    const decomposition = jobDecomposition({
+      computeCheck,
+      matches,
+      tasks,
+      events: new Map([...events.keys()].map((key) => [key, eventsOf(key)])),
+      mainKey,
+      alignment,
+      boundary: workerLabels.size > 0 ? "browser-pool" : "browser-app",
+    });
+    writeFileSync(join(outDir, "job-decomposition.jsonl"), serializeJsonl(decomposition.lines), "utf8");
+    writeJson(join(outDir, "job-decomposition-summary.json"), decomposition.summary);
+    decompositionSummary = decomposition.summary;
+    const jobLevel = jobLevelDecomposition({ computeCheck, marks, tasks, eventsOf, mainKey, alignment, gc, names, boundary: decomposition.summary.boundary });
+    writeFileSync(join(outDir, "job-decomposition-jobs.jsonl"), serializeJsonl(jobLevel.lines), "utf8");
+    writeJson(join(outDir, "job-decomposition-jobs-summary.json"), jobLevel.summary);
+    jobLevelSummary = jobLevel.summary;
   }
-  const exemplarOutput = await buildExemplars({ file, outDir, exemplars, marks, tasks, gc, profiles, nodeNames, label, names });
+  const exemplarOutput = await buildExemplars({ file, outDir, exemplars, marks, tasks, eventsOf, gc, profiles, nodeNames, label, names });
   return {
     threads: threadMap.length,
     marks: marks.length,
     gcEvents: gc.length,
     computeVsTrace: computeSummary,
+    jobDecomposition: decompositionSummary,
+    jobLevelDecomposition: jobLevelSummary,
     cpuThreads: Object.keys(cpuTop).length,
     alignment,
     exemplars: exemplarOutput,
   };
 }
 
-async function buildExemplars({ file, outDir, exemplars, marks, tasks, gc, profiles, label, nodeNames }) {
+async function buildExemplars({ file, outDir, exemplars, marks, tasks, eventsOf, gc, profiles, label, nodeNames }) {
   if (!exemplars || exemplars.jobs.length === 0) {
     writeJson(join(outDir, "exemplars.json"), { phase: exemplars?.phase ?? UNAVAILABLE, exemplars: [], note: "no ranked jobs were supplied" });
     return [];
@@ -522,7 +856,7 @@ async function buildExemplars({ file, outDir, exemplars, marks, tasks, gc, profi
         .slice(0, 10);
       if (inWindow.length === 0) continue;
       threads[name] = {
-        tasks: inWindow.map((task) => ({ ts: task.ts, durUs: task.dur, overlapUs: overlap(task.ts, task.ts + task.dur, windowStart, windowEnd), fractionOfWindow: overlap(task.ts, task.ts + task.dur, windowStart, windowEnd) / windowUs })),
+        tasks: inWindow.map((task) => ({ ...describeTask(task, eventsOf(key)), durUs: task.dur, overlapUs: overlap(task.ts, task.ts + task.dur, windowStart, windowEnd), fractionOfWindow: overlap(task.ts, task.ts + task.dur, windowStart, windowEnd) / windowUs })),
         gc: gc.filter((event) => event.key === key && overlap(event.ts, event.ts + event.dur, windowStart, windowEnd) > 0).map((event) => ({ kind: event.kind, durUs: event.dur, heapBefore: event.heapBefore, heapAfter: event.heapAfter })),
         topFunctions: topSampled(profiles, nodeNames, key, windowStart, windowEnd),
       };

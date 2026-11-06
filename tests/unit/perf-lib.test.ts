@@ -6,6 +6,7 @@ import { afterAll, describe, expect, it } from "vitest";
 
 import {
   buildGroups,
+  groupKeyOf,
   computeStats,
   createSample,
   executeRun,
@@ -487,5 +488,13 @@ describe("censored latest-wait", () => {
     expect(pooled.censoredCount).toBe(1);
     expect(pooled.includingCensored.warm.N).toBe(2);
     expect(pooled.includingCensored.warm.max).toBe(900);
+  });
+});
+
+describe("group key", () => {
+  it("keeps in-app runs with different drivers in different groups", () => {
+    const entry = { runId: "a", variant: "TS-W", case: "APP_H100_SWITCH", pass: "clean", boundary: "browser-app", workers: 4, audio: "on", build: "prod", parity: false, status: "passed", start: "", end: "", orderIndex: 0, sampleCount: 1 };
+    expect(groupKeyOf({ ...entry, driver: "poll" })).not.toBe(groupKeyOf({ ...entry, driver: "immediate" }));
+    expect(groupKeyOf(entry)).toBe(groupKeyOf({ ...entry, driver: "not-applicable" }));
   });
 });
