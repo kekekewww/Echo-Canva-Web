@@ -5,7 +5,7 @@
 ## 接續工作
 
 1. 讀 [最近交接 EC-101](../handoffs/2026-11-06-ec-101-claude.md)，它回鏈 [EC-001 交接](../handoffs/2026-11-06-ec-001-codex.md) 與 [EC-001 記憶基礎](../tasks/EC-001.md)。
-2. [EC-101](../tasks/EC-101.md) 的語料已由 GPT-Sol 獨立驗證（Verified，候選 `b0807ae`），見 [語料來源](../raw/sources/ec-101-corpus-baseline.md) 與 [驗證工作階段](../sessions/2026-11-06-codex-ec-101-verification.md)。維護者合併後，依 [EC-102 Runtime profiling](../tasks/EC-102.md) 準備第一輪工程驗收。讀 [本機執行紀錄](../raw/sources/windows-baseline.md) 和 [Benchmark 計畫](performance/benchmark-plan.md)。
+2. [EC-101](../tasks/EC-101.md) 的語料已由 GPT-Sol 獨立驗證（Verified，候選 `b0807ae`），見 [語料來源](../raw/sources/ec-101-corpus-baseline.md) 與 [驗證工作階段](../sessions/2026-11-06-codex-ec-101-verification.md)。EC-102 可從凍結語料開始，依 [EC-102 Runtime profiling](../tasks/EC-102.md) 準備第一輪工程驗收。讀 [本機執行紀錄](../raw/sources/windows-baseline.md) 和 [Benchmark 計畫](performance/benchmark-plan.md)。
 3. 依 [路線圖](roadmap.md) 審查後續待認領項目。XR 提案供實驗前討論，正式採用狀態見 [決策索引](index.md#proposed-adrs)。
 
 ## 未決事項
