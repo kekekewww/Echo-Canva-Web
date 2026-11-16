@@ -22,6 +22,10 @@ For ongoing engineering research and agent handoffs, use the [project memory ind
 
 Use [SECURITY](../SECURITY.md) for private vulnerabilities and follow [community conduct](../CODE_OF_CONDUCT.md).
 
+## Proposals
+
+[Desktop rewrite spec](desktop-rewrite-spec/00-README.md) is a self-contained specification for rebuilding this app as a Rust (Tauri) desktop application in a separate repository. Sections 01–07 describe the current code at `46c61c5`, with review findings; 08–10 are the proposed architecture, UX redesign and build plan. It is a proposal, not an adopted decision: this repository's stack rules in `AGENTS.md` are unchanged.
+
 ## Historical evidence
 
 [Build Week archive](archive/build-week/INDEX.md) retains requirements, status, plans, research notes, artifacts, original README/AGENTS, and technical-doc copies. It is traceability evidence, not a current roadmap or checklist. Preserve original bytes/attribution; add current corrections outside it.
