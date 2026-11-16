@@ -24,6 +24,7 @@ This is the order of work for the new repository. Each milestone ends with a gat
 
 Deliverables:
 - Repository layout from section 08 §4, `rust-toolchain.toml`, `.nvmrc`, `packageManager`, lockfiles committed.
+- `.gitattributes` marks `fixtures/**` as `-text` and `*.wav` as `binary`. The corpus is checked by SHA-256, so a CRLF conversion on Windows would fail every case.
 - `AGENTS.md` from `AGENTS.template.md` in this spec pack.
 - Fixtures copied (§5 below): `fixtures/corpus/v1`, `fixtures/web-exports`, `assets/audio` with licenses, `LICENSE`, `THIRD_PARTY_NOTICES.md`.
 - CI on Windows, macOS and Linux: `cargo fmt --check`, `cargo clippy -- -D warnings`, `cargo test`, `pnpm lint`, `pnpm typecheck`, `pnpm test`, Tauri build (no signing).
@@ -145,7 +146,7 @@ The user must copy these into the new repository at M0. Keep each license and at
 | From (web repo) | To (new repo) | Why | License note |
 | --- | --- | --- | --- |
 | This spec folder | `docs/spec/` | The instructions | Same owner |
-| `benchmarks/corpus/v1/` and `benchmarks/corpus/README.md` | `fixtures/corpus/v1/` | Golden parity fixtures | MIT, keep `LICENSE` attribution |
+| `benchmarks/corpus/v1/` and `benchmarks/corpus/README.md` | `fixtures/corpus/v1/` and `fixtures/corpus/README.md` | Golden parity fixtures | MIT, keep `LICENSE` attribution |
 | `docs/tutorials/fixtures/` | `fixtures/web-exports/` | Real web exports for import tests | MIT |
 | `public/audio/*` including `LICENSE.md` | `assets/audio/` | Built-in loops | See that `LICENSE.md` (section 04) |
 | `schemas/scene-spec.schema.json` | `fixtures/schemas/` | Reference JSON Schema for SceneSpec v1 | MIT |
